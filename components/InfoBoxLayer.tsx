@@ -139,25 +139,55 @@ export default function InfoBoxLayer({
       clusters.push({ primary: item.conflict, count, screen: item.screen });
     }
 
-    // Limit visible boxes — but ALWAYS include the selected conflict
-    const maxBoxes = zoom > 5 ? 12 : zoom > 3 ? 8 : 6;
+    // Limit visible boxes. On mobile (narrow viewport) the callouts have
+    // no room to lay out without overlapping each other on top of the dots
+    // they label — so we show NONE except for the currently-selected
+    // conflict. Mobile users browse via the conflict markers themselves
+    // and the sidebar; the callouts are a desktop-only affordance.
+    const isMobile = screenW < 640;
+    const maxBoxes = isMobile
+      ? (selectedId ? 1 : 0)
+      : zoom > 5 ? 12 : zoom > 3 ? 8 : 6;
     let visibleClusters = clusters.slice(0, maxBoxes);
 
-    // If a conflict is selected but didn't make the cut, force-add it
+    // If a conflict is selected but didn't make the cut, force-add it.
+    // Also: on mobile, REPLACE visibleClusters entirely with just the
+    // selected conflict so the user sees one clean callout, not whichever
+    // happened to top-rank by displayPriority.
     if (selectedId) {
       const selectedInVisible = visibleClusters.some(cl => cl.primary.id === selectedId);
-      if (!selectedInVisible) {
-        // Check if it's in the full cluster list
+      if (isMobile) {
+        // Mobile: only the selected one, period.
+        const selectedCluster = clusters.find(cl => cl.primary.id === selectedId);
+        if (selectedCluster) {
+          visibleClusters = [selectedCluster];
+        } else {
+          const selProj = projected.find(p => p.conflict.id === selectedId);
+          if (selProj) {
+            visibleClusters = [{ primary: selProj.conflict, count: 1, screen: selProj.screen }];
+          } else {
+            const selConflict = conflicts.find(c => c.id === selectedId);
+            if (selConflict) {
+              const pos = mapRef.project(selConflict.coordinates);
+              if (pos && pos.x > -50 && pos.x < screenW + 50 && pos.y > -50 && pos.y < screenH + 50) {
+                visibleClusters = [{ primary: selConflict, count: 1, screen: pos }];
+              } else {
+                visibleClusters = [];
+              }
+            } else {
+              visibleClusters = [];
+            }
+          }
+        }
+      } else if (!selectedInVisible) {
         const selectedCluster = clusters.find(cl => cl.primary.id === selectedId);
         if (selectedCluster) {
           visibleClusters.push(selectedCluster);
         } else {
-          // It wasn't a cluster primary — find it in projected list
           const selProj = projected.find(p => p.conflict.id === selectedId);
           if (selProj) {
             visibleClusters.push({ primary: selProj.conflict, count: 1, screen: selProj.screen });
           } else {
-            // It wasn't in projected (maybe low opacity) — try full conflicts list
             const selConflict = conflicts.find(c => c.id === selectedId);
             if (selConflict) {
               const pos = mapRef.project(selConflict.coordinates);
@@ -170,32 +200,36 @@ export default function InfoBoxLayer({
       }
     }
 
-    // Place boxes using best-fit angle to avoid overlaps
+    // Place boxes using best-fit angle to avoid overlaps. If no angle
+    // exists that avoids overlap with already-placed boxes, SKIP this
+    // box entirely (clean map > crowded text). Exception: the selected
+    // conflict is forced through even if it has to overlap.
     const placedBoxes: PositionedBox[] = [];
 
     for (const cluster of visibleClusters) {
+      const isSelectedCluster = cluster.primary.id === selectedId;
       let bestAngle = ANGLES[0];
       let bestPos = getBoxPosition(cluster.screen.x, cluster.screen.y, bestAngle, screenW, screenH);
       let bestScore = -Infinity;
+      let bestOverlaps = true;
 
       for (const angle of ANGLES) {
         const pos = getBoxPosition(cluster.screen.x, cluster.screen.y, angle, screenW, screenH);
 
-        // Score: prefer no overlaps, prefer staying on screen, prefer right/upper-right
-        let score = 100;
-
-        // Penalize overlaps with already-placed boxes
+        // Hard test: does this angle overlap any already-placed box?
+        let overlaps = false;
         for (const placed of placedBoxes) {
           if (boxesOverlap(pos, { x: placed.boxX, y: placed.boxY })) {
-            score -= 200;
+            overlaps = true;
+            break;
           }
         }
 
-        // Penalize being off-screen
+        // Score: prefer no overlaps, prefer staying on screen, prefer right/upper-right
+        let score = 100;
+        if (overlaps) score -= 200;
         if (pos.x <= 10 || pos.x >= screenW - BOX_W - 10) score -= 30;
         if (pos.y <= 65 || pos.y >= screenH - BOX_H - 145) score -= 30;
-
-        // Slight preference for right and upper-right (natural reading position)
         if (angle === 0) score += 5;
         if (angle === -Math.PI / 4) score += 3;
 
@@ -203,8 +237,14 @@ export default function InfoBoxLayer({
           bestScore = score;
           bestAngle = angle;
           bestPos = pos;
+          bestOverlaps = overlaps;
         }
       }
+
+      // If the best position still overlaps and this isn't the user's
+      // selected conflict, skip it rather than create visual mud. The
+      // dot itself remains on the map; users can still click it.
+      if (bestOverlaps && !isSelectedCluster) continue;
 
       placedBoxes.push({
         conflict: cluster.primary,

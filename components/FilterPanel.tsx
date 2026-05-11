@@ -56,17 +56,21 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
 
   return (
     <div
-      className="absolute top-20 right-6 z-20 pointer-events-auto"
-      style={{ width: 244, maxWidth: 'calc(100vw - 32px)' }}
+      // Mobile: anchor in the TopBar's right area, inline with the LIVE
+      // button. Trigger is icon-only (~36px square) so it fits next to LIVE
+      // without overlapping the Mapbox zoom (which is hidden on mobile).
+      // Desktop: original placement below the TopBar with the full "Filter"
+      // pill + active count.
+      className="absolute top-3 right-[92px] sm:top-20 sm:right-6 z-30 sm:z-20 pointer-events-auto"
+      style={{ width: 'auto' }}
     >
       <button
         onClick={() => setOpen(!open)}
-        className="font-ui inline-flex items-center gap-2 transition-colors w-full justify-between"
+        className="font-ui inline-flex items-center transition-colors"
         style={{
           fontSize: 11,
           letterSpacing: '0.04em',
           textTransform: 'uppercase',
-          padding: '6px 12px',
           background: isFiltering
             ? 'oklch(0.78 0.14 78 / 0.10)'
             : 'oklch(0.20 0.014 250 / 0.85)',
@@ -77,31 +81,56 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
           cursor: 'pointer',
         }}
         aria-expanded={open}
+        aria-label={open ? 'Close filters' : 'Open filters'}
+        title="Filters"
       >
-        <span className="inline-flex items-center gap-2">
-          <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden="true">
+        {/* Icon-only on mobile. Desktop shows full pill with text + counts. */}
+        <span
+          className="inline-flex items-center justify-center sm:hidden"
+          style={{ width: 32, height: 32 }}
+        >
+          <svg width="13" height="13" viewBox="0 0 11 11" aria-hidden="true">
             <path
               d="M1 2 L10 2 M3 5.5 L8 5.5 M5 9 L6 9"
               stroke="currentColor"
-              strokeWidth="1"
+              strokeWidth="1.1"
               strokeLinecap="round"
             />
           </svg>
-          Filter
         </span>
-        {isFiltering && (
-          <span
-            className="font-mono text-wars-muted"
-            style={{ fontSize: 10, letterSpacing: '0.02em' }}
-          >
-            {filteredCount}/{totalActive}
+        <span
+          className="hidden sm:inline-flex items-center justify-between gap-2 w-[244px]"
+          style={{ padding: '6px 12px' }}
+        >
+          <span className="inline-flex items-center gap-2">
+            <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden="true">
+              <path
+                d="M1 2 L10 2 M3 5.5 L8 5.5 M5 9 L6 9"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="round"
+              />
+            </svg>
+            Filter
           </span>
-        )}
+          {isFiltering && (
+            <span
+              className="font-mono text-wars-muted"
+              style={{ fontSize: 10, letterSpacing: '0.02em' }}
+            >
+              {filteredCount}/{totalActive}
+            </span>
+          )}
+        </span>
       </button>
 
       {open && (
         <div
-          className="mt-1"
+          // On mobile the trigger is icon-only and pinned to the topbar
+          // row, so the expanded panel pops out anchored to its RIGHT edge
+          // (extending leftward) with a fixed width that fits a Pixel-class
+          // viewport. On desktop the panel flows directly below the pill.
+          className="absolute right-0 top-full mt-1 sm:relative sm:mt-1 w-[min(320px,calc(100vw-32px))] sm:w-[244px]"
           style={{
             background: 'oklch(0.20 0.014 250 / 0.95)',
             backdropFilter: 'blur(8px)',

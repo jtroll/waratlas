@@ -205,7 +205,7 @@ export default function Timeline({
       />
 
       <div
-        className="px-6 pb-3 pt-2 hairline-strong-t"
+        className="px-3 sm:px-6 pb-3 pt-2 hairline-strong-t"
         style={{ background: 'oklch(0.16 0.012 250 / 0.96)' }}
       >
         {/* Era jump presets — toggleable secondary row */}
@@ -228,8 +228,11 @@ export default function Timeline({
           </div>
         )}
 
-        {/* Era labels (above the rail) */}
-        <div className="relative h-3 mx-16 mb-1">
+        {/* Era labels (above the rail) — hidden on mobile because the labels
+            collide with each other at narrow widths. Mobile users still get
+            era context from the EraPanel popup when crossing era boundaries
+            during scrubbing, and the era-jump pill row remains togglable. */}
+        <div className="hidden sm:block relative h-3 mx-16 mb-1">
           {eras.map((era) => (
             <button
               key={era.label}
@@ -252,7 +255,42 @@ export default function Timeline({
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        {/* Mobile-only top row: year + speed pills. On desktop these live
+            inline in the main row to the right of the track. */}
+        <div className="flex sm:hidden items-center justify-between gap-2 mb-2">
+          <div className="font-display tabular-nums text-wars-text" style={{ fontSize: 22, lineHeight: 1, letterSpacing: '-0.018em', fontWeight: 400 }}>
+            {yearDisplay.num}
+            <span className="font-mono text-wars-muted ml-1.5" style={{ fontSize: 10, letterSpacing: '0.05em' }}>
+              {yearDisplay.suffix}
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            {SPEED_OPTIONS.map((option) => {
+              const active = isActiveSpeed(option);
+              return (
+                <button
+                  key={option.label}
+                  onClick={() => handleSpeedClick(option)}
+                  className="font-mono transition-colors"
+                  style={{
+                    fontSize: 10.5,
+                    letterSpacing: '0.04em',
+                    padding: '5px 9px',
+                    border: '1px solid',
+                    borderColor: active ? 'var(--amber)' : 'var(--rule)',
+                    color: active ? 'var(--amber)' : 'var(--ink-muted)',
+                    background: active ? 'oklch(0.78 0.14 78 / 0.10)' : 'transparent',
+                  }}
+                  aria-pressed={active}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 sm:gap-4">
           {/* Play / pause — wrapped in a relative container so the
               post-tour "Press Play" tooltip can anchor to it. */}
           <div className="relative flex-shrink-0">
@@ -481,9 +519,9 @@ export default function Timeline({
             </div>
           </div>
 
-          {/* Year display — never transitions */}
+          {/* Year display — desktop only (mobile renders this in the top row). */}
           <div
-            className="flex-shrink-0 text-right"
+            className="hidden sm:block flex-shrink-0 text-right"
             style={{ minWidth: 100 }}
           >
             <div
@@ -505,8 +543,8 @@ export default function Timeline({
             </div>
           </div>
 
-          {/* Speed control — mono pills */}
-          <div className="flex-shrink-0 flex items-center gap-1">
+          {/* Speed control — desktop only (mobile renders this in the top row). */}
+          <div className="hidden sm:flex flex-shrink-0 items-center gap-1">
             {SPEED_OPTIONS.map((option) => {
               const active = isActiveSpeed(option);
               return (

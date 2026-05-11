@@ -149,14 +149,94 @@ input, button, select, [data-mono], .mono, .tabular {
 /* Map base color (for any non-Mapbox surfaces or canvas placeholders) */
 .map-canvas { background: #06090f; }
 
-/* ─── Mapbox overrides ─────────────────────────────────────── */
-.mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right {
+/* ─── Mapbox overrides ───────────────────────────────────────
+ * We disable Mapbox's default top-right attribution via JS
+ * (`attributionControl: false`) and add our own compact one at
+ * bottom-right. The bottom-LEFT corner held the Mapbox logo;
+ * we hide that whole corner. Bottom-right must remain visible
+ * so the © Mapbox / © OpenStreetMap credit is on screen as
+ * required by Mapbox's terms of service.
+ * ───────────────────────────────────────────────────────────── */
+.mapboxgl-ctrl-bottom-left {
   display: none !important;
 }
 
 .mapboxgl-canvas {
   outline: none;
+}
+
+/* Editorial restyling of the attribution control so it harmonizes
+ * with the rest of the chrome instead of jumping out as a default
+ * Mapbox blue. */
+.mapboxgl-ctrl-attrib {
+  background: oklch(0.20 0.014 250 / 0.55) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--rule);
+}
+.mapboxgl-ctrl-attrib .mapboxgl-ctrl-attrib-inner,
+.mapboxgl-ctrl-attrib a,
+.mapboxgl-ctrl-attrib-inner * {
+  color: var(--ink-muted) !important;
+  font-family: var(--font-mono), ui-monospace, monospace !important;
+  font-size: 9.5px !important;
+  letter-spacing: 0.04em;
+}
+.mapboxgl-ctrl-attrib a:hover {
+  color: var(--ink-text) !important;
+}
+.mapboxgl-ctrl-attrib-button {
+  background-color: transparent !important;
+}
+
+/* Mobile: hide the +/- zoom buttons. Touch users have pinch-zoom,
+ * and the default control collides with the LIVE button + the
+ * Filter pill in the top-right TopBar area. */
+@media (max-width: 639px) {
+  .mapboxgl-ctrl-top-right {
+    display: none !important;
+  }
+}
+
+/* Desktop: restyle the +/- zoom group to match the editorial
+ * chrome — dark surface, amber accent on hover, hairline border,
+ * positioned below the TopBar so it doesn't collide with the
+ * masthead chrome. */
+@media (min-width: 640px) {
+  .mapboxgl-ctrl-top-right {
+    margin-top: 64px !important;
+    margin-right: 12px !important;
+  }
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group {
+    background: oklch(0.20 0.014 250 / 0.85) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--rule-strong) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button {
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button + button {
+    border-top: 1px solid var(--rule) !important;
+  }
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button:hover {
+    background-color: oklch(0.78 0.14 78 / 0.10) !important;
+  }
+  /* The +/- glyphs use mask-image SVGs in Mapbox; recolor them to
+     muted text and shift to amber on hover. */
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button .mapboxgl-ctrl-icon {
+    filter: invert(0.78) sepia(0.08) hue-rotate(180deg);
+    opacity: 0.85;
+  }
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button:hover .mapboxgl-ctrl-icon {
+    filter: invert(0.78) sepia(0.6) hue-rotate(8deg) saturate(2);
+    opacity: 1;
+  }
 }
 
 /* ─── Custom scrollbar ─────────────────────────────────────── */
