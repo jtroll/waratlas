@@ -10,6 +10,11 @@ interface TimelineProps {
   onYearChange: (year: number) => void;
   onSpeedChange: (speed: number) => void;
   onSpeedModeChange: (mode: 'auto' | 'manual') => void;
+  /** When true, render a one-time "press Play" tooltip above the play
+   *  button. Set by app/page.tsx after the user finishes the opening tour
+   *  and cleared automatically when they press Play. Desktop-only — on
+   *  mobile the prompt would crowd the small play button. */
+  showPlayPrompt?: boolean;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -72,10 +77,13 @@ const BUCKET_SIZE = 50;     // years per histogram bucket
 const HIST_HEIGHT = 36;     // px
 
 function formatYearDisplay(year: number) {
+  // Years are conventionally written without thousands separators
+  // ("2500 BCE", not "2,500 BCE"). Casualty counts keep their commas;
+  // years do not.
   const y = Math.round(year);
-  if (y < 0) return { num: Math.abs(y).toLocaleString(), suffix: 'BCE' };
+  if (y < 0) return { num: String(Math.abs(y)), suffix: 'BCE' };
   if (y === 0) return { num: '1', suffix: 'BCE' }; // there is no year 0
-  return { num: y.toLocaleString(), suffix: 'CE' };
+  return { num: String(y), suffix: 'CE' };
 }
 
 export default function Timeline({
@@ -85,6 +93,7 @@ export default function Timeline({
   onYearChange,
   onSpeedChange,
   onSpeedModeChange,
+  showPlayPrompt = false,
 }: TimelineProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const yearRange = timeline.maxYear - timeline.minYear;
@@ -181,7 +190,11 @@ export default function Timeline({
   const yearDisplay = formatYearDisplay(timeline.currentYear);
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 z-30">
+    // Mobile: sit ABOVE the MobileTabDock (which is ~46px tall + safe-area
+    // inset). Desktop: anchor to the very bottom. Previously both the
+    // Timeline and the dock were at `bottom-0 z-30`, so the dock occluded
+    // the timeline on mobile.
+    <div className="absolute left-0 right-0 z-30 bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:bottom-0">
       {/* Top fade — keeps map visible behind the strip */}
       <div
         className="h-12 pointer-events-none"
@@ -240,30 +253,79 @@ export default function Timeline({
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Play / pause */}
-          <button
-            onClick={onPlay}
-            className="flex-shrink-0 w-10 h-10 inline-flex items-center justify-center hover:opacity-90 transition-opacity"
-            style={{
-              border: '1px solid var(--rule-strong)',
-              background: timeline.isPlaying ? 'transparent' : 'oklch(0.78 0.14 78 / 0.12)',
-              color: 'var(--amber)',
-            }}
-            title={timeline.isPlaying ? 'Pause (Space)' : 'Play (Space)'}
-            aria-label={timeline.isPlaying ? 'Pause timeline playback' : 'Play timeline playback'}
-            aria-pressed={timeline.isPlaying}
-          >
-            {timeline.isPlaying ? (
-              <svg width="14" height="14" viewBox="0 0 14 14">
-                <rect x="2" y="2" width="3" height="10" fill="currentColor" />
-                <rect x="9" y="2" width="3" height="10" fill="currentColor" />
-              </svg>
-            ) : (
-              <svg width="14" height="14" viewBox="0 0 14 14">
-                <path d="M3 2 L12 7 L3 12 Z" fill="currentColor" />
-              </svg>
+          {/* Play / pause — wrapped in a relative container so the
+              post-tour "Press Play" tooltip can anchor to it. */}
+          <div className="relative flex-shrink-0">
+            <button
+              onClick={onPlay}
+              className="w-10 h-10 inline-flex items-center justify-center hover:opacity-90 transition-opacity"
+              style={{
+                border: '1px solid var(--rule-strong)',
+                background: timeline.isPlaying ? 'transparent' : 'oklch(0.78 0.14 78 / 0.12)',
+                color: 'var(--amber)',
+                // Subtle amber ring when the tour just finished — pulls
+                // the eye to the affordance.
+                boxShadow: showPlayPrompt
+                  ? '0 0 0 2px oklch(0.78 0.14 78 / 0.35), 0 0 16px 4px oklch(0.78 0.14 78 / 0.20)'
+                  : undefined,
+              }}
+              title={timeline.isPlaying ? 'Pause (Space)' : 'Play (Space)'}
+              aria-label={timeline.isPlaying ? 'Pause timeline playback' : 'Play timeline playback'}
+              aria-pressed={timeline.isPlaying}
+            >
+              {timeline.isPlaying ? (
+                <svg width="14" height="14" viewBox="0 0 14 14">
+                  <rect x="2" y="2" width="3" height="10" fill="currentColor" />
+                  <rect x="9" y="2" width="3" height="10" fill="currentColor" />
+                </svg>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 14 14">
+                  <path d="M3 2 L12 7 L3 12 Z" fill="currentColor" />
+                </svg>
+              )}
+            </button>
+
+            {/* Post-tour prompt — desktop only. Auto-clears when user
+                presses Play (parent component handles state). */}
+            {showPlayPrompt && (
+              <div
+                className="hidden sm:flex absolute bottom-full mb-3 left-1/2 -translate-x-1/2 items-center pointer-events-none whitespace-nowrap"
+                role="status"
+                aria-live="polite"
+              >
+                <div
+                  className="font-mono"
+                  style={{
+                    fontSize: 10,
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: 'var(--amber)',
+                    background: 'oklch(0.18 0.014 250 / 0.97)',
+                    border: '1px solid var(--amber)',
+                    padding: '6px 10px',
+                    boxShadow: 'var(--shadow-pop)',
+                  }}
+                >
+                  Press Play to watch
+                </div>
+                {/* Down-pointing notch */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%) translateY(-1px) rotate(45deg)',
+                    width: 8,
+                    height: 8,
+                    background: 'oklch(0.18 0.014 250 / 0.97)',
+                    borderRight: '1px solid var(--amber)',
+                    borderBottom: '1px solid var(--amber)',
+                  }}
+                />
+              </div>
             )}
-          </button>
+          </div>
 
           {/* Track */}
           <div className="flex-1 relative">

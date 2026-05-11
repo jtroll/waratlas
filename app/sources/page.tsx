@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const FEEDBACK_URL =
   process.env.NEXT_PUBLIC_FEEDBACK_URL ||
-  'https://github.com/wars-atlas/wars-atlas/issues';
+  'https://github.com/jtroll/waratlas/issues';
 
 /**
  * Consolidated sources / attribution / corrections page. Linked from the

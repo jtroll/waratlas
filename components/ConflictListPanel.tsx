@@ -22,7 +22,10 @@ export default function ConflictListPanel({
 
   return (
     <div
-      className="sidebar-enter fixed sm:absolute inset-0 sm:inset-auto sm:top-0 sm:left-0 sm:bottom-0 w-full sm:max-w-sm z-40 bg-wars-panel/98 backdrop-blur-md sm:border-r border-wars-border overflow-hidden flex flex-col"
+      // On mobile this is `inset-0` (full screen) — but inset-0 puts the
+      // bottom flush with the screen edge, hidden by the MobileTabDock.
+      // Override `bottom` to sit above the dock instead.
+      className="sidebar-enter fixed sm:absolute inset-0 bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:inset-auto sm:bottom-0 sm:top-0 sm:left-0 w-full sm:max-w-sm z-40 bg-wars-panel/98 backdrop-blur-md sm:border-r border-wars-border overflow-hidden flex flex-col"
       role="dialog"
       aria-label="Active conflicts list"
     >

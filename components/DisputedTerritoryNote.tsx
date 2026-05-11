@@ -29,27 +29,35 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
 
   return (
     <div
-      // Visible on every breakpoint — mobile readers also need the disclaimer
-      // about Crimea / Taiwan / Kashmir / etc., which are far more politically
-      // charged than a UI nicety. On mobile we lift it above the timeline + tab
-      // dock so it doesn't collide with playback controls.
-      className="absolute right-3 sm:right-4 z-20 pointer-events-auto bottom-44 sm:bottom-32 max-w-[calc(100vw-1.5rem)] sm:max-w-xs"
+      // z-30 raises this above InfoBoxLayer (z-20) so the disputed-borders
+      // disclaimer never gets covered by a conflict callout. On mobile we
+      // also push it further up to clear the timeline + tab dock.
+      className="absolute right-3 sm:right-4 z-30 pointer-events-auto bottom-44 sm:bottom-32 sm:max-w-xs"
+      style={
+        // When expanded we want a wide panel; when collapsed (mobile) the
+        // icon button takes its own intrinsic size.
+        expanded ? { maxWidth: 'calc(100vw - 1.5rem)' } : undefined
+      }
       role="region"
       aria-label="Disputed territory note"
     >
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full text-left bg-wars-panel/85 backdrop-blur-sm border border-wars-border/70 rounded-md px-3 py-2 text-[11px] text-wars-muted hover:text-wars-text hover:border-wars-border transition-colors"
+        // Mobile (default): icon-only square button. sm:+ shows the full
+        // "Notes on disputed borders" label inline.
+        className="bg-wars-panel/85 backdrop-blur-sm border border-wars-border/70 rounded-md text-wars-muted hover:text-wars-text hover:border-wars-border transition-colors text-[11px] flex items-center gap-2 justify-center w-11 h-11 sm:w-auto sm:h-auto sm:px-3 sm:py-2 sm:justify-start sm:text-left sm:w-full"
         aria-expanded={expanded}
+        aria-label="Notes on disputed borders"
+        title="Notes on disputed borders"
       >
-        <span className="flex items-center gap-2">
-          <span className="text-wars-accent" aria-hidden="true">ⓘ</span>
-          <span>Notes on disputed borders</span>
-          <span className="ml-auto opacity-60" aria-hidden="true">{expanded ? '▾' : '▸'}</span>
+        <span className="text-wars-accent inline-flex items-center justify-center" aria-hidden="true" style={{ fontSize: 16 }}>
+          ⓘ
         </span>
+        <span className="hidden sm:inline">Notes on disputed borders</span>
+        <span className="ml-auto opacity-60 hidden sm:inline" aria-hidden="true">{expanded ? '▾' : '▸'}</span>
       </button>
       {expanded && (
-        <div className="mt-1 bg-wars-panel/95 backdrop-blur-sm border border-wars-border rounded-md px-3 py-2 text-[11px] text-wars-muted leading-relaxed max-h-72 overflow-y-auto">
+        <div className="mt-1 bg-wars-panel/95 backdrop-blur-sm border border-wars-border rounded-md px-3 py-2 text-[11px] text-wars-muted leading-relaxed max-h-72 overflow-y-auto" style={{ maxWidth: 'calc(100vw - 1.5rem)', width: 320 }}>
           <p className="text-wars-text/90 mb-2">
             Modern country shapes follow Natural Earth conventions, which approximate
             internationally recognized borders. These designations are not endorsements:

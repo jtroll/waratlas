@@ -78,6 +78,10 @@ export default function Home() {
   const [listPanelOpen, setListPanelOpen] = useState(false);
   const [mapMoveCounter, setMapMoveCounter] = useState(0);
   const [tourOpen, setTourOpen] = useState(false);
+  // Shown after the user finishes (rather than skips) the opening tour — a
+  // small affordance pointing them at the Play button. Cleared when they
+  // press Play, or on next tour finish.
+  const [showPlayPrompt, setShowPlayPrompt] = useState(false);
   const [filters, setFilters] = useState<ConflictFilters>(DEFAULT_FILTERS);
   const [cityClickCoords, setCityClickCoords] = useState<[number, number] | null>(null);
   const [citiesData, setCitiesData] = useState<any>(null);
@@ -190,6 +194,8 @@ export default function Home() {
   }, [timeline.isPlaying]);
 
   const handlePlay = useCallback(() => {
+    // Pressing Play also dismisses the post-tour "press Play" prompt.
+    setShowPlayPrompt(false);
     setTimeline(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
   }, []);
 
@@ -338,7 +344,10 @@ export default function Home() {
   return (
     <ErrorBoundary>
     <ServiceWorkerRegistration />
-    <main className="relative w-screen h-screen overflow-hidden bg-wars-bg">
+    {/* 100dvh (dynamic viewport) instead of 100vh so Pixel/iOS Chrome
+        URL-bar collapse doesn't shove the timeline + tab dock off-screen.
+        Fallback to h-screen for browsers that don't yet understand dvh. */}
+    <main className="relative w-screen h-screen overflow-hidden bg-wars-bg" style={{ height: '100dvh' }}>
       {/* Loading screen */}
       {!mapReady && (
         <div className="absolute inset-0 z-50 bg-wars-bg flex items-center justify-center">
@@ -395,8 +404,17 @@ export default function Home() {
       <OpeningTour
         open={tourOpen}
         onClose={() => {
+          // Skipped — preserve whatever year the user was on.
           setTourOpen(false);
           try { window.sessionStorage.setItem('wars-atlas-tour-seen', '1'); } catch {}
+        }}
+        onFinish={() => {
+          // Completed the whole tour — bring them back to the start of the
+          // timeline and prompt them to press Play to watch it unfold.
+          setTourOpen(false);
+          try { window.sessionStorage.setItem('wars-atlas-tour-seen', '1'); } catch {}
+          setTimeline((prev) => ({ ...prev, currentYear: prev.minYear, isPlaying: false }));
+          setShowPlayPrompt(true);
         }}
         onSeek={(y) => setTimeline((prev) => ({ ...prev, currentYear: y, isPlaying: false }))}
       />
@@ -425,6 +443,7 @@ export default function Home() {
         onYearChange={handleYearChange}
         onSpeedChange={handleSpeedChange}
         onSpeedModeChange={handleSpeedModeChange}
+        showPlayPrompt={showPlayPrompt}
       />
 
       {sidebarOpen && selectedConflict && !selectedEmpire && (

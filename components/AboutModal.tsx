@@ -248,7 +248,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
             <p className="mt-2">
               Open an issue on{' '}
               <a
-                href={process.env.NEXT_PUBLIC_FEEDBACK_URL || 'https://github.com/wars-atlas/wars-atlas/issues'}
+                href={process.env.NEXT_PUBLIC_FEEDBACK_URL || 'https://github.com/jtroll/waratlas/issues'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-wars-text"

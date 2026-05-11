@@ -176,8 +176,9 @@ export default function EmpireSidebar({
   return (
     <aside
       className="sidebar-sheet fixed sm:absolute z-40 flex flex-col overflow-hidden
-                 left-0 right-0 bottom-0 top-auto h-[78vh] sm:h-auto
-                 sm:top-0 sm:right-0 sm:bottom-0 sm:left-auto
+                 left-0 right-0 top-auto h-[72dvh] sm:h-auto
+                 bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:bottom-0
+                 sm:top-0 sm:right-0 sm:left-auto
                  w-full sm:max-w-[460px]"
       style={{
         background: 'oklch(0.18 0.014 250 / 0.97)',
