@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+ * WARS ATLAS — design tokens (carried back from redesign handoff)
+ * Mirror of tokens defined in tailwind.config.ts so non-utility CSS,
+ * Mapbox style overrides, and inline styles can reference them.
+ * ─────────────────────────────────────────────────────────── */
+
+:root {
+  /* INK & SURFACE — warm paper-feel canvas */
+  --ink-0:        oklch(0.16 0.012 250);   /* canvas under the map */
+  --ink-1:        oklch(0.20 0.014 250);   /* panel surface */
+  --ink-2:        oklch(0.24 0.014 250);   /* raised surface / chip */
+  --ink-3:        oklch(0.30 0.014 250);   /* strong divider */
+
+  /* TYPE — warm parchment, not cold gray */
+  --ink-text:     oklch(0.94 0.012 85);    /* primary */
+  --ink-text-2:   oklch(0.78 0.012 85);    /* secondary */
+  --ink-muted:    oklch(0.62 0.010 85);    /* tertiary / labels */
+  --ink-faint:    oklch(0.46 0.008 85);    /* meta / IDs */
+
+  /* HAIRLINES — derived from text alpha so they harmonize automatically */
+  --rule:         color-mix(in oklch, var(--ink-text) 14%, transparent);
+  --rule-strong:  color-mix(in oklch, var(--ink-text) 22%, transparent);
+
+  /* EDITORIAL ACCENTS — chroma 0.14, vary by hue */
+  --vermilion:    oklch(0.62 0.18 28);     /* conflict red — oxidized */
+  --vermilion-2:  oklch(0.50 0.16 28);     /* darker pair */
+  --amber:        oklch(0.78 0.14 78);     /* current-year, single highlight */
+  --indigo:       oklch(0.58 0.14 264);    /* researcher / sources */
+  --moss:         oklch(0.62 0.10 145);    /* "active in this year" only */
+  --uncertain:    oklch(0.66 0.06 78);     /* dashed-border accent */
+
+  /* LEGACY ALIASES — keep so existing components that read these vars still work */
+  --wars-bg:       var(--ink-0);
+  --wars-panel:    var(--ink-1);
+  --wars-surface:  var(--ink-2);
+  --wars-border:   var(--ink-3);
+  --wars-text:     var(--ink-text);
+  --wars-text-2:   var(--ink-text-2);
+  --wars-muted:    var(--ink-muted);
+  --wars-faint:    var(--ink-faint);
+  --wars-red:      var(--vermilion);
+  --wars-red-dim:  var(--vermilion-2);
+  --wars-accent:   var(--amber);
+  --wars-indigo:   var(--indigo);
+  --wars-moss:     var(--moss);
+
+  /* TYPE FAMILIES — populated by next/font in app/layout.tsx */
+  /* fallbacks here so SSR / no-JS still renders something sane */
+  --font-display: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  --font-ui:      'Inter Tight', Inter, system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* TYPE SCALE — editorial */
+  --t-display-xl: 34px; --lh-display-xl: 1.05;
+  --t-display-l:  26px; --lh-display-l:  1.10;
+  --t-display-m:  20px; --lh-display-m:  1.15;
+  --t-display-s:  17px; --lh-display-s:  1.30;
+
+  --t-body:       14px; --lh-body:       1.55;
+  --t-body-s:     13px; --lh-body-s:     1.55;
+  --t-meta:       12px; --lh-meta:       1.40;
+  --t-label:      10.5px; --lh-label:    1.30;
+  --t-data:       11px;
+
+  --tr-display:   -0.018em;
+  --tr-body:      -0.005em;
+  --tr-label:      0.10em;
+  --tr-mono:       0.02em;
+
+  /* SPACING (4px base) */
+  --gutter:        24px;
+  --column:        16px;
+  --inset:         12px;
+  --inset-s:        8px;
+  --inset-xs:       4px;
+
+  /* RADIUS — atlases don't have rounded corners */
+  --r-card:        4px;
+  --r-chip:        2px;
+  --r-pill:       999px;   /* used sparingly: Live indicator, breathing rings */
+
+  /* MOTION */
+  --dur-fast:      120ms;
+  --dur-base:      180ms;
+  --dur-slow:      280ms;
+  --ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ELEVATION — single shadow, no neon glow */
+  --shadow-panel:  0 1px 0 rgba(255,255,255,0.04) inset,
+                   0 12px 32px -16px rgba(0,0,0,0.6);
+  --shadow-pop:    0 1px 0 rgba(255,255,255,0.04) inset,
+                   0 18px 40px -18px rgba(0,0,0,0.8);
+}
+
+/* ─── Base layout ──────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ink-0);
+  color: var(--ink-text);
+  font-family: var(--font-ui);
+  font-feature-settings: 'ss01', 'cv11';  /* Inter Tight stylistic alternates */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tabular numerics by default in chrome — counts, years, casualty figures
+   should never reflow when the value changes. Components that want
+   proportional figures opt out with `font-variant-numeric: normal`. */
+input, button, select, [data-mono], .mono, .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Editorial utility classes ────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-label);
+  color: var(--ink-muted);
+}
+.display { font-family: var(--font-display); letter-spacing: var(--tr-display); }
+.ui      { font-family: var(--font-ui); }
+.mono    { font-family: var(--font-mono); letter-spacing: var(--tr-mono); }
+.tabular { font-variant-numeric: tabular-nums; }
+
+.hairline    { border-color: var(--rule); }
+.hairline-t  { border-top: 1px solid var(--rule); }
+.hairline-b  { border-bottom: 1px solid var(--rule); }
+.hairline-l  { border-left: 1px solid var(--rule); }
+.hairline-r  { border-right: 1px solid var(--rule); }
+.hairline-strong-t { border-top: 1px solid var(--rule-strong); }
+.hairline-strong-b { border-bottom: 1px solid var(--rule-strong); }
+
+/* Map base color (for any non-Mapbox surfaces or canvas placeholders) */
+.map-canvas { background: #06090f; }
+
+/* ─── Mapbox overrides ─────────────────────────────────────── */
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+
+.mapboxgl-canvas {
+  outline: none;
+}
+
+/* ─── Custom scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ink-0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ink-3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-muted);
+}
+
+/* ─── Timeline slider (legacy fallback — replaced in step 4) ─ */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--ink-3);
+  border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--amber);
+  margin-top: -6px;
+  box-shadow: 0 0 8px color-mix(in oklch, var(--amber) 50%, transparent);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: var(--ink-3);
+  border-radius: 2px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: none;
+  box-shadow: 0 0 8px color-mix(in oklch, var(--amber) 50%, transparent);
+}
+
+/* ─── Animations ───────────────────────────────────────────── */
+@keyframes conflict-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%      { transform: scale(1.3); opacity: 0.4; }
+}
+
+.conflict-pulse {
+  animation: conflict-pulse 2s ease-in-out infinite;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.info-box-enter {
+  animation: slide-up var(--dur-base) var(--ease-out);
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes slide-up-bottom {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.sidebar-enter {
+  animation: slide-in-right var(--dur-slow) var(--ease-out);
+}
+
+.panel-enter-left {
+  animation: slide-in-left var(--dur-base) var(--ease-out);
+}
+
+/* Sidebar sheet — slides up from bottom on mobile, in from right on desktop */
+.sidebar-sheet {
+  animation: slide-up-bottom var(--dur-slow) var(--ease-out);
+}
+@media (min-width: 640px) {
+  .sidebar-sheet {
+    animation: slide-in-right var(--dur-slow) var(--ease-out);
+  }
+}
+
+/* Timeline marker tooltip */
+.timeline-marker:hover .timeline-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.timeline-tooltip {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-fast), visibility var(--dur-fast);
+}
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+.live-pulse {
+  animation: live-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes era-panel-fade {
+  from { transform: translate(-50%, -8px); opacity: 0; }
+  to   { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.era-panel-enter {
+  animation: era-panel-fade 0.4s var(--ease-out);
+}
+
+/* ─── A11y ─────────────────────────────────────────────────── */
+
+/* Visible focus indicators for keyboard nav */
+button:focus-visible,
+a:focus-visible,
+[role="slider"]:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .conflict-pulse,
+  .live-pulse {
+    animation: none !important;
+  }
+}
+
+/* Screen-reader-only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
