@@ -285,11 +285,14 @@ export default function Timeline({
               )}
             </button>
 
-            {/* Post-tour prompt — desktop only. Auto-clears when user
-                presses Play (parent component handles state). */}
+            {/* Post-tour prompt — desktop only. Anchor the tooltip's LEFT
+                edge to the Play button (which sits at the very-left of the
+                timeline strip), so the tooltip extends rightward into open
+                space instead of being cut off by the viewport edge. The
+                chevron then points down at the button. */}
             {showPlayPrompt && (
               <div
-                className="hidden sm:flex absolute bottom-full mb-3 left-1/2 -translate-x-1/2 items-center pointer-events-none whitespace-nowrap"
+                className="hidden sm:flex absolute bottom-full mb-3 left-0 items-center pointer-events-none whitespace-nowrap"
                 role="status"
                 aria-live="polite"
               >
@@ -306,16 +309,17 @@ export default function Timeline({
                     boxShadow: 'var(--shadow-pop)',
                   }}
                 >
-                  Press Play to watch
+                  Press Play to watch the world change
                 </div>
-                {/* Down-pointing notch */}
+                {/* Down-pointing notch — sits over the Play button (which is
+                    20px from the left of the tooltip, i.e. 40px button center). */}
                 <div
                   aria-hidden
                   style={{
                     position: 'absolute',
                     top: '100%',
-                    left: '50%',
-                    transform: 'translateX(-50%) translateY(-1px) rotate(45deg)',
+                    left: 20,
+                    transform: 'translateY(-1px) rotate(45deg)',
                     width: 8,
                     height: 8,
                     background: 'oklch(0.18 0.014 250 / 0.97)',
