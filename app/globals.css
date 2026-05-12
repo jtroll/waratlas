@@ -204,8 +204,8 @@ input, button, select, [data-mono], .mono, .tabular {
  * masthead chrome. */
 @media (min-width: 640px) {
   .mapboxgl-ctrl-top-right {
-    margin-top: 64px !important;
-    margin-right: 12px !important;
+    margin-top: 62px !important;
+    margin-right: 24px !important;
   }
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group {
     background: oklch(0.20 0.014 250 / 0.85) !important;

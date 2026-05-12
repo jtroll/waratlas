@@ -220,7 +220,7 @@ export default function TopBar({
               vertical rhythm. */}
           <button
             onClick={onJumpToLive}
-            className="font-ui inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 sm:h-auto px-3 sm:px-3 py-0 sm:py-1.5"
+            className="font-ui inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 px-3"
             style={{
               fontSize: 11,
               letterSpacing: '0.04em',

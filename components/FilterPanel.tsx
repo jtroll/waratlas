@@ -63,12 +63,12 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
       // 32px tall now).
       // Desktop: original placement below the TopBar with the full "Filter"
       // pill + active count.
-      className="absolute top-2 right-[88px] sm:top-20 sm:right-14 z-30 sm:z-20 pointer-events-auto"
+      className="absolute top-2 right-[88px] sm:top-[62px] sm:right-[74px] z-30 sm:z-20 pointer-events-auto"
       style={{ width: 'auto' }}
     >
       <button
         onClick={() => setOpen(!open)}
-        className="font-ui inline-flex items-center transition-colors h-8 sm:h-auto"
+        className="font-ui inline-flex items-center transition-colors h-8"
         style={{
           fontSize: 11,
           letterSpacing: '0.04em',
@@ -104,8 +104,7 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
           </svg>
         </span>
         <span
-          className="hidden sm:inline-flex items-center justify-between gap-2 w-[244px]"
-          style={{ padding: '6px 12px' }}
+          className="hidden sm:inline-flex items-center justify-between gap-2 w-[244px] h-full px-3"
         >
           <span className="inline-flex items-center gap-2">
             <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden="true">
