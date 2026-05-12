@@ -63,7 +63,7 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
       // 32px tall now).
       // Desktop: original placement below the TopBar with the full "Filter"
       // pill + active count.
-      className="absolute top-2 right-[88px] sm:top-20 sm:right-6 z-30 sm:z-20 pointer-events-auto"
+      className="absolute top-2 right-[88px] sm:top-20 sm:right-14 z-30 sm:z-20 pointer-events-auto"
       style={{ width: 'auto' }}
     >
       <button
