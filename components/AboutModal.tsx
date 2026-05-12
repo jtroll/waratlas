@@ -158,10 +158,6 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                 Constantinople → Konstantiniyye → Istanbul).
               </li>
             </ul>
-            <p className="mt-3 text-xs text-wars-muted">
-              A consolidated attribution and corrections page lives at{' '}
-              <a href="/sources" className="underline hover:text-wars-text">/sources</a>.
-            </p>
           </Section>
 
           {/* Casualty methodology */}
@@ -268,6 +264,34 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               </a>
               . Please include the conflict / empire ID (visible in the sidebar footer in mono
               type) and a citation for the correction.
+            </p>
+          </Section>
+
+          {/* Read more — surfaces /sources and /changelog as pill links,
+              since neither is reachable from the map chrome on its own. */}
+          <Section heading="Read more">
+            <div className="flex flex-wrap gap-2">
+              <a
+                href="/sources"
+                className="inline-flex items-center gap-2 px-3 py-1.5 border border-wars-border/70 hover:border-wars-text/60 hover:bg-wars-border/30 transition-colors text-wars-text"
+                style={{ fontSize: 13, textDecoration: 'none' }}
+              >
+                <span className="font-display">Sources &amp; attribution</span>
+                <span className="font-mono text-wars-muted" style={{ fontSize: 10 }}>/SOURCES →</span>
+              </a>
+              <a
+                href="/changelog"
+                className="inline-flex items-center gap-2 px-3 py-1.5 border border-wars-border/70 hover:border-wars-text/60 hover:bg-wars-border/30 transition-colors text-wars-text"
+                style={{ fontSize: 13, textDecoration: 'none' }}
+              >
+                <span className="font-display">Changelog</span>
+                <span className="font-mono text-wars-muted" style={{ fontSize: 10 }}>/CHANGELOG →</span>
+              </a>
+            </div>
+            <p className="text-xs text-wars-muted mt-3">
+              Dataset revisions, border corrections, and methodology changes are
+              logged on the changelog page. Citations and license details live on
+              the sources page.
             </p>
           </Section>
 

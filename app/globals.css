@@ -189,6 +189,28 @@ input, button, select, [data-mono], .mono, .tabular {
   background-color: transparent !important;
 }
 
+/* Lift the bottom-right control container above the Timeline strip.
+ * The Timeline is a full-width overlay pinned to bottom-0 on desktop
+ * and bottom-[46px+safe-area] on mobile (above the MobileTabDock).
+ * Without this offset the Mapbox/OSM attribution chip — required by
+ * Mapbox ToS to remain visible — gets occluded.
+ *
+ * Numbers are tuned to clear the Timeline's editorial strip (~140px
+ * on desktop after the top fade + content row) plus a small breathing
+ * gap. The compact attribution is `position: absolute` from the corner,
+ * so a bottom offset shifts it up; pointer-events stay intact. */
+.mapboxgl-ctrl-bottom-right {
+  bottom: 148px !important;
+  z-index: 31 !important; /* sits above Timeline's z-30 */
+}
+@media (max-width: 639px) {
+  /* Mobile: timeline starts above the 46px tab dock, so the attribution
+   * needs to clear (timeline ~120px) + (tab dock 46px) + safe-area. */
+  .mapboxgl-ctrl-bottom-right {
+    bottom: calc(170px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
 /* Mobile: hide the +/- zoom buttons. Touch users have pinch-zoom,
  * and the default control collides with the LIVE button + the
  * Filter pill in the top-right TopBar area. */

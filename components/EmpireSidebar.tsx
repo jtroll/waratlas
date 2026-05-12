@@ -45,7 +45,12 @@ export interface EmpireProperties {
   /** "solid" or "dashed" — encodes border-style on the map. */
   borderStyle?: 'solid' | 'dashed';
   /** Where the polygon came from. */
-  source?: 'historical-basemaps' | 'hand-crafted-from-atlases' | string;
+  source?:
+    | 'historical-basemaps'
+    | 'hand-crafted-from-atlases'
+    | 'reconstructed-clipped-country'
+    | 'approximate-cultural-extent'
+    | string;
   /** When source === historical-basemaps, the year-snapshot used. */
   borderYear?: number;
   /** When source === historical-basemaps, the matched feature name. */
@@ -435,9 +440,23 @@ export default function EmpireSidebar({
                   hand-crafted from scholarly atlases
                 </li>
               )}
+              {e.source === 'reconstructed-clipped-country' && (
+                <li className="font-mono text-mono-xs text-wars-faint">
+                  <span className="text-wars-muted mr-1.5">SOURCE</span>
+                  reconstructed from Natural Earth country boundaries
+                </li>
+              )}
+              {e.source === 'approximate-cultural-extent' && (
+                <li className="font-mono text-mono-xs text-wars-faint">
+                  <span className="text-wars-muted mr-1.5">SOURCE</span>
+                  approximate cultural extent (no primary GIS source)
+                </li>
+              )}
               {e.source &&
                 e.source !== 'historical-basemaps' &&
-                e.source !== 'hand-crafted-from-atlases' && (
+                e.source !== 'hand-crafted-from-atlases' &&
+                e.source !== 'reconstructed-clipped-country' &&
+                e.source !== 'approximate-cultural-extent' && (
                   <li className="font-mono text-mono-xs text-wars-faint">
                     <span className="text-wars-muted mr-1.5">SOURCE</span>
                     {e.source}
