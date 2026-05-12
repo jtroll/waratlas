@@ -204,8 +204,14 @@ input, button, select, [data-mono], .mono, .tabular {
  * masthead chrome. */
 @media (min-width: 640px) {
   .mapboxgl-ctrl-top-right {
-    margin-top: 62px !important;
-    margin-right: 24px !important;
+    margin: 0 !important;
+  }
+  /* Mapbox's default CSS adds margin: 10px 10px 0 0 to each .mapboxgl-ctrl
+     inside the container. Replace that with the exact offsets we want so the
+     zoom group's right edge aligns with the Live button's right edge (24px)
+     and its top sits at the same y as the filter pill (62px). */
+  .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+    margin: 62px 24px 0 0 !important;
   }
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group {
     background: oklch(0.20 0.014 250 / 0.85) !important;
