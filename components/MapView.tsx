@@ -175,8 +175,8 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       // fitBounds unable to satisfy the welcome stop (world view) under the
       // map's minZoom (1.5), so the call silently no-op'd.
       const padding = isMobile
-        ? { top: 60, bottom: 200, left: 16, right: 16 }
-        : { top: 80, bottom: 260, left: 60, right: 60 };
+        ? { top: 50, bottom: 320, left: 16, right: 16 }
+        : { top: 70, bottom: 320, left: 60, right: 60 };
       const bounds: [[number, number], [number, number]] = [
         [bbox[0], bbox[1]],
         [bbox[2], bbox[3]],
