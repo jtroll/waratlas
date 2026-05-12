@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "generate:sw": "node scripts/generate-sw.mjs",
+    "prebuild": "npm run generate:sw",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
