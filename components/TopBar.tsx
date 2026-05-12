@@ -103,27 +103,6 @@ export default function TopBar({
             An interactive cartography of every named war in human history
           </span>
 
-          {/* Data freshness eyebrow — hidden on small screens; matches the
-              existing tagline's breakpoint. Keeps ongoing-conflict figures
-              honest under viral traffic that may be days/weeks behind. */}
-          <span
-            aria-hidden
-            className="hidden lg:inline-block"
-            style={{ height: 10, width: 1, background: 'var(--rule)' }}
-          />
-          <span
-            className="font-mono hidden lg:inline truncate"
-            style={{
-              fontSize: 9,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-faint)',
-            }}
-            title="Dataset version. Casualty figures for ongoing conflicts are point-in-time snapshots — see About → Methodology."
-          >
-            Data · May 2026
-          </span>
-
           {/* About button (also `?` key)
               Mobile: 32×32 square so it visually matches the Filter and Live
               buttons in the same row. Desktop: small 20×20 chip inline with
