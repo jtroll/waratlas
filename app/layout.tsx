@@ -52,18 +52,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: '/',
     images: [
-      // PNG primary for maximum platform compatibility (LinkedIn, older Twitter
-      // renderers); SVG kept as a secondary so vector-aware platforms get a
-      // sharper render. Both are 1200×630.
-      { url: '/og-image.png', width: 1200, height: 630, alt: 'War Atlas — interactive map of every named war in human history', type: 'image/png' },
-      { url: '/og-image.svg', width: 1200, height: 630, alt: 'War Atlas — interactive map of every named war in human history', type: 'image/svg+xml' },
+      // Single PNG, renamed from og-image.png to og-card.png so Facebook's
+      // scraper sees a never-before-cached URL. (FB has a long-standing
+      // history of caching "image fetch failed" against URLs and refusing
+      // to re-fetch even after the underlying image becomes available;
+      // renaming bypasses that.) Dropped the SVG entry — FB doesn't render
+      // SVG OG images, and a second og:image tag has been known to confuse
+      // their parser into showing the link as a plain card with no image.
+      { url: '/og-card.png', width: 1200, height: 630, alt: 'War Atlas — interactive map of every named war in human history', type: 'image/png' },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'War Atlas — Every Named War in Human History',
     description: `Explore ${STAT_CONFLICTS} wars and ${STAT_EMPIRES} empires across 5,000 years on an interactive world map.`,
-    images: ['/og-image.png'],
+    images: ['/og-card.png'],
   },
   robots: {
     index: true,

@@ -26,7 +26,7 @@ const nextConfig = {
       '/cities.json',
       '/empire-wikipedia.json',
     ];
-    const midCacheFiles = ['/og-image.png', '/og-image.svg', '/favicon.svg'];
+    const midCacheFiles = ['/og-card.png', '/og-image.png', '/og-image.svg', '/favicon.svg'];
     const shortCacheFiles = ['/sitemap.xml'];
 
     return [
