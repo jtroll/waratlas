@@ -75,7 +75,7 @@ export default function Sidebar({
     const yearRange = c.endYear && c.endYear !== c.startYear
       ? `${formatYear(c.startYear)}–${formatYear(c.endYear)}`
       : formatYear(c.startYear);
-    const citation = `${c.name} (${yearRange}). Wars Atlas. ${permalink}`;
+    const citation = `${c.name} (${yearRange}). War Atlas. ${permalink}`;
     try {
       await navigator.clipboard.writeText(citation);
     } catch {

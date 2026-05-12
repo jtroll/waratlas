@@ -16,7 +16,7 @@ interface TopBarProps {
 /* ─────────────────────────────────────────────────────────────
  * TOPBAR — masthead style (step 6 of redesign).
  *
- * Wordmark: italic vermilion "Wars" + upright "Atlas" in
+ * Wordmark: italic vermilion "War" + upright "Atlas" in
  * Source Serif. Hairline rule + serif italic tagline beside it.
  *
  * Stats: labeled mini-stats (display-serif number + 9px
@@ -81,7 +81,7 @@ export default function TopBar({
             }}
           >
             <span style={{ fontStyle: 'italic', color: 'var(--vermilion)' }}>
-              Wars
+              War
             </span>
             <span style={{ marginLeft: 4 }}>Atlas</span>
           </h1>

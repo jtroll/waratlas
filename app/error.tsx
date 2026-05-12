@@ -20,7 +20,7 @@ export default function GlobalRouteError({
 }) {
   useEffect(() => {
     // eslint-disable-next-line no-console
-    console.error('Wars Atlas: route error', error);
+    console.error('War Atlas: route error', error);
   }, [error]);
 
   return (
@@ -36,7 +36,7 @@ export default function GlobalRouteError({
         }}
       >
         <div className="font-display italic" style={{ color: 'var(--vermilion, #c8553b)', fontSize: 28, marginBottom: 12 }}>
-          Wars <span style={{ fontStyle: 'normal' }}>Atlas</span>
+          War <span style={{ fontStyle: 'normal' }}>Atlas</span>
         </div>
         <h2 className="font-display" style={{ fontSize: 18, marginBottom: 8 }}>
           The atlas hit an unexpected error

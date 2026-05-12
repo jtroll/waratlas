@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 /**
- * Wars Atlas — design tokens carried back from the redesign handoff.
+ * War Atlas — design tokens carried back from the redesign handoff.
  * Source of truth lives in app/globals.css under :root (OKLCH values + CSS
  * vars for fonts/spacing/motion). Tailwind reads them here so utilities like
  * `bg-wars-bg`, `text-wars-text`, `font-display` resolve to the same values.

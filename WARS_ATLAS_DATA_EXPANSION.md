@@ -1,4 +1,4 @@
-# Wars Atlas — Data Expansion Report
+# War Atlas — Data Expansion Report
 
 Run completed 2026-04-28. Backups of original data in `backups/` directory.
 

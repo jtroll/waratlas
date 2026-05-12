@@ -42,8 +42,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const conflict = findConflict(params.id);
   if (!conflict) {
     return {
-      title: 'Conflict not found · Wars Atlas',
-      description: 'This conflict could not be found in the Wars Atlas dataset.',
+      title: 'Conflict not found · War Atlas',
+      description: 'This conflict could not be found in the War Atlas dataset.',
     };
   }
   const yearRange =
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     conflict.hook ?? conflict.description ?? `Conflict in ${yearRange}.`;
   const description = summary.length > 200 ? summary.slice(0, 197) + '...' : summary;
 
-  const title = `${conflict.name} (${yearRange}) · Wars Atlas`;
+  const title = `${conflict.name} (${yearRange}) · War Atlas`;
   return {
     title,
     description,
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       title,
       description,
       type: 'article',
-      siteName: 'Wars Atlas',
+      siteName: 'War Atlas',
     },
     twitter: {
       card: 'summary',
@@ -146,7 +146,7 @@ export default function ConflictPage({ params }: { params: { id: string } }) {
         )}
         <p style={{ marginTop: '2rem' }}>
           <a href={`/#year=${targetYear}&conflict=${conflict.id}`} style={{ color: '#e63946' }}>
-            View on the Wars Atlas →
+            View on the War Atlas →
           </a>
         </p>
         <p style={{ marginTop: '0.5rem', fontSize: '0.85em', color: '#666' }}>

@@ -1,4 +1,4 @@
-# Wars Atlas — Product Roadmap to "Press-Ready"
+# War Atlas — Product Roadmap to "Press-Ready"
 
 Five parallel audits assessed: UX polish, educational value, researcher credibility, public sensitivity, and technical readiness. Detailed reports are in `outputs/audit_*.md`. This is the synthesis.
 

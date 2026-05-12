@@ -39,7 +39,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
         {/* Header */}
         <div className="sticky top-0 z-10 bg-wars-panel/95 backdrop-blur-sm border-b border-wars-border px-6 py-4 flex items-start justify-between">
           <div>
-            <h2 id="about-title" className="text-xl font-bold text-wars-text">About Wars Atlas</h2>
+            <h2 id="about-title" className="text-xl font-bold text-wars-text">About War Atlas</h2>
             <p className="text-xs text-wars-muted mt-0.5">
               An interactive history of armed conflict
             </p>
@@ -230,7 +230,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
           {/* Citation */}
           <Section heading="Citing or embedding">
             <p>
-              Wars Atlas is a work in progress and not yet a stable scholarly resource. If you cite
+              War Atlas is a work in progress and not yet a stable scholarly resource. If you cite
               it, please include the URL and a date, and prefer the underlying Wikipedia / Natural
               Earth / Clodfelter sources for the actual claims. We expect to publish a versioned
               dataset and methodology paper in a future release.
@@ -262,7 +262,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
 
           {/* Footer */}
           <div className="pt-4 border-t border-wars-border/50 text-xs text-wars-muted/70">
-            Wars Atlas is a research preview. Numbers, names, and borders shown here are not the
+            War Atlas is a research preview. Numbers, names, and borders shown here are not the
             last word — please verify against primary sources before citing.
           </div>
         </div>

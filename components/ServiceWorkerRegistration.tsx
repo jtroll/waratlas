@@ -15,7 +15,7 @@ export default function ServiceWorkerRegistration() {
       .register('/sw.js', { scope: '/' })
       .catch((err) => {
         // eslint-disable-next-line no-console
-        console.warn('Wars Atlas: SW registration failed', err);
+        console.warn('War Atlas: SW registration failed', err);
       });
     return () => {
       // Don't unregister on unmount — we WANT the SW to persist across navigations

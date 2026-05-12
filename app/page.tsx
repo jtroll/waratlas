@@ -353,7 +353,7 @@ export default function Home() {
         <div className="absolute inset-0 z-50 bg-wars-bg flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-wars-text mb-2">
-              <span className="text-wars-red">Wars</span> Atlas
+              <span className="text-wars-red">War</span> Atlas
             </h1>
             <p className="text-sm text-wars-muted">Loading 5,000 years of history...</p>
             <div className="mt-4 w-32 h-1 bg-wars-border rounded-full mx-auto overflow-hidden">

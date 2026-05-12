@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Not found · Wars Atlas',
+  title: 'Not found · War Atlas',
   description: 'The page you are looking for is not in the atlas.',
 };
 
@@ -20,7 +20,7 @@ export default function NotFound() {
     >
       <div className="max-w-md w-full text-center">
         <div className="font-display italic mb-4" style={{ color: 'var(--vermilion, #c8553b)', fontSize: 28 }}>
-          Wars <span style={{ fontStyle: 'normal' }}>Atlas</span>
+          War <span style={{ fontStyle: 'normal' }}>Atlas</span>
         </div>
         <p
           className="font-mono mb-2"

@@ -18,7 +18,7 @@ interface Stop {
 
 const STOPS: Stop[] = [
   {
-    year: null, title: 'Welcome to Wars Atlas', shortTitle: 'Start',
+    year: null, title: 'Welcome to War Atlas', shortTitle: 'Start',
     blurb: 'An interactive cartography of every named war in human history — 1,340 conflicts and 372 empires across 5,000 years. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict. This tour stops at nine turning points.',
     hold: 9,
   },

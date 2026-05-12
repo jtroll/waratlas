@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Sources & attribution · Wars Atlas',
+  title: 'Sources & attribution · War Atlas',
   description:
-    'Where the Wars Atlas data comes from, what license each component is under, and how to file a correction.',
+    'Where the War Atlas data comes from, what license each component is under, and how to file a correction.',
 };
 
 const FEEDBACK_URL =

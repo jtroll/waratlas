@@ -1,4 +1,4 @@
-# Wars Atlas
+# War Atlas
 
 An interactive cartography of every named war in human history. 1,340 conflicts,
 372 empires with shifting borders, ~700 historical city-name records, spanning

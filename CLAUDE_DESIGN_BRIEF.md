@@ -1,7 +1,7 @@
-# Wars Atlas — Visual Redesign Brief
+# War Atlas — Visual Redesign Brief
 
 ## What this project is
-Wars Atlas is an interactive map of every named war in human history — ~1,340 conflicts, ~370 empires with shifting borders, and ~700 historical city-name records spanning ~10,000 BCE to today. Built in Next.js 14 + React 18 + TypeScript on top of Mapbox GL JS. The user scrubs a timeline, watches empires expand and contract over the dark Mapbox basemap, and clicks individual conflicts to see tiered narratives, casualty estimate ranges, source attributions, and parent/child conflict graphs.
+War Atlas is an interactive map of every named war in human history — ~1,340 conflicts, ~370 empires with shifting borders, and ~700 historical city-name records spanning ~10,000 BCE to today. Built in Next.js 14 + React 18 + TypeScript on top of Mapbox GL JS. The user scrubs a timeline, watches empires expand and contract over the dark Mapbox basemap, and clicks individual conflicts to see tiered narratives, casualty estimate ranges, source attributions, and parent/child conflict graphs.
 
 ## Who it's for
 Three audiences in tension:

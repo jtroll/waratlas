@@ -161,7 +161,7 @@ export default function EmpireSidebar({
       e.endYear && e.endYear !== e.startYear
         ? `${formatYear(e.startYear)}–${formatYear(e.endYear)}`
         : formatYear(e.startYear);
-    const citation = `${e.name} (${yearRange}). Wars Atlas. ${permalink}`;
+    const citation = `${e.name} (${yearRange}). War Atlas. ${permalink}`;
     try {
       await navigator.clipboard.writeText(citation);
     } catch {

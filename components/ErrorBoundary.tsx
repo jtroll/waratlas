@@ -25,7 +25,7 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
     // eslint-disable-next-line no-console
-    console.error('Wars Atlas: render error', error, info);
+    console.error('War Atlas: render error', error, info);
   }
 
   reset = () => this.setState({ hasError: false, error: null });

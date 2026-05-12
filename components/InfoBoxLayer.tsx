@@ -139,47 +139,20 @@ export default function InfoBoxLayer({
       clusters.push({ primary: item.conflict, count, screen: item.screen });
     }
 
-    // Limit visible boxes. On mobile (narrow viewport) the callouts have
-    // no room to lay out without overlapping each other on top of the dots
-    // they label — so we show NONE except for the currently-selected
-    // conflict. Mobile users browse via the conflict markers themselves
-    // and the sidebar; the callouts are a desktop-only affordance.
+    // Limit visible boxes. On mobile we cap at 3 — the screen is narrow
+    // and the boxes are 230px wide, so showing more would stack them on
+    // top of each other. The skip-on-overlap pass below ensures we never
+    // end up with visually overlapping callouts even at the cap.
     const isMobile = screenW < 640;
     const maxBoxes = isMobile
-      ? (selectedId ? 1 : 0)
+      ? 3
       : zoom > 5 ? 12 : zoom > 3 ? 8 : 6;
     let visibleClusters = clusters.slice(0, maxBoxes);
 
     // If a conflict is selected but didn't make the cut, force-add it.
-    // Also: on mobile, REPLACE visibleClusters entirely with just the
-    // selected conflict so the user sees one clean callout, not whichever
-    // happened to top-rank by displayPriority.
     if (selectedId) {
       const selectedInVisible = visibleClusters.some(cl => cl.primary.id === selectedId);
-      if (isMobile) {
-        // Mobile: only the selected one, period.
-        const selectedCluster = clusters.find(cl => cl.primary.id === selectedId);
-        if (selectedCluster) {
-          visibleClusters = [selectedCluster];
-        } else {
-          const selProj = projected.find(p => p.conflict.id === selectedId);
-          if (selProj) {
-            visibleClusters = [{ primary: selProj.conflict, count: 1, screen: selProj.screen }];
-          } else {
-            const selConflict = conflicts.find(c => c.id === selectedId);
-            if (selConflict) {
-              const pos = mapRef.project(selConflict.coordinates);
-              if (pos && pos.x > -50 && pos.x < screenW + 50 && pos.y > -50 && pos.y < screenH + 50) {
-                visibleClusters = [{ primary: selConflict, count: 1, screen: pos }];
-              } else {
-                visibleClusters = [];
-              }
-            } else {
-              visibleClusters = [];
-            }
-          }
-        }
-      } else if (!selectedInVisible) {
+      if (!selectedInVisible) {
         const selectedCluster = clusters.find(cl => cl.primary.id === selectedId);
         if (selectedCluster) {
           visibleClusters.push(selectedCluster);

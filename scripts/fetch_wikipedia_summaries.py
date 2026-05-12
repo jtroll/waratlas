@@ -35,7 +35,7 @@ EMPIRES_PATH = ROOT / 'public' / 'empires.json'
 OUTPUT_PATH = ROOT / 'public' / 'empire-wikipedia.json'
 
 USER_AGENT = (
-    'WarsAtlas/1.0 (https://github.com/wars-atlas; contact: jtroll@gmail.com) '
+    'WarAtlas/1.0 (https://github.com/jtroll/waratlas; contact: jtroll@gmail.com) '
     'wikipedia-summary-fetcher/1.0'
 )
 SUMMARY_ENDPOINT = 'https://en.wikipedia.org/api/rest_v1/page/summary/{title}'

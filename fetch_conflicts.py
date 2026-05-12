@@ -53,7 +53,7 @@ def fetch_batch(offset, limit=2000):
     query = QUERY_TEMPLATE.format(limit=limit, offset=offset)
     headers = {
         "Accept": "application/sparql-results+json",
-        "User-Agent": "WarsAtlas/1.0 (conflict-history-project)"
+        "User-Agent": "WarAtlas/1.0 (conflict-history-project)"
     }
 
     for attempt in range(3):

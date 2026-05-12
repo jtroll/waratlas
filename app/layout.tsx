@@ -40,28 +40,28 @@ const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wars-atlas.example
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'Wars Atlas — Every Named War in Human History',
+  title: 'War Atlas — Every Named War in Human History',
   description: `An interactive cartography of ${STAT_CONFLICTS} recorded military conflicts across 5,000 years of human history, with ${STAT_EMPIRES} historical empire borders, casualty estimate ranges, and era-by-era timeline navigation.`,
   keywords: ['wars', 'military history', 'conflicts', 'interactive map', 'world history', 'atlas', 'battles', 'empires'],
-  authors: [{ name: 'Wars Atlas' }],
+  authors: [{ name: 'War Atlas' }],
   openGraph: {
-    title: 'Wars Atlas — Every Named War in Human History',
+    title: 'War Atlas — Every Named War in Human History',
     description: `Explore 5,000 years of conflict on an interactive world map. ${STAT_CONFLICTS} wars, ${STAT_EMPIRES} empire borders with shifting frontiers, casualty estimates with sources.`,
     type: 'website',
-    siteName: 'Wars Atlas',
+    siteName: 'War Atlas',
     locale: 'en_US',
     url: '/',
     images: [
       // PNG primary for maximum platform compatibility (LinkedIn, older Twitter
       // renderers); SVG kept as a secondary so vector-aware platforms get a
       // sharper render. Both are 1200×630.
-      { url: '/og-image.png', width: 1200, height: 630, alt: 'Wars Atlas — interactive map of every named war in human history', type: 'image/png' },
-      { url: '/og-image.svg', width: 1200, height: 630, alt: 'Wars Atlas — interactive map of every named war in human history', type: 'image/svg+xml' },
+      { url: '/og-image.png', width: 1200, height: 630, alt: 'War Atlas — interactive map of every named war in human history', type: 'image/png' },
+      { url: '/og-image.svg', width: 1200, height: 630, alt: 'War Atlas — interactive map of every named war in human history', type: 'image/svg+xml' },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wars Atlas — Every Named War in Human History',
+    title: 'War Atlas — Every Named War in Human History',
     description: `Explore ${STAT_CONFLICTS} wars and ${STAT_EMPIRES} empires across 5,000 years on an interactive world map.`,
     images: ['/og-image.png'],
   },
