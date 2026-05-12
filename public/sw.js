@@ -8,7 +8,13 @@
 // Bumped to v3 alongside the "War Atlas" rename so old caches under the
 // previous name get garbage-collected on next visit. The activate handler
 // below kills any cache starting with `wars-atlas-` or older `war-atlas-`.
-const CACHE_NAME = 'war-atlas-v3';
+//
+// v4 (2026-05-12): P4 border audit. Replaces stale `empires.json` for
+// returning visitors whose SW had cached the pre-audit polygon set
+// (Xiongnu lens, Adena 7-vert hexagon, Maurya/Khazar/Khmer marked
+// approximate, etc). Bumping the cache name causes the activate handler
+// below to garbage-collect `war-atlas-v3` and pre-fetch the new file.
+const CACHE_NAME = 'war-atlas-v4';
 const DATA_URLS = [
   '/empires.json',
   '/cities.json',
