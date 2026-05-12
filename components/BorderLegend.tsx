@@ -14,8 +14,8 @@ export default function BorderLegend() {
       style={{
         width: 220,
         background: 'oklch(0.20 0.014 250 / 0.85)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
         border: '1px solid var(--rule-strong)',
         padding: '10px 14px 12px',
       }}

@@ -42,8 +42,8 @@ export default function MobileTabDock({
       className="sm:hidden fixed bottom-0 left-0 right-0 z-30 flex"
       style={{
         background: 'oklch(0.16 0.012 250 / 0.96)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
         borderTop: '1px solid var(--rule-strong)',
         paddingBottom: 'env(safe-area-inset-bottom, 0)',
       }}

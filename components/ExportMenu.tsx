@@ -76,7 +76,7 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
     <div className="absolute bottom-32 right-4 z-20 pointer-events-auto hidden md:block">
       <button
         onClick={() => setOpen(!open)}
-        className="bg-wars-panel/85 backdrop-blur-sm border border-wars-border/70 rounded-md px-3 py-2 text-[11px] text-wars-muted hover:text-wars-text hover:border-wars-border transition-colors flex items-center gap-2"
+        className="bg-wars-panel/85 backdrop-blur-xl border border-wars-border/70 rounded-md px-3 py-2 text-[11px] text-wars-muted hover:text-wars-text hover:border-wars-border transition-colors flex items-center gap-2"
         aria-expanded={open}
         title="Export current view"
       >
@@ -86,7 +86,7 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
         Export
       </button>
       {open && (
-        <div className="mt-1 bg-wars-panel/95 backdrop-blur-sm border border-wars-border rounded-md overflow-hidden text-[11px] min-w-[10rem]">
+        <div className="mt-1 bg-wars-panel/95 backdrop-blur-xl border border-wars-border rounded-md overflow-hidden text-[11px] min-w-[10rem]">
           <div className="px-3 py-1.5 text-[10px] uppercase tracking-wider text-wars-muted/70 border-b border-wars-border/50">
             {conflicts.length} conflicts
           </div>

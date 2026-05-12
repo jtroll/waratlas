@@ -92,8 +92,8 @@ export default function Sidebar({
                  w-full sm:max-w-[460px]"
       style={{
         background: 'oklch(0.18 0.014 250 / 0.97)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
+        backdropFilter: 'blur(22px)',
+        WebkitBackdropFilter: 'blur(22px)',
         borderTop: '1px solid var(--rule-strong)',
         color: 'var(--ink-text)',
         boxShadow: 'var(--shadow-pop)',

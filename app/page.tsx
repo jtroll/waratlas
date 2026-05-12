@@ -417,6 +417,7 @@ export default function Home() {
           setShowPlayPrompt(true);
         }}
         onSeek={(y) => setTimeline((prev) => ({ ...prev, currentYear: y, isPlaying: false }))}
+        onFlyToBbox={(bbox) => mapRef.current?.flyToBbox(bbox)}
       />
 
       <TopBar

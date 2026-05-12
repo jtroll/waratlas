@@ -67,9 +67,13 @@ export default function TopBar({
           'linear-gradient(to bottom, oklch(0.16 0.012 250 / 0.85), oklch(0.16 0.012 250 / 0))',
       }}
     >
-      <div className="flex items-center justify-between px-6 py-3.5 gap-4">
-        {/* ─ Wordmark + tagline ─ */}
-        <div className="pointer-events-auto flex items-baseline gap-3.5 min-w-0">
+      <div className="flex items-center justify-between px-3 sm:px-6 py-2 sm:py-3.5 gap-3 sm:gap-4">
+        {/* ─ Wordmark + tagline ─
+            On desktop the wordmark line is items-baseline so the tagline sits
+            on the same type baseline. On mobile we switch to items-center so
+            the ? button optically aligns with the Live/filter buttons (which
+            are both 32px squares on the right). */}
+        <div className="pointer-events-auto flex items-center sm:items-baseline gap-2 sm:gap-3.5 min-w-0">
           <h1
             className="font-display"
             style={{
@@ -120,13 +124,17 @@ export default function TopBar({
             Data · May 2026
           </span>
 
-          {/* About button (also `?` key) */}
+          {/* About button (also `?` key)
+              Mobile: 32×32 square so it visually matches the Filter and Live
+              buttons in the same row. Desktop: small 20×20 chip inline with
+              the wordmark/tagline. */}
           <button
             onClick={() => setShowInfo(true)}
-            className="flex-shrink-0 inline-flex items-center justify-center w-5 h-5 text-wars-muted hover:text-wars-text transition-colors"
+            className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 sm:w-5 sm:h-5 text-wars-muted hover:text-wars-text transition-colors"
             style={{
               border: '1px solid var(--rule-strong)',
-              fontSize: 10,
+              fontSize: 12,
+              lineHeight: 1,
               background: 'transparent',
             }}
             title="About & methodology (?)"
@@ -207,19 +215,21 @@ export default function TopBar({
             style={{ height: 18, width: 1, background: 'var(--rule-strong)' }}
           />
 
-          {/* Live button */}
+          {/* Live button — 32px tall on mobile to match the ? / Filter
+              buttons in the same row. Desktop keeps the slightly looser
+              vertical rhythm. */}
           <button
             onClick={onJumpToLive}
-            className="font-ui inline-flex items-center gap-2 transition-colors hover:text-wars-text"
+            className="font-ui inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 sm:h-auto px-3 sm:px-3 py-0 sm:py-1.5"
             style={{
               fontSize: 11,
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
-              padding: '6px 12px',
               background: 'transparent',
               border: '1px solid var(--rule-strong)',
               color: isLive ? 'var(--vermilion)' : 'var(--ink-text-2)',
               cursor: 'pointer',
+              lineHeight: 1,
             }}
             aria-pressed={isLive}
             aria-label="Jump to live (current year)"

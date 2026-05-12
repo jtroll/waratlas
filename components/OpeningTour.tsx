@@ -14,58 +14,72 @@ interface Stop {
   blurb: string;
   /** Seconds to spend on this stop when auto-playing. */
   hold: number;
+  /** Optional bounding box to fly the map to on this stop, as
+   *  [minLng, minLat, maxLng, maxLat]. `null` (or omitted) keeps the
+   *  current camera. */
+  bbox?: [number, number, number, number] | null;
 }
 
 const STOPS: Stop[] = [
   {
     year: null, title: 'Welcome to War Atlas', shortTitle: 'Start',
-    blurb: 'An interactive cartography of every named war in human history — 1,340 conflicts and 372 empires across 5,000 years. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict. This tour stops at nine turning points.',
+    blurb: 'An interactive cartography of every named war in human history — 1,340 conflicts and 372 empires across 5,000 years. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict. This project has been assembled via countless amazing open source resources, Claude Cowork, and several late nights.',
     hold: 9,
+    bbox: [-160, -55, 180, 72],
   },
   {
     year: -2500, title: 'Cradle of cities', shortTitle: 'Cradle',
     blurb: 'Bronze Age Sumer, Egypt, and the Indus Valley fight the first wars we can name. Walls go up around the world’s earliest cities; civilization and conflict arrive together.',
     hold: 5,
+    bbox: [25, 12, 80, 42],
   },
   {
     year: -490, title: 'Greco-Persian Wars', shortTitle: 'Greco-Persian',
     blurb: 'A coalition of Greek city-states halts the largest empire the world has yet seen. The Persian invasions force Athens, Sparta, and their neighbours into a fragile alliance.',
     hold: 5,
+    bbox: [18, 25, 60, 45],
   },
   {
     year: -100, title: 'Two empires emerge', shortTitle: 'Two empires',
     blurb: 'Rome and Han China industrialize war on opposite ends of Eurasia, professional armies remaking the political map of half the world.',
     hold: 5,
+    bbox: [-10, 18, 130, 52],
   },
   {
     year: 632, title: 'Arab conquests', shortTitle: 'Caliphate',
     blurb: 'In a century, the Caliphate reaches from Spain to the Indus. The Mediterranean is cut in half; the Sasanian Empire ceases to exist.',
     hold: 5,
+    bbox: [-12, 10, 78, 45],
   },
   {
     year: 1240, title: 'Mongol century', shortTitle: 'Mongol',
     blurb: 'The largest contiguous land empire in history takes shape from the steppe. From Korea to Hungary, the rules of war and statecraft are rewritten in a generation.',
     hold: 5,
+    bbox: [15, 20, 140, 60],
   },
   {
     year: 1521, title: 'Conquest of the Americas', shortTitle: 'Americas',
     blurb: 'Cortés enters Tenochtitlan; the demographic catastrophe of the Columbian exchange begins. New diseases and gunpowder collapse millennia-old civilizations within decades.',
     hold: 5,
+    bbox: [-125, -55, -34, 50],
   },
   {
     year: 1815, title: 'Long peace, hidden wars', shortTitle: 'Long peace',
     blurb: 'Europe stabilizes after Napoleon while colonial wars expand across Africa, India, the Pacific. Great-power peace abroad coexists with industrial-scale conquest elsewhere.',
     hold: 5,
+    bbox: [-25, -40, 150, 60],
   },
   {
     year: 1944, title: 'World War II', shortTitle: 'World War II',
     blurb: 'The deadliest conflict in human history reshapes the political map. By 1944 the Soviets push west, the Allies have landed in Normandy, and empires are about to dissolve.',
     hold: 5,
+    bbox: [-15, 30, 145, 65],
   },
   {
     year: 1989, title: 'After the Cold War', shortTitle: 'After',
     blurb: 'Civil wars and insurgencies replace state-on-state conflict as the dominant form. The map gets denser even as the great powers fight each other less.',
     hold: 5,
+    bbox: [-130, -50, 170, 65],
   },
 ];
 
@@ -79,6 +93,9 @@ interface Props {
   onFinish: () => void;
   /** Seek the timeline. Used by per-stop year changes. */
   onSeek: (year: number) => void;
+  /** Fly the map to a given bounding box on each stop. Optional —
+   *  if omitted, the tour just seeks the timeline without panning. */
+  onFlyToBbox?: (bbox: [number, number, number, number]) => void;
 }
 
 function formatStopYear(y: number) {
@@ -105,7 +122,7 @@ function formatBigYear(y: number) {
  * Auto-advance, pause/resume, and keyboard nav are unchanged
  * from the previous version (arrows, Enter, Space, Escape).
  * ─────────────────────────────────────────────────────────── */
-export default function OpeningTour({ open, onClose, onFinish, onSeek }: Props) {
+export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -124,6 +141,13 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek }: Props) 
     const targetYear = STOPS[index].year;
     if (targetYear !== null) onSeek(targetYear);
   }, [open, index, onSeek]);
+
+  // Pan/zoom the map to the stop's region on each step.
+  useEffect(() => {
+    if (!open || !onFlyToBbox) return;
+    const bbox = STOPS[index].bbox;
+    if (bbox) onFlyToBbox(bbox);
+  }, [open, index, onFlyToBbox]);
 
   // Auto-advance timer (skipped when paused)
   useEffect(() => {
@@ -235,8 +259,8 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek }: Props) 
           style={{
             maxWidth: 720,
             background: 'oklch(0.18 0.014 250 / 0.97)',
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
             border: '1px solid var(--rule-strong)',
             color: 'var(--ink-text)',
             // Generous padding on desktop, tighter on mobile. Bottom padding

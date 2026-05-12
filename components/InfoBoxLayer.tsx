@@ -278,7 +278,7 @@ export default function InfoBoxLayer({
               }}
             >
               <div
-                className={`info-box-enter bg-wars-panel/95 backdrop-blur-sm border rounded-lg p-2.5 cursor-pointer transition-colors hover:border-wars-accent/50 ${
+                className={`info-box-enter bg-wars-panel/95 backdrop-blur-lg border rounded-lg p-2.5 cursor-pointer transition-colors hover:border-wars-accent/50 ${
                   isSelected
                     ? 'border-wars-accent shadow-lg shadow-wars-accent/20'
                     : 'border-wars-border'

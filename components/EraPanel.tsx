@@ -128,8 +128,8 @@ export default function EraPanel({ year }: Props) {
       style={{
         width: 290,
         background: 'oklch(0.20 0.014 250 / 0.94)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
         border: '1px solid var(--rule-strong)',
         padding: '14px 18px 16px',
         boxShadow: 'var(--shadow-panel)',

@@ -57,16 +57,18 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
   return (
     <div
       // Mobile: anchor in the TopBar's right area, inline with the LIVE
-      // button. Trigger is icon-only (~36px square) so it fits next to LIVE
-      // without overlapping the Mapbox zoom (which is hidden on mobile).
+      // button. The mobile TopBar pads `py-2` (8px) so the filter button's
+      // top edge needs to match — 8px from the top of the viewport — so it
+      // optically sits in the same row as the ? and Live buttons (both also
+      // 32px tall now).
       // Desktop: original placement below the TopBar with the full "Filter"
       // pill + active count.
-      className="absolute top-3 right-[92px] sm:top-20 sm:right-6 z-30 sm:z-20 pointer-events-auto"
+      className="absolute top-2 right-[88px] sm:top-20 sm:right-6 z-30 sm:z-20 pointer-events-auto"
       style={{ width: 'auto' }}
     >
       <button
         onClick={() => setOpen(!open)}
-        className="font-ui inline-flex items-center transition-colors"
+        className="font-ui inline-flex items-center transition-colors h-8 sm:h-auto"
         style={{
           fontSize: 11,
           letterSpacing: '0.04em',
@@ -76,18 +78,21 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
             : 'oklch(0.20 0.014 250 / 0.85)',
           border: `1px solid ${isFiltering ? 'var(--amber)' : 'var(--rule-strong)'}`,
           color: isFiltering ? 'var(--amber)' : 'var(--ink-text-2)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
+          backdropFilter: 'blur(18px)',
+          WebkitBackdropFilter: 'blur(18px)',
           cursor: 'pointer',
         }}
         aria-expanded={open}
         aria-label={open ? 'Close filters' : 'Open filters'}
         title="Filters"
       >
-        {/* Icon-only on mobile. Desktop shows full pill with text + counts. */}
+        {/* Icon-only on mobile. Desktop shows full pill with text + counts.
+            On mobile, the inner span fills the 32px h-8 button (border-box
+            makes the outer footprint also 32px) so it lines up with the
+            ?  and Live buttons in the same row. */}
         <span
-          className="inline-flex items-center justify-center sm:hidden"
-          style={{ width: 32, height: 32 }}
+          className="inline-flex items-center justify-center sm:hidden h-full"
+          style={{ width: 30 }}
         >
           <svg width="13" height="13" viewBox="0 0 11 11" aria-hidden="true">
             <path
@@ -133,8 +138,8 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
           className="absolute right-0 top-full mt-1 sm:relative sm:mt-1 w-[min(320px,calc(100vw-32px))] sm:w-[244px]"
           style={{
             background: 'oklch(0.20 0.014 250 / 0.95)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
             border: '1px solid var(--rule-strong)',
             padding: 14,
           }}

@@ -26,6 +26,10 @@ interface MapViewProps {
 export interface MapViewHandle {
   project: (lngLat: [number, number]) => ScreenPosition | null;
   getZoom: () => number;
+  /** Fly the map to fit the given bounding box. Used by the opening tour to
+   *  pan the camera to the area being discussed on each stop. The padding
+   *  leaves room for the tour card pinned to the bottom of the screen. */
+  flyToBbox: (bbox: [number, number, number, number]) => void;
 }
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || 'YOUR_MAPBOX_TOKEN_HERE';
@@ -162,6 +166,31 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       }
     },
     getZoom: () => map.current?.getZoom() ?? 2,
+    flyToBbox: (bbox: [number, number, number, number]) => {
+      if (!map.current) return;
+      try {
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+        // The tour card is anchored to the bottom of the viewport (~56vh max
+        // on mobile, smaller on desktop) so we pad the bottom heavily to push
+        // the focal region above it. Top padding leaves room for the TopBar.
+        map.current.fitBounds(
+          [
+            [bbox[0], bbox[1]],
+            [bbox[2], bbox[3]],
+          ],
+          {
+            padding: isMobile
+              ? { top: 80, bottom: 360, left: 24, right: 24 }
+              : { top: 90, bottom: 320, left: 80, right: 80 },
+            duration: 1100,
+            maxZoom: 5,
+            essential: true,
+          }
+        );
+      } catch {
+        /* ignore — map may be mid-init */
+      }
+    },
   }));
 
   // Initialize map

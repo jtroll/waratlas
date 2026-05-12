@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface AboutModalProps {
   open: boolean;
@@ -10,8 +11,17 @@ interface AboutModalProps {
 /**
  * About / Methodology modal. Linked from the "?" button in the TopBar.
  * Designed to satisfy researcher / journalist scrutiny of the data.
+ *
+ * Rendered via portal to document.body so the modal escapes the TopBar's
+ * stacking context (z-30) — otherwise the Timeline (also z-30, but later in
+ * DOM order) renders over the bottom of the modal.
  */
 export default function AboutModal({ open, onClose }: AboutModalProps) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Close on Escape
   useEffect(() => {
     if (!open) return;
@@ -22,11 +32,11 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
     return () => window.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  const modal = (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xl"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -37,7 +47,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-wars-panel/95 backdrop-blur-sm border-b border-wars-border px-6 py-4 flex items-start justify-between">
+        <div className="sticky top-0 z-10 bg-wars-panel/95 backdrop-blur-xl border-b border-wars-border px-6 py-4 flex items-start justify-between">
           <div>
             <h2 id="about-title" className="text-xl font-bold text-wars-text">About War Atlas</h2>
             <p className="text-xs text-wars-muted mt-0.5">
@@ -60,16 +70,17 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
           {/* Intro */}
           <Section heading="What this is">
             <p>
-              An interactive map of every armed conflict in recorded human history, layered over
-              evolving empire borders. Scrub the timeline to watch the political map change while
-              wars appear and resolve.
+              War Atlas <em>intends</em> to be an interactive map of every armed conflict in
+              recorded human history, layered over evolving empire borders. Scrub the timeline
+              to watch the political map change while wars appear and resolve.
             </p>
             <p className="mt-2">
               The dataset currently covers <strong>1,340 conflicts</strong> spanning roughly{' '}
               <strong>2500 BCE to today</strong>, with <strong>372 distinct polities (empires, kingdoms,
               caliphates, republics, dynasties)</strong> whose borders shift through time, and{' '}
               <strong>~700 historical city-name records</strong> that fade in and out as cities are
-              renamed.
+              renamed. This project stemmed out of an offhand conversation between friends in
+              2009, finally put into this beta release in May 2026.
             </p>
             <p className="mt-2 text-xs text-wars-muted">
               <strong className="text-wars-text">Dataset version:</strong> May 2026.
@@ -269,6 +280,10 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
       </div>
     </div>
   );
+
+  // Portal to document.body so the modal escapes the TopBar's stacking
+  // context (z-30) and lays cleanly over the Timeline, MobileTabDock, etc.
+  return createPortal(modal, document.body);
 }
 
 function Section({ heading, children }: { heading: string; children: React.ReactNode }) {

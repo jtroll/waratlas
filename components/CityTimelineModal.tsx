@@ -64,7 +64,7 @@ export default function CityTimelineModal({ coords, citiesData, onClose }: Props
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xl"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -74,7 +74,7 @@ export default function CityTimelineModal({ coords, citiesData, onClose }: Props
         className="relative w-full max-w-md max-h-[85vh] overflow-y-auto bg-wars-panel border border-wars-border rounded-xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-wars-panel/95 backdrop-blur-sm border-b border-wars-border px-5 py-3 flex items-start justify-between">
+        <div className="sticky top-0 bg-wars-panel/95 backdrop-blur-xl border-b border-wars-border px-5 py-3 flex items-start justify-between">
           <div>
             <h2 id="city-timeline-title" className="text-base font-bold text-wars-text">
               Names through time
