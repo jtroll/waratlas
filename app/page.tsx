@@ -196,7 +196,13 @@ export default function Home() {
   const handlePlay = useCallback(() => {
     // Pressing Play also dismisses the post-tour "press Play" prompt.
     setShowPlayPrompt(false);
-    setTimeline(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+    setTimeline(prev => {
+      const next = !prev.isPlaying;
+      // If the user is manually pausing, drop the auto-resume intent so a
+      // subsequent close doesn't override their explicit pause.
+      if (!next) wasPlayingRef.current = false;
+      return { ...prev, isPlaying: next };
+    });
   }, []);
 
   const handleYearChange = useCallback((year: number) => {
@@ -215,7 +221,10 @@ export default function Home() {
   // Also closes any open empire flyout — only one right-side panel at a time.
   const handleConflictClick = useCallback((conflict: Conflict) => {
     setTimeline(prev => {
-      wasPlayingRef.current = prev.isPlaying;
+      // Remember "was playing" across chained clicks. Only set the flag
+      // when we're actually transitioning from playing → paused; never
+      // overwrite it back to false (the close handler clears it).
+      if (prev.isPlaying) wasPlayingRef.current = true;
       return { ...prev, isPlaying: false };
     });
     setSelectedEmpire(null);
@@ -226,7 +235,7 @@ export default function Home() {
   // Click a dot on the map → select it (show its info box) but don't open sidebar
   const handleConflictDotClick = useCallback((conflict: Conflict) => {
     setTimeline(prev => {
-      wasPlayingRef.current = prev.isPlaying;
+      if (prev.isPlaying) wasPlayingRef.current = true;
       return { ...prev, isPlaying: false };
     });
     setSelectedConflict(conflict);
@@ -245,7 +254,7 @@ export default function Home() {
   // Click an empire polygon → open the empire flyout, close any conflict sidebar.
   const handleEmpireClick = useCallback((empire: EmpireProperties) => {
     setTimeline(prev => {
-      wasPlayingRef.current = prev.isPlaying;
+      if (prev.isPlaying) wasPlayingRef.current = true;
       return { ...prev, isPlaying: false };
     });
     setSidebarOpen(false);
