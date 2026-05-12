@@ -327,6 +327,13 @@ export default function Home() {
     setListPanelOpen(true);
   }, []);
 
+  // Memoized so the OpeningTour's fly-to effect only runs when the stop
+  // changes, not on every parent re-render (which would restart the
+  // Mapbox animation mid-flight).
+  const handleTourFlyToBbox = useCallback((bbox: [number, number, number, number]) => {
+    mapRef.current?.flyToBbox(bbox);
+  }, []);
+
   const handleCloseListPanel = useCallback(() => {
     setListPanelOpen(false);
   }, []);
@@ -417,7 +424,7 @@ export default function Home() {
           setShowPlayPrompt(true);
         }}
         onSeek={(y) => setTimeline((prev) => ({ ...prev, currentYear: y, isPlaying: false }))}
-        onFlyToBbox={(bbox) => mapRef.current?.flyToBbox(bbox)}
+        onFlyToBbox={handleTourFlyToBbox}
       />
 
       <TopBar

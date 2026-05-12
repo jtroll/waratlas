@@ -167,29 +167,45 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     },
     getZoom: () => map.current?.getZoom() ?? 2,
     flyToBbox: (bbox: [number, number, number, number]) => {
-      if (!map.current) return;
-      try {
-        const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-        // The tour card is anchored to the bottom of the viewport (~56vh max
-        // on mobile, smaller on desktop) so we pad the bottom heavily to push
-        // the focal region above it. Top padding leaves room for the TopBar.
-        map.current.fitBounds(
-          [
-            [bbox[0], bbox[1]],
-            [bbox[2], bbox[3]],
-          ],
-          {
-            padding: isMobile
-              ? { top: 80, bottom: 360, left: 24, right: 24 }
-              : { top: 90, bottom: 320, left: 80, right: 80 },
-            duration: 1100,
-            maxZoom: 5,
-            essential: true,
+      const m = map.current;
+      if (!m) return;
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+      // Padding pushes the focal region above the bottom-anchored tour card.
+      // Mobile uses a lighter bottom padding than before — heavy padding made
+      // fitBounds unable to satisfy the welcome stop (world view) under the
+      // map's minZoom (1.5), so the call silently no-op'd.
+      const padding = isMobile
+        ? { top: 60, bottom: 200, left: 16, right: 16 }
+        : { top: 80, bottom: 260, left: 60, right: 60 };
+      const bounds: [[number, number], [number, number]] = [
+        [bbox[0], bbox[1]],
+        [bbox[2], bbox[3]],
+      ];
+      // Use cameraForBounds → easeTo so the call is robust to padding that
+      // exceeds the map size (which fitBounds rejects). cameraForBounds
+      // returns the best-fit camera Mapbox can offer.
+      const run = () => {
+        try {
+          const cam = m.cameraForBounds(bounds, { padding, maxZoom: 5 });
+          if (cam) {
+            m.easeTo({ ...cam, duration: 1100, essential: true });
+          } else {
+            // Fallback: just centre on the bbox at a reasonable zoom.
+            const cx = (bbox[0] + bbox[2]) / 2;
+            const cy = (bbox[1] + bbox[3]) / 2;
+            m.easeTo({ center: [cx, cy], zoom: 2, duration: 1100, essential: true });
           }
-        );
-      } catch {
-        /* ignore — map may be mid-init */
-      }
+        } catch (err) {
+          // Surface errors instead of silently swallowing so we notice
+          // regressions in production logs.
+          // eslint-disable-next-line no-console
+          console.warn('flyToBbox failed', err);
+        }
+      };
+      // If the style hasn't loaded yet, wait for it. Otherwise camera ops
+      // can race the load event and get clobbered.
+      if (m.isStyleLoaded()) run();
+      else m.once('load', run);
     },
   }));
 
