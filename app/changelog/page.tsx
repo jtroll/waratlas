@@ -18,10 +18,16 @@ export const metadata: Metadata = {
  */
 export default function ChangelogPage() {
   return (
-    <main
-      className="min-h-screen px-6 py-10 sm:py-14"
-      style={{ background: 'var(--ink-0, #06090f)', color: 'var(--ink-text, #ece3d3)' }}
-    >
+    <>
+      {/* globals.css locks html/body with overflow:hidden so the map page can
+          pin its viewport. Prose pages need normal document scrolling — keyboard
+          scroll keys, scroll restoration on back-nav, and mobile momentum
+          scrolling all break with an inner scroll container. Override per-page. */}
+      <style>{`html, body { overflow: auto !important; height: auto !important; }`}</style>
+      <main
+        className="min-h-screen px-6 py-10 sm:py-14"
+        style={{ background: 'var(--ink-0, #06090f)', color: 'var(--ink-text, #ece3d3)' }}
+      >
       <article className="mx-auto" style={{ maxWidth: 720 }}>
         <header className="mb-10">
           <Link
@@ -298,7 +304,8 @@ export default function ChangelogPage() {
           </Link>
         </footer>
       </article>
-    </main>
+      </main>
+    </>
   );
 }
 
