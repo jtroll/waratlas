@@ -55,68 +55,6 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
-        <Entry date="12 May 2026" tag="r3 · steppe polygons">
-          <p>
-            Hand-crafted polygons for nine inner-Asian / Pontic steppe
-            confederations whose historical-basemaps shapes were
-            atlas-quality only by approximation — smooth lens shapes that
-            reached deep into Siberian taiga and ignored terrain.
-          </p>
-          <ul>
-            <li>
-              <strong>Xiongnu Confederation</strong> redrawn at Modu Chanyu
-              peak (175 BCE): includes Ordos and Hexi Corridor, follows the
-              Great Wall line south, the Greater Khingan crest east, and
-              extends west through the Hexi-Turfan corridor as a tributary
-              tongue. 31 vertices.
-            </li>
-            <li>
-              <strong>Xianbei Confederation</strong> at Tanshihuai peak
-              (175 CE): shifted east relative to Xiongnu, reflecting
-              Xianbei origins in western Manchuria. 27 vertices.
-            </li>
-            <li>
-              <strong>Rouran Khaganate</strong> (450 CE): more compact than
-              its predecessors — Northern Wei (Toba Xianbei) blocked the
-              southern frontier, so the Wall line is absent. 23 vertices.
-            </li>
-            <li>
-              <strong>First Turkic Khaganate</strong> under Muqan Khan
-              (575 CE): the pre-split pan-Eurasian realm, Caspian to
-              Khingan, with Sogdiana and Khwarezm as tributary. 35 vertices.
-            </li>
-            <li>
-              <strong>Eastern Göktürk Khaganate</strong> (620 CE) and the
-              <em> Second Eastern Khaganate</em> (720 CE, Ilterish revival):
-              identical core territory on the Mongolian Plateau, with the
-              southern frontier well north of the Wall because Tang held
-              Ordos and the Hexi Corridor. 22 vertices each.
-            </li>
-            <li>
-              <strong>Western Göktürk Khaganate</strong> (630 CE): Pontic
-              steppe to Hindu Kush, including Sogdiana and the Tarim Basin.
-              21 vertices.
-            </li>
-            <li>
-              <strong>Uyghur Khaganate</strong> at peak (790 CE): replaced
-              Eastern Türks; more settled, with Beshbalik (Beiting) and
-              Turfan as southern garrison cities. 22 vertices.
-            </li>
-            <li>
-              <strong>Pechenegs</strong> at peak (950 CE): Pontic-Caspian
-              steppe wedge from the Volga to the Lower Danube, after
-              displacing the Magyars west in 895. 19 vertices.
-            </li>
-          </ul>
-          <p>
-            Sources: Di Cosmo, <em>Ancient China and Its Enemies</em>
-            (Cambridge 2002); Barfield, <em>The Perilous Frontier</em>
-            (1989); the Cambridge <em>History of Early Inner Asia</em>
-            vol 1 (1990); Golden, <em>Introduction to the History of the
-            Turkic Peoples</em> (1992).
-          </p>
-        </Entry>
-
         <Entry date="12 May 2026" tag="r2 · border audit">
           <p>
             Re-audited every empire polygon against the

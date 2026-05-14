@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Source_Serif_4, Inter_Tight, JetBrains_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
 /**
@@ -105,7 +107,15 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased font-ui">{children}</body>
+      <body className="antialiased font-ui">
+        {children}
+        {/* Vercel Web Analytics (cookieless, no PII) + Speed Insights (Core Web Vitals).
+            Both auto-detect environment: production sends events to Vercel, dev/preview
+            log to console. Free tier covers ~2.5k events/mo. Enable in Vercel project
+            dashboard under Analytics + Speed Insights tabs, then redeploy. */}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   )
 }
