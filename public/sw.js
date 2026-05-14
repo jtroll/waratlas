@@ -3,12 +3,19 @@
 // (preserving every empire / conflict / city record) — instead we cache them
 // aggressively after first load.
 
-// Bump CACHE_NAME on every deploy that changes any cached data file. The
-// activate handler below garbage-collects old `wars-atlas-*` caches.
-// Bumped to v3 alongside the "War Atlas" rename so old caches under the
-// previous name get garbage-collected on next visit. The activate handler
-// below kills any cache starting with `wars-atlas-` or older `war-atlas-`.
-const CACHE_NAME = 'war-atlas-v3';
+// CACHE_NAME is inserted at build time by scripts/generate-sw.mjs as a
+// short sha1 of the four DATA_URLS files below, so any change to the
+// underlying data automatically invalidates returning visitors' cached
+// copies (the activate handler's GC pass below sweeps any cache whose
+// name starts with `war-atlas-` or `wars-atlas-` and isn't current).
+//
+// The npm `prebuild` hook keeps Vercel + manual `next build` runs in
+// sync. `next dev` skips this (SW isn't registered in dev — see
+// ServiceWorkerRegistration.tsx), so it's fine for the git-tracked
+// source to have no CACHE_NAME declaration at all.
+//
+// Earlier values: v1 ... v3 (manual bumps), v4 (manual, P4 border
+// audit). Hash-stamped names since.
 const DATA_URLS = [
   '/empires.json',
   '/cities.json',
