@@ -110,9 +110,10 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                 </div>
               </div>
               <p className="text-xs text-wars-muted mt-3">
-                Most empire borders shown are dashed (approximate); only a minority are reconstructed
-                from canonical historical-basemap data or hand-crafted from scholarly atlases.
-                We err toward honesty over false precision.
+                Of the 376 polities currently in the dataset, roughly two thirds (≈66 %) carry
+                solid borders sourced from canonical historical-basemap data, and the remaining
+                third are dashed approximations. The dashed/solid distinction is enforced
+                consistently — if a polygon is dashed, don&apos;t cite the line.
               </p>
             </div>
           </Section>
@@ -164,9 +165,16 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
           <Section heading="How casualty figures work">
             <p>
               Where shown, the headline number is a single <em>median or best-estimate</em> figure.
-              For ~70 of the most-cited conflicts (World Wars, Mongol Conquests, Taiping, Holocaust,
+              For ~150 of the most-cited conflicts (World Wars, Mongol Conquests, Taiping, Holocaust,
               An Lushan Rebellion, etc.) we additionally show a <em>range</em> reflecting the genuine
               spread in scholarly estimates, with the source and notes on why historians disagree.
+            </p>
+            <p className="mt-2">
+              The headline figure is reported separately from <em>displacement</em>. Events whose
+              defining toll is forced migration rather than killing — the Nakba, the Trail of Tears,
+              the Partition of India — record the death range as the casualty figure and report
+              displacement in the narrative, rather than rolling the two together as a single
+              &ldquo;casualty&rdquo; number.
             </p>
             <p className="mt-2 text-xs text-wars-muted">
               For pre-modern conflicts especially, casualty figures should be read as orders of
@@ -183,6 +191,32 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               editorial, weighted by casualties, duration, geographic scope, and downstream
               historical significance. It&apos;s not a value judgment about which lives mattered.
               We&apos;re actively working to remove Eurocentric bias from these ratings.
+            </p>
+          </Section>
+
+          {/* Historiography teaser — full discussion lives on /sources. */}
+          <Section heading="Where the historians disagree">
+            <p>
+              Several of the most-quoted figures on this map are{' '}
+              <em>actively disputed</em> in the scholarly literature. An Lushan
+              (was the &ldquo;36 M dead&rdquo; census drop deaths, or
+              registration collapse?), the Mongol conquests, the Taiping toll,
+              the pre-Columbian population of the Americas, and most
+              20th-century &ldquo;democide&rdquo; counts all have ranges that
+              span an order of magnitude. We adopt mainstream point estimates
+              and show ranges where they&apos;re well-attested; the{' '}
+              <a href="/sources" className="underline hover:text-wars-text">
+                Sources page
+              </a>{' '}
+              walks through the major debates so you know which numbers to
+              trust and which to argue with.
+            </p>
+            <p className="mt-2 text-xs text-wars-muted">
+              Naming, too, is interpretive. The atlas uses{' '}
+              <em>Indian Rebellion of 1857</em> (not &ldquo;Mutiny&rdquo;),{' '}
+              <em>Yihetuan Movement (Boxer Rebellion)</em>, and flags the term{' '}
+              <em>Byzantine Empire</em> as a 16th-century coinage — the empire
+              called itself Roman.
             </p>
           </Section>
 
