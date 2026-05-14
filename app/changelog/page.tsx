@@ -55,6 +55,107 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="13 May 2026" tag="r4 · third reich phases">
+          <p>
+            Added four snapshot polygons for Nazi Germany during its
+            expansionist arc, filling a gap where the atlas had British
+            and Japanese empires for WWII but no German counterpart. The
+            existing <em>German Empire</em> entry (1871–1918) stays put
+            and represents the Kaiserreich; the new entries cover the
+            Third Reich. All four follow the same merged-territory
+            convention as the Empire of Japan (peak, 1942) — occupied
+            and annexed territory rolled into one polygon.
+          </p>
+          <ul>
+            <li>
+              <strong>Third Reich (1938)</strong>, covering 1937–1938:
+              post-Anschluss Germany plus the Sudetenland (October 1938).
+              Sudetenland boundary is hand-clipped against Czechoslovakia
+              along the ring of German-majority border districts.
+            </li>
+            <li>
+              <strong>Third Reich (1939)</strong>, covering 1939: adds the
+              Protectorate of Bohemia and Moravia + Slovak puppet state
+              (March 1939), Memel/Klaipėda from Lithuania (March 1939),
+              and the German half of partitioned Poland from the Bug-river
+              clip (September 1939). Eastern Poland went to the Soviets and
+              is excluded.
+            </li>
+            <li>
+              <strong>Third Reich (1941)</strong>, covering 1940–1941:
+              adds Denmark, Norway, the Netherlands, Belgium, Luxembourg,
+              and France (April–June 1940), and Yugoslavia and Greece
+              (April 1941). Vichy is included under the merged-occupied
+              convention. Operation Barbarossa hasn't pushed deep yet, so
+              western USSR is not in this snapshot.
+            </li>
+            <li>
+              <strong>Third Reich (peak, 1942)</strong>, covering 1942–1945:
+              maximum extent after Barbarossa, with a hand-drawn Eastern
+              Front line through Leningrad approaches, the Rzhev–Vyazma
+              salient, Voronezh shoulder, Stalingrad, and the Caucasus
+              push to Mozdok. Following the Empire of Japan precedent,
+              this snapshot stays as the displayed shape through the
+              1945 endpoint even though the Reich was shrinking fast
+              after Stalingrad.
+            </li>
+          </ul>
+          <p>
+            Axis allies (Italy, Hungary, Romania, Bulgaria, Finland) are
+            <em> not</em> rolled into these polygons — they were
+            nominally independent and follow the Manchukuo-as-separate-feature
+            convention. Adding them as their own snapshot empires is a
+            separate piece of work.
+          </p>
+          <p style={{ marginTop: 12 }}>
+            Known approximations, for the record:
+          </p>
+          <ul>
+            <li>
+              <strong>Sudetenland (1938)</strong> clipped from Czechoslovakia
+              using a 14-vertex hand-drawn border ring. The shape captures
+              the crescent that appears in standard atlases but isn't
+              district-perfect — the real boundary followed the 1930
+              census's German-language lines.
+            </li>
+            <li>
+              <strong>German half of partitioned Poland (1939)</strong>
+              clipped along roughly 23.5°E with a slight kink near the
+              Lithuanian border. The actual Molotov-Ribbentrop line ran
+              along the Pisa–Narew–Vistula–San rivers, modified on
+              28 September 1939 to follow the Bug. The straight-ish clip
+              here is within ~30–50 km of the real line.
+            </li>
+            <li>
+              <strong>Eastern Front (1942 peak)</strong> traced through
+              Leningrad approaches → the Rzhev–Vyazma salient → Voronezh
+              shoulder → Stalingrad → Caucasus to Mozdok → back to the
+              Black Sea, with Crimea held throughout. 26 vertices.
+              Slight variation versus published front-line maps in the
+              Karelia and Caucasus sectors.
+            </li>
+            <li>
+              <strong>Vichy France</strong> included in the 1941 polygon
+              under the merged-occupied convention. Strictly, Vichy was
+              nominally independent until Case Anton (November 1942);
+              treating it as part of the Reich sphere from 1940 is a
+              simplification consistent with how this atlas treats other
+              occupied territories.
+            </li>
+            <li>
+              <strong>Axis allies</strong> (Italy, Hungary, Romania,
+              Bulgaria, Finland) are <em>not</em> rolled into these
+              polygons. They were nominally independent and follow the
+              Manchukuo-as-separate-feature convention used elsewhere in
+              the atlas. Adding them as their own snapshot empires is
+              tracked as a future revision.
+            </li>
+          </ul>
+          <p style={{ marginTop: 8, opacity: 0.7, fontSize: 14 }}>
+            Empire count: 372 → 376.
+          </p>
+        </Entry>
+
         <Entry date="12 May 2026" tag="r3 · steppe polygons">
           <p>
             Hand-crafted polygons for nine inner-Asian / Pontic steppe
