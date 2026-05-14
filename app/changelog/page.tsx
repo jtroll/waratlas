@@ -61,6 +61,89 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="14 May 2026" tag="r5 · historian pass">
+          <p>
+            Audit of the atlas from a historian / armchair-buff perspective:
+            fixed the data-integrity bugs that would have been the first
+            thing a careful reader noticed, and added the historiographical
+            framing the site had been missing.
+          </p>
+          <ul>
+            <li>
+              <strong>Six high-profile records normalized.</strong> The
+              Holodomor, Armenian Genocide, Bosnian Genocide, Rohingya
+              Genocide, Cambodian Genocide, and the Nakba had been imported
+              with the wrong shape — <code>coordinates</code> as
+              <code>{'{lat,lng}'}</code> objects and <code>casualties</code>
+              as <code>{'{estimate:N}'}</code> objects. Their map dots
+              didn&apos;t render and the casualty headline broke silently.
+              All six rewritten to the canonical schema.
+            </li>
+            <li>
+              <strong>Nakba: deaths vs. displacement separated.</strong>{' '}
+              The record had been pairing a 15K-deaths headline with a
+              600K–1M &ldquo;range&rdquo; whose own notes admitted it was
+              displacement, not deaths. The casualty range now reports the
+              13–20K death band (Morris; Khalidi; Pappé); the 700K–800K
+              displacement figure lives in the narrative.
+            </li>
+            <li>
+              <strong>Five duplicate records removed.</strong> Three copies
+              of the Indian Rebellion of 1857 (the legacy
+              <code> indian-mutiny</code> and <code>sepoy-mutiny</code> IDs
+              had been retained as duplicates of the canonical-name record);
+              two of the Armenian Genocide; two of the Western Sahara
+              Conflict; a stray Boxer Rebellion stub. Conflict count
+              1,340 → 1,335.
+            </li>
+            <li>
+              <strong>Boxer Rebellion renamed</strong> to{' '}
+              <em>Yihetuan Movement (Boxer Rebellion)</em> — the Chinese
+              self-designation as primary, the foreign-press term in
+              parentheses, following Cohen and Esherick.
+            </li>
+            <li>
+              <strong>New Historiography section on{' '}
+              <Link href="/sources">/sources</Link></strong> walking through
+              the major scholarly disputes behind the headline numbers: the
+              An Lushan census-vs-deaths debate, the Mongol-conquest range,
+              the Taiping 20–70M spread, the Columbian collapse, an explicit
+              caveat about R. J. Rummel&apos;s <em>democide</em> methodology
+              skewing high, and the Holodomor genocide-recognition dispute.
+              Plus new Terminology and Periodization sections flagging the
+              Eurocentric three-age scheme and the <em>Byzantine</em>{' '}
+              modernism.
+            </li>
+            <li>
+              <strong>Source set widened</strong> on the same page to name
+              Correlates of War (COW v4), ACLED, and the specific regional
+              syntheses (Bagnall &amp; Frier on the Roman census; Twitchett
+              &amp; Fairbank on China; Thornton on West Africa; Reid and
+              Boomgaard on Southeast Asia) we rely on where the
+              encyclopedic compilations are too thin.
+            </li>
+            <li>
+              <strong>About modal corrections.</strong> The claim that
+              &ldquo;most empire borders are dashed&rdquo; was inaccurate
+              (≈66% are solid); the &ldquo;~70 ranges&rdquo; line was stale
+              (144). Both fixed. A short &ldquo;Where the historians
+              disagree&rdquo; teaser now links into the new Sources
+              section.
+            </li>
+            <li>
+              <strong>Coverage stats made concrete.</strong> Replaced
+              &ldquo;improving but still thinner&rdquo; with the actual
+              regional split (≈36/33/20/9/2 % Europe/Asia/Americas/Africa/
+              Oceania) and a usable importance-recalibration note.
+            </li>
+          </ul>
+          <p style={{ marginTop: 8, opacity: 0.7, fontSize: 14 }}>
+            Conflict count: 1,340 → 1,335. Backup of the prior dataset is
+            checked in at{' '}
+            <code>backups/conflicts.before-historian-pass-20260514.json</code>.
+          </p>
+        </Entry>
+
         <Entry date="13 May 2026" tag="r4 · third reich phases">
           <p>
             Added four snapshot polygons for Nazi Germany during its

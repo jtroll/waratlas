@@ -24,12 +24,25 @@ const DATA_URLS = [
 ];
 
 self.addEventListener('install', (event) => {
-  // Pre-cache data files on first install
+  // Pre-cache data files on first install.
+  //
+  // We construct Request objects with cache: 'reload' so each fetch goes
+  // straight to origin and bypasses the browser's HTTP cache. Without
+  // this, a returning visitor whose HTTP cache still holds the previous
+  // build's empires.json (Cache-Control: max-age=86400, so up to 24h)
+  // will pre-populate the new SW cache with stale data — even though
+  // CACHE_NAME bumped, the contents under it are still old. The user
+  // then sees the previous build's data until either the HTTP cache
+  // expires or they hard-refresh. cache:'reload' fixes that.
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) =>
-      cache.addAll(DATA_URLS).catch(() => {
-        // OK to fail; we'll fetch on demand
-      })
+      Promise.all(
+        DATA_URLS.map((u) =>
+          fetch(new Request(u, { cache: 'reload' }))
+            .then((r) => (r && r.ok ? cache.put(u, r) : null))
+            .catch(() => null)
+        )
+      )
     )
   );
   self.skipWaiting();
@@ -52,12 +65,16 @@ self.addEventListener('fetch', (event) => {
   // Only intercept GETs to our own origin
   if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
 
-  // Stale-while-revalidate for our data files
+  // Stale-while-revalidate for our data files. The background revalidate
+  // uses cache: 'reload' for the same reason as install — to bypass the
+  // browser HTTP cache, which would otherwise keep returning the previous
+  // build's body for up to 24h after a new deploy and overwrite our SW
+  // cache with stale data on every page load.
   if (DATA_URLS.some((p) => url.pathname.endsWith(p))) {
     event.respondWith(
       caches.open(CACHE_NAME).then(async (cache) => {
         const cached = await cache.match(event.request);
-        const network = fetch(event.request)
+        const network = fetch(new Request(event.request, { cache: 'reload' }))
           .then((r) => {
             if (r && r.ok) cache.put(event.request, r.clone());
             return r;

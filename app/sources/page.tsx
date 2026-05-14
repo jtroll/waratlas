@@ -83,7 +83,29 @@ export default function SourcesPage() {
               <a href="https://ucdp.uu.se/" target="_blank" rel="noopener noreferrer">
                 Uppsala Conflict Data Program
               </a>
-              {' '}for post-1945 armed-conflict tracking.
+              {' '}(UCDP) for post-1945 armed-conflict tracking.
+            </li>
+            <li>
+              The{' '}
+              <a href="https://correlatesofwar.org/" target="_blank" rel="noopener noreferrer">
+                Correlates of War
+              </a>{' '}
+              (COW v4) inter-state and intra-state war series, primarily as a
+              cross-check on 1816–2010 date boundaries and casualty totals.
+            </li>
+            <li>
+              <a href="https://acleddata.com/" target="_blank" rel="noopener noreferrer">
+                ACLED
+              </a>{' '}
+              for post-1997 event-level corroboration of ongoing conflicts,
+              especially in Africa and the post-Cold-War Middle East.
+            </li>
+            <li>
+              For pre-modern Eurasia, period-specific scholarly syntheses
+              (Bagnall &amp; Frier on the Roman census; Twitchett &amp; Fairbank
+              on China; Lev &amp; Boomgaard on Southeast Asia; Reid on early
+              modern Southeast Asia; Thornton on West Africa) where the
+              encyclopedic compilations are too thin.
             </li>
           </ul>
           <p>
@@ -177,6 +199,131 @@ export default function SourcesPage() {
           </p>
         </Section>
 
+        <Section title="Historiography &amp; disputed figures">
+          <p>
+            The headline numbers on the map are point estimates drawn from a
+            mainstream scholarly literature that itself disagrees, sometimes by
+            an order of magnitude. We surface the disagreement in the
+            per-conflict sidebar where we can; this section collects the most
+            important debates so a reader who wants to argue with our number
+            knows what they&apos;re arguing about.
+          </p>
+          <ul>
+            <li>
+              <strong>An Lushan Rebellion (755–763 CE).</strong> The famous
+              &ldquo;36 million dead&rdquo; figure is widely quoted but comes
+              from comparing two Tang census rolls. A substantial body of
+              recent scholarship (Pulleyblank; Durand; more recently Lewis and
+              Charles Holcombe) reads most of that drop as administrative
+              collapse — registered households, not deaths. Plausible direct
+              death tolls range from a few million to the low tens of millions.
+            </li>
+            <li>
+              <strong>Mongol conquests (13th c.).</strong> Cumulative death
+              tolls in the 20–60 million range are common in popular sources;
+              the modern academic consensus (Morgan; May; Biran) is that the
+              true number is real but unrecoverable, with the higher figures
+              dependent on chronicles like Juvayni and Rashid al-Din that
+              themselves use round numbers as a literary convention.
+            </li>
+            <li>
+              <strong>Taiping Civil War (1850–64).</strong> Reported tolls run
+              from 20 million to over 70 million. Most current scholarship
+              (Platt; Spence; Meyer-Fong) settles on roughly 20–30 million
+              including famine and epidemic deaths, with much of the higher
+              spread again driven by Qing census discontinuities.
+            </li>
+            <li>
+              <strong>The Columbian collapse (1492–1600).</strong> Estimates of
+              the pre-contact population of the Americas, and the proportion
+              killed by epidemic disease, war, and colonial labor regimes,
+              range from ~8 million (lower bounds) to ~100 million pre-contact
+              with 50–95 % loss. Koch et al. (2019) and the Berkeley/Stanford
+              consensus is now in the 50–60 million pre-contact / ~90 % loss
+              range, but the question is genuinely open and politically loaded.
+            </li>
+            <li>
+              <strong>R. J. Rummel&apos;s &ldquo;democide&rdquo; figures.</strong>{' '}
+              We use Rummel for 20th-century mass-violence counts, but cautiously.
+              His maximum-likely estimates (especially for Mao-era China, the
+              Soviet Union, and the Khmer Rouge) are widely judged to skew high
+              by historians of those regimes, and his methodology
+              (encyclopedia compilation, midpoint averaging) is not always
+              auditable. Where Rummel is the headline source, the sidebar
+              shows the range that includes lower scholarly estimates.
+            </li>
+            <li>
+              <strong>The Holodomor.</strong> We list the 1932–33 Soviet famine
+              in Ukraine separately as a mass-violence event. Recognition as a
+              genocide is the position of Ukraine, most Western parliaments,
+              and a growing scholarly majority (Applebaum; Snyder; Marples);
+              it is rejected by Russia and contested by a minority of
+              historians of the Soviet Union. The atlas adopts the genocide
+              framing while flagging the dispute.
+            </li>
+            <li>
+              <strong>Armenian Genocide, Holocaust, Rwandan Genocide.</strong>{' '}
+              Each is named with the accepted academic and (where it exists)
+              legal designation. State-level denial — Turkey for 1915,
+              fringe revisionism for the Shoah — exists; the atlas does not
+              equivocate.
+            </li>
+          </ul>
+        </Section>
+
+        <Section title="Terminology choices">
+          <p>
+            Naming is itself a historiographical act. A few decisions worth
+            flagging:
+          </p>
+          <ul>
+            <li>
+              <strong>&ldquo;Indian Rebellion of 1857&rdquo;</strong>, not
+              &ldquo;Indian Mutiny&rdquo; or &ldquo;Sepoy Mutiny&rdquo;. The
+              colonial framings reduce a multi-class anti-imperial uprising to
+              military insubordination; they were standard in British
+              historiography until the late 20th c. and persist in older
+              sources.
+            </li>
+            <li>
+              <strong>&ldquo;Yihetuan Movement (Boxer Rebellion)&rdquo;</strong>{' '}
+              uses the Chinese self-designation as primary and the
+              foreign-press name parenthetically — the convention adopted by
+              Cohen, Esherick, and most current sinological scholarship.
+            </li>
+            <li>
+              <strong>&ldquo;Byzantine Empire&rdquo;</strong> is the
+              conventional modern term, but a 16th-century coinage. The
+              empire&apos;s inhabitants called themselves Romans
+              (&ldquo;Rhōmaîoi&rdquo;); the atlas uses &ldquo;Byzantine&rdquo;
+              for recognizability but the entry flags the modernism.
+            </li>
+            <li>
+              <strong>Place names</strong> resolve to the modern canonical form
+              in modern contexts (Mumbai, Kyiv, Yangon, Beijing) and to
+              period-appropriate names where the period was named for the city
+              (Constantinople / Konstantiniyye / Istanbul fade in and out of
+              the map label as the centuries scroll past).
+            </li>
+          </ul>
+        </Section>
+
+        <Section title="Periodization">
+          <p>
+            The site uses the Western three-age scheme (Bronze Age / Classical
+            Antiquity / Medieval / Early Modern / Modern) for era labels because
+            our users overwhelmingly read in that vocabulary. This framing is
+            unmistakably Eurocentric and lines up poorly with East Asian,
+            African, and pre-Columbian American chronologies — there is no
+            &ldquo;Bronze Age&rdquo; in the Mississippian world, the Chinese
+            Tang–Song transition is not a &ldquo;medieval&rdquo; event, and
+            sub-Saharan iron metallurgy predates the Mediterranean Iron Age.
+            Per-region periodization is a planned future addition; in the
+            meantime, treat the era ribbons as one viewing lens, not the only
+            one.
+          </p>
+        </Section>
+
         <Section title="Methodology caveats">
           <ul>
             <li>
@@ -184,15 +331,34 @@ export default function SourcesPage() {
               should be read as orders of magnitude. Many derive from primary
               sources (often censuses showing population loss) that conflate
               war deaths with famine, plague, and displacement. Where a
-              well-cited range exists (~70 conflicts), the sidebar shows the
+              well-cited range exists (~150 conflicts), the sidebar shows the
               range with source attribution rather than a single number.
             </li>
             <li>
-              <strong>Coverage bias</strong> — pre-1500 records are sparser
-              everywhere; coverage of pre-colonial Americas, sub-Saharan
-              Africa, and Pacific Islander polities is improving but still
-              thinner than European/Mediterranean coverage. We treat this as
-              a debt, not a feature.
+              <strong>Deaths vs. displacement.</strong> Events whose defining
+              toll is forced migration rather than killing — the Nakba, the
+              Trail of Tears, Partition of India — keep these as separate
+              ledgers. The casualty figure on the map dot is always a death
+              estimate; displacement figures appear in the narrative.
+            </li>
+            <li>
+              <strong>Coverage bias</strong> — concretely: of the 1,335
+              conflicts in the current dataset, ≈36 % are in Europe, ≈33 % in
+              Asia, ≈20 % in the Americas, ≈9 % in Africa, and ≈2 % in
+              Oceania. Pre-colonial sub-Saharan polities, Pacific Islander
+              warfare, and pre-Columbian Mesoamerican and Andean conflict are
+              all under-represented relative to a true global count.
+              Pre-1500 records are sparser everywhere; we treat the gap as a
+              debt, not a feature, and welcome corrections that close it.
+            </li>
+            <li>
+              <strong>Importance ratings (1–5)</strong> are editorial and were
+              originally seeded from a Eurasian-centric weighting that
+              over-rated European wars relative to comparable conflicts
+              elsewhere. We&apos;re actively recalibrating; if a rating looks
+              wrong, file an issue with a specific case rather than a general
+              complaint, since the specific cases are what we can actually
+              correct.
             </li>
             <li>
               <strong>Importance ratings</strong> (1–5) are editorial. They
