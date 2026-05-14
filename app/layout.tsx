@@ -106,6 +106,38 @@ export default function RootLayout({
           href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
           rel="stylesheet"
         />
+        {/* Site-wide structured data: WebSite + Dataset. Tells Google
+            this domain is a single search-targetable site, and that the
+            underlying conflict + empire records are a publicly available
+            dataset (which is the schema Google Dataset Search uses). */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'WebSite',
+                  '@id': `${SITE_URL}/#website`,
+                  url: SITE_URL,
+                  name: 'War Atlas',
+                  description: `An interactive cartography of ${STAT_CONFLICTS} recorded military conflicts across 5,000 years of human history.`,
+                  inLanguage: 'en',
+                },
+                {
+                  '@type': 'Dataset',
+                  '@id': `${SITE_URL}/#dataset`,
+                  name: 'War Atlas: Named Conflicts and Empire Borders, 3000 BCE – Present',
+                  description: `${STAT_CONFLICTS} named military conflicts and ${STAT_EMPIRES} historical empire border polygons spanning 5,000 years, with casualty estimate ranges and primary-source citations.`,
+                  url: SITE_URL,
+                  creator: { '@type': 'Organization', name: 'War Atlas' },
+                  isAccessibleForFree: true,
+                  keywords: 'wars, military history, conflicts, empires, historical atlas, casualties',
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="antialiased font-ui">
         {children}

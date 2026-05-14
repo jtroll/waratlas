@@ -1,0 +1,32 @@
+# Dependabot keeps npm + GitHub Actions deps current. Weekly cadence so PRs
+# don't pile up; security advisories override the schedule and ship immediately.
+# Group all minor + patch updates together so we get one PR per ecosystem per
+# week, not one per package.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    # Pin Next + React majors — we want to evaluate those upgrades by hand
+    # rather than have Dependabot churn a PR every time 14.x ticks to 15.x.
+    ignore:
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
