@@ -94,6 +94,32 @@ export default function Home() {
     fetch('/cities.json').then((r) => r.json()).then(setCitiesData).catch(() => {});
   }, []);
 
+  // Lightweight empire index (name + year range) for the FilterPanel search
+  // auto-jump. Full empires.json (with geometry) loads inside MapView; we
+  // duplicate just the metadata here so the search box can find an empire
+  // by name even when the timeline is parked in a completely different era.
+  // The fetch is cheap on the second hit thanks to the SW cache.
+  const [empireIndex, setEmpireIndex] = useState<Array<{
+    name: string;
+    startYear: number;
+    endYear: number | null;
+  }>>([]);
+  useEffect(() => {
+    fetch('/empires.json')
+      .then((r) => r.json())
+      .then((d) => {
+        setEmpireIndex(
+          ((d?.features as any[]) || []).map((f) => ({
+            name: String(f?.properties?.name ?? ''),
+            startYear: Number(f?.properties?.startYear ?? 0),
+            endYear:
+              f?.properties?.endYear == null ? null : Number(f.properties.endYear),
+          })),
+        );
+      })
+      .catch(() => {});
+  }, []);
+
   // Apply user filters on top of year-active filtering
   const filteredActiveConflicts = (() => {
     if (filters === DEFAULT_FILTERS) return activeConflicts;
@@ -117,6 +143,116 @@ export default function Home() {
       return true;
     });
   })();
+
+  // Auto-jump on search: when the FilterPanel's search box has a non-empty
+  // term and nothing matches at the current year, hop the timeline to the
+  // earliest year where a conflict OR an empire matching the term exists.
+  // Without this, the filter is invisible from any era that doesn't already
+  // contain its subject — typing "mongol" from 2500 BCE just shows "0/1" and
+  // the user concludes the box is broken.
+  //
+  // Latest state goes through a ref so the effect itself only re-runs when
+  // the search term changes — otherwise it would fire every time the user
+  // scrubs the timeline and try to drag them back to the search match.
+  const searchJumpStateRef = useRef<{
+    currentYear: number;
+    activeConflicts: ActiveConflict[];
+    conflicts: Conflict[];
+    empireIndex: typeof empireIndex;
+    minYear: number;
+  }>();
+  searchJumpStateRef.current = {
+    currentYear: timeline.currentYear,
+    activeConflicts,
+    conflicts,
+    empireIndex,
+    minYear: MIN_YEAR,
+  };
+  useEffect(() => {
+    const q = filters.search.toLowerCase().trim();
+    if (!q) return;
+    const handle = setTimeout(() => {
+      const st = searchJumpStateRef.current;
+      if (!st) return;
+      const yearNow = Math.round(st.currentYear);
+
+      const conflictName = (c: Conflict) => (c.name ?? '').toLowerCase();
+      const empireName = (e: { name: string }) => (e.name ?? '').toLowerCase();
+      const conflictDescHay = (c: Conflict) =>
+        [c.description, ...(c.countries ?? []), ...(c.locations ?? [])]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+      const matchesConflict = (c: Conflict) =>
+        conflictName(c).includes(q) || conflictDescHay(c).includes(q);
+      const matchesEmpire = (e: { name: string }) => empireName(e).includes(q);
+      const empireActiveNow = (e: { startYear: number; endYear: number | null }) =>
+        e.startYear <= yearNow && (e.endYear ?? MAX_YEAR) >= yearNow;
+
+      // Already showing a match? Don't yank the timeline out from under
+      // the user.
+      if (st.activeConflicts.some(matchesConflict)) return;
+      if (st.empireIndex.some((e) => empireActiveNow(e) && matchesEmpire(e))) return;
+
+      // Tiered search across the full dataset — prefer NAME hits over
+      // description-only hits, and within each tier prefer the earliest
+      // year. Without tiers, typing "british" from 2500 BCE lands on a
+      // 1500 CE colonial war whose description happens to mention the
+      // British, when the user clearly meant the British Empire. Within
+      // a tier, earliest-year wins so a unique-name match (Lagash-Umma)
+      // hits exactly its year.
+      const earliestNamedEmpire = st.empireIndex
+        .filter(matchesEmpire)
+        .reduce<typeof st.empireIndex[number] | null>(
+          (best, e) => (best == null || e.startYear < best.startYear ? e : best),
+          null,
+        );
+      const earliestNamedConflict = st.conflicts
+        .filter((c) => conflictName(c).includes(q))
+        .reduce<Conflict | null>(
+          (best, c) => (best == null || c.startYear < best.startYear ? c : best),
+          null,
+        );
+      const earliestDescConflict = st.conflicts
+        .filter(
+          (c) =>
+            !conflictName(c).includes(q) && conflictDescHay(c).includes(q),
+        )
+        .reduce<Conflict | null>(
+          (best, c) => (best == null || c.startYear < best.startYear ? c : best),
+          null,
+        );
+
+      let target: number | null = null;
+      // Tier 1: empire-name and conflict-name hits — both are explicit
+      // labels. Take the earliest.
+      if (earliestNamedEmpire || earliestNamedConflict) {
+        if (earliestNamedEmpire && earliestNamedConflict) {
+          target = Math.min(
+            earliestNamedEmpire.startYear,
+            earliestNamedConflict.startYear,
+          );
+        } else if (earliestNamedEmpire) {
+          target = earliestNamedEmpire.startYear;
+        } else if (earliestNamedConflict) {
+          target = earliestNamedConflict.startYear;
+        }
+      } else if (earliestDescConflict) {
+        // Tier 2: fall back to description-only matches.
+        target = earliestDescConflict.startYear;
+      }
+      if (target == null) return;
+
+      const clamped = Math.max(st.minYear, Math.min(MAX_YEAR, target));
+      setTimeline((prev) => ({
+        ...prev,
+        currentYear: clamped,
+        // Stop playback so we don't immediately scroll past the matched era.
+        isPlaying: false,
+      }));
+    }, 350);
+    return () => clearTimeout(handle);
+  }, [filters.search]);
 
   // Trigger opening tour for first-time visitors (after data loads)
   useEffect(() => {
