@@ -99,7 +99,10 @@ interface Props {
  */
 export default function EraPanel({ year }: Props) {
   const [shown, setShown] = useState<{ era: Era; key: string } | null>(null);
-  const [dismissed, setDismissed] = useState(false);
+  // Collapsed = card minimized to a left-edge tab. The tab persists so
+  // the user can re-expand the card at will; previously this was a
+  // one-shot "dismissed" flag that hid the card permanently for the era.
+  const [collapsed, setCollapsed] = useState(false);
   const eraSlot = Math.floor(year / 5);
 
   useEffect(() => {
@@ -109,17 +112,71 @@ export default function EraPanel({ year }: Props) {
       if (prev && prev.era.name === era.name) return prev;
       return { era, key: era.name + '-' + Date.now() };
     });
-    setDismissed(false);
+    setCollapsed(false);
   }, [eraSlot, year]);
 
-  // Auto-hide after 12s
+  // Auto-collapse after 12s (the tab remains so the user can pull it back)
   useEffect(() => {
-    if (!shown || dismissed) return;
-    const t = setTimeout(() => setDismissed(true), 12_000);
+    if (!shown || collapsed) return;
+    const t = setTimeout(() => setCollapsed(true), 12_000);
     return () => clearTimeout(t);
-  }, [shown, dismissed]);
+  }, [shown, collapsed]);
 
-  if (!shown || dismissed) return null;
+  if (!shown) return null;
+
+  // Collapsed state: a small tab stuck to the left edge with a right-facing
+  // carrot, showing the current era name. Clicking it re-expands the card.
+  if (collapsed) {
+    return (
+      <button
+        onClick={() => setCollapsed(false)}
+        className="absolute top-20 left-0 z-30 hidden md:inline-flex items-center gap-2 transition-colors hover:text-wars-text group"
+        style={{
+          height: 36,
+          padding: '0 12px 0 14px',
+          background: 'oklch(0.20 0.014 250 / 0.85)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '1px solid var(--rule-strong)',
+          borderLeft: 'none',
+          color: 'var(--ink-text-2)',
+          cursor: 'pointer',
+        }}
+        aria-label={`Expand era card: ${shown.era.name}`}
+        title={`Expand: ${shown.era.name}`}
+      >
+        <span
+          className="eyebrow"
+          style={{ color: 'var(--amber)', fontSize: 9 }}
+        >
+          Era
+        </span>
+        <span
+          className="font-display"
+          style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink-text)' }}
+        >
+          {shown.era.name}
+        </span>
+        <svg
+          width="8"
+          height="10"
+          viewBox="0 0 8 10"
+          aria-hidden="true"
+          className="opacity-60 group-hover:opacity-100 transition-opacity"
+          style={{ marginLeft: 2 }}
+        >
+          <path
+            d="M1.5 1 L6 5 L1.5 9"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+    );
+  }
 
   return (
     <aside
@@ -166,13 +223,14 @@ export default function EraPanel({ year }: Props) {
           </div>
         </div>
         <button
-          onClick={() => setDismissed(true)}
+          onClick={() => setCollapsed(true)}
           className="flex-shrink-0 inline-flex items-center justify-center w-5 h-5 text-wars-muted hover:text-wars-text transition-colors -mr-1"
           style={{
             border: '1px solid var(--rule)',
             background: 'transparent',
           }}
-          aria-label="Dismiss era panel"
+          aria-label="Collapse era panel"
+          title="Collapse — click the left-edge tab to bring it back"
         >
           <svg width="9" height="9" viewBox="0 0 9 9">
             <path

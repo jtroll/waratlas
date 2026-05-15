@@ -578,6 +578,7 @@ export default function Home() {
         totalCount={conflicts.length}
         onJumpToLive={handleJumpToLive}
         onShowAllConflicts={handleShowAllConflicts}
+        onOpenTour={() => setTourOpen(true)}
         activeConflicts={activeConflicts}
       />
 
@@ -660,3 +661,8 @@ export default function Home() {
   );
 }
 
+ />
+    </main>
+    </ErrorBoundary>
+  );
+}

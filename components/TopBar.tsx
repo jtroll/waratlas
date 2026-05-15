@@ -10,6 +10,11 @@ interface TopBarProps {
   totalCount: number;
   onJumpToLive: () => void;
   onShowAllConflicts: () => void;
+  /** Reopen the guided opening tour. The tour shows automatically on first
+   *  visit, but once dismissed it's invisible — this prop wires up a chrome
+   *  button so desktop users can replay it. Optional: callers without
+   *  tour state can omit it and the button won't render. */
+  onOpenTour?: () => void;
   activeConflicts: ActiveConflict[];
 }
 
@@ -31,6 +36,7 @@ export default function TopBar({
   totalCount,
   onJumpToLive,
   onShowAllConflicts,
+  onOpenTour,
   activeConflicts,
 }: TopBarProps) {
   const isLive = Math.round(currentYear) >= new Date().getFullYear() - 1;
@@ -193,6 +199,49 @@ export default function TopBar({
             className="hidden sm:inline-block"
             style={{ height: 18, width: 1, background: 'var(--rule-strong)' }}
           />
+
+          {/* Tour relaunch — desktop only. Matches the Live button's chrome
+              treatment (hairline border, square corners, 11px uppercase) so
+              it reads as part of the same control cluster. The right-facing
+              carrot signals "expands a panel" the same way the collapsed
+              EraPanel tab does. Hidden when the parent didn't wire up a
+              callback (e.g. in test harnesses). */}
+          {onOpenTour && (
+            <button
+              onClick={onOpenTour}
+              className="font-ui hidden sm:inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 px-3"
+              style={{
+                fontSize: 11,
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                background: 'transparent',
+                border: '1px solid var(--rule-strong)',
+                color: 'var(--ink-text-2)',
+                cursor: 'pointer',
+                lineHeight: 1,
+              }}
+              aria-label="Open the guided tour"
+              title="Open the guided tour"
+            >
+              <svg
+                width="8"
+                height="10"
+                viewBox="0 0 8 10"
+                aria-hidden="true"
+                style={{ opacity: 0.7 }}
+              >
+                <path
+                  d="M1.5 1 L6 5 L1.5 9"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Tour
+            </button>
+          )}
 
           {/* Live button — 32px tall on mobile to match the ? / Filter
               buttons in the same row. Desktop keeps the slightly looser

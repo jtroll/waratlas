@@ -27,37 +27,63 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
   // Only show in modern era when the borders matter
   if (year < 1900 || dismissed) return null;
 
+  // Editorial chrome — matches the Mapbox zoom +/- group and the
+  // ExportMenu button below. Square corners, hairline border, dark
+  // glass surface. Desktop: 32x32 icon-only square sitting directly
+  // above the Export button at right:24px. Mobile: 44x44 touch target.
+  const chromeSurface: React.CSSProperties = {
+    background: 'oklch(0.20 0.014 250 / 0.85)',
+    backdropFilter: 'blur(8px)',
+    WebkitBackdropFilter: 'blur(8px)',
+    border: '1px solid var(--rule-strong)',
+  };
+
   return (
     <div
       // z-30 raises this above InfoBoxLayer (z-20) so the disputed-borders
-      // disclaimer never gets covered by a conflict callout. On mobile we
-      // also push it further up to clear the timeline + tab dock.
-      className="absolute right-3 sm:right-4 z-30 pointer-events-auto bottom-44 sm:bottom-32 sm:max-w-xs"
-      style={
-        // When expanded we want a wide panel; when collapsed (mobile) the
-        // icon button takes its own intrinsic size.
-        expanded ? { maxWidth: 'calc(100vw - 1.5rem)' } : undefined
-      }
+      // disclaimer never gets covered by a conflict callout. Stacks
+      // directly above the Export button (bottom-32) with a small visible
+      // gap, matching the zoom-group rhythm above.
+      className="absolute right-3 sm:right-6 z-30 pointer-events-auto bottom-44 sm:bottom-[172px]"
       role="region"
       aria-label="Disputed territory note"
     >
       <button
         onClick={() => setExpanded(!expanded)}
-        // Mobile (default): icon-only square button. sm:+ shows the full
-        // "Notes on disputed borders" label inline.
-        className="bg-wars-panel/85 backdrop-blur-xl border border-wars-border/70 rounded-md text-wars-muted hover:text-wars-text hover:border-wars-border transition-colors text-[11px] flex items-center gap-2 justify-center w-11 h-11 sm:w-auto sm:h-auto sm:px-3 sm:py-2 sm:justify-start sm:text-left sm:w-full"
+        // Mobile: rounded 44x44 touch target (legacy). Desktop: 32x32
+        // square icon-only chip matching the editorial chrome.
+        className="rounded-md sm:rounded-none text-wars-muted hover:text-wars-text transition-colors text-[11px] flex items-center justify-center w-11 h-11 sm:w-8 sm:h-8"
+        style={chromeSurface}
         aria-expanded={expanded}
         aria-label="Notes on disputed borders"
         title="Notes on disputed borders"
       >
-        <span className="text-wars-accent inline-flex items-center justify-center" aria-hidden="true" style={{ fontSize: 16 }}>
-          ⓘ
+        <span
+          aria-hidden="true"
+          style={{ fontSize: 15, color: 'var(--amber)', lineHeight: 1 }}
+        >
+          {'ⓘ'}
         </span>
-        <span className="hidden sm:inline">Notes on disputed borders</span>
-        <span className="ml-auto opacity-60 hidden sm:inline" aria-hidden="true">{expanded ? '▾' : '▸'}</span>
       </button>
       {expanded && (
-        <div className="mt-1 bg-wars-panel/95 backdrop-blur-xl border border-wars-border rounded-md px-3 py-2 text-[11px] text-wars-muted leading-relaxed max-h-72 overflow-y-auto" style={{ maxWidth: 'calc(100vw - 1.5rem)', width: 320 }}>
+        <div
+          // Anchored to the right edge of the button, opening upward so the
+          // note doesn't collide with the Export button below. 320px wide,
+          // capped to viewport on small screens.
+          className="absolute right-0 bottom-full mb-1 px-3 py-2 text-[11px] text-wars-muted leading-relaxed max-h-72 overflow-y-auto"
+          style={{
+            ...chromeSurface,
+            background: 'oklch(0.20 0.014 250 / 0.95)',
+            width: 320,
+            maxWidth: 'calc(100vw - 1.5rem)',
+          }}
+        >
+          <div
+            className="eyebrow pb-1.5 mb-2"
+            style={{ borderBottom: '1px solid var(--rule)' }}
+          >
+            Notes on disputed borders
+          </div>
           <p className="text-wars-text/90 mb-2">
             Modern country shapes follow Natural Earth conventions, which approximate
             internationally recognized borders. These designations are not endorsements:

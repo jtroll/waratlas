@@ -72,12 +72,31 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
     setOpen(false);
   };
 
+  // Editorial chrome — matches the Mapbox zoom +/- group above and the
+  // TopBar "Live" button. Square corners, hairline border, dark glass
+  // surface, 11px uppercase. Right-aligned at 24px (right-6) so the
+  // right edge agrees with the zoom controls.
+  const chromeBtn: React.CSSProperties = {
+    fontSize: 11,
+    letterSpacing: '0.04em',
+    textTransform: 'uppercase',
+    background: 'oklch(0.20 0.014 250 / 0.85)',
+    backdropFilter: 'blur(8px)',
+    WebkitBackdropFilter: 'blur(8px)',
+    border: '1px solid var(--rule-strong)',
+    color: 'var(--ink-text-2)',
+    cursor: 'pointer',
+    lineHeight: 1,
+  };
+
   return (
-    <div className="absolute bottom-32 right-4 z-20 pointer-events-auto hidden md:block">
+    <div className="absolute bottom-32 right-6 z-20 pointer-events-auto hidden md:block">
       <button
         onClick={() => setOpen(!open)}
-        className="bg-wars-panel/85 backdrop-blur-xl border border-wars-border/70 rounded-md px-3 py-2 text-[11px] text-wars-muted hover:text-wars-text hover:border-wars-border transition-colors flex items-center gap-2"
+        className="font-ui inline-flex items-center justify-center gap-2 transition-colors h-8 px-3 hover:text-wars-text"
+        style={chromeBtn}
         aria-expanded={open}
+        aria-label="Export current view"
         title="Export current view"
       >
         <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
@@ -86,8 +105,19 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
         Export
       </button>
       {open && (
-        <div className="mt-1 bg-wars-panel/95 backdrop-blur-xl border border-wars-border rounded-md overflow-hidden text-[11px] min-w-[10rem]">
-          <div className="px-3 py-1.5 text-[10px] uppercase tracking-wider text-wars-muted/70 border-b border-wars-border/50">
+        <div
+          className="mt-1 overflow-hidden text-[11px] min-w-[10rem]"
+          style={{
+            background: 'oklch(0.20 0.014 250 / 0.95)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            border: '1px solid var(--rule-strong)',
+          }}
+        >
+          <div
+            className="eyebrow px-3 py-1.5"
+            style={{ borderBottom: '1px solid var(--rule)' }}
+          >
             {conflicts.length} conflicts
           </div>
           <button
@@ -98,11 +128,15 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
           </button>
           <button
             onClick={downloadGeoJSON}
-            className="w-full text-left px-3 py-2 text-wars-text hover:bg-wars-border/30 transition-colors border-t border-wars-border/50"
+            className="w-full text-left px-3 py-2 text-wars-text hover:bg-wars-border/30 transition-colors"
+            style={{ borderTop: '1px solid var(--rule)' }}
           >
             Download GeoJSON
           </button>
-          <div className="px-3 py-1.5 text-[10px] text-wars-muted/60 border-t border-wars-border/50">
+          <div
+            className="px-3 py-1.5 text-[10px] text-wars-muted/60"
+            style={{ borderTop: '1px solid var(--rule)' }}
+          >
             CC-BY citation appreciated
           </div>
         </div>
