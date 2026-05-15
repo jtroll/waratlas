@@ -55,6 +55,37 @@ function computeBbox(g: GeoJSON.Geometry): [number, number, number, number] | un
   return [minX, minY, maxX, maxY];
 }
 
+/** Approximate planar area (shoelace, in degrees²) of a closed ring.
+ *  We only need it for relative ordering, not real-world units, so we
+ *  don't bother with spherical-excess correction. */
+function ringArea(ring: number[][]): number {
+  let s = 0;
+  for (let i = 0, n = ring.length - 1; i < n; i++) {
+    s += ring[i][0] * ring[i + 1][1] - ring[i + 1][0] * ring[i][1];
+  }
+  return Math.abs(s) / 2;
+}
+
+/** Sum of outer-ring areas across a Polygon or MultiPolygon, used to
+ *  order empire features largest-first so smaller ones render on top
+ *  and stay clickable when they sit inside a larger one (e.g. Kingdom
+ *  of Ankole inside British Colonial Africa). Holes ignored — they don't
+ *  affect the size ranking meaningfully. */
+function featureArea(f: GeoJSON.Feature): number {
+  const g = f.geometry as GeoJSON.Geometry;
+  if (g.type === 'Polygon') {
+    const c = g.coordinates as number[][][];
+    return c.length > 0 ? ringArea(c[0]) : 0;
+  }
+  if (g.type === 'MultiPolygon') {
+    const polys = g.coordinates as number[][][][];
+    let sum = 0;
+    for (const poly of polys) if (poly.length > 0) sum += ringArea(poly[0]);
+    return sum;
+  }
+  return 0;
+}
+
 // Layers in the Mapbox dark-v11 style that show modern borders/labels
 // We'll control these via opacity as the timeline approaches present day
 interface ModernBorderLayer {
@@ -334,6 +365,20 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       });
 
       // ——— Add historical empire borders ———
+      // Sort features largest-first so Mapbox renders smaller polygons on
+      // top of larger ones within the empire-fill layer. Without this, a
+      // small empire sitting inside a sprawling one (Kingdom of Ankole
+      // inside British Colonial Africa; Sultanate of Zanzibar inside
+      // British East Africa) gets hidden under the larger fill and isn't
+      // clickable — queryRenderedFeatures returns features in render
+      // order so the topmost (smallest, last-drawn) becomes feats[0].
+      // Mutating in place is fine; empiresData is local to this load
+      // handler and the sorted order is what we want everywhere downstream
+      // (label source builds from .features in the same order).
+      (empiresData as GeoJSON.FeatureCollection).features.sort(
+        (a, b) => featureArea(b) - featureArea(a)
+      );
+
       // promoteId tells Mapbox to use properties.id as the feature id, which
       // is required for setFeatureState() to work (used for hover tone below).
       m.addSource('empires', {
