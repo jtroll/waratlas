@@ -223,7 +223,10 @@ input, button, select, [data-mono], .mono, .tabular {
   height: 32px !important;
   border-radius: 0 !important;
   background-color: oklch(0.20 0.014 250 / 0.85) !important;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="white" stroke-width="1.2"/><circle cx="7" cy="3.8" r="0.75" fill="white"/><line x1="7" y1="6.3" x2="7" y2="10.3" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>') !important;
+  /* Icon stroke/fill use the same hex (#c7c5bb) as --ink-text-2, the
+   * muted warm-gray that Export's text and the zoom buttons render in.
+   * `#` is URL-encoded as `%23` inside the data URI. */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="%23c7c5bb" stroke-width="1.2"/><circle cx="7" cy="3.8" r="0.75" fill="%23c7c5bb"/><line x1="7" y1="6.3" x2="7" y2="10.3" stroke="%23c7c5bb" stroke-width="1.4" stroke-linecap="round"/></svg>') !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: 14px 14px !important;
@@ -261,10 +264,15 @@ input, button, select, [data-mono], .mono, .tabular {
  * right edge aligns with Export and the rest of the editorial chrome
  * (which all use right-6 = 24px).
  *
- * z-index 31 keeps the chip above the Timeline (z-30). */
+ * z-index: 5 keeps the chip ABOVE the map basemap but BELOW the
+ * conflict callouts (InfoBoxLayer z-20) so callouts paint over it
+ * instead of being clipped behind. The chip and the Timeline (z-30)
+ * don't share any y-coordinates — chip sits at bottom:176, Timeline
+ * occupies bottom 0..~140 — so the chip stays visible without needing
+ * to outrank the Timeline. */
 .mapboxgl-ctrl-bottom-right {
   bottom: 176px !important;
-  z-index: 31 !important;
+  z-index: 5 !important;
 }
 .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
   margin: 0 24px 0 0 !important;
