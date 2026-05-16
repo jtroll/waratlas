@@ -83,6 +83,12 @@ export default function Home() {
   // press Play, or on next tour finish.
   const [showPlayPrompt, setShowPlayPrompt] = useState(false);
   const [filters, setFilters] = useState<ConflictFilters>(DEFAULT_FILTERS);
+  // Hidden-chrome mode (toggled with `t`). When true, all map-overlay UI
+  // (Era panel, BorderLegend, FilterPanel, Tour/Live/Export/(?), Mapbox
+  // zoom + attribution chips) is hidden so the user can see the bare map.
+  // The TopBar stat tallies (active / mapped) stay visible and naturally
+  // shift to the right edge because the chrome to their right disappears.
+  const [chromeHidden, setChromeHidden] = useState(false);
   const [cityClickCoords, setCityClickCoords] = useState<[number, number] | null>(null);
   const [citiesData, setCitiesData] = useState<any>(null);
   // Empire detail flyout — mutually exclusive with the conflict sidebar.
@@ -457,12 +463,29 @@ export default function Home() {
         case 'L':
           handleJumpToLive();
           break;
+        case 't':
+        case 'T':
+          // Hidden-chrome toggle. Skip when modifier keys are held so we
+          // don't fight browser shortcuts (Ctrl/Cmd-T = new tab, etc).
+          if (e.ctrlKey || e.metaKey || e.altKey) break;
+          setChromeHidden((v) => !v);
+          break;
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handlePlay, handleCloseSidebar, handleCloseEmpire, handleJumpToLive, sidebarOpen, listPanelOpen, selectedEmpire]);
+  }, [handlePlay, handleCloseSidebar, handleCloseEmpire, handleJumpToLive, sidebarOpen, listPanelOpen, selectedEmpire, setChromeHidden]);
+
+  // Toggle a body-level class while chrome is hidden so the Mapbox
+  // controls (zoom group + attribution chip) — which we don't render
+  // ourselves — can be hidden via globals.css. Cleaner than reaching
+  // into Mapbox's DOM with refs every render.
+  useEffect(() => {
+    if (chromeHidden) document.body.classList.add('chrome-hidden');
+    else document.body.classList.remove('chrome-hidden');
+    return () => document.body.classList.remove('chrome-hidden');
+  }, [chromeHidden]);
 
   const handleZoomChange = useCallback((zoom: number) => {
     // Zoom changes trigger map move which updates info box positions
@@ -529,35 +552,44 @@ export default function Home() {
         selectedEmpireId={selectedEmpire?.id ?? null}
       />
 
-      {/* Filter panel — top right */}
-      <FilterPanel
-        filters={filters}
-        onChange={setFilters}
-        totalActive={activeConflicts.filter((c) => c.isActive).length}
-        filteredCount={filteredActiveConflicts.filter((c) => c.isActive).length}
-        // Match navigator: pass the currently-active filtered conflicts so
-        // ◀ / ▶ inside the panel can step through them on the map. We use
-        // the existing handleConflictClick so a match selection opens the
-        // sidebar and pans the map the same way clicking a dot does.
-        matches={filteredActiveConflicts.filter((c) => c.isActive)}
-        selectedConflict={selectedConflict}
-        onSelectMatch={handleConflictClick}
-      />
+      {/* Map-overlay chrome. All of this is suppressed when the user
+          presses `t` (chromeHidden=true) so the bare map can be inspected
+          / screenshot-ed without UI cover. The Mapbox-owned chips (zoom
+          group, attribution (i)) are hidden via the body.chrome-hidden
+          rule in app/globals.css since we don't render those ourselves. */}
+      {!chromeHidden && (
+        <>
+          {/* Filter panel — top right */}
+          <FilterPanel
+            filters={filters}
+            onChange={setFilters}
+            totalActive={activeConflicts.filter((c) => c.isActive).length}
+            filteredCount={filteredActiveConflicts.filter((c) => c.isActive).length}
+            // Match navigator: pass the currently-active filtered conflicts so
+            // ◀ / ▶ inside the panel can step through them on the map. We use
+            // the existing handleConflictClick so a match selection opens the
+            // sidebar and pans the map the same way clicking a dot does.
+            matches={filteredActiveConflicts.filter((c) => c.isActive)}
+            selectedConflict={selectedConflict}
+            onSelectMatch={handleConflictClick}
+          />
 
-      {/* Persistent legend explaining solid vs dashed borders */}
-      <BorderLegend />
+          {/* Persistent legend explaining solid vs dashed borders */}
+          <BorderLegend />
 
-      {/* Disputed-territory note in modern era */}
-      <DisputedTerritoryNote year={Math.round(timeline.currentYear)} />
+          {/* Disputed-territory note in modern era */}
+          <DisputedTerritoryNote year={Math.round(timeline.currentYear)} />
 
-      {/* Era context panel — appears briefly when crossing era boundaries */}
-      <EraPanel year={timeline.currentYear} />
+          {/* Era context panel — appears briefly when crossing era boundaries */}
+          <EraPanel year={timeline.currentYear} />
 
-      {/* Researcher CSV / GeoJSON export — uses filtered set so users can export their query */}
-      <ExportMenu
-        conflicts={filteredActiveConflicts.filter((c) => c.isActive)}
-        currentYear={timeline.currentYear}
-      />
+          {/* Researcher CSV / GeoJSON export — uses filtered set so users can export their query */}
+          <ExportMenu
+            conflicts={filteredActiveConflicts.filter((c) => c.isActive)}
+            currentYear={timeline.currentYear}
+          />
+        </>
+      )}
 
       {/* Guided opening tour */}
       <OpeningTour
@@ -587,6 +619,11 @@ export default function Home() {
         onShowAllConflicts={handleShowAllConflicts}
         onOpenTour={() => setTourOpen(true)}
         activeConflicts={activeConflicts}
+        // When chrome is hidden, TopBar suppresses the (?), Tour, and Live
+        // chrome buttons but keeps the wordmark and the active/mapped
+        // stat tallies. The flex layout pushes the tallies to the right
+        // edge as the chrome cluster shrinks to zero.
+        chromeHidden={chromeHidden}
       />
 
       <InfoBoxLayer

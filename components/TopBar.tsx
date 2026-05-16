@@ -16,6 +16,12 @@ interface TopBarProps {
    *  tour state can omit it and the button won't render. */
   onOpenTour?: () => void;
   activeConflicts: ActiveConflict[];
+  /** When true, suppress the (?), Tour, and Live chrome buttons (the
+   *  caller's `t` toggle hides the rest of the map-overlay chrome).
+   *  The wordmark, tagline, and the active/mapped stat tallies stay
+   *  visible — flex layout shifts the tallies to the right edge as the
+   *  chrome cluster shrinks. */
+  chromeHidden?: boolean;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -38,6 +44,7 @@ export default function TopBar({
   onShowAllConflicts,
   onOpenTour,
   activeConflicts,
+  chromeHidden = false,
 }: TopBarProps) {
   const isLive = Math.round(currentYear) >= new Date().getFullYear() - 1;
   const [showInfo, setShowInfo] = useState(false);
@@ -112,21 +119,23 @@ export default function TopBar({
           {/* About button (also `?` key)
               Mobile: 32×32 square so it visually matches the Filter and Live
               buttons in the same row. Desktop: small 20×20 chip inline with
-              the wordmark/tagline. */}
-          <button
-            onClick={() => setShowInfo(true)}
-            className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 sm:w-5 sm:h-5 text-wars-muted hover:text-wars-text transition-colors"
-            style={{
-              border: '1px solid var(--rule-strong)',
-              fontSize: 12,
-              lineHeight: 1,
-              background: 'transparent',
-            }}
-            title="About & methodology (?)"
-            aria-label="Open About and methodology"
-          >
-            ?
-          </button>
+              the wordmark/tagline. Suppressed when chromeHidden. */}
+          {!chromeHidden && (
+            <button
+              onClick={() => setShowInfo(true)}
+              className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 sm:w-5 sm:h-5 text-wars-muted hover:text-wars-text transition-colors"
+              style={{
+                border: '1px solid var(--rule-strong)',
+                fontSize: 12,
+                lineHeight: 1,
+                background: 'transparent',
+              }}
+              title="About & methodology (?)"
+              aria-label="Open About and methodology"
+            >
+              ?
+            </button>
+          )}
           <AboutModal open={showInfo} onClose={() => setShowInfo(false)} />
         </div>
 
@@ -194,19 +203,24 @@ export default function TopBar({
             </div>
           )}
 
-          <span
-            aria-hidden
-            className="hidden sm:inline-block"
-            style={{ height: 18, width: 1, background: 'var(--rule-strong)' }}
-          />
+          {/* Vertical hairline separating tallies from the chrome cluster.
+              Hidden when chromeHidden so there's nothing dangling to the
+              right of the (now rightmost) "mapped" tally. */}
+          {!chromeHidden && (
+            <span
+              aria-hidden
+              className="hidden sm:inline-block"
+              style={{ height: 18, width: 1, background: 'var(--rule-strong)' }}
+            />
+          )}
 
           {/* Tour relaunch — desktop only. Matches the Live button's chrome
               treatment (hairline border, square corners, 11px uppercase) so
               it reads as part of the same control cluster. The right-facing
               carrot signals "expands a panel" the same way the collapsed
               EraPanel tab does. Hidden when the parent didn't wire up a
-              callback (e.g. in test harnesses). */}
-          {onOpenTour && (
+              callback (e.g. in test harnesses) or when chromeHidden. */}
+          {!chromeHidden && onOpenTour && (
             <button
               onClick={onOpenTour}
               className="font-ui hidden sm:inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 px-3"
@@ -245,35 +259,37 @@ export default function TopBar({
 
           {/* Live button — 32px tall on mobile to match the ? / Filter
               buttons in the same row. Desktop keeps the slightly looser
-              vertical rhythm. */}
-          <button
-            onClick={onJumpToLive}
-            className="font-ui inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 px-3"
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              background: 'transparent',
-              border: '1px solid var(--rule-strong)',
-              color: isLive ? 'var(--vermilion)' : 'var(--ink-text-2)',
-              cursor: 'pointer',
-              lineHeight: 1,
-            }}
-            aria-pressed={isLive}
-            aria-label="Jump to live (current year)"
-          >
-            <span
-              aria-hidden
-              className="inline-block w-1.5 h-1.5 rounded-full"
+              vertical rhythm. Suppressed when chromeHidden. */}
+          {!chromeHidden && (
+            <button
+              onClick={onJumpToLive}
+              className="font-ui inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 px-3"
               style={{
-                background: isLive ? 'var(--vermilion)' : 'var(--ink-3)',
-                boxShadow: isLive
-                  ? '0 0 0 3px oklch(0.62 0.18 28 / 0.18)'
-                  : 'none',
+                fontSize: 11,
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                background: 'transparent',
+                border: '1px solid var(--rule-strong)',
+                color: isLive ? 'var(--vermilion)' : 'var(--ink-text-2)',
+                cursor: 'pointer',
+                lineHeight: 1,
               }}
-            />
-            Live
-          </button>
+              aria-pressed={isLive}
+              aria-label="Jump to live (current year)"
+            >
+              <span
+                aria-hidden
+                className="inline-block w-1.5 h-1.5 rounded-full"
+                style={{
+                  background: isLive ? 'var(--vermilion)' : 'var(--ink-3)',
+                  boxShadow: isLive
+                    ? '0 0 0 3px oklch(0.62 0.18 28 / 0.18)'
+                    : 'none',
+                }}
+              />
+              Live
+            </button>
+          )}
         </div>
       </div>
     </div>

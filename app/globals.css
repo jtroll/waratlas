@@ -524,3 +524,16 @@ select:focus-visible {
   white-space: nowrap;
   border: 0;
 }
+
+/* ─── Hidden-chrome mode (`t` key toggle) ──────────────────────
+ * `body.chrome-hidden` is set by app/page.tsx when the user presses
+ * the `t` key. React renders take care of suppressing the components
+ * we own (Filter, Era, BorderLegend, Export, DisputedTerritoryNote,
+ * Tour/Live/(?) in TopBar). The Mapbox-owned chips (zoom group +
+ * compact attribution (i)) are added to the DOM by Mapbox itself —
+ * we hide them here. Everything else (the map canvas, basemap labels,
+ * conflict callouts, sidebars) stays untouched. */
+body.chrome-hidden .mapboxgl-ctrl-top-right,
+body.chrome-hidden .mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
