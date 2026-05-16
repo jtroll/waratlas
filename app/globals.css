@@ -185,27 +185,47 @@ input, button, select, [data-mono], .mono, .tabular {
 .mapboxgl-ctrl-attrib a:hover {
   color: var(--ink-text) !important;
 }
+/* Compact-mode toggle: Mapbox renders an "i"-in-circle button.
+ * Default styling is fully opaque dark blue/black which clashes
+ * with the editorial chrome (muted gray on dark glass). Restyle
+ * to match the Export / DisputedTerritoryNote chrome — dark glass
+ * surface, hairline border, gray icon. */
 .mapboxgl-ctrl-attrib-button {
-  background-color: transparent !important;
+  background-color: oklch(0.20 0.014 250 / 0.85) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--rule-strong) !important;
+  /* Tint Mapbox's bundled SVG icon (it ships as a black bg-image).
+   * `filter` shifts the rendered pixels toward the muted gray used
+   * by --ink-text-2; opacity gives a final softening. */
+  filter: invert(0.65) sepia(0.05) saturate(0.4);
+  opacity: 0.85;
+}
+.mapboxgl-ctrl-attrib-button:hover {
+  filter: invert(0.85) sepia(0.05) saturate(0.4);
+  opacity: 1;
 }
 
-/* Lift the bottom-right control container above the Timeline strip.
- * The Timeline is a full-width overlay pinned to bottom-0 on desktop
- * and bottom-[46px+safe-area] on mobile (above the MobileTabDock).
- * Without this offset the Mapbox/OSM attribution chip — required by
- * Mapbox ToS to remain visible — gets occluded.
+/* Lift the bottom-right control container above the Timeline strip
+ * AND above the Export button (bottom-32 = 128px, h-8 = 32px → top
+ * at 160px). With Export visible the attribution chip needs to sit
+ * at least at 160 + 8 = 168px from the bottom. Use 184px so its
+ * bottom edge aligns with the editorial right-6 (24px) rhythm above
+ * Export's top edge.
  *
- * Numbers are tuned to clear the Timeline's editorial strip (~140px
- * on desktop after the top fade + content row) plus a small breathing
- * gap. The compact attribution is `position: absolute` from the corner,
- * so a bottom offset shifts it up; pointer-events stay intact. */
+ * The Timeline is a full-width overlay pinned to bottom-0 on desktop
+ * and bottom-[46px+safe-area] on mobile (above the MobileTabDock);
+ * 184px also clears the Timeline's editorial strip (~140px) with
+ * breathing room. The compact attribution is `position: absolute`
+ * from the corner, so a bottom offset shifts it up; pointer-events
+ * stay intact. */
 .mapboxgl-ctrl-bottom-right {
-  bottom: 148px !important;
+  bottom: 184px !important;
   z-index: 31 !important; /* sits above Timeline's z-30 */
 }
 @media (max-width: 639px) {
-  /* Mobile: timeline starts above the 46px tab dock, so the attribution
-   * needs to clear (timeline ~120px) + (tab dock 46px) + safe-area. */
+  /* Mobile: ExportMenu is hidden (md:block), so we only need to
+   * clear the Timeline (~120px) + tab dock (46px) + safe-area. */
   .mapboxgl-ctrl-bottom-right {
     bottom: calc(170px + env(safe-area-inset-bottom, 0px)) !important;
   }
