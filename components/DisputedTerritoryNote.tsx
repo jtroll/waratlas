@@ -42,28 +42,39 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
     <div
       // z-30 raises this above InfoBoxLayer (z-20) so the disputed-borders
       // disclaimer never gets covered by a conflict callout. Stacks
-      // directly above the Export button (bottom-32) with a small visible
-      // gap, matching the zoom-group rhythm above.
-      className="absolute right-3 sm:right-6 z-30 pointer-events-auto bottom-44 sm:bottom-[172px]"
+      // directly above the Export button with a 24px visible gap
+      // (matching the editorial right-6 rhythm): Export is at bottom-32
+      // (128px) + h-8 (32px) = top at 160px; this button sits at
+      // bottom-[184px] so its bottom edge is 24px above Export's top.
+      className="absolute right-3 sm:right-6 z-30 pointer-events-auto bottom-44 sm:bottom-[184px]"
       role="region"
       aria-label="Disputed territory note"
     >
       <button
         onClick={() => setExpanded(!expanded)}
         // Mobile: rounded 44x44 touch target (legacy). Desktop: 32x32
-        // square icon-only chip matching the editorial chrome.
-        className="rounded-md sm:rounded-none text-wars-muted hover:text-wars-text transition-colors text-[11px] flex items-center justify-center w-11 h-11 sm:w-8 sm:h-8"
+        // square icon-only chip matching the editorial chrome of the
+        // Export button (dark glass, hairline border, muted-gray glyph).
+        // SVG icon used instead of the unicode ⓘ glyph because that
+        // character renders as a heavy filled circle in most font stacks
+        // and reads as black against the dark surface even when tinted.
+        className="rounded-md sm:rounded-none text-wars-muted hover:text-wars-text transition-colors flex items-center justify-center w-11 h-11 sm:w-8 sm:h-8"
         style={chromeSurface}
         aria-expanded={expanded}
         aria-label="Notes on disputed borders"
         title="Notes on disputed borders"
       >
-        <span
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
           aria-hidden="true"
-          style={{ fontSize: 15, color: 'var(--amber)', lineHeight: 1 }}
+          style={{ color: 'var(--ink-text-2)' }}
         >
-          {'ⓘ'}
-        </span>
+          <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" fill="none" />
+          <circle cx="7" cy="4" r="0.7" fill="currentColor" />
+          <line x1="7" y1="6.4" x2="7" y2="10.2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        </svg>
       </button>
       {expanded && (
         <div
