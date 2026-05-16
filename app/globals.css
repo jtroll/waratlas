@@ -213,20 +213,25 @@ input, button, select, [data-mono], .mono, .tabular {
  * Mapbox zoom buttons and the Export button: 32x32 square, dark
  * glass surface, hairline border, white icon. Override Mapbox's
  * default circular pill shape, 24x24 size, top-right absolute
- * positioning, and built-in black bg-image SVG icon. */
+ * positioning, and built-in black bg-image SVG icon.
+ *
+ * Note: we explicitly REPLACE Mapbox's background-image (instead of
+ * using `filter: invert()`) because the filter inverts the whole
+ * button — turning the dark-glass background into light gray. */
 .mapboxgl-ctrl-attrib-button {
   width: 32px !important;
   height: 32px !important;
   border-radius: 0 !important;
   background-color: oklch(0.20 0.014 250 / 0.85) !important;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="white" stroke-width="1.2"/><circle cx="7" cy="3.8" r="0.75" fill="white"/><line x1="7" y1="6.3" x2="7" y2="10.3" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 14px 14px !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--rule-strong) !important;
   cursor: pointer;
-  /* Mapbox ships the icon as an inline SVG background-image (black).
-   * `invert(1)` flips it to white; opacity softens the chrome. */
-  filter: invert(1);
-  opacity: 0.85;
+  opacity: 0.9;
   transition: opacity 120ms ease;
   /* Re-anchor inside the (now invisible) compact container so it
    * sits flush with the right edge of the chrome group. */
@@ -238,41 +243,41 @@ input, button, select, [data-mono], .mono, .tabular {
   opacity: 1;
 }
 
-/* Lift the bottom-right control container above the Timeline strip
- * AND above the Export button (bottom-32 = 128px, h-8 = 32px → top
- * at 160px). With Export visible the attribution chip needs to sit
- * at least at 160 + 8 = 168px from the bottom. Use 184px so its
- * bottom edge aligns with the editorial right-6 (24px) rhythm above
- * Export's top edge.
+/* Position the attribution chip relative to the Export button so the
+ * vertical gap matches the Live↔zoom-group rhythm at the top-right:
  *
- * The Timeline is a full-width overlay pinned to bottom-0 on desktop
- * and bottom-[46px+safe-area] on mobile (above the MobileTabDock);
- * 184px also clears the Timeline's editorial strip (~140px) with
- * breathing room. The compact attribution is `position: absolute`
- * from the corner, so a bottom offset shifts it up; pointer-events
- * stay intact. */
+ *   Live button: top:14px + h:32px → bottom edge at y=46 from top
+ *   Zoom group:  margin-top:62px → top edge at y=62 from top
+ *   Live↔zoom gap = 16px
+ *
+ * To match here:
+ *   Export: bottom:128px + h:32px → top edge at y=160 from bottom
+ *   (i) chip needs bottom edge at 160 + 16 = 176 from bottom
+ *
+ * Mapbox's default `.mapboxgl-ctrl` wrapper has `margin: 0 10px 10px 0`,
+ * which would offset the chip an extra 10px upward. We zero the bottom
+ * margin so the container's `bottom: 176px` lands the chip exactly
+ * where we want it. The right margin is bumped to 24px so the chip's
+ * right edge aligns with Export and the rest of the editorial chrome
+ * (which all use right-6 = 24px).
+ *
+ * z-index 31 keeps the chip above the Timeline (z-30). */
 .mapboxgl-ctrl-bottom-right {
-  bottom: 184px !important;
-  z-index: 31 !important; /* sits above Timeline's z-30 */
+  bottom: 176px !important;
+  z-index: 31 !important;
 }
-/* Right-align the attribution chip with the rest of the editorial
- * chrome (Export, zoom group, Live, Tour, speed selector all use
- * right-6 = 24px). Mapbox's default `.mapboxgl-ctrl` wrapper has
- * margin-right: 10px which leaves the chip 14px short of the
- * editorial right edge — bumped to 24px to match. */
 .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
-  margin-right: 24px !important;
+  margin: 0 24px 0 0 !important;
 }
 @media (max-width: 639px) {
-  /* Mobile: ExportMenu is hidden (md:block), so we only need to
-   * clear the Timeline (~120px) + tab dock (46px) + safe-area. */
+  /* Mobile: ExportMenu is hidden (md:block), so the chip only needs
+   * to clear the Timeline (~120px) + tab dock (46px) + safe-area.
+   * Editorial right margin on mobile is right-3 (12px). */
   .mapboxgl-ctrl-bottom-right {
     bottom: calc(170px + env(safe-area-inset-bottom, 0px)) !important;
   }
-  /* On mobile the editorial right margin is right-3 (12px) on most
-   * chrome, so match here. */
   .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
-    margin-right: 12px !important;
+    margin: 0 12px 0 0 !important;
   }
 }
 
