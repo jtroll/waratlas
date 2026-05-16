@@ -165,15 +165,38 @@ input, button, select, [data-mono], .mono, .tabular {
   outline: none;
 }
 
-/* Editorial restyling of the attribution control so it harmonizes
- * with the rest of the chrome instead of jumping out as a default
- * Mapbox blue. */
-.mapboxgl-ctrl-attrib {
-  background: oklch(0.20 0.014 250 / 0.55) !important;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid var(--rule);
+/* Editorial restyling of the attribution control. Two visual states:
+ *   1. Compact-collapsed (default): only the (i) toggle is visible.
+ *      Restyled below to a 32x32 square chrome chip matching Export
+ *      and the Mapbox zoom group — dark glass, hairline border,
+ *      white icon, right-aligned at 24px (right-6) from the window
+ *      edge.
+ *   2. Compact-expanded: full attribution text shown after click.
+ *      Same chrome surface, expands leftward from the (i) button. */
+
+/* COMPACT-COLLAPSED — kill Mapbox's own background/border/padding on
+ * the container so only the (i) button shows as the chrome chip. */
+.mapboxgl-ctrl-attrib.mapboxgl-compact {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  min-height: 32px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
+
+/* COMPACT-EXPANDED — wrap the attribution text in the same dark glass
+ * as the rest of the chrome. Padding-right leaves room for the (i)
+ * button anchored at the right edge. */
+.mapboxgl-ctrl-attrib.mapboxgl-compact-show {
+  background: oklch(0.20 0.014 250 / 0.85) !important;
+  border: 1px solid var(--rule-strong) !important;
+  border-radius: 0 !important;
+  padding: 6px 40px 6px 10px !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 .mapboxgl-ctrl-attrib .mapboxgl-ctrl-attrib-inner,
 .mapboxgl-ctrl-attrib a,
 .mapboxgl-ctrl-attrib-inner * {
@@ -185,24 +208,33 @@ input, button, select, [data-mono], .mono, .tabular {
 .mapboxgl-ctrl-attrib a:hover {
   color: var(--ink-text) !important;
 }
-/* Compact-mode toggle: Mapbox renders an "i"-in-circle button.
- * Default styling is fully opaque dark blue/black which clashes
- * with the editorial chrome (muted gray on dark glass). Restyle
- * to match the Export / DisputedTerritoryNote chrome — dark glass
- * surface, hairline border, gray icon. */
+
+/* The (i) toggle button itself — make it look identical to the
+ * Mapbox zoom buttons and the Export button: 32x32 square, dark
+ * glass surface, hairline border, white icon. Override Mapbox's
+ * default circular pill shape, 24x24 size, top-right absolute
+ * positioning, and built-in black bg-image SVG icon. */
 .mapboxgl-ctrl-attrib-button {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 0 !important;
   background-color: oklch(0.20 0.014 250 / 0.85) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--rule-strong) !important;
-  /* Tint Mapbox's bundled SVG icon (it ships as a black bg-image).
-   * `filter` shifts the rendered pixels toward the muted gray used
-   * by --ink-text-2; opacity gives a final softening. */
-  filter: invert(0.65) sepia(0.05) saturate(0.4);
+  cursor: pointer;
+  /* Mapbox ships the icon as an inline SVG background-image (black).
+   * `invert(1)` flips it to white; opacity softens the chrome. */
+  filter: invert(1);
   opacity: 0.85;
+  transition: opacity 120ms ease;
+  /* Re-anchor inside the (now invisible) compact container so it
+   * sits flush with the right edge of the chrome group. */
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
 }
 .mapboxgl-ctrl-attrib-button:hover {
-  filter: invert(0.85) sepia(0.05) saturate(0.4);
   opacity: 1;
 }
 
@@ -223,11 +255,24 @@ input, button, select, [data-mono], .mono, .tabular {
   bottom: 184px !important;
   z-index: 31 !important; /* sits above Timeline's z-30 */
 }
+/* Right-align the attribution chip with the rest of the editorial
+ * chrome (Export, zoom group, Live, Tour, speed selector all use
+ * right-6 = 24px). Mapbox's default `.mapboxgl-ctrl` wrapper has
+ * margin-right: 10px which leaves the chip 14px short of the
+ * editorial right edge — bumped to 24px to match. */
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+  margin-right: 24px !important;
+}
 @media (max-width: 639px) {
   /* Mobile: ExportMenu is hidden (md:block), so we only need to
    * clear the Timeline (~120px) + tab dock (46px) + safe-area. */
   .mapboxgl-ctrl-bottom-right {
     bottom: calc(170px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  /* On mobile the editorial right margin is right-3 (12px) on most
+   * chrome, so match here. */
+  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+    margin-right: 12px !important;
   }
 }
 
