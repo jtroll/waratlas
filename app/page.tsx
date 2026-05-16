@@ -535,6 +535,13 @@ export default function Home() {
         onChange={setFilters}
         totalActive={activeConflicts.filter((c) => c.isActive).length}
         filteredCount={filteredActiveConflicts.filter((c) => c.isActive).length}
+        // Match navigator: pass the currently-active filtered conflicts so
+        // ◀ / ▶ inside the panel can step through them on the map. We use
+        // the existing handleConflictClick so a match selection opens the
+        // sidebar and pans the map the same way clicking a dot does.
+        matches={filteredActiveConflicts.filter((c) => c.isActive)}
+        selectedConflict={selectedConflict}
+        onSelectMatch={handleConflictClick}
       />
 
       {/* Persistent legend explaining solid vs dashed borders */}

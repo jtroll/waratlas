@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import type { Conflict } from '@/lib/types';
 
 export interface ConflictFilters {
   /** Minimum importance 1-5; 1 means "show all". */
@@ -25,6 +26,16 @@ interface Props {
   onChange: (f: ConflictFilters) => void;
   totalActive: number;
   filteredCount: number;
+  /** Currently-active conflicts that pass the filter, in deterministic order
+   * (the same order the map and list panel iterate). Used to power the
+   * prev/next match navigator inside the open panel. */
+  matches?: Conflict[];
+  /** The currently selected conflict, if any — used to highlight which
+   * match is "current" in the navigator and to anchor next/prev stepping. */
+  selectedConflict?: Conflict | null;
+  /** Called when the user clicks ◀ / ▶ in the match navigator. The page
+   * handles the rest (panning the map, opening the sidebar). */
+  onSelectMatch?: (c: Conflict) => void;
 }
 
 const REGIONS: { key: ConflictFilters['region']; label: string; bbox?: [number, number, number, number] }[] = [
@@ -46,13 +57,44 @@ export function regionBboxFor(region: ConflictFilters['region']): [number, numbe
  * Filter panel — collapsible panel above the timeline. Applies live filters to
  * which conflicts are shown on the map and in the list panel.
  */
-export default function FilterPanel({ filters, onChange, totalActive, filteredCount }: Props) {
+export default function FilterPanel({
+  filters,
+  onChange,
+  totalActive,
+  filteredCount,
+  matches = [],
+  selectedConflict = null,
+  onSelectMatch,
+}: Props) {
   const [open, setOpen] = useState(false);
   const isFiltering =
     filters.minImportance > 1 ||
     filters.region !== 'all' ||
     filters.search.length > 0 ||
     filters.minDurationYears > 0;
+
+  // Match navigator state. Index of the selected conflict within the
+  // current `matches` array, or -1 if the selection isn't (or no longer
+  // is) part of the filtered set. We don't store our own index in state
+  // — derive from `selectedConflict` so navigation stays in sync if the
+  // selection changes elsewhere (sidebar close, conflict-dot click, etc).
+  const currentIdx = selectedConflict
+    ? matches.findIndex((m) => m.id === selectedConflict.id)
+    : -1;
+  const canNavigate = matches.length > 0 && !!onSelectMatch;
+  // Where ◀ / ▶ should land. If nothing in the filtered set is selected
+  // (currentIdx = -1), ◀ goes to the LAST and ▶ goes to the FIRST so the
+  // user can always start stepping. Otherwise wrap around the array.
+  const goPrev = () => {
+    if (!canNavigate) return;
+    const next = currentIdx <= 0 ? matches.length - 1 : currentIdx - 1;
+    onSelectMatch!(matches[next]);
+  };
+  const goNext = () => {
+    if (!canNavigate) return;
+    const next = currentIdx < 0 || currentIdx >= matches.length - 1 ? 0 : currentIdx + 1;
+    onSelectMatch!(matches[next]);
+  };
 
   return (
     <div
@@ -160,6 +202,76 @@ export default function FilterPanel({ filters, onChange, totalActive, filteredCo
                 outline: 'none',
               }}
             />
+            {/* Match navigator — appears once the filter narrows the set.
+                ◀ N/M ▶ pattern: click prev/next to step through filtered
+                matches on the map. Reads the index from selectedConflict so
+                the position stays in sync with sidebar/map selections. */}
+            {canNavigate && (
+              <div
+                className="flex items-center justify-between mt-2 font-ui"
+                style={{ fontSize: 11, color: 'var(--ink-text-2)' }}
+              >
+                <button
+                  type="button"
+                  onClick={goPrev}
+                  disabled={matches.length < 2}
+                  className="inline-flex items-center justify-center transition-colors hover:text-wars-text disabled:opacity-30 disabled:cursor-default"
+                  style={{
+                    width: 28,
+                    height: 24,
+                    background: 'oklch(0.16 0.012 250 / 0.6)',
+                    border: '1px solid var(--rule)',
+                    cursor: matches.length < 2 ? 'default' : 'pointer',
+                  }}
+                  aria-label="Previous match"
+                  title="Previous match"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <path
+                      d="M6.5 1.5 L3 5 L6.5 8.5"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+                <span
+                  className="font-mono text-wars-muted"
+                  style={{ fontSize: 10.5, letterSpacing: '0.04em' }}
+                  aria-live="polite"
+                >
+                  {currentIdx >= 0 ? `${currentIdx + 1} of ${matches.length}` : `${matches.length} match${matches.length === 1 ? '' : 'es'}`}
+                </span>
+                <button
+                  type="button"
+                  onClick={goNext}
+                  disabled={matches.length < 2 && currentIdx >= 0}
+                  className="inline-flex items-center justify-center transition-colors hover:text-wars-text disabled:opacity-30 disabled:cursor-default"
+                  style={{
+                    width: 28,
+                    height: 24,
+                    background: 'oklch(0.16 0.012 250 / 0.6)',
+                    border: '1px solid var(--rule)',
+                    cursor: matches.length < 2 && currentIdx >= 0 ? 'default' : 'pointer',
+                  }}
+                  aria-label="Next match"
+                  title="Next match"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                    <path
+                      d="M3.5 1.5 L7 5 L3.5 8.5"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Region */}
