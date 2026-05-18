@@ -61,6 +61,83 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="18 May 2026" tag="r10 · empire dedup">
+          <p>
+            A user reported a duplicate Merina Kingdom polygon on
+            Madagascar — clicking the orange highlands hexagon and the
+            green island-outline both surfaced the same 1540–1897
+            kingdom. A scan across all 376 empire polygons turned up
+            <strong>20 duplicate pairs</strong> total, mostly from an
+            old ID-renaming pass that had left both old- and new-format
+            IDs in place. All 20 collapsed in two rounds.
+          </p>
+          <ul>
+            <li>
+              <strong>Round 1 (7 pairs) — name/date-identical
+              dupes.</strong>{' '}
+              <em>Northern Song Dynasty</em> (213-vertex polygon
+              duplicated under both <code>asia-song-northern</code> and{' '}
+              <code>song-dynasty-northern</code>), <em>Southern Song
+              Dynasty</em>, <em>Ming Dynasty</em>,{' '}
+              <em>Aztec Empire</em>, <em>Luba Empire</em>,{' '}
+              <em>Merina Kingdom</em> (the one the reader caught), and{' '}
+              <em>Kingdom of Benin</em>. For each pair, kept the
+              higher-vertex-count polygon, merged the other's metadata
+              in, and dropped the duplicate <code>empire-wikipedia.json</code>{' '}
+              entry.
+            </li>
+            <li>
+              <strong>Round 2 (13 pairs) — same-polity, different
+              polygons or slightly different dates.</strong> Goguryeo
+              Kingdom, Maya Classic Period, Ghana Empire, Tiwanaku
+              Empire, Wari Empire, Mixtec Kingdoms, Srivijaya Empire,
+              Chola Empire, Pagan Kingdom, Chimú Empire, Mutapa Empire,
+              Inca Empire, Kingdom of Zimbabwe. Several of the killer
+              entries even had{' '}
+              <code>source: &ldquo;… (duplicate)&rdquo;</code>{' '}
+              already noted in the metadata — explicit acknowledgement
+              of the bug that just hadn't been cleaned up. For each
+              pair: kept the higher-vertex-count polygon, took the
+              widest date span between the two, used the canonical
+              Wikipedia title for the name, merged the other's
+              metadata in.
+            </li>
+            <li>
+              <strong>Naming fixes that fell out of the dedup.</strong>{' '}
+              <em>Imerina (Kingdom of Madagascar)</em> →{' '}
+              <em>Merina Kingdom</em> (canonical Wikipedia title);
+              {' '}<em>Tiwanaku</em> → <em>Tiwanaku Empire</em>;{' '}
+              <em>Wari / Huari Empire</em> → <em>Wari Empire</em> (the
+              other transliteration is now redirect-only on Wikipedia);
+              {' '}<em>Chimú Kingdom</em> → <em>Chimú Empire</em>;{' '}
+              <em>Inca Empire / Tawantinsuyu</em> → <em>Inca Empire</em>{' '}
+              (Wikipedia uses Inca Empire as primary, Tawantinsuyu as
+              redirect); <em>Srivijaya</em> →{' '}
+              <em>Srivijaya Empire</em>; <em>Luba Kingdom</em> →{' '}
+              <em>Luba Empire</em>.
+            </li>
+            <li>
+              <strong>Date corrections that fell out.</strong>{' '}
+              <em>Mixtec Kingdoms</em> end year corrected 1500 → 1521
+              (Spanish conquest); <em>Kingdom of Zimbabwe</em> start year
+              broadened 1220 → 1100 (the archaeological evidence at
+              Great Zimbabwe puts initial monumental construction in
+              the 12th century, well before the 1220 dynastic terminus
+              post quem). The other date pairs (Ghana, Tiwanaku, Wari)
+              also had slight discrepancies between the two duplicates
+              and the wider span was retained.
+            </li>
+          </ul>
+          <p style={{ marginTop: 8, opacity: 0.7, fontSize: 14 }}>
+            Empire count: 376 → 356 (−20). <code>empire-wikipedia.json</code>{' '}
+            362 → 352 entries (−10; only half the dupes had wiki entries
+            on both sides). All IDs unique; all wiki keys point at
+            existing empire features. Backups at{' '}
+            <code>backups/empires_20260518_151232_pre_dedup.json</code>{' '}
+            and <code>backups/empire-wikipedia_20260518_151232_pre_dedup.json</code>.
+          </p>
+        </Entry>
+
         <Entry date="18 May 2026" tag="r9 · africa cleanup">
           <p>
             Same-day follow-up to r8. The seven follow-ups documented in
