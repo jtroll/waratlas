@@ -1,0 +1,3272 @@
+[
+  {
+    "name": "Kongo Expansion under Lukeni lua Nimi",
+    "startYear": 1380,
+    "endYear": 1420,
+    "coordinates": [
+      14.5,
+      -6.2
+    ],
+    "locations": [
+      "Mbanza Kongo",
+      "Mpemba Kasi"
+    ],
+    "countries": [
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Lukeni_lua_Nimi",
+    "importance": 3,
+    "description": "Traditional account of the conquests by Kongo's founder figure that consolidated the kingdom from its Mpemba Kasi nucleus across the lower Congo.",
+    "era": "Medieval",
+    "confidence": "low"
+  },
+  {
+    "name": "Kongo Civil War of 1506",
+    "startYear": 1506,
+    "endYear": 1506,
+    "coordinates": [
+      14.25,
+      -6.27
+    ],
+    "locations": [
+      "Mbanza Kongo"
+    ],
+    "countries": [
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Afonso_I_of_Kongo",
+    "importance": 3,
+    "description": "Succession war in which the Christian prince Mvemba a Nzinga (Afonso I) defeated his pagan half-brother Mpanzu a Kitima at the Battle of Mbanza Kongo, securing the throne and the Portuguese alliance.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Kongo-Ndongo War of 1556",
+    "startYear": 1556,
+    "endYear": 1556,
+    "coordinates": [
+      14.9,
+      -9.5
+    ],
+    "locations": [
+      "Ndongo",
+      "Wandu"
+    ],
+    "countries": [
+      "Kingdom of Kongo",
+      "Ndongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Ndongo",
+    "importance": 3,
+    "description": "Defeat of Kongo forces by the Ngola of Ndongo that effectively ended Kongo's claim to suzerainty south of the Dande River.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Jaga Invasion of Kongo",
+    "startYear": 1568,
+    "endYear": 1574,
+    "coordinates": [
+      14.25,
+      -6.27
+    ],
+    "locations": [
+      "Mbanza Kongo",
+      "Lower Congo"
+    ],
+    "countries": [
+      "Kingdom of Kongo",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Jagas",
+    "importance": 4,
+    "description": "Devastating invasion by the Jaga that drove King Alvaro I from Mbanza Kongo and was reversed only by a Portuguese expeditionary force under Francisco de Gouveia Sottomaior in 1574.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Portuguese Conquest of Angola",
+    "startYear": 1575,
+    "endYear": 1671,
+    "coordinates": [
+      13.23,
+      -8.83
+    ],
+    "locations": [
+      "Luanda",
+      "Massangano",
+      "Cambambe"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Ndongo",
+      "Kongo",
+      "Matamba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Portuguese_conquest_of_Angola",
+    "importance": 5,
+    "description": "Century-long Portuguese campaign of conquest beginning with Paulo Dias de Novais's 1575 expedition and culminating with the destruction of Kongo at Mbwila and Soyo at Kitombo.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Massangano",
+    "startYear": 1583,
+    "endYear": 1583,
+    "coordinates": [
+      14.13,
+      -9.55
+    ],
+    "locations": [
+      "Massangano"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Ndongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Massangano",
+    "importance": 3,
+    "description": "Portuguese victory over Ndongo forces on the Kwanza River that secured the inland presidio of Massangano as the base for further conquest.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of the Lukala",
+    "startYear": 1590,
+    "endYear": 1590,
+    "coordinates": [
+      14.6,
+      -9.4
+    ],
+    "locations": [
+      "Lukala River"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Ndongo",
+      "Matamba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_the_Lukala",
+    "importance": 3,
+    "description": "Decisive defeat of governor Luis Serrao's Portuguese-Imbangala column by a Ndongo-Matamba coalition that halted Portuguese expansion for a generation.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Imbangala Invasions",
+    "startYear": 1600,
+    "endYear": 1650,
+    "coordinates": [
+      15.0,
+      -10.5
+    ],
+    "locations": [
+      "Kwanza Valley",
+      "Kasanje",
+      "Matamba"
+    ],
+    "countries": [
+      "Imbangala",
+      "Ndongo",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Imbangala",
+    "importance": 4,
+    "description": "Series of campaigns by the Imbangala warrior bands across the Angolan plateau that destabilised Ndongo and supplied slaves to Portuguese Luanda, eventually settling as the Kasanje kingdom.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Portuguese-Ndongo War of 1618-1621",
+    "startYear": 1618,
+    "endYear": 1621,
+    "coordinates": [
+      14.9,
+      -9.55
+    ],
+    "locations": [
+      "Kabasa",
+      "Ndongo"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Ndongo",
+      "Imbangala"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ngola_Mbandi",
+    "importance": 4,
+    "description": "Campaigns of Governor Luis Mendes de Vasconcelos that, allied with Imbangala bands, sacked the Ndongo royal capital of Kabasa and forced King Ngola Mbandi onto an island in the Kwanza.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Mbumbi",
+    "startYear": 1622,
+    "endYear": 1622,
+    "coordinates": [
+      14.5,
+      -7.0
+    ],
+    "locations": [
+      "Mbumbi",
+      "Mbamba"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mbumbi",
+    "importance": 3,
+    "description": "Portuguese-Imbangala raid into Kongo's Mbamba province that defeated and killed the Marquis of Mbumbi, triggering Kongo's first major war against Portugal.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Mbanda Kasi",
+    "startYear": 1623,
+    "endYear": 1623,
+    "coordinates": [
+      14.4,
+      -6.7
+    ],
+    "locations": [
+      "Mbanda Kasi"
+    ],
+    "countries": [
+      "Kingdom of Kongo",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mbanda_Kasi",
+    "importance": 3,
+    "description": "Kongolese victory under King Pedro II that drove Portuguese forces out of southern Kongo following the Mbumbi raid.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Portuguese-Njinga Wars",
+    "startYear": 1624,
+    "endYear": 1656,
+    "coordinates": [
+      15.5,
+      -9.5
+    ],
+    "locations": [
+      "Ndongo",
+      "Matamba",
+      "Kindonga Islands"
+    ],
+    "countries": [
+      "Ndongo",
+      "Matamba",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Njinga_of_Ndongo_and_Matamba",
+    "importance": 5,
+    "description": "Three decades of guerrilla and conventional warfare led by Queen Njinga Mbande against Portuguese Angola, ending with the 1656 peace treaty that recognised her sovereignty in Matamba.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Kavanga",
+    "startYear": 1646,
+    "endYear": 1646,
+    "coordinates": [
+      16.0,
+      -9.7
+    ],
+    "locations": [
+      "Kavanga"
+    ],
+    "countries": [
+      "Matamba",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Njinga_of_Ndongo_and_Matamba",
+    "importance": 3,
+    "description": "Portuguese defeat of Queen Njinga's forces in which her sister Kambu (Barbara) was captured, prompting Njinga's diplomatic appeal to Kongo and the Dutch.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Dutch Conquest of Luanda",
+    "startYear": 1641,
+    "endYear": 1648,
+    "coordinates": [
+      13.23,
+      -8.83
+    ],
+    "locations": [
+      "Luanda",
+      "Benguela"
+    ],
+    "countries": [
+      "Dutch West India Company",
+      "Portuguese Empire",
+      "Kingdom of Kongo",
+      "Matamba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Dutch_Loango-Angola",
+    "importance": 4,
+    "description": "Dutch West India Company capture and seven-year occupation of Luanda during the Dutch-Portuguese War, ended by Salvador de Sa's relief expedition from Brazil.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Kombi",
+    "startYear": 1647,
+    "endYear": 1647,
+    "coordinates": [
+      14.0,
+      -9.6
+    ],
+    "locations": [
+      "Kombi"
+    ],
+    "countries": [
+      "Matamba",
+      "Kingdom of Kongo",
+      "Dutch West India Company",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kombi",
+    "importance": 4,
+    "description": "Major victory of Njinga's allied Dutch-Kongo-Matamba army over the Portuguese in the Dande valley that nearly ended Portuguese rule in Angola.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Recapture of Luanda",
+    "startYear": 1648,
+    "endYear": 1648,
+    "coordinates": [
+      13.23,
+      -8.83
+    ],
+    "locations": [
+      "Luanda"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Dutch West India Company"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Luanda_(1648)",
+    "importance": 4,
+    "description": "Salvador Correia de Sa's amphibious assault from Brazil that recaptured Luanda from the Dutch and restored Portuguese control of Angola.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Kongo-Portuguese War of 1622",
+    "startYear": 1622,
+    "endYear": 1623,
+    "coordinates": [
+      14.3,
+      -6.5
+    ],
+    "locations": [
+      "Mbamba",
+      "Mbanda Kasi"
+    ],
+    "countries": [
+      "Kingdom of Kongo",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kongo%E2%80%93Portuguese_War",
+    "importance": 3,
+    "description": "Brief but sharp war between Kongo under Pedro II and Portuguese Angola, ending in a Kongolese strategic victory and Portuguese withdrawal.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Mbwila",
+    "startYear": 1665,
+    "endYear": 1665,
+    "coordinates": [
+      14.65,
+      -7.8
+    ],
+    "locations": [
+      "Mbwila",
+      "Ulanga"
+    ],
+    "countries": [
+      "Kingdom of Kongo",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mbwila",
+    "importance": 5,
+    "description": "Catastrophic Kongo defeat in which King Antonio I was killed by Portuguese-led forces, shattering the unitary monarchy and inaugurating the Kongo Civil War.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Kongo Civil War",
+    "startYear": 1665,
+    "endYear": 1709,
+    "coordinates": [
+      14.25,
+      -6.27
+    ],
+    "locations": [
+      "Mbanza Kongo",
+      "Kibangu",
+      "Lemba"
+    ],
+    "countries": [
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kongo_Civil_War",
+    "importance": 5,
+    "description": "Forty-four years of dynastic conflict among the Kimpanzu, Kinlaza and Kimulaza branches of the Kongo royal house, ending with Pedro IV's reunification at the Battle of Mbula.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Kitombo",
+    "startYear": 1670,
+    "endYear": 1670,
+    "coordinates": [
+      13.0,
+      -6.13
+    ],
+    "locations": [
+      "Kitombo",
+      "Soyo"
+    ],
+    "countries": [
+      "County of Soyo",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kitombo",
+    "importance": 4,
+    "description": "Decisive Soyo victory over a Portuguese invasion force under Joao Soares de Almeida that effectively ended Portuguese designs on northern Kongo for two centuries.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Antonian Movement",
+    "startYear": 1704,
+    "endYear": 1706,
+    "coordinates": [
+      14.25,
+      -6.27
+    ],
+    "locations": [
+      "Mbanza Kongo",
+      "Kibangu"
+    ],
+    "countries": [
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Antonian_movement",
+    "importance": 3,
+    "description": "Prophetic Christian uprising led by Dona Beatriz Kimpa Vita to reunify Kongo under a restored Mbanza Kongo, crushed when she was burned at the stake by Pedro IV's faction.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Mbula",
+    "startYear": 1709,
+    "endYear": 1709,
+    "coordinates": [
+      14.5,
+      -6.6
+    ],
+    "locations": [
+      "Mbula"
+    ],
+    "countries": [
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mbula",
+    "importance": 3,
+    "description": "Pedro IV's victory over the Kinlaza faction that ended the Kongo Civil War and restored a federated monarchy at Mbanza Kongo.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Lunda Expansion under Mwaant Yaav",
+    "startYear": 1650,
+    "endYear": 1750,
+    "coordinates": [
+      23.0,
+      -9.0
+    ],
+    "locations": [
+      "Musumba",
+      "Katanga",
+      "Kasai"
+    ],
+    "countries": [
+      "Lunda Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Lunda_Empire",
+    "importance": 3,
+    "description": "Century of conquests by the Mwaant Yaav rulers that built the Lunda Empire from its Musumba core across the savanna between the Kwango and the Luapula.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kazembe Conquests",
+    "startYear": 1740,
+    "endYear": 1800,
+    "coordinates": [
+      29.0,
+      -9.5
+    ],
+    "locations": [
+      "Luapula Valley",
+      "Kazembe"
+    ],
+    "countries": [
+      "Kazembe",
+      "Lunda Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kazembe",
+    "importance": 3,
+    "description": "Eastward Lunda offshoot under Mwata Kazembe that subdued the peoples of the Luapula valley and established the kingdom that later met Portuguese envoys from Tete.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Luba Empire Expansion under Kalala Ilunga",
+    "startYear": 1585,
+    "endYear": 1700,
+    "coordinates": [
+      26.5,
+      -7.5
+    ],
+    "locations": [
+      "Upemba Depression",
+      "Mwibele"
+    ],
+    "countries": [
+      "Luba Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Luba",
+    "importance": 3,
+    "description": "Conquests traditionally credited to Kalala Ilunga that built the Luba kingdom around the Upemba lakes by overthrowing Nkongolo Mwamba.",
+    "era": "Early Modern",
+    "confidence": "low"
+  },
+  {
+    "name": "Yaka-Kongo Wars",
+    "startYear": 1620,
+    "endYear": 1700,
+    "coordinates": [
+      17.0,
+      -7.0
+    ],
+    "locations": [
+      "Kwango Valley"
+    ],
+    "countries": [
+      "Yaka",
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Yaka_people",
+    "importance": 2,
+    "description": "Recurring raids by the Yaka of the Kwango against Kongo's eastern provinces, contributing to the demographic drain of the slave trade era.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kasanje Wars",
+    "startYear": 1680,
+    "endYear": 1850,
+    "coordinates": [
+      17.5,
+      -9.5
+    ],
+    "locations": [
+      "Kasanje",
+      "Kwango Valley"
+    ],
+    "countries": [
+      "Kasanje",
+      "Portuguese Empire",
+      "Matamba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Kasanje",
+    "importance": 3,
+    "description": "Recurring Imbangala-descended Kasanje conflicts with Portuguese Angola and Matamba over control of the slave-trading feiras of the Kwango.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Portuguese-Matamba War of 1744",
+    "startYear": 1744,
+    "endYear": 1744,
+    "coordinates": [
+      15.6,
+      -9.55
+    ],
+    "locations": [
+      "Matamba",
+      "Mbwila"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Matamba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Matamba",
+    "importance": 2,
+    "description": "Portuguese punitive expedition that defeated Queen Ana II of Matamba and reasserted vassalage of the kingdom to Luanda.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Portuguese-Kongo War of 1670",
+    "startYear": 1669,
+    "endYear": 1670,
+    "coordinates": [
+      13.0,
+      -6.13
+    ],
+    "locations": [
+      "Soyo",
+      "Kitombo"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "County of Soyo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kitombo",
+    "importance": 3,
+    "description": "Portuguese campaign against Soyo to enforce trade demands, ending in catastrophic defeat at Kitombo.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Loango Expansion",
+    "startYear": 1550,
+    "endYear": 1650,
+    "coordinates": [
+      12.0,
+      -4.65
+    ],
+    "locations": [
+      "Loango Bay",
+      "Mayombe"
+    ],
+    "countries": [
+      "Kingdom of Loango"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Loango",
+    "importance": 2,
+    "description": "Period in which the Vili kingdom of Loango extended its commercial empire along the north Congo coast, projecting power into Kakongo, Ngoyo and Mayombe.",
+    "era": "Early Modern",
+    "confidence": "low"
+  },
+  {
+    "name": "Tio-Bobangi Conflicts",
+    "startYear": 1700,
+    "endYear": 1850,
+    "coordinates": [
+      15.5,
+      -2.5
+    ],
+    "locations": [
+      "Malebo Pool",
+      "Middle Congo"
+    ],
+    "countries": [
+      "Tio Kingdom",
+      "Bobangi"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Tio_Kingdom",
+    "importance": 2,
+    "description": "Slow displacement of Tio commercial dominance on the Malebo Pool by the Bobangi river traders during the height of the Atlantic and Congo-basin slave trades.",
+    "era": "Early Modern",
+    "confidence": "low"
+  },
+  {
+    "name": "Chokwe Expansion",
+    "startYear": 1850,
+    "endYear": 1900,
+    "coordinates": [
+      20.0,
+      -10.0
+    ],
+    "locations": [
+      "Lunda",
+      "Upper Kasai"
+    ],
+    "countries": [
+      "Chokwe",
+      "Lunda Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Chokwe_people",
+    "importance": 3,
+    "description": "Chokwe mercenary and slave-raiding expansion out of the Angolan highlands that overran the Lunda heartland in the 1880s and toppled the Mwaant Yaav.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Msiri's Wars",
+    "startYear": 1856,
+    "endYear": 1891,
+    "coordinates": [
+      27.5,
+      -10.7
+    ],
+    "locations": [
+      "Bunkeya",
+      "Katanga"
+    ],
+    "countries": [
+      "Yeke Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Msiri",
+    "importance": 3,
+    "description": "Conquests of the Nyamwezi warlord Msiri that built the Yeke Kingdom in Katanga, ended by his killing at Bunkeya by Captain Stairs's Congo Free State expedition.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Portuguese-Dembos Wars",
+    "startYear": 1872,
+    "endYear": 1919,
+    "coordinates": [
+      14.5,
+      -8.4
+    ],
+    "locations": [
+      "Dembos",
+      "Nambuangongo"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Dembos"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Dembos",
+    "importance": 3,
+    "description": "Half-century of intermittent Portuguese campaigns to subdue the Dembos chiefdoms north of Luanda, finally completed only during World War I.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Bailundo War",
+    "startYear": 1902,
+    "endYear": 1904,
+    "coordinates": [
+      15.85,
+      -12.18
+    ],
+    "locations": [
+      "Bailundo",
+      "Bie"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Ovimbundu"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bailundo_War",
+    "importance": 3,
+    "description": "Major Ovimbundu uprising on the Benguela plateau led by King Mutu-ya-Kevela against Portuguese rubber-trade abuses, crushed by Lieutenant-Colonel Joao de Almeida's columns.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Kwanyama Wars",
+    "startYear": 1904,
+    "endYear": 1915,
+    "coordinates": [
+      16.0,
+      -17.3
+    ],
+    "locations": [
+      "Ovamboland",
+      "Mufilo",
+      "Mongua"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Kwanyama"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kwanyama",
+    "importance": 3,
+    "description": "Series of Portuguese campaigns against the Kwanyama of the Angolan-Namibian border, ending with the killing of King Mandume ya Ndemufayo and the partition of Ovamboland.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Mufilo",
+    "startYear": 1907,
+    "endYear": 1907,
+    "coordinates": [
+      15.9,
+      -17.1
+    ],
+    "locations": [
+      "Mufilo"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Kwanyama"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mufilo",
+    "importance": 2,
+    "description": "Portuguese defeat by Kwanyama forces under Mandume during the early phase of the Ovamboland campaigns.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Mongua",
+    "startYear": 1915,
+    "endYear": 1915,
+    "coordinates": [
+      15.8,
+      -17.4
+    ],
+    "locations": [
+      "Mongua"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Kwanyama"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mongua",
+    "importance": 3,
+    "description": "Portuguese victory under General Pereira de Eca that broke Kwanyama resistance and completed the conquest of southern Angola.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Bakongo Revolt of 1913-1914",
+    "startYear": 1913,
+    "endYear": 1914,
+    "coordinates": [
+      14.25,
+      -6.27
+    ],
+    "locations": [
+      "Sao Salvador",
+      "Mbanza Kongo"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Kongo",
+    "importance": 2,
+    "description": "Last armed Kongo uprising against Portuguese rule, led by Manuel Kiditu and Alvaro Buta, crushed in 1914 and effectively ending the Kongo monarchy.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Portuguese-German Border War in Angola",
+    "startYear": 1914,
+    "endYear": 1915,
+    "coordinates": [
+      15.5,
+      -17.3
+    ],
+    "locations": [
+      "Naulila",
+      "Cuangar"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "German Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Naulila",
+    "importance": 3,
+    "description": "Frontier clashes between German South West Africa and Portuguese Angola, including the German victory at Naulila and the subsequent Kwanyama uprising.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Belgian Conquest of Congo Free State",
+    "startYear": 1885,
+    "endYear": 1908,
+    "coordinates": [
+      23.0,
+      -2.0
+    ],
+    "locations": [
+      "Congo Basin",
+      "Stanley Falls",
+      "Katanga"
+    ],
+    "countries": [
+      "Congo Free State"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Congo_Free_State",
+    "importance": 5,
+    "description": "Force Publique conquest of the Congo basin under Leopold II's personal rule, accompanied by mass atrocities in the rubber and ivory zones.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Congo Arab War",
+    "startYear": 1892,
+    "endYear": 1894,
+    "coordinates": [
+      25.2,
+      0.5
+    ],
+    "locations": [
+      "Stanley Falls",
+      "Kasongo",
+      "Nyangwe"
+    ],
+    "countries": [
+      "Congo Free State",
+      "Zanzibari traders"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Congo_Arab_war",
+    "importance": 4,
+    "description": "Two-year Force Publique campaign under Francis Dhanis that destroyed the Swahili-Arab slave-trading network of Tippu Tip in the eastern Congo.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Batetela Mutiny of 1895",
+    "startYear": 1895,
+    "endYear": 1898,
+    "coordinates": [
+      24.0,
+      -6.0
+    ],
+    "locations": [
+      "Luluabourg",
+      "Kasai"
+    ],
+    "countries": [
+      "Congo Free State"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Batetela_rebellion",
+    "importance": 3,
+    "description": "First mutiny of Tetela soldiers in the Force Publique garrison at Luluabourg, triggered by the execution of Chief Gongo Lutete and sustained as a low-level revolt across the Kasai.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Batetela Mutiny of 1897",
+    "startYear": 1897,
+    "endYear": 1900,
+    "coordinates": [
+      29.0,
+      1.0
+    ],
+    "locations": [
+      "Lake Albert",
+      "Lindi",
+      "Stanley Falls"
+    ],
+    "countries": [
+      "Congo Free State"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Batetela_rebellion",
+    "importance": 3,
+    "description": "Second Batetela mutiny in Dhanis's Nile expedition force, which fled to the forests of the eastern Congo and was hunted for three years by Force Publique columns.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Boma Mutiny",
+    "startYear": 1900,
+    "endYear": 1900,
+    "coordinates": [
+      13.05,
+      -5.85
+    ],
+    "locations": [
+      "Boma"
+    ],
+    "countries": [
+      "Congo Free State"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Force_Publique",
+    "importance": 2,
+    "description": "Brief Force Publique mutiny at the Free State capital of Boma, suppressed within days.",
+    "era": "Colonial",
+    "confidence": "low"
+  },
+  {
+    "name": "Yaka War",
+    "startYear": 1895,
+    "endYear": 1906,
+    "coordinates": [
+      17.0,
+      -7.0
+    ],
+    "locations": [
+      "Kwango Valley",
+      "Popokabaka"
+    ],
+    "countries": [
+      "Congo Free State",
+      "Yaka"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Yaka_people",
+    "importance": 2,
+    "description": "Force Publique campaign to subdue the Yaka chiefdoms of the Kwango plateau, characterised by heavy reprisals against rubber-collecting villages.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Lulonga and Mongala Revolts",
+    "startYear": 1893,
+    "endYear": 1905,
+    "coordinates": [
+      19.0,
+      0.5
+    ],
+    "locations": [
+      "Lulonga",
+      "Mongala",
+      "Equateur"
+    ],
+    "countries": [
+      "Congo Free State"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Atrocities_in_the_Congo_Free_State",
+    "importance": 3,
+    "description": "Recurring revolts in the Equateur rubber concessions of the Lulonga, Mongala and Maringa basins, suppressed by ABIR and Anversoise sentries with mass killings.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Pende Revolt",
+    "startYear": 1931,
+    "endYear": 1931,
+    "coordinates": [
+      19.0,
+      -6.5
+    ],
+    "locations": [
+      "Kwilu",
+      "Kilamba"
+    ],
+    "countries": [
+      "Belgian Congo",
+      "Pende"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Pende_revolt",
+    "importance": 3,
+    "description": "Pende uprising against forced palm-oil cultivation and the Huileries du Congo Belge in the Kwilu, suppressed by Force Publique with hundreds killed.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Kuba Revolts",
+    "startYear": 1899,
+    "endYear": 1904,
+    "coordinates": [
+      21.5,
+      -4.8
+    ],
+    "locations": [
+      "Nsheng",
+      "Kasai"
+    ],
+    "countries": [
+      "Congo Free State",
+      "Kuba Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kuba_Kingdom",
+    "importance": 2,
+    "description": "Kuba resistance to Compagnie du Kasai rubber collection under King Kot aPe, suppressed by Force Publique punitive expeditions.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kongo-Wara Rebellion",
+    "startYear": 1928,
+    "endYear": 1931,
+    "coordinates": [
+      16.5,
+      5.0
+    ],
+    "locations": [
+      "Lobaye",
+      "Sangha",
+      "Haut-Oubangui"
+    ],
+    "countries": [
+      "French Equatorial Africa"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kongo-Wara_rebellion",
+    "importance": 4,
+    "description": "Multi-ethnic 'War of the Hoe Handle' against French rubber and porterage demands in Ubangi-Shari and Middle Congo, led by the prophet Karinou and suppressed with thousands killed.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "French Conquest of Chad",
+    "startYear": 1899,
+    "endYear": 1911,
+    "coordinates": [
+      16.5,
+      13.0
+    ],
+    "locations": [
+      "Lake Chad",
+      "Kousseri",
+      "Ouaddai"
+    ],
+    "countries": [
+      "French Third Republic",
+      "Rabih Sultanate",
+      "Sultanate of Ouaddai"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/French_conquest_of_Chad",
+    "importance": 4,
+    "description": "Decade-long French campaigns under Lamy, Gentil and Largeau that destroyed Rabih az-Zubayr's empire and conquered Baguirmi, Kanem and Ouaddai.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Kousseri",
+    "startYear": 1900,
+    "endYear": 1900,
+    "coordinates": [
+      15.04,
+      12.08
+    ],
+    "locations": [
+      "Kousseri"
+    ],
+    "countries": [
+      "French Third Republic",
+      "Rabih Sultanate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kousseri",
+    "importance": 4,
+    "description": "Convergence of the Voulet-Chanoine, Foureau-Lamy and Gentil missions to defeat and kill the warlord Rabih az-Zubayr south of Lake Chad.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "French Conquest of Ouaddai",
+    "startYear": 1909,
+    "endYear": 1912,
+    "coordinates": [
+      20.83,
+      13.83
+    ],
+    "locations": [
+      "Abeche",
+      "Ouara"
+    ],
+    "countries": [
+      "French Third Republic",
+      "Sultanate of Ouaddai"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Wadai_Empire",
+    "importance": 3,
+    "description": "Colonel Largeau's campaign that captured Abeche, deposed Sultan Doudmourrah and incorporated Ouaddai into French Chad.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "German Conquest of Kamerun",
+    "startYear": 1884,
+    "endYear": 1907,
+    "coordinates": [
+      12.5,
+      4.5
+    ],
+    "locations": [
+      "Douala",
+      "Adamawa",
+      "Bamum"
+    ],
+    "countries": [
+      "German Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kamerun",
+    "importance": 4,
+    "description": "Two decades of Schutztruppe campaigns that subdued the Duala coast, the Bakweri of Mount Cameroon, the Adamawa Fulani and the Grassfields chiefdoms.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Bakweri Wars",
+    "startYear": 1891,
+    "endYear": 1894,
+    "coordinates": [
+      9.3,
+      4.15
+    ],
+    "locations": [
+      "Buea",
+      "Mount Cameroon"
+    ],
+    "countries": [
+      "German Empire",
+      "Bakweri"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bakweri_people",
+    "importance": 3,
+    "description": "German campaigns against the Bakweri of Mount Cameroon under King Kuva of Buea, ending in 1894 with Kuva's defeat and Buea's destruction.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Bafut Wars",
+    "startYear": 1891,
+    "endYear": 1907,
+    "coordinates": [
+      10.1,
+      6.1
+    ],
+    "locations": [
+      "Bafut",
+      "Bamenda Grassfields"
+    ],
+    "countries": [
+      "German Empire",
+      "Bafut"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bafut_Wars",
+    "importance": 3,
+    "description": "Three German Schutztruppe expeditions against Fon Abumbi I of Bafut in the Cameroon Grassfields, ending in the burning of the palace and Bafut's submission.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Nso War",
+    "startYear": 1906,
+    "endYear": 1906,
+    "coordinates": [
+      10.7,
+      6.2
+    ],
+    "locations": [
+      "Kumbo",
+      "Nso"
+    ],
+    "countries": [
+      "German Empire",
+      "Nso"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Nso_people",
+    "importance": 2,
+    "description": "German Schutztruppe campaign against the Fon of Nso in the Grassfields, marked by the killing of Captain Glauning at Kumbo.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kamerun Campaign",
+    "startYear": 1914,
+    "endYear": 1916,
+    "coordinates": [
+      12.0,
+      5.0
+    ],
+    "locations": [
+      "Douala",
+      "Mora",
+      "Yaounde"
+    ],
+    "countries": [
+      "German Empire",
+      "British Empire",
+      "French Third Republic"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kamerun_campaign",
+    "importance": 4,
+    "description": "Anglo-French invasion and conquest of German Kamerun in the First World War, ending with the German surrender at Mora in February 1916.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Garua",
+    "startYear": 1915,
+    "endYear": 1915,
+    "coordinates": [
+      13.4,
+      9.3
+    ],
+    "locations": [
+      "Garua"
+    ],
+    "countries": [
+      "German Empire",
+      "British Empire",
+      "French Third Republic"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Battle_of_Garua",
+    "importance": 3,
+    "description": "Anglo-French capture of the German fortified post at Garua on the Benue River, opening the way to the conquest of northern Kamerun.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Siege of Mora",
+    "startYear": 1914,
+    "endYear": 1916,
+    "coordinates": [
+      14.13,
+      11.05
+    ],
+    "locations": [
+      "Mora"
+    ],
+    "countries": [
+      "German Empire",
+      "British Empire",
+      "French Third Republic"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Mora",
+    "importance": 3,
+    "description": "Eighteen-month Allied siege of the German Schutztruppe garrison on Mora Mountain, the last German position in Kamerun to surrender.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Simba Rebellion",
+    "startYear": 1963,
+    "endYear": 1965,
+    "coordinates": [
+      25.2,
+      0.5
+    ],
+    "locations": [
+      "Stanleyville",
+      "Kwilu",
+      "Kivu"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Simba_rebellion",
+    "importance": 4,
+    "description": "Lumumbist Simba uprising that briefly held the eastern Congo and Stanleyville, ended by Belgian paratroopers in Operation Dragon Rouge and ANC counter-offensives.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Kwilu Rebellion",
+    "startYear": 1963,
+    "endYear": 1965,
+    "coordinates": [
+      19.0,
+      -5.0
+    ],
+    "locations": [
+      "Kikwit",
+      "Kwilu"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kwilu_rebellion",
+    "importance": 3,
+    "description": "Pierre Mulele's Maoist insurgency in the Kwilu region, which preceded and overlapped with the Simba rebellion in the east.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Dragon Rouge",
+    "startYear": 1964,
+    "endYear": 1964,
+    "coordinates": [
+      25.2,
+      0.5
+    ],
+    "locations": [
+      "Stanleyville"
+    ],
+    "countries": [
+      "Belgium",
+      "United States",
+      "Democratic Republic of the Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Dragon_Rouge",
+    "importance": 3,
+    "description": "Belgian paratrooper rescue operation airlifted by the United States that freed European hostages from Simba-held Stanleyville.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Mercenaries' Mutiny",
+    "startYear": 1967,
+    "endYear": 1967,
+    "coordinates": [
+      29.2,
+      -1.7
+    ],
+    "locations": [
+      "Stanleyville",
+      "Bukavu"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mercenaries%27_mutiny",
+    "importance": 2,
+    "description": "Revolt of Jean Schramme's white mercenaries and Katangese gendarmes at Stanleyville and Bukavu against Mobutu, ended by their evacuation to Rwanda.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Angolan War of Independence",
+    "startYear": 1961,
+    "endYear": 1974,
+    "coordinates": [
+      16.0,
+      -10.0
+    ],
+    "locations": [
+      "Luanda",
+      "Dembos",
+      "Cabinda",
+      "Eastern Front"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "MPLA",
+      "FNLA",
+      "UNITA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Angolan_War_of_Independence",
+    "importance": 5,
+    "description": "Thirteen-year war by the MPLA, FNLA and UNITA against Portuguese rule in Angola, ending with the Carnation Revolution and the Alvor Accords.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Baixa de Cassanje Revolt",
+    "startYear": 1961,
+    "endYear": 1961,
+    "coordinates": [
+      17.8,
+      -9.5
+    ],
+    "locations": [
+      "Baixa de Cassanje",
+      "Malanje"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Angola"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Baixa_de_Cassanje_revolt",
+    "importance": 3,
+    "description": "Cotton-pickers' strike in Portuguese Angola crushed by aerial bombing and ground sweeps, conventionally treated as the start of the Angolan War of Independence.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "UPA March 1961 Uprising",
+    "startYear": 1961,
+    "endYear": 1961,
+    "coordinates": [
+      14.5,
+      -7.5
+    ],
+    "locations": [
+      "Northern Angola",
+      "Sao Salvador"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "FNLA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Angolan_War_of_Independence",
+    "importance": 3,
+    "description": "UPA (later FNLA) uprising across northern Angola's coffee plantations, with mass killings of settlers and Ovimbundu workers and a Portuguese reprisal campaign.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Cabinda Insurgency",
+    "startYear": 1975,
+    "endYear": null,
+    "coordinates": [
+      12.2,
+      -5.55
+    ],
+    "locations": [
+      "Cabinda"
+    ],
+    "countries": [
+      "Angola",
+      "FLEC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Cabinda_War",
+    "importance": 3,
+    "description": "Long-running low-intensity insurgency by FLEC factions in the Cabinda exclave demanding independence from Angola.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "South African Border War in Angola",
+    "startYear": 1975,
+    "endYear": 1989,
+    "coordinates": [
+      16.5,
+      -16.0
+    ],
+    "locations": [
+      "Cuando Cubango",
+      "Cuito Cuanavale",
+      "Mavinga"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola",
+      "Cuba",
+      "UNITA",
+      "SWAPO"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/South_African_Border_War",
+    "importance": 5,
+    "description": "South African Defence Force operations into southern Angola against SWAPO and FAPLA, culminating in the Battle of Cuito Cuanavale and the Tripartite Accord.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Cuito Cuanavale",
+    "startYear": 1987,
+    "endYear": 1988,
+    "coordinates": [
+      19.17,
+      -15.17
+    ],
+    "locations": [
+      "Cuito Cuanavale",
+      "Lomba River"
+    ],
+    "countries": [
+      "Angola",
+      "Cuba",
+      "South Africa",
+      "UNITA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Cuito_Cuanavale",
+    "importance": 5,
+    "description": "Largest battle in Africa since World War II, fought between FAPLA-Cuban forces and SADF-UNITA on the Lomba River and around Cuito Cuanavale, ending in a strategic stalemate that produced the Namibian-Angolan settlement.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Savannah",
+    "startYear": 1975,
+    "endYear": 1976,
+    "coordinates": [
+      14.0,
+      -12.5
+    ],
+    "locations": [
+      "Benguela",
+      "Quibala",
+      "Ebo"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola",
+      "Cuba",
+      "UNITA",
+      "FNLA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Savannah_(Angola)",
+    "importance": 3,
+    "description": "South African armoured intervention in Angola at independence in support of UNITA and the FNLA, halted by Cuban reinforcements south of Luanda.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Quifangondo",
+    "startYear": 1975,
+    "endYear": 1975,
+    "coordinates": [
+      13.4,
+      -8.7
+    ],
+    "locations": [
+      "Quifangondo",
+      "Caxito"
+    ],
+    "countries": [
+      "MPLA",
+      "Cuba",
+      "FNLA",
+      "Zaire",
+      "South Africa"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Quifangondo",
+    "importance": 3,
+    "description": "MPLA-Cuban defeat of the FNLA-Zairean column north of Luanda on the eve of Angolan independence, securing the capital for the MPLA.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Shaba I Invasion",
+    "startYear": 1977,
+    "endYear": 1977,
+    "coordinates": [
+      25.5,
+      -10.7
+    ],
+    "locations": [
+      "Shaba",
+      "Mutshatsha",
+      "Kolwezi"
+    ],
+    "countries": [
+      "Zaire",
+      "FNLC",
+      "Morocco",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Shaba_I",
+    "importance": 3,
+    "description": "Invasion of Mobutu's Shaba province by FNLC Katangese exiles from Angola, repulsed by Moroccan troops airlifted by France.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Shaba II Invasion",
+    "startYear": 1978,
+    "endYear": 1978,
+    "coordinates": [
+      25.45,
+      -10.72
+    ],
+    "locations": [
+      "Kolwezi"
+    ],
+    "countries": [
+      "Zaire",
+      "FNLC",
+      "France",
+      "Belgium",
+      "United States"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kolwezi",
+    "importance": 3,
+    "description": "Second FNLC incursion that captured Kolwezi and massacred European miners, ended by the French Foreign Legion's parachute drop and Belgian para-commando operations.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "First Congo War",
+    "startYear": 1996,
+    "endYear": 1997,
+    "coordinates": [
+      25.0,
+      -2.0
+    ],
+    "locations": [
+      "Kivu",
+      "Kisangani",
+      "Kinshasa"
+    ],
+    "countries": [
+      "Zaire",
+      "Rwanda",
+      "Uganda",
+      "AFDL",
+      "Angola"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Congo_War",
+    "importance": 5,
+    "description": "Rwandan-Ugandan-backed AFDL campaign under Laurent-Desire Kabila that toppled Mobutu and ended thirty-two years of Zairean rule.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Second Congo War",
+    "startYear": 1998,
+    "endYear": 2003,
+    "coordinates": [
+      25.0,
+      -2.0
+    ],
+    "locations": [
+      "Kivu",
+      "Kisangani",
+      "Katanga",
+      "Ituri"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Rwanda",
+      "Uganda",
+      "Angola",
+      "Zimbabwe",
+      "Namibia",
+      "Burundi",
+      "Chad",
+      "RCD",
+      "MLC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Congo_War",
+    "importance": 5,
+    "description": "Africa's deadliest war since 1945, drawing in nine states and dozens of militias across the eastern Congo and ending with the Sun City agreement and the transitional government.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Six-Day War of Kisangani",
+    "startYear": 2000,
+    "endYear": 2000,
+    "coordinates": [
+      25.19,
+      0.52
+    ],
+    "locations": [
+      "Kisangani"
+    ],
+    "countries": [
+      "Rwanda",
+      "Uganda"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Six-Day_War_(2000)",
+    "importance": 3,
+    "description": "Urban battle between Rwandan and Ugandan forces in the streets of Kisangani during the Second Congo War, the most intense direct clash between the two RPF-aligned allies.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Ituri Conflict",
+    "startYear": 1999,
+    "endYear": 2007,
+    "coordinates": [
+      30.0,
+      1.5
+    ],
+    "locations": [
+      "Bunia",
+      "Mongbwalu",
+      "Ituri"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Uganda",
+      "UPC",
+      "FNI",
+      "FRPI"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ituri_conflict",
+    "importance": 4,
+    "description": "Hema-Lendu ethnic war in northeastern Congo's Ituri district during and after the Second Congo War, with major MONUC and EU Operation Artemis interventions.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Artemis",
+    "startYear": 2003,
+    "endYear": 2003,
+    "coordinates": [
+      30.25,
+      1.57
+    ],
+    "locations": [
+      "Bunia"
+    ],
+    "countries": [
+      "European Union",
+      "France",
+      "Democratic Republic of the Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Artemis",
+    "importance": 3,
+    "description": "European Union's first autonomous out-of-area military operation, deployed to stabilise Bunia during the Ituri conflict.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Kivu Conflict",
+    "startYear": 2004,
+    "endYear": null,
+    "coordinates": [
+      29.0,
+      -1.7
+    ],
+    "locations": [
+      "North Kivu",
+      "South Kivu",
+      "Goma",
+      "Bukavu"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Rwanda",
+      "CNDP",
+      "FDLR",
+      "M23",
+      "Mai-Mai"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kivu_conflict",
+    "importance": 5,
+    "description": "Ongoing constellation of insurgencies in the eastern Congo following the Second Congo War, including the CNDP, M23, FDLR, ADF and a hundred local Mai-Mai groups.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "CNDP Insurgency",
+    "startYear": 2006,
+    "endYear": 2009,
+    "coordinates": [
+      29.23,
+      -1.66
+    ],
+    "locations": [
+      "Rutshuru",
+      "Masisi",
+      "Goma"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Rwanda",
+      "CNDP"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/National_Congress_for_the_Defence_of_the_People",
+    "importance": 3,
+    "description": "Laurent Nkunda's Tutsi-led CNDP rebellion in North Kivu, ended by the Rwanda-DRC Goma agreement and Nkunda's arrest.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "M23 Rebellion",
+    "startYear": 2012,
+    "endYear": null,
+    "coordinates": [
+      29.23,
+      -1.66
+    ],
+    "locations": [
+      "Rutshuru",
+      "Goma",
+      "Bunagana"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Rwanda",
+      "M23"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/March_23_Movement",
+    "importance": 5,
+    "description": "Rwandan-backed ex-CNDP mutiny that captured Goma in 2012, collapsed in 2013, and reemerged from 2021 as the dominant insurgent threat in the eastern Congo.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Allied Democratic Forces Insurgency",
+    "startYear": 1995,
+    "endYear": null,
+    "coordinates": [
+      29.8,
+      0.9
+    ],
+    "locations": [
+      "Rwenzori",
+      "Beni",
+      "Ituri"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Uganda",
+      "ADF"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Allied_Democratic_Forces_insurgency",
+    "importance": 4,
+    "description": "Long-running Ugandan-origin Islamist insurgency operating across the Rwenzori border, increasingly linked since 2019 to the Islamic State Central Africa Province.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "FDLR Insurgency",
+    "startYear": 2000,
+    "endYear": null,
+    "coordinates": [
+      28.5,
+      -2.0
+    ],
+    "locations": [
+      "North Kivu",
+      "South Kivu"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Rwanda",
+      "FDLR"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Democratic_Forces_for_the_Liberation_of_Rwanda",
+    "importance": 4,
+    "description": "Hutu militia descended from the ex-FAR and Interahamwe based in the eastern Congo, targeted by repeated FARDC, Rwandan and UN operations.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Kamuina Nsapu Rebellion",
+    "startYear": 2016,
+    "endYear": 2019,
+    "coordinates": [
+      22.4,
+      -5.9
+    ],
+    "locations": [
+      "Kasai",
+      "Tshikapa",
+      "Kananga"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Kamuina Nsapu"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kamwina_Nsapu_rebellion",
+    "importance": 3,
+    "description": "Customary chieftaincy-based militia uprising in the Kasai region against Kinshasa, marked by mass atrocities and the killing of two UN experts.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "CODECO Insurgency",
+    "startYear": 2017,
+    "endYear": null,
+    "coordinates": [
+      30.25,
+      1.57
+    ],
+    "locations": [
+      "Djugu",
+      "Mahagi",
+      "Ituri"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "CODECO"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/CODECO",
+    "importance": 3,
+    "description": "Lendu-aligned cooperative militia in Ituri responsible for major massacres of Hema civilians and persistent fighting with FARDC and ADF.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Bas-Congo Bundu dia Kongo Clashes",
+    "startYear": 2007,
+    "endYear": 2008,
+    "coordinates": [
+      14.5,
+      -5.5
+    ],
+    "locations": [
+      "Matadi",
+      "Boma",
+      "Bas-Congo"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Bundu dia Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bundu_dia_Kongo",
+    "importance": 2,
+    "description": "Police and army crackdowns on the Bundu dia Kongo revivalist movement in Bas-Congo, with hundreds of adherents killed.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Republic of the Congo Civil War of 1993-1994",
+    "startYear": 1993,
+    "endYear": 1994,
+    "coordinates": [
+      15.28,
+      -4.27
+    ],
+    "locations": [
+      "Brazzaville"
+    ],
+    "countries": [
+      "Republic of the Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1993%E2%80%9394_Republic_of_the_Congo_Civil_War",
+    "importance": 2,
+    "description": "Post-election clashes between militias loyal to Pascal Lissouba, Bernard Kolelas and Denis Sassou Nguesso in Brazzaville.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Republic of the Congo Civil War of 1997-1999",
+    "startYear": 1997,
+    "endYear": 1999,
+    "coordinates": [
+      15.28,
+      -4.27
+    ],
+    "locations": [
+      "Brazzaville",
+      "Pointe-Noire"
+    ],
+    "countries": [
+      "Republic of the Congo",
+      "Angola"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Republic_of_the_Congo_Civil_War",
+    "importance": 3,
+    "description": "Civil war in which Sassou Nguesso's Cobra militia, backed by Angolan intervention, ousted President Lissouba and seized Brazzaville.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Pool War",
+    "startYear": 1998,
+    "endYear": 2003,
+    "coordinates": [
+      14.7,
+      -4.4
+    ],
+    "locations": [
+      "Pool Department",
+      "Brazzaville"
+    ],
+    "countries": [
+      "Republic of the Congo",
+      "Ninja"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Pool_War",
+    "importance": 3,
+    "description": "Insurgency by Pastor Ntumi's Ninja militia in the Pool region south of Brazzaville, with a renewed 2016-2017 phase.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Equatorial Guinea Coups",
+    "startYear": 1979,
+    "endYear": 2004,
+    "coordinates": [
+      8.78,
+      3.75
+    ],
+    "locations": [
+      "Malabo",
+      "Bata"
+    ],
+    "countries": [
+      "Equatorial Guinea"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2004_Equatorial_Guinea_coup_d%27%C3%A9tat_attempt",
+    "importance": 2,
+    "description": "Pattern of coups and coup attempts in Equatorial Guinea, including Obiang's 1979 takeover of Macias Nguema and the 2004 Mark Thatcher Wonga Coup attempt.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Sao Tome Coups",
+    "startYear": 1995,
+    "endYear": 2003,
+    "coordinates": [
+      6.73,
+      0.34
+    ],
+    "locations": [
+      "Sao Tome"
+    ],
+    "countries": [
+      "Sao Tome and Principe"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2003_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_coup_d%27%C3%A9tat",
+    "importance": 1,
+    "description": "Series of brief and bloodless coups in Sao Tome and Principe, including the 1995 and 2003 takeovers by army officers later reversed by negotiation.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Gabonese 1964 Coup",
+    "startYear": 1964,
+    "endYear": 1964,
+    "coordinates": [
+      9.45,
+      0.39
+    ],
+    "locations": [
+      "Libreville"
+    ],
+    "countries": [
+      "Gabon",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1964_Gabonese_coup_d%27%C3%A9tat",
+    "importance": 2,
+    "description": "Brief coup against President Leon Mba reversed by French paratroopers under Operation Bata, an early example of the post-colonial Francafrique military doctrine.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Central African Republic Bush War",
+    "startYear": 2004,
+    "endYear": 2007,
+    "coordinates": [
+      20.0,
+      8.0
+    ],
+    "locations": [
+      "Birao",
+      "Vakaga",
+      "Ouham"
+    ],
+    "countries": [
+      "Central African Republic",
+      "UFDR",
+      "APRD",
+      "Chad",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Central_African_Republic_Bush_War",
+    "importance": 3,
+    "description": "Northern CAR rebellion by the UFDR and APRD against Francois Bozize, eased by the 2007 Birao peace agreement.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Central African Republic Civil War",
+    "startYear": 2012,
+    "endYear": null,
+    "coordinates": [
+      20.0,
+      6.0
+    ],
+    "locations": [
+      "Bangui",
+      "Bambari",
+      "Bria"
+    ],
+    "countries": [
+      "Central African Republic",
+      "Seleka",
+      "Anti-balaka",
+      "France",
+      "Russia",
+      "Chad"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Central_African_Republic_Civil_War",
+    "importance": 4,
+    "description": "Seleka coalition's overthrow of Francois Bozize, the rise of Anti-balaka self-defence militias, and the protracted communal war that drew in France's Operation Sangaris, MINUSCA and the Wagner Group.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Seleka Offensive",
+    "startYear": 2012,
+    "endYear": 2013,
+    "coordinates": [
+      20.0,
+      6.5
+    ],
+    "locations": [
+      "Ndele",
+      "Bambari",
+      "Bangui"
+    ],
+    "countries": [
+      "Central African Republic",
+      "Seleka"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Seleka",
+    "importance": 3,
+    "description": "Seleka rebel coalition's southward march from northern CAR that captured Bangui in March 2013 and installed Michel Djotodia as president.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Anti-balaka Campaign",
+    "startYear": 2013,
+    "endYear": 2017,
+    "coordinates": [
+      18.55,
+      4.37
+    ],
+    "locations": [
+      "Bangui",
+      "Bossangoa",
+      "Ouham"
+    ],
+    "countries": [
+      "Central African Republic",
+      "Anti-balaka",
+      "Seleka"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Anti-balaka",
+    "importance": 3,
+    "description": "Christian and animist self-defence militias' offensive against ex-Seleka and Muslim civilians across western CAR, with major atrocities in Bangui and Bossangoa.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Sangaris",
+    "startYear": 2013,
+    "endYear": 2016,
+    "coordinates": [
+      18.55,
+      4.37
+    ],
+    "locations": [
+      "Bangui",
+      "Bambari"
+    ],
+    "countries": [
+      "France",
+      "Central African Republic"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Sangaris",
+    "importance": 3,
+    "description": "French military intervention in the CAR alongside MISCA and MINUSCA to halt the Seleka-Anti-balaka communal war.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "CPC Offensive on Bangui",
+    "startYear": 2020,
+    "endYear": 2021,
+    "coordinates": [
+      18.55,
+      4.37
+    ],
+    "locations": [
+      "Bangui",
+      "Boali",
+      "Bouar"
+    ],
+    "countries": [
+      "Central African Republic",
+      "CPC",
+      "Russia",
+      "Rwanda"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2020%E2%80%932023_Central_African_Republic_Civil_War",
+    "importance": 3,
+    "description": "Coalition of Patriots for Change offensive led by Francois Bozize against the Touadera government, repelled by Russian Wagner Group and Rwandan reinforcements.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Lord's Resistance Army in Central Africa",
+    "startYear": 2008,
+    "endYear": 2017,
+    "coordinates": [
+      25.0,
+      4.0
+    ],
+    "locations": [
+      "Haut-Mbomou",
+      "Bas-Uele",
+      "Vakaga"
+    ],
+    "countries": [
+      "Uganda",
+      "Democratic Republic of the Congo",
+      "Central African Republic",
+      "South Sudan",
+      "LRA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Lord%27s_Resistance_Army_insurgency",
+    "importance": 3,
+    "description": "Westward dispersion of Joseph Kony's LRA into the DRC, CAR and South Sudan after Operation Lightning Thunder, hunted by Ugandan, US and AU regional forces.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Lightning Thunder",
+    "startYear": 2008,
+    "endYear": 2009,
+    "coordinates": [
+      29.0,
+      4.0
+    ],
+    "locations": [
+      "Garamba",
+      "Haut-Uele"
+    ],
+    "countries": [
+      "Uganda",
+      "Democratic Republic of the Congo",
+      "South Sudan",
+      "LRA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Lightning_Thunder",
+    "importance": 2,
+    "description": "Joint UPDF-FARDC-SPLA assault on the LRA's Garamba sanctuary in northeastern DRC that scattered Kony's forces across three countries.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Bakassi Conflict",
+    "startYear": 1981,
+    "endYear": 2008,
+    "coordinates": [
+      8.5,
+      4.7
+    ],
+    "locations": [
+      "Bakassi Peninsula"
+    ],
+    "countries": [
+      "Nigeria",
+      "Cameroon"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bakassi",
+    "importance": 3,
+    "description": "Sporadic armed clashes between Nigeria and Cameroon over the Bakassi peninsula, resolved by the 2002 ICJ ruling and the 2006 Greentree Agreement.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Anglophone Crisis",
+    "startYear": 2016,
+    "endYear": null,
+    "coordinates": [
+      10.0,
+      6.0
+    ],
+    "locations": [
+      "Bamenda",
+      "Buea",
+      "Northwest Region",
+      "Southwest Region"
+    ],
+    "countries": [
+      "Cameroon",
+      "Ambazonia"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglophone_Crisis",
+    "importance": 4,
+    "description": "Armed insurgency by Ambazonian separatists in Cameroon's Anglophone Northwest and Southwest regions against Yaounde's francophone-dominated state.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Boko Haram in Cameroon and Chad",
+    "startYear": 2014,
+    "endYear": null,
+    "coordinates": [
+      14.0,
+      12.0
+    ],
+    "locations": [
+      "Far North Region",
+      "Lake Chad",
+      "Mayo-Sava"
+    ],
+    "countries": [
+      "Cameroon",
+      "Chad",
+      "Niger",
+      "Nigeria",
+      "Boko Haram",
+      "ISWAP"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Boko_Haram_insurgency",
+    "importance": 4,
+    "description": "Spillover of the Boko Haram and ISWAP insurgencies from northeast Nigeria into Cameroon's Far North and the Lake Chad basin of Chad and Niger.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Chadian Civil War 1965-1979",
+    "startYear": 1965,
+    "endYear": 1979,
+    "coordinates": [
+      17.0,
+      14.0
+    ],
+    "locations": [
+      "Tibesti",
+      "Borkou",
+      "N'Djamena"
+    ],
+    "countries": [
+      "Chad",
+      "FROLINAT",
+      "France",
+      "Libya"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Chadian_Civil_War_(1965%E2%80%931979)",
+    "importance": 4,
+    "description": "FROLINAT-led northern Muslim insurgency against the Christian-southern Tombalbaye regime, with successive French Operation Bison and Tacaud interventions.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Chadian-Libyan War",
+    "startYear": 1978,
+    "endYear": 1987,
+    "coordinates": [
+      18.0,
+      18.5
+    ],
+    "locations": [
+      "Aouzou Strip",
+      "Faya-Largeau",
+      "Ouadi Doum"
+    ],
+    "countries": [
+      "Chad",
+      "Libya",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Chadian%E2%80%93Libyan_War",
+    "importance": 4,
+    "description": "Series of campaigns in northern Chad over the Aouzou Strip culminating in Hissene Habre's 'Toyota War' victories at Fada and Ouadi Doum and the Libyan withdrawal.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Toyota War",
+    "startYear": 1986,
+    "endYear": 1987,
+    "coordinates": [
+      19.16,
+      17.92
+    ],
+    "locations": [
+      "Fada",
+      "Ouadi Doum",
+      "Aouzou"
+    ],
+    "countries": [
+      "Chad",
+      "Libya",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Toyota_War",
+    "importance": 4,
+    "description": "Final phase of the Chadian-Libyan War in which Chadian forces in Toyota technicals routed the Libyan army from northern Chad.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Chadian Civil War 2005-2010",
+    "startYear": 2005,
+    "endYear": 2010,
+    "coordinates": [
+      21.0,
+      14.0
+    ],
+    "locations": [
+      "N'Djamena",
+      "Adre",
+      "Am Dam"
+    ],
+    "countries": [
+      "Chad",
+      "Sudan",
+      "UFDD",
+      "UFR"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Civil_war_in_Chad_(2005%E2%80%932010)",
+    "importance": 3,
+    "description": "Sudan-backed Chadian rebel offensives on N'Djamena (Battle of N'Djamena 2008) and Am Dam, ended by the Chad-Sudan rapprochement.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of N'Djamena",
+    "startYear": 2008,
+    "endYear": 2008,
+    "coordinates": [
+      15.05,
+      12.13
+    ],
+    "locations": [
+      "N'Djamena"
+    ],
+    "countries": [
+      "Chad",
+      "UFDD"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_N%27Djamena_(2008)",
+    "importance": 3,
+    "description": "Three-day battle in the Chadian capital between government forces and the UFDD coalition, repelled with French logistical support.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Chadian Conflict against FACT 2021",
+    "startYear": 2021,
+    "endYear": 2021,
+    "coordinates": [
+      17.0,
+      18.0
+    ],
+    "locations": [
+      "Tibesti",
+      "Kanem"
+    ],
+    "countries": [
+      "Chad",
+      "FACT"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Northern_Chad_offensive",
+    "importance": 3,
+    "description": "Front for Change and Concord in Chad offensive from Libya into northern Chad in which President Idriss Deby was killed.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "UNITA Insurgency",
+    "startYear": 1976,
+    "endYear": 2002,
+    "coordinates": [
+      17.0,
+      -13.0
+    ],
+    "locations": [
+      "Bie",
+      "Huambo",
+      "Cuando Cubango",
+      "Jamba"
+    ],
+    "countries": [
+      "Angola",
+      "UNITA",
+      "South Africa",
+      "United States"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/UNITA",
+    "importance": 4,
+    "description": "Jonas Savimbi's UNITA insurgency phase of the Angolan Civil War, sustained by South African and US support until his death and the 2002 Luena memorandum.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Cuban Intervention in Angola",
+    "startYear": 1975,
+    "endYear": 1991,
+    "coordinates": [
+      16.0,
+      -10.0
+    ],
+    "locations": [
+      "Luanda",
+      "Cuito Cuanavale",
+      "Cabinda"
+    ],
+    "countries": [
+      "Cuba",
+      "Angola",
+      "South Africa",
+      "UNITA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Cuban_intervention_in_Angola",
+    "importance": 4,
+    "description": "Sixteen-year Cuban expeditionary deployment of up to 55,000 troops in support of the MPLA government, including Operation Carlota and Cuito Cuanavale.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Mayombe Insurgency",
+    "startYear": 1963,
+    "endYear": 1974,
+    "coordinates": [
+      12.5,
+      -4.5
+    ],
+    "locations": [
+      "Cabinda",
+      "Mayombe"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "MPLA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Cabinda_War",
+    "importance": 2,
+    "description": "MPLA's northern front in Cabinda during the Angolan War of Independence, operating out of Congo-Brazzaville's Mayombe forest.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Eastern Front (Angola)",
+    "startYear": 1966,
+    "endYear": 1974,
+    "coordinates": [
+      21.0,
+      -12.0
+    ],
+    "locations": [
+      "Moxico",
+      "Cuando Cubango"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "MPLA",
+      "UNITA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Angolan_War_of_Independence",
+    "importance": 2,
+    "description": "MPLA and UNITA offensives from Zambia into eastern Angola during the independence war, countered by Portugal's Operacao Lambada.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Cassinga Raid",
+    "startYear": 1978,
+    "endYear": 1978,
+    "coordinates": [
+      16.1,
+      -15.3
+    ],
+    "locations": [
+      "Cassinga"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola",
+      "SWAPO"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Cassinga",
+    "importance": 3,
+    "description": "SADF airborne raid on the SWAPO base at Cassinga in southern Angola that killed hundreds, contested as either a military operation or a refugee massacre.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Reindeer",
+    "startYear": 1978,
+    "endYear": 1978,
+    "coordinates": [
+      15.7,
+      -15.5
+    ],
+    "locations": [
+      "Cassinga",
+      "Chetequera"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola",
+      "SWAPO"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Reindeer",
+    "importance": 2,
+    "description": "Multi-pronged SADF operation against SWAPO bases in southern Angola including Cassinga and Chetequera.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Protea",
+    "startYear": 1981,
+    "endYear": 1981,
+    "coordinates": [
+      15.7,
+      -16.5
+    ],
+    "locations": [
+      "Xangongo",
+      "Ondjiva"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Protea",
+    "importance": 3,
+    "description": "Major SADF mechanised incursion into Cunene province against SWAPO and FAPLA that destroyed Soviet equipment and killed a senior Soviet adviser.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Askari",
+    "startYear": 1983,
+    "endYear": 1984,
+    "coordinates": [
+      15.6,
+      -16.7
+    ],
+    "locations": [
+      "Cuvelai",
+      "Caiundo"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Askari",
+    "importance": 2,
+    "description": "SADF cross-border operation against SWAPO and FAPLA in Cunene that produced the Lusaka Accords disengagement.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Modular",
+    "startYear": 1987,
+    "endYear": 1987,
+    "coordinates": [
+      19.0,
+      -15.5
+    ],
+    "locations": [
+      "Lomba River",
+      "Mavinga"
+    ],
+    "countries": [
+      "South Africa",
+      "UNITA",
+      "Angola"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Modular",
+    "importance": 3,
+    "description": "SADF and UNITA defeat of the FAPLA offensive against Mavinga on the Lomba River, the prelude to Cuito Cuanavale.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Hooper",
+    "startYear": 1987,
+    "endYear": 1988,
+    "coordinates": [
+      19.17,
+      -15.17
+    ],
+    "locations": [
+      "Cuito Cuanavale",
+      "Tumpo Triangle"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola",
+      "Cuba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Hooper",
+    "importance": 3,
+    "description": "SADF follow-on offensive against the FAPLA Tumpo Triangle bridgehead east of Cuito Cuanavale.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Packer",
+    "startYear": 1988,
+    "endYear": 1988,
+    "coordinates": [
+      19.17,
+      -15.17
+    ],
+    "locations": [
+      "Cuito Cuanavale",
+      "Tumpo Triangle"
+    ],
+    "countries": [
+      "South Africa",
+      "Angola",
+      "Cuba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Packer",
+    "importance": 2,
+    "description": "Final SADF assault on the Tumpo Triangle east of Cuito Cuanavale, ending the conventional phase of the Border War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Bicesse Accords Collapse",
+    "startYear": 1992,
+    "endYear": 1994,
+    "coordinates": [
+      15.85,
+      -12.78
+    ],
+    "locations": [
+      "Huambo",
+      "Kuito"
+    ],
+    "countries": [
+      "Angola",
+      "UNITA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Angolan_Civil_War",
+    "importance": 3,
+    "description": "Resumption of full-scale war after UNITA's rejection of the 1992 election results, including the 55-day Battle of Huambo and the siege of Kuito.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Huambo 1993",
+    "startYear": 1993,
+    "endYear": 1993,
+    "coordinates": [
+      15.74,
+      -12.78
+    ],
+    "locations": [
+      "Huambo"
+    ],
+    "countries": [
+      "Angola",
+      "UNITA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Huambo",
+    "importance": 2,
+    "description": "Fifty-five-day urban battle in which UNITA captured Angola's second city from FAA forces.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Siege of Kuito",
+    "startYear": 1993,
+    "endYear": 1994,
+    "coordinates": [
+      17.0,
+      -12.4
+    ],
+    "locations": [
+      "Kuito"
+    ],
+    "countries": [
+      "Angola",
+      "UNITA"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Kuito",
+    "importance": 2,
+    "description": "Eighteen-month UNITA siege of the FAA-held provincial capital of Bie, one of the deadliest urban episodes of the Angolan Civil War.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Burundian Civil War Spillover into DRC",
+    "startYear": 1996,
+    "endYear": 2008,
+    "coordinates": [
+      29.0,
+      -3.5
+    ],
+    "locations": [
+      "South Kivu",
+      "Uvira",
+      "Ruzizi Plain"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Burundi",
+      "CNDD-FDD",
+      "Palipehutu-FNL"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Burundian_Civil_War",
+    "importance": 3,
+    "description": "Cross-border operations of CNDD-FDD and Palipehutu-FNL from sanctuaries in South Kivu during the Burundian Civil War, entangled with the Congo Wars.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Banyamulenge Revolt",
+    "startYear": 1996,
+    "endYear": 1996,
+    "coordinates": [
+      29.0,
+      -3.0
+    ],
+    "locations": [
+      "South Kivu",
+      "Uvira"
+    ],
+    "countries": [
+      "Zaire",
+      "Banyamulenge",
+      "Rwanda"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Banyamulenge",
+    "importance": 3,
+    "description": "Rwandan-backed Banyamulenge Tutsi rising against Mobutu's expulsion order, the immediate trigger of the First Congo War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "RCD Insurgency",
+    "startYear": 1998,
+    "endYear": 2003,
+    "coordinates": [
+      26.0,
+      -2.0
+    ],
+    "locations": [
+      "Goma",
+      "Bukavu",
+      "Kisangani"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Rwanda",
+      "Uganda",
+      "RCD"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Rally_for_Congolese_Democracy",
+    "importance": 3,
+    "description": "Rwandan- and Ugandan-sponsored Rally for Congolese Democracy rebellion against Laurent-Desire Kabila that occupied much of eastern Congo during the Second Congo War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "MLC Insurgency",
+    "startYear": 1998,
+    "endYear": 2003,
+    "coordinates": [
+      20.0,
+      2.0
+    ],
+    "locations": [
+      "Equateur",
+      "Gemena",
+      "Mbandaka"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Uganda",
+      "MLC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Movement_for_the_Liberation_of_the_Congo",
+    "importance": 3,
+    "description": "Jean-Pierre Bemba's Ugandan-backed Movement for the Liberation of the Congo offensive in Equateur and Orientale during the Second Congo War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Bemba Wars",
+    "startYear": 1750,
+    "endYear": 1870,
+    "coordinates": [
+      31.0,
+      -10.5
+    ],
+    "locations": [
+      "Lubemba",
+      "Luangwa",
+      "Bangweulu"
+    ],
+    "countries": [
+      "Bemba Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bemba_people",
+    "importance": 2,
+    "description": "Bemba expansion out of the Lunda fringe across the plateau between the Luangwa and Lake Bangweulu during the era of long-distance ivory and slave trade.",
+    "era": "Early Modern",
+    "confidence": "low"
+  },
+  {
+    "name": "Ovimbundu Trade Wars",
+    "startYear": 1770,
+    "endYear": 1880,
+    "coordinates": [
+      16.0,
+      -12.5
+    ],
+    "locations": [
+      "Bie",
+      "Bailundo",
+      "Viye"
+    ],
+    "countries": [
+      "Bie",
+      "Bailundo",
+      "Wambu",
+      "Portuguese Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ovimbundu",
+    "importance": 2,
+    "description": "Inter-kingdom warfare among the Ovimbundu plateau states of Bie, Bailundo, Wambu and others as they competed over the Benguela caravan trade with the interior.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Tippu Tip's Conquests",
+    "startYear": 1860,
+    "endYear": 1890,
+    "coordinates": [
+      26.0,
+      -4.0
+    ],
+    "locations": [
+      "Manyema",
+      "Kasongo",
+      "Nyangwe"
+    ],
+    "countries": [
+      "Zanzibar",
+      "Manyema"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Tippu_Tip",
+    "importance": 3,
+    "description": "Swahili-Arab slave and ivory empire-building by Hamed bin Mohammed (Tippu Tip) across Manyema and the upper Congo, eventually overthrown in the Congo Arab War.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Nyangwe",
+    "startYear": 1893,
+    "endYear": 1893,
+    "coordinates": [
+      26.18,
+      -4.22
+    ],
+    "locations": [
+      "Nyangwe",
+      "Lualaba"
+    ],
+    "countries": [
+      "Congo Free State",
+      "Zanzibari traders"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Congo_Arab_war",
+    "importance": 2,
+    "description": "Dhanis's capture of the Swahili-Arab slaving capital of Nyangwe on the Lualaba during the Congo Arab War.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Kasongo 1893",
+    "startYear": 1893,
+    "endYear": 1893,
+    "coordinates": [
+      26.6,
+      -4.4
+    ],
+    "locations": [
+      "Kasongo"
+    ],
+    "countries": [
+      "Congo Free State",
+      "Zanzibari traders"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Congo_Arab_war",
+    "importance": 2,
+    "description": "Force Publique storming of Tippu Tip's stronghold at Kasongo, the centrepiece victory of the Congo Arab War.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Carlota",
+    "startYear": 1975,
+    "endYear": 1976,
+    "coordinates": [
+      13.23,
+      -8.83
+    ],
+    "locations": [
+      "Luanda",
+      "Quifangondo",
+      "Cabinda"
+    ],
+    "countries": [
+      "Cuba",
+      "Angola"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Carlota",
+    "importance": 3,
+    "description": "Cuban airlift and sealift of expeditionary forces to Angola in November 1975 that decisively reinforced the MPLA against the FNLA-South African intervention.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Mai-Mai Insurgencies",
+    "startYear": 1996,
+    "endYear": null,
+    "coordinates": [
+      27.0,
+      -2.0
+    ],
+    "locations": [
+      "North Kivu",
+      "South Kivu",
+      "Maniema",
+      "Katanga"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Mai-Mai"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mai-Mai",
+    "importance": 3,
+    "description": "Constellation of Congolese community self-defence militias raised first against the AFDL and then against the RCD, M23 and Rwandan-backed groups in the Kivus and northern Katanga.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Kibati Rebellion",
+    "startYear": 1944,
+    "endYear": 1944,
+    "coordinates": [
+      29.23,
+      -1.66
+    ],
+    "locations": [
+      "Luluabourg",
+      "Jadotville"
+    ],
+    "countries": [
+      "Belgian Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1944_Luluabourg_mutiny",
+    "importance": 2,
+    "description": "Force Publique mutiny at Luluabourg in February 1944 followed by Kibati and Jadotville miners' strikes, the largest wartime unrest in the Belgian Congo.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Leopoldville Riots",
+    "startYear": 1959,
+    "endYear": 1959,
+    "coordinates": [
+      15.31,
+      -4.32
+    ],
+    "locations": [
+      "Leopoldville"
+    ],
+    "countries": [
+      "Belgian Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1959_Leopoldville_riots",
+    "importance": 2,
+    "description": "Days of rioting in the Belgian Congo's capital that broke Belgian confidence in continued colonial rule and triggered the rapid timetable to independence.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Force Publique Mutiny",
+    "startYear": 1960,
+    "endYear": 1960,
+    "coordinates": [
+      15.5,
+      -4.5
+    ],
+    "locations": [
+      "Thysville",
+      "Leopoldville"
+    ],
+    "countries": [
+      "Democratic Republic of the Congo",
+      "Belgium"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Congo_Crisis",
+    "importance": 3,
+    "description": "Mutiny of the Force Publique at Thysville and Leopoldville days after independence that triggered the Belgian military intervention and the Congo Crisis.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "South Kasai Secession",
+    "startYear": 1960,
+    "endYear": 1962,
+    "coordinates": [
+      23.6,
+      -6.13
+    ],
+    "locations": [
+      "Bakwanga",
+      "Mbuji-Mayi"
+    ],
+    "countries": [
+      "South Kasai",
+      "Democratic Republic of the Congo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/South_Kasai",
+    "importance": 3,
+    "description": "Albert Kalonji's Luba-led secessionist mini-state in the Kasai diamond fields, defeated by Lumumba's ANC and ended by Mobutu in 1962.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Morthor",
+    "startYear": 1961,
+    "endYear": 1961,
+    "coordinates": [
+      27.48,
+      -11.66
+    ],
+    "locations": [
+      "Elisabethville",
+      "Jadotville"
+    ],
+    "countries": [
+      "United Nations",
+      "Katanga"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Morthor",
+    "importance": 3,
+    "description": "UN ONUC offensive against Katangese gendarmes in Elisabethville that bogged down at Jadotville and led to the death of Secretary-General Hammarskjold.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Siege of Jadotville",
+    "startYear": 1961,
+    "endYear": 1961,
+    "coordinates": [
+      26.73,
+      -10.99
+    ],
+    "locations": [
+      "Jadotville"
+    ],
+    "countries": [
+      "United Nations",
+      "Ireland",
+      "Katanga"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Jadotville",
+    "importance": 3,
+    "description": "Five-day stand of an Irish ONUC company against Katangese gendarmes and mercenaries during Operation Morthor.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Grandslam",
+    "startYear": 1962,
+    "endYear": 1963,
+    "coordinates": [
+      27.48,
+      -11.66
+    ],
+    "locations": [
+      "Elisabethville",
+      "Kolwezi"
+    ],
+    "countries": [
+      "United Nations",
+      "Katanga"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Grandslam",
+    "importance": 3,
+    "description": "Final UN offensive that ended the Katangese secession by capturing Elisabethville, Jadotville and Kolwezi.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Mbanza Mbata",
+    "startYear": 1622,
+    "endYear": 1622,
+    "coordinates": [
+      15.7,
+      -7.2
+    ],
+    "locations": [
+      "Mbanza Mbata"
+    ],
+    "countries": [
+      "Portuguese Empire",
+      "Kingdom of Kongo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Joao_Correia_de_Sousa",
+    "importance": 2,
+    "description": "Portuguese raid into Kongo's Mbata province during Governor Joao Correia de Sousa's brief war on Kongo.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Wagner Group in CAR",
+    "startYear": 2018,
+    "endYear": null,
+    "coordinates": [
+      18.55,
+      4.37
+    ],
+    "locations": [
+      "Bangui",
+      "Bria",
+      "Bambari"
+    ],
+    "countries": [
+      "Central African Republic",
+      "Russia"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Wagner_Group_in_Central_African_Republic",
+    "importance": 3,
+    "description": "Russian Wagner Group deployment in support of the Touadera government, combining presidential protection, anti-rebel operations and resource extraction.",
+    "era": "Post-1945",
+    "confidence": "high"
+  }
+]

@@ -1,0 +1,4744 @@
+[
+  {
+    "name": "Garamantian Wars",
+    "startYear": -19,
+    "endYear": 70,
+    "coordinates": [
+      12.7,
+      26.5
+    ],
+    "locations": [
+      "Fezzan",
+      "Germa"
+    ],
+    "countries": [
+      "Garamantes",
+      "Roman Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Garamantes",
+    "importance": 2,
+    "description": "Series of Roman expeditions and clashes against the Saharan Garamantes kingdom, opening trans-Saharan contact with the future Sahel.",
+    "era": "Ancient",
+    "confidence": "low"
+  },
+  {
+    "name": "Wagadu (Ghana) Foundation Wars",
+    "startYear": 300,
+    "endYear": 700,
+    "coordinates": [
+      -7.5,
+      15.7
+    ],
+    "locations": [
+      "Koumbi Saleh",
+      "Aoukar"
+    ],
+    "countries": [
+      "Ghana Empire",
+      "Soninke"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ghana_Empire",
+    "importance": 2,
+    "description": "Soninke consolidation of the Wagadu polity (Ghana Empire) over Aoukar through conquest of neighbouring clan polities in the late first millennium.",
+    "era": "Ancient",
+    "confidence": "low"
+  },
+  {
+    "name": "Takrur Foundation Conflicts",
+    "startYear": 500,
+    "endYear": 800,
+    "coordinates": [
+      -13.5,
+      16.5
+    ],
+    "locations": [
+      "Senegal River valley",
+      "Futa Toro"
+    ],
+    "countries": [
+      "Takrur"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Takrur",
+    "importance": 2,
+    "description": "Early state formation along the Senegal River that produced the kingdom of Takrur, attested in Arabic sources from the ninth century.",
+    "era": "Ancient",
+    "confidence": "low"
+  },
+  {
+    "name": "Almoravid–Awdaghust Campaign",
+    "startYear": 1054,
+    "endYear": 1055,
+    "coordinates": [
+      -7.6,
+      17.6
+    ],
+    "locations": [
+      "Awdaghust",
+      "southern Mauritania"
+    ],
+    "countries": [
+      "Almoravid dynasty",
+      "Ghana Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Awdaghust",
+    "importance": 3,
+    "description": "Almoravid seizure of the Saharan trade terminus Awdaghust from Ghanaian overlordship, opening the southern phase of the Almoravid expansion.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Sosso–Mandinka War (Kirina)",
+    "startYear": 1235,
+    "endYear": 1235,
+    "coordinates": [
+      -8.0,
+      12.7
+    ],
+    "locations": [
+      "Kirina",
+      "Niger headwaters"
+    ],
+    "countries": [
+      "Sosso Empire",
+      "Mali Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kirina",
+    "importance": 5,
+    "description": "Sundiata Keita's defeat of Soumaoro Kanté of Sosso at Kirina, founding the Mali Empire.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Mali–Sosso Wars",
+    "startYear": 1230,
+    "endYear": 1240,
+    "coordinates": [
+      -8.5,
+      13.0
+    ],
+    "locations": [
+      "Manding heartland",
+      "Sosso"
+    ],
+    "countries": [
+      "Mali Empire",
+      "Sosso Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sosso_Empire",
+    "importance": 4,
+    "description": "Conflicts between Sundiata's Mande coalition and the Sosso of Soumaoro Kanté culminating in the destruction of Sosso power.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Sakura's Reconquest of Songhai",
+    "startYear": 1285,
+    "endYear": 1300,
+    "coordinates": [
+      -0.05,
+      16.27
+    ],
+    "locations": [
+      "Gao",
+      "middle Niger"
+    ],
+    "countries": [
+      "Mali Empire",
+      "Songhai"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sakura_of_Mali",
+    "importance": 2,
+    "description": "Mansa Sakura's campaigns reasserting Malian control over Gao and the middle Niger.",
+    "era": "Medieval",
+    "confidence": "medium"
+  },
+  {
+    "name": "Mansa Musa's Conquest of Gao",
+    "startYear": 1325,
+    "endYear": 1325,
+    "coordinates": [
+      -0.05,
+      16.27
+    ],
+    "locations": [
+      "Gao",
+      "Niger Bend"
+    ],
+    "countries": [
+      "Mali Empire",
+      "Songhai"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mansa_Musa",
+    "importance": 3,
+    "description": "General Saran Mandian's seizure of Gao for Mansa Musa on his return from the Mecca pilgrimage, bringing Songhai under Mali.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Mossi Raids on Timbuktu",
+    "startYear": 1330,
+    "endYear": 1480,
+    "coordinates": [
+      -3.0,
+      16.77
+    ],
+    "locations": [
+      "Timbuktu",
+      "Walata",
+      "Niger Bend"
+    ],
+    "countries": [
+      "Mossi kingdoms",
+      "Mali Empire",
+      "Songhai Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mossi_Kingdoms",
+    "importance": 3,
+    "description": "Recurring Mossi cavalry raids from the Volta basin into the Niger Bend cities, including the 1330 sack of Timbuktu under Nasaré.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Mali Civil War of Succession (1360s)",
+    "startYear": 1360,
+    "endYear": 1374,
+    "coordinates": [
+      -8.2,
+      13.1
+    ],
+    "locations": [
+      "Niani",
+      "Manding"
+    ],
+    "countries": [
+      "Mali Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mali_Empire",
+    "importance": 2,
+    "description": "Dynastic struggles after the death of Mansa Suleyman that weakened central Malian authority.",
+    "era": "Medieval",
+    "confidence": "medium"
+  },
+  {
+    "name": "Tuareg Capture of Timbuktu (1433)",
+    "startYear": 1433,
+    "endYear": 1434,
+    "coordinates": [
+      -3.0,
+      16.77
+    ],
+    "locations": [
+      "Timbuktu",
+      "Arawan"
+    ],
+    "countries": [
+      "Tuareg (Maghsharen)",
+      "Mali Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Timbuktu",
+    "importance": 3,
+    "description": "Maghsharen Tuareg under Akil ag Malwal seized Timbuktu from Mali, ending direct Malian control of the city.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Sonni Ali's Conquests",
+    "startYear": 1464,
+    "endYear": 1492,
+    "coordinates": [
+      -1.0,
+      16.5
+    ],
+    "locations": [
+      "Timbuktu",
+      "Jenne",
+      "Niger Bend"
+    ],
+    "countries": [
+      "Songhai Empire",
+      "Mali Empire",
+      "Mossi",
+      "Tuareg"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sonni_Ali",
+    "importance": 5,
+    "description": "Sonni Ali Ber's campaigns building the Songhai Empire, including the capture of Timbuktu (1468), seven-year siege of Jenne, and wars against the Mossi.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Siege of Jenne (1473)",
+    "startYear": 1466,
+    "endYear": 1473,
+    "coordinates": [
+      -4.55,
+      13.91
+    ],
+    "locations": [
+      "Jenne",
+      "Inland Niger Delta"
+    ],
+    "countries": [
+      "Songhai Empire",
+      "Jenne"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Djenn%C3%A9",
+    "importance": 3,
+    "description": "Sonni Ali's prolonged blockade of Jenne ending in the city's submission to Songhai.",
+    "era": "Medieval",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Tondibi",
+    "startYear": 1591,
+    "endYear": 1591,
+    "coordinates": [
+      -0.05,
+      16.4
+    ],
+    "locations": [
+      "Tondibi",
+      "Gao"
+    ],
+    "countries": [
+      "Saadi Sultanate",
+      "Songhai Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Tondibi",
+    "importance": 5,
+    "description": "Moroccan arquebusiers under Judar Pasha destroyed the Songhai army, ending the Songhai Empire.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Saadian Invasion of Songhai",
+    "startYear": 1590,
+    "endYear": 1599,
+    "coordinates": [
+      -1.5,
+      17.0
+    ],
+    "locations": [
+      "Niger Bend",
+      "Timbuktu",
+      "Gao",
+      "Djenné"
+    ],
+    "countries": [
+      "Saadi Sultanate",
+      "Songhai Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Saadian_invasion_of_the_Songhai_Empire",
+    "importance": 5,
+    "description": "Sultan Ahmad al-Mansur's trans-Saharan invasion that toppled Songhai and established the Pashalik of Timbuktu.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Askia Muhammad's Wars",
+    "startYear": 1493,
+    "endYear": 1528,
+    "coordinates": [
+      0.0,
+      16.0
+    ],
+    "locations": [
+      "Niger Bend",
+      "Hausaland",
+      "Aïr",
+      "Diara"
+    ],
+    "countries": [
+      "Songhai Empire",
+      "Mossi",
+      "Hausa kingdoms",
+      "Tuareg"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Askia_Mohammad_I",
+    "importance": 4,
+    "description": "Askia Muhammad I's campaigns extending Songhai control over Air, Hausaland, the Mossi, and Diara, including the 1497–98 jihad against the Mossi.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Songhai Civil War (1582–1591)",
+    "startYear": 1582,
+    "endYear": 1591,
+    "coordinates": [
+      -0.05,
+      16.27
+    ],
+    "locations": [
+      "Gao",
+      "Timbuktu"
+    ],
+    "countries": [
+      "Songhai Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Songhai_Empire",
+    "importance": 3,
+    "description": "Succession struggles among Askia descendants that fatally weakened Songhai before the Moroccan invasion.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Anfao",
+    "startYear": 1493,
+    "endYear": 1493,
+    "coordinates": [
+      -0.1,
+      16.3
+    ],
+    "locations": [
+      "Anfao",
+      "near Gao"
+    ],
+    "countries": [
+      "Songhai Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Askia_Mohammad_I",
+    "importance": 3,
+    "description": "Askia Muhammad's victory over Sonni Baru that secured Askia's seizure of the Songhai throne.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Kebbi–Songhai War",
+    "startYear": 1515,
+    "endYear": 1517,
+    "coordinates": [
+      4.0,
+      12.5
+    ],
+    "locations": [
+      "Kebbi",
+      "Surame"
+    ],
+    "countries": [
+      "Kebbi",
+      "Songhai Empire",
+      "Air Sultanate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kebbi_Emirate",
+    "importance": 3,
+    "description": "Kanta Kotal's revolt against Askia Muhammad founded the kingdom of Kebbi and broke Songhai control of Hausaland's western marches.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Kanem–Bornu Civil War",
+    "startYear": 1380,
+    "endYear": 1480,
+    "coordinates": [
+      14.5,
+      13.5
+    ],
+    "locations": [
+      "Kanem",
+      "Bornu",
+      "Ngazargamu"
+    ],
+    "countries": [
+      "Kanem–Bornu Empire",
+      "Bulala"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kanem%E2%80%93Bornu_Empire",
+    "importance": 3,
+    "description": "Long Sefuwa–Bulala dynastic conflict that drove the Kanem capital from Njimi to Ngazargamu west of Lake Chad.",
+    "era": "Medieval",
+    "confidence": "high"
+  },
+  {
+    "name": "Idris Alooma's Wars",
+    "startYear": 1564,
+    "endYear": 1596,
+    "coordinates": [
+      13.7,
+      12.5
+    ],
+    "locations": [
+      "Bornu",
+      "Kanem",
+      "Hausaland",
+      "Air"
+    ],
+    "countries": [
+      "Bornu Empire",
+      "Bulala",
+      "Tuareg",
+      "Hausa states"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Idris_Alooma",
+    "importance": 4,
+    "description": "Mai Idris Alooma's musket-equipped campaigns that restored Bornu hegemony over Kanem and the Lake Chad basin.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Kano–Katsina Wars",
+    "startYear": 1570,
+    "endYear": 1730,
+    "coordinates": [
+      8.0,
+      12.5
+    ],
+    "locations": [
+      "Kano",
+      "Katsina"
+    ],
+    "countries": [
+      "Kano",
+      "Katsina"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sultanate_of_Kano",
+    "importance": 2,
+    "description": "Two centuries of intermittent war between the rival Hausa city-states of Kano and Katsina over trade routes and tribute.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Queen Amina's Conquests",
+    "startYear": 1576,
+    "endYear": 1610,
+    "coordinates": [
+      7.7,
+      11.1
+    ],
+    "locations": [
+      "Zazzau",
+      "Nupe",
+      "Kano"
+    ],
+    "countries": [
+      "Zazzau",
+      "Nupe",
+      "Hausa states"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Amina",
+    "importance": 3,
+    "description": "Queen Amina of Zazzau's wars expanding Zaria's reach south to the Niger and east into Kano's sphere.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Jukun (Kwararafa) Wars",
+    "startYear": 1600,
+    "endYear": 1700,
+    "coordinates": [
+      9.7,
+      8.0
+    ],
+    "locations": [
+      "Benue valley",
+      "Kano",
+      "Katsina"
+    ],
+    "countries": [
+      "Kwararafa",
+      "Hausa states",
+      "Bornu"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kwararafa",
+    "importance": 3,
+    "description": "Kwararafa raids and invasions of Hausaland and Bornu from the Benue valley in the seventeenth century, including the 1671 sack of Kano.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Bornu–Sokoto Wars",
+    "startYear": 1808,
+    "endYear": 1846,
+    "coordinates": [
+      13.0,
+      12.5
+    ],
+    "locations": [
+      "Bornu",
+      "Sokoto",
+      "Ngazargamu"
+    ],
+    "countries": [
+      "Bornu Empire",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bornu_Empire",
+    "importance": 4,
+    "description": "Wars between al-Kanemi's Bornu and the Fulani jihadist Sokoto Caliphate that contained the jihad's eastern expansion.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Wadai–Bornu Wars",
+    "startYear": 1804,
+    "endYear": 1893,
+    "coordinates": [
+      20.0,
+      13.5
+    ],
+    "locations": [
+      "Wadai",
+      "Bornu",
+      "Kanem"
+    ],
+    "countries": [
+      "Wadai Sultanate",
+      "Bornu Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Wadai_Empire",
+    "importance": 3,
+    "description": "Recurrent nineteenth-century wars between the Sultanate of Wadai and Bornu over Kanem and the Lake Chad basin.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Rabih's Wars",
+    "startYear": 1879,
+    "endYear": 1900,
+    "coordinates": [
+      14.5,
+      12.3
+    ],
+    "locations": [
+      "Bornu",
+      "Baguirmi",
+      "Wadai"
+    ],
+    "countries": [
+      "Rabih's empire",
+      "Bornu Empire",
+      "Baguirmi",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Rabih_az-Zubayr",
+    "importance": 4,
+    "description": "Rabih az-Zubayr's Sudanese slave-army conquests across Wadai and Bornu, ended by the French at the Battle of Kousséri.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Kousséri",
+    "startYear": 1900,
+    "endYear": 1900,
+    "coordinates": [
+      15.03,
+      12.08
+    ],
+    "locations": [
+      "Kousséri",
+      "Lake Chad"
+    ],
+    "countries": [
+      "France",
+      "Rabih's empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kouss%C3%A9ri",
+    "importance": 4,
+    "description": "Three converging French columns defeated and killed Rabih az-Zubayr, completing French conquest of the Lake Chad basin.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Voulet–Chanoine Mission",
+    "startYear": 1898,
+    "endYear": 1899,
+    "coordinates": [
+      7.0,
+      14.0
+    ],
+    "locations": [
+      "Niger",
+      "Sokoto",
+      "Zinder",
+      "Birni-N'Konni"
+    ],
+    "countries": [
+      "France",
+      "Sokoto Caliphate",
+      "Damagaram"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Voulet%E2%80%93Chanoine_Mission",
+    "importance": 3,
+    "description": "French Central African Mission across the Sahel marked by the massacres at Birni-N'Konni and Zinder before the officers were killed by their own troops.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Mai Ali Ghaji's Restoration of Bornu",
+    "startYear": 1470,
+    "endYear": 1503,
+    "coordinates": [
+      10.4,
+      12.9
+    ],
+    "locations": [
+      "Ngazargamu",
+      "Bornu"
+    ],
+    "countries": [
+      "Bornu Empire",
+      "Bulala"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ali_Ghaji",
+    "importance": 3,
+    "description": "Mai Ali Ghaji ibn Dunama's campaigns founding the new Bornu capital at Ngazargamu and restoring Sefuwa power over the Bulala.",
+    "era": "Medieval",
+    "confidence": "medium"
+  },
+  {
+    "name": "Borgu Wars",
+    "startYear": 1450,
+    "endYear": 1830,
+    "coordinates": [
+      3.3,
+      10.5
+    ],
+    "locations": [
+      "Borgu",
+      "Bussa",
+      "Nikki"
+    ],
+    "countries": [
+      "Borgu states",
+      "Oyo Empire",
+      "Songhai Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Borgu",
+    "importance": 2,
+    "description": "Centuries of Borgu resistance to Songhai, Nupe, and Oyo, most famously the defeat of Oyo at the Battle of Olokomeji.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Nupe Wars",
+    "startYear": 1531,
+    "endYear": 1897,
+    "coordinates": [
+      5.7,
+      9.0
+    ],
+    "locations": [
+      "Nupe",
+      "Bida",
+      "Raba"
+    ],
+    "countries": [
+      "Nupe Kingdom",
+      "Oyo Empire",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Nupe_Kingdom",
+    "importance": 3,
+    "description": "Long arc of Nupe wars from Tsoede's foundation through Oyo invasions, internal succession wars, the Fulani jihad, and British conquest of Bida.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Oyo Conquest of Dahomey",
+    "startYear": 1726,
+    "endYear": 1748,
+    "coordinates": [
+      2.3,
+      7.2
+    ],
+    "locations": [
+      "Allada",
+      "Savi",
+      "Abomey"
+    ],
+    "countries": [
+      "Oyo Empire",
+      "Dahomey"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Oyo%E2%80%93Dahomey_War",
+    "importance": 4,
+    "description": "Repeated Oyo cavalry invasions that reduced Dahomey to tributary status under Agaja and Tegbesu.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Dahomey Conquest of Whydah",
+    "startYear": 1727,
+    "endYear": 1728,
+    "coordinates": [
+      2.08,
+      6.36
+    ],
+    "locations": [
+      "Whydah (Ouidah)",
+      "Savi"
+    ],
+    "countries": [
+      "Dahomey",
+      "Hueda Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Hueda",
+    "importance": 4,
+    "description": "King Agaja's conquest and destruction of the slave-trading kingdom of Hueda, giving Dahomey direct access to the Atlantic.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Dahomey Conquest of Allada",
+    "startYear": 1724,
+    "endYear": 1724,
+    "coordinates": [
+      2.16,
+      6.66
+    ],
+    "locations": [
+      "Allada"
+    ],
+    "countries": [
+      "Dahomey",
+      "Allada Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Allada",
+    "importance": 3,
+    "description": "Agaja's seizure of Allada that brought Dahomey to the coastal slave-trade circuit.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Asante–Denkyira War",
+    "startYear": 1699,
+    "endYear": 1701,
+    "coordinates": [
+      -1.6,
+      6.7
+    ],
+    "locations": [
+      "Feyiase",
+      "Kumasi"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Denkyira"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Feyiase",
+    "importance": 5,
+    "description": "Osei Tutu and Okomfo Anokye's victory at Feyiase that founded Asante independence from Denkyira.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Asante–Akyem Wars",
+    "startYear": 1717,
+    "endYear": 1742,
+    "coordinates": [
+      -0.9,
+      6.4
+    ],
+    "locations": [
+      "Akyem",
+      "Akwamu"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Akyem",
+      "Akwamu"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Akyem",
+    "importance": 3,
+    "description": "Asante campaigns against the Akyem and Akwamu that extended Asante power to the coast hinterland.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Akwamu Conquest of Accra",
+    "startYear": 1677,
+    "endYear": 1681,
+    "coordinates": [
+      -0.19,
+      5.55
+    ],
+    "locations": [
+      "Great Accra",
+      "Akwamu"
+    ],
+    "countries": [
+      "Akwamu",
+      "Ga states"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Akwamu",
+    "importance": 3,
+    "description": "Akwamu's seizure of Great Accra and the Ga coast, consolidating its grip on the Gold Coast trade.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Komenda Wars",
+    "startYear": 1694,
+    "endYear": 1700,
+    "coordinates": [
+      -1.5,
+      5.05
+    ],
+    "locations": [
+      "Komenda",
+      "Eguafo"
+    ],
+    "countries": [
+      "Dutch West India Company",
+      "Royal African Company",
+      "Eguafo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Komenda_Wars",
+    "importance": 3,
+    "description": "Anglo-Dutch-Eguafo wars over the Komenda coast that established English supremacy in the central Gold Coast.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Fante–Asante Wars",
+    "startYear": 1806,
+    "endYear": 1823,
+    "coordinates": [
+      -1.0,
+      5.2
+    ],
+    "locations": [
+      "Fante coast",
+      "Anomabu"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Fante Confederacy"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Fante_Confederacy",
+    "importance": 3,
+    "description": "Asante invasions of the Fante coast that prefigured the Anglo-Asante wars.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Nsamankow",
+    "startYear": 1824,
+    "endYear": 1824,
+    "coordinates": [
+      -1.7,
+      5.4
+    ],
+    "locations": [
+      "Nsamankow",
+      "Bonsa River"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Asante Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Nsamankow",
+    "importance": 3,
+    "description": "Asante victory over British forces that killed Governor Charles MacCarthy.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Katamanso",
+    "startYear": 1826,
+    "endYear": 1826,
+    "coordinates": [
+      0.05,
+      5.7
+    ],
+    "locations": [
+      "Katamanso",
+      "Dodowa"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Asante Empire",
+      "Fante",
+      "Akwamu"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Katamanso",
+    "importance": 3,
+    "description": "British-allied coastal coalition defeated Asante at Katamanso, ending the first phase of Asante expansion south.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Sagrenti War (Third Anglo-Ashanti War)",
+    "startYear": 1873,
+    "endYear": 1874,
+    "coordinates": [
+      -1.6,
+      6.7
+    ],
+    "locations": [
+      "Kumasi",
+      "Amoaful"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Asante Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Anglo-Ashanti_War",
+    "importance": 4,
+    "description": "Garnet Wolseley's expedition to Kumasi that burned the Asante capital.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Yaa Asantewaa War",
+    "startYear": 1900,
+    "endYear": 1901,
+    "coordinates": [
+      -1.6,
+      6.7
+    ],
+    "locations": [
+      "Kumasi",
+      "Asante"
+    ],
+    "countries": [
+      "Asante Empire",
+      "United Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Golden_Stool",
+    "importance": 4,
+    "description": "Asante uprising led by Queen Mother Yaa Asantewaa against British demands for the Golden Stool, ending in Asante's annexation.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "First Franco-Dahomean War",
+    "startYear": 1890,
+    "endYear": 1890,
+    "coordinates": [
+      2.4,
+      6.4
+    ],
+    "locations": [
+      "Cotonou",
+      "Atchoupa"
+    ],
+    "countries": [
+      "France",
+      "Dahomey"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Franco-Dahomean_War",
+    "importance": 3,
+    "description": "French defence of Cotonou and Porto-Novo against King Béhanzin of Dahomey.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Second Franco-Dahomean War",
+    "startYear": 1892,
+    "endYear": 1894,
+    "coordinates": [
+      1.99,
+      7.18
+    ],
+    "locations": [
+      "Abomey",
+      "Kana",
+      "Adégon"
+    ],
+    "countries": [
+      "France",
+      "Dahomey"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Franco-Dahomean_War",
+    "importance": 4,
+    "description": "Colonel Dodds's columns broke the Dahomey army of King Béhanzin and annexed the kingdom to France.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Franco-Mandingo Wars",
+    "startYear": 1882,
+    "endYear": 1898,
+    "coordinates": [
+      -7.5,
+      11.0
+    ],
+    "locations": [
+      "Bissandugu",
+      "Sikasso",
+      "Kankan"
+    ],
+    "countries": [
+      "France",
+      "Wassoulou Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mandingo_Wars",
+    "importance": 5,
+    "description": "Wars between France and Samori Touré's Wassoulou Empire, ending with Samori's capture in 1898.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Woyowayanko",
+    "startYear": 1883,
+    "endYear": 1883,
+    "coordinates": [
+      -8.0,
+      12.6
+    ],
+    "locations": [
+      "Woyowayanko",
+      "near Bamako"
+    ],
+    "countries": [
+      "France",
+      "Wassoulou Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Woyowayanko",
+    "importance": 3,
+    "description": "First major French clash with Samori Touré's forces on the upper Niger.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Siege of Sikasso (1887–88)",
+    "startYear": 1887,
+    "endYear": 1888,
+    "coordinates": [
+      -5.6,
+      11.32
+    ],
+    "locations": [
+      "Sikasso",
+      "Kénédougou"
+    ],
+    "countries": [
+      "Wassoulou Empire",
+      "Kénédougou Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/K%C3%A9n%C3%A9dougou_Kingdom",
+    "importance": 3,
+    "description": "Samori Touré's failed siege of Tieba Traoré's tata at Sikasso.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "French Conquest of Sikasso (1898)",
+    "startYear": 1898,
+    "endYear": 1898,
+    "coordinates": [
+      -5.6,
+      11.32
+    ],
+    "locations": [
+      "Sikasso"
+    ],
+    "countries": [
+      "France",
+      "Kénédougou Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/K%C3%A9n%C3%A9dougou_Kingdom",
+    "importance": 3,
+    "description": "French storming of Babemba Traoré's fortress at Sikasso, ending the Kénédougou kingdom.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Toucouleur Wars (Umarian Jihad)",
+    "startYear": 1852,
+    "endYear": 1864,
+    "coordinates": [
+      -7.0,
+      14.5
+    ],
+    "locations": [
+      "Futa Toro",
+      "Kaarta",
+      "Segou",
+      "Macina"
+    ],
+    "countries": [
+      "Toucouleur Empire",
+      "Bambara Kingdom of Segou",
+      "Kaarta",
+      "Macina Empire",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Toucouleur_Empire",
+    "importance": 5,
+    "description": "Al-Hajj Umar Tall's jihad sweeping the western Sudan from Futa Toro across Kaarta, Segou, and Macina.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Siege of Medine",
+    "startYear": 1857,
+    "endYear": 1857,
+    "coordinates": [
+      -11.4,
+      14.4
+    ],
+    "locations": [
+      "Medine",
+      "Senegal River"
+    ],
+    "countries": [
+      "Toucouleur Empire",
+      "France",
+      "Khasso"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Medine",
+    "importance": 3,
+    "description": "Faidherbe's relief of the French fort at Medine halted Umar Tall's drive on the Senegal valley.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Segou",
+    "startYear": 1861,
+    "endYear": 1861,
+    "coordinates": [
+      -6.27,
+      13.43
+    ],
+    "locations": [
+      "Segou",
+      "Niger River"
+    ],
+    "countries": [
+      "Toucouleur Empire",
+      "Bambara Kingdom of Segou"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bambara_Empire",
+    "importance": 3,
+    "description": "Umar Tall's capture of Segou ended the Bambara Empire of Segou.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Hamdullahi",
+    "startYear": 1862,
+    "endYear": 1862,
+    "coordinates": [
+      -3.95,
+      14.18
+    ],
+    "locations": [
+      "Hamdullahi",
+      "Macina"
+    ],
+    "countries": [
+      "Toucouleur Empire",
+      "Macina Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Massina_Empire",
+    "importance": 3,
+    "description": "Umar Tall destroyed Ahmadu III's Macina Empire and took Hamdullahi, the Fulani jihadist capital.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Deguembéré",
+    "startYear": 1864,
+    "endYear": 1864,
+    "coordinates": [
+      -3.7,
+      14.6
+    ],
+    "locations": [
+      "Deguembéré",
+      "Bandiagara"
+    ],
+    "countries": [
+      "Toucouleur Empire",
+      "Macina"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Umar_Tall",
+    "importance": 3,
+    "description": "Umar Tall's death in a cave near Bandiagara during a Macina-Fulani revolt against Toucouleur rule.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "French Conquest of the Toucouleur Empire",
+    "startYear": 1890,
+    "endYear": 1893,
+    "coordinates": [
+      -5.0,
+      14.0
+    ],
+    "locations": [
+      "Segou",
+      "Bandiagara",
+      "Nioro"
+    ],
+    "countries": [
+      "France",
+      "Toucouleur Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Tukulor_Empire",
+    "importance": 4,
+    "description": "Colonels Archinard and Combes's campaigns against Ahmadu Tall taking Segou, Nioro, and Bandiagara.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Macina Jihad",
+    "startYear": 1818,
+    "endYear": 1820,
+    "coordinates": [
+      -4.0,
+      14.5
+    ],
+    "locations": [
+      "Macina",
+      "Hamdullahi",
+      "Djenné"
+    ],
+    "countries": [
+      "Macina Empire",
+      "Bambara Kingdom of Segou",
+      "Pashalik of Timbuktu"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Massina_Empire",
+    "importance": 4,
+    "description": "Seku Amadu's Fulani jihad founding the Macina Empire after victories over the Bambara and Arma at Noukouma.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Noukouma",
+    "startYear": 1818,
+    "endYear": 1818,
+    "coordinates": [
+      -5.3,
+      13.7
+    ],
+    "locations": [
+      "Noukouma",
+      "inland Niger Delta"
+    ],
+    "countries": [
+      "Macina Empire",
+      "Bambara Kingdom of Segou"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Massina_Empire",
+    "importance": 3,
+    "description": "Seku Amadu's victory over the Bambara of Segou that founded the Macina jihad state.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Futa Jallon Jihad",
+    "startYear": 1725,
+    "endYear": 1750,
+    "coordinates": [
+      -11.5,
+      11.0
+    ],
+    "locations": [
+      "Futa Jallon",
+      "Timbo",
+      "Fugumba"
+    ],
+    "countries": [
+      "Imamate of Futa Jallon"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Imamate_of_Futa_Jallon",
+    "importance": 4,
+    "description": "Karamokho Alfa and Ibrahim Sori's Fulani jihad that founded the Imamate of Futa Jallon in the Guinea highlands.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Talansan",
+    "startYear": 1727,
+    "endYear": 1727,
+    "coordinates": [
+      -12.0,
+      11.0
+    ],
+    "locations": [
+      "Talansan",
+      "Futa Jallon"
+    ],
+    "countries": [
+      "Imamate of Futa Jallon",
+      "Sosoe/Pulli"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Imamate_of_Futa_Jallon",
+    "importance": 3,
+    "description": "Inaugural victory of the Futa Jallon jihad over the animist Sosoe.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Futa Toro Jihad",
+    "startYear": 1769,
+    "endYear": 1776,
+    "coordinates": [
+      -13.8,
+      16.4
+    ],
+    "locations": [
+      "Futa Toro",
+      "Senegal River"
+    ],
+    "countries": [
+      "Imamate of Futa Toro",
+      "Denanke Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Imamate_of_Futa_Toro",
+    "importance": 4,
+    "description": "Suleyman Bal and Abdul Kader's torodbe revolution overthrowing the Denanke and founding the Imamate of Futa Toro.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Bondu Jihad",
+    "startYear": 1690,
+    "endYear": 1700,
+    "coordinates": [
+      -12.7,
+      14.5
+    ],
+    "locations": [
+      "Bondu",
+      "Bambuk"
+    ],
+    "countries": [
+      "Bondu",
+      "Malinke states"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bundu_(state)",
+    "importance": 2,
+    "description": "Malik Sy's foundation of the Muslim state of Bondu through war against the Malinke chiefs of the upper Gambia.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Soninke–Marabout Wars",
+    "startYear": 1850,
+    "endYear": 1887,
+    "coordinates": [
+      -15.5,
+      13.3
+    ],
+    "locations": [
+      "Senegambia",
+      "Saloum",
+      "Niumi"
+    ],
+    "countries": [
+      "Marabout states",
+      "Soninke kingdoms",
+      "United Kingdom",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Soninke-Marabout_wars",
+    "importance": 3,
+    "description": "Long Muslim-pagan civil wars across Senegambia from Maba Diakhou Bâ's jihad to the fall of Fodé Kaba.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Maba Diakhou's Jihad",
+    "startYear": 1861,
+    "endYear": 1867,
+    "coordinates": [
+      -16.0,
+      14.0
+    ],
+    "locations": [
+      "Saloum",
+      "Sine",
+      "Rip"
+    ],
+    "countries": [
+      "Marabout state of Rip",
+      "Sine",
+      "Saloum",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Maba_Diakhou_B%C3%A2",
+    "importance": 3,
+    "description": "Maba Diakhou Bâ's Muslim jihad in the Saloum and Rip, ending at the Battle of Somb where the Sine king Maad a Sinig Coumba Ndoffene Famak Joof killed him.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Somb",
+    "startYear": 1867,
+    "endYear": 1867,
+    "coordinates": [
+      -16.4,
+      14.1
+    ],
+    "locations": [
+      "Somb",
+      "Sine"
+    ],
+    "countries": [
+      "Kingdom of Sine",
+      "Marabout state of Rip"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Fandane-Thiouthioune",
+    "importance": 3,
+    "description": "Serer king Coumba Ndoffene Famak's victory over the marabout army of Maba Diakhou at Fandane-Thiouthioune.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Lat Dior's Resistance",
+    "startYear": 1869,
+    "endYear": 1886,
+    "coordinates": [
+      -16.5,
+      14.7
+    ],
+    "locations": [
+      "Cayor",
+      "Dakar–Saint-Louis railway"
+    ],
+    "countries": [
+      "Kingdom of Cayor",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Lat_Dior",
+    "importance": 3,
+    "description": "Damel Lat Dior Ngoné Latyr Diop's wars against the French in Cayor, ending at the Battle of Dékheulé.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Dékheulé",
+    "startYear": 1886,
+    "endYear": 1886,
+    "coordinates": [
+      -16.5,
+      14.9
+    ],
+    "locations": [
+      "Dékheulé",
+      "Cayor"
+    ],
+    "countries": [
+      "France",
+      "Kingdom of Cayor"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Lat_Dior",
+    "importance": 3,
+    "description": "French defeat of Lat Dior at Dékheulé, killing the Damel and ending Cayor's independence.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Hubbu Movement",
+    "startYear": 1850,
+    "endYear": 1883,
+    "coordinates": [
+      -12.0,
+      10.5
+    ],
+    "locations": [
+      "Boketto",
+      "Futa Jallon"
+    ],
+    "countries": [
+      "Hubbu",
+      "Imamate of Futa Jallon",
+      "Wassoulou Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Imamate_of_Futa_Jallon",
+    "importance": 2,
+    "description": "Mamadou Juhe's egalitarian Muslim revolt against the aristocracy of the Futa Jallon, crushed by Samori Touré.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Owu War",
+    "startYear": 1821,
+    "endYear": 1825,
+    "coordinates": [
+      3.8,
+      7.5
+    ],
+    "locations": [
+      "Owu",
+      "Yorubaland"
+    ],
+    "countries": [
+      "Owu",
+      "Ife",
+      "Ijebu"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Owu_War",
+    "importance": 3,
+    "description": "Destruction of the Yoruba town of Owu by an Ife–Ijebu coalition, opening the cycle of Yoruba civil wars.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Yoruba Civil Wars",
+    "startYear": 1817,
+    "endYear": 1893,
+    "coordinates": [
+      4.5,
+      7.7
+    ],
+    "locations": [
+      "Old Oyo",
+      "Ilorin",
+      "Ibadan",
+      "Abeokuta",
+      "Ekiti"
+    ],
+    "countries": [
+      "Oyo Empire",
+      "Ilorin",
+      "Ibadan",
+      "Egba",
+      "Ijaye",
+      "Ekitiparapo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Yoruba_Wars",
+    "importance": 5,
+    "description": "Umbrella for the century of inter-Yoruba conflict that destroyed Old Oyo and produced Ibadan, Abeokuta, and the Ekitiparapo confederation.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Fall of Old Oyo (Oyo–Ilorin War)",
+    "startYear": 1820,
+    "endYear": 1836,
+    "coordinates": [
+      4.55,
+      8.5
+    ],
+    "locations": [
+      "Oyo-Ile",
+      "Ilorin"
+    ],
+    "countries": [
+      "Oyo Empire",
+      "Ilorin Emirate",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Oyo_Empire",
+    "importance": 4,
+    "description": "Afonja's revolt and the Fulani-led conquest of Ilorin that destroyed Old Oyo and triggered the Yoruba migrations south.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Osogbo",
+    "startYear": 1840,
+    "endYear": 1840,
+    "coordinates": [
+      4.55,
+      7.78
+    ],
+    "locations": [
+      "Osogbo"
+    ],
+    "countries": [
+      "Ibadan",
+      "Ilorin Emirate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Osogbo",
+    "importance": 4,
+    "description": "Ibadan's defeat of Ilorin halted Sokoto's southward jihad into Yorubaland.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Ijaye War",
+    "startYear": 1860,
+    "endYear": 1862,
+    "coordinates": [
+      3.55,
+      7.6
+    ],
+    "locations": [
+      "Ijaye",
+      "Ibadan",
+      "Abeokuta"
+    ],
+    "countries": [
+      "Ibadan",
+      "Ijaye",
+      "Egba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ijaye_War",
+    "importance": 3,
+    "description": "Ibadan–Ijaye war that destroyed Kurunmi's town of Ijaye and confirmed Ibadan as the dominant Yoruba power.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Kiriji War (Ekitiparapo)",
+    "startYear": 1877,
+    "endYear": 1893,
+    "coordinates": [
+      4.95,
+      7.7
+    ],
+    "locations": [
+      "Igbajo",
+      "Mesin-Ipole",
+      "Kiriji"
+    ],
+    "countries": [
+      "Ekitiparapo",
+      "Ibadan"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kiriji_War",
+    "importance": 4,
+    "description": "Sixteen-year stalemate between Ibadan and the Ekitiparapo coalition that ended in British-brokered peace and the absorption of Yorubaland into Lagos Colony.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Egba–Dahomey Wars",
+    "startYear": 1844,
+    "endYear": 1864,
+    "coordinates": [
+      3.35,
+      7.15
+    ],
+    "locations": [
+      "Abeokuta",
+      "Dahomey"
+    ],
+    "countries": [
+      "Egba",
+      "Dahomey"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Abeokuta",
+    "importance": 3,
+    "description": "Dahomean invasions of Abeokuta repelled by the Egba at the celebrated battles of 1851 and 1864.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Abeokuta (1851)",
+    "startYear": 1851,
+    "endYear": 1851,
+    "coordinates": [
+      3.35,
+      7.15
+    ],
+    "locations": [
+      "Abeokuta",
+      "Olumo Rock"
+    ],
+    "countries": [
+      "Egba",
+      "Dahomey"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Abeokuta_(1851)",
+    "importance": 3,
+    "description": "Egba defeat of Ghezo's Dahomean invasion at Abeokuta.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Bombardment of Lagos",
+    "startYear": 1851,
+    "endYear": 1851,
+    "coordinates": [
+      3.4,
+      6.45
+    ],
+    "locations": [
+      "Lagos Island"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Lagos Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bombardment_of_Lagos",
+    "importance": 3,
+    "description": "Royal Navy bombardment that deposed Oba Kosoko and installed Akitoye, paving the way for British annexation of Lagos.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "British Annexation of Lagos",
+    "startYear": 1861,
+    "endYear": 1861,
+    "coordinates": [
+      3.4,
+      6.45
+    ],
+    "locations": [
+      "Lagos"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Lagos Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Lagos_Treaty_of_Cession",
+    "importance": 3,
+    "description": "Cession of Lagos by Oba Dosunmu under British naval pressure, founding the Lagos Colony.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Sokoto Jihad of Usman dan Fodio",
+    "startYear": 1804,
+    "endYear": 1808,
+    "coordinates": [
+      5.25,
+      13.07
+    ],
+    "locations": [
+      "Gobir",
+      "Sokoto",
+      "Hausaland"
+    ],
+    "countries": [
+      "Sokoto Caliphate",
+      "Gobir",
+      "Hausa states"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Fulani_War",
+    "importance": 5,
+    "description": "Usman dan Fodio's Fulani jihad overthrowing the Hausa kingdoms and founding the Sokoto Caliphate.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Tsuntua",
+    "startYear": 1804,
+    "endYear": 1804,
+    "coordinates": [
+      6.6,
+      12.7
+    ],
+    "locations": [
+      "Tsuntua",
+      "Gobir"
+    ],
+    "countries": [
+      "Sokoto Caliphate",
+      "Gobir"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Fulani_War",
+    "importance": 2,
+    "description": "Heavy defeat of Usman dan Fodio's followers by Yunfa's Gobir army early in the Sokoto jihad.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Tabkin Kwatto",
+    "startYear": 1804,
+    "endYear": 1804,
+    "coordinates": [
+      5.3,
+      13.2
+    ],
+    "locations": [
+      "Kwatto",
+      "Gobir"
+    ],
+    "countries": [
+      "Sokoto Caliphate",
+      "Gobir"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Fulani_War",
+    "importance": 3,
+    "description": "Usman dan Fodio's first decisive battlefield victory over Gobir launched the conquest of Hausaland.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Bornu Resistance to the Sokoto Jihad",
+    "startYear": 1808,
+    "endYear": 1812,
+    "coordinates": [
+      13.1,
+      12.8
+    ],
+    "locations": [
+      "Ngazargamu",
+      "Lake Chad"
+    ],
+    "countries": [
+      "Bornu Empire",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Muhammad_al-Amin_al-Kanemi",
+    "importance": 3,
+    "description": "Muhammad al-Kanemi's mobilization that drove Sokoto forces out of Bornu and re-founded the Bornu state at Kukawa.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Adamawa Jihad",
+    "startYear": 1809,
+    "endYear": 1847,
+    "coordinates": [
+      12.4,
+      9.3
+    ],
+    "locations": [
+      "Yola",
+      "Adamawa Plateau"
+    ],
+    "countries": [
+      "Adamawa Emirate",
+      "Bata",
+      "Fali",
+      "Mboum"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Adamawa_Emirate",
+    "importance": 3,
+    "description": "Modibo Adama's Fulani jihad extending Sokoto authority into northern Cameroon and the Benue valley.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Hadejia Rebellion",
+    "startYear": 1848,
+    "endYear": 1865,
+    "coordinates": [
+      10.05,
+      12.45
+    ],
+    "locations": [
+      "Hadejia"
+    ],
+    "countries": [
+      "Hadejia Emirate",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Buhari_(Emir_of_Hadejia)",
+    "importance": 2,
+    "description": "Buhari dan Umaru's long revolt against the Sokoto Caliphate from Hadejia.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kano Civil War",
+    "startYear": 1893,
+    "endYear": 1895,
+    "coordinates": [
+      8.52,
+      12.0
+    ],
+    "locations": [
+      "Kano",
+      "Tukur emirate"
+    ],
+    "countries": [
+      "Kano Emirate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Basasa",
+    "importance": 3,
+    "description": "Basasa succession war in Kano on the eve of British conquest.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Anglo-Sokoto War",
+    "startYear": 1903,
+    "endYear": 1903,
+    "coordinates": [
+      7.3,
+      12.0
+    ],
+    "locations": [
+      "Kano",
+      "Sokoto",
+      "Burmi"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sokoto_Caliphate",
+    "importance": 4,
+    "description": "Frederick Lugard's campaigns capturing Kano and Sokoto and killing Caliph Attahiru I at the Battle of Burmi.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Burmi",
+    "startYear": 1903,
+    "endYear": 1903,
+    "coordinates": [
+      11.0,
+      10.5
+    ],
+    "locations": [
+      "Burmi",
+      "Gombe"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Burmi",
+    "importance": 3,
+    "description": "Final stand of Caliph Attahiru I against British forces after the fall of Sokoto.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Satiru Revolt",
+    "startYear": 1906,
+    "endYear": 1906,
+    "coordinates": [
+      5.4,
+      13.1
+    ],
+    "locations": [
+      "Satiru",
+      "Sokoto"
+    ],
+    "countries": [
+      "Mahdists of Satiru",
+      "United Kingdom",
+      "Sokoto Caliphate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Satiru",
+    "importance": 3,
+    "description": "Mahdist uprising at Satiru crushed jointly by British and Caliphate forces.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Kaarta Wars",
+    "startYear": 1753,
+    "endYear": 1854,
+    "coordinates": [
+      -9.7,
+      15.0
+    ],
+    "locations": [
+      "Kaarta",
+      "Nioro",
+      "Goumbou"
+    ],
+    "countries": [
+      "Bambara Kingdom of Kaarta",
+      "Bambara Kingdom of Segou",
+      "Toucouleur Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kaarta",
+    "importance": 3,
+    "description": "Long arc of Massassi Bambara wars from Kaarta's foundation through its destruction by Umar Tall in 1854.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Bambara Empire of Segou Wars",
+    "startYear": 1712,
+    "endYear": 1861,
+    "coordinates": [
+      -6.27,
+      13.43
+    ],
+    "locations": [
+      "Segou",
+      "Niger River"
+    ],
+    "countries": [
+      "Bambara Kingdom of Segou",
+      "Macina",
+      "Kaarta",
+      "Toucouleur Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bambara_Empire",
+    "importance": 3,
+    "description": "Mamari Coulibaly's foundation wars and the Segou Bambara's later conflicts with Macina, Kaarta, and Umar Tall.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Kong Empire Wars",
+    "startYear": 1710,
+    "endYear": 1898,
+    "coordinates": [
+      -4.6,
+      9.15
+    ],
+    "locations": [
+      "Kong",
+      "Bobo-Dioulasso"
+    ],
+    "countries": [
+      "Kong Empire",
+      "Wassoulou Empire",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kong_Empire",
+    "importance": 3,
+    "description": "Wars of Sékou Watara's Dyula Kong empire from its foundation through its destruction by Samori Touré in 1897.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Samori's Destruction of Kong",
+    "startYear": 1897,
+    "endYear": 1898,
+    "coordinates": [
+      -4.6,
+      9.15
+    ],
+    "locations": [
+      "Kong"
+    ],
+    "countries": [
+      "Wassoulou Empire",
+      "Kong Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kong_Empire",
+    "importance": 3,
+    "description": "Samori Touré's sack of Kong on the eve of his French capture.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Mossi–Songhai Wars",
+    "startYear": 1480,
+    "endYear": 1498,
+    "coordinates": [
+      -1.5,
+      12.5
+    ],
+    "locations": [
+      "Yatenga",
+      "Walata",
+      "Bandiagara"
+    ],
+    "countries": [
+      "Mossi kingdoms",
+      "Songhai Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mossi_Kingdoms",
+    "importance": 3,
+    "description": "Sonni Ali's and Askia Muhammad's campaigns against the Mossi, including Askia's 1497 jihad declared against Naaba Nasere.",
+    "era": "Medieval",
+    "confidence": "medium"
+  },
+  {
+    "name": "French Conquest of the Mossi",
+    "startYear": 1896,
+    "endYear": 1897,
+    "coordinates": [
+      -1.52,
+      12.37
+    ],
+    "locations": [
+      "Ouagadougou",
+      "Yatenga"
+    ],
+    "countries": [
+      "France",
+      "Mossi kingdoms"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mossi_Kingdoms",
+    "importance": 3,
+    "description": "Voulet and Cazemajou's columns captured Ouagadougou and ended Mogho Naaba Wobogo's independence.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Volta–Bani War",
+    "startYear": 1915,
+    "endYear": 1917,
+    "coordinates": [
+      -3.0,
+      12.3
+    ],
+    "locations": [
+      "Bani",
+      "Volta",
+      "Dédougou"
+    ],
+    "countries": [
+      "France",
+      "Volta–Bani Federation"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Volta-Bani_War",
+    "importance": 4,
+    "description": "Mass anti-French uprising in present-day Burkina Faso and Mali during the First World War.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Kaocen Revolt",
+    "startYear": 1916,
+    "endYear": 1917,
+    "coordinates": [
+      8.0,
+      17.0
+    ],
+    "locations": [
+      "Aïr",
+      "Agadez"
+    ],
+    "countries": [
+      "France",
+      "Sanusi-aligned Tuareg"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kaocen_Revolt",
+    "importance": 4,
+    "description": "Sanusi-backed Tuareg uprising in the Aïr mountains besieging the French garrison at Agadez.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Adrar Campaign (Mauritania)",
+    "startYear": 1908,
+    "endYear": 1909,
+    "coordinates": [
+      -12.7,
+      20.5
+    ],
+    "locations": [
+      "Adrar",
+      "Atar",
+      "Chinguetti"
+    ],
+    "countries": [
+      "France",
+      "Emirate of Adrar"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Emirate_of_Adrar",
+    "importance": 3,
+    "description": "French conquest of the Mauritanian Adrar under Colonel Gouraud, ending the emirate's independence.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Pacification of Mauritania",
+    "startYear": 1900,
+    "endYear": 1934,
+    "coordinates": [
+      -10.0,
+      20.0
+    ],
+    "locations": [
+      "Trarza",
+      "Brakna",
+      "Adrar",
+      "Hodh"
+    ],
+    "countries": [
+      "France",
+      "Mauritanian emirates"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/French_conquest_of_Mauritania",
+    "importance": 3,
+    "description": "Long French campaign subduing the Trarza, Brakna, Adrar, and Hodh emirates of Mauritania.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Hut Tax War",
+    "startYear": 1898,
+    "endYear": 1898,
+    "coordinates": [
+      -12.0,
+      8.0
+    ],
+    "locations": [
+      "Mende country",
+      "Temne country",
+      "Sierra Leone Protectorate"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Mende",
+      "Temne"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Hut_Tax_War_of_1898",
+    "importance": 4,
+    "description": "Temne and Mende uprising against the British hut tax led by Bai Bureh.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Asante–Gyaman Wars",
+    "startYear": 1739,
+    "endYear": 1818,
+    "coordinates": [
+      -2.95,
+      7.85
+    ],
+    "locations": [
+      "Gyaman",
+      "Bondoukou"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Gyaman"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Gyaman",
+    "importance": 3,
+    "description": "Asante wars subjugating the Gyaman kingdom across what is now Côte d'Ivoire and northern Ghana.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Asante–Dagomba War",
+    "startYear": 1744,
+    "endYear": 1745,
+    "coordinates": [
+      -0.85,
+      9.4
+    ],
+    "locations": [
+      "Yendi",
+      "Dagbon"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Dagbon"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Dagbon_Kingdom",
+    "importance": 2,
+    "description": "Opoku Ware's invasion of Dagbon that subjected Yendi to Asante tribute.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Egba Revolt (Fall of Old Oyo Vassals)",
+    "startYear": 1796,
+    "endYear": 1830,
+    "coordinates": [
+      3.35,
+      7.15
+    ],
+    "locations": [
+      "Egba forest",
+      "Abeokuta"
+    ],
+    "countries": [
+      "Egba",
+      "Oyo Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Egba_people",
+    "importance": 2,
+    "description": "Lisabi's revolt and the Egba refoundation at Abeokuta out of the wreck of Oyo.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Anglo-Aro War",
+    "startYear": 1901,
+    "endYear": 1902,
+    "coordinates": [
+      7.92,
+      5.39
+    ],
+    "locations": [
+      "Arochukwu",
+      "Bende"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Aro Confederacy"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Aro_War",
+    "importance": 3,
+    "description": "British expedition that destroyed the Aro Long Juju and broke the Aro Confederacy.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Ekumeku Movement",
+    "startYear": 1883,
+    "endYear": 1914,
+    "coordinates": [
+      6.4,
+      6.1
+    ],
+    "locations": [
+      "Asaba",
+      "Anioma"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Anioma Igbo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ekumeku_Movement",
+    "importance": 3,
+    "description": "Anioma Igbo guerrilla resistance to the Royal Niger Company and British colonial authority west of the Niger.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Anglo-Egba War",
+    "startYear": 1914,
+    "endYear": 1914,
+    "coordinates": [
+      3.35,
+      7.15
+    ],
+    "locations": [
+      "Abeokuta",
+      "Egba"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Egba United Government"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Egba_United_Government",
+    "importance": 2,
+    "description": "British military suppression of the Egba United Government, ending Abeokuta's de facto autonomy.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Adubi War",
+    "startYear": 1918,
+    "endYear": 1918,
+    "coordinates": [
+      3.0,
+      7.0
+    ],
+    "locations": [
+      "Egbaland"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Egba"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Adubi_War",
+    "importance": 2,
+    "description": "Egba tax revolt against indirect-rule chiefs and the colonial government.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Aba Women's War",
+    "startYear": 1929,
+    "endYear": 1929,
+    "coordinates": [
+      7.4,
+      5.1
+    ],
+    "locations": [
+      "Aba",
+      "Owerri",
+      "Calabar"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Igbo women",
+      "Ibibio women"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Aba_Women%27s_Riots",
+    "importance": 3,
+    "description": "Mass women's uprising in southeastern Nigeria against warrant chiefs and colonial taxation.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Bai Bureh's War",
+    "startYear": 1898,
+    "endYear": 1898,
+    "coordinates": [
+      -12.0,
+      8.6
+    ],
+    "locations": [
+      "Karene",
+      "Port Loko"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Temne"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bai_Bureh",
+    "importance": 3,
+    "description": "Bai Bureh's Temne guerrilla campaign forming the northern theatre of the Hut Tax War.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Liberian–Grebo War",
+    "startYear": 1875,
+    "endYear": 1910,
+    "coordinates": [
+      -7.7,
+      4.4
+    ],
+    "locations": [
+      "Cape Palmas",
+      "Maryland County"
+    ],
+    "countries": [
+      "Liberia",
+      "Grebo peoples"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Grebo_people",
+    "importance": 2,
+    "description": "Series of Liberian wars subduing the Grebo of Cape Palmas.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kru Wars",
+    "startYear": 1915,
+    "endYear": 1916,
+    "coordinates": [
+      -9.1,
+      5.0
+    ],
+    "locations": [
+      "Kru Coast",
+      "Sasstown"
+    ],
+    "countries": [
+      "Liberia",
+      "Kru peoples"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kru_people",
+    "importance": 2,
+    "description": "Liberian government campaign against the Kru of the Sasstown coast, supported by U.S. naval landings.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kamerun Campaign",
+    "startYear": 1914,
+    "endYear": 1916,
+    "coordinates": [
+      12.5,
+      5.0
+    ],
+    "locations": [
+      "Douala",
+      "Yaoundé",
+      "Mora"
+    ],
+    "countries": [
+      "German Empire",
+      "United Kingdom",
+      "France",
+      "Belgium"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kamerun_campaign",
+    "importance": 4,
+    "description": "Allied conquest of German Kamerun in the First World War.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Togoland Campaign",
+    "startYear": 1914,
+    "endYear": 1914,
+    "coordinates": [
+      1.2,
+      6.5
+    ],
+    "locations": [
+      "Lomé",
+      "Kamina"
+    ],
+    "countries": [
+      "German Empire",
+      "United Kingdom",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Togoland_campaign",
+    "importance": 3,
+    "description": "British–French conquest of German Togoland in August 1914.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Bafut Wars",
+    "startYear": 1891,
+    "endYear": 1907,
+    "coordinates": [
+      10.1,
+      6.1
+    ],
+    "locations": [
+      "Bafut",
+      "Bamenda"
+    ],
+    "countries": [
+      "German Empire",
+      "Bafut"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bafut",
+    "importance": 2,
+    "description": "German colonial wars against Fon Abumbi I of Bafut in the Cameroonian Grassfields.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Nso–German War",
+    "startYear": 1906,
+    "endYear": 1906,
+    "coordinates": [
+      10.7,
+      6.2
+    ],
+    "locations": [
+      "Kumbo",
+      "Nso"
+    ],
+    "countries": [
+      "German Empire",
+      "Nso Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Nso%27_people",
+    "importance": 2,
+    "description": "German conquest of the Nso kingdom in the Cameroonian Grassfields.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Anglo-Ijebu War",
+    "startYear": 1892,
+    "endYear": 1892,
+    "coordinates": [
+      3.9,
+      6.8
+    ],
+    "locations": [
+      "Imagbon",
+      "Ijebu-Ode"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Ijebu Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ijebu_Kingdom",
+    "importance": 3,
+    "description": "Maxim-gun rout of the Ijebu army at Imagbon, opening the interior of Yorubaland to British power.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Mahdist Movement in Hausaland (Hayatu)",
+    "startYear": 1881,
+    "endYear": 1898,
+    "coordinates": [
+      11.5,
+      9.5
+    ],
+    "locations": [
+      "Adamawa",
+      "Balda"
+    ],
+    "countries": [
+      "Hayatu's Mahdists",
+      "Sokoto Caliphate",
+      "Rabih's empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Hayatu_ibn_Sa%27id",
+    "importance": 2,
+    "description": "Hayatu ibn Sa'id's Mahdist preaching and his alliance and war with Rabih in northern Adamawa.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "First Tuareg Rebellion (Mali)",
+    "startYear": 1962,
+    "endYear": 1964,
+    "coordinates": [
+      1.5,
+      19.0
+    ],
+    "locations": [
+      "Adrar des Ifoghas",
+      "Kidal"
+    ],
+    "countries": [
+      "Mali",
+      "Tuareg"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1962%E2%80%931964_Tuareg_rebellion",
+    "importance": 3,
+    "description": "First post-independence Tuareg uprising in northern Mali, suppressed by the Keïta government.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Second Tuareg Rebellion",
+    "startYear": 1990,
+    "endYear": 1995,
+    "coordinates": [
+      1.0,
+      19.5
+    ],
+    "locations": [
+      "Northern Mali",
+      "Northern Niger"
+    ],
+    "countries": [
+      "Mali",
+      "Niger",
+      "Tuareg movements"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1990%E2%80%931995_Tuareg_rebellion",
+    "importance": 3,
+    "description": "Tuareg uprisings in Mali and Niger ending in the National Pact (1992) and Ouagadougou Accord (1995).",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Third Tuareg Rebellion (Niger 2007–09)",
+    "startYear": 2007,
+    "endYear": 2009,
+    "coordinates": [
+      7.9,
+      17.5
+    ],
+    "locations": [
+      "Aïr",
+      "Agadez"
+    ],
+    "countries": [
+      "Niger",
+      "MNJ",
+      "Tuareg"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Tuareg_Rebellion",
+    "importance": 2,
+    "description": "MNJ-led Tuareg uprising in northern Niger over uranium revenues and autonomy.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Northern Mali Conflict (2012– )",
+    "startYear": 2012,
+    "endYear": null,
+    "coordinates": [
+      -3.0,
+      17.5
+    ],
+    "locations": [
+      "Kidal",
+      "Gao",
+      "Timbuktu"
+    ],
+    "countries": [
+      "Mali",
+      "MNLA",
+      "Ansar Dine",
+      "AQIM",
+      "MUJAO",
+      "JNIM",
+      "France",
+      "Wagner Group"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mali_War",
+    "importance": 5,
+    "description": "MNLA-Tuareg and jihadist rebellion that triggered French Operation Serval and now Wagner-backed counter-insurgency.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Serval",
+    "startYear": 2013,
+    "endYear": 2014,
+    "coordinates": [
+      -3.0,
+      16.5
+    ],
+    "locations": [
+      "Gao",
+      "Timbuktu",
+      "Kidal",
+      "Konna"
+    ],
+    "countries": [
+      "France",
+      "Mali",
+      "ECOWAS"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Serval",
+    "importance": 4,
+    "description": "French intervention halting the jihadist advance on Bamako and recapturing the northern Malian cities.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Barkhane",
+    "startYear": 2014,
+    "endYear": 2022,
+    "coordinates": [
+      0.0,
+      17.0
+    ],
+    "locations": [
+      "Mali",
+      "Niger",
+      "Burkina Faso",
+      "Chad",
+      "Mauritania"
+    ],
+    "countries": [
+      "France",
+      "G5 Sahel"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Barkhane",
+    "importance": 4,
+    "description": "French-led counter-terrorism operation across the G5 Sahel succeeding Serval, ending after the 2021–22 Bamako coups.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Konna",
+    "startYear": 2013,
+    "endYear": 2013,
+    "coordinates": [
+      -4.95,
+      14.95
+    ],
+    "locations": [
+      "Konna",
+      "Mopti"
+    ],
+    "countries": [
+      "France",
+      "Mali",
+      "Ansar Dine",
+      "MUJAO"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Konna",
+    "importance": 3,
+    "description": "Jihadist capture and French recapture of Konna that triggered Operation Serval.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Western Sahara War (Mauritania theatre)",
+    "startYear": 1975,
+    "endYear": 1979,
+    "coordinates": [
+      -13.0,
+      22.0
+    ],
+    "locations": [
+      "Tiris al-Gharbiya",
+      "Nouakchott",
+      "Zouerate"
+    ],
+    "countries": [
+      "Mauritania",
+      "Polisario Front"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Western_Sahara_War",
+    "importance": 3,
+    "description": "Mauritanian phase of the Western Sahara war, ending with Mauritania's withdrawal from Tiris al-Gharbiya.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Senegal–Mauritania Border War",
+    "startYear": 1989,
+    "endYear": 1991,
+    "coordinates": [
+      -15.0,
+      16.5
+    ],
+    "locations": [
+      "Senegal River valley",
+      "Dakar",
+      "Nouakchott"
+    ],
+    "countries": [
+      "Senegal",
+      "Mauritania"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Mauritania%E2%80%93Senegal_Border_War",
+    "importance": 3,
+    "description": "Communal pogroms and expulsions along the Senegal River following clashes between Mauritanian Moors and Senegalese farmers.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "PAIGC Insurgency in Portuguese Guinea",
+    "startYear": 1963,
+    "endYear": 1974,
+    "coordinates": [
+      -15.0,
+      12.0
+    ],
+    "locations": [
+      "Guinea-Bissau",
+      "Cape Verde"
+    ],
+    "countries": [
+      "Portugal",
+      "PAIGC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Guinea-Bissau_War_of_Independence",
+    "importance": 4,
+    "description": "Amílcar Cabral's PAIGC liberation war that ended Portuguese rule in Guinea-Bissau and Cape Verde.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Cameroon UPC Insurgency",
+    "startYear": 1955,
+    "endYear": 1971,
+    "coordinates": [
+      10.5,
+      5.5
+    ],
+    "locations": [
+      "Bassa country",
+      "Bamileke region",
+      "Douala"
+    ],
+    "countries": [
+      "France",
+      "Cameroon",
+      "Union des populations du Cameroun"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bamileke_War",
+    "importance": 4,
+    "description": "UPC-led Bamileke and Bassa insurgency against France and the Ahidjo government, sometimes called the Bamileke War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Maitatsine Riots",
+    "startYear": 1980,
+    "endYear": 1985,
+    "coordinates": [
+      8.5,
+      12.0
+    ],
+    "locations": [
+      "Kano",
+      "Maiduguri",
+      "Yola"
+    ],
+    "countries": [
+      "Nigeria",
+      "Maitatsine movement"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Maitatsine",
+    "importance": 3,
+    "description": "Series of millenarian uprisings in northern Nigeria under Muhammadu Marwa Maitatsine that killed thousands.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Boko Haram Insurgency",
+    "startYear": 2009,
+    "endYear": null,
+    "coordinates": [
+      13.16,
+      11.85
+    ],
+    "locations": [
+      "Borno",
+      "Yobe",
+      "Adamawa",
+      "Diffa",
+      "Far North Cameroon",
+      "Lake Chad"
+    ],
+    "countries": [
+      "Nigeria",
+      "Cameroon",
+      "Chad",
+      "Niger",
+      "Boko Haram",
+      "ISWAP"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Boko_Haram_insurgency",
+    "importance": 5,
+    "description": "Jihadist insurgency by Boko Haram and its ISWAP splinter across the Lake Chad basin.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Chibok Schoolgirls Kidnapping Operations",
+    "startYear": 2014,
+    "endYear": 2014,
+    "coordinates": [
+      12.85,
+      11.18
+    ],
+    "locations": [
+      "Chibok",
+      "Sambisa Forest"
+    ],
+    "countries": [
+      "Nigeria",
+      "Boko Haram"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Chibok_schoolgirls_kidnapping",
+    "importance": 3,
+    "description": "Boko Haram mass abduction at Chibok that internationalised the Lake Chad insurgency.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Niger Delta Conflict",
+    "startYear": 2004,
+    "endYear": null,
+    "coordinates": [
+      6.1,
+      4.8
+    ],
+    "locations": [
+      "Bayelsa",
+      "Rivers",
+      "Delta state"
+    ],
+    "countries": [
+      "Nigeria",
+      "MEND",
+      "NDPVF",
+      "Niger Delta Avengers"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Conflict_in_the_Niger_Delta",
+    "importance": 4,
+    "description": "Insurgency by MEND and successor groups over oil revenues and environmental destruction in the Niger Delta.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Ogoni Crisis",
+    "startYear": 1993,
+    "endYear": 1995,
+    "coordinates": [
+      7.3,
+      4.65
+    ],
+    "locations": [
+      "Ogoniland"
+    ],
+    "countries": [
+      "Nigeria",
+      "Ogoni (MOSOP)"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Ogoni_people",
+    "importance": 2,
+    "description": "MOSOP-led Ogoni protests and military repression culminating in the execution of Ken Saro-Wiwa.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Nigerian Sharia Riots",
+    "startYear": 2000,
+    "endYear": 2004,
+    "coordinates": [
+      8.5,
+      11.2
+    ],
+    "locations": [
+      "Kaduna",
+      "Kano",
+      "Jos"
+    ],
+    "countries": [
+      "Nigeria"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2000_Kaduna_riots",
+    "importance": 2,
+    "description": "Inter-religious riots in northern Nigeria over the extension of Sharia criminal law.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Plateau State Crisis",
+    "startYear": 2001,
+    "endYear": null,
+    "coordinates": [
+      9.93,
+      9.86
+    ],
+    "locations": [
+      "Jos",
+      "Plateau State"
+    ],
+    "countries": [
+      "Nigeria"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Jos_riots",
+    "importance": 3,
+    "description": "Recurring Christian–Muslim and Berom–Fulani communal violence around Jos.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Nigerian Bandit Conflict (North-West)",
+    "startYear": 2011,
+    "endYear": null,
+    "coordinates": [
+      6.8,
+      11.5
+    ],
+    "locations": [
+      "Zamfara",
+      "Katsina",
+      "Sokoto",
+      "Kaduna",
+      "Niger State"
+    ],
+    "countries": [
+      "Nigeria"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Banditry_in_Nigeria",
+    "importance": 3,
+    "description": "Armed-bandit and Fulani militia conflict across the Nigerian north-west.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Nigerian Farmer–Herder Conflict",
+    "startYear": 1999,
+    "endYear": null,
+    "coordinates": [
+      8.5,
+      9.0
+    ],
+    "locations": [
+      "Middle Belt",
+      "Benue",
+      "Plateau",
+      "Taraba",
+      "Nasarawa"
+    ],
+    "countries": [
+      "Nigeria"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Herder%E2%80%93farmer_conflicts_in_Nigeria",
+    "importance": 3,
+    "description": "Long-running Fulani herder–farmer violence across Nigeria's Middle Belt.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Mali 1968 Coup",
+    "startYear": 1968,
+    "endYear": 1968,
+    "coordinates": [
+      -8.0,
+      12.65
+    ],
+    "locations": [
+      "Bamako"
+    ],
+    "countries": [
+      "Mali"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1968_Malian_coup_d%27%C3%A9tat",
+    "importance": 2,
+    "description": "Military overthrow of Modibo Keïta by Moussa Traoré.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "2012 Malian Coup",
+    "startYear": 2012,
+    "endYear": 2012,
+    "coordinates": [
+      -8.0,
+      12.65
+    ],
+    "locations": [
+      "Bamako",
+      "Kati"
+    ],
+    "countries": [
+      "Mali"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2012_Malian_coup_d%27%C3%A9tat",
+    "importance": 3,
+    "description": "Sanogo-led mutiny that overthrew Amadou Toumani Touré as the north fell to MNLA and jihadists.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "2020 Malian Coup",
+    "startYear": 2020,
+    "endYear": 2020,
+    "coordinates": [
+      -8.0,
+      12.65
+    ],
+    "locations": [
+      "Bamako",
+      "Kati"
+    ],
+    "countries": [
+      "Mali"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2020_Malian_coup_d%27%C3%A9tat",
+    "importance": 3,
+    "description": "Colonel Assimi Goïta's overthrow of Ibrahim Boubacar Keïta, beginning the Sahel coup wave.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "2022 Burkina Faso Coups",
+    "startYear": 2022,
+    "endYear": 2022,
+    "coordinates": [
+      -1.52,
+      12.37
+    ],
+    "locations": [
+      "Ouagadougou"
+    ],
+    "countries": [
+      "Burkina Faso"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/January_2022_Burkina_Faso_coup_d%27%C3%A9tat",
+    "importance": 3,
+    "description": "Twin coups by Damiba and Traoré amid worsening jihadist violence in the country's north and east.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "2023 Nigerien Coup",
+    "startYear": 2023,
+    "endYear": 2023,
+    "coordinates": [
+      2.12,
+      13.51
+    ],
+    "locations": [
+      "Niamey"
+    ],
+    "countries": [
+      "Niger"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2023_Nigerien_coup_d%27%C3%A9tat",
+    "importance": 3,
+    "description": "Presidential Guard general Tchiani's overthrow of Mohamed Bazoum, deepening the Sahel security crisis.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Burkinabé Insurgency",
+    "startYear": 2015,
+    "endYear": null,
+    "coordinates": [
+      -1.0,
+      13.5
+    ],
+    "locations": [
+      "Sahel Region",
+      "Est Region",
+      "Boucle du Mouhoun"
+    ],
+    "countries": [
+      "Burkina Faso",
+      "JNIM",
+      "ISGS"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Jihadist_insurgency_in_Burkina_Faso",
+    "importance": 4,
+    "description": "JNIM and ISGS insurgency that has displaced millions and now controls large parts of rural Burkina Faso.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "First Ivorian Civil War",
+    "startYear": 2002,
+    "endYear": 2007,
+    "coordinates": [
+      -5.55,
+      6.85
+    ],
+    "locations": [
+      "Abidjan",
+      "Bouaké",
+      "Korhogo"
+    ],
+    "countries": [
+      "Ivory Coast",
+      "Forces Nouvelles",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Ivorian_Civil_War",
+    "importance": 4,
+    "description": "MPCI rebellion that split Côte d'Ivoire and triggered Opération Licorne and UN intervention.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Second Ivorian Civil War",
+    "startYear": 2010,
+    "endYear": 2011,
+    "coordinates": [
+      -5.55,
+      6.85
+    ],
+    "locations": [
+      "Abidjan",
+      "Yamoussoukro"
+    ],
+    "countries": [
+      "Ivory Coast",
+      "Forces Nouvelles",
+      "France",
+      "UN"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Ivorian_Civil_War",
+    "importance": 4,
+    "description": "Post-election war between forces loyal to Laurent Gbagbo and Alassane Ouattara, ended by French and UN intervention.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Bakassi Conflict",
+    "startYear": 1994,
+    "endYear": 2008,
+    "coordinates": [
+      8.5,
+      4.5
+    ],
+    "locations": [
+      "Bakassi Peninsula"
+    ],
+    "countries": [
+      "Nigeria",
+      "Cameroon"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bakassi",
+    "importance": 2,
+    "description": "Nigeria–Cameroon border dispute and intermittent fighting over the Bakassi peninsula, resolved by the ICJ.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Mali–Burkina Faso Border War (Agacher Strip)",
+    "startYear": 1985,
+    "endYear": 1985,
+    "coordinates": [
+      -1.5,
+      14.5
+    ],
+    "locations": [
+      "Agacher Strip"
+    ],
+    "countries": [
+      "Mali",
+      "Burkina Faso"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Agacher_Strip_War",
+    "importance": 2,
+    "description": "Brief Christmas War between Mali and Sankara's Burkina Faso over the mineral-rich Agacher Strip.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Toyota War",
+    "startYear": 1986,
+    "endYear": 1987,
+    "coordinates": [
+      16.0,
+      16.0
+    ],
+    "locations": [
+      "Tibesti",
+      "Aouzou Strip",
+      "Wadi Doum"
+    ],
+    "countries": [
+      "Chad",
+      "Libya"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Chadian%E2%80%93Libyan_War",
+    "importance": 4,
+    "description": "Final phase of the Chadian–Libyan war, where Chad's pickup-mounted forces routed Libya from the Aouzou Strip.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Chadian–Libyan War",
+    "startYear": 1978,
+    "endYear": 1987,
+    "coordinates": [
+      18.0,
+      19.0
+    ],
+    "locations": [
+      "Aouzou Strip",
+      "Faya-Largeau",
+      "Tibesti"
+    ],
+    "countries": [
+      "Chad",
+      "Libya",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Chadian%E2%80%93Libyan_War",
+    "importance": 4,
+    "description": "Long Chadian–Libyan war over the Aouzou Strip, decided by the 1987 Toyota War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "FROLINAT Insurgency",
+    "startYear": 1966,
+    "endYear": 1979,
+    "coordinates": [
+      18.0,
+      14.0
+    ],
+    "locations": [
+      "Tibesti",
+      "Borkou",
+      "Ennedi",
+      "Wadai"
+    ],
+    "countries": [
+      "Chad",
+      "FROLINAT"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/FROLINAT",
+    "importance": 3,
+    "description": "Sahel–Saharan rebellion that opened the long Chadian Civil War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of N'Djamena (1980)",
+    "startYear": 1979,
+    "endYear": 1980,
+    "coordinates": [
+      15.05,
+      12.13
+    ],
+    "locations": [
+      "N'Djamena"
+    ],
+    "countries": [
+      "Chad",
+      "GUNT factions"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_N%27Djamena_(1979)",
+    "importance": 3,
+    "description": "Battles between Hissène Habré and Goukouni Oueddei's factions for control of the Chadian capital.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Chadian Civil War (2005–10)",
+    "startYear": 2005,
+    "endYear": 2010,
+    "coordinates": [
+      20.0,
+      13.5
+    ],
+    "locations": [
+      "Eastern Chad",
+      "N'Djamena",
+      "Adré"
+    ],
+    "countries": [
+      "Chad",
+      "Sudan",
+      "UFR",
+      "FUC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Civil_war_in_Chad_(2005%E2%80%932010)",
+    "importance": 3,
+    "description": "Sudanese-backed rebel campaigns against Idriss Déby including the Battle of N'Djamena (2008).",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Tibu–Arab Conflict in Chad",
+    "startYear": 2019,
+    "endYear": null,
+    "coordinates": [
+      19.0,
+      18.0
+    ],
+    "locations": [
+      "Tibesti",
+      "Miski"
+    ],
+    "countries": [
+      "Chad"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Tibesti_Mountains",
+    "importance": 2,
+    "description": "Tubu mining and inter-communal violence in the Tibesti and the Chadian north.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Cameroonian Anglophone Crisis",
+    "startYear": 2016,
+    "endYear": null,
+    "coordinates": [
+      10.0,
+      5.95
+    ],
+    "locations": [
+      "Bamenda",
+      "Buea",
+      "Northwest Region",
+      "Southwest Region"
+    ],
+    "countries": [
+      "Cameroon",
+      "Ambazonia separatists"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglophone_Crisis",
+    "importance": 4,
+    "description": "Armed conflict between the Cameroonian government and Ambazonian separatists in the country's English-speaking regions.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Boko Haram Insurgency in Cameroon",
+    "startYear": 2014,
+    "endYear": null,
+    "coordinates": [
+      14.0,
+      11.0
+    ],
+    "locations": [
+      "Far North Region"
+    ],
+    "countries": [
+      "Cameroon",
+      "Boko Haram"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Boko_Haram_insurgency_in_Cameroon",
+    "importance": 3,
+    "description": "Boko Haram cross-border attacks and Cameroonian counter-insurgency in the Far North Region.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Lord's Resistance Army in CAR–Chad–Cameroon",
+    "startYear": 2008,
+    "endYear": 2017,
+    "coordinates": [
+      22.0,
+      7.0
+    ],
+    "locations": [
+      "Eastern Cameroon",
+      "Southern Chad"
+    ],
+    "countries": [
+      "Cameroon",
+      "Chad",
+      "Lord's Resistance Army"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Lord%27s_Resistance_Army_insurgency",
+    "importance": 1,
+    "description": "Spillover LRA attacks into eastern Cameroon and southern Chad as the group dispersed from northern Uganda.",
+    "era": "Post-1945",
+    "confidence": "low"
+  },
+  {
+    "name": "Diffa Insurgency",
+    "startYear": 2015,
+    "endYear": null,
+    "coordinates": [
+      12.6,
+      13.3
+    ],
+    "locations": [
+      "Diffa",
+      "Lake Chad"
+    ],
+    "countries": [
+      "Niger",
+      "Boko Haram",
+      "ISWAP"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Boko_Haram_insurgency_in_Niger",
+    "importance": 3,
+    "description": "Boko Haram and ISWAP attacks on Niger's Diffa region around Lake Chad.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Tillabéri Insurgency",
+    "startYear": 2017,
+    "endYear": null,
+    "coordinates": [
+      1.5,
+      14.5
+    ],
+    "locations": [
+      "Tillabéri",
+      "Tahoua"
+    ],
+    "countries": [
+      "Niger",
+      "ISGS",
+      "JNIM"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Jihadist_insurgency_in_Niger",
+    "importance": 3,
+    "description": "ISGS and JNIM violence across Niger's western Tillabéri region.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Casamance Conflict",
+    "startYear": 1982,
+    "endYear": null,
+    "coordinates": [
+      -16.0,
+      12.6
+    ],
+    "locations": [
+      "Ziguinchor",
+      "Casamance"
+    ],
+    "countries": [
+      "Senegal",
+      "MFDC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Casamance_conflict",
+    "importance": 3,
+    "description": "Low-intensity MFDC separatist insurgency in southern Senegal.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "ECOMOG Intervention in Liberia",
+    "startYear": 1990,
+    "endYear": 1997,
+    "coordinates": [
+      -10.8,
+      6.3
+    ],
+    "locations": [
+      "Monrovia",
+      "Liberia"
+    ],
+    "countries": [
+      "ECOWAS",
+      "Liberia",
+      "NPFL",
+      "AFL"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Economic_Community_of_West_African_States_Monitoring_Group",
+    "importance": 3,
+    "description": "ECOWAS's first peace-enforcement deployment, fighting Charles Taylor's NPFL during the First Liberian Civil War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Liberian Coup of 1980",
+    "startYear": 1980,
+    "endYear": 1980,
+    "coordinates": [
+      -10.8,
+      6.3
+    ],
+    "locations": [
+      "Monrovia"
+    ],
+    "countries": [
+      "Liberia"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1980_Liberian_coup_d%27%C3%A9tat",
+    "importance": 3,
+    "description": "Samuel Doe's overthrow of William Tolbert, ending 133 years of Americo-Liberian rule.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle for Freetown (1999)",
+    "startYear": 1999,
+    "endYear": 1999,
+    "coordinates": [
+      -13.23,
+      8.48
+    ],
+    "locations": [
+      "Freetown"
+    ],
+    "countries": [
+      "Sierra Leone",
+      "RUF",
+      "AFRC",
+      "ECOMOG"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sierra_Leone_Civil_War",
+    "importance": 3,
+    "description": "RUF/AFRC offensive on Freetown known as Operation No Living Thing, the bloodiest episode of the Sierra Leonean civil war.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Palliser",
+    "startYear": 2000,
+    "endYear": 2000,
+    "coordinates": [
+      -13.2,
+      8.5
+    ],
+    "locations": [
+      "Freetown",
+      "Lungi"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Sierra Leone",
+      "RUF"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Palliser",
+    "importance": 3,
+    "description": "British intervention that stabilised the Sierra Leonean government and broke the RUF advance.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Guinean Border Clashes (2000–01)",
+    "startYear": 2000,
+    "endYear": 2001,
+    "coordinates": [
+      -10.0,
+      8.5
+    ],
+    "locations": [
+      "Guinea–Liberia border",
+      "Forest Guinea"
+    ],
+    "countries": [
+      "Guinea",
+      "RUF",
+      "Liberia"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Liberian_Civil_War",
+    "importance": 2,
+    "description": "RUF and Liberian incursions into south-eastern Guinea repulsed by the Guinean army with Western support.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Movement for Democracy in Liberia (LURD/MODEL)",
+    "startYear": 1999,
+    "endYear": 2003,
+    "coordinates": [
+      -9.0,
+      6.5
+    ],
+    "locations": [
+      "Lofa",
+      "Nimba",
+      "Monrovia"
+    ],
+    "countries": [
+      "Liberia",
+      "LURD",
+      "MODEL",
+      "Guinea"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Liberian_Civil_War",
+    "importance": 3,
+    "description": "LURD and MODEL offensives that toppled Charles Taylor in the Second Liberian Civil War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Licorne",
+    "startYear": 2002,
+    "endYear": 2015,
+    "coordinates": [
+      -5.55,
+      7.0
+    ],
+    "locations": [
+      "Côte d'Ivoire"
+    ],
+    "countries": [
+      "France",
+      "Ivory Coast"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Licorne",
+    "importance": 3,
+    "description": "French peacekeeping operation in Côte d'Ivoire spanning both civil wars.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Battle of Abidjan (2011)",
+    "startYear": 2011,
+    "endYear": 2011,
+    "coordinates": [
+      -4.02,
+      5.36
+    ],
+    "locations": [
+      "Abidjan"
+    ],
+    "countries": [
+      "Ivory Coast",
+      "Forces Nouvelles",
+      "France",
+      "UN"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Ivorian_Civil_War",
+    "importance": 3,
+    "description": "Final battle of the Second Ivorian Civil War ending in the capture of Laurent Gbagbo.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Guinea Coups and Bloody Monday",
+    "startYear": 2008,
+    "endYear": 2010,
+    "coordinates": [
+      -13.7,
+      9.6
+    ],
+    "locations": [
+      "Conakry"
+    ],
+    "countries": [
+      "Guinea"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/2009_Guinea_protests",
+    "importance": 2,
+    "description": "Captain Camara's coup and the 2009 Conakry stadium massacre during the post-Conté transition.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Operation Eagle Claw (MNJTF)",
+    "startYear": 2015,
+    "endYear": null,
+    "coordinates": [
+      13.5,
+      12.5
+    ],
+    "locations": [
+      "Lake Chad",
+      "Borno",
+      "Diffa",
+      "Far North Cameroon"
+    ],
+    "countries": [
+      "Nigeria",
+      "Chad",
+      "Cameroon",
+      "Niger",
+      "Benin"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Multinational_Joint_Task_Force",
+    "importance": 3,
+    "description": "Lake Chad Basin Commission–led counter-Boko Haram task force operating from Lake Chad headquarters.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Nasir al-Din's Jihad",
+    "startYear": 1673,
+    "endYear": 1677,
+    "coordinates": [
+      -15.0,
+      16.5
+    ],
+    "locations": [
+      "Senegal valley",
+      "Trarza"
+    ],
+    "countries": [
+      "Zwāya coalition",
+      "Wolof states",
+      "Denanke Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sharr_Bubba",
+    "importance": 3,
+    "description": "Awbek Ashfaga (Nasir al-Din)'s Berber Toubenan jihad against Wolof and Fulani rulers of the lower Senegal.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Wolof–French Wars",
+    "startYear": 1700,
+    "endYear": 1890,
+    "coordinates": [
+      -16.5,
+      15.5
+    ],
+    "locations": [
+      "Cayor",
+      "Baol",
+      "Jolof",
+      "Saint-Louis"
+    ],
+    "countries": [
+      "France",
+      "Cayor",
+      "Baol",
+      "Jolof",
+      "Waalo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Cayor",
+    "importance": 2,
+    "description": "Recurring wars between French Saint-Louis and the Wolof kingdoms of Cayor, Baol, Jolof, and Waalo.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Médina (Faidherbe)",
+    "startYear": 1855,
+    "endYear": 1859,
+    "coordinates": [
+      -16.3,
+      16.0
+    ],
+    "locations": [
+      "Waalo",
+      "Senegal River"
+    ],
+    "countries": [
+      "France",
+      "Waalo"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Waalo",
+    "importance": 2,
+    "description": "Faidherbe's annexation of Waalo, the first French conquest of an interior Senegalese kingdom.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Faidherbe Wars",
+    "startYear": 1854,
+    "endYear": 1865,
+    "coordinates": [
+      -15.0,
+      16.0
+    ],
+    "locations": [
+      "Senegal River",
+      "Cayor",
+      "Waalo",
+      "Futa Toro"
+    ],
+    "countries": [
+      "France",
+      "Senegalese kingdoms",
+      "Toucouleur Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Louis_Faidherbe",
+    "importance": 3,
+    "description": "Governor Faidherbe's campaigns expanding French Senegal from Saint-Louis into the interior.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Sefuwa–Bulala Wars",
+    "startYear": 1380,
+    "endYear": 1470,
+    "coordinates": [
+      16.0,
+      13.5
+    ],
+    "locations": [
+      "Kanem",
+      "Lake Fitri"
+    ],
+    "countries": [
+      "Kanem–Bornu Empire",
+      "Bulala"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bulala_people",
+    "importance": 3,
+    "description": "Civil wars that drove the Sefuwa dynasty out of Kanem to refound at Ngazargamu.",
+    "era": "Medieval",
+    "confidence": "medium"
+  },
+  {
+    "name": "Damagaram Wars",
+    "startYear": 1731,
+    "endYear": 1899,
+    "coordinates": [
+      8.99,
+      13.8
+    ],
+    "locations": [
+      "Zinder",
+      "Damagaram"
+    ],
+    "countries": [
+      "Sultanate of Damagaram",
+      "Bornu Empire",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sultanate_of_Damagaram",
+    "importance": 2,
+    "description": "Foundation and expansion wars of the Sultanate of Damagaram around Zinder, ending with French conquest.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Adwa-style Defeat: Sokoto–Kebbi War (Argungu)",
+    "startYear": 1849,
+    "endYear": 1859,
+    "coordinates": [
+      4.5,
+      12.7
+    ],
+    "locations": [
+      "Argungu",
+      "Kebbi"
+    ],
+    "countries": [
+      "Sokoto Caliphate",
+      "Kebbi Emirate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Argungu_Emirate",
+    "importance": 2,
+    "description": "Wars between the Sokoto Caliphate and the rump Kebbi state at Argungu.",
+    "era": "Colonial",
+    "confidence": "low"
+  },
+  {
+    "name": "Anglo-Sokoto Conquest of Bida",
+    "startYear": 1897,
+    "endYear": 1897,
+    "coordinates": [
+      6.01,
+      9.08
+    ],
+    "locations": [
+      "Bida"
+    ],
+    "countries": [
+      "Royal Niger Company",
+      "Nupe Emirate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bida",
+    "importance": 3,
+    "description": "Royal Niger Company defeat of Emir Abubakar of Bida, the first major British conquest of a Sokoto emirate.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Conquest of Ilorin",
+    "startYear": 1897,
+    "endYear": 1897,
+    "coordinates": [
+      4.55,
+      8.5
+    ],
+    "locations": [
+      "Ilorin"
+    ],
+    "countries": [
+      "Royal Niger Company",
+      "Ilorin Emirate"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Emirate_of_Ilorin",
+    "importance": 3,
+    "description": "Royal Niger Company campaign under George Goldie that captured Ilorin from the Sokoto Caliphate.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Songhai–Mossi War of 1483",
+    "startYear": 1483,
+    "endYear": 1483,
+    "coordinates": [
+      -1.0,
+      13.0
+    ],
+    "locations": [
+      "Walata",
+      "Mossi country"
+    ],
+    "countries": [
+      "Songhai Empire",
+      "Mossi kingdoms"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sonni_Ali",
+    "importance": 2,
+    "description": "Sonni Ali's repulse of a Mossi raid on Walata and his retaliatory invasion of Yatenga.",
+    "era": "Medieval",
+    "confidence": "medium"
+  },
+  {
+    "name": "Songhai Conquest of Air",
+    "startYear": 1500,
+    "endYear": 1515,
+    "coordinates": [
+      8.0,
+      17.0
+    ],
+    "locations": [
+      "Agadez",
+      "Aïr"
+    ],
+    "countries": [
+      "Songhai Empire",
+      "Sultanate of Aïr"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Sultanate_of_A%C3%AFr",
+    "importance": 2,
+    "description": "Askia Muhammad's conquest of Agadez and the Aïr massif.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Akan–Akwamu Expansion Wars",
+    "startYear": 1629,
+    "endYear": 1730,
+    "coordinates": [
+      0.0,
+      6.0
+    ],
+    "locations": [
+      "Akwamu",
+      "Volta Region",
+      "Ouidah"
+    ],
+    "countries": [
+      "Akwamu",
+      "Ga states",
+      "Ewe states",
+      "Whydah"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Akwamu",
+    "importance": 2,
+    "description": "Akwamu's century of conquests creating a coastal empire from the Volta to Whydah before its destruction in 1730.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Fall of Akwamu",
+    "startYear": 1730,
+    "endYear": 1730,
+    "coordinates": [
+      -0.05,
+      6.0
+    ],
+    "locations": [
+      "Akwamu",
+      "Volta"
+    ],
+    "countries": [
+      "Akwamu",
+      "Akyem"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Akwamu",
+    "importance": 2,
+    "description": "Akyem-led coalition that destroyed Akwamu and broke its coastal empire.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Asante–Banda War",
+    "startYear": 1773,
+    "endYear": 1774,
+    "coordinates": [
+      -2.4,
+      8.1
+    ],
+    "locations": [
+      "Banda",
+      "Wenchi"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Banda"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Banda_Kingdom_(Ghana)",
+    "importance": 2,
+    "description": "Asante destruction of the Banda kingdom in northern Ghana.",
+    "era": "Early Modern",
+    "confidence": "low"
+  },
+  {
+    "name": "Bonduku War (Asante–Abron)",
+    "startYear": 1818,
+    "endYear": 1818,
+    "coordinates": [
+      -2.79,
+      8.04
+    ],
+    "locations": [
+      "Bonduku",
+      "Gyaman"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Gyaman"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Gyaman",
+    "importance": 2,
+    "description": "Osei Bonsu's reconquest of Gyaman and capture of Adinkra of Bonduku.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Benin–Itsekiri Wars",
+    "startYear": 1500,
+    "endYear": 1800,
+    "coordinates": [
+      5.5,
+      6.0
+    ],
+    "locations": [
+      "Warri",
+      "Ughoton"
+    ],
+    "countries": [
+      "Benin Empire",
+      "Warri Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Warri_Kingdom",
+    "importance": 1,
+    "description": "Wars between Benin and its breakaway Itsekiri kingdom of Warri.",
+    "era": "Early Modern",
+    "confidence": "low"
+  },
+  {
+    "name": "Punitive Expedition against Benin",
+    "startYear": 1897,
+    "endYear": 1897,
+    "coordinates": [
+      5.62,
+      6.34
+    ],
+    "locations": [
+      "Benin City"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Benin Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Benin_Expedition_of_1897",
+    "importance": 4,
+    "description": "British naval expedition that sacked Benin City and ended the Benin Empire after the Phillips massacre.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Brass Oil War (Akassa Raid)",
+    "startYear": 1895,
+    "endYear": 1895,
+    "coordinates": [
+      6.25,
+      4.32
+    ],
+    "locations": [
+      "Brass",
+      "Akassa"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Nembe Kingdom"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Nembe_Kingdom",
+    "importance": 2,
+    "description": "King Koko of Nembe's attack on the Royal Niger Company station at Akassa.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Borno–Wadai War of the Mahdists",
+    "startYear": 1893,
+    "endYear": 1894,
+    "coordinates": [
+      14.0,
+      13.0
+    ],
+    "locations": [
+      "Kukawa",
+      "Dikwa"
+    ],
+    "countries": [
+      "Rabih's empire",
+      "Bornu Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Rabih_az-Zubayr",
+    "importance": 3,
+    "description": "Rabih's destruction of the Bornu army at Gashagar and seizure of Kukawa.",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "First Mali–Burkina War (1974)",
+    "startYear": 1974,
+    "endYear": 1974,
+    "coordinates": [
+      -1.4,
+      14.6
+    ],
+    "locations": [
+      "Agacher Strip"
+    ],
+    "countries": [
+      "Mali",
+      "Upper Volta"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Agacher_Strip_War",
+    "importance": 2,
+    "description": "Brief 1974 clash between Mali and Upper Volta over the Agacher Strip, predecessor to the 1985 Christmas War.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Gambian Coup Attempt of 1981",
+    "startYear": 1981,
+    "endYear": 1981,
+    "coordinates": [
+      -16.6,
+      13.45
+    ],
+    "locations": [
+      "Banjul"
+    ],
+    "countries": [
+      "Gambia",
+      "Senegal",
+      "Kukoi Samba Sanyang's faction"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1981_Gambian_coup_d%27%C3%A9tat_attempt",
+    "importance": 2,
+    "description": "Failed leftist coup against Jawara crushed by Senegalese intervention, leading to the short-lived Senegambia Confederation.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Sierra Leone 1997 AFRC Coup",
+    "startYear": 1997,
+    "endYear": 1997,
+    "coordinates": [
+      -13.23,
+      8.48
+    ],
+    "locations": [
+      "Freetown"
+    ],
+    "countries": [
+      "Sierra Leone"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1997_Sierra_Leonean_coup_d%27%C3%A9tat",
+    "importance": 2,
+    "description": "Major Johnny Paul Koroma's AFRC coup that joined the RUF and prolonged the Sierra Leonean civil war.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Mali 1991 Revolution",
+    "startYear": 1991,
+    "endYear": 1991,
+    "coordinates": [
+      -8.0,
+      12.65
+    ],
+    "locations": [
+      "Bamako"
+    ],
+    "countries": [
+      "Mali"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1991_Malian_coup_d%27%C3%A9tat",
+    "importance": 2,
+    "description": "Mass protests and Touré-led coup that overthrew Moussa Traoré.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "1987 Burkinabé Coup",
+    "startYear": 1987,
+    "endYear": 1987,
+    "coordinates": [
+      -1.52,
+      12.37
+    ],
+    "locations": [
+      "Ouagadougou"
+    ],
+    "countries": [
+      "Burkina Faso"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/1987_Burkinab%C3%A9_coup_d%27%C3%A9tat",
+    "importance": 2,
+    "description": "Blaise Compaoré's overthrow and killing of Thomas Sankara.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Liberian Plot of Quiwonkpa (1985)",
+    "startYear": 1985,
+    "endYear": 1985,
+    "coordinates": [
+      -10.8,
+      6.3
+    ],
+    "locations": [
+      "Monrovia"
+    ],
+    "countries": [
+      "Liberia"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Thomas_Quiwonkpa",
+    "importance": 2,
+    "description": "General Thomas Quiwonkpa's failed coup against Samuel Doe and the subsequent ethnic reprisals against the Gio and Mano.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Pashalik of Timbuktu Wars",
+    "startYear": 1591,
+    "endYear": 1750,
+    "coordinates": [
+      -3.0,
+      16.77
+    ],
+    "locations": [
+      "Timbuktu",
+      "Gao",
+      "Bandiagara"
+    ],
+    "countries": [
+      "Pashalik of Timbuktu",
+      "Tuareg",
+      "Mossi",
+      "Fulani",
+      "Bambara"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Pashalik_of_Timbuktu",
+    "importance": 3,
+    "description": "Wars of the Arma successor state of the Saadians defending Timbuktu against Tuareg, Mossi, Bambara, and Fulani.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Wolof Civil Wars (Battle of Danki)",
+    "startYear": 1549,
+    "endYear": 1549,
+    "coordinates": [
+      -16.0,
+      15.5
+    ],
+    "locations": [
+      "Danki"
+    ],
+    "countries": [
+      "Cayor",
+      "Jolof Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Jolof_Empire",
+    "importance": 3,
+    "description": "Amari Ngoné Sobel Fall's victory at the Battle of Danki that broke up the Jolof Empire.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Jolof–Cayor War",
+    "startYear": 1500,
+    "endYear": 1600,
+    "coordinates": [
+      -16.0,
+      15.5
+    ],
+    "locations": [
+      "Jolof",
+      "Cayor"
+    ],
+    "countries": [
+      "Jolof Empire",
+      "Cayor",
+      "Baol"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Jolof_Empire",
+    "importance": 2,
+    "description": "Cayor and Baol's breakaway wars that destroyed the Jolof Empire's hegemony over Senegal.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Cape Verdean War of Independence",
+    "startYear": 1963,
+    "endYear": 1974,
+    "coordinates": [
+      -23.5,
+      15.1
+    ],
+    "locations": [
+      "Cape Verde",
+      "Bissau"
+    ],
+    "countries": [
+      "Portugal",
+      "PAIGC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Guinea-Bissau_War_of_Independence",
+    "importance": 2,
+    "description": "Cape Verdean theatre of the PAIGC liberation war, achieving independence in 1975.",
+    "era": "Post-1945",
+    "confidence": "medium"
+  },
+  {
+    "name": "Songhai–Borgu War",
+    "startYear": 1505,
+    "endYear": 1505,
+    "coordinates": [
+      3.0,
+      11.0
+    ],
+    "locations": [
+      "Borgu",
+      "Niger River"
+    ],
+    "countries": [
+      "Songhai Empire",
+      "Borgu states"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Askia_Mohammad_I",
+    "importance": 2,
+    "description": "Askia Muhammad's failed invasion of Borgu, one of his rare reverses.",
+    "era": "Early Modern",
+    "confidence": "low"
+  },
+  {
+    "name": "Battle of Olokomeji",
+    "startYear": 1783,
+    "endYear": 1783,
+    "coordinates": [
+      3.5,
+      7.5
+    ],
+    "locations": [
+      "Olokomeji",
+      "Yorubaland"
+    ],
+    "countries": [
+      "Oyo Empire",
+      "Borgu states"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Oyo_Empire",
+    "importance": 2,
+    "description": "Borgu defeat of an Oyo invasion that began the decline of Oyo's northern hegemony.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Oyo Civil War (Gaha's Reign and Fall)",
+    "startYear": 1754,
+    "endYear": 1774,
+    "coordinates": [
+      4.0,
+      8.0
+    ],
+    "locations": [
+      "Oyo-Ile"
+    ],
+    "countries": [
+      "Oyo Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Oyo_Empire",
+    "importance": 3,
+    "description": "Basorun Gaha's tyranny and his overthrow by Alaafin Abiodun that prefigured Oyo's nineteenth-century collapse.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Asante Conquest of Tekyiman",
+    "startYear": 1722,
+    "endYear": 1723,
+    "coordinates": [
+      -1.97,
+      7.58
+    ],
+    "locations": [
+      "Tekyiman",
+      "Bono-Manso"
+    ],
+    "countries": [
+      "Asante Empire",
+      "Bono"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bono_state",
+    "importance": 2,
+    "description": "Opoku Ware's destruction of Bono-Manso and absorption of Tekyiman.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Kalumfardo",
+    "startYear": 1893,
+    "endYear": 1893,
+    "coordinates": [
+      14.0,
+      13.5
+    ],
+    "locations": [
+      "Kalumfardo",
+      "Bornu"
+    ],
+    "countries": [
+      "Rabih's empire",
+      "Bornu Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Rabih_az-Zubayr",
+    "importance": 2,
+    "description": "Rabih's victory over Hashim al-Kanemi's Bornu army that opened the way to Kukawa.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Kaabu–Futa Jallon Wars (Battle of Kansala)",
+    "startYear": 1865,
+    "endYear": 1867,
+    "coordinates": [
+      -14.0,
+      12.5
+    ],
+    "locations": [
+      "Kansala",
+      "Kaabu"
+    ],
+    "countries": [
+      "Imamate of Futa Jallon",
+      "Kaabu Empire"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kansala",
+    "importance": 3,
+    "description": "Futa Jallon's destruction of the Mandinka empire of Kaabu at the Battle of Kansala (Turban Keloo).",
+    "era": "Colonial",
+    "confidence": "high"
+  },
+  {
+    "name": "Kaabu Empire Wars",
+    "startYear": 1537,
+    "endYear": 1867,
+    "coordinates": [
+      -14.5,
+      12.3
+    ],
+    "locations": [
+      "Kansala",
+      "Casamance",
+      "upper Gambia"
+    ],
+    "countries": [
+      "Kaabu Empire",
+      "Mali Empire",
+      "Futa Jallon"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Kaabu",
+    "importance": 3,
+    "description": "Mandinka empire of Kaabu's wars from independence from Mali to its destruction at Kansala.",
+    "era": "Early Modern",
+    "confidence": "medium"
+  },
+  {
+    "name": "British Conquest of Northern Ghana",
+    "startYear": 1896,
+    "endYear": 1898,
+    "coordinates": [
+      -0.8,
+      9.4
+    ],
+    "locations": [
+      "Tamale",
+      "Yendi",
+      "Wa",
+      "Gambaga"
+    ],
+    "countries": [
+      "United Kingdom",
+      "Dagbon",
+      "Gonja",
+      "Mamprusi"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Northern_Region_(Ghana)",
+    "importance": 2,
+    "description": "British campaigns establishing the Northern Territories of the Gold Coast in the wake of the fall of Asante.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Babatu and Samory Wars in Northern Ghana",
+    "startYear": 1880,
+    "endYear": 1897,
+    "coordinates": [
+      -1.5,
+      10.5
+    ],
+    "locations": [
+      "Wa",
+      "Gurunsi",
+      "Sansanné-Mango"
+    ],
+    "countries": [
+      "Zabarima slave-raiders",
+      "Gurunsi",
+      "Wassoulou Empire",
+      "France"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Zabarma_Emirate",
+    "importance": 2,
+    "description": "Zabarima slave-raider Babatu's wars in the Gurunsi country and his confrontation with Samori's forces.",
+    "era": "Colonial",
+    "confidence": "medium"
+  },
+  {
+    "name": "Battle of Tinzaouaten (2024)",
+    "startYear": 2024,
+    "endYear": 2024,
+    "coordinates": [
+      2.93,
+      19.93
+    ],
+    "locations": [
+      "Tinzaouaten"
+    ],
+    "countries": [
+      "Mali",
+      "Wagner Group",
+      "CSP-DPA Tuareg coalition",
+      "JNIM"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Tinzaouaten",
+    "importance": 3,
+    "description": "Tuareg and JNIM ambush in northern Mali that destroyed a Wagner Group column.",
+    "era": "Post-1945",
+    "confidence": "high"
+  },
+  {
+    "name": "Char Bouba War",
+    "startYear": 1644,
+    "endYear": 1674,
+    "coordinates": [
+      -12.0,
+      18.0
+    ],
+    "locations": [
+      "Trarza",
+      "Brakna",
+      "southern Mauritania"
+    ],
+    "countries": [
+      "Zwāya scholar-clerics",
+      "Hassane warriors"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Char_Bouba_war",
+    "importance": 3,
+    "description": "Thirty-year war between Berber Zwāya scholar-clerics and Hassane Arab warriors that defined Moorish society in Mauritania.",
+    "era": "Early Modern",
+    "confidence": "high"
+  },
+  {
+    "name": "Operation Mar Verde",
+    "startYear": 1970,
+    "endYear": 1970,
+    "coordinates": [
+      -13.7,
+      9.5
+    ],
+    "locations": [
+      "Conakry"
+    ],
+    "countries": [
+      "Portugal",
+      "Guinea",
+      "PAIGC"
+    ],
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Green_Sea",
+    "importance": 3,
+    "description": "Portuguese amphibious raid on Conakry that attempted to overthrow Sékou Touré and free Portuguese POWs held by the PAIGC.",
+    "era": "Post-1945",
+    "confidence": "high"
+  }
+]
