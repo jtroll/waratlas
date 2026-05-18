@@ -61,6 +61,88 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="18 May 2026" tag="r7 · southeast asia audit">
+          <p>
+            Reader feedback flagged Southeast Asia as the atlas&apos;s
+            thinnest region. Audited SEA (broad: ASEAN-11 plus
+            Yunnan / Assam / Taiwan / Papua borderlands) sliced by{' '}
+            <em>{'{mainland, maritime}'} × {'{pre-1500, 1500–1800, 1800–1945, post-1945}'}</em>.
+            Reference list compiled against Lieberman&apos;s{' '}
+            <em>Strange Parallels</em>, Reid&apos;s <em>Age of Commerce</em>,
+            Tarling&apos;s Cambridge <em>History of Southeast Asia</em>,
+            COW v4, and the Wikipedia category trees. Full methodology in{' '}
+            <a href="https://github.com/jtroll/waratlas/blob/main/SEA_AUDIT_2026-05-17.md" target="_blank" rel="noopener noreferrer">
+              SEA_AUDIT_2026-05-17.md
+            </a>.
+          </p>
+          <ul>
+            <li>
+              <strong>219 named SEA wars added.</strong> Pre-audit
+              coverage was 106. Two cells were particularly thin:{' '}
+              <em>Maritime Pre-1500</em> was literal zero (Srivijaya,
+              Majapahit, Singhasari, Pasai all missing), and{' '}
+              <em>Mainland 1800–1945</em> was 6 entries (all Anglo-Burmese
+              or aggregate French conquest). Headline additions: three
+              Battles of Bạch Đằng (938, 981, 1288), Mongol invasions of
+              Vietnam, Burma, and Champa, Chola invasion of Srivijaya
+              (1025), Mongol invasion of Java (1293), Pamalayu expedition,
+              Battle of Bubat, Regreg War, Capture of Malacca (1511),
+              Battle of Mactan, Trunajaya rebellion, three Javanese Wars
+              of Succession, Dagohoy rebellion (longest in Philippine
+              history), Cochinchina campaign, Sino-French War, Pacification
+              of Tonkin, Franco-Siamese War, Anouvong&apos;s rebellion,
+              Saya San, the Burma campaign with Imphal/Kohima, four Dutch
+              interventions in Bali, Batak War, Hukbalahap rebellion,
+              Operation Trikora, Battle of Marawi.
+            </li>
+            <li>
+              <strong>Burmese-Siamese wars split.</strong> The five
+              overlapping &ldquo;Burmese-Siamese Wars&rdquo; aggregates
+              that had been collapsing 200 years into a handful of
+              timeline pins are now one umbrella record (1547–1855,
+              importance 2) with <code>partOf</code> linkage from the
+              13 individual named wars — 1547–49, 1563–64, 1568–69,
+              1584–93, 1593–1600, 1609–22, 1662–64, 1759–60, 1765–67,
+              1775–76, 1785–86, 1787, 1797 — following Lieberman&apos;s
+              and Wikipedia&apos;s standard splits. Same pattern applied
+              to the Khmer–Cham wars and Cham–Vietnamese wars clusters.
+            </li>
+            <li>
+              <strong>Duplicate-event cleanup.</strong> 11 records merged
+              where one event had been carrying multiple IDs: the
+              Cambodian Genocide / Khmer Rouge cluster (4 → 1), the
+              Indonesian occupation of East Timor (4 → 1, including one
+              audit-added dupe caught in the second pass), Konfrontasi
+              (2 → 1), the Vietnamese-Cambodian War (2 → 1), the
+              Moro / Mindanao conflicts (2 → 1), the Communist rebellion
+              in the Philippines (2 → 1), the Papua conflict (2 → 1),
+              the Philippine-American War (2 → 1), and the Aceh
+              insurgency (2 → 1). For each merge the entry with higher
+              importance was kept; non-null Wikipedia URLs were adopted
+              from the deleted records.
+            </li>
+            <li>
+              <strong>Wikipedia URL verification pass.</strong> Every
+              new entry&apos;s Wikipedia link was HEAD-tested. 38
+              broken URLs patched against verified slugs from targeted
+              searches (the Mongol invasions of Đại Việt don&apos;t have
+              per-invasion English articles — they share the
+              <code> Mongol_invasions_of_Vietnam</code> umbrella;{' '}
+              <em>Battle of Dien Bien Phu</em> uses ASCII not Vietnamese
+              diacritics in the slug; etc.). One entry — the 1908 Trung
+              Kỳ anti-tax revolt — has <code>wikipediaUrl: null</code>{' '}
+              because no English-Wikipedia article exists for it.
+            </li>
+          </ul>
+          <p style={{ marginTop: 8, opacity: 0.7, fontSize: 14 }}>
+            Conflict count: 1,335 → 1,532 (+197 net). SEA coverage:
+            106 → 282. Schema valid; zero broken <code>partOf</code>{' '}
+            refs; coordinates of all new entries inside lon 70–155 /
+            lat −15–35. Pre-audit backup at{' '}
+            <code>backups/conflicts_20260518_065217_pre_sea_audit.json</code>.
+          </p>
+        </Entry>
+
         <Entry date="17 May 2026" tag="r6 · border accuracy pass">
           <p>
             Three-part overhaul of how empire borders are sourced, drawn,
