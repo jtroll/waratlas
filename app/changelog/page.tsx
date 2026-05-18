@@ -61,6 +61,115 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="18 May 2026" tag="r8 · africa audit">
+          <p>
+            Sister audit to r7. Reader feedback had flagged Africa
+            coverage as patchy outside the colonial-era set pieces;
+            audited the continent sliced by{' '}
+            <em>{'{north, west, east, central, south}'} × {'{ancient, medieval, early modern, colonial, post-1945}'}</em>{' '}
+            — a 25-cell matrix. Reference list of 965 candidate named
+            wars compiled by five parallel sub-agents (one per
+            sub-region), anchored against UNESCO{' '}
+            <em>General History of Africa</em>, Cambridge{' '}
+            <em>History of Africa</em>, Iliffe, Vansina, Thornton,
+            Reid on E. Africa, Pakenham, Vandervort, the Correlates
+            of War dataset, and the Wikipedia category trees. Full
+            methodology in{' '}
+            <a href="https://github.com/jtroll/waratlas/blob/main/AFRICA_AUDIT_2026-05-18.md" target="_blank" rel="noopener noreferrer">
+              AFRICA_AUDIT_2026-05-18.md
+            </a>.
+          </p>
+          <ul>
+            <li>
+              <strong>784 named African wars added.</strong> Pre-audit
+              coverage (inclusive classifier) was 914 of 1,532
+              conflicts. Thinnest cells were{' '}
+              <em>Central · Early Modern</em> with one entry,{' '}
+              <em>Central · Colonial</em> with two,{' '}
+              <em>West · Early Modern</em> with seven, and{' '}
+              <em>East · Ancient</em> with four. The largest absolute
+              gaps were in the Colonial cells — Cape Frontier Wars
+              missing as individual conflicts, the West African jihad
+              sequence (Sokoto, Macina, Toucouleur, Tijaniyya), the
+              French Conquest of Algeria umbrella, Menelik II&apos;s
+              southern conquests, the Mahdist War battle set.
+              Headline additions include the Muslim Conquest of Egypt
+              and the Maghreb (639–709), Banu Hilal Invasion, Battle
+              of Megiddo (15th c. BCE), Battle of Alcacer Quibir
+              (1578), Saadi Conquest of Songhai with Battle of
+              Tondibi, the French Conquest of Algeria umbrella
+              (1830–1903), Algerian Civil War, First Libyan Civil
+              War, Battle of Kirina (1235), Sonni Ali&apos;s
+              Conquests, Asante-Denkyira War, Sokoto Jihad, Yoruba
+              Civil Wars, Toucouleur Wars, Franco-Mandingo Wars,
+              Northern Mali Conflict, Kushite and Aksumite conquests
+              of Egypt and Meroë, Kaleb&apos;s invasion of Himyar,
+              Amda Seyon&apos;s campaigns, Battle of Wayna Daga, the
+              Oromo migrations, Zemene Mesafint, Battle of Omdurman,
+              both East African Campaigns of WWI and WWII, Ikiza
+              (the 1972 Burundi genocide), Tanzania-Uganda War, LRA
+              insurgency, Battle of Mbwila, Kongo Civil War,
+              Portuguese-Njinga Wars, Cuito Cuanavale, the full nine
+              Cape Frontier Wars, the Mfecane state-formation cycle,
+              both Anglo-Boer wars with named sieges, and the Herero,
+              Nama, and Bondelswarts wars.
+            </li>
+            <li>
+              <strong>Sub-regional pre-modern fills.</strong> Pre-1800
+              cells gained 239 entries under the inclusive classifier.
+              The Early Modern bucket alone added 117 entries —
+              Songhai-Saadian wars, the Adal-Ethiopian Futuh
+              al-Habasha sub-battles (Shimbra Kure, Amba Sel, Wofla,
+              Wayna Daga), the Kongo and Ndongo and Matamba complex
+              (Mbwila, Kitombo, Mbula, the Antonian Movement), the
+              Omani-Portuguese Swahili coast wars, the Bambara wars
+              of Segou and Kaarta, the Asante-Denkyira war, the
+              Oyo-Dahomey wars, and the two pre-Sokoto Sahelian jihads
+              of Futa Jallon and Futa Toro. The Ancient cell gained
+              68 entries including Kushite, Assyrian, and Aksumite
+              conquests of Egypt, the Aksumite conquest of Meroë, and
+              Kaleb&apos;s 525 invasion of Himyar.
+            </li>
+            <li>
+              <strong>Per-event split of large umbrellas.</strong> The
+              Cape Frontier Wars had been an aggregate; now each of
+              the nine wars (1779–81 through 1877–79) is an individual
+              conflict. The Border War in Angola and Namibia gained
+              the full named-operation sequence (Savannah, Reindeer,
+              Sceptic, Protea, Daisy, Askari, Modular, Hooper, Packer)
+              anchored on Cuito Cuanavale. The Mfecane gained the
+              named state-formation engagements. The Anglo-Zulu War
+              gained the named battles (Isandlwana, Rorke&apos;s
+              Drift, Hlobane, Khambula, Ulundi). Both Anglo-Boer
+              Wars gained their named sieges (Mafeking, Kimberley,
+              Ladysmith) and the Black-Week battles. Five carry-over
+              data-quality issues that fell out of the audit —
+              coordinate axis swaps in a handful of European-tagged
+              entries, the ambiguous &ldquo;Great Lakes&rdquo;
+              geographic tag, and two overlapping
+              &ldquo;Kongo-Portuguese Conflicts&rdquo; aggregates —
+              are documented for a follow-up cleanup pass.
+            </li>
+            <li>
+              <strong>Wikipedia URL verification pass.</strong> All
+              784 new entries got a HEAD-test. 408 confirmed 200 first
+              pass; 50 confirmed 404s were patched (44 reassigned to
+              canonical articles, six nulled where no English
+              Wikipedia article exists); 326 rate-limited 429
+              responses remain pending a serial re-check follow-up.
+            </li>
+          </ul>
+          <p style={{ marginTop: 8, opacity: 0.7, fontSize: 14 }}>
+            Conflict count: 1,532 → 2,316 (+784 net). Africa coverage:
+            914 → 1,684. Schema valid; zero broken <code>partOf</code>{' '}
+            refs; coordinates of 783/784 new entries inside the
+            Africa+margin bbox, the one outlier being the
+            legitimately-Seychellois 1981 Mercenary Raid. Pre-audit
+            backup at{' '}
+            <code>backups/conflicts_20260518_080245_pre_africa_audit.json</code>.
+          </p>
+        </Entry>
+
         <Entry date="18 May 2026" tag="r7 · southeast asia audit">
           <p>
             Reader feedback flagged Southeast Asia as the atlas&apos;s
