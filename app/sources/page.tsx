@@ -137,31 +137,125 @@ export default function SourcesPage() {
         </Section>
 
         <Section title="Borders, polygons, geometry">
-          <p>The empire polygons are a deliberate mix:</p>
+          <p>
+            The 376 empire polygons in <Code>public/empires.json</Code> come
+            from four kinds of source, in roughly this order of priority:
+          </p>
           <ul>
             <li>
-              <strong>Reconstructed (solid lines):</strong>{' '}
-              <a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener noreferrer">
-                aourednik / historical-basemaps
-              </a>{' '}
-              (
-              <License href="https://creativecommons.org/licenses/by-sa/4.0/">
-                CC BY-SA 4.0
-              </License>
-              ), sometimes intersected with{' '}
-              <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">
-                Natural Earth
-              </a>{' '}
-              modern country shapes (public domain) where the historical map
-              didn&apos;t resolve a coastline.
+              <strong><a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener noreferrer">aourednik / historical-basemaps</a></strong>{' '}
+              (<License href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</License>)
+              — the project&apos;s primary source. Year-keyed GeoJSON files
+              for every century from 10000 BCE to 2000 CE, matched to our
+              empires by name and validated by border-year + bounding-box +
+              area sanity checks. ~186 features sourced this way.
             </li>
             <li>
-              <strong>Approximate (dashed lines):</strong> Hand-constructed
-              polygons drawn from scholarly atlases, or smooth ovals where
-              extent is genuinely contested or undocumented at this
-              resolution.
+              <strong>Hand-traced from Wikipedia article geography.</strong>{' '}
+              Where historical-basemaps lacks a polygon or offers only a
+              low-resolution shape, the boundary is constructed
+              vertex-by-vertex from the territorial-extent prose of the
+              cited Wikipedia article — rivers, mountain ranges, modern
+              country borders, named frontier cities — cross-referenced
+              against modern coastlines. The source field on each such
+              feature records the article URL. ~32 features hand-traced
+              this way.
+            </li>
+            <li>
+              <strong>Hand-crafted from scholarly atlases.</strong> Cambridge
+              and Talessman&apos;s atlases, Pleiades for the ancient
+              Mediterranean, Hämäläinen for Comancheria, similar canonical
+              works for specific regions. ~40 features.
+            </li>
+            <li>
+              <strong>Natural Earth clip-to-country.</strong>{' '}
+              <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>{' '}
+              (public domain) modern country shapes, clipped to plausible
+              union for cases where no era-specific polygon survives. These
+              are explicitly labelled as approximate; the line is the modern
+              coastline, not a historical frontier.
             </li>
           </ul>
+          <p>
+            The full repeatable methodology, including the shape-pathology
+            scan that flags primitives (squares, ovals, half-circles),
+            anchor-point selection rules, validation thresholds, and the
+            affine-transform method for tracing raster maps, is documented
+            in{' '}
+            <a href="https://github.com/jtroll/waratlas/blob/main/BORDER_TRACING_PROCESS.md" target="_blank" rel="noopener noreferrer">
+              BORDER_TRACING_PROCESS.md
+            </a>{' '}
+            in the repository root.
+          </p>
+          <p>
+            <strong>Not used as sources, despite occasional temptation:</strong>{' '}
+            speculative or fan-made cartography (r/imaginarymaps,
+            user-talk-page speculation on Wikipedia, Pinterest reuploads of
+            unlicensed atlas scans). A polygon that looks sharp but cites
+            nothing checkable would defeat the point.
+          </p>
+
+          <h3 style={{fontSize: 16, fontWeight: 500, margin: '20px 0 8px', color: 'var(--ink-text, #ece3d3)'}}>Solid vs. dashed: two questions, not one</h3>
+          <p>
+            The dashed/solid distinction tries to answer two questions at
+            once: <em>is the polygon faithful to its source?</em> and{' '}
+            <em>did the polity itself have a fixed frontier?</em> Both have
+            to be &ldquo;yes&rdquo; for the border to render as a solid line.
+          </p>
+          <p>
+            The first question is the <Code>accurate</Code> flag in the
+            data: true for canonical historical-basemap data, hand-traced
+            polygons from cited articles, or hand-crafted polygons drawn
+            from scholarly atlases; false for clipped-to-country
+            approximations.
+          </p>
+          <p>
+            The second question is the <Code>polityType</Code> flag, which
+            takes one of five values:
+          </p>
+          <ul>
+            <li>
+              <strong>state</strong> — a bureaucratic state with
+              administrative provinces, taxation, and a recorded frontier.
+              Roman, Han, Ming, Mughal, Ottoman, Bahmani Sultanate, Ryukyu
+              Kingdom, modern nation-states, colonial administrative units.
+              ~242 features. <em>Only this category earns a solid line.</em>
+            </li>
+            <li>
+              <strong>tributary</strong> — paramount chiefdom or tributary
+              network. A real center with tribute-paying periphery and no
+              surveyed frontier. Coosa, Calusa, Tu&apos;i Tonga, Toltec,
+              Ife, Kanem, Mali Empire, Mwene Mutapa. ~81 features.
+            </li>
+            <li>
+              <strong>confederation</strong> — loose alliance of independent
+              groups sharing identity. Iroquois Confederacy, Huron-Wendat,
+              Maori iwi (collective), Taíno chiefdoms (plural), Mossi states
+              (plural), Hausa city-states, Apache Confederacy, Maya Classic
+              city-states. ~21 features.
+            </li>
+            <li>
+              <strong>culture</strong> — archaeological culture defined by
+              material remains, not by political organization. Hohokam,
+              Mogollon, Fremont, Ancestral Pueblo, Mississippian,
+              Olmec, Adena, Hopewell, Teotihuacan as a cultural sphere,
+              Wari / Tiwanaku. ~16 features.
+            </li>
+            <li>
+              <strong>nomadic-range</strong> — pastoralist or
+              hunter-gatherer seasonal range. Pechenegs, Comancheria,
+              Lakota/Sioux territory, Xiongnu, the Göktürk khanates,
+              Mapuche, Patagonia / Tehuelche. ~16 features.
+            </li>
+          </ul>
+          <p>
+            The four non-state categories render dashed regardless of how
+            faithfully the polygon was traced, because pretending those
+            polities had fixed borders would itself be inaccurate. The
+            sidebar caption changes per category — &ldquo;Cultural
+            sphere&rdquo;, &ldquo;Tributary network&rdquo;, etc. — so the
+            reader knows <em>why</em> the line is dashed.
+          </p>
           <p>
             We treat the dashed/solid distinction as a hard editorial
             requirement — never restyle it away. If a polygon is dashed,

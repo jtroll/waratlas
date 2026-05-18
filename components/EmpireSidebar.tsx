@@ -57,6 +57,11 @@ export interface EmpireProperties {
   matchedRegion?: string;
   /** When source === hand-crafted-from-atlases, a brief sourcing note. */
   handCraftedNote?: string;
+  /** What kind of polity this was, used to drive border rendering and the
+   *  sidebar caption. Only `state` empires earn solid borders even if the
+   *  polygon is well-traced — for the others the underlying historical
+   *  reality lacked a surveyed frontier. */
+  polityType?: 'state' | 'tributary' | 'confederation' | 'culture' | 'nomadic-range' | string;
   /** Optional bbox (minLon, minLat, maxLon, maxLat) — computed by caller. */
   bbox?: [number, number, number, number];
 }
@@ -109,6 +114,55 @@ function shortYear(y: number): string {
   return y < 0 ? `${-y} BCE` : `${y}`;
 }
 
+/** Heading shown above the source-attribution swatch. The dashed/solid state
+ *  is already decided in the parent; this just gives it a name that reflects
+ *  why the line is dashed — polygon fidelity vs. the polity itself being a
+ *  cultural sphere or nomadic range. */
+function bordersHeading(isDashed: boolean, polityType?: string): string {
+  if (!isDashed) return 'Reconstructed borders';
+  switch (polityType) {
+    case 'tributary':     return 'Tributary network';
+    case 'confederation': return 'Confederation';
+    case 'culture':       return 'Cultural sphere';
+    case 'nomadic-range': return 'Nomadic range';
+    default:              return 'Approximate borders';
+  }
+}
+
+/** One-sentence explanation paired with the heading. When the polygon itself
+ *  is well-traced (isAccurate=true) but rendered dashed because of polity
+ *  type, the caption explains that distinction explicitly so the reader
+ *  doesn't think we just didn't bother sourcing it. */
+function bordersCaption(
+  isDashed: boolean,
+  polityType?: string,
+  isAccurate?: boolean,
+): string {
+  if (!isDashed) {
+    return 'Solid borders are reconstructed from canonical historical-basemap data or hand-crafted from scholarly atlases.';
+  }
+  switch (polityType) {
+    case 'tributary':
+      return isAccurate
+        ? 'The center is well-attested, but the line is a tribute-relationship periphery rather than a surveyed frontier.'
+        : 'A paramount-chiefdom-style polity with tributary peripheries; exact extent is contested.';
+    case 'confederation':
+      return isAccurate
+        ? 'A confederation of independent groups sharing identity. The shape reflects member-territory union, not a unified state.'
+        : 'A confederation of independent groups; member territories shifted and overlapped, so the perimeter is approximate.';
+    case 'culture':
+      return isAccurate
+        ? 'An archaeological culture defined by material remains. The line is a probability cloud, not a frontier.'
+        : 'An archaeological culture; extent is defined by where its material remains have been found rather than by political control.';
+    case 'nomadic-range':
+      return isAccurate
+        ? 'A pastoralist or hunter-gatherer range. Seasonal use shifted across decades, so the line is the rough envelope of a moving territory.'
+        : 'A pastoralist or hunter-gatherer range whose extent shifted constantly with seasons and alliances.';
+    default:
+      return 'Dashed borders mark empires whose extent we can date but whose precise frontiers are contested or undocumented.';
+  }
+}
+
 export default function EmpireSidebar({
   empire,
   allConflicts,
@@ -132,7 +186,11 @@ export default function EmpireSidebar({
       cancelled = true;
     };
   }, [e.id]);
-  const isDashed = e.borderStyle === 'dashed' || !isAccurate;
+  // Solid borders are reserved for empires that BOTH have a faithful polygon
+  // (accurate=true) AND were administratively-bordered states. Tributary,
+  // confederation, culture, and nomadic-range types render dashed regardless.
+  const isStatePolity = e.polityType === 'state' || e.polityType === undefined;
+  const isDashed = e.borderStyle === 'dashed' || !isAccurate || !isStatePolity;
   const duration = e.endYear ? e.endYear - e.startYear : null;
 
   // Permalink for citations — empires don't have a /e/[id] route yet, so this
@@ -413,16 +471,14 @@ export default function EmpireSidebar({
               className="font-display text-wars-text"
               style={{ fontSize: 14, fontWeight: 500 }}
             >
-              {isDashed ? 'Approximate borders' : 'Reconstructed borders'}
+              {bordersHeading(isDashed, e.polityType)}
             </span>
           </div>
           <p
             className="font-display italic text-wars-text-2 m-0"
             style={{ fontSize: 13, lineHeight: 1.55 }}
           >
-            {isDashed
-              ? 'Dashed borders mark empires whose extent we can date but whose precise frontiers are contested or undocumented.'
-              : 'Solid borders are reconstructed from canonical historical-basemap data or hand-crafted from scholarly atlases.'}
+            {bordersCaption(isDashed, e.polityType, isAccurate)}
           </p>
 
           {/* Source attribution — only when we have any */}

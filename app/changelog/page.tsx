@@ -61,6 +61,81 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="17 May 2026" tag="r6 · border accuracy pass">
+          <p>
+            Three-part overhaul of how empire borders are sourced, drawn,
+            and labelled. Process is documented in{' '}
+            <a href="https://github.com/jtroll/waratlas/blob/main/BORDER_TRACING_PROCESS.md" target="_blank" rel="noopener noreferrer">
+              BORDER_TRACING_PROCESS.md
+            </a>{' '}
+            and is fully re-runnable.
+          </p>
+          <ul>
+            <li>
+              <strong>Source-based approximate flag fixed.</strong>{' '}
+              134 features had been carrying solid borders despite using
+              Natural-Earth clipped-to-country geometry or other approximate
+              sources. The two flags that drive map rendering
+              (<code>accurate</code> and <code>borderStyle</code>) are now
+              consistent across every feature, with both derived from a
+              single source-based rule. Net effect: ~134 features correctly
+              flipped from solid to dashed.
+            </li>
+            <li>
+              <strong>34 polygons replaced.</strong> A shape-pathology scan
+              flagged 30 features with geometric primitives — four-vertex
+              squares (Ancestral Pueblo as a perfect Four-Corners
+              rectangle, Ryukyu and Tahiti as boxes), low-vertex ovals
+              (Hohokam, Comancheria, Kanem), and pie-slice artifacts where
+              circles had been clipped to coastlines (Natchez and Coosa
+              chiefdoms reaching into the Gulf and Atlantic). 17 were
+              upgraded with authentic polygons from{' '}
+              <a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener noreferrer">
+                aourednik / historical-basemaps
+              </a>{' '}
+              year-snapshots (Tu&apos;i Tonga gained 1,375 vertices and 60
+              islands; Maori 254; Taíno chiefdoms 1,016; Huron 460).
+              17 more were hand-traced from cited Wikipedia article
+              geography with the source URL recorded on each feature.
+              After the pass, zero geometric offenders remain.
+            </li>
+            <li>
+              <strong>New <code>polityType</code> field</strong> separates
+              two questions the old <code>accurate</code> flag had been
+              conflating: is the polygon faithful to its source, and did
+              the polity itself have a fixed frontier? Every feature gets
+              one of five categories — <em>state</em> (~242, the only one
+              that renders solid), <em>tributary</em> (~81),{' '}
+              <em>confederation</em> (~21), <em>culture</em> (~16), or{' '}
+              <em>nomadic-range</em> (~16). 92 features that had been
+              rendering solid despite being archaeological cultures
+              (Hohokam, Mississippian), nomadic ranges (Lakota / Sioux,
+              Comancheria, Pechenegs), or tributary networks (Mali,
+              Songhai, Mwene Mutapa, Tu&apos;i Tonga) now correctly
+              render dashed. The sidebar caption is category-aware —
+              clicking a Cahokia polygon now reads &ldquo;Cultural
+              sphere&rdquo; with the explanation &ldquo;An archaeological
+              culture defined by material remains. The line is a
+              probability cloud, not a frontier&rdquo; rather than a
+              generic &ldquo;approximate borders&rdquo; label.
+            </li>
+            <li>
+              <strong>Sources page updated</strong> to walk through the
+              four-tier source hierarchy, the dashed/solid editorial rule,
+              and the five polity-type categories. See{' '}
+              <Link href="/sources">/sources</Link>.
+            </li>
+          </ul>
+          <p style={{ marginTop: 8, opacity: 0.7, fontSize: 14 }}>
+            Empire count unchanged: 376. Final render split: 153 solid /
+            223 dashed (was 346 / 30 at the start of the session).
+            Re-runnable scripts:{' '}
+            <code>scripts/scan_shape_pathology.py</code>,{' '}
+            <code>scripts/hand_trace_borders.py</code>,{' '}
+            <code>scripts/assign_polity_type.py</code>.
+          </p>
+        </Entry>
+
         <Entry date="14 May 2026" tag="r5 · historian pass">
           <p>
             Audit of the atlas from a historian / armchair-buff perspective:

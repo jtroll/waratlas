@@ -701,6 +701,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
                 : undefined,
           matchedRegion: typeof props.matchedRegion === 'string' ? props.matchedRegion : undefined,
           handCraftedNote: typeof props.handCraftedNote === 'string' ? props.handCraftedNote : undefined,
+          polityType: typeof props.polityType === 'string' ? props.polityType : undefined,
           bbox,
         };
 
@@ -799,8 +800,26 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     ];
 
     m.setFilter('empire-fill', filter);
-    m.setFilter('empire-border-solid', ['all', ...filter.slice(1), ['==', ['get', 'accurate'], true]]);
-    m.setFilter('empire-border-dashed', ['all', ...filter.slice(1), ['!=', ['get', 'accurate'], true]]);
+    // Solid borders are reserved for empires where BOTH (a) the polygon is
+    // faithful to its source (accurate=true) AND (b) the underlying polity
+    // had administrative frontiers (polityType === 'state'). Everything else
+    // — tributary networks, cultural confederations, archaeological cultures,
+    // nomadic ranges — renders dashed regardless of polygon quality, because
+    // pretending those had fixed borders would itself be inaccurate.
+    m.setFilter('empire-border-solid', [
+      'all',
+      ...filter.slice(1),
+      ['==', ['get', 'accurate'], true],
+      ['==', ['get', 'polityType'], 'state'],
+    ]);
+    m.setFilter('empire-border-dashed', [
+      'all',
+      ...filter.slice(1),
+      ['any',
+        ['!=', ['get', 'accurate'], true],
+        ['!=', ['get', 'polityType'], 'state'],
+      ],
+    ]);
     m.setFilter('empire-label', filter);
 
     // Opacity: full (1.0) within the empire's actual span, fading in/out
