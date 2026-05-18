@@ -1,0 +1,614 @@
+[
+ {
+  "id": "south-kasai-secession",
+  "name": "South Kasai Secession",
+  "url": "https://en.wikipedia.org/wiki/South_Kasai",
+  "status": 200
+ },
+ {
+  "id": "baixa-de-cassanje-revolt",
+  "name": "Baixa de Cassanje Revolt",
+  "url": "https://en.wikipedia.org/wiki/Baixa_de_Cassanje_revolt",
+  "status": 200
+ },
+ {
+  "id": "operation-morthor",
+  "name": "Operation Morthor",
+  "url": "https://en.wikipedia.org/wiki/Operation_Morthor",
+  "status": 200
+ },
+ {
+  "id": "inyenzi-raids",
+  "name": "Inyenzi raids",
+  "url": "https://en.wikipedia.org/wiki/Inyenzi",
+  "status": 200
+ },
+ {
+  "id": "first-tuareg-rebellion-mali",
+  "name": "First Tuareg Rebellion (Mali)",
+  "url": "https://en.wikipedia.org/wiki/1962%E2%80%931964_Tuareg_rebellion",
+  "status": 404
+ },
+ {
+  "id": "shifta-war",
+  "name": "Shifta War",
+  "url": "https://en.wikipedia.org/wiki/Shifta_War",
+  "status": 200
+ },
+ {
+  "id": "north-yemen-civil-war-egyptian-intervention",
+  "name": "North Yemen Civil War (Egyptian Intervention)",
+  "url": "https://en.wikipedia.org/wiki/North_Yemen_Civil_War",
+  "status": 200
+ },
+ {
+  "id": "kwilu-rebellion",
+  "name": "Kwilu Rebellion",
+  "url": "https://en.wikipedia.org/wiki/Kwilu_rebellion",
+  "status": 200
+ },
+ {
+  "id": "bugesera-invasion-1963",
+  "name": "Bugesera invasion (1963)",
+  "url": "https://en.wikipedia.org/wiki/Gikongoro_massacre",
+  "status": 404
+ },
+ {
+  "id": "east-african-mutinies-1964",
+  "name": "East African mutinies (1964)",
+  "url": "https://en.wikipedia.org/wiki/1964_East_African_Army_mutinies",
+  "status": 404
+ },
+ {
+  "id": "bale-revolt",
+  "name": "Bale revolt",
+  "url": "https://en.wikipedia.org/wiki/Bale_revolt",
+  "status": 200
+ },
+ {
+  "id": "ethio-somali-war-1964",
+  "name": "Ethio-Somali War (1964)",
+  "url": "https://en.wikipedia.org/wiki/1964_Ethiopian%E2%80%93Somali_War",
+  "status": 200
+ },
+ {
+  "id": "operation-dragon-rouge",
+  "name": "Operation Dragon Rouge",
+  "url": "https://en.wikipedia.org/wiki/Operation_Dragon_Rouge",
+  "status": 200
+ },
+ {
+  "id": "zanzibar-revolution",
+  "name": "Zanzibar Revolution",
+  "url": "https://en.wikipedia.org/wiki/Zanzibar_Revolution",
+  "status": 200
+ },
+ {
+  "id": "frolinat-insurgency",
+  "name": "FROLINAT Insurgency",
+  "url": "https://en.wikipedia.org/wiki/FROLINAT",
+  "status": 200
+ },
+ {
+  "id": "mercenaries-mutiny",
+  "name": "Mercenaries' Mutiny",
+  "url": "https://en.wikipedia.org/wiki/Mercenaries%27_mutiny",
+  "status": 404
+ },
+ {
+  "id": "burundi-crisis-of-1965",
+  "name": "Burundi crisis of 1965",
+  "url": "https://en.wikipedia.org/wiki/1965_Burundian_coup_d%27%C3%A9tat_attempt",
+  "status": 200
+ },
+ {
+  "id": "battle-of-sinoia",
+  "name": "Battle of Sinoia",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Sinoia",
+  "status": 200
+ },
+ {
+  "id": "operation-gordian-knot",
+  "name": "Operation Gordian Knot",
+  "url": "https://en.wikipedia.org/wiki/Operation_Gordian_Knot",
+  "status": 200
+ },
+ {
+  "id": "war-of-attrition",
+  "name": "War of Attrition",
+  "url": "https://en.wikipedia.org/wiki/War_of_Attrition",
+  "status": 200
+ },
+ {
+  "id": "mali-1968-coup",
+  "name": "Mali 1968 Coup",
+  "url": "https://en.wikipedia.org/wiki/1968_Malian_coup_d%27%C3%A9tat",
+  "status": 200
+ },
+ {
+  "id": "lesotho-coups-and-civil-conflict",
+  "name": "Lesotho Coups and Civil Conflict",
+  "url": "https://en.wikipedia.org/wiki/Politics_of_Lesotho",
+  "status": 200
+ },
+ {
+  "id": "wiriyamu-massacre",
+  "name": "Wiriyamu Massacre",
+  "url": "https://en.wikipedia.org/wiki/Wiriyamu_massacre",
+  "status": 200
+ },
+ {
+  "id": "operation-carlota",
+  "name": "Operation Carlota",
+  "url": "https://en.wikipedia.org/wiki/Operation_Carlota",
+  "status": 200
+ },
+ {
+  "id": "operation-savannah",
+  "name": "Operation Savannah",
+  "url": "https://en.wikipedia.org/wiki/Operation_Savannah_(Angola)",
+  "status": 200
+ },
+ {
+  "id": "ikiza-1972-burundi-genocide",
+  "name": "Ikiza (1972 Burundi genocide)",
+  "url": "https://en.wikipedia.org/wiki/1972_Burundian_genocide",
+  "status": 404
+ },
+ {
+  "id": "battle-of-quifangondo",
+  "name": "Battle of Quifangondo",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Quifangondo",
+  "status": 200
+ },
+ {
+  "id": "green-march",
+  "name": "Green March",
+  "url": "https://en.wikipedia.org/wiki/Green_March",
+  "status": 200
+ },
+ {
+  "id": "western-sahara-war-mauritania-theatre",
+  "name": "Western Sahara War (Mauritania theatre)",
+  "url": "https://en.wikipedia.org/wiki/Western_Sahara_War",
+  "status": 200
+ },
+ {
+  "id": "westgate-strike-operation-eland",
+  "name": "Westgate Strike (Operation Eland)",
+  "url": "https://en.wikipedia.org/wiki/Operation_Eland",
+  "status": 200
+ },
+ {
+  "id": "nyadzonia-raid",
+  "name": "Nyadzonia Raid",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Pungwe",
+  "status": 404
+ },
+ {
+  "id": "ethiopian-red-terror",
+  "name": "Ethiopian Red Terror",
+  "url": "https://en.wikipedia.org/wiki/Red_Terror_(Ethiopia)",
+  "status": 200
+ },
+ {
+  "id": "comoros-coups-bob-denard-era",
+  "name": "Comoros Coups (Bob Denard era)",
+  "url": "https://en.wikipedia.org/wiki/Bob_Denard",
+  "status": 200
+ },
+ {
+  "id": "western-somali-liberation-front-insurgency",
+  "name": "Western Somali Liberation Front insurgency",
+  "url": "https://en.wikipedia.org/wiki/Western_Somali_Liberation_Front",
+  "status": 200
+ },
+ {
+  "id": "libyan-egyptian-war",
+  "name": "Libyan-Egyptian War",
+  "url": "https://en.wikipedia.org/wiki/Libyan%E2%80%93Egyptian_War",
+  "status": 200
+ },
+ {
+  "id": "shaba-ii-invasion",
+  "name": "Shaba II Invasion",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Kolwezi",
+  "status": 200
+ },
+ {
+  "id": "operation-reindeer",
+  "name": "Operation Reindeer",
+  "url": "https://en.wikipedia.org/wiki/Operation_Reindeer",
+  "status": 200
+ },
+ {
+  "id": "chadian-libyan-war",
+  "name": "Chadian-Libyan War",
+  "url": "https://en.wikipedia.org/wiki/Chadian%E2%80%93Libyan_conflict",
+  "status": 200
+ },
+ {
+  "id": "equatorial-guinea-coups",
+  "name": "Equatorial Guinea Coups",
+  "url": "https://en.wikipedia.org/wiki/2004_Equatorial_Guinea_coup_d%27%C3%A9tat_attempt",
+  "status": 200
+ },
+ {
+  "id": "tanzaniauganda-war",
+  "name": "Tanzania\u2013Uganda War",
+  "url": "https://en.wikipedia.org/wiki/Uganda%E2%80%93Tanzania_War",
+  "status": 200
+ },
+ {
+  "id": "maitatsine-riots",
+  "name": "Maitatsine Riots",
+  "url": "https://en.wikipedia.org/wiki/Maitatsine",
+  "status": 200
+ },
+ {
+  "id": "gafsa-raid",
+  "name": "Gafsa Raid",
+  "url": "https://en.wikipedia.org/wiki/Gafsa_raid",
+  "status": 404
+ },
+ {
+  "id": "cassinga-raid",
+  "name": "Cassinga Raid",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Cassinga",
+  "status": 200
+ },
+ {
+  "id": "operation-protea",
+  "name": "Operation Protea",
+  "url": "https://en.wikipedia.org/wiki/Operation_Protea",
+  "status": 200
+ },
+ {
+  "id": "south-african-raid-on-matola",
+  "name": "South African Raid on Matola",
+  "url": "https://en.wikipedia.org/wiki/Matola_raid",
+  "status": 404
+ },
+ {
+  "id": "seychelles-1981-mercenary-raid",
+  "name": "Seychelles 1981 Mercenary Raid",
+  "url": "https://en.wikipedia.org/wiki/1981_Seychelles_coup_d%27%C3%A9tat_attempt",
+  "status": 200
+ },
+ {
+  "id": "us-libya-conflict-gulf-of-sidra",
+  "name": "US-Libya Conflict (Gulf of Sidra)",
+  "url": "https://en.wikipedia.org/wiki/United_States%E2%80%93Libya_relations",
+  "status": 200
+ },
+ {
+  "id": "operation-askari",
+  "name": "Operation Askari",
+  "url": "https://en.wikipedia.org/wiki/Operation_Askari",
+  "status": 200
+ },
+ {
+  "id": "war-in-uganda-19861994",
+  "name": "War in Uganda (1986\u20131994)",
+  "url": "https://en.wikipedia.org/wiki/War_in_Uganda_(1986%E2%80%931994)",
+  "status": 200
+ },
+ {
+  "id": "somali-rebellion",
+  "name": "Somali Rebellion",
+  "url": "https://en.wikipedia.org/wiki/Somali_Rebellion",
+  "status": 200
+ },
+ {
+  "id": "operation-hooper",
+  "name": "Operation Hooper",
+  "url": "https://en.wikipedia.org/wiki/Operation_Hooper",
+  "status": 200
+ },
+ {
+  "id": "operation-vula",
+  "name": "Operation Vula",
+  "url": "https://en.wikipedia.org/wiki/Operation_Vula",
+  "status": 200
+ },
+ {
+  "id": "operation-packer",
+  "name": "Operation Packer",
+  "url": "https://en.wikipedia.org/wiki/Operation_Packer",
+  "status": 200
+ },
+ {
+  "id": "senegalmauritania-border-war",
+  "name": "Senegal\u2013Mauritania Border War",
+  "url": "https://en.wikipedia.org/wiki/Mauritania%E2%80%93Senegal_Border_War",
+  "status": 200
+ },
+ {
+  "id": "ecomog-intervention-in-liberia",
+  "name": "ECOMOG Intervention in Liberia",
+  "url": "https://en.wikipedia.org/wiki/Economic_Community_of_West_African_States_Monitoring_Group",
+  "status": 200
+ },
+ {
+  "id": "second-tuareg-rebellion",
+  "name": "Second Tuareg Rebellion",
+  "url": "https://en.wikipedia.org/wiki/1990%E2%80%931995_Tuareg_rebellion",
+  "status": 404
+ },
+ {
+  "id": "bisho-massacre",
+  "name": "Bisho Massacre",
+  "url": "https://en.wikipedia.org/wiki/Bisho_massacre",
+  "status": 200
+ },
+ {
+  "id": "1993-burundi-coup",
+  "name": "1993 Burundi coup",
+  "url": "https://en.wikipedia.org/wiki/1993_Burundian_coup_d%27%C3%A9tat",
+  "status": 404
+ },
+ {
+  "id": "siege-of-kuito",
+  "name": "Siege of Kuito",
+  "url": "https://en.wikipedia.org/wiki/Siege_of_Kuito",
+  "status": 404
+ },
+ {
+  "id": "republic-of-the-congo-civil-war-of-1993-1994",
+  "name": "Republic of the Congo Civil War of 1993-1994",
+  "url": "https://en.wikipedia.org/wiki/1993%E2%80%9394_Republic_of_the_Congo_Civil_War",
+  "status": 404
+ },
+ {
+  "id": "battle-of-huambo-1993",
+  "name": "Battle of Huambo 1993",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Huambo",
+  "status": 404
+ },
+ {
+  "id": "bophuthatswana-crisis",
+  "name": "Bophuthatswana Crisis",
+  "url": "https://en.wikipedia.org/wiki/Bophuthatswana_crisis",
+  "status": 404
+ },
+ {
+  "id": "operation-azalee",
+  "name": "Operation Azalee",
+  "url": "https://en.wikipedia.org/wiki/Operation_Azalee",
+  "status": 200
+ },
+ {
+  "id": "banyamulenge-revolt",
+  "name": "Banyamulenge Revolt",
+  "url": "https://en.wikipedia.org/wiki/Banyamulenge",
+  "status": 200
+ },
+ {
+  "id": "mai-mai-insurgencies",
+  "name": "Mai-Mai Insurgencies",
+  "url": "https://en.wikipedia.org/wiki/Mai-Mai",
+  "status": 200
+ },
+ {
+  "id": "black-decade-massacres",
+  "name": "Black Decade Massacres",
+  "url": "https://en.wikipedia.org/wiki/Massacres_in_Algeria_of_the_1990s",
+  "status": 404
+ },
+ {
+  "id": "allied-democratic-forces-insurgency",
+  "name": "Allied Democratic Forces insurgency",
+  "url": "https://en.wikipedia.org/wiki/Allied_Democratic_Forces_insurgency",
+  "status": 200
+ },
+ {
+  "id": "sao-tome-coups",
+  "name": "Sao Tome Coups",
+  "url": "https://en.wikipedia.org/wiki/2003_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_coup_d%27%C3%A9tat",
+  "status": 200
+ },
+ {
+  "id": "anjouan-crisis",
+  "name": "Anjouan Crisis",
+  "url": "https://en.wikipedia.org/wiki/2008_invasion_of_Anjouan",
+  "status": 200
+ },
+ {
+  "id": "republic-of-the-congo-civil-war-of-1997-1999",
+  "name": "Republic of the Congo Civil War of 1997-1999",
+  "url": "https://en.wikipedia.org/wiki/Republic_of_the_Congo_Civil_War",
+  "status": 200
+ },
+ {
+  "id": "operation-boleas",
+  "name": "Operation Boleas",
+  "url": "https://en.wikipedia.org/wiki/Operation_Boleas",
+  "status": 200
+ },
+ {
+  "id": "pool-war",
+  "name": "Pool War",
+  "url": "https://en.wikipedia.org/wiki/Pool_War",
+  "status": 200
+ },
+ {
+  "id": "mlc-insurgency",
+  "name": "MLC Insurgency",
+  "url": "https://en.wikipedia.org/wiki/Movement_for_the_Liberation_of_the_Congo",
+  "status": 200
+ },
+ {
+  "id": "caprivi-conflict",
+  "name": "Caprivi Conflict",
+  "url": "https://en.wikipedia.org/wiki/1999_Caprivi_conflict",
+  "status": 404
+ },
+ {
+  "id": "rcd-insurgency",
+  "name": "RCD Insurgency",
+  "url": "https://en.wikipedia.org/wiki/Rally_for_Congolese_Democracy",
+  "status": 200
+ },
+ {
+  "id": "plateau-state-crisis",
+  "name": "Plateau State Crisis",
+  "url": "https://en.wikipedia.org/wiki/Jos_riots",
+  "status": 200
+ },
+ {
+  "id": "nigerian-farmerherder-conflict",
+  "name": "Nigerian Farmer\u2013Herder Conflict",
+  "url": "https://en.wikipedia.org/wiki/Herder%E2%80%93farmer_conflicts_in_Nigeria",
+  "status": 200
+ },
+ {
+  "id": "six-day-war-of-kisangani",
+  "name": "Six-Day War of Kisangani",
+  "url": "https://en.wikipedia.org/wiki/Six-Day_War_(2000)",
+  "status": 200
+ },
+ {
+  "id": "insurgency-in-the-maghreb-aqim",
+  "name": "Insurgency in the Maghreb (AQIM)",
+  "url": "https://en.wikipedia.org/wiki/Insurgency_in_the_Maghreb_(2002%E2%80%93present)",
+  "status": 200
+ },
+ {
+  "id": "gambella-conflict",
+  "name": "Gambella conflict",
+  "url": "https://en.wikipedia.org/wiki/Gambela_massacre",
+  "status": 200
+ },
+ {
+  "id": "operation-licorne",
+  "name": "Operation Licorne",
+  "url": "https://en.wikipedia.org/wiki/Operation_Licorne",
+  "status": 200
+ },
+ {
+  "id": "central-african-republic-bush-war",
+  "name": "Central African Republic Bush War",
+  "url": "https://en.wikipedia.org/wiki/Central_African_Republic_Bush_War",
+  "status": 200
+ },
+ {
+  "id": "sahrawi-intifada-2005",
+  "name": "Sahrawi Intifada (2005)",
+  "url": "https://en.wikipedia.org/wiki/First_Sahrawi_Intifada",
+  "status": 200
+ },
+ {
+  "id": "rabaa-massacre",
+  "name": "Rabaa Massacre",
+  "url": "https://en.wikipedia.org/wiki/Rabaa_massacre",
+  "status": 200
+ },
+ {
+  "id": "anti-balaka-campaign",
+  "name": "Anti-balaka Campaign",
+  "url": "https://en.wikipedia.org/wiki/Anti-balaka",
+  "status": 200
+ },
+ {
+  "id": "isil-insurgency-in-libya",
+  "name": "ISIL Insurgency in Libya",
+  "url": "https://en.wikipedia.org/wiki/Islamic_State_insurgency_in_Libya",
+  "status": 404
+ },
+ {
+  "id": "second-libyan-civil-war",
+  "name": "Second Libyan Civil War",
+  "url": "https://en.wikipedia.org/wiki/Second_Libyan_Civil_War",
+  "status": 200
+ },
+ {
+  "id": "battle-of-sirte-2016",
+  "name": "Battle of Sirte (2016)",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Sirte_(2016)",
+  "status": 200
+ },
+ {
+  "id": "diffa-insurgency",
+  "name": "Diffa Insurgency",
+  "url": "https://en.wikipedia.org/wiki/Boko_Haram_insurgency_in_Niger",
+  "status": 404
+ },
+ {
+  "id": "kamuina-nsapu-rebellion",
+  "name": "Kamuina Nsapu Rebellion",
+  "url": "https://en.wikipedia.org/wiki/Kamwina_Nsapu_rebellion",
+  "status": 200
+ },
+ {
+  "id": "burkinabe-insurgency",
+  "name": "Burkinab\u00e9 Insurgency",
+  "url": "https://en.wikipedia.org/wiki/Jihadist_insurgency_in_Burkina_Faso",
+  "status": 200
+ },
+ {
+  "id": "tillaberi-insurgency",
+  "name": "Tillab\u00e9ri Insurgency",
+  "url": "https://en.wikipedia.org/wiki/Jihadist_insurgency_in_Niger",
+  "status": 200
+ },
+ {
+  "id": "wagner-group-in-car",
+  "name": "Wagner Group in CAR",
+  "url": "https://en.wikipedia.org/wiki/Wagner_Group_in_Central_African_Republic",
+  "status": 404
+ },
+ {
+  "id": "sudanese-revolution",
+  "name": "Sudanese Revolution",
+  "url": "https://en.wikipedia.org/wiki/Sudanese_revolution",
+  "status": 200
+ },
+ {
+  "id": "tibuarab-conflict-in-chad",
+  "name": "Tibu\u2013Arab Conflict in Chad",
+  "url": "https://en.wikipedia.org/wiki/Tibesti_Mountains",
+  "status": 200
+ },
+ {
+  "id": "2020-malian-coup",
+  "name": "2020 Malian Coup",
+  "url": "https://en.wikipedia.org/wiki/2020_Malian_coup_d%27%C3%A9tat",
+  "status": 200
+ },
+ {
+  "id": "polisario-insurgency-post-2020",
+  "name": "Polisario Insurgency (post-2020)",
+  "url": "https://en.wikipedia.org/wiki/2020%E2%80%93present_Western_Sahara_clashes",
+  "status": 404
+ },
+ {
+  "id": "hirak-movement-algeria",
+  "name": "Hirak Movement (Algeria)",
+  "url": "https://en.wikipedia.org/wiki/2019%E2%80%932021_Algerian_protests",
+  "status": 200
+ },
+ {
+  "id": "battle-of-mekelle-2020",
+  "name": "Battle of Mekelle (2020)",
+  "url": "https://en.wikipedia.org/wiki/Battle_of_Mekelle",
+  "status": 200
+ },
+ {
+  "id": "chadian-conflict-against-fact-2021",
+  "name": "Chadian Conflict against FACT 2021",
+  "url": "https://en.wikipedia.org/wiki/Northern_Chad_offensive",
+  "status": 200
+ },
+ {
+  "id": "bailundo-war",
+  "name": "Bailundo War",
+  "url": "https://en.wikipedia.org/wiki/Bailundo_War",
+  "status": 404
+ },
+ {
+  "id": "anglo-sokoto-war",
+  "name": "Anglo-Sokoto War",
+  "url": "https://en.wikipedia.org/wiki/Sokoto_Caliphate",
+  "status": 200
+ }
+]

@@ -1,0 +1,977 @@
+[
+ {
+  "child_id": "egyptian-campaigns-against-yam",
+  "child_name": "Egyptian campaigns against Yam",
+  "child_years": "-2270--2200",
+  "parent_id": "egyptian-campaigns-into-wawat",
+  "parent_name": "Egyptian campaigns into Wawat",
+  "parent_years": "-2300--2100",
+  "shared_terms": [
+   "campaigns",
+   "egyptian"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "roman-kushite-war-meroitic-war",
+  "child_name": "Roman-Kushite War (Meroitic War)",
+  "child_years": "-27--22",
+  "parent_id": "roman-kushite-war",
+  "parent_name": "Roman-Kushite War",
+  "parent_years": "-27--22",
+  "shared_terms": [
+   "roman",
+   "kushite"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "kitos-war",
+  "child_name": "Kitos War",
+  "child_years": "115-117",
+  "parent_id": "jewish-roman-wars",
+  "parent_name": "Jewish-Roman Wars",
+  "parent_years": "66-135",
+  "shared_terms": [
+   "jewish",
+   "roman"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-haydaran",
+  "child_name": "Battle of Haydaran",
+  "child_years": "1052-1052",
+  "parent_id": "banu-hilal-invasion",
+  "parent_name": "Banu Hilal Invasion",
+  "parent_years": "1050-1110",
+  "shared_terms": [
+   "hilal",
+   "banu"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "norman-conquest-of-mahdia",
+  "child_name": "Norman Conquest of Mahdia",
+  "child_years": "1146-1160",
+  "parent_id": "almohad-conquest-of-the-maghreb",
+  "parent_name": "Almohad Conquest of the Maghreb",
+  "parent_years": "1130-1172",
+  "shared_terms": [
+   "conquest",
+   "almohad"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "dawit-i-s-campaigns",
+  "child_name": "Dawit I's campaigns",
+  "child_years": "1380-1413",
+  "parent_id": "ifatethiopian-wars",
+  "parent_name": "Ifat–Ethiopian wars",
+  "parent_years": "1320-1415",
+  "shared_terms": [
+   "ifat",
+   "ethiopian"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "sefuwabulala-wars",
+  "child_name": "Sefuwa–Bulala Wars",
+  "child_years": "1380-1470",
+  "parent_id": "kanem-bornu-wars",
+  "parent_name": "Kanem-Bornu Expansion Wars",
+  "parent_years": "1200-1600",
+  "shared_terms": [
+   "kanem",
+   "bornu"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "kanembornu-civil-war",
+  "child_name": "Kanem–Bornu Civil War",
+  "child_years": "1380-1480",
+  "parent_id": "kanem-bornu-wars",
+  "parent_name": "Kanem-Bornu Expansion Wars",
+  "parent_years": "1200-1600",
+  "shared_terms": [
+   "kanem",
+   "bornu"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-zeila-1415",
+  "child_name": "Battle of Zeila (1415)",
+  "child_years": "1415-1415",
+  "parent_id": "ifatethiopian-wars",
+  "parent_name": "Ifat–Ethiopian wars",
+  "parent_years": "1320-1415",
+  "shared_terms": [
+   "ifat",
+   "ethiopian"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "zara-yaqob-s-adal-wars",
+  "child_name": "Zara Yaqob's Adal wars",
+  "child_years": "1434-1468",
+  "parent_id": "adalethiopian-wars-pre-gragn",
+  "parent_name": "Adal–Ethiopian wars (pre-Gragn)",
+  "parent_years": "1415-1527",
+  "shared_terms": [
+   "adal",
+   "ethiopian"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-gomit",
+  "child_name": "Battle of Gomit",
+  "child_years": "1445-1445",
+  "parent_id": "adalethiopian-wars-pre-gragn",
+  "parent_name": "Adal–Ethiopian wars (pre-Gragn)",
+  "parent_years": "1415-1527",
+  "shared_terms": [
+   "adal",
+   "ethiopian"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "hadiya-wars-under-zara-yaqob",
+  "child_name": "Hadiya wars under Zara Yaqob",
+  "child_years": "1445-1450",
+  "parent_id": "zara-yaqob-s-adal-wars",
+  "parent_name": "Zara Yaqob's Adal wars",
+  "parent_years": "1434-1468",
+  "shared_terms": [
+   "zara",
+   "yaqob"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "mahfuz-s-jihads",
+  "child_name": "Mahfuz's jihads",
+  "child_years": "1490-1517",
+  "parent_id": "adalethiopian-wars-pre-gragn",
+  "parent_name": "Adal–Ethiopian wars (pre-Gragn)",
+  "parent_years": "1415-1527",
+  "shared_terms": [
+   "adal",
+   "ethiopian"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-amba-sel",
+  "child_name": "Battle of Amba Sel",
+  "child_years": "1531-1531",
+  "parent_id": "ethiopian-adal-war",
+  "parent_name": "Ethiopian-Adal War",
+  "parent_years": "1529-1559",
+  "shared_terms": [
+   "adal",
+   "ethiopian"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "battle-of-wofla",
+  "child_name": "Battle of Wofla",
+  "child_years": "1542-1542",
+  "parent_id": "ethiopian-adal-war",
+  "parent_name": "Ethiopian-Adal War",
+  "parent_years": "1529-1559",
+  "shared_terms": [
+   "adal",
+   "ethiopian"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "battle-of-hazalo",
+  "child_name": "Battle of Hazalo",
+  "child_years": "1559-1559",
+  "parent_id": "ethiopian-adal-war",
+  "parent_name": "Ethiopian-Adal War",
+  "parent_years": "1529-1559",
+  "shared_terms": [
+   "adal",
+   "ethiopian"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "idris-alooma-s-wars",
+  "child_name": "Idris Alooma's Wars",
+  "child_years": "1564-1596",
+  "parent_id": "kanem-bornu-wars",
+  "parent_name": "Kanem-Bornu Expansion Wars",
+  "parent_years": "1200-1600",
+  "shared_terms": [
+   "kanem",
+   "bornu"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-massapa",
+  "child_name": "Battle of Massapa",
+  "child_years": "1572-1572",
+  "parent_id": "portuguese-mutapa-war-1568-1575",
+  "parent_name": "Portuguese-Mutapa War (1568-1575)",
+  "parent_years": "1568-1575",
+  "shared_terms": [
+   "mutapa",
+   "portuguese"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "conquest-of-tunis-1574",
+  "child_name": "Conquest of Tunis (1574)",
+  "child_years": "1574-1574",
+  "parent_id": "ottoman-conquest-northern-africa",
+  "parent_name": "Ottoman Conquest of North Africa",
+  "parent_years": "1516-1574",
+  "shared_terms": [
+   "conquest",
+   "ottoman"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "queen-amina-s-conquests",
+  "child_name": "Queen Amina's Conquests",
+  "child_years": "1576-1610",
+  "parent_id": "hausa-states-conflicts",
+  "parent_name": "Hausa States Internal Wars",
+  "parent_years": "1300-1700",
+  "shared_terms": [
+   "states",
+   "hausa"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "battle-of-addi-qaro",
+  "child_name": "Battle of Addi Qaro",
+  "child_years": "1578-1578",
+  "parent_id": "ottomanethiopian-war-15571589",
+  "parent_name": "Ottoman–Ethiopian War (1557–1589)",
+  "parent_years": "1557-1589",
+  "shared_terms": [
+   "ottoman",
+   "ethiopian"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "zimba-raids",
+  "child_name": "Zimba Raids",
+  "child_years": "1589-1592",
+  "parent_id": "swahili-city-states-conflicts",
+  "parent_name": "Swahili City-States Conflicts",
+  "parent_years": "1200-1600",
+  "shared_terms": [
+   "swahili",
+   "city",
+   "states"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "jukun-kwararafa-wars",
+  "child_name": "Jukun (Kwararafa) Wars",
+  "child_years": "1600-1700",
+  "parent_id": "hausa-states-conflicts",
+  "parent_name": "Hausa States Internal Wars",
+  "parent_years": "1300-1700",
+  "shared_terms": [
+   "states",
+   "hausa"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "battle-of-mbanza-mbata",
+  "child_name": "Battle of Mbanza Mbata",
+  "child_years": "1622-1622",
+  "parent_id": "kongo-portuguese-conflicts",
+  "parent_name": "Kongo-Portuguese Conflicts",
+  "parent_years": "1506-1650",
+  "shared_terms": [
+   "kongo",
+   "portuguese"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "first-khoikhoi-dutch-war",
+  "child_name": "First Khoikhoi-Dutch War",
+  "child_years": "1659-1660",
+  "parent_id": "khoikhoi-dutch-wars",
+  "parent_name": "Khoikhoi-Dutch Wars",
+  "parent_years": "1659-1677",
+  "shared_terms": [
+   "khoikhoi",
+   "dutch"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "second-khoikhoi-dutch-war",
+  "child_name": "Second Khoikhoi-Dutch War",
+  "child_years": "1673-1677",
+  "parent_id": "khoikhoi-dutch-wars",
+  "parent_name": "Khoikhoi-Dutch Wars",
+  "parent_years": "1659-1677",
+  "shared_terms": [
+   "khoikhoi",
+   "dutch"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "mwanga-i-of-buganda-s-wars",
+  "child_name": "Mwanga I of Buganda's wars",
+  "child_years": "1700-1740",
+  "parent_id": "bugandabunyoro-wars",
+  "parent_name": "Buganda–Bunyoro wars",
+  "parent_years": "1650-1899",
+  "shared_terms": [
+   "bunyoro",
+   "buganda"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "dahomey-conquest-of-whydah",
+  "child_name": "Dahomey Conquest of Whydah",
+  "child_years": "1727-1728",
+  "parent_id": "oyo-conquest-of-dahomey",
+  "parent_name": "Oyo Conquest of Dahomey",
+  "parent_years": "1726-1748",
+  "shared_terms": [
+   "dahomey",
+   "conquest"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "greek-war-of-independence-egyptian-phase",
+  "child_name": "Greek War of Independence (Egyptian Phase)",
+  "child_years": "1824-1828",
+  "parent_id": "greek-independence-war",
+  "parent_name": "Greek War of Independence",
+  "parent_years": "1821-1829",
+  "shared_terms": [
+   "independence",
+   "greek"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-abeokuta-1851",
+  "child_name": "Battle of Abeokuta (1851)",
+  "child_years": "1851-1851",
+  "parent_id": "egbadahomey-wars",
+  "parent_name": "Egba–Dahomey Wars",
+  "parent_years": "1844-1864",
+  "shared_terms": [
+   "dahomey",
+   "egba"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "french-conquest-of-the-sahara",
+  "child_name": "French Conquest of the Sahara",
+  "child_years": "1881-1903",
+  "parent_id": "french-conquest-of-algeria",
+  "parent_name": "French Conquest of Algeria",
+  "parent_years": "1830-1903",
+  "shared_terms": [
+   "french",
+   "conquest"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "french-conquest-of-the-toucouleur-empire",
+  "child_name": "French Conquest of the Toucouleur Empire",
+  "child_years": "1890-1893",
+  "parent_id": "french-conquest-of-algeria",
+  "parent_name": "French Conquest of Algeria",
+  "parent_years": "1830-1903",
+  "shared_terms": [
+   "french",
+   "conquest"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "acholi-buganda-war-189394",
+  "child_name": "Acholi-Buganda war (1893–94)",
+  "child_years": "1893-1894",
+  "parent_id": "bugandabunyoro-wars",
+  "parent_name": "Buganda–Bunyoro wars",
+  "parent_years": "1650-1899",
+  "shared_terms": [
+   "bunyoro",
+   "buganda"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "bunyoro-resistance-under-kabarega",
+  "child_name": "Bunyoro resistance under Kabarega",
+  "child_years": "1893-1899",
+  "parent_id": "bugandabunyoro-wars",
+  "parent_name": "Buganda–Bunyoro wars",
+  "parent_years": "1650-1899",
+  "shared_terms": [
+   "bunyoro",
+   "buganda"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "lulonga-and-mongala-revolts",
+  "child_name": "Lulonga and Mongala Revolts",
+  "child_years": "1893-1905",
+  "parent_id": "belgian-conquest-of-congo-free-state",
+  "parent_name": "Belgian Conquest of Congo Free State",
+  "parent_years": "1885-1908",
+  "shared_terms": [
+   "free",
+   "state",
+   "congo"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "batetela-mutiny-of-1895",
+  "child_name": "Batetela Mutiny of 1895",
+  "child_years": "1895-1898",
+  "parent_id": "belgian-conquest-of-congo-free-state",
+  "parent_name": "Belgian Conquest of Congo Free State",
+  "parent_years": "1885-1908",
+  "shared_terms": [
+   "free",
+   "state",
+   "congo"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "british-conquest-of-northern-ghana",
+  "child_name": "British Conquest of Northern Ghana",
+  "child_years": "1896-1898",
+  "parent_id": "babatu-and-samory-wars-in-northern-ghana",
+  "parent_name": "Babatu and Samory Wars in Northern Ghana",
+  "parent_years": "1880-1897",
+  "shared_terms": [
+   "ghana",
+   "northern"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "french-conquest-of-sikasso-1898",
+  "child_name": "French Conquest of Sikasso (1898)",
+  "child_years": "1898-1898",
+  "parent_id": "french-conquest-of-algeria",
+  "parent_name": "French Conquest of Algeria",
+  "parent_years": "1830-1903",
+  "shared_terms": [
+   "french",
+   "conquest"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "battle-of-bothaville",
+  "child_name": "Battle of Bothaville",
+  "child_years": "1900-1900",
+  "parent_id": "belgian-conquest-of-congo-free-state",
+  "parent_name": "Belgian Conquest of Congo Free State",
+  "parent_years": "1885-1908",
+  "shared_terms": [
+   "free",
+   "state"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "battle-of-kousseri",
+  "child_name": "Battle of Kousséri",
+  "child_years": "1900-1900",
+  "parent_id": "french-conquest-of-chad",
+  "parent_name": "French Conquest of Chad",
+  "parent_years": "1899-1911",
+  "shared_terms": [
+   "french",
+   "chad"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-sannaspos",
+  "child_name": "Battle of Sannaspos",
+  "child_years": "1900-1900",
+  "parent_id": "belgian-conquest-of-congo-free-state",
+  "parent_name": "Belgian Conquest of Congo Free State",
+  "parent_years": "1885-1908",
+  "shared_terms": [
+   "free",
+   "state"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "boma-mutiny",
+  "child_name": "Boma Mutiny",
+  "child_years": "1900-1900",
+  "parent_id": "belgian-conquest-of-congo-free-state",
+  "parent_name": "Belgian Conquest of Congo Free State",
+  "parent_years": "1885-1908",
+  "shared_terms": [
+   "free",
+   "state",
+   "congo"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "sayyid-hassan-bardera-campaigns",
+  "child_name": "Sayyid Hassan Bardera campaigns",
+  "child_years": "1900-1905",
+  "parent_id": "anglo-somali-war-dervish-state",
+  "parent_name": "Anglo-Somali War (Dervish State)",
+  "parent_years": "1900-1920",
+  "shared_terms": [
+   "dervish",
+   "state"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-jidballi",
+  "child_name": "Battle of Jidballi",
+  "child_years": "1904-1904",
+  "parent_id": "anglo-somali-war-dervish-state",
+  "parent_name": "Anglo-Somali War (Dervish State)",
+  "parent_years": "1900-1920",
+  "shared_terms": [
+   "dervish",
+   "state"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "french-conquest-of-ouaddai",
+  "child_name": "French Conquest of Ouaddai",
+  "child_years": "1909-1912",
+  "parent_id": "french-conquest-of-chad",
+  "parent_name": "French Conquest of Chad",
+  "parent_years": "1899-1911",
+  "shared_terms": [
+   "french",
+   "conquest"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "battle-of-dul-madoba",
+  "child_name": "Battle of Dul Madoba",
+  "child_years": "1913-1913",
+  "parent_id": "anglo-somali-war-dervish-state",
+  "parent_name": "Anglo-Somali War (Dervish State)",
+  "parent_years": "1900-1920",
+  "shared_terms": [
+   "dervish",
+   "state"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "anglo-egyptian-conquest-of-darfur",
+  "child_name": "Anglo-Egyptian Conquest of Darfur",
+  "child_years": "1916-1916",
+  "parent_id": "anglo-egyptian-sudan-pacification",
+  "parent_name": "Anglo-Egyptian Sudan Pacification",
+  "parent_years": "1899-1924",
+  "shared_terms": [
+   "egyptian",
+   "anglo"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "green-march",
+  "child_name": "Green March",
+  "child_years": "1975-1975",
+  "parent_id": "western-sahara-conflict",
+  "parent_name": "Western Sahara Conflict",
+  "parent_years": "1975-None",
+  "shared_terms": [
+   "sahara",
+   "western"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "western-sahara-war-mauritania-theatre",
+  "child_name": "Western Sahara War (Mauritania theatre)",
+  "child_years": "1975-1979",
+  "parent_id": "western-somali-liberation-front-insurgency",
+  "parent_name": "Western Somali Liberation Front insurgency",
+  "parent_years": "1976-1991",
+  "shared_terms": [
+   "front",
+   "western"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "western-somali-liberation-front-insurgency",
+  "child_name": "Western Somali Liberation Front insurgency",
+  "child_years": "1976-1991",
+  "parent_id": "tigray-people-s-liberation-front-insurgency",
+  "parent_name": "Tigray People's Liberation Front insurgency",
+  "parent_years": "1975-1991",
+  "shared_terms": [
+   "front",
+   "insurgency",
+   "liberation"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "seychelles-1981-mercenary-raid",
+  "child_name": "Seychelles 1981 Mercenary Raid",
+  "child_years": "1981-1981",
+  "parent_id": "south-africa-apartheid-conflicts",
+  "parent_name": "South African Apartheid Conflicts",
+  "parent_years": "1948-1994",
+  "shared_terms": [
+   "south",
+   "african"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "south-african-raid-on-matola",
+  "child_name": "South African Raid on Matola",
+  "child_years": "1981-1981",
+  "parent_id": "south-africa-apartheid-conflicts",
+  "parent_name": "South African Apartheid Conflicts",
+  "parent_years": "1948-1994",
+  "shared_terms": [
+   "south",
+   "african"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "south-african-raid-on-maseru",
+  "child_name": "South African Raid on Maseru",
+  "child_years": "1982-1982",
+  "parent_id": "lesotho-border-conflicts",
+  "parent_name": "Lesotho-South Africa Border Conflicts",
+  "parent_years": "1966-1990",
+  "shared_terms": [
+   "lesotho",
+   "south",
+   "africa"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "church-street-bombing",
+  "child_name": "Church Street Bombing",
+  "child_years": "1983-1983",
+  "parent_id": "lesotho-border-conflicts",
+  "parent_name": "Lesotho-South Africa Border Conflicts",
+  "parent_years": "1966-1990",
+  "shared_terms": [
+   "south",
+   "africa"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "gorongosa-campaign",
+  "child_name": "Gorongosa Campaign",
+  "child_years": "1985-1985",
+  "parent_id": "mozambique-renamo-war",
+  "parent_name": "Mozambique - Renamo War",
+  "parent_years": "1976-1992",
+  "shared_terms": [
+   "renamo",
+   "mozambique"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "1986-lesotho-coup",
+  "child_name": "1986 Lesotho Coup",
+  "child_years": "1986-1986",
+  "parent_id": "lesotho-border-conflicts",
+  "parent_name": "Lesotho-South Africa Border Conflicts",
+  "parent_years": "1966-1990",
+  "shared_terms": [
+   "lesotho",
+   "south",
+   "africa"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "operation-vula",
+  "child_name": "Operation Vula",
+  "child_years": "1986-1990",
+  "parent_id": "lesotho-border-conflicts",
+  "parent_name": "Lesotho-South Africa Border Conflicts",
+  "parent_years": "1966-1990",
+  "shared_terms": [
+   "south",
+   "africa"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "battle-of-afabet",
+  "child_name": "Battle of Afabet",
+  "child_years": "1988-1988",
+  "parent_id": "tigray-people-s-liberation-front-insurgency",
+  "parent_name": "Tigray People's Liberation Front insurgency",
+  "parent_years": "1975-1991",
+  "shared_terms": [
+   "front",
+   "liberation",
+   "people"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "operation-fenkil",
+  "child_name": "Operation Fenkil",
+  "child_years": "1990-1990",
+  "parent_id": "tigray-people-s-liberation-front-insurgency",
+  "parent_name": "Tigray People's Liberation Front insurgency",
+  "parent_years": "1975-1991",
+  "shared_terms": [
+   "front",
+   "liberation",
+   "people"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "sierra-leone-1997-afrc-coup",
+  "child_name": "Sierra Leone 1997 AFRC Coup",
+  "child_years": "1997-1997",
+  "parent_id": "liberia-sierra-leone-conflict",
+  "parent_name": "Liberia-Sierra Leone Regional Conflict",
+  "parent_years": "1991-2003",
+  "shared_terms": [
+   "sierra",
+   "leone"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "caprivi-conflict",
+  "child_name": "Caprivi Conflict",
+  "child_years": "1999-1999",
+  "parent_id": "oromo-liberation-army-insurgency",
+  "parent_name": "Oromo Liberation Army insurgency",
+  "parent_years": "1973-2024",
+  "shared_terms": [
+   "army",
+   "liberation"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "fdlr-insurgency",
+  "child_name": "FDLR Insurgency",
+  "child_years": "2000-None",
+  "parent_id": "allied-democratic-forces-insurgency",
+  "parent_name": "Allied Democratic Forces insurgency",
+  "parent_years": "1996-2024",
+  "shared_terms": [
+   "insurgency",
+   "democratic"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "operation-palliser",
+  "child_name": "Operation Palliser",
+  "child_years": "2000-2000",
+  "parent_id": "liberia-sierra-leone-conflict",
+  "parent_name": "Liberia-Sierra Leone Regional Conflict",
+  "parent_years": "1991-2003",
+  "shared_terms": [
+   "sierra",
+   "leone"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "cndp-insurgency",
+  "child_name": "CNDP Insurgency",
+  "child_years": "2006-2009",
+  "parent_id": "allied-democratic-forces-insurgency",
+  "parent_name": "Allied Democratic Forces insurgency",
+  "parent_years": "1996-2024",
+  "shared_terms": [
+   "insurgency",
+   "democratic"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "south-kordofan-conflict",
+  "child_name": "South Kordofan Conflict",
+  "child_years": "2011-None",
+  "parent_id": "sudanese-conflict-in-south-kordofan-and-blue-nile",
+  "parent_name": "Sudanese conflict in South Kordofan and Blue Nile",
+  "parent_years": "2011-2020",
+  "shared_terms": [
+   "kordofan",
+   "blue",
+   "south",
+   "nile"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "2012-malian-coup",
+  "child_name": "2012 Malian Coup",
+  "child_years": "2012-2012",
+  "parent_id": "northern-mali-conflict-2012",
+  "parent_name": "Northern Mali Conflict (2012– )",
+  "parent_years": "2012-None",
+  "shared_terms": [
+   "2012",
+   "mali"
+  ],
+  "parent_imp": 5
+ },
+ {
+  "child_id": "heglig-crisis",
+  "child_name": "Heglig Crisis",
+  "child_years": "2012-2012",
+  "parent_id": "south-sudan-civil-war-2",
+  "parent_name": "South Sudan Civil War",
+  "parent_years": "2013-2024",
+  "shared_terms": [
+   "sudan",
+   "south"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "marikana-massacre",
+  "child_name": "Marikana Massacre",
+  "child_years": "2012-2012",
+  "parent_id": "nigerian-bandit-conflict-north-west",
+  "parent_name": "Nigerian Bandit Conflict (North-West)",
+  "parent_years": "2011-None",
+  "shared_terms": [
+   "north",
+   "west"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "battle-of-bangui-2013",
+  "child_name": "Battle of Bangui (2013)",
+  "child_years": "2013-2013",
+  "parent_id": "central-african-conflict",
+  "parent_name": "Central African Conflict",
+  "parent_years": "2013-2024",
+  "shared_terms": [
+   "central",
+   "african"
+  ],
+  "parent_imp": 2
+ },
+ {
+  "child_id": "boko-haram-insurgency-in-cameroon",
+  "child_name": "Boko Haram Insurgency in Cameroon",
+  "child_years": "2014-None",
+  "parent_id": "boko-haram-insurgency-2009",
+  "parent_name": "Boko Haram Insurgency",
+  "parent_years": "2009-2024",
+  "shared_terms": [
+   "haram",
+   "insurgency",
+   "boko"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "chibok-schoolgirls-kidnapping-operations",
+  "child_name": "Chibok Schoolgirls Kidnapping Operations",
+  "child_years": "2014-2014",
+  "parent_id": "boko-haram-insurgency-2009",
+  "parent_name": "Boko Haram Insurgency",
+  "parent_years": "2009-2024",
+  "shared_terms": [
+   "haram",
+   "boko"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "diffa-insurgency",
+  "child_name": "Diffa Insurgency",
+  "child_years": "2015-None",
+  "parent_id": "boko-haram-insurgency-2009",
+  "parent_name": "Boko Haram Insurgency",
+  "parent_years": "2009-2024",
+  "shared_terms": [
+   "haram",
+   "insurgency",
+   "boko"
+  ],
+  "parent_imp": 4
+ },
+ {
+  "child_id": "operation-eagle-claw-mnjtf",
+  "child_name": "Operation Eagle Claw (MNJTF)",
+  "child_years": "2015-None",
+  "parent_id": "lake-chad-crisis",
+  "parent_name": "Lake Chad Crisis",
+  "parent_years": "2009-2024",
+  "shared_terms": [
+   "chad",
+   "lake"
+  ],
+  "parent_imp": 3
+ },
+ {
+  "child_id": "codeco-insurgency",
+  "child_name": "CODECO Insurgency",
+  "child_years": "2017-None",
+  "parent_id": "allied-democratic-forces-insurgency",
+  "parent_name": "Allied Democratic Forces insurgency",
+  "parent_years": "1996-2024",
+  "shared_terms": [
+   "insurgency",
+   "democratic"
+  ],
+  "parent_imp": 4
+ }
+]

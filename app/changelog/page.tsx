@@ -61,6 +61,120 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="18 May 2026" tag="r9 · africa cleanup">
+          <p>
+            Same-day follow-up to r8. The seven follow-ups documented in
+            the original Africa audit report were all worked through in
+            one cleanup pass — URL re-checking, aggregate-parent
+            consolidation, partOf cross-linking, low-confidence review,
+            a continent-wide coordinate axis-swap audit, &ldquo;Great
+            Lakes&rdquo; tag disambiguation, and two non-canonical URL
+            retargets. Pre-cleanup backup at{' '}
+            <code>backups/conflicts_20260518_141045_pre_africa_cleanup.json</code>.
+          </p>
+          <ul>
+            <li>
+              <strong>Wikipedia URL verification, finished.</strong> The
+              326 rate-limited URLs from r8 were re-checked in three
+              chunked-serial passes. Cumulative result across all 784
+              audit-added entries: 671 confirmed 200, 112 confirmed 404
+              (of which 98 were patched to canonical articles and 14
+              nulled out because no English Wikipedia article exists for
+              the event), 0 still rate-limited. Random 30-URL spot-check
+              of the patched links returned 30/30 200-OK. Patterns
+              discovered: figure-centric redirects (Anglo-Buganda war →
+              Mwanga II of Buganda), operation-name overrides (Nyadzonia
+              Raid → Operation Eland, Matola Raid → Operation Beanbag,
+              Gafsa Raid → 1980 Gafsa Uprising), and umbrella roll-ups
+              for battles without standalone articles (Battle of Osogbo
+              and Battle of Ijaye both live inside Yoruba Wars).
+            </li>
+            <li>
+              <strong>Aggregate-parent consolidation.</strong> Nine
+              duplicate-event clusters merged into single records,
+              keeping the higher-importance entry and adopting locations
+              and Wikipedia URLs from the deleted record: Sokoto Jihad
+              (2→1), Tigray War 2020 (2→1), Herero/Nama Genocide (3→1),
+              Third Anglo-Asante (2→1), South Sudanese Civil War (2→1),
+              Saadi/Saadian Conquest of Songhai (2→1), Songhai-Mali
+              Wars (2→1), Eritrean War of Independence (2→1),
+              Roman-Kushite War (2→1). Ten records deleted; zero broken
+              <code>partOf</code> refs left dangling.
+            </li>
+            <li>
+              <strong><code>partOf</code> cross-linking pass.</strong>{' '}
+              <code>partOf</code> edges went from 59 in the file to 245
+              (+180 set on 239 entries). 27 hand-curated umbrellas got
+              children linked: Punic Wars (3), Italo-Ethiopian (12),
+              Boer Wars (11), Anglo-Ashanti (6), Aksum expansion (7),
+              Axumite Arabian invasions (3), Songhai expansion (5),
+              Kongo-Portuguese (14), Kongo Civil War (4),
+              Portuguese-Njinga (3), Sokoto Caliphate (6), Mahdist War,
+              Anglo-Zulu battles (6), Mfecane sub-events, Border War
+              operations (8), Angolan Civil War, Force Publique
+              campaigns, Congo Crisis, East African campaigns (WWI and
+              WWII), Maji Maji, Yoruba Civil Wars, plus Cameroon and
+              Eritrea. A separate auto-suggestion script proposed 74
+              additional links; after hand-review 53 were applied and
+              21 rejected as false-positive collisions (the Boer-War
+              battle of Bothaville was being matched to the Belgian
+              Conquest of the Congo Free State via the &ldquo;free
+              state&rdquo; token, since both Orange Free State and
+              Congo Free State trip the keyword).
+            </li>
+            <li>
+              <strong>Cape Frontier Wars made a proper series.</strong>{' '}
+              The r8 audit had landed seven of the nine wars as
+              individual entries; the cleanup added the missing{' '}
+              <em>Second Cape Frontier War (1789–93)</em> and{' '}
+              <em>Seventh Cape Frontier War (1846–47)</em>, created the{' '}
+              <code>cape-frontier-wars</code> umbrella (1779–1879,
+              importance 2), and linked all nine via <code>partOf</code>.
+            </li>
+            <li>
+              <strong>Low-confidence review.</strong> Of the 45
+              low-confidence entries flagged at audit-merge time, 8 were
+              dropped: <code>kongo-expansion-under-lukeni-lua-nimi</code>{' '}
+              and <code>luba-empire-expansion-under-kalala-ilunga</code>{' '}
+              (legendary chronicle entries),{' '}
+              <code>mapungubwe-decline-conflicts</code>,{' '}
+              <code>takrur-foundation-conflicts</code>,{' '}
+              <code>sailors-of-oman-in-pemba-and-lamu</code>,{' '}
+              <code>tio-bobangi-conflicts</code>, <code>bemba-wars</code>,
+              and <code>loango-expansion</code> (all umbrellas without
+              named events, or gradual displacements rather than
+              discrete wars). The remaining 37 low-confidence entries
+              are kept; they're real but thinly-sourced.
+            </li>
+            <li>
+              <strong>Coordinate axis-swap audit, atlas-wide.</strong>{' '}
+              Three-heuristic scan across all 2,316 post-audit entries:
+              0 entries had |lon| &gt; 180 or |lat| &gt; 90; 23
+              country-bbox candidates of which 22 were false positives
+              (Italian wars fought in Eritrea, Portuguese wars in
+              Mozambique). Found <strong>one</strong> true swap and
+              fixed it: <em>Franco-Prussian War</em>, coords were{' '}
+              <code>[48.8566, 2.3522]</code> (lat-lon swapped Paris),
+              corrected to <code>[2.3522, 48.8566]</code>.
+            </li>
+            <li>
+              <strong>&ldquo;Great Lakes&rdquo; disambiguation.</strong>{' '}
+              Three entries used the ambiguous tag <code>Great Lakes</code>{' '}
+              in their <code>locations</code> array; renamed to{' '}
+              <code>African Great Lakes</code> (Bantu expansion) or{' '}
+              <code>North American Great Lakes</code> (Iroquois conflicts).
+            </li>
+          </ul>
+          <p style={{ marginTop: 8, opacity: 0.7, fontSize: 14 }}>
+            Conflict count: 2,316 → 2,301 (−15 net: −10 dedup deletes,
+            −8 low-confidence deletes, +3 new entries — Cape Frontier
+            umbrella plus Second and Seventh Frontier Wars). Schema
+            valid; zero broken <code>partOf</code> refs; 239 entries
+            with <code>partOf</code> set, 245 partOf edges. URL
+            spot-check 30/30 200-OK on patched links.
+          </p>
+        </Entry>
+
         <Entry date="18 May 2026" tag="r8 · africa audit">
           <p>
             Sister audit to r7. Reader feedback had flagged Africa

@@ -2029,7 +2029,7 @@
    -1.0
   ],
   "locations": [
-   "Great Lakes",
+   "African Great Lakes",
    "Lake Victoria"
   ],
   "countries": [
@@ -3025,7 +3025,9 @@
    "Rome",
    "Carthage"
   ],
-  "partOf": [],
+  "partOf": [
+   "punic-wars"
+  ],
   "casualties": 100000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Punic_War",
   "importance": 4,
@@ -3060,8 +3062,8 @@
   "partOf": [],
   "casualties": 700000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Punic_Wars",
-  "importance": 5,
-  "description": "Three epic wars between Rome and Carthage that established Rome as the dominant Mediterranean power.",
+  "importance": 2,
+  "description": "Three epic wars between Rome and Carthage that established Rome as the dominant Mediterranean power. See per-war entries.",
   "casualtyRange": {
    "low": 1000000,
    "high": 2000000,
@@ -3402,7 +3404,9 @@
    "Rome",
    "Carthage"
   ],
-  "partOf": [],
+  "partOf": [
+   "punic-wars"
+  ],
   "casualties": 300000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Punic_War",
   "importance": 5,
@@ -3726,7 +3730,9 @@
    "Rome",
    "Carthage"
   ],
-  "partOf": [],
+  "partOf": [
+   "punic-wars"
+  ],
   "casualties": 250000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Punic_War",
   "importance": 4,
@@ -4412,42 +4418,19 @@
   "locations": [
    "Qasr Ibrim",
    "Syene",
-   "Napata"
+   "Napata",
+   "Philae"
   ],
   "countries": [
    "Roman Empire",
-   "Kingdom of Kush"
+   "Kingdom of Kush",
+   "Kingdom of Kush (Meroe)"
   ],
   "partOf": [],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Roman_relations_with_Nubia",
   "importance": 4,
   "description": "Kandake Amanirenas led the Meroitic invasion of Roman Egypt; Petronius's counter-strike sacked Napata before the Treaty of Samos fixed the frontier."
- },
- {
-  "id": "roman-kushite-war-meroitic-war",
-  "name": "Roman-Kushite War (Meroitic War)",
-  "startYear": -27,
-  "endYear": -22,
-  "coordinates": [
-   33.0,
-   22.0
-  ],
-  "locations": [
-   "Syene",
-   "Philae",
-   "Qasr Ibrim",
-   "Napata"
-  ],
-  "countries": [
-   "Roman Empire",
-   "Kingdom of Kush (Meroe)"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Amanirenas",
-  "importance": 3,
-  "description": "Kandake Amanirenas's war against Roman Egypt, ending in the Treaty of Samos with favorable terms for Meroe."
  },
  {
   "id": "wang-mang-rebellion",
@@ -4737,8 +4720,8 @@
   "partOf": [],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Axumite_Empire",
-  "importance": 4,
-  "description": "Early expansion of the Axumite Empire across the Red Sea region and into Arabia and Nubia.",
+  "importance": 2,
+  "description": "Early expansion of the Axumite Empire across the Red Sea region and into Arabia and Nubia. See per-war entries.",
   "hook": "Aksumite Empire expanded military dominance across the Horn of Africa and Arabian Peninsula.",
   "narrative": "Aksumite launched systematic military campaigns to expand territorial control. Naval power enabled projection across the Red Sea. Aksumite expansion incorporated Yemen territories and threatened Persian interests.",
   "significance": "Aksumite expansion made the empire a major regional power. The empire's military capability influenced regional geopolitics."
@@ -4832,7 +4815,9 @@
    "Roman Empire",
    "Jewish Diaspora communities"
   ],
-  "partOf": [],
+  "partOf": [
+   "jewish-roman-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kitos_War",
   "importance": 3,
@@ -5322,7 +5307,9 @@
    "Saba",
    "Hadramaut"
   ],
-  "partOf": [],
+  "partOf": [
+   "axumite-invasions"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/GDRT",
   "importance": 3,
@@ -5346,7 +5333,9 @@
    "Kush",
    "Axum"
   ],
-  "partOf": [],
+  "partOf": [
+   "axum-kingdom-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Aksumite_Empire",
   "importance": 3,
@@ -5868,7 +5857,9 @@
    "Kingdom of Aksum",
    "Himyarite Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "axum-kingdom-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Sembrouthes",
   "importance": 2,
@@ -5963,7 +5954,9 @@
    "Kingdom of Aksum",
    "Beja"
   ],
-  "partOf": [],
+  "partOf": [
+   "axum-kingdom-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Beja_people",
   "importance": 2,
@@ -6036,7 +6029,9 @@
    "Kingdom of Aksum",
    "Kingdom of Kush"
   ],
-  "partOf": [],
+  "partOf": [
+   "axum-kingdom-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Ezana_of_Axum#Campaign_against_the_Kushites",
   "importance": 5,
@@ -6061,7 +6056,9 @@
    "Nubia",
    "Kush"
   ],
-  "partOf": [],
+  "partOf": [
+   "axum-kingdom-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Axumite_Empire",
   "importance": 4,
@@ -6087,7 +6084,9 @@
    "Kingdom of Aksum",
    "Noba"
   ],
-  "partOf": [],
+  "partOf": [
+   "axum-kingdom-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Ezana_stone",
   "importance": 3,
@@ -6302,7 +6301,9 @@
    "Kingdom of Aksum",
    "Agaw"
   ],
-  "partOf": [],
+  "partOf": [
+   "axum-kingdom-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Agaw_people",
   "importance": 2,
@@ -6478,28 +6479,6 @@
   "description": "The invasions of White Huns that destabilized the Gupta Empire and northern India."
  },
  {
-  "id": "takrur-foundation-conflicts",
-  "name": "Takrur Foundation Conflicts",
-  "startYear": 500,
-  "endYear": 800,
-  "coordinates": [
-   -13.5,
-   16.5
-  ],
-  "locations": [
-   "Senegal River valley",
-   "Futa Toro"
-  ],
-  "countries": [
-   "Takrur"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Takrur",
-  "importance": 2,
-  "description": "Early state formation along the Senegal River that produced the kingdom of Takrur, attested in Arabic sources from the ninth century."
- },
- {
   "id": "aksumite-invasion-of-himyar-kaleb",
   "name": "Aksumite invasion of Himyar (Kaleb)",
   "startYear": 518,
@@ -6521,7 +6500,9 @@
    "Sasanian Empire",
    "Aksumite Himyar"
   ],
-  "partOf": [],
+  "partOf": [
+   "axumite-invasions"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Aksumite%E2%80%93Persian_wars",
   "importance": 5,
@@ -6547,8 +6528,8 @@
   "partOf": [],
   "casualties": 50000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Axum",
-  "importance": 3,
-  "description": "The Axumite invasions of Yemen and Arabia in their attempt to maintain control of Red Sea trade.",
+  "importance": 2,
+  "description": "The Axumite invasions of Yemen and Arabia in their attempt to maintain control of Red Sea trade. See per-war entries.",
   "hook": "Aksumite military expeditions invaded Arabian territories seeking territorial control and trade dominance.",
   "narrative": "Aksumite naval forces conducted military campaigns in Arabia. The invasions sought control of trade routes and territorial acquisition. Aksumite forces achieved temporary success but could not sustain distant occupation.",
   "significance": "Aksumite Arabian campaigns demonstrated the empire's naval capability. The invasions influenced Red Sea trade and regional power balance."
@@ -6571,7 +6552,9 @@
    "Axumite Empire",
    "Sassanid Persia"
   ],
-  "partOf": [],
+  "partOf": [
+   "axumite-invasions"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Axumite_Empire",
   "importance": 4,
@@ -6888,7 +6871,9 @@
    "Khmer Empire",
    "Champa Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "khmer-cham-wars"
+  ],
   "casualties": 500000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Khmer_Empire",
   "importance": 3,
@@ -8477,31 +8462,6 @@
   "significance": "Chola-Pandya rivalry shaped South Indian political geography and maritime competition. Chola victories established South Indian naval dominance in the Indian Ocean."
  },
  {
-  "id": "sailors-of-oman-in-pemba-and-lamu",
-  "name": "Sailors of Oman in Pemba and Lamu",
-  "startYear": 900,
-  "endYear": 1100,
-  "coordinates": [
-   40.0,
-   -3.0
-  ],
-  "locations": [
-   "Pemba",
-   "Lamu",
-   "Manda",
-   "Shanga"
-  ],
-  "countries": [
-   "Omani Arab merchants",
-   "Swahili polities"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Swahili_coast",
-  "importance": 1,
-  "description": "Arab and Persian colonisation of the northern Swahili coast attested at Shanga, Manda and Pemba — only intermittently a military process."
- },
- {
   "id": "toltec-maya-conflicts",
   "name": "Toltec-Maya Conflicts",
   "startYear": 900,
@@ -9446,7 +9406,9 @@
    "Zirid dynasty",
    "Banu Hilal"
   ],
-  "partOf": [],
+  "partOf": [
+   "banu-hilal-invasion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Haydaran",
   "importance": 3,
@@ -12031,28 +11993,6 @@
   "description": "Yekuno Amlak's revolt overthrew the last Zagwe king Yetbarak and founded the Solomonic dynasty in Ethiopia."
  },
  {
-  "id": "mapungubwe-decline-conflicts",
-  "name": "Mapungubwe Decline Conflicts",
-  "startYear": 1270,
-  "endYear": 1300,
-  "coordinates": [
-   29.3833,
-   -22.1833
-  ],
-  "locations": [
-   "Mapungubwe Hill",
-   "Shashe-Limpopo Confluence"
-  ],
-  "countries": [
-   "Mapungubwe"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mapungubwe",
-  "importance": 2,
-  "description": "Late-thirteenth-century abandonment of the Mapungubwe capital associated with regional climate shock and rising rival Great Zimbabwe; no named battles survive but the polity's collapse is treated as a contested transition by Huffman."
- },
- {
   "id": "yuan-conquest-south-china",
   "name": "Yuan Conquest of Southern China",
   "startYear": 1271,
@@ -12621,7 +12561,7 @@
    43.0
   ],
   "locations": [
-   "Great Lakes region",
+   "North American Great Lakes",
    "New York",
    "Canada"
   ],
@@ -13696,33 +13636,13 @@
    "Ifat Sultanate",
    "Mamluk Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "ifatethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Dawit_I",
   "importance": 3,
   "description": "Emperor Dawit I campaigned deep into Ifat and crossed the Red Sea to threaten Mamluk Egypt over Coptic patriarchs."
- },
- {
-  "id": "kongo-expansion-under-lukeni-lua-nimi",
-  "name": "Kongo Expansion under Lukeni lua Nimi",
-  "startYear": 1380,
-  "endYear": 1420,
-  "coordinates": [
-   14.5,
-   -6.2
-  ],
-  "locations": [
-   "Mbanza Kongo",
-   "Mpemba Kasi"
-  ],
-  "countries": [
-   "Kingdom of Kongo"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Lukeni_lua_Nimi",
-  "importance": 3,
-  "description": "Traditional account of the conquests by Kongo's founder figure that consolidated the kingdom from its Mpemba Kasi nucleus across the lower Congo."
  },
  {
   "id": "sefuwabulala-wars",
@@ -13741,7 +13661,9 @@
    "Kanem–Bornu Empire",
    "Bulala"
   ],
-  "partOf": [],
+  "partOf": [
+   "kanem-bornu-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Bilala_dynasty",
   "importance": 3,
@@ -13765,7 +13687,9 @@
    "Kanem–Bornu Empire",
    "Bulala"
   ],
-  "partOf": [],
+  "partOf": [
+   "kanem-bornu-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kanem%E2%80%93Bornu_Empire",
   "importance": 3,
@@ -14039,41 +13963,16 @@
    "Songhai Empire",
    "Mali Empire"
   ],
-  "partOf": [],
-  "casualties": null,
+  "partOf": [
+   "songhai-expansion"
+  ],
+  "casualties": 100000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Songhai_Empire",
   "importance": 3,
   "description": "Conflicts between Songhai and Mali for West African dominance.",
   "hook": "Military conflicts during Mali's decline enabled Songhai rise to West African dominance.",
   "narrative": "Songhai's military expansion against Mali territories capitalized on Mali's declining power. Songhai forces conquered Mali core territories and trade centers. The conquest established Songhai as West African's dominant power.",
   "significance": "Songhai victory completed Mali's decline and initiated Songhai regional hegemony."
- },
- {
-  "id": "mali-songhai-wars",
-  "name": "Mali-Songhai Wars",
-  "startYear": 1400,
-  "endYear": 1500,
-  "coordinates": [
-   -8.0,
-   14.0
-  ],
-  "locations": [
-   "West Africa",
-   "Mali",
-   "Songhai"
-  ],
-  "countries": [
-   "Mali Empire",
-   "Songhai Empire"
-  ],
-  "partOf": [],
-  "casualties": 100000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Songhai_Empire",
-  "importance": 3,
-  "description": "The conflicts between the Mali and Songhai empires for control of West African trade routes.",
-  "hook": "Transition of West African hegemony from Mali to Songhai involved military conflict.",
-  "narrative": "As Mali Empire declined in the 15th century, Songhai forces expanded militarily against Mali territories. Military victories enabled Songhai to seize control of former Mali dominions. The transition involved conquest of major Mali cities including Timbuktu.",
-  "significance": "Mali-Songhai conflict redirected West African hegemony. Songhai dominance reorganized West African trade networks."
  },
  {
   "id": "vijayanagara-naval-wars",
@@ -14389,7 +14288,9 @@
    "Ethiopian Empire",
    "Ifat Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "ifatethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Sa%27ad_ad-Din_II",
   "importance": 3,
@@ -14789,7 +14690,9 @@
    "Ethiopian Empire",
    "Adal Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "adalethiopian-wars-pre-gragn"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Zara_Yaqob",
   "importance": 3,
@@ -14933,7 +14836,9 @@
    "Ethiopian Empire",
    "Adal Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "adalethiopian-wars-pre-gragn"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Gomit",
   "importance": 3,
@@ -14955,7 +14860,9 @@
    "Ethiopian Empire",
    "Hadiya Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "zara-yaqob-s-adal-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Hadiya_Sultanate",
   "importance": 2,
@@ -15592,7 +15499,9 @@
    "Songhai Empire",
    "Mali remnants"
   ],
-  "partOf": [],
+  "partOf": [
+   "songhai-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Songhai_Empire",
   "importance": 4,
@@ -15621,8 +15530,8 @@
   "partOf": [],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Songhai_Empire",
-  "importance": 3,
-  "description": "Songhai Empire's expansion becoming the dominant West African power.",
+  "importance": 2,
+  "description": "Songhai Empire's expansion becoming the dominant West African power. See per-war entries.",
   "hook": "Songhai Dynasty expanded territorial control across West Africa under successive emperors.",
   "narrative": "Songhai expansion under Ali and Askia incorporated vast West African territories. Military campaigns conquered rival powers and integrated them into tributary systems. Songhai military organization included professional cavalry and administrative structures.",
   "significance": "Songhai expansion created West Africa's largest pre-colonial state. The empire's administrative innovations influenced successor states."
@@ -15958,7 +15867,9 @@
   "countries": [
    "Songhai Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "songhai-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Songhai_Empire",
   "importance": 4,
@@ -16230,7 +16141,9 @@
    "Adal Sultanate",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "adalethiopian-wars-pre-gragn"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Mahfuz",
   "importance": 3,
@@ -16611,7 +16524,9 @@
    "Songhai Empire",
    "Sultanate of Aïr"
   ],
-  "partOf": [],
+  "partOf": [
+   "songhai-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Sultanate_of_A%C3%AFr",
   "importance": 2,
@@ -17327,7 +17242,9 @@
   "countries": [
    "Kingdom of Kongo"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Afonso_I_of_Kongo",
   "importance": 3,
@@ -17354,8 +17271,8 @@
   "partOf": [],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Kongo",
-  "importance": 4,
-  "description": "Long conflict between Portuguese colonial ambitions and the Kingdom of Kongo.",
+  "importance": 2,
+  "description": "Long conflict between Portuguese colonial ambitions and the Kingdom of Kongo. See per-war entries.",
   "hook": "Portuguese intervention in Kongo Kingdom politics escalated internal conflicts and undermined centralization.",
   "narrative": "Portuguese involvement in Kongo political conflicts amplified internal factional disputes. Portuguese supported rival claimants to the Kongo throne. The conflicts fragmented Kongo politically and enabled Portuguese exploitation.",
   "significance": "Portuguese intervention weaponized Kongo internal divisions. The conflict presaged European colonialism through internal division exploitation."
@@ -17602,7 +17519,9 @@
    "Songhai Empire",
    "Air Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "songhai-expansion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kebbi_Emirate",
   "importance": 3,
@@ -18374,7 +18293,9 @@
    "Ethiopian Empire",
    "Adal Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "ethiopian-adal-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Amba_Sel",
   "importance": 3,
@@ -18835,7 +18756,9 @@
    "Adal Sultanate",
    "Ottoman Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "ethiopian-adal-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Wofla",
   "importance": 3,
@@ -19090,28 +19013,6 @@
   "description": "Rival clans fighting for control of Kyushu island."
  },
  {
-  "id": "loango-expansion",
-  "name": "Loango Expansion",
-  "startYear": 1550,
-  "endYear": 1650,
-  "coordinates": [
-   12.0,
-   -4.65
-  ],
-  "locations": [
-   "Loango Bay",
-   "Mayombe"
-  ],
-  "countries": [
-   "Kingdom of Loango"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Loango",
-  "importance": 2,
-  "description": "Period in which the Vili kingdom of Loango extended its commercial empire along the north Congo coast, projecting power into Kakongo, Ngoyo and Mayombe."
- },
- {
   "id": "ottoman-conquest-tripoli",
   "name": "Ottoman Conquest of Tripoli",
   "startYear": 1551,
@@ -19272,7 +19173,9 @@
    "Kingdom of Kongo",
    "Ndongo"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Ndongo",
   "importance": 3,
@@ -19367,7 +19270,9 @@
    "Ethiopian Empire",
    "Adal Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "ethiopian-adal-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Gelawdewos",
   "importance": 3,
@@ -19548,7 +19453,9 @@
    "Tuareg",
    "Hausa states"
   ],
-  "partOf": [],
+  "partOf": [
+   "kanem-bornu-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Idris_Alooma",
   "importance": 4,
@@ -19743,7 +19650,9 @@
    "Kingdom of Kongo",
    "Portuguese Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Jagas",
   "importance": 4,
@@ -20025,7 +19934,9 @@
    "Portuguese Empire",
    "Mutapa Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "portuguese-mutapa-war-1568-1575"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Francisco_Barreto",
   "importance": 2,
@@ -20095,7 +20006,9 @@
    "Habsburg Spain",
    "Hafsid Tunis"
   ],
-  "partOf": [],
+  "partOf": [
+   "ottoman-conquest-northern-africa"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Conquest_of_Tunis_(1574)",
   "importance": 3,
@@ -20146,7 +20059,9 @@
    "Kongo",
    "Matamba"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Portuguese_Angola",
   "importance": 5,
@@ -20195,7 +20110,9 @@
    "Nupe",
    "Hausa states"
   ],
-  "partOf": [],
+  "partOf": [
+   "hausa-states-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Amina",
   "importance": 3,
@@ -20219,7 +20136,9 @@
    "Ottoman Empire",
    "Bahr Negash"
   ],
-  "partOf": [],
+  "partOf": [
+   "ottomanethiopian-war-15571589"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Sarsa_Dengel",
   "importance": 3,
@@ -20381,7 +20300,9 @@
    "Portuguese Empire",
    "Ndongo"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": null,
   "importance": 3,
@@ -20535,28 +20456,6 @@
   "description": "English privateers and naval forces challenged Spanish colonial dominance in the Americas, capturing colonies and disrupting Spanish treasure fleets. English success enabled English colonial expansion in the Caribbean."
  },
  {
-  "id": "luba-empire-expansion-under-kalala-ilunga",
-  "name": "Luba Empire Expansion under Kalala Ilunga",
-  "startYear": 1585,
-  "endYear": 1700,
-  "coordinates": [
-   26.5,
-   -7.5
-  ],
-  "locations": [
-   "Upemba Depression",
-   "Mwibele"
-  ],
-  "countries": [
-   "Luba Empire"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Luba",
-  "importance": 3,
-  "description": "Conquests traditionally credited to Kalala Ilunga that built the Luba kingdom around the Upemba lakes by overthrowing Nkongolo Mwamba."
- },
- {
   "id": "english-expansion-americas",
   "name": "English Colonial Expansion in Americas",
   "startYear": 1585,
@@ -20639,7 +20538,9 @@
    "Portuguese Empire",
    "Swahili city-states"
   ],
-  "partOf": [],
+  "partOf": [
+   "swahili-city-states-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Zimba_(East_Africa)",
   "importance": 3,
@@ -20662,36 +20563,13 @@
    "Ndongo",
    "Matamba"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Ndongo",
   "importance": 3,
   "description": "Decisive defeat of governor Luis Serrao's Portuguese-Imbangala column by a Ndongo-Matamba coalition that halted Portuguese expansion for a generation."
- },
- {
-  "id": "saadi-conquest-of-songhai",
-  "name": "Saadi Conquest of Songhai",
-  "startYear": 1590,
-  "endYear": 1591,
-  "coordinates": [
-   -3.0,
-   16.7
-  ],
-  "locations": [
-   "Tondibi",
-   "Gao",
-   "Timbuktu",
-   "Djenne"
-  ],
-  "countries": [
-   "Saadi Sultanate",
-   "Songhai Empire"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Tondibi",
-  "importance": 5,
-  "description": "Ahmad al-Mansur's trans-Saharan expedition under Judar Pasha that destroyed the Songhai Empire at the Battle of Tondibi."
  },
  {
   "id": "saadian-invasion-of-songhai",
@@ -20706,7 +20584,9 @@
    "Niger Bend",
    "Timbuktu",
    "Gao",
-   "Djenné"
+   "Djenné",
+   "Tondibi",
+   "Djenne"
   ],
   "countries": [
    "Saadi Sultanate",
@@ -21240,7 +21120,9 @@
    "Hausa states",
    "Bornu"
   ],
-  "partOf": [],
+  "partOf": [
+   "hausa-states-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kwararafa",
   "importance": 3,
@@ -21283,7 +21165,7 @@
   "locations": [
    "New York",
    "Canada",
-   "Great Lakes"
+   "North American Great Lakes"
   ],
   "countries": [
    "Iroquois Confederacy",
@@ -21958,7 +21840,9 @@
    "Ndongo",
    "Imbangala"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Ndongo",
   "importance": 4,
@@ -22226,7 +22110,9 @@
    "Portuguese Empire",
    "Kingdom of Kongo"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kongo_Civil_War",
   "importance": 2,
@@ -22249,7 +22135,10 @@
    "Portuguese Empire",
    "Kingdom of Kongo"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts",
+   "portuguese-njinga-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mbumbi",
   "importance": 3,
@@ -22272,7 +22161,9 @@
    "Kingdom of Kongo",
    "Portuguese Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Angolan_Wars",
   "importance": 3,
@@ -22365,7 +22256,10 @@
    "Kingdom of Kongo",
    "Portuguese Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts",
+   "portuguese-njinga-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mbanda_Kasi",
   "importance": 3,
@@ -22439,7 +22333,9 @@
    "Matamba",
    "Portuguese Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Nzinga_of_Ndongo_and_Matamba",
   "importance": 5,
@@ -22761,7 +22657,9 @@
    "Kingdom of Kongo",
    "Matamba"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Dutch_Loango-Angola",
   "importance": 4,
@@ -22957,7 +22855,10 @@
    "Dutch West India Company",
    "Portuguese Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts",
+   "portuguese-njinga-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kombi",
   "importance": 4,
@@ -22979,7 +22880,9 @@
    "Portuguese Empire",
    "Dutch West India Company"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-portuguese-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Recapture_of_Angola",
   "importance": 4,
@@ -23320,7 +23223,9 @@
    "Dutch Cape Colony",
    "Goringhaiqua"
   ],
-  "partOf": [],
+  "partOf": [
+   "khoikhoi-dutch-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Khoikhoi%E2%80%93Dutch_Wars",
   "importance": 2,
@@ -23479,7 +23384,9 @@
    "Kingdom of Kongo",
    "Portuguese Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-civil-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mbwila",
   "importance": 5,
@@ -23598,7 +23505,9 @@
    "County of Soyo",
    "Portuguese Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-civil-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kitombo",
   "importance": 4,
@@ -23784,7 +23693,9 @@
    "Dutch Cape Colony",
    "Cochoqua"
   ],
-  "partOf": [],
+  "partOf": [
+   "khoikhoi-dutch-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Khoikhoi%E2%80%93Dutch_War",
   "importance": 2,
@@ -24872,7 +24783,9 @@
    "Kingdom of Bunyoro",
    "Busoga"
   ],
-  "partOf": [],
+  "partOf": [
+   "bugandabunyoro-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Buganda",
   "importance": 2,
@@ -24901,29 +24814,6 @@
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Tunisian%E2%80%93Algerian_War",
   "importance": 2,
   "description": "Series of wars between the Ottoman Regency of Algiers and Husainid Tunis, most notably in 1735 and 1756."
- },
- {
-  "id": "tio-bobangi-conflicts",
-  "name": "Tio-Bobangi Conflicts",
-  "startYear": 1700,
-  "endYear": 1850,
-  "coordinates": [
-   15.5,
-   -2.5
-  ],
-  "locations": [
-   "Malebo Pool",
-   "Middle Congo"
-  ],
-  "countries": [
-   "Tio Kingdom",
-   "Bobangi"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Tio_Kingdom",
-  "importance": 2,
-  "description": "Slow displacement of Tio commercial dominance on the Malebo Pool by the Bobangi river traders during the height of the Atlantic and Congo-basin slave trades."
  },
  {
   "id": "apache-comanche-raids",
@@ -25138,7 +25028,9 @@
   "countries": [
    "Kingdom of Kongo"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-civil-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Antonianism",
   "importance": 3,
@@ -25207,7 +25099,9 @@
   "countries": [
    "Kingdom of Kongo"
   ],
-  "partOf": [],
+  "partOf": [
+   "kongo-civil-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Jo%C3%A3o_II_of_Lemba",
   "importance": 3,
@@ -26154,29 +26048,6 @@
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Jesuit_Missions_of_the_Gran_Chaco",
   "importance": 2,
   "description": "Conflict over Jesuit mission territories between Spain and Portugal. Guaraní forces resisted territorial redistribution; resulted in mission destruction."
- },
- {
-  "id": "bemba-wars",
-  "name": "Bemba Wars",
-  "startYear": 1750,
-  "endYear": 1870,
-  "coordinates": [
-   31.0,
-   -10.5
-  ],
-  "locations": [
-   "Lubemba",
-   "Luangwa",
-   "Bangweulu"
-  ],
-  "countries": [
-   "Bemba Kingdom"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bemba_people",
-  "importance": 2,
-  "description": "Bemba expansion out of the Lunda fringe across the plateau between the Luangwa and Lake Bangweulu during the era of long-distance ivory and slave trade."
  },
  {
   "id": "karagwebuganda-wars",
@@ -27328,11 +27199,39 @@
    "Xhosa (Rharhabe)",
    "Xhosa"
   ],
-  "partOf": [],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Xhosa_Wars",
   "importance": 3,
   "description": "Second Xhosa-Boer frontier war involving Ndlambe and Rharhabe Xhosa against trekboer commandos."
+ },
+ {
+  "id": "cape-frontier-wars",
+  "name": "Cape Frontier Wars",
+  "startYear": 1779,
+  "endYear": 1879,
+  "coordinates": [
+   27.0,
+   -32.5
+  ],
+  "locations": [
+   "Cape Colony",
+   "Eastern Cape",
+   "Xhosa territory"
+  ],
+  "countries": [
+   "British Empire",
+   "Cape Colony",
+   "Xhosa",
+   "Dutch Cape Colony"
+  ],
+  "partOf": [],
+  "casualties": null,
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Xhosa_Wars",
+  "importance": 2,
+  "description": "Umbrella for nine wars between the Cape Colony (Dutch then British) and the Xhosa peoples over the Eastern Cape frontier. See per-war entries."
  },
  {
   "id": "americas-tupac-amaru-II-rebellion-1780",
@@ -27682,6 +27581,31 @@
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Ng%E1%BB%8Dc_H%E1%BB%93i-%C4%90%E1%BB%91ng_%C4%90a",
   "importance": 5,
   "description": "Quang Trung's Tet campaign annihilated Sun Shiyi's Qing invasion army outside Hanoi."
+ },
+ {
+  "id": "second-cape-frontier-war",
+  "name": "Second Cape Frontier War",
+  "startYear": 1789,
+  "endYear": 1793,
+  "coordinates": [
+   27.0,
+   -32.5
+  ],
+  "locations": [
+   "Eastern Cape",
+   "Zuurveld"
+  ],
+  "countries": [
+   "Dutch Cape Colony",
+   "Xhosa"
+  ],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
+  "casualties": null,
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Xhosa_War",
+  "importance": 3,
+  "description": "Second of the Cape Frontier Wars; Boer commando raids and Xhosa counter-raids in the Zuurveld."
  },
  {
   "id": "anglo-mysore-war-1790",
@@ -28167,7 +28091,9 @@
    "Xhosa",
    "Khoekhoe"
   ],
-  "partOf": [],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Xhosa_Wars",
   "importance": 3,
@@ -28359,33 +28285,6 @@
   "description": "Long conflict in Sumatra between Islamic reformist Padri movement and traditionalist Minangkabau rulers, complicated by Dutch colonial interference."
  },
  {
-  "id": "sokoto-jihad-1804",
-  "name": "Sokoto Jihad",
-  "startYear": 1804,
-  "endYear": 1808,
-  "coordinates": [
-   5.5,
-   12.5
-  ],
-  "locations": [
-   "Sokoto",
-   "Hausa Kingdoms",
-   "West Africa"
-  ],
-  "countries": [
-   "Sokoto Caliphate",
-   "Hausa city-states"
-  ],
-  "partOf": [],
-  "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sokoto_Jihad",
-  "importance": 3,
-  "description": "Islamic jihad led by Usman dan Fodio against the Hausa kingdoms of West Africa, establishing the Sokoto Caliphate and reshaping the political landscape of the region.",
-  "hook": "Usman dan Fodio's Islamic revolution transformed the Hausa city-states and established Sokoto Caliphate (1804-1815).",
-  "narrative": "Usman dan Fodio, a Fulani Islamic scholar, declared jihad against Hausa rulers he condemned as insufficiently Islamic. Beginning in 1804, dan Fodio's followers conducted military campaigns against Hausa kingdoms, recruiting Fulani pastoralists and lower-class urban populations. Within a decade, the jihadists conquered territory from Niger to Cameroon and established the Sokoto Caliphate. Dan Fodio's brother, Abdullahi, commanded military campaigns while dan Fodio focused on Islamic administration and jurisprudence. The Caliphate systematized Islamic law, reorganized provincial administration, and incorporated defeated Hausa kingdoms as tributary emirates. The Sokoto Caliphate became West Africa's largest unified state.",
-  "significance": "The Sokoto Jihad created the largest West African state before European colonization and anchored Islamic religious reform across the Sahel. The Caliphate's administrative structure influenced British colonial governance of northern Nigeria. Sokoto's decline (1903) marked the region's first colonial conquest."
- },
- {
   "id": "sokoto-jihad-of-usman-dan-fodio",
   "name": "Sokoto Jihad of Usman dan Fodio",
   "startYear": 1804,
@@ -28399,18 +28298,21 @@
    "Sokoto",
    "Hausaland",
    "Kwatto",
-   "Tsuntua"
+   "Tsuntua",
+   "Hausa Kingdoms",
+   "West Africa"
   ],
   "countries": [
    "Sokoto Caliphate",
    "Gobir",
-   "Hausa states"
+   "Hausa states",
+   "Hausa city-states"
   ],
   "partOf": [],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Fulani_War",
   "importance": 5,
-  "description": "Usman dan Fodio's first decisive battlefield victory over Gobir launched the conquest of Hausaland."
+  "description": "Islamic jihad led by Usman dan Fodio against the Hausa kingdoms of West Africa, establishing the Sokoto Caliphate and reshaping the political landscape of the region."
  },
  {
   "id": "haitian-revolution-1804-independence",
@@ -28528,7 +28430,9 @@
    "Asante Empire",
    "Fante Confederacy"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-ashanti-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Fante_Confederacy",
   "importance": 3,
@@ -28600,7 +28504,9 @@
    "Bornu Empire",
    "Sokoto Caliphate"
   ],
-  "partOf": [],
+  "partOf": [
+   "sokoto-jihad-of-usman-dan-fodio"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Muhammad_al-Amin_al-Kanemi",
   "importance": 3,
@@ -28651,7 +28557,9 @@
    "Bornu Empire",
    "Sokoto Caliphate"
   ],
-  "partOf": [],
+  "partOf": [
+   "sokoto-jihad-of-usman-dan-fodio"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Bornu_Empire",
   "importance": 4,
@@ -29033,7 +28941,9 @@
    "British Empire",
    "Xhosa (Ndlambe)"
   ],
-  "partOf": [],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Fourth_Xhosa_War",
   "importance": 3,
@@ -29623,7 +29533,9 @@
    "Zulu Kingdom",
    "Ndwandwe"
   ],
-  "partOf": [],
+  "partOf": [
+   "mfecane"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Gqokli_Hill",
   "importance": 3,
@@ -29646,7 +29558,9 @@
    "British Empire",
    "Xhosa (Ndlambe and Rharhabe)"
   ],
-  "partOf": [],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Fifth_Xhosa_War",
   "importance": 3,
@@ -29764,7 +29678,9 @@
    "Zulu Kingdom",
    "Ndwandwe"
   ],
-  "partOf": [],
+  "partOf": [
+   "mfecane"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mhlatuze_River",
   "importance": 3,
@@ -29931,7 +29847,9 @@
    "Ife",
    "Ijebu"
   ],
-  "partOf": [],
+  "partOf": [
+   "yoruba-civil-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Owu_Kingdom",
   "importance": 3,
@@ -30139,7 +30057,9 @@
    "British Empire",
    "Asante Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-ashanti-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Anglo-Asante_War",
   "importance": 3,
@@ -30189,7 +30109,9 @@
    "Lozi (Aluyi)",
    "Sotho-Tswana polities"
   ],
-  "partOf": [],
+  "partOf": [
+   "mfecane"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kololo",
   "importance": 3,
@@ -30262,9 +30184,11 @@
    "Ottoman Empire",
    "Greek revolutionaries"
   ],
-  "partOf": [],
+  "partOf": [
+   "greek-independence-war"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Egyptian_expedition_to_Morea",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Morea_expedition",
   "importance": 3,
   "description": "Ibrahim Pasha's Egyptian expeditionary force in Crete and the Peloponnese, destroyed at the Battle of Navarino."
  },
@@ -30339,8 +30263,8 @@
   "partOf": [],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Ashanti_wars",
-  "importance": 4,
-  "description": "Series of conflicts between the British Empire and the Ashanti Confederacy for control of West Africa.",
+  "importance": 2,
+  "description": "Series of conflicts between the British Empire and the Ashanti Confederacy for control of West Africa. See per-war entries.",
   "hook": "Britain fought the Ashanti Empire (1823-1900) in West Africa, gradually conquering the region through superior firepower.",
   "narrative": "Ashanti was a powerful West African kingdom resisting European encroachment. Britain fought multiple wars (1823-1900) with the Ashanti over control of coastal areas and trade. Early Ashanti victories were impressive; British firepower eventually prevailed. The British conquered the interior (1893-1900) and established colonial rule over Gold Coast (modern Ghana). Estimates: 10,000-50,000 casualties. British forces faced fierce Ashanti resistance but technological superiority was decisive.",
   "significance": "The Anglo-Ashanti Wars were among the last major African resistance movements against European colonialism. The wars showed African military organization but also demonstrated European firepower's advantage. The British conquest of Gold Coast was rapid once committed militarily. Ashanti royal family members were exiled; Ashanti cultural identity was suppressed. Modern Ghana's nationalism partly invokes Ashanti history and anti-colonial resistance. The wars remain important in African and Ghanaian historical consciousness as examples of resistance, despite ultimate defeat.",
@@ -30433,7 +30357,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Katamanso",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Katamanso_War",
   "importance": 3,
   "description": "British-allied coastal coalition defeated Asante at Katamanso, ending the first phase of Asante expansion south."
  },
@@ -30899,7 +30823,9 @@
    "British Empire",
    "Xhosa"
   ],
-  "partOf": [],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Sixth_Xhosa_War",
   "importance": 4,
@@ -31078,7 +31004,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kapain",
+  "wikipediaUrl": null,
   "importance": 2,
   "description": "Nine-day Voortrekker pursuit of Mzilikazi that forced the Ndebele to abandon the Highveld for the Limpopo."
  },
@@ -31101,7 +31027,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mosega",
+  "wikipediaUrl": null,
   "importance": 2,
   "description": "Voortrekker dawn raid on Mzilikazi's Marico settlements, opening the campaign that drove the Ndebele to Matabeleland."
  },
@@ -31170,7 +31096,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Veglaer",
+  "wikipediaUrl": null,
   "importance": 2,
   "description": "Successful Voortrekker defence of the Veglaer laager against a Zulu impi in August 1838."
  },
@@ -31409,9 +31335,11 @@
    "Ibadan",
    "Ilorin Emirate"
   ],
-  "partOf": [],
+  "partOf": [
+   "yoruba-civil-wars"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Osogbo",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Yoruba_Wars",
   "importance": 4,
   "description": "Ibadan's defeat of Ilorin halted Sokoto's southward jihad into Yorubaland."
  },
@@ -31901,6 +31829,31 @@
   "description": "First Dutch punitive expedition to enforce repudiation of Balinese shipwreck salvage."
  },
  {
+  "id": "seventh-cape-frontier-war",
+  "name": "Seventh Cape Frontier War",
+  "startYear": 1846,
+  "endYear": 1847,
+  "coordinates": [
+   27.0,
+   -32.5
+  ],
+  "locations": [
+   "Eastern Cape",
+   "Amathole Mountains"
+  ],
+  "countries": [
+   "British Empire",
+   "Xhosa"
+  ],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
+  "casualties": null,
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Axe",
+  "importance": 4,
+  "description": "Known as the War of the Axe; British defeat of the Ngqika Xhosa, ending with British annexation of British Kaffraria."
+ },
+ {
   "id": "war-of-the-axe",
   "name": "War of the Axe",
   "startYear": 1846,
@@ -32103,7 +32056,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Buhari_(Emir_of_Hadejia)",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hadejia",
   "importance": 2,
   "description": "Buhari dan Umaru's long revolt against the Sokoto Caliphate from Hadejia."
  },
@@ -32149,7 +32102,9 @@
    "Sokoto Caliphate",
    "Kebbi Emirate"
   ],
-  "partOf": [],
+  "partOf": [
+   "sokoto-jihad-of-usman-dan-fodio"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Argungu_Emirate",
   "importance": 2,
@@ -32197,7 +32152,9 @@
    "Xhosa",
    "Khoekhoe rebels"
   ],
-  "partOf": [],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Eighth_Xhosa_War",
   "importance": 4,
@@ -32378,9 +32335,11 @@
    "Egba",
    "Dahomey"
   ],
-  "partOf": [],
+  "partOf": [
+   "egbadahomey-wars"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Abeokuta_(1851)",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Egba_people",
   "importance": 3,
   "description": "Egba defeat of Ghezo's Dahomean invasion at Abeokuta."
  },
@@ -32923,7 +32882,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Xhosa_Cattle-Killing_Movement",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Nongqawuse",
   "importance": 3,
   "description": "Millenarian prophecy of Nongqawuse triggering mass cattle slaughter and the collapse of independent Xhosa power, treated as a 'silent war' in Cape Frontier historiography."
  },
@@ -33041,7 +33000,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Medine",
+  "wikipediaUrl": null,
   "importance": 3,
   "description": "Faidherbe's relief of the French fort at Medine halted Umar Tall's drive on the Senegal valley."
  },
@@ -33338,9 +33297,11 @@
    "Ijaye",
    "Egba"
   ],
-  "partOf": [],
+  "partOf": [
+   "yoruba-civil-wars"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ijaye_War",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Yoruba_Wars",
   "importance": 3,
   "description": "Ibadan–Ijaye war that destroyed Kurunmi's town of Ijaye and confirmed Ibadan as the dominant Yoruba power."
  },
@@ -33758,7 +33719,9 @@
    "British Empire",
    "Asante Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-ashanti-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Anglo-Asante_War",
   "importance": 2,
@@ -34345,8 +34308,8 @@
   "startYear": 1870,
   "endYear": 1871,
   "coordinates": [
-   48.8566,
-   2.3522
+   2.3522,
+   48.8566
   ],
   "locations": [
    "France",
@@ -34554,17 +34517,23 @@
   ],
   "locations": [
    "Kumasi",
-   "Amoaful"
+   "Amoaful",
+   "Gold Coast",
+   "Asante Kingdom"
   ],
   "countries": [
    "United Kingdom",
-   "Asante Empire"
+   "Asante Empire",
+   "British Empire",
+   "Asante Kingdom"
   ],
-  "partOf": [],
-  "casualties": null,
+  "partOf": [
+   "anglo-ashanti-wars"
+  ],
+  "casualties": 4000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Anglo-Ashanti_War",
   "importance": 4,
-  "description": "Garnet Wolseley's expedition to Kumasi that burned the Asante capital."
+  "description": "British invasion of Asante led by General Wolseley, resulting in the destruction of Kumasi and British military dominance in the region."
  },
  {
   "id": "second-aceh-expedition",
@@ -34588,30 +34557,6 @@
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Aceh_Expedition",
   "importance": 3,
   "description": "Van Swieten's 8,500-strong Dutch force captured the Aceh kraton."
- },
- {
-  "id": "third-anglo-asante-war-1873",
-  "name": "Third Anglo-Asante War",
-  "startYear": 1873,
-  "endYear": 1874,
-  "coordinates": [
-   -2.0,
-   6.0
-  ],
-  "locations": [
-   "Gold Coast",
-   "Asante Kingdom",
-   "Kumasi"
-  ],
-  "countries": [
-   "British Empire",
-   "Asante Kingdom"
-  ],
-  "partOf": [],
-  "casualties": 4000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Anglo-Asante_War",
-  "importance": 3,
-  "description": "British invasion of Asante led by General Wolseley, resulting in the destruction of Kumasi and British military dominance in the region."
  },
  {
   "name": "Zulu Wars (Multiple campaigns)",
@@ -34840,7 +34785,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sekhukhune_Wars",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sekhukhune",
   "importance": 3,
   "description": "Successive Boer and British campaigns culminating in Wolseley's 1879 storming of Tsate that broke Pedi independence."
  },
@@ -34972,9 +34917,11 @@
    "Gcaleka Xhosa",
    "Ngqika Xhosa"
   ],
-  "partOf": [],
+  "partOf": [
+   "cape-frontier-wars"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ninth_Xhosa_War",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Xhosa_Wars",
   "importance": 4,
   "description": "Final Cape Frontier War ending Xhosa political independence on the Transkei frontier."
  },
@@ -35017,7 +34964,9 @@
    "Ekitiparapo",
    "Ibadan"
   ],
-  "partOf": [],
+  "partOf": [
+   "yoruba-civil-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kiriji_War",
   "importance": 4,
@@ -35207,7 +35156,9 @@
    "British Empire",
    "Zulu Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-zulu-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Hlobane",
   "importance": 3,
@@ -35229,7 +35180,9 @@
    "British Empire",
    "Zulu Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-zulu-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Intombe",
   "importance": 2,
@@ -35252,7 +35205,9 @@
    "British Empire",
    "Zulu Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-zulu-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Isandlwana",
   "importance": 5,
@@ -35274,9 +35229,11 @@
    "British Empire",
    "Zulu Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-zulu-war"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Khambula",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kambula",
   "importance": 3,
   "description": "Wood's defensive victory the day after Hlobane, considered by many the turning point of the Anglo-Zulu War."
  },
@@ -35320,7 +35277,9 @@
    "British Empire",
    "Zulu Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-zulu-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Rorke%27s_Drift",
   "importance": 5,
@@ -35345,7 +35304,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Tsate",
+  "wikipediaUrl": null,
   "importance": 2,
   "description": "Wolseley's November 1879 storming of Sekhukhune's mountain stronghold ending the Pedi War."
  },
@@ -35366,7 +35325,9 @@
    "British Empire",
    "Zulu Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-zulu-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Ulundi",
   "importance": 4,
@@ -35601,7 +35562,9 @@
    "United Kingdom",
    "Boer states"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": 3000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Boer_War",
   "importance": 2,
@@ -35697,8 +35660,8 @@
   "partOf": [],
   "casualties": 100000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Boer_Wars",
-  "importance": 3,
-  "description": "Two wars between Britain and Boer colonies in South Africa establishing British imperial dominance.",
+  "importance": 2,
+  "description": "Two wars between Britain and Boer colonies in South Africa establishing British imperial dominance. See per-war entries.",
   "id": "boer-wars"
  },
  {
@@ -35763,7 +35726,9 @@
    "British Empire",
    "South African Republic"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Majuba_Hill",
   "importance": 4,
@@ -35863,8 +35828,8 @@
   "partOf": [],
   "casualties": 300000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Mahdist_War",
-  "importance": 3,
-  "description": "Conflict between Mahdist Sudan and British-Egyptian forces, establishing colonial control.",
+  "importance": 2,
+  "description": "Conflict between Mahdist Sudan and British-Egyptian forces, establishing colonial control. See per-war entries.",
   "id": "mahdist-war",
   "hook": "Muslim Sudanese Mahdists fought Anglo-Egyptian colonialism (1881-1899), losing to Kitchener's modern armies but inspiring pan-Islamic resistance.",
   "narrative": "Sudan's religious leader Muhammad Ahmad proclaimed himself Mahdi (1881), launching holy war against Egyptian-British colonial rule. Mahdist forces, mobilized by religious fervor, defeated Egyptian armies and besieged Khartoum (1884-1885). British-Egyptian forces, modernly equipped, eventually triumphed. Kitchener's reconquest (1896-1899) culminated in Battle of Omdurman (1898), where machine guns mowed down 10,000+ Mahdist warriors. Sudan became British-Egyptian condominium. Perhaps 100,000-300,000 died—mostly Sudanese. The war devastated Sudan's economy and population.",
@@ -35891,9 +35856,11 @@
    "Tuareg confederations",
    "Saharan oasis polities"
   ],
-  "partOf": [],
+  "partOf": [
+   "french-conquest-of-algeria"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/French_conquest_of_the_Sahara",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/French_conquest_of_Algeria",
   "importance": 3,
   "description": "Two-decade French conquest of the Algerian and central Sahara, including the Flatters expeditions and the Battle of Tit."
  },
@@ -35917,7 +35884,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bou_Amama",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Cheikh_Bouamama",
   "importance": 2,
   "description": "Long-running Saharan resistance to French rule led by Cheikh Bou Amama in southwestern Algeria and eastern Morocco."
  },
@@ -36484,7 +36451,9 @@
    "Ethiopian Empire",
    "Mahdist State"
   ],
-  "partOf": [],
+  "partOf": [
+   "mahdist-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Gallabat",
   "importance": 4,
@@ -36624,7 +36593,10 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars",
+   "italian-conquest-of-eritrea"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Dogali",
   "importance": 3,
@@ -36860,7 +36832,9 @@
    "German Empire",
    "Hehe"
   ],
-  "partOf": [],
+  "partOf": [
+   "maji-maji-rebellion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Lugalo",
   "importance": 3,
@@ -36979,7 +36953,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mengo",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mwanga_II_of_Buganda",
   "importance": 3,
   "description": "Lugard's Maxim-gun intervention at Mengo decided the Buganda religious civil war for the Anglican faction."
  },
@@ -37025,7 +36999,9 @@
    "Congo Free State",
    "Zanzibari traders"
   ],
-  "partOf": [],
+  "partOf": [
+   "belgian-conquest-of-congo-free-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Congo_Arab_war",
   "importance": 4,
@@ -37164,7 +37140,9 @@
    "Buganda",
    "Bunyoro"
   ],
-  "partOf": [],
+  "partOf": [
+   "bugandabunyoro-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kabarega",
   "importance": 2,
@@ -37212,7 +37190,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Melillan_campaign",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Melillan_campaign",
   "importance": 2,
   "description": "Margallo War or Melillan campaign, a Spanish punitive expedition after Riffian attacks on Melilla."
  },
@@ -37234,7 +37212,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Basasa",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kano_Emirate",
   "importance": 3,
   "description": "Basasa succession war in Kano on the eve of British conquest."
  },
@@ -37257,7 +37235,9 @@
    "Buganda",
    "Kingdom of Bunyoro"
   ],
-  "partOf": [],
+  "partOf": [
+   "bugandabunyoro-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kabalega_of_Bunyoro",
   "importance": 4,
@@ -37280,7 +37260,9 @@
   "countries": [
    "Congo Free State"
   ],
-  "partOf": [],
+  "partOf": [
+   "belgian-conquest-of-congo-free-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Atrocities_in_the_Congo_Free_State",
   "importance": 3,
@@ -37352,7 +37334,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hendrik_Witbooi_(Namibian_leader)",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hendrik_Witbooi",
   "importance": 2,
   "description": "Leutwein's campaign breaking the Khauas under Andries Lambert and forcing Witbooi's submission at Naukluft."
  },
@@ -37453,7 +37435,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Franco-Hova_War",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Madagascar_expedition",
   "importance": 4,
   "description": "French expeditionary conquest of Madagascar ending the Merina monarchy and annexing the island."
  },
@@ -37519,7 +37501,9 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Amba_Alagi_(1895)",
   "importance": 3,
@@ -37542,7 +37526,10 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars",
+   "italian-conquest-of-eritrea"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Coatit",
   "importance": 2,
@@ -37635,7 +37622,9 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Adwa",
   "importance": 5,
@@ -37659,7 +37648,9 @@
    "Italian Empire",
    "Ethiopia"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": 7000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Italo-Ethiopian_War",
   "importance": 4,
@@ -37682,7 +37673,9 @@
    "British Empire",
    "Asante Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-ashanti-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Fourth_Anglo-Asante_War",
   "importance": 2,
@@ -37731,7 +37724,9 @@
   "countries": [
    "Congo Free State"
   ],
-  "partOf": [],
+  "partOf": [
+   "belgian-conquest-of-congo-free-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Batetela_rebellion",
   "importance": 3,
@@ -37865,9 +37860,11 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Mek%27ele",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Mekelle",
   "importance": 3,
   "description": "Menelik II's army forced the surrender of Major Galliano's Italian garrison at Enda Yesus on the eve of Adwa."
  },
@@ -37917,7 +37914,9 @@
    "Gonja",
    "Mamprusi"
   ],
-  "partOf": [],
+  "partOf": [
+   "babatu-and-samory-wars-in-northern-ghana"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Northern_Region_(Ghana)",
   "importance": 2,
@@ -37966,8 +37965,8 @@
   "partOf": [],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Italian_invasions_of_Ethiopia",
-  "importance": 4,
-  "description": "Series of Italian invasions attempting to colonize and conquer Ethiopia."
+  "importance": 2,
+  "description": "Series of Italian invasions attempting to colonize and conquer Ethiopia. See per-war entries."
  },
  {
   "id": "anglo-sokoto-conquest-of-bida",
@@ -37985,7 +37984,9 @@
    "Royal Niger Company",
    "Nupe Emirate"
   ],
-  "partOf": [],
+  "partOf": [
+   "sokoto-jihad-of-usman-dan-fodio"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Bida",
   "importance": 3,
@@ -38009,7 +38010,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Emirate_of_Ilorin",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ilorin_Emirate",
   "importance": 3,
   "description": "Royal Niger Company campaign under George Goldie that captured Ilorin from the Sokoto Caliphate."
  },
@@ -38122,7 +38123,9 @@
    "Mahdist State",
    "Khedivate of Egypt"
   ],
-  "partOf": [],
+  "partOf": [
+   "mahdist-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Atbara",
   "importance": 3,
@@ -38192,7 +38195,9 @@
    "Mahdist State",
    "Khedivate of Egypt"
   ],
-  "partOf": [],
+  "partOf": [
+   "mahdist-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Omdurman",
   "importance": 5,
@@ -38379,7 +38384,9 @@
    "British Empire",
    "South African Republic"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Colenso",
   "importance": 4,
@@ -38402,7 +38409,9 @@
    "Orange Free State",
    "South African Republic"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Magersfontein",
   "importance": 4,
@@ -38424,7 +38433,9 @@
    "British Empire",
    "Orange Free State"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Stormberg",
   "importance": 3,
@@ -38469,7 +38480,9 @@
    "British Empire",
    "Orange Free State"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Kimberley",
   "importance": 3,
@@ -38493,7 +38506,9 @@
    "South African Republic",
    "Orange Free State"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Ladysmith",
   "importance": 4,
@@ -38515,7 +38530,9 @@
    "British Empire",
    "South African Republic"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Mafeking",
   "importance": 4,
@@ -38657,7 +38674,9 @@
    "United Kingdom",
    "Boer states"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": 100000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Boer_War",
   "importance": 3,
@@ -38724,7 +38743,9 @@
    "Congo Free State",
    "Kuba Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "belgian-conquest-of-congo-free-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Kuba_Kingdom",
   "importance": 2,
@@ -38751,7 +38772,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/French_conquest_of_Chad",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Voulet%E2%80%93Chanoine_Mission",
   "importance": 4,
   "description": "Decade-long French campaigns under Lamy, Gentil and Largeau that destroyed Rabih az-Zubayr's empire and conquered Baguirmi, Kanem and Ouaddai."
  },
@@ -38893,7 +38914,9 @@
    "French Third Republic",
    "Rabih Sultanate"
   ],
-  "partOf": [],
+  "partOf": [
+   "french-conquest-of-chad"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Kouss%C3%A9ri",
   "importance": 4,
@@ -38916,7 +38939,9 @@
    "British Empire",
    "Orange Free State"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Paardeberg",
   "importance": 4,
@@ -38941,7 +38966,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Sannaspos",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sanna's_Post",
   "importance": 2,
   "description": "De Wet's ambush of Broadwood's column at the Bloemfontein waterworks, a hallmark of the guerrilla phase."
  },
@@ -38962,7 +38987,9 @@
    "British Empire",
    "South African Republic"
   ],
-  "partOf": [],
+  "partOf": [
+   "boer-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Spion_Kop",
   "importance": 4,
@@ -39029,7 +39056,9 @@
   "countries": [
    "Congo Free State"
   ],
-  "partOf": [],
+  "partOf": [
+   "belgian-conquest-of-congo-free-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Force_Publique",
   "importance": 2,
@@ -39052,7 +39081,9 @@
    "British Empire",
    "Asante Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-ashanti-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Asante_Rebellion",
   "importance": 2,
@@ -39100,7 +39131,9 @@
    "Ethiopian Empire",
    "United Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-somali-war-dervish-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Mohammed_Abdullah_Hassan",
   "importance": 2,
@@ -39177,7 +39210,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/French_conquest_of_Mauritania",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Colonial_Mauritania",
   "importance": 3,
   "description": "Long French campaign subduing the Trarza, Brakna, Adrar, and Hodh emirates of Mauritania."
  },
@@ -39339,7 +39372,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bailundo_War",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Portuguese%E2%80%93Ovimbundu_War",
   "importance": 3,
   "description": "Major Ovimbundu uprising on the Benguela plateau led by King Mutu-ya-Kevela against Portuguese rubber-trade abuses, crushed by Lieutenant-Colonel Joao de Almeida's columns."
  },
@@ -39389,7 +39422,9 @@
    "United Kingdom",
    "Sokoto Caliphate"
   ],
-  "partOf": [],
+  "partOf": [
+   "sokoto-jihad-of-usman-dan-fodio"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Sokoto_Caliphate",
   "importance": 4,
@@ -39434,7 +39469,9 @@
    "United Kingdom",
    "Dervish State"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-somali-war-dervish-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Mu%E1%B8%A5ammad_ibn_%27Abdall%C4%81h_Hassan",
   "importance": 3,
@@ -39510,29 +39547,6 @@
   ]
  },
  {
-  "name": "Herero Wars",
-  "startYear": 1904,
-  "endYear": 1908,
-  "coordinates": [
-   16.0,
-   -22.0
-  ],
-  "locations": [
-   "Namibia",
-   "German South-West Africa"
-  ],
-  "countries": [
-   "German Empire",
-   "Herero people"
-  ],
-  "partOf": [],
-  "casualties": 100000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Herero_Wars",
-  "importance": 3,
-  "description": "German colonial war against Herero and Nama peoples in Namibia, considered genocide.",
-  "id": "herero-wars"
- },
- {
   "id": "herero-nama-genocide",
   "name": "Herero and Nama Genocide",
   "startYear": 1904,
@@ -39544,18 +39558,22 @@
   "locations": [
    "German Southwest Africa",
    "Namibia",
-   "Southern Africa"
+   "Southern Africa",
+   "German South-West Africa"
   ],
   "countries": [
    "German Empire",
    "Herero",
-   "Nama peoples"
+   "Nama peoples",
+   "Herero Kingdom",
+   "Namaqua peoples",
+   "Herero people"
   ],
   "partOf": [],
   "casualties": 65000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Herero_and_Nama_genocide",
   "importance": 5,
-  "description": "Systematic genocide perpetrated by German forces against Herero and Nama peoples in Southwest Africa.",
+  "description": "German colonial campaign in Southwest Africa involving systematic genocide against the Herero and Nama peoples, killing tens of thousands and recognized as one of the first genocides of the 20th century.",
   "hook": "German colonial forces committed the first 20th-century genocide: 65,000 Herero and 10,000 Nama killed (1904-1908) in Southwest Africa.",
   "narrative": "German Southwest Africa (modern Namibia) colonized the Herero and Nama peoples. Colonial exploitation and land theft sparked rebellion (1904). German military under General Lothar von Trotha responded with genocide: the Herero were cornered in the Omaheke Desert and left to die of thirst. Nama resistance was brutally suppressed. Survivors were imprisoned in concentration camps with brutal forced labor. Estimates: 65,000 Herero (80% of population) and 10,000 Nama (50% of population) killed. Survivors were enslaved. Modern Germany officially recognized it as genocide (2021).",
   "significance": "The Herero-Nama Genocide was the first genocide of the 20th century and established colonial genocide as a historical phenomenon. The genocide influenced Nazi ideology—some German officials studied colonial genocide tactics. The genocide demonstrates how European colonialism could devolve into absolute annihilation. Herero and Nama identity crystallized around genocide memory. Modern Namibia inherited the trauma; reparations debates persist. Germany's 2021 recognition of genocide came 117 years late—showing how genocide recognition remains contested. The genocide's relative obscurity (compared to Armenian or Holocaust) shows how colonial-era genocides were long minimized in Western consciousness.",
@@ -39575,30 +39593,6 @@
    "source": "Rummel; German sources",
    "notes": "1904-1908; German colonial Africa"
   }
- },
- {
-  "id": "herero-namaqua-genocide-1904",
-  "name": "Herero and Namaqua Genocide",
-  "startYear": 1904,
-  "endYear": 1908,
-  "coordinates": [
-   18.0,
-   -23.0
-  ],
-  "locations": [
-   "German Southwest Africa",
-   "Namibia"
-  ],
-  "countries": [
-   "German Empire",
-   "Herero Kingdom",
-   "Namaqua peoples"
-  ],
-  "partOf": [],
-  "casualties": 65000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Herero_and_Nama_genocide",
-  "importance": 4,
-  "description": "German colonial campaign in Southwest Africa involving systematic genocide against the Herero and Nama peoples, killing tens of thousands and recognized as one of the first genocides of the 20th century."
  },
  {
   "id": "nama-war",
@@ -39686,7 +39680,9 @@
    "German Empire",
    "Maji Maji rebels"
   ],
-  "partOf": [],
+  "partOf": [
+   "maji-maji-rebellion"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mahenge",
   "importance": 3,
@@ -39856,7 +39852,9 @@
    "United Kingdom",
    "Sokoto Caliphate"
   ],
-  "partOf": [],
+  "partOf": [
+   "sokoto-jihad-of-usman-dan-fodio"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Isawa_(sect)",
   "importance": 3,
@@ -40071,7 +40069,9 @@
    "Wadai Sultanate",
    "Bornu Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "french-conquest-of-chad"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Wadai_Empire",
   "importance": 3,
@@ -40301,7 +40301,9 @@
    "United Kingdom",
    "Dervish State"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-somali-war-dervish-state"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Dul_Madoba",
   "importance": 2,
@@ -40350,7 +40352,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Giriama_Uprising",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mekatilili_Wa_Menza",
   "importance": 3,
   "description": "Mekatilili wa Menza's revolt against British labour and tax demands in coastal Kenya."
  },
@@ -40416,7 +40418,9 @@
    "United Kingdom",
    "British India"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-i"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Tanga",
   "importance": 4,
@@ -40773,7 +40777,9 @@
    "British Empire",
    "French Third Republic"
   ],
-  "partOf": [],
+  "partOf": [
+   "kamerun-campaign"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Battle_of_Garua",
   "importance": 3,
@@ -41053,7 +41059,9 @@
    "Khedivate of Egypt",
    "Sultanate of Darfur"
   ],
-  "partOf": [],
+  "partOf": [
+   "anglo-egyptian-sudan-pacification"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Sultanate_of_Darfur",
   "importance": 3,
@@ -41170,7 +41178,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kilimanjaro_Campaign",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/East_African_campaign_(World_War_I)",
   "importance": 3,
   "description": "Smuts's offensive captured the German position around Kilimanjaro and opened German East Africa."
  },
@@ -41399,7 +41407,9 @@
    "United Kingdom",
    "Nigeria"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-i"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mahiwa",
   "importance": 3,
@@ -41422,9 +41432,11 @@
    "German Empire",
    "Portugal"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-i"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Negomano",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Ngomano",
   "importance": 3,
   "description": "Lettow-Vorbeck destroyed the Portuguese garrison at Negomano and crossed into Mozambique to continue the war."
  },
@@ -41471,7 +41483,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Barue_revolt",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Barue_uprising",
   "importance": 3,
   "description": "Large anti-Portuguese uprising in central Mozambique during World War I, suppressed with Nguni and Ngoni levies."
  },
@@ -42208,7 +42220,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Italian_pacification_of_Libya",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Italo-Senussi_War",
   "importance": 2,
   "description": "Final Italian campaigns in southern Libya including Graziani's capture of Kufra (1931)."
  },
@@ -42519,7 +42531,9 @@
    "Italian Empire",
    "Ethiopia"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": 750000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Italo-Ethiopian_War",
   "importance": 4,
@@ -42542,7 +42556,9 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Amba_Aradam",
   "importance": 3,
@@ -42565,7 +42581,9 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Maychew",
   "importance": 4,
@@ -42588,7 +42606,9 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Shire",
   "importance": 3,
@@ -42611,7 +42631,9 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-ii"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_the_Ogaden",
   "importance": 3,
@@ -42683,7 +42705,9 @@
    "Ethiopian Empire",
    "Kingdom of Italy"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Arbegnoch",
   "importance": 4,
@@ -42734,7 +42758,9 @@
    "Kingdom of Italy",
    "Ethiopian Empire"
   ],
-  "partOf": [],
+  "partOf": [
+   "italian-ethiopian-wars"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Yekatit_12",
   "importance": 3,
@@ -43046,7 +43072,9 @@
    "Kingdom of Italy",
    "United Kingdom"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-ii"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Italian_conquest_of_British_Somaliland",
   "importance": 3,
@@ -43148,7 +43176,9 @@
    "Sudan",
    "Kingdom of Italy"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-ii"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Gideon_Force",
   "importance": 3,
@@ -43322,7 +43352,9 @@
    "Ethiopian Empire",
    "Kingdom of Italy"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-ii"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Amba_Alagi_(1941)",
   "importance": 4,
@@ -43347,7 +43379,9 @@
    "Ethiopian Empire",
    "Kingdom of Italy"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-ii"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Gondar",
   "importance": 3,
@@ -43372,7 +43406,9 @@
    "Free France",
    "Kingdom of Italy"
   ],
-  "partOf": [],
+  "partOf": [
+   "east-african-campaign-world-war-ii"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Keren",
   "importance": 4,
@@ -44113,7 +44149,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1944_Luluabourg_mutiny",
+  "wikipediaUrl": null,
   "importance": 2,
   "description": "Force Publique mutiny at Luluabourg in February 1944 followed by Kibati and Jadotville miners' strikes, the largest wartime unrest in the Belgian Congo."
  },
@@ -45300,7 +45336,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Anti-British_insurgency_in_the_Canal_Zone",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Egyptian_revolution_of_1952",
   "importance": 2,
   "description": "Egyptian fedayeen attacks on British forces in the Suez Canal Zone, precipitating Black Saturday and the 1952 Revolution."
  },
@@ -45807,7 +45843,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1959_Leopoldville_riots",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/L%C3%A9opoldville_riots",
   "importance": 2,
   "description": "Days of rioting in the Belgian Congo's capital that broke Belgian confidence in continued colonial rule and triggered the rapid timetable to independence."
  },
@@ -45920,7 +45956,9 @@
    "South Kasai",
    "Democratic Republic of the Congo"
   ],
-  "partOf": [],
+  "partOf": [
+   "congo-crisis"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/South_Kasai",
   "importance": 3,
@@ -46164,7 +46202,9 @@
    "United Nations",
    "Katanga"
   ],
-  "partOf": [],
+  "partOf": [
+   "congo-crisis"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Morthor",
   "importance": 3,
@@ -46266,28 +46306,6 @@
   "description": "Portuguese colonial war in Angola resulting in independence and MPLA government, followed by civil conflict."
  },
  {
-  "name": "Eritrean Civil War",
-  "startYear": 1961,
-  "endYear": 1991,
-  "coordinates": [
-   39.0,
-   16.0
-  ],
-  "locations": [
-   "Eritrea"
-  ],
-  "countries": [
-   "Ethiopia",
-   "Eritrean movements"
-  ],
-  "partOf": [],
-  "casualties": 150000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Eritrean_War_of_Independence",
-  "importance": 3,
-  "description": "30-year independence war establishing Eritrea.",
-  "id": "eritrean-civil-war"
- },
- {
   "id": "eritrean-war-independence-1961",
   "name": "Eritrean War of Independence",
   "startYear": 1961,
@@ -46301,7 +46319,8 @@
   ],
   "countries": [
    "Ethiopia",
-   "Eritrean People's Liberation Front"
+   "Eritrean People's Liberation Front",
+   "Eritrean movements"
   ],
   "partOf": [],
   "casualties": 150000,
@@ -46435,7 +46454,9 @@
    "United Nations",
    "Katanga"
   ],
-  "partOf": [],
+  "partOf": [
+   "congo-crisis"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Grandslam",
   "importance": 3,
@@ -46460,7 +46481,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1962%E2%80%931964_Tuareg_rebellion",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Tuareg_rebellion_(1962%E2%80%931964)",
   "importance": 3,
   "description": "First post-independence Tuareg uprising in northern Mali, suppressed by the Keïta government."
  },
@@ -46625,7 +46646,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Gikongoro_massacre",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bugesera_invasion",
   "importance": 3,
   "description": "Tutsi inyenzi raid from Burundi sparked the Gikongoro massacre of 10–14,000 Tutsi inside Rwanda."
  },
@@ -46812,7 +46833,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1964_East_African_Army_mutinies",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Tanganyika_Rifles",
   "importance": 3,
   "description": "Simultaneous mutinies of the Tanganyika, Uganda and Kenya Rifles, suppressed by British Royal Marines and 45 Commando."
  },
@@ -47464,7 +47485,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mercenaries%27_mutiny",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Stanleyville_mutinies",
   "importance": 2,
   "description": "Revolt of Jean Schramme's white mercenaries and Katangese gendarmes at Stanleyville and Bukavu against Mobutu, ended by their evacuation to Rwanda."
  },
@@ -48127,7 +48148,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/May_1972_uprising_in_Madagascar",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Rotaka",
   "importance": 2,
   "description": "Student/worker uprising that toppled Tsiranana and ended the First Republic."
  },
@@ -48176,7 +48197,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1972_Burundian_genocide",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ikiza",
   "importance": 5,
   "description": "Tutsi-led army massacred 100–300,000 Hutu after a southern Hutu uprising — the first acknowledged genocide in independent Africa."
  },
@@ -48475,7 +48496,9 @@
    "Morocco",
    "Spain"
   ],
-  "partOf": [],
+  "partOf": [
+   "western-sahara-conflict"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Green_March",
   "importance": 3,
@@ -48581,7 +48604,9 @@
    "FNLA",
    "MPLA"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Savannah_(Angola)",
   "importance": 3,
@@ -48765,7 +48790,9 @@
    "South Africa",
    "UNITA"
   ],
-  "partOf": [],
+  "partOf": [
+   "angolan-civil-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Cuban_intervention_in_Angola",
   "importance": 4,
@@ -49000,7 +49027,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Pungwe",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Eland",
   "importance": 2,
   "description": "Selous Scouts raid on the ZANLA refugee camp at Nyadzonia/Pungwe."
  },
@@ -49184,7 +49211,9 @@
    "South Africa",
    "United States"
   ],
-  "partOf": [],
+  "partOf": [
+   "angolan-civil-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/UNITA",
   "importance": 4,
@@ -49518,7 +49547,9 @@
    "Angola",
    "SWAPO"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Reindeer",
   "importance": 2,
@@ -50007,7 +50038,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Gafsa_raid",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/1980_Gafsa_Uprising",
   "importance": 1,
   "description": "Libyan-backed armed incursion into the Tunisian mining town of Gafsa, suppressed within days."
  },
@@ -50234,7 +50265,9 @@
    "Angola",
    "SWAPO"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Protea",
   "importance": 3,
@@ -50281,9 +50314,11 @@
    "Mozambique",
    "ANC"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-africa-apartheid-conflicts"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Matola_raid",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Beanbag",
   "importance": 2,
   "description": "SADF special-forces raid on ANC houses in the Maputo suburb of Matola."
  },
@@ -50486,9 +50521,11 @@
    "Lesotho",
    "ANC"
   ],
-  "partOf": [],
+  "partOf": [
+   "lesotho-border-conflicts"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Maseru_raid",
+  "wikipediaUrl": null,
   "importance": 2,
   "description": "SADF cross-border raid on suspected ANC houses in Maseru, December 1982."
  },
@@ -50688,7 +50725,9 @@
    "Angola",
    "SWAPO"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Askari",
   "importance": 2,
@@ -50844,7 +50883,9 @@
    "Zimbabwe",
    "RENAMO"
   ],
-  "partOf": [],
+  "partOf": [
+   "mozambique-renamo-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Gorongosa_National_Park",
   "importance": 2,
@@ -50915,7 +50956,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Inkatha%E2%80%93ANC_conflict",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Inkatha_Freedom_Party",
   "importance": 4,
   "description": "Inkatha-ANC violence in Natal and on the Reef during the late-apartheid transition."
  },
@@ -50935,7 +50976,9 @@
    "Lesotho",
    "South Africa"
   ],
-  "partOf": [],
+  "partOf": [
+   "lesotho-border-conflicts"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/1986_Lesotho_coup_d%27%C3%A9tat",
   "importance": 2,
@@ -51131,7 +51174,9 @@
    "Angola",
    "Cuba"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Modular",
   "importance": 3,
@@ -51157,7 +51202,10 @@
    "South Africa",
    "UNITA"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war",
+   "angolan-civil-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Cuito_Cuanavale",
   "importance": 5,
@@ -51182,7 +51230,9 @@
    "Cuba",
    "UNITA"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Hooper",
   "importance": 3,
@@ -51382,7 +51432,9 @@
    "Cuba",
    "UNITA"
   ],
-  "partOf": [],
+  "partOf": [
+   "south-african-border-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Packer",
   "importance": 2,
@@ -51827,7 +51879,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1990%E2%80%931995_Tuareg_rebellion",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Tuareg_rebellion_(1990%E2%80%931995)",
   "importance": 3,
   "description": "Tuareg uprisings in Mali and Niger ending in the National Pact (1992) and Ouagadougou Accord (1995)."
  },
@@ -52495,7 +52547,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1993_Burundian_coup_d%27%C3%A9tat",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/1993_Burundian_coup_attempt",
   "importance": 4,
   "description": "Assassination of President Melchior Ndadaye triggered Hutu reprisals and the Burundian Civil War."
  },
@@ -52517,7 +52569,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Huambo",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/55_Day_War",
   "importance": 2,
   "description": "Fifty-five-day urban battle in which UNITA captured Angola's second city from FAA forces."
  },
@@ -52560,7 +52612,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1993%E2%80%9394_Republic_of_the_Congo_Civil_War",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Republic_of_the_Congo_Civil_War_(1993%E2%80%931994)",
   "importance": 2,
   "description": "Post-election clashes between militias loyal to Pascal Lissouba, Bernard Kolelas and Denis Sassou Nguesso in Brazzaville."
  },
@@ -52582,7 +52634,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Kuito",
+  "wikipediaUrl": null,
   "importance": 2,
   "description": "Eighteen-month UNITA siege of the FAA-held provincial capital of Bie, one of the deadliest urban episodes of the Angolan Civil War."
  },
@@ -52692,7 +52744,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bophuthatswana_crisis",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/1994_Bophuthatswana_crisis",
   "importance": 2,
   "description": "March 1994 collapse of the Bophuthatswana homeland and AWB incursion that paved the way for the first democratic elections."
  },
@@ -52972,7 +53024,9 @@
    "Banyamulenge",
    "Rwanda"
   ],
-  "partOf": [],
+  "partOf": [
+   "first-congo-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Banyamulenge",
   "importance": 3,
@@ -53094,7 +53148,9 @@
   "countries": [
    "Sierra Leone"
   ],
-  "partOf": [],
+  "partOf": [
+   "liberia-sierra-leone-conflict"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/1997_Sierra_Leonean_coup_d%27%C3%A9tat",
   "importance": 2,
@@ -53121,7 +53177,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Massacres_in_Algeria_of_the_1990s",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Algerian_Civil_War",
   "importance": 3,
   "description": "Wave of mass village massacres in Algeria's Mitidja region during the civil war (Rais, Bentalha, Sidi Hamed, etc.)."
  },
@@ -53305,7 +53361,9 @@
    "Uganda",
    "MLC"
   ],
-  "partOf": [],
+  "partOf": [
+   "second-congo-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Movement_for_the_Liberation_of_the_Congo",
   "importance": 3,
@@ -53354,7 +53412,9 @@
    "Uganda",
    "RCD"
   ],
-  "partOf": [],
+  "partOf": [
+   "second-congo-war"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Rally_for_Congolese_Democracy",
   "importance": 3,
@@ -53499,7 +53559,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/1999_Caprivi_conflict",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Caprivi_conflict",
   "importance": 2,
   "description": "Brief separatist uprising in the Caprivi Strip by the CLA, suppressed by Namibian forces."
  },
@@ -53711,7 +53771,9 @@
    "Sierra Leone",
    "RUF"
   ],
-  "partOf": [],
+  "partOf": [
+   "liberia-sierra-leone-conflict"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Operation_Palliser",
   "importance": 3,
@@ -55159,7 +55221,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Banditry_in_Nigeria",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Nigerian_bandit_conflict",
   "importance": 3,
   "description": "Armed-bandit and Fulani militia conflict across the Nigerian north-west."
  },
@@ -55205,9 +55267,11 @@
    "Sudan",
    "SPLM-N"
   ],
-  "partOf": [],
+  "partOf": [
+   "sudanese-conflict-in-south-kordofan-and-blue-nile"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_in_South_Kordofan_and_Blue_Nile_(2011%E2%80%93present)",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sudanese_nomadic_conflicts",
   "importance": 3,
   "description": "Sudanese government war against SPLM-North in South Kordofan and Blue Nile after South Sudan's independence."
  },
@@ -55404,7 +55468,9 @@
   "countries": [
    "Mali"
   ],
-  "partOf": [],
+  "partOf": [
+   "northern-mali-conflict-2012"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/2012_Malian_coup_d%27%C3%A9tat",
   "importance": 3,
@@ -55597,7 +55663,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/M23_offensive",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/March_23_Movement",
   "importance": 4,
   "description": "Rwandan-backed Tutsi rebel offensive in eastern DRC, an East African dimension of the broader Kivu conflict."
  },
@@ -55729,7 +55795,9 @@
    "South Africa",
    "Central African Republic"
   ],
-  "partOf": [],
+  "partOf": [
+   "central-african-conflict"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Bangui_(2013)",
   "importance": 2,
@@ -55828,27 +55896,6 @@
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Rabaa_massacre",
   "importance": 3,
   "description": "Egyptian security forces' dispersal of Muslim Brotherhood sit-ins after Morsi's overthrow, killing hundreds in a single day."
- },
- {
-  "id": "south-sudan-civil-war",
-  "name": "South Sudanese Civil War",
-  "startYear": 2013,
-  "endYear": null,
-  "coordinates": [
-   31.307,
-   6.877
-  ],
-  "locations": [
-   "South Sudan"
-  ],
-  "countries": [
-   "South Sudan"
-  ],
-  "partOf": [],
-  "casualties": 400000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/South_Sudanese_civil_war",
-  "importance": 3,
-  "description": "Ongoing civil war in newly independent South Sudan causing humanitarian catastrophe."
  },
  {
   "id": "westgate-shopping-mall-attack",
@@ -55988,7 +56035,7 @@
   ],
   "partOf": [],
   "casualties": 10000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Central_African_Republic_conflict",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Central_African_Republic_Civil_War_(2012%E2%80%93present)",
   "importance": 2,
   "description": "11-year conflict with AU and French intervention.",
   "id": "central-african-conflict"
@@ -56011,7 +56058,7 @@
   "casualties": 400000,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/South_Sudanese_Civil_War",
   "importance": 3,
-  "description": "Ongoing civil war in newly independent South Sudan.",
+  "description": "Ongoing civil war in newly independent South Sudan causing humanitarian catastrophe.",
   "id": "south-sudan-civil-war-2"
  },
  {
@@ -56030,7 +56077,9 @@
    "Cameroon",
    "Boko Haram"
   ],
-  "partOf": [],
+  "partOf": [
+   "boko-haram-insurgency-2009"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Boko_Haram_insurgency_in_Cameroon",
   "importance": 3,
@@ -56053,7 +56102,9 @@
    "Nigeria",
    "Boko Haram"
   ],
-  "partOf": [],
+  "partOf": [
+   "boko-haram-insurgency-2009"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Chibok_schoolgirls_kidnapping",
   "importance": 3,
@@ -56127,7 +56178,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Islamic_State_insurgency_in_Libya",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Islamic_State_%E2%80%93_Libya_Province",
   "importance": 3,
   "description": "ISIL's seizure and loss of Derna and Sirte during the Second Libyan Civil War."
  },
@@ -56422,9 +56473,11 @@
    "Boko Haram",
    "ISWAP"
   ],
-  "partOf": [],
+  "partOf": [
+   "boko-haram-insurgency-2009"
+  ],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Boko_Haram_insurgency_in_Niger",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Islamist_insurgency_in_Niger",
   "importance": 3,
   "description": "Boko Haram and ISWAP attacks on Niger's Diffa region around Lake Chad."
  },
@@ -56472,7 +56525,9 @@
    "Niger",
    "Benin"
   ],
-  "partOf": [],
+  "partOf": [
+   "lake-chad-crisis"
+  ],
   "casualties": null,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Multinational_Joint_Task_Force",
   "importance": 3,
@@ -56851,7 +56906,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Wagner_Group_in_Central_African_Republic",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Wagner_Group_activities_in_Africa",
   "importance": 3,
   "description": "Russian Wagner Group deployment in support of the Touadera government, combining presidential protection, anti-rebel operations and resource extraction."
  },
@@ -57078,7 +57133,7 @@
   ],
   "partOf": [],
   "casualties": null,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/2020%E2%80%93present_Western_Sahara_clashes",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Western_Saharan_clashes_(2020%E2%80%93present)",
   "importance": 2,
   "description": "Resumption of low-intensity warfare between Morocco and the Polisario Front after the 2020 Guerguerat incident ended the 29-year ceasefire."
  },
@@ -57107,34 +57162,6 @@
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Central_African_Republic_Civil_War",
   "importance": 3,
   "description": "Coalition of Patriots for Change offensive led by Francois Bozize against the Touadera government, repelled by Russian Wagner Group and Rwandan reinforcements."
- },
- {
-  "id": "ethiopian-tigray-war",
-  "name": "Ethiopian Tigray War",
-  "startYear": 2020,
-  "endYear": 2022,
-  "coordinates": [
-   39.8173,
-   13.5116
-  ],
-  "locations": [
-   "Ethiopia",
-   "Tigray"
-  ],
-  "countries": [
-   "Ethiopia"
-  ],
-  "partOf": [],
-  "casualties": 600000,
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Tigray_war",
-  "importance": 3,
-  "description": "Conflict in Ethiopian Tigray region with genocide allegations and humanitarian catastrophe.",
-  "casualtyRange": {
-   "low": 100000,
-   "high": 500000,
-   "source": "Wikipedia: Tigray conflict; UN estimates",
-   "notes": "Ethiopia 2020-2022+. Combat deaths lower; excess mortality from famine/disease 100-500k."
-  }
  },
  {
   "id": "tigray-war-2020",

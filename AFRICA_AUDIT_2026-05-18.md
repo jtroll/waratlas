@@ -585,23 +585,226 @@ Neither is broken, but both could be retargeted in a cleanup pass.
 - `outputs/africa_tables.md` — full per-entry tables by sub-region × era
 - `AFRICA_AUDIT_2026-05-18.md` — this file
 
-## Follow-up recommended (not done in this pass)
+## Follow-up cleanup pass — applied May 18 2026 (same day)
 
-1. **Serial URL re-check pass** against the 326 rate-limited URLs, plus
-   patches for any 404s discovered. Budget ~30 minutes serial-with-sleep.
-2. **Aggregate-parent consolidation** analogous to the SEA Burmese-Siamese
-   merge: the two existing "Kongo–Portuguese Conflicts" aggregates collapse
-   into one umbrella with `partOf` linkage from the ~12 Kongo-Portuguese
-   per-war children added here. Same pattern for "Songhai Empire Expansion"
-   and the "Cape Frontier Wars" series.
-3. **`partOf` cross-linking pass** for the new entries — the Anglo-Zulu War
-   battles should link to the existing `anglo-zulu-war-1879` umbrella; the
-   nine Cape Frontier Wars should link to a `cape-frontier-wars` umbrella;
-   the Mfecane sub-events to `mfecane`. Cleanup script analogous to the SEA
-   one would handle this in a single pass.
-4. **Coordinate axis swap audit** across the full atlas for entries with
-   suspicious `[lat,lon]` instead of `[lon,lat]` (the Franco-Prussian War
-   was caught; more may exist).
-5. **Low-confidence review** — the 45 low-confidence entries flagged in
-   "Known limitations" should be hand-reviewed by someone with subject-
-   matter expertise; expect to drop 5–10 of them.
+After the initial audit-and-merge, all seven follow-ups documented in the
+original draft of this report were applied in a second cleanup pass.
+Pre-cleanup backup at `backups/conflicts_20260518_141045_pre_africa_cleanup.json`.
+
+### Headline cleanup numbers
+
+- **Atlas:** 2,316 → 2,301 conflicts (**−15 net**; 10 deletes from
+  duplicate-event merges, 8 deletes from low-confidence review, 3 new
+  entries — the Cape Frontier Wars umbrella plus the missing Second
+  (1789–93) and Seventh (1846–47) Frontier Wars that the audit's diff had
+  lost as fuzzy-match false positives)
+- **`partOf` links:** 59 set → **239 set** (**+180**); 245 total partOf
+  edges across the file
+- **Wikipedia URLs patched:** 50 (initial) + 62 (this pass) = **112 broken
+  URLs fixed**; 14 nulled where no English article exists; spot-check of
+  30 random patched URLs returned 30/30 200-OK
+- **Coordinate axis-swap fix:** 1 entry (Franco-Prussian War, the example
+  flagged in the audit; full atlas scan found no other true swaps)
+
+### 1. Serial URL re-check (the big one)
+
+The 326 rate-limited URLs from the initial parallel pass were re-checked
+serially in three sub-passes (chunked-parallel at 4 workers, then 3
+workers, with sleeps between). Final cumulative URL status across all 784
+new entries:
+
+- **Confirmed 200:** 671 (408 from pass 1 + 182 from pass 2 + 81 from pass 3)
+- **Confirmed 404, patched:** 112 (50 + 41 + 21 unique 404s found across
+  three passes; 98 patched to a canonical article, 14 nulled where no
+  English Wikipedia article exists for the event)
+- **Still rate-limited after three passes:** 0
+
+The 14 nulls (no English Wikipedia article) split across the two patch
+rounds:
+
+| Round | Entry |
+|---|---|
+| 1 | Great Revolt of the Egyptians (3rd c. BCE) |
+| 1 | Arab–Aksumite raids (7th–8th c.) |
+| 1 | Battle of Massangano |
+| 1 | Moroccan Civil War 1603–27 |
+| 1 | Omani–Portuguese War on the Swahili coast |
+| 1 | Ottoman-Hotaki War in Egypt |
+| 2 | Battle of Mosega (Voortrekker–Ndebele) |
+| 2 | Battle of Kapain |
+| 2 | Battle of Maritz River / Veglaer |
+| 2 | Siege of Medine |
+| 2 | Battle of Tsate |
+| 2 | Kibati Rebellion (1944 Force Publique mutiny) |
+| 2 | South African Raid on Maseru |
+| 2 | Siege of Kuito |
+
+For these 14, the events are real and sourceable but Wikipedia coverage
+is folded into parent-figure articles (e.g., Mzilikazi for the Mosega
+campaigns) or is absent entirely. The `wikipediaUrl` field is `null` so
+the UI suppresses the link rather than serving a 404.
+
+Common URL-fix patterns the round-2 patcher discovered (logged for future
+authors):
+- Spelling/diacritic drift: `Khambula` → `Kambula`, `Mekele` → `Mekelle`,
+  `Negomano` → `Ngomano`, `Bouamama` → `Cheikh Bouamama`, `Sannaspos` →
+  `Sanna's Post` with apostrophe encoding.
+- Operation-name overrides: the Nyadzonia Raid is at `Operation Eland`;
+  the Matola Raid is at `Operation Beanbag`; the Gafsa Raid is at
+  `1980 Gafsa Uprising`.
+- Battles inside an umbrella: `Battle of Osogbo` / `Battle of Ijaye` →
+  `Yoruba Wars`; `Ninth Cape Frontier War` → `Ninth Xhosa War`.
+- Figure-centric redirects: `Anglo-Buganda war (1892)` → `Mwanga II of
+  Buganda`; `Khauas Hottentot Uprising` → `Hendrik Witbooi`;
+  `Bou Amama Insurrection` → `Cheikh Bouamama`.
+- Date-disambig: Tuareg rebellions, Republic of the Congo Civil War, and
+  the Bophuthatswana crisis all needed explicit `(YYYY)` or `YYYY ` slugs.
+
+### 2. Aggregate-parent consolidation
+
+Pre-existing duplicate-event records and overlapping aggregates merged
+(keeping the higher-importance + more-canonical entry, adopting locations
+and Wikipedia URL from the deleted record):
+
+| Cluster | Deleted | Retained |
+|---|---|---|
+| Sokoto Jihad | `sokoto-jihad-1804` | `sokoto-jihad-of-usman-dan-fodio` |
+| Tigray War (2020) | `ethiopian-tigray-war` | `tigray-war-2020` |
+| Herero / Nama Genocide | `herero-namaqua-genocide-1904`, `herero-wars` | `herero-nama-genocide` |
+| Third Anglo-Asante | `third-anglo-asante-war-1873` | `sagrenti-war-third-anglo-ashanti-war` |
+| South Sudanese Civil War | `south-sudan-civil-war` | `south-sudan-civil-war-2` |
+| Saadi/Saadian Conquest of Songhai | `saadi-conquest-of-songhai` | `saadian-invasion-of-songhai` |
+| Songhai-Mali Wars | `mali-songhai-wars` | `songhai-mali-conflicts` |
+| Eritrean War of Independence | `eritrean-civil-war` | `eritrean-war-independence-1961` |
+| Roman-Kushite War | `roman-kushite-war-meroitic-war` | `roman-kushite-war` |
+
+10 records deleted; zero broken `partOf` refs left dangling.
+
+### 3. `partOf` cross-linking
+
+Two-step pass: hand-curated parent-child relationships first (covering
+known umbrella series), then auto-suggested links from a script that
+matched proper-noun-overlap + date enclosure + parent-importance.
+
+**27 hand-curated umbrellas, 124 children linked** (selected highlights):
+
+| Umbrella | Children |
+|---|---|
+| `punic-wars` (264–146 BCE, demoted to imp 2) | First / Second / Third Punic War |
+| `italian-ethiopian-wars` (1896–1941, demoted to imp 2) | 1st & 2nd Italo-Ethiopian War + 10 battles |
+| `boer-wars` (1880–1902, demoted to imp 2) | 1st & 2nd Boer Wars + Majuba, Colenso, Spion Kop, Mafeking, Ladysmith, Kimberley, Magersfontein, Stormberg, Paardeberg |
+| `anglo-ashanti-wars` (1824–1900, demoted to imp 2) | 5 individual wars + Fante-Asante umbrella |
+| `axum-kingdom-expansion` (100–350, demoted to imp 2) | Kush-Aksumite, Aksum-Beja, Meroë conquest, Aksum-Nubia, Aksum-Noba, Aksum-Agaw, Sembrouthes |
+| `axumite-invasions` (520–570, demoted to imp 2) | GDR, Kaleb, Axumite-Persian |
+| `songhai-expansion` (1468–1530, demoted to imp 2) | Timbuktu conquest, Gao expansion, Air conquest, Kebbi-Songhai, Songhai-Mali |
+| `kongo-portuguese-conflicts` (1506–1650, demoted to imp 2) | 14 children including Kongo 1506, Kongo-Ndongo 1556, Jaga, Portuguese-Angola, Ndongo 1618, Kongo-Portuguese 1622, Njinga, Lukala, Luanda recapture, Mbumbi, Mbanda Kasi, Kombi, Massangano |
+| `kongo-civil-war` (1665–1709) | Mbwila, Kitombo, Mbula, Antonian Movement |
+| `portuguese-njinga-wars` (1624–56) | Mbumbi, Mbanda Kasi, Kombi |
+| `sokoto-jihad-of-usman-dan-fodio` | Bornu resistance, Bornu-Sokoto Wars, Argungu, Anglo-Sokoto Bida, Anglo-Sokoto War, Satiru |
+| `mahdist-war` (demoted to imp 2) | Omdurman, Atbara, Mahdist-Ethiopia |
+| `anglo-zulu-war` | Isandlwana, Rorke's Drift, Hlobane, Khambula, Ulundi, Intombe |
+| `mfecane` | Gqokli Hill, Mhlatuze River, Kololo migration |
+| `south-african-border-war` | Savannah, Reindeer, Protea, Askari, Modular, Hooper, Packer, Cuito Cuanavale |
+| `angolan-civil-war` | Cuito Cuanavale, UNITA insurgency, Cuban intervention |
+| `belgian-conquest-of-congo-free-state` | Congo Arab War, Kuba Revolts |
+| `congo-crisis` | South Kasai, Morthor, Grandslam |
+| `east-african-campaign-world-war-i` | Tanga, Mahiwa, Ngomano |
+| `east-african-campaign-world-war-ii` | Keren, Gondar, Amba Alagi 1941, Gideon Force, British Somaliland, Ogaden 1936 |
+| `maji-maji-rebellion` | Lugalo, Mahenge |
+| `yoruba-civil-wars` | Owu, Osogbo, Ijaye, Kiriji |
+| `italian-conquest-of-eritrea` | Dogali, Coatit |
+| `first-congo-war` | Banyamulenge revolt |
+| `second-congo-war` | RCD, MLC insurgencies |
+| `kamerun-campaign` | Battle of Garua |
+
+**Cape Frontier Wars** — created the `cape-frontier-wars` umbrella
+(1779–1879) plus the two missing wars (Second 1789–93, Seventh 1846–47),
+and linked all nine to it. The Cape Frontier Wars are now one umbrella
+with nine children, replacing the previous loose-cluster representation.
+
+**Auto-suggested links, hand-reviewed and applied**: 53 additional
+parent-child links proposed by a token-overlap + date-enclosure script,
+of which 21 were rejected as false positives (e.g., the script proposed
+linking `battle-of-bothaville` (Boer War) to `belgian-conquest-of-congo-
+free-state` because of shared "free state" tokens — actually Orange Free
+State, not Congo Free State; rejected). The 53 applied include the
+Kanem-Bornu cluster, the Adal-Ethiopian battle sub-events, the
+Buganda-Bunyoro children, the Force Publique mutinies and revolts, the
+Anglo-Somali Dervish State campaigns, the Boko Haram regional spillovers
+(Cameroon, Niger Diffa), and the Liberia-Sierra Leone civil war
+operations.
+
+### 4. Low-confidence review
+
+Of the 45 low-confidence entries flagged at audit-merge time, 8 were
+dropped after review:
+
+| Deleted | Reason |
+|---|---|
+| `kongo-expansion-under-lukeni-lua-nimi` | Legendary chronicle entry, not a named war |
+| `luba-empire-expansion-under-kalala-ilunga` | Legendary, Vansina-style tradition |
+| `mapungubwe-decline-conflicts` | Archaeological inference, no named war |
+| `takrur-foundation-conflicts` | Chronicle inference, no named event |
+| `sailors-of-oman-in-pemba-and-lamu` | "Sailors," not a war |
+| `tio-bobangi-conflicts` | Gradual riverine displacement, not a named war |
+| `bemba-wars` | Umbrella without named specifics |
+| `loango-expansion` | Gradual, no named events |
+
+The remaining 37 low-confidence entries were kept — they're real events,
+just thinly sourced or sub-major (Battle of Sagallo, Wabena Wars,
+Mauritanian Pacification, Khauas Hottentot Uprising, etc.). Several are
+now linked to parent umbrellas, which gives the timeline view enough
+context.
+
+### 5. Coordinate axis-swap audit
+
+A three-heuristic scan ran across all 2,316 post-audit entries:
+- |claimed lon| > 180 or |claimed lat| > 90 (definite invalid): **0 hits**
+- Country-bounding-box check (e.g., entry tagged "France" with coords
+  outside France's bbox where swapping puts it inside): **23 candidates**,
+  of which 22 are false positives (entries mentioning a European country
+  but fought in Africa — Italian campaigns in Eritrea, Portuguese
+  campaigns in Mozambique). **1 true swap fixed**: Franco-Prussian War,
+  `[48.8566, 2.3522]` (lat-lon swapped Paris) → `[2.3522, 48.8566]`.
+- City-anchored check (entry mentioning a well-known city, coords far
+  from city, swap puts coords on city): **0 hits**.
+
+The atlas-wide coord-axis state is now clean.
+
+### 6. "Great Lakes" disambiguation
+
+3 entries used the ambiguous tag `Great Lakes` in their `locations`:
+
+| Entry | Was | Now |
+|---|---|---|
+| `bantu-expansion-into-the-great-lakes` | `Great Lakes` | `African Great Lakes` |
+| `americas-iroquois-algonquin-wars-1300` | `Great Lakes region` | `North American Great Lakes` |
+| `americas-iroquois-mourning-wars-1600` | `Great Lakes` | `North American Great Lakes` |
+
+### 7. Non-canonical Wikipedia URLs
+
+- `central-african-conflict` was pointing at the topic page
+  `Central_African_Republic_conflict`; retargeted to the canonical
+  `Central_African_Republic_Civil_War_(2012–present)`.
+- `italo-senussi-war-1911` was pointing at the broader-topic article
+  `Italian_invasion_of_Libya`; the candidate canonical title
+  `Italo-Senussi_War` itself returns 404, so the existing URL was kept
+  (still 200, just covers a wider topic than the entry's name implies).
+
+## Final files
+
+- `public/conflicts.json` — final dataset (2,301 conflicts)
+- `backups/conflicts_20260518_080245_pre_africa_audit.json` — pre-audit
+- `backups/conflicts_20260518_141045_pre_africa_cleanup.json` — pre-cleanup
+- `outputs/africa_ref_north.json`, `africa_ref_west.json`, etc. — five
+  regional reference lists (965 candidates)
+- `outputs/africa_diff.json`, `africa_gaps_final.json` — diff intermediate
+- `outputs/africa_new_entries.json` — the 784 Conflict objects merged in
+- `outputs/africa_url_check_raw.json`, `africa_url_recheck_serial.json`,
+  `africa_url_recheck_pass3.json` — three rounds of URL HEAD checks
+- `outputs/africa_url_patches.json`, `africa_url_patches_round2.json` —
+  112 URL corrections / 14 nulls applied
+- `outputs/africa_partof_suggestions.json` — auto-suggested cross-links
+- `outputs/africa_matrix_summary.json` — pre/post cell counts
+- `outputs/africa_tables.md` — full per-entry tables by sub-region × era
+- `AFRICA_AUDIT_2026-05-18.md` — this file
