@@ -61,6 +61,36 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="30 May 2026" tag="r11 · dataset expansion">
+          <p>
+            The conflict dataset more than quadrupled, from{' '}
+            <strong>2,571 to 10,584 conflicts</strong>. A first pass added{' '}
+            <strong>270 hand-verified conflicts</strong> concentrated in
+            historically under-represented regions (pre-colonial Americas,
+            sub-Saharan Africa, Pacific/Oceania, Southeast Asia), each
+            cross-checked against citable scholarly sources. A second pass then
+            bulk-ingested the <strong>Historical Conflict Event Dataset</strong>{' '}
+            (Miller &amp; Bakar 2023), adding <strong>~8,000 geocoded
+            battles</strong> spanning 1468&nbsp;BCE–2003.
+          </p>
+          <ul>
+            <li>
+              The HCED battles are shown at <strong>importance 2</strong> —
+              visible by default but hidden once the map's importance filter is
+              raised, so the curated high-level view stays uncluttered. They
+              carry <code>casualties: null</code> where no reliable figure
+              exists, never an invented number.
+            </li>
+            <li>
+              A 100-record sampled audit found <strong>97–98% accuracy</strong>{' '}
+              with no fabricated events; 39 entries that geocoded to the wrong
+              continent were removed, and a coordinate caveat plus the full
+              dataset citations (HCED, Wikidata, UCDP, Brecke) were added to
+              the <a href="/sources">sources page</a>.
+            </li>
+          </ul>
+        </Entry>
+
         <Entry date="18 May 2026" tag="r10 · empire dedup">
           <p>
             A user reported a duplicate Merina Kingdom polygon on
