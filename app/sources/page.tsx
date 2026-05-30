@@ -63,7 +63,7 @@ export default function SourcesPage() {
 
         <Section title="Conflict records">
           <p>
-            The 2,571 conflict entries in <Code>public/conflicts.json</Code> were
+            The 10,584 conflict entries in <Code>public/conflicts.json</Code> were
             seeded from the leads of English Wikipedia articles
             (<License href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</License>),
             then cross-checked against:
@@ -112,6 +112,60 @@ export default function SourcesPage() {
             Each conflict entry that has a Wikipedia source preserves the
             article URL on the record; the conflict sidebar links to it
             directly.
+          </p>
+        </Section>
+
+        <Section title="Bulk historical datasets (2026 expansion)">
+          <p>
+            In 2026 the atlas was expanded from ~2,571 to 10,584 conflicts by
+            ingesting peer-reviewed conflict datasets at battle level. These
+            records sit at lower visual prominence (importance 2), carry{' '}
+            <Code>casualties: null</Code> where the source gives no reliable
+            figure, and each cites its source dataset on the record. Per each
+            provider's requested attribution:
+          </p>
+          <ul>
+            <li>
+              <strong>HCED (geocoded battles, 1468 BCE-2003):</strong> Miller,
+              Charles, and K. Shuvo Bakar (2023). "Conflict Events Worldwide
+              Since 1468BC: Introducing the Historical Conflict Event Dataset."{' '}
+              <em>Journal of Conflict Resolution</em> 67(2-3): 522-554.{' '}
+              <a href="https://doi.org/10.7910/DVN/6ZFC0V" target="_blank" rel="noopener noreferrer">doi:10.7910/DVN/6ZFC0V</a>.
+              HCED draws primarily on Tony Jaques, <em>Dictionary of Battles and Sieges</em> (2007).
+            </li>
+            <li>
+              <strong>Wikidata</strong> (supplementary battles with casualty
+              figures), used under{' '}
+              <License href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</License>:
+              Wikidata contributors, via the{' '}
+              <a href="https://query.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata Query Service</a>.
+            </li>
+            <li>
+              <strong>UCDP</strong> (modern conflict tracking, 1946-2024), used
+              under <License href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</License>.
+              Cited as requested: Davies, S., Pettersson, T., Sollenberg, M., and
+              Oberg, M. (2025). Organized violence 1989-2024, and the challenges
+              of identifying civilian victims. <em>Journal of Peace Research</em> 62(4).
+              Gleditsch, Nils Petter, Peter Wallensteen, Mikael Eriksson,
+              Margareta Sollenberg, and Havard Strand (2002). Armed Conflict
+              1946-2001: A New Dataset. <em>Journal of Peace Research</em> 39(5).
+              UCDP is part of and funded by DEMSCORE, national research
+              infrastructure grant 2021-00162 from the Swedish Research Council.
+            </li>
+            <li>
+              <strong>Brecke Conflict Catalog</strong> (consulted for casualty
+              cross-checking, not bulk-imported, since its fatality figures are
+              war-level and could not be honestly attached to battle-level
+              records): Brecke, Peter (1999). "Violent Conflicts 1400 A.D. to the
+              Present in Different Regions of the World." Peace Science Society.
+            </li>
+          </ul>
+          <p style={{ marginTop: 12, fontSize: 13, opacity: 0.85 }}>
+            <strong>Coordinate caveat:</strong> battle coordinates from HCED are
+            machine-geocoded. A sampled audit found ~95% land within ~75 km of
+            the true site; roughly 1 in 20 may be materially off (though within
+            the correct country), and entries that geocoded to the wrong
+            continent were removed. Treat individual battle pins as approximate.
           </p>
         </Section>
 

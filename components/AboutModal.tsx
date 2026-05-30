@@ -75,7 +75,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               to watch the political map change while wars appear and resolve.
             </p>
             <p className="mt-2">
-              The dataset currently covers <strong>2,571 conflicts</strong> spanning roughly{' '}
+              The dataset currently covers <strong>10,584 conflicts</strong> spanning roughly{' '}
               <strong>2500 BCE to today</strong>, with <strong>376 distinct polities (empires, kingdoms,
               caliphates, republics, dynasties)</strong> whose borders shift through time, and{' '}
               <strong>~700 historical city-name records</strong> that fade in and out as cities are

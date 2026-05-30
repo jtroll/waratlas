@@ -1,3 +1,8 @@
+# raw source datasets (derive-and-cite only; never republish raw files)
+datasets/**
+!datasets/**/
+!datasets/README.md
+
 # dependencies
 /node_modules
 /.pnp
@@ -46,9 +51,4 @@ next-env.d.ts
 /outputs/
 /backups/
 
-# Old standalone preview (superseded by the Next.js app)
-/preview.html
-
-border_changes_preview.html
-PUSH_NOTES.md
-scripts/__pycache__/
+# Old standalone 
