@@ -329,6 +329,23 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
             </p>
           </Section>
 
+          {/* Known similar projects */}
+          <Section heading="Known similar projects">
+            <p>
+              Half a world away, developer Prakrit Ojha created{' '}
+              <a
+                href="https://www.war-atlas.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-wars-text"
+              >
+                www.war-atlas.org
+              </a>{' '}
+              that converged on several similar ideas but with his own unique spin — including game
+              mechanics. Give it a spin!
+            </p>
+          </Section>
+
           {/* Footer */}
           <div className="pt-4 border-t border-wars-border/50 text-xs text-wars-muted/70">
             War Atlas is a research preview. Numbers, names, and borders shown here are not the

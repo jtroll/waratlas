@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import { Conflict } from '@/lib/types';
 import { formatYear } from '@/lib/conflicts';
 import { CasualtyRange } from './CasualtyBar';
@@ -64,6 +65,19 @@ export default function Sidebar({
     significance?: string;
   };
   const hasTiered = !!(c.hook || c.narrative || c.significance);
+
+  // Scroll the panel back to the top whenever we switch wars. Without
+  // this, clicking a related conflict (or another dot on the map) re-renders
+  // new content into the same scrollable element but leaves the scroll
+  // position where the user left it — so the new war's title / hook /
+  // narrative are hidden above the fold and it looks like the panel didn't
+  // update. Reset on conflict.id change.
+  const bodyRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (bodyRef.current) {
+      bodyRef.current.scrollTop = 0;
+    }
+  }, [conflict.id]);
 
   // Permalink for citations
   const permalink =
@@ -178,7 +192,7 @@ export default function Sidebar({
       </header>
 
       {/* ─── Body (scrollable) ──────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-6 pb-8">
+      <div ref={bodyRef} className="flex-1 overflow-y-auto px-6 pb-8">
         {/* HOOK — italic display serif */}
         {c.hook && (
           <div className="py-5 hairline-b">
