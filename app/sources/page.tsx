@@ -192,13 +192,13 @@ export default function SourcesPage() {
 
         <Section title="Borders, polygons, geometry">
           <p>
-            The 376 empire polygons in <Code>public/empires.json</Code> come
-            from four kinds of source, in roughly this order of priority:
+            The 427 empire polygons in <Code>public/empires.json</Code> come
+            from several kinds of source, in roughly this order of priority:
           </p>
           <ul>
             <li>
               <strong><a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener noreferrer">aourednik / historical-basemaps</a></strong>{' '}
-              (<License href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</License>)
+              (<License href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0</License>)
               — the project&apos;s primary source. Year-keyed GeoJSON files
               for every century from 10000 BCE to 2000 CE, matched to our
               empires by name and validated by border-year + bounding-box +
@@ -220,6 +220,20 @@ export default function SourcesPage() {
               and Talessman&apos;s atlases, Pleiades for the ancient
               Mediterranean, Hämäläinen for Comancheria, similar canonical
               works for specific regions. ~40 features.
+            </li>
+            <li>
+              <strong>Cliopatria (Seshat Global History Databank).</strong>{' '}
+              Time-keyed polity polygons used under{' '}
+              <License href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</License>{' '}
+              for several indigenous-American states. Cite: Seshat Global History
+              Databank, <em>Cliopatria</em> (2024),{' '}
+              <a href="https://doi.org/10.5281/zenodo.13363121" target="_blank" rel="noopener noreferrer">doi:10.5281/zenodo.13363121</a>.
+              The <strong>2026 indigenous-Americas expansion</strong> added ~70
+              pre-Columbian and historic Native American polities (Mesoamerica,
+              Andes, Amazonia, North America), hand-traced from Waldman&apos;s{' '}
+              <em>Atlas of the North American Indian</em>, the Smithsonian{' '}
+              <em>Handbook</em>, Coe &amp; Koontz, D&apos;Altroy, and Martin &amp;
+              Grube; almost all are dashed (approximate) by nature.
             </li>
             <li>
               <strong>Natural Earth clip-to-country.</strong>{' '}

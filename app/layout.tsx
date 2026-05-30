@@ -36,7 +36,7 @@ const mono = JetBrains_Mono({
 // Headline statistics — keep in sync with public/conflicts.json + public/empires.json
 // counts. AboutModal reads the same numbers; if you bump these here, bump them there too.
 const STAT_CONFLICTS = '10,584';
-const STAT_EMPIRES = '376';
+const STAT_EMPIRES = '427';
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wars-atlas.example';
 

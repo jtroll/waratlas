@@ -68,11 +68,11 @@
   <g font-family="ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13" letter-spacing="2">
     <line x1="80" y1="490" x2="1120" y2="490" stroke="#2a3242"/>
     <g transform="translate(80, 540)">
-      <text fill="#ece3d3" font-family="ui-serif, 'Source Serif 4', Georgia, serif" font-size="42" font-weight="500">1,340</text>
+      <text fill="#ece3d3" font-family="ui-serif, 'Source Serif 4', Georgia, serif" font-size="42" font-weight="500">10,584</text>
       <text x="0" y="40" fill="#7a8295">CONFLICTS</text>
     </g>
     <g transform="translate(310, 540)">
-      <text fill="#ece3d3" font-family="ui-serif, 'Source Serif 4', Georgia, serif" font-size="42" font-weight="500">372</text>
+      <text fill="#ece3d3" font-family="ui-serif, 'Source Serif 4', Georgia, serif" font-size="42" font-weight="500">427</text>
       <text x="0" y="40" fill="#7a8295">EMPIRES</text>
     </g>
     <g transform="translate(500, 540)">

@@ -61,6 +61,41 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="30 May 2026" tag="r12 · indigenous Americas">
+          <p>
+            A deep expansion of indigenous-American polities took the empire
+            layer from <strong>356 to 427 borders</strong>. ~70 pre-Columbian and
+            historic Native American polities were added across the whole
+            timeline (c. 3000&nbsp;BCE–1900&nbsp;CE): the Andean sequence
+            (Caral, Chavín, Moche, Nazca, Sicán, Chachapoya, the Aymara
+            kingdoms), Amazonia (Marajoara, Casarabe and Upano from recent
+            LIDAR work), and the North American peoples (Poverty Point, the
+            Mississippian variants, the Southeast confederacies, the Plains
+            nations, Pacific Northwest, and Thule).
+          </p>
+          <ul>
+            <li>
+              The single <em>Maya Classic</em> blob was <strong>split into named
+              hegemonies</strong> — Tikal, Calakmul/Kaan, Palenque, Copán,
+              Caracol, El Mirador — three carrying solid borders. <strong>Inca
+              and Chimú</strong> borders were upgraded from approximate to
+              scholarly polygons from{' '}
+              <a href="https://doi.org/10.5281/zenodo.13363121" target="_blank" rel="noopener noreferrer">Cliopatria (Seshat)</a>{' '}
+              (CC&nbsp;BY&nbsp;4.0); the rest were hand-traced from Waldman, the
+              Smithsonian <em>Handbook</em>, Coe &amp; Koontz, D&apos;Altroy and
+              Martin &amp; Grube.
+            </li>
+            <li>
+              Almost all the new borders are <strong>dashed (approximate)</strong>
+              — pre-Columbian frontiers genuinely aren&apos;t precise — which
+              shifted the dataset to ≈36% solid. Every polygon passed geometry,
+              historian, and visual review. Also corrected: the empire counter
+              (was a stale 376) and the historical-basemaps license on the
+              sources page (it is GPL-3.0, not CC&nbsp;BY-SA).
+            </li>
+          </ul>
+        </Entry>
+
         <Entry date="30 May 2026" tag="r11 · dataset expansion">
           <p>
             The conflict dataset more than quadrupled, from{' '}

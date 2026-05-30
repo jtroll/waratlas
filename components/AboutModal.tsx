@@ -76,7 +76,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
             </p>
             <p className="mt-2">
               The dataset currently covers <strong>10,584 conflicts</strong> spanning roughly{' '}
-              <strong>2500 BCE to today</strong>, with <strong>376 distinct polities (empires, kingdoms,
+              <strong>2500 BCE to today</strong>, with <strong>427 distinct polities (empires, kingdoms,
               caliphates, republics, dynasties)</strong> whose borders shift through time, and{' '}
               <strong>~700 historical city-name records</strong> that fade in and out as cities are
               renamed. This project stemmed out of an offhand conversation between friends in
@@ -110,9 +110,10 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                 </div>
               </div>
               <p className="text-xs text-wars-muted mt-3">
-                Of the 376 polities currently in the dataset, roughly two thirds (≈66 %) carry
+                Of the 427 polities currently in the dataset, roughly a third (≈ 36 %) carry
                 solid borders sourced from canonical historical-basemap data, and the remaining
-                third are dashed approximations. The dashed/solid distinction is enforced
+                two-thirds are dashed approximations (the 2026 indigenous-Americas expansion
+                added many honestly-approximate pre-Columbian borders). The dashed/solid distinction is enforced
                 consistently — if a polygon is dashed, don&apos;t cite the line.
               </p>
             </div>
@@ -141,7 +142,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               <li>
                 <strong>Historical empire boundaries</strong>: Combination of{' '}
                 <a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener noreferrer" className="underline hover:text-wars-text">aourednik / historical-basemaps</a>{' '}
-                (CC BY-SA 4.0), modern country unions where they approximate the empire (e.g., the
+                (GPL-3.0), modern country unions where they approximate the empire (e.g., the
                 Mongol Empire as a union of modern Eurasian countries), and hand-constructed
                 polygons from scholarly atlases — always marked dashed where extent is approximate.
               </li>
