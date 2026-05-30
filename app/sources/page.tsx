@@ -63,7 +63,7 @@ export default function SourcesPage() {
 
         <Section title="Conflict records">
           <p>
-            The 1,340 conflict entries in <Code>public/conflicts.json</Code> were
+            The 2,571 conflict entries in <Code>public/conflicts.json</Code> were
             seeded from the leads of English Wikipedia articles
             (<License href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</License>),
             then cross-checked against:
