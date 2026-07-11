@@ -84,7 +84,12 @@ export default function ChangelogPage() {
             growth. Fixed the service worker, which had been force-refetching all
             data files from origin on every page view; it now serves cached,
             deploy-versioned copies, sharply reducing repeat-visit bandwidth.
-            Halved the empire geometry file by trimming coordinate precision.
+          </p>
+          <p>
+            <strong>No loss of data accuracy.</strong> None of these changes
+            touch the dataset&apos;s precision: every conflict, every empire, and
+            every border vector point is preserved exactly, at full coordinate
+            precision.
           </p>
           <p>
             <strong>Interface.</strong> The on-map text callouts can now be
