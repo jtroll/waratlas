@@ -65,22 +65,31 @@ self.addEventListener('fetch', (event) => {
   // Only intercept GETs to our own origin
   if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
 
-  // Stale-while-revalidate for our data files. The background revalidate
-  // uses cache: 'reload' for the same reason as install — to bypass the
-  // browser HTTP cache, which would otherwise keep returning the previous
-  // build's body for up to 24h after a new deploy and overwrite our SW
-  // cache with stale data on every page load.
+  // Cache-first for our data files.
+  //
+  // CACHE_NAME is a content hash of exactly these files (stamped at build
+  // time by scripts/generate-sw.mjs), so a new deploy that changes any data
+  // file produces a new cache name — the install handler then re-fetches the
+  // fresh bodies once, and the activate handler sweeps the old cache. That
+  // versioning already guarantees freshness, which means we do NOT need to
+  // revalidate on every request.
+  //
+  // The previous implementation fired a `cache: 'reload'` background fetch on
+  // *every* page view for *every* data file — a forced origin round-trip that
+  // bypassed both the SW cache and the browser HTTP cache. With ~18MB of data
+  // files, that turned each repeat visit and in-app navigation into a full
+  // re-download and was the dominant driver of Vercel egress. Cache-first
+  // means a returning visitor within the same deploy transfers zero bytes for
+  // these files; they only re-download when the content actually changes.
   if (DATA_URLS.some((p) => url.pathname.endsWith(p))) {
     event.respondWith(
       caches.open(CACHE_NAME).then(async (cache) => {
         const cached = await cache.match(event.request);
-        const network = fetch(new Request(event.request, { cache: 'reload' }))
-          .then((r) => {
-            if (r && r.ok) cache.put(event.request, r.clone());
-            return r;
-          })
-          .catch(() => cached);
-        return cached || network;
+        if (cached) return cached;
+        // Cache miss (first load under this CACHE_NAME): fetch once and store.
+        const network = await fetch(event.request);
+        if (network && network.ok) cache.put(event.request, network.clone());
+        return network;
       })
     );
     return;

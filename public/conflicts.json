@@ -57436,18 +57436,18 @@
       "Russia"
     ],
     "partOf": [],
-    "casualties": 500000,
+    "casualties": 350000,
     "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Ukrainian_War",
     "importance": 4,
     "description": "Russian full-scale invasion of Ukraine ongoing with high casualties and potential nuclear implications.",
     "casualtyRange": {
-      "low": 100000,
-      "high": 500000,
-      "source": "Wikipedia: Russo-Ukrainian War; Ukrainian Ministry data",
-      "notes": "Ongoing (2014-present). As of 2024, estimates 100-500k. Ukrainian claims higher; Russian disclosures minimal."
+      "low": 250000,
+      "high": 450000,
+      "source": "UK Ministry of Defence & CSIS (2025); Mediazona/Meduza; UN OHCHR; President Zelensky (Dec 2024)",
+      "notes": "Ongoing since 2022 (conflict roots to 2014). Deaths, not total casualties. Military deaths: Russia ~150,000-250,000; Ukraine ~45,000-100,000 (contested, Zelensky cited ~43,000 killed in Dec 2024). Total casualties including the wounded exceed 1M for Russia and several hundred thousand for Ukraine. UN-verified civilian deaths ~14,000, believed to be an undercount. All figures are estimates and disputed."
     },
-    "hook": "Russia's 2022 invasion of Ukraine killed 600,000+, displaced 8+ million, and triggered the largest European war since 1945.",
-    "narrative": "Russia invaded Ukraine (Feb 2022) seeking regime change and territorial control. Ukraine resisted fiercely; President Zelensky became a symbol of defiance. Atrocities emerged: Bucha massacre, Irpin killings, sexual violence. Russia withdrew from Kiev (March 2022) but consolidated control in Donbas. Artillery-heavy war of attrition followed. NATO supplied weapons; Ukraine received military aid worth tens of billions. By 2024, the war continued with no resolution. Estimates: 600,000+ Ukrainian military deaths; 100,000+ Russian deaths; 30,000-40,000 civilian deaths. 8+ million Ukrainians were displaced.",
+    "hook": "Russia's 2022 invasion of Ukraine has killed hundreds of thousands of soldiers on both sides, displaced 8+ million people, and triggered the largest European war since 1945.",
+    "narrative": "Russia invaded Ukraine (Feb 2022) seeking regime change and territorial control. Ukraine resisted fiercely; President Zelensky became a symbol of defiance. Atrocities emerged: Bucha massacre, Irpin killings, sexual violence. Russia withdrew from Kiev (March 2022) but consolidated control in Donbas. Artillery-heavy war of attrition followed. NATO supplied weapons; Ukraine received military aid worth tens of billions. By 2025, the war continued with no resolution. Casualty figures are contested, but every credible estimate finds Russian losses substantially higher than Ukrainian. Military deaths (distinct from total casualties, which also count the wounded) are put at roughly 150,000-250,000 for Russia (UK Ministry of Defence and CSIS, 2025) against roughly 45,000-100,000 for Ukraine (President Zelensky cited about 43,000 killed in December 2024; several Western estimates run higher). Counting the wounded, total casualties exceed one million for Russia and several hundred thousand for Ukraine. The UN has verified about 14,000 civilian deaths, with the true toll believed to be considerably higher. More than 8 million Ukrainians were displaced.",
     "significance": "Russia's invasion shattered the post-Cold War international order and triggered NATO's largest expansion since Cold War. The war revived European militarization and defense spending. Ukrainian resistance inspired global sympathy and demonstrated smaller nations' capacity to resist. The war's scale (Eastern Front) became the largest European conflict since WWII. Western military aid to Ukraine (weapons, intelligence) became central to conflict. Russia's isolation accelerated its dependence on China. The war remains unresolved; the potential for wider NATO-Russia conflict remains."
   },
   {
@@ -341468,5 +341468,27 @@
         "url": "https://query.wikidata.org"
       }
     ]
+  },
+  {
+    "id": "toledo-war",
+    "name": "Toledo War",
+    "startYear": 1835,
+    "endYear": 1836,
+    "coordinates": [
+      -83.5379,
+      41.6528
+    ],
+    "locations": [
+      "Toledo Strip",
+      "Ohio–Michigan border"
+    ],
+    "countries": [
+      "United States"
+    ],
+    "partOf": [],
+    "casualties": 0,
+    "wikipediaUrl": "https://en.wikipedia.org/wiki/Toledo_War",
+    "importance": 1,
+    "description": "A near-bloodless boundary dispute (1835–36) between the state of Ohio and the Michigan Territory over the 468-square-mile 'Toledo Strip.' Both mustered militias, but the only casualty was a minor stab wound. Congress resolved it by awarding the strip to Ohio and granting Michigan statehood plus the western Upper Peninsula as compensation."
   }
 ]

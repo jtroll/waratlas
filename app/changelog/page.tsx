@@ -61,6 +61,39 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="11 Jul 2026" tag="r13 · post-launch fixes">
+          <p>
+            A round of fixes prompted by feedback after the atlas reached the
+            Hacker News front page.
+          </p>
+          <p>
+            <strong>Data accuracy.</strong> Corrected the Russo-Ukrainian War
+            (2022–present) casualty figures, which had the Ukrainian and Russian
+            death tolls reversed and conflated total casualties (killed&nbsp;+
+            wounded) with deaths. The entry now distinguishes military deaths
+            from total casualties and from civilian deaths, and cites the range
+            with attribution (UK&nbsp;MoD, CSIS, UN&nbsp;OHCHR, 2025). Added the
+            Toledo War (1835–36); confirmed the Spanish&nbsp;Civil&nbsp;War was
+            already present.
+          </p>
+          <p>
+            <strong>Performance &amp; memory.</strong> Throttled the
+            timeline&apos;s per-frame map work to integer-year steps, so
+            auto-play no longer re-filters the empire geometry ~60&nbsp;times a
+            second — cutting the allocation churn behind reported Firefox memory
+            growth. Fixed the service worker, which had been force-refetching all
+            data files from origin on every page view; it now serves cached,
+            deploy-versioned copies, sharply reducing repeat-visit bandwidth.
+            Halved the empire geometry file by trimming coordinate precision.
+          </p>
+          <p>
+            <strong>Interface.</strong> The on-map text callouts can now be
+            hidden (press&nbsp;<kbd>t</kbd>), historical borders read more
+            clearly against the dark basemap, and the tagline copy was softened
+            and its counts refreshed.
+          </p>
+        </Entry>
+
         <Entry date="30 May 2026" tag="r12 · indigenous Americas">
           <p>
             A deep expansion of indigenous-American polities took the empire

@@ -765,6 +765,15 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   // We store the previous id so we can clear it without enumerating every
   // empire in the dataset.
   const previousSelectedEmpireRef = useRef<string | null>(null);
+  // Last integer year we pushed empire/city/border updates for. During
+  // timeline auto-play, currentYear advances as a float ~60×/sec, but every
+  // filter and opacity expression below is keyed on Math.round(currentYear) —
+  // so within a single integer year the Mapbox work is byte-for-byte
+  // identical. Re-running setFilter/setPaintProperty against the 427 large
+  // empire MultiPolygons 60×/sec (vs once per integer year) was the dominant
+  // source of per-frame allocation + WebGL buffer churn behind the reported
+  // Firefox memory growth. NaN sentinel forces the first run through.
+  const lastEmpireYearRef = useRef<number>(NaN);
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const m = map.current;
@@ -785,6 +794,14 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     if (!map.current || !mapLoaded) return;
     const m = map.current;
     const year = Math.round(currentYear);
+
+    // Skip if the integer year hasn't changed since the last push. Everything
+    // below is a pure function of `year` (the rounded value), so re-running it
+    // for sub-year float steps during auto-play just re-does identical Mapbox
+    // work. This collapses ~60 empire/city/border re-filters per second down
+    // to at most one per integer year crossed. See lastEmpireYearRef above.
+    if (year === lastEmpireYearRef.current) return;
+    lastEmpireYearRef.current = year;
 
     // Filter empires to only show ones active at the current year
     // Each empire fades in/out over ~20 year transitions
@@ -852,17 +869,20 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       ['boolean', ['feature-state', 'hover'], false], 0.40,
       0.28,
     ];
+    // Resting opacities bumped (solid 0.7→0.85, dashed 0.5→0.65) so the
+    // colored historical borders stay legible against the near-black basemap
+    // — HN feedback flagged borders as nearly invisible at rest.
     const lineHoverBoost: mapboxgl.Expression = [
       'case',
       ['boolean', ['feature-state', 'selected'], false], 1.0,
       ['boolean', ['feature-state', 'hover'], false], 0.95,
-      0.7,
+      0.85,
     ];
     const dashedHoverBoost: mapboxgl.Expression = [
       'case',
       ['boolean', ['feature-state', 'selected'], false], 0.85,
       ['boolean', ['feature-state', 'hover'], false], 0.78,
-      0.5,
+      0.65,
     ];
     const lineWidthBoost: mapboxgl.Expression = [
       'case',

@@ -113,7 +113,7 @@ export default function TopBar({
             className="font-display italic text-wars-muted hidden md:inline truncate"
             style={{ fontSize: 12, letterSpacing: '0.005em' }}
           >
-            An interactive cartography of every named war in human history
+            An interactive cartography of thousands of named wars across human history
           </span>
 
           {/* About button (also `?` key)

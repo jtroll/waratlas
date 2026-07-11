@@ -23,7 +23,7 @@ interface Stop {
 const STOPS: Stop[] = [
   {
     year: null, title: 'Welcome to War Atlas', shortTitle: 'Start',
-    blurb: 'An interactive cartography of every named war in human history — 1,340 conflicts and 376 empires across 5,000 years. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict. This project has been assembled via countless amazing open source resources, Claude Cowork, and several late nights.',
+    blurb: 'An interactive cartography of thousands of named wars across 5,000 years of history — over 10,000 conflicts and 400+ empires. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict. This project has been assembled via countless amazing open source resources, Claude Cowork, and several late nights.',
     hold: 9,
     bbox: [-160, -50, 180, 55],
   },

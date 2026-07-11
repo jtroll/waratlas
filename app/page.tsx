@@ -293,11 +293,21 @@ export default function Home() {
   const animFrameRef = useRef<number>();
   const lastTimeRef = useRef<number>(0);
 
-  // Update active conflicts when year changes
+  // Update active conflicts when year changes.
+  //
+  // Keyed on the *rounded* year, not the raw float. During auto-play the
+  // playback loop advances currentYear ~60×/sec; recomputing the active set
+  // (a full pass over ~10.5k conflicts) and pushing fresh GeoJSON into Mapbox
+  // that often is wasted work — the visible set only changes when the integer
+  // year does. Throttling to integer-year steps cuts the per-frame allocation
+  // churn (a contributor to the reported Firefox memory growth during
+  // auto-play) while leaving the fade math intact. The timeline scrubber and
+  // year readout still track the smooth float value.
+  const renderYear = Math.round(timeline.currentYear);
   useEffect(() => {
-    const active = getActiveConflicts(timeline.currentYear, conflicts);
+    const active = getActiveConflicts(renderYear, conflicts);
     setActiveConflicts(active);
-  }, [timeline.currentYear, conflicts]);
+  }, [renderYear, conflicts]);
 
   // Playback loop with auto-speed support
   useEffect(() => {
@@ -626,13 +636,18 @@ export default function Home() {
         chromeHidden={chromeHidden}
       />
 
-      <InfoBoxLayer
-        conflicts={filteredActiveConflicts}
-        mapRef={mapRef.current}
-        onConflictClick={handleConflictClick}
-        selectedId={selectedConflict?.id ?? null}
-        mapMoveCounter={mapMoveCounter}
-      />
+      {/* On-map conflict callouts. Suppressed in hidden-chrome mode (`t` key)
+          so users who find the text boxes distracting have a way to clear
+          them and see the bare map. */}
+      {!chromeHidden && (
+        <InfoBoxLayer
+          conflicts={filteredActiveConflicts}
+          mapRef={mapRef.current}
+          onConflictClick={handleConflictClick}
+          selectedId={selectedConflict?.id ?? null}
+          mapMoveCounter={mapMoveCounter}
+        />
+      )}
 
       <Timeline
         timeline={timeline}
