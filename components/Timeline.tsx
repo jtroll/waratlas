@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { TimelineState, Conflict } from '@/lib/types';
+import { formatYear, formatYearParts } from '@/lib/format';
 
 interface TimelineProps {
   timeline: TimelineState;
@@ -32,14 +33,15 @@ interface TimelineProps {
  *      with a 3px amber bloom underneath. No round dot.
  *   5. Year display — 28px Source Serif 4, mono "BCE/CE"
  *      suffix. Never transitions opacity (must feel weighted).
- *   6. Speed selector — Auto / 1× / 10× / 50× as mono pills.
+ *   6. Speed selector — Auto / 1× / 10× / 100× as mono pills
+ *      (1× = 5 yr/s, so the multipliers are literal).
  * ─────────────────────────────────────────────────────────── */
 
 const SPEED_OPTIONS = [
-  { label: 'Auto', value: 0,   mode: 'auto'   as const },
-  { label: '1×',   value: 5,   mode: 'manual' as const },
-  { label: '10×',  value: 100, mode: 'manual' as const },
-  { label: '50×',  value: 500, mode: 'manual' as const },
+  { label: 'Auto', value: 0,   mode: 'auto'   as const, title: 'Adaptive speed' },
+  { label: '1×',   value: 5,   mode: 'manual' as const, title: '5 years per second' },
+  { label: '10×',  value: 50,  mode: 'manual' as const, title: '50 years per second' },
+  { label: '100×', value: 500, mode: 'manual' as const, title: '500 years per second' },
 ];
 
 const ERA_LABELS = [
@@ -76,15 +78,10 @@ const ERA_PRESETS = [
 const BUCKET_SIZE = 50;     // years per histogram bucket
 const HIST_HEIGHT = 36;     // px
 
-function formatYearDisplay(year: number) {
-  // Years are conventionally written without thousands separators
-  // ("2500 BCE", not "2,500 BCE"). Casualty counts keep their commas;
-  // years do not.
-  const y = Math.round(year);
-  if (y < 0) return { num: String(Math.abs(y)), suffix: 'BCE' };
-  if (y === 0) return { num: '1', suffix: 'BCE' }; // there is no year 0
-  return { num: String(y), suffix: 'CE' };
-}
+// Years are conventionally written without thousands separators
+// ("2500 BCE", not "2,500 BCE"). formatYearParts handles BCE and the
+// nonexistent year 0 consistently with the rest of the UI.
+const formatYearDisplay = formatYearParts;
 
 export default function Timeline({
   timeline,
@@ -282,6 +279,7 @@ export default function Timeline({
                     background: active ? 'oklch(0.78 0.14 78 / 0.10)' : 'transparent',
                   }}
                   aria-pressed={active}
+                  title={option.title}
                 >
                   {option.label}
                 </button>
@@ -382,19 +380,19 @@ export default function Timeline({
               aria-valuemin={timeline.minYear}
               aria-valuemax={timeline.maxYear}
               aria-valuenow={Math.round(timeline.currentYear)}
-              aria-valuetext={
-                timeline.currentYear < 0
-                  ? `${Math.abs(Math.round(timeline.currentYear))} BCE`
-                  : `${Math.round(timeline.currentYear)} CE`
-              }
+              aria-valuetext={formatYear(timeline.currentYear)}
               tabIndex={0}
               onKeyDown={(e) => {
+                // stopPropagation so the window-level ±10-year handler in
+                // app/page.tsx doesn't also fire (it used to: 1 + 10 = 11).
                 const step = e.shiftKey ? 50 : 1;
                 if (e.key === 'ArrowLeft') {
                   e.preventDefault();
+                  e.stopPropagation();
                   onYearChange(Math.max(timeline.minYear, timeline.currentYear - step));
                 } else if (e.key === 'ArrowRight') {
                   e.preventDefault();
+                  e.stopPropagation();
                   onYearChange(Math.min(timeline.maxYear, timeline.currentYear + step));
                 }
               }}
@@ -564,6 +562,7 @@ export default function Timeline({
                       : 'transparent',
                   }}
                   aria-pressed={active}
+                  title={option.title}
                 >
                   {option.label}
                 </button>

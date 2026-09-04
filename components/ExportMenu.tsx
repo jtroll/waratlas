@@ -26,23 +26,25 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
     for (const c of conflicts) {
       const cells = [
         c.id,
-        csvEscape(c.name),
+        c.name,
         c.startYear,
         c.endYear ?? '',
         c.coordinates[0],
         c.coordinates[1],
-        csvEscape((c.countries ?? []).join('; ')),
+        (c.countries ?? []).join('; '),
         c.casualties ?? '',
         c.casualtyRange?.low ?? '',
         c.casualtyRange?.high ?? '',
-        csvEscape(c.casualtyRange?.source ?? ''),
+        c.casualtyRange?.source ?? '',
         c.importance,
         c.wikipediaUrl ?? '',
-        csvEscape(c.description ?? ''),
-      ];
+        c.description ?? '',
+      ].map(csvCell);
       rows.push(cells.join(','));
     }
-    const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+    // UTF-8 BOM so Excel decodes non-ASCII names (Đại Việt, Kościuszko…)
+    // instead of showing mojibake.
+    const blob = new Blob(['\ufeff' + rows.join('\n')], { type: 'text/csv;charset=utf-8' });
     triggerDownload(blob, `wars-atlas-${Math.round(currentYear)}.csv`);
     setOpen(false);
   };
@@ -148,8 +150,19 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
 function csvEscape(s: string | undefined | null): string {
   if (s === null || s === undefined) return '';
   const str = String(s);
-  if (/[",\n]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
+  if (/[",\n\r]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
   return str;
+}
+
+/** Every cell goes through csvEscape. Text cells that start with = + - @
+ *  are prefixed with a single quote so spreadsheet apps don't evaluate
+ *  them as formulas (CSV injection). Numeric cells (years, coordinates,
+ *  counts — including negative BCE years) are left as numbers. */
+function csvCell(v: string | number | null | undefined): string {
+  if (v === null || v === undefined) return '';
+  if (typeof v === 'number') return csvEscape(String(v));
+  const guarded = /^[=+\-@]/.test(v) ? `'${v}` : v;
+  return csvEscape(guarded);
 }
 
 function triggerDownload(blob: Blob, filename: string) {

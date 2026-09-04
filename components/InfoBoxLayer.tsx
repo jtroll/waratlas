@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect, useState, useCallback } from 'react';
 import { ActiveConflict, Conflict, ScreenPosition } from '@/lib/types';
-import { formatYear } from '@/lib/conflicts';
+import { formatYearRange } from '@/lib/format';
 import { MapViewHandle } from './MapView';
 
 interface InfoBoxLayerProps {
@@ -294,11 +294,7 @@ export default function InfoBoxLayer({
                       {box.conflict.name}
                     </h3>
                     <p className="text-[10px] text-wars-muted mt-0.5">
-                      {formatYear(box.conflict.startYear)}
-                      {box.conflict.endYear && box.conflict.endYear !== box.conflict.startYear
-                        ? ` – ${formatYear(box.conflict.endYear)}`
-                        : ''}
-                      {!box.conflict.endYear && box.conflict.startYear > 2000 ? ' – present' : ''}
+                      {formatYearRange(box.conflict.startYear, box.conflict.endYear)}
                     </p>
                     {box.conflict.countries.length > 0 && (
                       <p className="text-[10px] text-wars-muted/70 mt-0.5 truncate">

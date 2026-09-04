@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { formatYear } from '@/lib/format';
 
 interface Era {
   start: number;
@@ -82,9 +83,8 @@ function eraForYear(year: number): Era | null {
 }
 
 function formatBound(y: number): string {
-  if (y < 0) return `${-y} BCE`;
   if (y >= 2100) return 'today';
-  return `${y} CE`;
+  return formatYear(y);
 }
 
 interface Props {
@@ -103,17 +103,18 @@ export default function EraPanel({ year }: Props) {
   // the user can re-expand the card at will; previously this was a
   // one-shot "dismissed" flag that hid the card permanently for the era.
   const [collapsed, setCollapsed] = useState(false);
-  const eraSlot = Math.floor(year / 5);
+  // Keyed on the era NAME, not the float year: during playback the year
+  // changes every frame, and re-running this per frame would un-collapse
+  // the card immediately after the user (or the 12 s timer) collapsed it.
+  const eraName = eraForYear(year)?.name ?? null;
 
   useEffect(() => {
-    const era = eraForYear(year);
+    if (!eraName) return;
+    const era = ERAS.find((e) => e.name === eraName);
     if (!era) return;
-    setShown((prev) => {
-      if (prev && prev.era.name === era.name) return prev;
-      return { era, key: era.name + '-' + Date.now() };
-    });
+    setShown({ era, key: era.name + '-' + Date.now() });
     setCollapsed(false);
-  }, [eraSlot, year]);
+  }, [eraName]);
 
   // Auto-collapse after 12s (the tab remains so the user can pull it back)
   useEffect(() => {

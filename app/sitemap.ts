@@ -1,25 +1,15 @@
 import { MetadataRoute } from 'next';
-import fs from 'fs';
-import path from 'path';
-
-interface Conflict {
-  id: string;
-  importance: number;
-}
+import { getConflictIndex } from '@/lib/server/conflict-index';
+import { getSiteUrl } from '@/lib/site-url';
 
 /**
  * Sitemap for SEO discoverability — Google can crawl every conflict permalink.
- * Prioritizes high-importance conflicts.
+ * Prioritizes high-importance conflicts. Reads the module-level cached
+ * conflict index (parsed once per process, shared with /c/[id]).
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wars-atlas.example';
-  let conflicts: Conflict[] = [];
-  try {
-    const p = path.join(process.cwd(), 'public', 'conflicts.json');
-    conflicts = JSON.parse(fs.readFileSync(p, 'utf8')) as Conflict[];
-  } catch {
-    // OK to fall back to empty list
-  }
+  const baseUrl = getSiteUrl();
+  const { list: conflicts } = getConflictIndex();
 
   const today = new Date();
 

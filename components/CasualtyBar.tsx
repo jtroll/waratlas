@@ -1,6 +1,7 @@
 'use client';
 
 import { Conflict } from '@/lib/types';
+import { formatCasualties as fmt } from '@/lib/format';
 
 /**
  * CasualtyRange — bespoke microvisualization (step 3 of redesign).
@@ -33,14 +34,6 @@ interface CasualtyRangeProps {
    *  in compact contexts (e.g. mobile cards) where the parent already shows
    *  the casualty headline. */
   showHeadline?: boolean;
-}
-
-function fmt(n: number | null): string {
-  if (n == null) return '—';
-  if (n >= 1e9) return `${(n / 1e9).toFixed(1)}B`;
-  if (n >= 1e6) return `${(n / 1e6).toFixed(n >= 1e7 ? 0 : 1)}M`;
-  if (n >= 1e3) return `${(n / 1e3).toFixed(n >= 1e4 ? 0 : 1)}K`;
-  return n.toLocaleString();
 }
 
 const TICKS: Array<[number, string]> = [

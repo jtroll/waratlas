@@ -2,7 +2,14 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { Conflict } from '@/lib/types';
-import { formatYear } from '@/lib/conflicts';
+import {
+  formatYear,
+  formatYearRange,
+  formatDuration,
+  formatCompactRange,
+  formatCasualties,
+  importanceLabel,
+} from '@/lib/format';
 import { getEmpireDescription } from '@/lib/empire-descriptions';
 
 /**
@@ -28,6 +35,38 @@ function loadWikipediaCache(): Promise<Record<string, WikipediaEntry>> {
   return wikipediaCachePromise;
 }
 
+/** What kind of polity a feature was. Only `state` earns a solid border. */
+export type PolityType =
+  | 'state'
+  | 'tributary'
+  | 'confederation'
+  | 'culture'
+  | 'nomadic-range'
+  | 'chiefdom';
+
+/** Provenance enum for the polygon; the free-text detail lives in
+ *  `sourceDetail`. */
+export type EmpireSource =
+  | 'historical-basemaps'
+  | 'hand-crafted-from-atlases'
+  | 'reconstructed-clipped-country'
+  | 'approximate-cultural-extent'
+  | 'cliopatria-seshat'
+  | 'manual';
+
+const SOURCE_LABELS: Record<EmpireSource, string> = {
+  'historical-basemaps': 'aourednik / historical-basemaps',
+  'hand-crafted-from-atlases': 'hand-crafted from scholarly atlases',
+  'reconstructed-clipped-country': 'reconstructed from Natural Earth country boundaries',
+  'approximate-cultural-extent': 'approximate cultural extent (no primary GIS source)',
+  'cliopatria-seshat': 'Cliopatria / Seshat Global History Databank (CC BY 4.0)',
+  'manual': 'manual construction / verification',
+};
+
+function sourceLabel(source: string): string {
+  return (SOURCE_LABELS as Record<string, string>)[source] ?? source;
+}
+
 /**
  * Properties carried on every empire feature in public/empires.json.
  * (Geometry isn't in here — the sidebar only needs metadata + bbox.)
@@ -44,13 +83,14 @@ export interface EmpireProperties {
   accurate?: boolean;
   /** "solid" or "dashed" — encodes border-style on the map. */
   borderStyle?: 'solid' | 'dashed';
-  /** Where the polygon came from. */
-  source?:
-    | 'historical-basemaps'
-    | 'hand-crafted-from-atlases'
-    | 'reconstructed-clipped-country'
-    | 'approximate-cultural-extent'
-    | string;
+  /** Where the polygon came from (enum; legacy free text tolerated). */
+  source?: EmpireSource | string;
+  /** Verbatim provenance detail — the atlas page, LiDAR survey, basemap
+   *  snapshot name, etc. — preserved from the pre-enum free-text source. */
+  sourceDetail?: string;
+  /** Editorial note on the border itself (what was clipped, where the
+   *  line is most uncertain). */
+  borderNote?: string;
   /** When source === historical-basemaps, the year-snapshot used. */
   borderYear?: number;
   /** When source === historical-basemaps, the matched feature name. */
@@ -61,7 +101,7 @@ export interface EmpireProperties {
    *  sidebar caption. Only `state` empires earn solid borders even if the
    *  polygon is well-traced — for the others the underlying historical
    *  reality lacked a surveyed frontier. */
-  polityType?: 'state' | 'tributary' | 'confederation' | 'culture' | 'nomadic-range' | string;
+  polityType?: PolityType | string;
   /** Optional bbox (minLon, minLat, maxLon, maxLat) — computed by caller. */
   bbox?: [number, number, number, number];
 }
@@ -92,28 +132,6 @@ interface Props {
  * app/page.tsx via mutually-exclusive selected state.
  * ─────────────────────────────────────────────────────────── */
 
-function importanceLabel(i: number): string {
-  switch (i) {
-    case 5: return 'World-changing';
-    case 4: return 'Major conflict';
-    case 3: return 'Significant';
-    case 2: return 'Regional';
-    default: return 'Minor';
-  }
-}
-
-function fmtCasualty(n: number | null): string {
-  if (n == null) return '—';
-  if (n >= 1e9) return `${(n / 1e9).toFixed(1)}B`;
-  if (n >= 1e6) return `${(n / 1e6).toFixed(n >= 1e7 ? 0 : 1)}M`;
-  if (n >= 1e3) return `${(n / 1e3).toFixed(n >= 1e4 ? 0 : 1)}K`;
-  return n.toLocaleString();
-}
-
-function shortYear(y: number): string {
-  return y < 0 ? `${-y} BCE` : `${y}`;
-}
-
 /** Heading shown above the source-attribution swatch. The dashed/solid state
  *  is already decided in the parent; this just gives it a name that reflects
  *  why the line is dashed — polygon fidelity vs. the polity itself being a
@@ -125,6 +143,7 @@ function bordersHeading(isDashed: boolean, polityType?: string): string {
     case 'confederation': return 'Confederation';
     case 'culture':       return 'Cultural sphere';
     case 'nomadic-range': return 'Nomadic range';
+    case 'chiefdom':      return 'Chiefdom';
     default:              return 'Approximate borders';
   }
 }
@@ -158,6 +177,10 @@ function bordersCaption(
       return isAccurate
         ? 'A pastoralist or hunter-gatherer range. Seasonal use shifted across decades, so the line is the rough envelope of a moving territory.'
         : 'A pastoralist or hunter-gatherer range whose extent shifted constantly with seasons and alliances.';
+    case 'chiefdom':
+      return isAccurate
+        ? 'A paramount chiefdom with tributary peripheries. The center is well-attested; the outer line marks the reach of tribute and kinship, not a surveyed frontier.'
+        : 'A paramount chiefdom with tributary peripheries; extent is inferred from settlement and tribute patterns and remains approximate.';
     default:
       return 'Dashed borders mark empires whose extent we can date but whose precise frontiers are contested or undocumented.';
   }
@@ -188,10 +211,18 @@ export default function EmpireSidebar({
   }, [e.id]);
   // Solid borders are reserved for empires that BOTH have a faithful polygon
   // (accurate=true) AND were administratively-bordered states. Tributary,
-  // confederation, culture, and nomadic-range types render dashed regardless.
+  // confederation, culture, nomadic-range and chiefdom types render dashed
+  // regardless.
   const isStatePolity = e.polityType === 'state' || e.polityType === undefined;
   const isDashed = e.borderStyle === 'dashed' || !isAccurate || !isStatePolity;
-  const duration = e.endYear ? e.endYear - e.startYear : null;
+  const duration = formatDuration(e.startYear, e.endYear);
+  // "Copied" confirmation after a successful clipboard write (~1.5 s).
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return;
+    const t = setTimeout(() => setCopied(false), 1500);
+    return () => clearTimeout(t);
+  }, [copied]);
 
   // Permalink for citations — empires don't have a /e/[id] route yet, so this
   // builds a year-anchored deep-link that scrolls the timeline to the empire's
@@ -220,13 +251,10 @@ export default function EmpireSidebar({
   }, [allConflicts, e.startYear, e.endYear]);
 
   const handleCite = async () => {
-    const yearRange =
-      e.endYear && e.endYear !== e.startYear
-        ? `${formatYear(e.startYear)}–${formatYear(e.endYear)}`
-        : formatYear(e.startYear);
-    const citation = `${e.name} (${yearRange}). War Atlas. ${permalink}`;
+    const citation = `${e.name} (${formatYearRange(e.startYear, e.endYear)}). War Atlas. ${permalink}`;
     try {
       await navigator.clipboard.writeText(citation);
+      setCopied(true);
     } catch {
       // ignore — clipboard might be blocked
     }
@@ -319,14 +347,11 @@ export default function EmpireSidebar({
           className="font-mono mt-2.5 text-meta text-wars-text-2"
           style={{ letterSpacing: '0.05em' }}
         >
-          {formatYear(e.startYear)}
-          {e.endYear && e.endYear !== e.startYear
-            ? ` — ${formatYear(e.endYear)}`
-            : ''}
-          {duration !== null && (
+          {formatYearRange(e.startYear, e.endYear)}
+          {duration && (
             <>
               <span className="text-wars-faint mx-2">·</span>
-              {duration} years
+              {duration}
             </>
           )}
         </div>
@@ -482,42 +507,20 @@ export default function EmpireSidebar({
           </p>
 
           {/* Source attribution — only when we have any */}
-          {(e.source || e.borderYear || e.matchedRegion || e.handCraftedNote) && (
+          {(e.source || e.sourceDetail || e.borderNote || e.borderYear || e.matchedRegion || e.handCraftedNote) && (
             <ul className="mt-3 space-y-1.5">
-              {e.source === 'historical-basemaps' && (
+              {e.source && (
                 <li className="font-mono text-mono-xs text-wars-faint">
                   <span className="text-wars-muted mr-1.5">SOURCE</span>
-                  aourednik / historical-basemaps
+                  {sourceLabel(e.source)}
                 </li>
               )}
-              {e.source === 'hand-crafted-from-atlases' && (
-                <li className="font-mono text-mono-xs text-wars-faint">
-                  <span className="text-wars-muted mr-1.5">SOURCE</span>
-                  hand-crafted from scholarly atlases
+              {e.sourceDetail && (
+                <li className="font-mono text-mono-xs text-wars-faint break-words">
+                  <span className="text-wars-muted mr-1.5">DETAIL</span>
+                  {e.sourceDetail}
                 </li>
               )}
-              {e.source === 'reconstructed-clipped-country' && (
-                <li className="font-mono text-mono-xs text-wars-faint">
-                  <span className="text-wars-muted mr-1.5">SOURCE</span>
-                  reconstructed from Natural Earth country boundaries
-                </li>
-              )}
-              {e.source === 'approximate-cultural-extent' && (
-                <li className="font-mono text-mono-xs text-wars-faint">
-                  <span className="text-wars-muted mr-1.5">SOURCE</span>
-                  approximate cultural extent (no primary GIS source)
-                </li>
-              )}
-              {e.source &&
-                e.source !== 'historical-basemaps' &&
-                e.source !== 'hand-crafted-from-atlases' &&
-                e.source !== 'reconstructed-clipped-country' &&
-                e.source !== 'approximate-cultural-extent' && (
-                  <li className="font-mono text-mono-xs text-wars-faint">
-                    <span className="text-wars-muted mr-1.5">SOURCE</span>
-                    {e.source}
-                  </li>
-                )}
               {e.borderYear !== undefined && (
                 <li className="font-mono text-mono-xs text-wars-faint">
                   <span className="text-wars-muted mr-1.5">SNAPSHOT</span>
@@ -536,6 +539,14 @@ export default function EmpireSidebar({
                   style={{ fontSize: 12, lineHeight: 1.5 }}
                 >
                   {e.handCraftedNote}
+                </li>
+              )}
+              {e.borderNote && (
+                <li
+                  className="font-display italic text-wars-text-2"
+                  style={{ fontSize: 12, lineHeight: 1.5 }}
+                >
+                  {e.borderNote}
                 </li>
               )}
             </ul>
@@ -570,10 +581,7 @@ export default function EmpireSidebar({
                       {c.name}
                     </span>
                     <span className="font-mono text-mono-xs text-wars-faint flex-shrink-0">
-                      {shortYear(c.startYear)}
-                      {c.endYear && c.endYear !== c.startYear
-                        ? `–${String(Math.abs(c.endYear)).slice(-2)}`
-                        : ''}
+                      {formatCompactRange(c.startYear, c.endYear)}
                     </span>
                   </div>
                   <div className="flex items-baseline gap-2 mt-0.5">
@@ -585,7 +593,7 @@ export default function EmpireSidebar({
                     </span>
                     {c.casualties != null && (
                       <span className="font-mono text-mono-xs text-wars-faint">
-                        · {fmtCasualty(c.casualties)} dead
+                        · {formatCasualties(c.casualties)} dead
                       </span>
                     )}
                   </div>
@@ -615,6 +623,9 @@ export default function EmpireSidebar({
             >
               Cite this entry
             </button>
+            <span role="status" aria-live="polite" className="font-mono text-mono-xs" style={{ color: 'var(--amber)' }}>
+              {copied ? 'Copied' : ''}
+            </span>
             <span className="text-wars-faint">·</span>
             <a
               href={permalink}

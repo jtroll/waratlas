@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { formatYear } from '@/lib/format';
 
-interface CityFeature {
+export interface CityFeature {
   type: 'Feature';
   geometry: { type: 'Point'; coordinates: [number, number] };
   properties: {
+    id?: string;
     name: string;
     modernName?: string | null;
     foundedYear?: number | null;
@@ -14,18 +16,21 @@ interface CityFeature {
   };
 }
 
+export interface CityCollection {
+  type?: 'FeatureCollection';
+  features: CityFeature[];
+}
+
 interface Props {
   /** When set, opens the modal showing all name-period entries at this coord. */
   coords: [number, number] | null;
-  citiesData: { features: CityFeature[] } | null;
+  citiesData: CityCollection | null;
   onClose: () => void;
 }
 
 function formatY(y: number | null | undefined): string {
   if (y === null || y === undefined) return '?';
-  if (y < 0) return `${Math.abs(y)} BCE`;
-  if (y < 1000) return `${y} CE`;
-  return String(y);
+  return formatYear(y);
 }
 
 /**

@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import stats from '@/lib/generated/stats.json';
+
+const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
+const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
+const STAT_CITIES = `~${(Math.round(stats.cities / 100) * 100).toLocaleString('en-US')}`;
+const STAT_RANGES = stats.casualtyRanges.toLocaleString('en-US');
+const SOLID_PCT = stats.empires > 0 ? Math.round((stats.solidEmpires / stats.empires) * 100) : 0;
 
 interface AboutModalProps {
   open: boolean;
@@ -75,12 +82,13 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               to watch the political map change while wars appear and resolve.
             </p>
             <p className="mt-2">
-              The dataset currently covers <strong>10,584 conflicts</strong> spanning roughly{' '}
-              <strong>2500 BCE to today</strong>, with <strong>427 distinct polities (empires, kingdoms,
+              The dataset currently covers <strong>{STAT_CONFLICTS} conflicts</strong> spanning roughly{' '}
+              <strong>3100 BCE to today</strong>, with <strong>{STAT_EMPIRES} distinct polities (empires, kingdoms,
               caliphates, republics, dynasties)</strong> whose borders shift through time, and{' '}
-              <strong>~700 historical city-name records</strong> that fade in and out as cities are
+              <strong>{STAT_CITIES} historical city-name records</strong> that fade in and out as cities are
               renamed. This project stemmed out of an offhand conversation between friends in
-              2009, finally put into this beta release in May 2026.
+              2009, finally put into this beta release in May 2026. It has been assembled via
+              countless amazing open source resources, Claude Cowork, and several late nights.
             </p>
             <p className="mt-2 text-xs text-wars-muted">
               <strong className="text-wars-text">Dataset version:</strong> May 2026.
@@ -110,9 +118,9 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                 </div>
               </div>
               <p className="text-xs text-wars-muted mt-3">
-                Of the 427 polities currently in the dataset, roughly a third (≈ 36 %) carry
-                solid borders sourced from canonical historical-basemap data, and the remaining
-                two-thirds are dashed approximations (the 2026 indigenous-Americas expansion
+                Of the {STAT_EMPIRES} polities currently in the dataset, roughly a third (≈ {SOLID_PCT} %) carry
+                solid borders sourced from canonical historical-basemap data, and the rest
+                are dashed approximations (the 2026 indigenous-Americas expansion
                 added many honestly-approximate pre-Columbian borders). The dashed/solid distinction is enforced
                 consistently — if a polygon is dashed, don&apos;t cite the line.
               </p>
@@ -166,7 +174,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
           <Section heading="How casualty figures work">
             <p>
               Where shown, the headline number is a single <em>median or best-estimate</em> figure.
-              For ~150 of the most-cited conflicts (World Wars, Mongol Conquests, Taiping, Holocaust,
+              For {STAT_RANGES} of the most-cited conflicts (World Wars, Mongol Conquests, Taiping, Holocaust,
               An Lushan Rebellion, etc.) we additionally show a <em>range</em> reflecting the genuine
               spread in scholarly estimates, with the source and notes on why historians disagree.
             </p>
@@ -235,11 +243,11 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
                 that resolution, individual peninsulas and small islands may be approximated.
               </li>
               <li>
-                <strong>Disputed territories</strong>: Modern country shapes from Natural Earth
-                follow internationally recognized borders. Crimea is shown as Ukrainian; Taiwan as
-                separate; Palestinian territories as separate from Israel; Kashmir is split. These
-                choices reflect Natural Earth&apos;s convention, not endorsement of any party&apos;s
-                claim.
+                <strong>Disputed territories</strong>: Modern borders come from Mapbox&apos;s
+                boundary data and follow internationally recognized borders. Crimea is shown as
+                Ukrainian; Taiwan as separate; Palestinian territories as separate from Israel;
+                Kashmir is split. These choices reflect the basemap&apos;s convention, not
+                endorsement of any party&apos;s claim.
               </li>
               <li>
                 <strong>Naming</strong>: Place names use modern canonical forms in modern contexts

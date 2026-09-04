@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import stats from '@/lib/generated/stats.json';
+
+const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
+const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
+const STAT_RANGES = stats.casualtyRanges.toLocaleString('en-US');
 
 export const metadata: Metadata = {
   title: 'Sources & attribution · War Atlas',
@@ -63,7 +68,7 @@ export default function SourcesPage() {
 
         <Section title="Conflict records">
           <p>
-            The 10,584 conflict entries in <Code>public/conflicts.json</Code> were
+            The {STAT_CONFLICTS} conflict entries in <Code>public/conflicts.json</Code> were
             seeded from the leads of English Wikipedia articles
             (<License href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</License>),
             then cross-checked against:
@@ -117,7 +122,7 @@ export default function SourcesPage() {
 
         <Section title="Bulk historical datasets (2026 expansion)">
           <p>
-            In 2026 the atlas was expanded from ~2,571 to 10,584 conflicts by
+            In 2026 the atlas was expanded from ~2,571 to {STAT_CONFLICTS} conflicts by
             ingesting peer-reviewed conflict datasets at battle level. These
             records sit at lower visual prominence (importance 2), carry{' '}
             <Code>casualties: null</Code> where the source gives no reliable
@@ -192,7 +197,7 @@ export default function SourcesPage() {
 
         <Section title="Borders, polygons, geometry">
           <p>
-            The 427 empire polygons in <Code>public/empires.json</Code> come
+            The {STAT_EMPIRES} empire polygons in <Code>public/empires.json</Code> come
             from several kinds of source, in roughly this order of priority:
           </p>
           <ul>
@@ -279,7 +284,7 @@ export default function SourcesPage() {
           </p>
           <p>
             The second question is the <Code>polityType</Code> flag, which
-            takes one of five values:
+            takes one of six values:
           </p>
           <ul>
             <li>
@@ -314,6 +319,13 @@ export default function SourcesPage() {
               hunter-gatherer seasonal range. Pechenegs, Comancheria,
               Lakota/Sioux territory, Xiongnu, the Göktürk khanates,
               Mapuche, Patagonia / Tehuelche. ~16 features.
+            </li>
+            <li>
+              <strong>chiefdom</strong> — a paramount chiefdom with
+              tributary peripheries: a well-attested center whose outer
+              line marks the reach of tribute and kinship rather than a
+              surveyed frontier. Cahokia, Moundville, the Calchaquí and
+              Amazonian mound-builder polities. ~10 features.
             </li>
           </ul>
           <p>
@@ -493,7 +505,7 @@ export default function SourcesPage() {
               should be read as orders of magnitude. Many derive from primary
               sources (often censuses showing population loss) that conflate
               war deaths with famine, plague, and displacement. Where a
-              well-cited range exists (~150 conflicts), the sidebar shows the
+              well-cited range exists ({STAT_RANGES} conflicts), the sidebar shows the
               range with source attribution rather than a single number.
             </li>
             <li>
@@ -504,10 +516,10 @@ export default function SourcesPage() {
               estimate; displacement figures appear in the narrative.
             </li>
             <li>
-              <strong>Coverage bias</strong> — concretely: of the 1,335
-              conflicts in the current dataset, ≈36 % are in Europe, ≈33 % in
-              Asia, ≈20 % in the Americas, ≈9 % in Africa, and ≈2 % in
-              Oceania. Pre-colonial sub-Saharan polities, Pacific Islander
+              <strong>Coverage bias</strong> — concretely: of the {STAT_CONFLICTS}
+              conflicts in the current dataset, Europe and Asia together account
+              for the large majority; the Americas, Africa and Oceania trail
+              well behind. Pre-colonial sub-Saharan polities, Pacific Islander
               warfare, and pre-Columbian Mesoamerican and Andean conflict are
               all under-represented relative to a true global count.
               Pre-1500 records are sparser everywhere; we treat the gap as a
@@ -537,10 +549,10 @@ export default function SourcesPage() {
               against current reporting before being cited.
             </li>
             <li>
-              <strong>Disputed borders</strong> — the modern country shapes
-              follow Natural Earth conventions, which approximate
-              internationally recognized borders. These choices reflect
-              Natural Earth&apos;s convention, not endorsement of any
+              <strong>Disputed borders</strong> — modern borders come from
+              Mapbox&apos;s boundary data (default worldview), which
+              approximates internationally recognized borders. These choices
+              reflect the basemap&apos;s convention, not endorsement of any
               party&apos;s claim. The disputed-territory note in the bottom
               right of the map enumerates the cases.
             </li>

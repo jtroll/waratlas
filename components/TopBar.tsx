@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ActiveConflict } from '@/lib/types';
+import { formatCasualties } from '@/lib/format';
 import AboutModal from './AboutModal';
 
 interface TopBarProps {
@@ -22,6 +23,9 @@ interface TopBarProps {
    *  visible — flex layout shifts the tallies to the right edge as the
    *  chrome cluster shrinks. */
   chromeHidden?: boolean;
+  /** While the guided tour is open the `?` shortcut is ignored so the tour's
+   *  own keyboard handling isn't fought over. */
+  tourOpen?: boolean;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -45,12 +49,14 @@ export default function TopBar({
   onOpenTour,
   activeConflicts,
   chromeHidden = false,
+  tourOpen = false,
 }: TopBarProps) {
   const isLive = Math.round(currentYear) >= new Date().getFullYear() - 1;
   const [showInfo, setShowInfo] = useState(false);
 
   // Open About on `?` key (when not focused in an input)
   useEffect(() => {
+    if (tourOpen) return;
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
       if (target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA') return;
@@ -60,16 +66,14 @@ export default function TopBar({
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [tourOpen]);
 
   const estCasualtiesThisYear = (() => {
     const total = activeConflicts
       .filter((c) => c.isActive && c.casualties)
       .reduce((sum, c) => sum + (c.casualties || 0), 0);
     if (total === 0) return null;
-    if (total >= 1_000_000) return `~${(total / 1_000_000).toFixed(1)}M`;
-    if (total >= 1_000) return `~${(total / 1_000).toFixed(0)}K`;
-    return `~${total}`;
+    return formatCasualties(total);
   })();
 
   return (
@@ -141,33 +145,32 @@ export default function TopBar({
 
         {/* ─ Stats + chrome ─ */}
         <div className="pointer-events-auto flex items-center gap-5 sm:gap-6">
-          {/* Active conflicts */}
-          {activeCount > 0 && (
-            <button
-              onClick={onShowAllConflicts}
-              className="hidden sm:flex flex-col items-end leading-none hover:opacity-90 transition-opacity"
-              title="View all active conflicts"
-              style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer' }}
+          {/* Active conflicts — rendered at 0 too ("0 active") so the list
+              panel's quiet-moment empty state stays reachable. */}
+          <button
+            onClick={onShowAllConflicts}
+            className="hidden sm:flex flex-col items-end leading-none hover:opacity-90 transition-opacity"
+            title="View all active conflicts"
+            style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer' }}
+          >
+            <span
+              className="font-display tabular-nums"
+              style={{
+                fontSize: 18,
+                fontWeight: 500,
+                color: activeCount > 0 ? 'var(--vermilion)' : 'var(--ink-faint)',
+                lineHeight: 1,
+              }}
             >
-              <span
-                className="font-display tabular-nums"
-                style={{
-                  fontSize: 18,
-                  fontWeight: 500,
-                  color: 'var(--vermilion)',
-                  lineHeight: 1,
-                }}
-              >
-                {activeCount}
-              </span>
-              <span
-                className="eyebrow mt-1"
-                style={{ fontSize: 9, color: 'var(--ink-faint)' }}
-              >
-                active
-              </span>
-            </button>
-          )}
+              {activeCount}
+            </span>
+            <span
+              className="eyebrow mt-1"
+              style={{ fontSize: 9, color: 'var(--ink-faint)' }}
+            >
+              active
+            </span>
+          </button>
 
           {/* Total mapped */}
           <div className="hidden md:flex flex-col items-end leading-none">

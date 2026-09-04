@@ -4,6 +4,7 @@ import { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 're
 import mapboxgl from 'mapbox-gl';
 import { ActiveConflict, Conflict, ScreenPosition } from '@/lib/types';
 import { MapboxTokenFallback } from './ErrorBoundary';
+import type { EmpireProperties } from './EmpireSidebar';
 
 interface MapViewProps {
   activeConflicts: ActiveConflict[];
@@ -11,14 +12,17 @@ interface MapViewProps {
   onConflictClick: (conflict: Conflict) => void;
   onConflictDotClick: (conflict: Conflict) => void;
   selectedConflictId: string | null;
-  onZoomChange: (zoom: number) => void;
+  /** Fires on Mapbox's `load` event (style ready). The page uses it to
+   *  lift the loading screen instead of guessing with a timeout. Zoom is
+   *  covered by onMapMove — Mapbox fires `move` during zooms too. */
+  onMapLoad?: () => void;
   onMapMove: () => void;
   /** Called when the user clicks a city dot. Receives the city's coordinates. */
   onCityClick?: (coords: [number, number]) => void;
   /** Called when the user clicks an empire polygon. Receives the empire's
    *  feature properties (plus a computed bbox). Conflict-marker clicks take
    *  precedence — if a conflict dot is at the same point, this won't fire. */
-  onEmpireClick?: (empire: import('./EmpireSidebar').EmpireProperties) => void;
+  onEmpireClick?: (empire: EmpireProperties) => void;
   /** id of the currently-selected empire (so we can tone the polygon). */
   selectedEmpireId?: string | null;
 }
@@ -37,20 +41,22 @@ const HAS_VALID_TOKEN = MAPBOX_TOKEN && MAPBOX_TOKEN !== 'YOUR_MAPBOX_TOKEN_HERE
 
 /** Compute a [minLon, minLat, maxLon, maxLat] bbox from a GeoJSON geometry.
  *  Used by the empire click handler to enrich the EmpireSidebar payload. */
+type NestedCoords = number[] | NestedCoords[];
+
 function computeBbox(g: GeoJSON.Geometry): [number, number, number, number] | undefined {
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-  const visit = (c: any): void => {
+  const visit = (c: NestedCoords): void => {
     if (typeof c[0] === 'number') {
-      const [x, y] = c as [number, number];
+      const [x, y] = c as number[];
       if (x < minX) minX = x;
       if (y < minY) minY = y;
       if (x > maxX) maxX = x;
       if (y > maxY) maxY = y;
     } else {
-      for (const child of c) visit(child);
+      for (const child of c as NestedCoords[]) visit(child);
     }
   };
-  if ('coordinates' in g) visit(g.coordinates as any);
+  if ('coordinates' in g) visit(g.coordinates as NestedCoords);
   if (!isFinite(minX)) return undefined;
   return [minX, minY, maxX, maxY];
 }
@@ -155,7 +161,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     onConflictClick,
     onConflictDotClick,
     selectedConflictId,
-    onZoomChange,
+    onMapLoad,
     onMapMove,
     onCityClick,
     onEmpireClick,
@@ -165,6 +171,25 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 ) {
   const onCityClickRef = useRef(onCityClick);
   useEffect(() => { onCityClickRef.current = onCityClick; }, [onCityClick]);
+  const onMapLoadRef = useRef(onMapLoad);
+  useEffect(() => { onMapLoadRef.current = onMapLoad; }, [onMapLoad]);
+  // Non-blocking notices. bordersError: cities/empires fetch failed (the
+  // conflict dots still render); tileError: Mapbox rejected the token.
+  const [bordersError, setBordersError] = useState<string | null>(null);
+  const [tileError, setTileError] = useState<string | null>(null);
+  const retryHistoricalRef = useRef<(() => Promise<boolean>) | null>(null);
+  // Bumped when the historical layers arrive late (after a retry) so the
+  // year-driven filter effect re-runs for the new layers.
+  const [bordersVersion, setBordersVersion] = useState(0);
+  // Last integer year we pushed empire/city/border updates for. During
+  // timeline auto-play, currentYear advances as a float ~60×/sec, but every
+  // filter and opacity expression below is keyed on Math.round(currentYear) —
+  // so within a single integer year the Mapbox work is byte-for-byte
+  // identical. Re-running setFilter/setPaintProperty against the 427 large
+  // empire MultiPolygons 60×/sec (vs once per integer year) was the dominant
+  // source of per-frame allocation + WebGL buffer churn behind the reported
+  // Firefox memory growth. NaN sentinel forces the first run through.
+  const lastEmpireYearRef = useRef<number>(NaN);
   const onEmpireClickRef = useRef(onEmpireClick);
   useEffect(() => { onEmpireClickRef.current = onEmpireClick; }, [onEmpireClick]);
   const hoveredEmpireIdRef = useRef<string | null>(null);
@@ -215,16 +240,22 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       // Use cameraForBounds → easeTo so the call is robust to padding that
       // exceeds the map size (which fitBounds rejects). cameraForBounds
       // returns the best-fit camera Mapbox can offer.
+      // Respect prefers-reduced-motion: a non-essential easeTo becomes an
+      // instant jump for those users.
+      const essential = !(
+        typeof window !== 'undefined' &&
+        window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+      );
       const run = () => {
         try {
           const cam = m.cameraForBounds(bounds, { padding, maxZoom: 5 });
           if (cam) {
-            m.easeTo({ ...cam, duration: 1100, essential: true });
+            m.easeTo({ ...cam, duration: 1100, essential });
           } else {
             // Fallback: just centre on the bbox at a reasonable zoom.
             const cx = (bbox[0] + bbox[2]) / 2;
             const cy = (bbox[1] + bbox[3]) / 2;
-            m.easeTo({ center: [cx, cy], zoom: 2, duration: 1100, essential: true });
+            m.easeTo({ center: [cx, cy], zoom: 2, duration: 1100, essential });
           }
         } catch (err) {
           // Surface errors instead of silently swallowing so we notice
@@ -233,10 +264,10 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           console.warn('flyToBbox failed', err);
         }
       };
-      // If the style hasn't loaded yet, wait for it. Otherwise camera ops
-      // can race the load event and get clobbered.
+      // If the style isn't ready, wait for the next `idle` (fires after
+      // every style change, unlike `load`, which fires exactly once).
       if (m.isStyleLoaded()) run();
-      else m.once('load', run);
+      else m.once('idle', run);
     },
   }));
 
@@ -275,43 +306,38 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 
     m.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
 
-    m.on('load', async () => {
-      // ——— Editorial basemap polish (step 7) ———
-      // Deepen the ocean so the basemap reads as the darkest thing on screen.
-      // Walk all background layers and paint water with our deep ink color;
-      // safe-no-op'd if the layer doesn't exist on this style version.
+    // Historical cities + empire borders. Split out so a failed fetch
+    // (offline, 5xx, malformed JSON) can't take the conflict layers down
+    // with it, and so the notice's Retry can re-run just this part.
+    const loadHistoricalLayers = async (): Promise<boolean> => {
+      if (m.getSource('empires')) return true;
+      let citiesData: GeoJSON.FeatureCollection;
+      let empiresData: GeoJSON.FeatureCollection;
       try {
-        const style = m.getStyle();
-        for (const layer of style?.layers ?? []) {
-          // Mapbox dark-v11 has 'water' and sometimes 'water-shadow' / 'water-pattern'
-          if (layer.type === 'fill' && layer.id.startsWith('water')) {
-            m.setPaintProperty(layer.id, 'fill-color', '#06090f');
-          }
+        const [citiesRes, empiresRes] = await Promise.all([
+          fetch('/cities.json'),
+          fetch('/empires.json'),
+        ]);
+        if (!citiesRes.ok) throw new Error(`cities.json: HTTP ${citiesRes.status}`);
+        if (!empiresRes.ok) throw new Error(`empires.json: HTTP ${empiresRes.status}`);
+        [citiesData, empiresData] = await Promise.all([
+          citiesRes.json() as Promise<GeoJSON.FeatureCollection>,
+          empiresRes.json() as Promise<GeoJSON.FeatureCollection>,
+        ]);
+        if (!Array.isArray(citiesData?.features) || !Array.isArray(empiresData?.features)) {
+          throw new Error('malformed GeoJSON');
         }
-      } catch {
-        // ignore — non-fatal
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('War Atlas: historical borders failed to load', err);
+        setBordersError('Historical borders failed to load');
+        return false;
       }
+      if (map.current !== m) return false; // unmounted mid-fetch
 
-      // ——— Initialize modern political borders (hidden until timeline reaches 1900) ———
-      for (const layer of MODERN_BORDER_LAYERS) {
-        if (m.getLayer(layer.id)) {
-          m.setLayoutProperty(layer.id, 'visibility', 'none');
-          m.setPaintProperty(layer.id, layer.paintProperty, 0);
-        }
-      }
-
-      // ——— Hide ALL built-in city labels (we use our own historical ones) ———
-      for (const layerId of SETTLEMENT_LAYERS) {
-        if (m.getLayer(layerId)) {
-          m.setLayoutProperty(layerId, 'visibility', 'none');
-        }
-      }
-
-      // ——— Fetch data files at runtime ———
-      const [citiesData, empiresData] = await Promise.all([
-        fetch('/cities.json').then(r => r.json()),
-        fetch('/empires.json').then(r => r.json()),
-      ]);
+      // On the retry path the conflict layers already exist — insert the
+      // historical layers beneath them so the dots stay on top.
+      const beforeId = m.getLayer('conflict-glow') ? 'conflict-glow' : undefined;
 
       // ——— Add historical cities source ———
       m.addSource('cities', {
@@ -345,7 +371,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'text-halo-width': 1.5,
           'text-opacity': 0, // set dynamically
         },
-      });
+      }, beforeId);
 
       // Small dot for city location
       m.addLayer({
@@ -362,7 +388,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'circle-color': 'rgba(200, 200, 210, 0.5)',
           'circle-opacity': 0, // set dynamically
         },
-      });
+      }, beforeId);
 
       // ——— Add historical empire borders ———
       // Sort features largest-first so Mapbox renders smaller polygons on
@@ -391,12 +417,12 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       // Each empire gets exactly one label at its precomputed labelPoint
       // (avoids the Mapbox "one label per MultiPolygon part" issue)
       const labelFeatures: GeoJSON.Feature[] = (empiresData as GeoJSON.FeatureCollection).features
-        .filter((f) => f.properties && (f.properties as any).labelPoint)
+        .filter((f) => Array.isArray((f.properties as { labelPoint?: unknown } | null)?.labelPoint))
         .map((f) => ({
           type: 'Feature',
           geometry: {
             type: 'Point',
-            coordinates: (f.properties as any).labelPoint as [number, number],
+            coordinates: (f.properties as { labelPoint: [number, number] }).labelPoint,
           },
           properties: f.properties,
         }));
@@ -416,7 +442,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'fill-color': ['get', 'color'],
           'fill-opacity': 0,
         },
-      });
+      }, beforeId);
 
       // Empire border line — solid for accurate basemap borders
       m.addLayer({
@@ -429,7 +455,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'line-width': 1.5,
           'line-opacity': 0,
         },
-      });
+      }, beforeId);
 
       // Empire border line — dashed for approximate hand-drawn borders
       m.addLayer({
@@ -443,7 +469,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'line-opacity': 0,
           'line-dasharray': [4, 4],
         },
-      });
+      }, beforeId);
 
       // Empire label — uses the dedicated Point source so each empire gets exactly ONE label
       // Initial filter is impossible-to-match so no labels show until currentYear effect runs
@@ -467,7 +493,171 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'text-halo-color': 'rgba(0, 0, 0, 0.8)',
           'text-halo-width': 1.5,
         },
+      }, beforeId);
+
+      // City click: open the city-name-timeline modal
+      m.on('click', 'city-dots', (e) => {
+        if (e.features?.[0]?.geometry?.type === 'Point') {
+          const coords = (e.features[0].geometry as GeoJSON.Point).coordinates as [number, number];
+          if (onCityClickRef.current) {
+            e.originalEvent.stopPropagation();
+            onCityClickRef.current(coords);
+          }
+        }
       });
+      m.on('mouseenter', 'city-dots', () => {
+        m.getCanvas().style.cursor = 'pointer';
+      });
+      m.on('mouseleave', 'city-dots', () => {
+        m.getCanvas().style.cursor = '';
+      });
+
+      // ─── Empire hover & click ───────────────────────────────────────
+      // Hover: paint a feature-state on whichever empire-fill is under the
+      // cursor. We compute the topmost (smallest area) feature so that when
+      // multiple polygons overlap we hover the one most likely the user means.
+      // Click: only fire if NO conflict marker is at the same point — the
+      // conflict click handlers above run independently, so we just check
+      // queryRenderedFeatures here to suppress when a dot has priority.
+
+      const empireLayersForHit = ['empire-fill'];
+      const conflictHitLayers = ['conflict-glow', 'conflict-mid', 'conflict-points'];
+
+      const setEmpireHover = (id: string | null) => {
+        const prev = hoveredEmpireIdRef.current;
+        if (prev === id) return;
+        if (prev != null) {
+          m.setFeatureState(
+            { source: 'empires', id: prev },
+            { hover: false }
+          );
+        }
+        hoveredEmpireIdRef.current = id;
+        if (id != null) {
+          m.setFeatureState(
+            { source: 'empires', id },
+            { hover: true }
+          );
+        }
+      };
+
+      m.on('mousemove', 'empire-fill', (e) => {
+        const feats = e.features;
+        if (!feats || feats.length === 0) return;
+        // Pick the topmost (last rendered) — Mapbox returns features in
+        // top-to-bottom z order, so feats[0] is the most-foreground polygon.
+        const id = (feats[0].properties as { id?: string } | null)?.id ?? null;
+        // Only show the empire-pointer cursor when a conflict isn't also there
+        const conflictHits = m.queryRenderedFeatures(e.point, { layers: conflictHitLayers });
+        if (conflictHits.length === 0) {
+          m.getCanvas().style.cursor = 'pointer';
+        }
+        setEmpireHover(id);
+      });
+      m.on('mouseleave', 'empire-fill', () => {
+        setEmpireHover(null);
+        // Don't clobber the cursor if we left the empire onto a conflict dot
+        if (m.getCanvas().style.cursor === 'pointer') {
+          // leave it; the dot's mouseenter will keep/refresh it
+        }
+        m.getCanvas().style.cursor = '';
+      });
+
+      m.on('click', 'empire-fill', (e) => {
+        // Conflict markers always win — a click on a dot should open the
+        // conflict sidebar, not the empire underneath.
+        const conflictHits = m.queryRenderedFeatures(e.point, { layers: conflictHitLayers });
+        if (conflictHits.length > 0) return;
+
+        const feats = e.features;
+        if (!feats || feats.length === 0) return;
+        const props = feats[0].properties as Record<string, unknown> | null;
+        if (!props || !props.id) return;
+
+        // Compute a bbox for the clicked feature using the rendered geometry.
+        // (We could pre-store bboxes on properties, but rendering-time is fine
+        //  since this only runs on click.)
+        let bbox: [number, number, number, number] | undefined;
+        try {
+          const g = feats[0].geometry as GeoJSON.Geometry;
+          bbox = computeBbox(g);
+        } catch {
+          /* swallow — bbox is optional in the sidebar UI */
+        }
+
+        const empireProps: EmpireProperties = {
+          id: String(props.id),
+          name: String(props.name ?? ''),
+          startYear: Number(props.startYear ?? 0),
+          endYear: props.endYear == null ? null : Number(props.endYear),
+          color: typeof props.color === 'string' ? props.color : undefined,
+          accurate: props.accurate === true,
+          borderStyle: props.borderStyle === 'dashed' ? 'dashed' as const : props.borderStyle === 'solid' ? 'solid' as const : undefined,
+          source: typeof props.source === 'string' ? props.source : undefined,
+          sourceDetail: typeof props.sourceDetail === 'string' ? props.sourceDetail : undefined,
+          borderNote: typeof props.borderNote === 'string' ? props.borderNote : undefined,
+          borderYear:
+            typeof props.borderYear === 'number'
+              ? props.borderYear
+              : typeof props.borderYear === 'string'
+                ? Number(props.borderYear)
+                : undefined,
+          matchedRegion: typeof props.matchedRegion === 'string' ? props.matchedRegion : undefined,
+          handCraftedNote: typeof props.handCraftedNote === 'string' ? props.handCraftedNote : undefined,
+          polityType: typeof props.polityType === 'string' ? props.polityType : undefined,
+          bbox,
+        };
+
+        if (onEmpireClickRef.current) {
+          e.originalEvent.stopPropagation();
+          onEmpireClickRef.current(empireProps);
+        }
+      });
+
+      setBordersError(null);
+      // Make the year-driven filter/opacity effect re-run for the new layers.
+      lastEmpireYearRef.current = NaN;
+      setBordersVersion((v) => v + 1);
+      return true;
+    };
+    retryHistoricalRef.current = loadHistoricalLayers;
+
+    m.on('load', async () => {
+      onMapLoadRef.current?.();
+
+      // ——— Editorial basemap polish (step 7) ———
+      // Deepen the ocean so the basemap reads as the darkest thing on screen.
+      // Walk all background layers and paint water with our deep ink color;
+      // safe-no-op'd if the layer doesn't exist on this style version.
+      try {
+        const style = m.getStyle();
+        for (const layer of style?.layers ?? []) {
+          // Mapbox dark-v11 has 'water' and sometimes 'water-shadow' / 'water-pattern'
+          if (layer.type === 'fill' && layer.id.startsWith('water')) {
+            m.setPaintProperty(layer.id, 'fill-color', '#06090f');
+          }
+        }
+      } catch {
+        // ignore — non-fatal
+      }
+
+      // ——— Initialize modern political borders (hidden until timeline reaches 1900) ———
+      for (const layer of MODERN_BORDER_LAYERS) {
+        if (m.getLayer(layer.id)) {
+          m.setLayoutProperty(layer.id, 'visibility', 'none');
+          m.setPaintProperty(layer.id, layer.paintProperty, 0);
+        }
+      }
+
+      // ——— Hide ALL built-in city labels (we use our own historical ones) ———
+      for (const layerId of SETTLEMENT_LAYERS) {
+        if (m.getLayer(layerId)) {
+          m.setLayoutProperty(layerId, 'visibility', 'none');
+        }
+      }
+
+      await loadHistoricalLayers();
+      if (map.current !== m) return;
 
       // ——— Conflict layers (on top of empires) ———
       m.addSource('conflicts', {
@@ -594,130 +784,27 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         });
       }
 
-      // City click: open the city-name-timeline modal
-      m.on('click', 'city-dots', (e) => {
-        if (e.features?.[0]?.geometry?.type === 'Point') {
-          const coords = (e.features[0].geometry as GeoJSON.Point).coordinates as [number, number];
-          if (onCityClickRef.current) {
-            e.originalEvent.stopPropagation();
-            onCityClickRef.current(coords);
-          }
-        }
-      });
-      m.on('mouseenter', 'city-dots', () => {
-        m.getCanvas().style.cursor = 'pointer';
-      });
-      m.on('mouseleave', 'city-dots', () => {
-        m.getCanvas().style.cursor = '';
-      });
-
-      // ─── Empire hover & click ───────────────────────────────────────
-      // Hover: paint a feature-state on whichever empire-fill is under the
-      // cursor. We compute the topmost (smallest area) feature so that when
-      // multiple polygons overlap we hover the one most likely the user means.
-      // Click: only fire if NO conflict marker is at the same point — the
-      // conflict click handlers above run independently, so we just check
-      // queryRenderedFeatures here to suppress when a dot has priority.
-
-      const empireLayersForHit = ['empire-fill'];
-      const conflictHitLayers = ['conflict-glow', 'conflict-mid', 'conflict-points'];
-
-      const setEmpireHover = (id: string | null) => {
-        const prev = hoveredEmpireIdRef.current;
-        if (prev === id) return;
-        if (prev != null) {
-          m.setFeatureState(
-            { source: 'empires', id: prev },
-            { hover: false }
-          );
-        }
-        hoveredEmpireIdRef.current = id;
-        if (id != null) {
-          m.setFeatureState(
-            { source: 'empires', id },
-            { hover: true }
-          );
-        }
-      };
-
-      m.on('mousemove', 'empire-fill', (e) => {
-        const feats = e.features;
-        if (!feats || feats.length === 0) return;
-        // Pick the topmost (last rendered) — Mapbox returns features in
-        // top-to-bottom z order, so feats[0] is the most-foreground polygon.
-        const id = (feats[0].properties as { id?: string } | null)?.id ?? null;
-        // Only show the empire-pointer cursor when a conflict isn't also there
-        const conflictHits = m.queryRenderedFeatures(e.point, { layers: conflictHitLayers });
-        if (conflictHits.length === 0) {
-          m.getCanvas().style.cursor = 'pointer';
-        }
-        setEmpireHover(id);
-      });
-      m.on('mouseleave', 'empire-fill', () => {
-        setEmpireHover(null);
-        // Don't clobber the cursor if we left the empire onto a conflict dot
-        if (m.getCanvas().style.cursor === 'pointer') {
-          // leave it; the dot's mouseenter will keep/refresh it
-        }
-        m.getCanvas().style.cursor = '';
-      });
-
-      m.on('click', 'empire-fill', (e) => {
-        // Conflict markers always win — a click on a dot should open the
-        // conflict sidebar, not the empire underneath.
-        const conflictHits = m.queryRenderedFeatures(e.point, { layers: conflictHitLayers });
-        if (conflictHits.length > 0) return;
-
-        const feats = e.features;
-        if (!feats || feats.length === 0) return;
-        const props = feats[0].properties as Record<string, unknown> | null;
-        if (!props || !props.id) return;
-
-        // Compute a bbox for the clicked feature using the rendered geometry.
-        // (We could pre-store bboxes on properties, but rendering-time is fine
-        //  since this only runs on click.)
-        let bbox: [number, number, number, number] | undefined;
-        try {
-          const g = feats[0].geometry as GeoJSON.Geometry;
-          bbox = computeBbox(g);
-        } catch {
-          /* swallow — bbox is optional in the sidebar UI */
-        }
-
-        const empireProps = {
-          id: String(props.id),
-          name: String(props.name ?? ''),
-          startYear: Number(props.startYear ?? 0),
-          endYear: props.endYear == null ? null : Number(props.endYear),
-          color: typeof props.color === 'string' ? props.color : undefined,
-          accurate: props.accurate === true,
-          borderStyle: props.borderStyle === 'dashed' ? 'dashed' as const : props.borderStyle === 'solid' ? 'solid' as const : undefined,
-          source: typeof props.source === 'string' ? props.source : undefined,
-          borderYear:
-            typeof props.borderYear === 'number'
-              ? props.borderYear
-              : typeof props.borderYear === 'string'
-                ? Number(props.borderYear)
-                : undefined,
-          matchedRegion: typeof props.matchedRegion === 'string' ? props.matchedRegion : undefined,
-          handCraftedNote: typeof props.handCraftedNote === 'string' ? props.handCraftedNote : undefined,
-          polityType: typeof props.polityType === 'string' ? props.polityType : undefined,
-          bbox,
-        };
-
-        if (onEmpireClickRef.current) {
-          e.originalEvent.stopPropagation();
-          onEmpireClickRef.current(empireProps);
-        }
-      });
-
       setMapLoaded(true);
     });
 
-    m.on('zoom', () => {
-      onZoomChange(m.getZoom());
-      onMapMove();
+    // Log the first Mapbox error (tile 401/403, style fetch failures, bad
+    // expressions) once, and surface token rejections as a notice — an
+    // expired token otherwise renders as a silent black canvas.
+    let loggedMapError = false;
+    m.on('error', (ev) => {
+      const err = ev.error as (Error & { status?: number }) | undefined;
+      if (!loggedMapError) {
+        loggedMapError = true;
+        // eslint-disable-next-line no-console
+        console.error('War Atlas: Mapbox error', err ?? ev);
+      }
+      const status = err?.status;
+      const message = String(err?.message ?? '');
+      if (status === 401 || status === 403 || /unauthori[sz]ed|forbidden|access token/i.test(message)) {
+        setTileError('Map tiles failed to load (Mapbox token rejected)');
+      }
     });
+
     m.on('move', () => {
       onMapMove();
     });
@@ -765,15 +852,6 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   // We store the previous id so we can clear it without enumerating every
   // empire in the dataset.
   const previousSelectedEmpireRef = useRef<string | null>(null);
-  // Last integer year we pushed empire/city/border updates for. During
-  // timeline auto-play, currentYear advances as a float ~60×/sec, but every
-  // filter and opacity expression below is keyed on Math.round(currentYear) —
-  // so within a single integer year the Mapbox work is byte-for-byte
-  // identical. Re-running setFilter/setPaintProperty against the 427 large
-  // empire MultiPolygons 60×/sec (vs once per integer year) was the dominant
-  // source of per-frame allocation + WebGL buffer churn behind the reported
-  // Firefox memory growth. NaN sentinel forces the first run through.
-  const lastEmpireYearRef = useRef<number>(NaN);
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const m = map.current;
@@ -816,13 +894,20 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       ['>=', ['get', 'endYear'], year - FADE],
     ];
 
+    // Historical layers are absent if cities/empires.json failed to load;
+    // skip them (conflict dots + modern borders below still update).
+    const hasEmpires = !!m.getLayer('empire-fill');
+    const hasCities = !!m.getLayer('city-labels');
+
+    if (hasEmpires) {
     m.setFilter('empire-fill', filter);
     // Solid borders are reserved for empires where BOTH (a) the polygon is
     // faithful to its source (accurate=true) AND (b) the underlying polity
     // had administrative frontiers (polityType === 'state'). Everything else
     // — tributary networks, cultural confederations, archaeological cultures,
-    // nomadic ranges — renders dashed regardless of polygon quality, because
-    // pretending those had fixed borders would itself be inaccurate.
+    // nomadic ranges, chiefdoms — renders dashed regardless of polygon
+    // quality, because pretending those had fixed borders would itself be
+    // inaccurate.
     m.setFilter('empire-border-solid', [
       'all',
       ...filter.slice(1),
@@ -848,7 +933,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     // - startYear <= year <= endYear: full opacity (1)
     // - endYear < year <= endYear + FADE: fading out (1 → 0)
     // - year > endYear + FADE: not visible (filtered out)
-    const opacityExpr: mapboxgl.Expression = [
+    const opacityExpr: mapboxgl.ExpressionSpecification = [
       'case',
       // Fade in: year is in (startYear-FADE, startYear)
       ['<', year, ['get', 'startYear']],
@@ -863,7 +948,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     // Editorial fill opacity (step 7) — 28% base, bumped to 40% on hover and
     // 44% on selected. Hover/selected boost is via feature-state, which only
     // works because the empires source uses promoteId: 'id'.
-    const hoverBoost: mapboxgl.Expression = [
+    const hoverBoost: mapboxgl.ExpressionSpecification = [
       'case',
       ['boolean', ['feature-state', 'selected'], false], 0.44,
       ['boolean', ['feature-state', 'hover'], false], 0.40,
@@ -872,39 +957,41 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     // Resting opacities bumped (solid 0.7→0.85, dashed 0.5→0.65) so the
     // colored historical borders stay legible against the near-black basemap
     // — HN feedback flagged borders as nearly invisible at rest.
-    const lineHoverBoost: mapboxgl.Expression = [
+    const lineHoverBoost: mapboxgl.ExpressionSpecification = [
       'case',
       ['boolean', ['feature-state', 'selected'], false], 1.0,
       ['boolean', ['feature-state', 'hover'], false], 0.95,
       0.85,
     ];
-    const dashedHoverBoost: mapboxgl.Expression = [
+    const dashedHoverBoost: mapboxgl.ExpressionSpecification = [
       'case',
       ['boolean', ['feature-state', 'selected'], false], 0.85,
       ['boolean', ['feature-state', 'hover'], false], 0.78,
       0.65,
     ];
-    const lineWidthBoost: mapboxgl.Expression = [
+    const lineWidthBoost: mapboxgl.ExpressionSpecification = [
       'case',
       ['boolean', ['feature-state', 'selected'], false], 2.5,
       ['boolean', ['feature-state', 'hover'], false], 2.0,
       1.5,
     ];
-    const dashedWidthBoost: mapboxgl.Expression = [
+    const dashedWidthBoost: mapboxgl.ExpressionSpecification = [
       'case',
       ['boolean', ['feature-state', 'selected'], false], 2.0,
       ['boolean', ['feature-state', 'hover'], false], 1.6,
       1.2,
     ];
 
-    m.setPaintProperty('empire-fill', 'fill-opacity', ['*', opacityExpr as any, hoverBoost as any]);
-    m.setPaintProperty('empire-border-solid', 'line-opacity', ['*', opacityExpr as any, lineHoverBoost as any]);
-    m.setPaintProperty('empire-border-solid', 'line-width', lineWidthBoost as any);
-    m.setPaintProperty('empire-border-dashed', 'line-opacity', ['*', opacityExpr as any, dashedHoverBoost as any]);
-    m.setPaintProperty('empire-border-dashed', 'line-width', dashedWidthBoost as any);
-    m.setPaintProperty('empire-label', 'text-opacity', ['*', opacityExpr as any, 0.75]);
+    m.setPaintProperty('empire-fill', 'fill-opacity', ['*', opacityExpr, hoverBoost]);
+    m.setPaintProperty('empire-border-solid', 'line-opacity', ['*', opacityExpr, lineHoverBoost]);
+    m.setPaintProperty('empire-border-solid', 'line-width', lineWidthBoost);
+    m.setPaintProperty('empire-border-dashed', 'line-opacity', ['*', opacityExpr, dashedHoverBoost]);
+    m.setPaintProperty('empire-border-dashed', 'line-width', dashedWidthBoost);
+    m.setPaintProperty('empire-label', 'text-opacity', ['*', opacityExpr, 0.75]);
+    }
 
     // ——— Filter cities to only show ones that exist at the current year ———
+    if (hasCities) {
     const cityFilter: mapboxgl.FilterSpecification = [
       'all',
       ['<=', ['get', 'foundedYear'], year],
@@ -919,14 +1006,15 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 
     // Fade cities in over 50 years after founding
     const CITY_FADE = 50;
-    const cityOpacityExpr: mapboxgl.Expression = [
+    const cityOpacityExpr: mapboxgl.ExpressionSpecification = [
       'min',
         ['/', ['-', year, ['get', 'foundedYear']], CITY_FADE],
         1,
     ];
 
-    m.setPaintProperty('city-labels', 'text-opacity', ['*', cityOpacityExpr as any, 0.7]);
-    m.setPaintProperty('city-dots', 'circle-opacity', ['*', cityOpacityExpr as any, 0.5]);
+    m.setPaintProperty('city-labels', 'text-opacity', ['*', cityOpacityExpr, 0.7]);
+    m.setPaintProperty('city-dots', 'circle-opacity', ['*', cityOpacityExpr, 0.5]);
+    }
 
     // ——— Update modern political borders opacity as timeline approaches present ———
     for (const layer of MODERN_BORDER_LAYERS) {
@@ -939,14 +1027,55 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         m.setPaintProperty(layer.id, layer.paintProperty, opacity);
       }
     }
-  }, [currentYear, mapLoaded]);
+  }, [currentYear, mapLoaded, bordersVersion]);
 
   // Show fallback when token is missing — keeps the rest of the UI usable
   if (!HAS_VALID_TOKEN) {
     return <MapboxTokenFallback />;
   }
 
-  return <div ref={mapContainer} className="absolute inset-0 w-full h-full" />;
+  const notice = bordersError ?? tileError;
+
+  return (
+    <>
+      <div ref={mapContainer} className="absolute inset-0 w-full h-full" />
+      {notice && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="absolute left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3 py-2 text-[11px] text-wars-muted whitespace-nowrap"
+          style={{
+            top: 64,
+            background: 'oklch(0.20 0.014 250 / 0.92)',
+            border: '1px solid var(--rule-strong)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+          }}
+        >
+          <span>{notice}</span>
+          <span className="text-wars-faint">·</span>
+          <button
+            onClick={() => {
+              if (bordersError) void retryHistoricalRef.current?.();
+              else window.location.reload();
+            }}
+            className="font-ui uppercase hover:text-wars-text transition-colors"
+            style={{
+              fontSize: 10.5,
+              letterSpacing: '0.04em',
+              background: 'transparent',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: 'var(--amber)',
+            }}
+          >
+            Retry
+          </button>
+        </div>
+      )}
+    </>
+  );
 });
 
 export default MapView;

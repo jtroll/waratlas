@@ -187,8 +187,9 @@ export default function FilterPanel({
         >
           {/* Search */}
           <div className="mb-3">
-            <label className="eyebrow block mb-1.5">Search</label>
+            <label htmlFor="filter-search" className="eyebrow block mb-1.5">Search</label>
             <input
+              id="filter-search"
               type="text"
               value={filters.search}
               onChange={(e) => onChange({ ...filters, search: e.target.value })}
@@ -199,7 +200,6 @@ export default function FilterPanel({
                 padding: '5px 8px',
                 background: 'oklch(0.16 0.012 250 / 0.6)',
                 border: '1px solid var(--rule)',
-                outline: 'none',
               }}
             />
             {/* Match navigator — appears once the filter narrows the set.
@@ -276,8 +276,9 @@ export default function FilterPanel({
 
           {/* Region */}
           <div className="mb-3">
-            <label className="eyebrow block mb-1.5">Region</label>
+            <label htmlFor="filter-region" className="eyebrow block mb-1.5">Region</label>
             <select
+              id="filter-region"
               value={filters.region}
               onChange={(e) =>
                 onChange({ ...filters, region: e.target.value as ConflictFilters['region'] })
@@ -288,7 +289,6 @@ export default function FilterPanel({
                 padding: '5px 8px',
                 background: 'oklch(0.16 0.012 250 / 0.6)',
                 border: '1px solid var(--rule)',
-                outline: 'none',
               }}
             >
               {REGIONS.map((r) => (
@@ -301,10 +301,10 @@ export default function FilterPanel({
 
           {/* Importance — 5 stepped bars instead of slider */}
           <div className="mb-3">
-            <label className="eyebrow block mb-1.5">
+            <div id="filter-importance-label" className="eyebrow block mb-1.5">
               Min importance · {IMPORTANCE_LABEL[filters.minImportance]}
-            </label>
-            <div className="flex gap-1" role="group" aria-label="Minimum importance">
+            </div>
+            <div className="flex gap-1" role="group" aria-labelledby="filter-importance-label">
               {[1, 2, 3, 4, 5].map((step) => {
                 const active = step <= filters.minImportance;
                 return (
@@ -332,13 +332,14 @@ export default function FilterPanel({
 
           {/* Min duration */}
           <div className="mb-3">
-            <label className="eyebrow block mb-1.5">
+            <label htmlFor="filter-duration" className="eyebrow block mb-1.5">
               Min duration ·{' '}
               {filters.minDurationYears === 0
                 ? 'any'
                 : `${filters.minDurationYears}y`}
             </label>
             <input
+              id="filter-duration"
               type="range"
               min={0}
               max={50}

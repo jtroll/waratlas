@@ -1,4 +1,9 @@
 import { Conflict, ActiveConflict } from './types';
+import { formatYear, formatCasualties, formatYearRange } from './format';
+
+// Re-exported for compatibility — the canonical implementations live in
+// lib/format.ts.
+export { formatYear, formatCasualties };
 
 /**
  * Get conflicts active at a given year.
@@ -10,6 +15,10 @@ export function getActiveConflicts(
   // Fade-in is quick; fade-out adapts so ended conflicts don't clutter the "Live" view
   const FADE_IN_YEARS = 2;
   const FADE_OUT_YEARS = 2;
+  // Entries spanning more than this many years are era-scale summaries
+  // ("Classic Maya City-State Wars"). They stay on the map but lose callout
+  // priority so they stop winning the label slots at sparse years.
+  const ERA_SCALE_YEARS = 300;
 
   // Count how many conflicts are fully active — used to dim faded ones more aggressively
   let activeCount = 0;
@@ -37,9 +46,14 @@ export function getActiveConflicts(
 
       if (opacity <= 0.01) return null;
 
+      const span = (c.endYear ?? currentYear) - c.startYear;
+      const importanceScore = span > ERA_SCALE_YEARS
+        ? c.importance * 20 - 40
+        : c.importance * 20;
+
       // Active conflicts get a large priority boost so they always render on top
       const displayPriority =
-        c.importance * 20 +
+        importanceScore +
         (c.casualties ? Math.log10(c.casualties) : 0) +
         (isWithin ? 50 : 0);
 
@@ -56,13 +70,20 @@ export function getActiveConflicts(
 
 /**
  * Compute auto-speed: fast through gaps, moderate during long conflicts,
- * slow when conflicts start/end (the interesting transitions).
+ * slow when significant conflicts start/end (the interesting transitions).
+ *
+ * Tuned so a full −3100 → present run takes roughly five minutes
+ * (scratch simulation: ~5.2 min at 20 fps). Density and importance still
+ * slow the modern era down — 1900–2000 runs at ~6 yr/s vs ~40 yr/s in the
+ * Bronze Age — but the density floor keeps the crowded centuries moving.
  */
 export function getAutoSpeed(currentYear: number, allConflicts: Conflict[]): number {
-  const TRANSITION_SPEED = 8;    // years/sec at conflict start/end transitions
-  const ACTIVE_SPEED = 20;       // years/sec during mid-conflict (base, reduced by density)
+  const TRANSITION_SPEED = 20;   // years/sec while a significant conflict starts/ends
+  const ACTIVE_SPEED = 40;       // years/sec during mid-conflict (base, reduced by density)
   const MAX_SPEED = 1200;        // years/sec through empty stretches
   const LOOKAHEAD = 8;           // slow down this many years before next conflict
+  const TRANSITION_MIN_IMPORTANCE = 3; // minor entries start every year; ignore them
+  const DENSITY_FLOOR = 0.45;
 
   // Count active conflicts and detect transitions
   let activeCount = 0;
@@ -74,16 +95,18 @@ export function getAutoSpeed(currentYear: number, allConflicts: Conflict[]): num
     if (currentYear >= c.startYear && currentYear <= end) {
       activeCount++;
       totalImportance += c.importance;
-      const nearStart = currentYear - c.startYear < 3;
-      const nearEnd = c.endYear !== null && end - currentYear < 3;
-      if (nearStart || nearEnd) nearTransition = true;
+      if (c.importance >= TRANSITION_MIN_IMPORTANCE) {
+        const nearStart = currentYear - c.startYear < 3;
+        const nearEnd = c.endYear !== null && end - currentYear < 3;
+        if (nearStart || nearEnd) nearTransition = true;
+      }
     }
   }
 
   if (activeCount > 0) {
     // Density-aware slowdown: more simultaneous conflicts = slower playback
     // so viewers can absorb what's happening
-    const densityFactor = Math.max(0.15, 1 - (activeCount - 1) * 0.04);
+    const densityFactor = Math.max(DENSITY_FLOOR, 1 - (activeCount - 1) * 0.04);
     // High-importance conflicts also slow things down
     const importanceFactor = totalImportance > 20 ? 0.7 : totalImportance > 10 ? 0.85 : 1;
 
@@ -107,17 +130,9 @@ export function getAutoSpeed(currentYear: number, allConflicts: Conflict[]): num
   return MAX_SPEED;
 }
 
-export function formatYear(year: number): string {
-  if (year < 0) return `${Math.abs(year)} BCE`;
-  if (year < 1000) return `${year} CE`;
-  return `${year}`;
-}
-
-export function formatCasualties(n: number | null): string {
-  if (n === null) return 'Unknown';
-  if (n >= 1_000_000) return `~${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1_000) return `~${(n / 1_000).toFixed(0)}K`;
-  return `~${n}`;
+/** Plain-text citation used by the Cite buttons (sidebar + mobile dock). */
+export function conflictCitation(c: Conflict, origin: string): string {
+  return `${c.name} (${formatYearRange(c.startYear, c.endYear)}). War Atlas. ${origin}/c/${c.id}`;
 }
 
 export function getMajorConflicts(allConflicts: Conflict[]): Conflict[] {

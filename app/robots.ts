@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
+import { getSiteUrl } from '@/lib/site-url';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wars-atlas.example';
+  const baseUrl = getSiteUrl();
   return {
     rules: [{ userAgent: '*', allow: '/', disallow: ['/api/'] }],
     sitemap: `${baseUrl}/sitemap.xml`,

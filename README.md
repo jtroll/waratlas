@@ -1,8 +1,10 @@
 # War Atlas
 
-An interactive cartography of every named war in human history. 1,340 conflicts,
-372 empires with shifting borders, ~700 historical city-name records, spanning
-roughly 2500 BCE to today.
+An interactive cartography of every named war in human history: over 10,000
+conflicts, 400+ empires with shifting borders, ~700 city-name records, spanning
+roughly 3100 BCE to today. The exact counts are derived from the data files at
+build time and live in `lib/generated/stats.json` (the source of truth for every
+number the UI shows).
 
 Built with Next.js 14, React 18, TypeScript, and Mapbox GL JS 3.3.
 
@@ -55,19 +57,34 @@ Built with Next.js 14, React 18, TypeScript, and Mapbox GL JS 3.3.
 
 ## Data
 
-- **`public/conflicts.json`** — 1,340 conflicts. Per record: name, date range,
-  coordinates, belligerents, casualty estimate (with optional source-attributed
-  range), Wikipedia URL, importance rating (1–5).
-- **`public/empires.json`** — 372 polities, each with one or more time-sliced
+- **`public/conflicts.json`** — over 10,000 conflicts. Per record: name, date
+  range, coordinates, belligerents, `partOf` parent ids, casualty estimate (with
+  optional source-attributed range), Wikipedia URL, importance rating (1–5).
+- **`public/empires.json`** — 400+ polities, each with one or more time-sliced
   border polygons. Solid polygons are reconstructed from canonical historical
   basemaps; dashed polygons are best-estimate approximations (always flagged
-  visibly).
+  visibly). Each feature carries a `polityType` (`state | tributary |
+  confederation | culture | nomadic-range | chiefdom`), a `source` enum with a
+  free-text `sourceDetail`, and an optional `borderNote`.
 - **`public/empire-wikipedia.json`** — Lead-paragraph summaries from English
   Wikipedia, fetched and cached locally so the app stays responsive. Refresh
   with `python3 scripts/fetch_wikipedia_summaries.py`.
 - **`public/cities.json`** — ~700 historical city-name records with date ranges
   so labels fade between names (Byzantium → Constantinople → Konstantiniyye →
   Istanbul).
+
+## Data checks
+
+- `node scripts/generate-stats.mjs` (also `npm run stats`, and run
+  automatically by `prebuild`) — derives `lib/generated/stats.json` from the
+  three data files and mirrors `scripts/data/id_redirects.json` (old conflict
+  id → new id, for merged or renamed records) into
+  `lib/generated/id-redirects.json`. Both generated files are committed so
+  `next dev` has values without a build step; re-run after changing the data.
+- `node scripts/validate-empires.mjs` — checks every `public/empires.json`
+  feature for a valid `polityType`, `source` enum, geometry and year range.
+- `node scripts/validate-conflicts.mjs` — checks `public/conflicts.json` for
+  unique ids, resolvable `partOf` references, sane year ranges and coordinates.
 
 ## Expanding the dataset
 
