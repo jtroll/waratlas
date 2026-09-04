@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Wordmark } from '@/components/LoadingScreen';
 import stats from '@/lib/generated/stats.json';
+import { EXHIBITS } from '@/lib/exhibits';
+import { HASH_PARAMS } from '@/lib/hash';
 
 const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
 const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
@@ -128,6 +130,50 @@ export default function SourcesPage() {
             article URL on the record; the conflict sidebar links to it
             directly.
           </p>
+        </Section>
+
+        <Section title="Belligerent polities (polityIds)">
+          <p>
+            Each conflict record carries a free-text list of belligerents
+            (<Code>countries</Code>) as they appear in the source articles —
+            &ldquo;Mongol Empire&rdquo;, &ldquo;Kingdom of Hungary&rdquo;,
+            &ldquo;Abbasid Caliphate&rdquo;. Where one of those names matches an
+            empire feature in <Code>data/empires.json</Code> that was active at
+            the conflict&apos;s start year, the feature&apos;s id is stored on
+            the record as <Code>polityIds</Code>. The empire panel and the{' '}
+            <Code>/e/&lt;id&gt;</Code> pages read that list back as{' '}
+            <strong>&ldquo;Wars of this empire&rdquo;</strong>.
+          </p>
+          <p>Limits worth knowing before you cite the list:</p>
+          <ul>
+            <li>
+              <strong>It is a name join, not a historian&apos;s judgement.</strong>{' '}
+              A belligerent spelled differently from the feature name (Byzantium
+              vs. Byzantine Empire, Qing vs. Manchu) is missed unless an alias
+              exists; a polity with no polygon in the atlas can never match. The
+              absence of a war from the list is not evidence the empire
+              didn&apos;t fight it.
+            </li>
+            <li>
+              <strong>Time-slices.</strong> Long-lived polities are stored as
+              several features (<Code>british-empire-1815</Code>,{' '}
+              <Code>british-empire-1900</Code>…). The join records the slice
+              active at the conflict&apos;s start year; the panel matches any
+              slice sharing the base name, so a 1900 war shows under the 1815
+              feature too.
+            </li>
+            <li>
+              <strong>Sides are not recorded.</strong> <Code>polityIds</Code>{' '}
+              says a polity took part, not which side it fought on or whether it
+              won. Civil wars list the state once.
+            </li>
+            <li>
+              <strong>Fallback.</strong> Where a feature has no matching records
+              yet, the panel shows conflicts that merely overlap its dates,
+              under the heading &ldquo;Also during this period&rdquo; with a
+              note. Don&apos;t read those as belligerency.
+            </li>
+          </ul>
         </Section>
 
         <Section title="Bulk historical datasets (2026 expansion)">
@@ -519,6 +565,19 @@ export default function SourcesPage() {
               range with source attribution rather than a single number.
             </li>
             <li>
+              <strong>&ldquo;Deaths this year&rdquo;</strong> — the running
+              figure in the top bar spreads each active conflict&apos;s headline
+              toll evenly across its duration (a six-year war with 85 million
+              dead contributes about 14 million to each of its six years), then
+              sums the active conflicts. It is a reading aid, not a statistic:
+              real death rates are anything but even; conflicts with an
+              unrecorded toll (<Code>casualties: null</Code>) contribute nothing,
+              so pre-modern years run low; and where a war and its
+              sub-conflicts both carry figures (World War II and the Eastern
+              Front, say) the same deaths can be counted twice. The per-conflict
+              ranges in the sidebar are the numbers to cite.
+            </li>
+            <li>
               <strong>Deaths vs. displacement.</strong> Events whose defining
               toll is forced migration rather than killing — the Nakba, the
               Trail of Tears, Partition of India — keep these as separate
@@ -567,6 +626,49 @@ export default function SourcesPage() {
               right of the map enumerates the cases.
             </li>
           </ul>
+        </Section>
+
+        <Section title="Exhibits">
+          <p>
+            The guided routes under the Tour menu (<Code>lib/exhibits.ts</Code>)
+            are editorial: each stop is a year, a map extent, a short blurb, and
+            where a record exists, the conflict or empire it opens. The copy
+            follows the same rules as the rest of the atlas — dates and figures
+            as the mainstream literature has them, ranges where historians
+            disagree — but it is narrative, and it links to the records rather
+            than replacing them. A test checks every referenced id against the
+            data files so a renamed record can&apos;t silently break a tour.
+          </p>
+          <ul>
+            {EXHIBITS.map((ex) => (
+              <li key={ex.id}>
+                <a href={`/#exhibit=${ex.id}`}>{ex.title}</a>
+                {' — '}{ex.summary}{' '}
+                <span style={{ opacity: 0.7 }}>({ex.stops.length} stops)</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section title="Sharing the atlas (URL parameters)">
+          <p>
+            The state of the map lives in the URL fragment, after{' '}
+            <Code>#</Code>, joined with <Code>&amp;</Code>. Conflicts and empires
+            also have permanent pages at <Code>/c/&lt;id&gt;</Code> and{' '}
+            <Code>/e/&lt;id&gt;</Code>, which are the addresses to cite.
+          </p>
+          <ul>
+            {HASH_PARAMS.map((h) => (
+              <li key={h.param}>
+                <Code>{h.param}</Code> — {h.description}
+              </li>
+            ))}
+          </ul>
+          <p style={{ fontSize: 13, opacity: 0.85 }}>
+            Example: <Code>/#year=1942&amp;conflict=world-war-2</Code> opens the
+            atlas in 1942 with World War II selected;{' '}
+            <Code>/#exhibit=scramble-for-africa</Code> starts an exhibit.
+          </p>
         </Section>
 
         <Section title="Corrections & feedback">

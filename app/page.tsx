@@ -11,9 +11,13 @@ import {
   mergeConflictText,
   isConflictActiveAt,
   stepConflict,
+  getYearEvents,
 } from '@/lib/conflicts';
+import { deathsInYear, cumulativeDeathsThrough } from '@/lib/casualty-rate';
 import { DATA_URLS } from '@/lib/data-urls';
-import { parseHash, buildHash, type HashState } from '@/lib/hash';
+import { parseHash, buildHash, EMPTY_HASH, type HashState, type CameraState } from '@/lib/hash';
+import { getExhibit } from '@/lib/exhibits';
+import type { EmpireSearchEntry, CitySearchFeature } from '@/lib/search';
 import { playbackStore } from '@/lib/playback-store';
 import idRedirects from '@/lib/generated/id-redirects.json';
 import MapView, { type MapViewHandle, type FlyToConflictOptions } from '@/components/MapView';
@@ -35,6 +39,9 @@ import CityTimelineModal, { type CityCollection } from '@/components/CityTimelin
 import MobileTabDock, { useMobileTab } from '@/components/MobileTabDock';
 import EmpireSidebar, { type EmpireProperties } from '@/components/EmpireSidebar';
 import SkipLink from '@/components/SkipLink';
+import YearLedger from '@/components/YearLedger';
+import CommandPalette from '@/components/CommandPalette';
+import { empireFamilyIds } from '@/lib/format';
 const MAX_YEAR = new Date().getFullYear();
 
 // Components we don't own but render with stable props — memoised here so
@@ -45,12 +52,8 @@ const MemoEraPanel = memo(EraPanel);
 const MemoMobileTabDock = memo(MobileTabDock);
 const MemoCityTimelineModal = memo(CityTimelineModal);
 
-interface EmpireIndexEntry {
-  id?: string;
-  name: string;
-  startYear: number;
-  endYear: number | null;
-}
+type EmpireIndexEntry = EmpireSearchEntry;
+const DEFAULT_EXHIBIT = 'welcome';
 const TOUR_SEEN_KEY = 'wars-atlas-tour-seen';
 // Old conflict id → new id for merged / renamed records (generated from
 // scripts/data/id_redirects.json by scripts/build-data.mjs).
@@ -131,7 +134,7 @@ export default function Home() {
   const [initialHash] = useState<HashState>(() =>
     typeof window !== 'undefined'
       ? parseHash(window.location.hash)
-      : { year: null, conflictId: null, empireId: null },
+      : EMPTY_HASH,
   );
 
   const [timeline, setTimeline] = useState<TimelineState>({
@@ -147,6 +150,14 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [listPanelOpen, setListPanelOpen] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
+  // Which curated exhibit the tour is running (lib/exhibits.ts). Written to
+  // the hash as `exhibit=` only while the tour is open.
+  const [tourExhibitId, setTourExhibitId] = useState<string | null>(null);
+  // The Tour button's exhibit menu (a popover on desktop, a sheet on
+  // mobile — the dock's Tour tab opens the same one).
+  const [exhibitMenuOpen, setExhibitMenuOpen] = useState(false);
+  // Command palette (⌘K / Ctrl-K / `/`): global search across all years.
+  const [paletteOpen, setPaletteOpen] = useState(false);
   // Shown after the user finishes (rather than skips) the opening tour — a
   // small affordance pointing them at the Play button. Cleared when they
   // press Play, or on next tour finish.
@@ -251,8 +262,11 @@ export default function Home() {
     const target = deepLinkConflictRef.current;
     if (!target) return;
     deepLinkConflictRef.current = null;
-    mapRef.current?.flyToConflict(target, { pan: true, inset: panelInset(true) });
-  }, [dataLoaded, mapStyleLoaded]);
+    // With a `lat/lon/zoom` camera in the same link the map was created on
+    // that framing; only move if the conflict would otherwise be hidden.
+    const framed = initialHash.camera != null;
+    mapRef.current?.flyToConflict(target, { pan: !framed, inset: panelInset(true) });
+  }, [dataLoaded, mapStyleLoaded, initialHash.camera]);
 
   // `#empire=` deep link: needs the empire feature properties, which live
   // in MapView once empires.json has loaded. Select it and fit its bbox.
@@ -286,7 +300,7 @@ export default function Home() {
   // A failed fetch is retried the next time one of those triggers changes.
   const textStatusRef = useRef<'idle' | 'loading' | 'done'>('idle');
   const needText =
-    mapReady || sidebarOpen || listPanelOpen || filters.search.trim() !== '';
+    mapReady || sidebarOpen || listPanelOpen || paletteOpen || filters.search.trim() !== '';
   useEffect(() => {
     if (!dataLoaded || !needText || textStatusRef.current !== 'idle') return;
     textStatusRef.current = 'loading';
@@ -350,11 +364,11 @@ export default function Home() {
       .catch(() => {});
   }, []);
 
-  // Lightweight empire index (name + year range) for the FilterPanel search
-  // auto-jump. Full empire geometry loads (and is parsed) exactly once,
-  // inside MapView; this is the ~40 KB build-time index of the same
-  // features, so the search box can find an empire by name even when the
-  // timeline is parked in a completely different era.
+  // Lightweight empire index (name + year range) for the command palette.
+  // Full empire geometry loads (and is parsed) exactly once, inside
+  // MapView; this is the ~40 KB build-time index of the same features, so
+  // search can find an empire by name even when the timeline is parked in
+  // a completely different era.
   const [empireIndex, setEmpireIndex] = useState<EmpireIndexEntry[]>([]);
   useEffect(() => {
     fetch(DATA_URLS.empiresIndex)
@@ -459,133 +473,31 @@ export default function Home() {
   // Year the user was on when the tour opened — restored on Skip.
   const tourReturnYearRef = useRef<number | null>(null);
 
-  // Auto-jump on search: when the FilterPanel's search box has a non-empty
-  // term and nothing matches at the current year, hop the timeline to the
-  // earliest year where a conflict OR an empire matching the term exists.
-  // Without this, the filter is invisible from any era that doesn't already
-  // contain its subject — typing "mongol" from 2500 BCE just shows "0/1" and
-  // the user concludes the box is broken.
-  //
-  // Latest state goes through a ref so the effect itself only re-runs when
-  // the search term changes — otherwise it would fire every time the user
-  // scrubs the timeline and try to drag them back to the search match.
-  const searchJumpStateRef = useRef<{
-    currentYear: number;
-    activeConflicts: ActiveConflict[];
-    conflicts: Conflict[];
-    empireIndex: typeof empireIndex;
-    minYear: number;
-  }>();
-  searchJumpStateRef.current = {
-    currentYear: timeline.currentYear,
-    activeConflicts,
-    conflicts,
-    empireIndex,
-    minYear: timeline.minYear,
-  };
-  useEffect(() => {
-    const q = filters.search.toLowerCase().trim();
-    if (!q) return;
-    const handle = setTimeout(() => {
-      const st = searchJumpStateRef.current;
-      if (!st) return;
-      const yearNow = Math.round(st.currentYear);
-
-      const conflictName = (c: Conflict) => (c.name ?? '').toLowerCase();
-      const empireName = (e: { name: string }) => (e.name ?? '').toLowerCase();
-      const conflictDescHay = (c: Conflict) =>
-        [c.description, ...(c.countries ?? []), ...(c.locations ?? [])]
-          .filter(Boolean)
-          .join(' ')
-          .toLowerCase();
-      const matchesConflict = (c: Conflict) =>
-        conflictName(c).includes(q) || conflictDescHay(c).includes(q);
-      const matchesEmpire = (e: { name: string }) => empireName(e).includes(q);
-      const empireActiveNow = (e: { startYear: number; endYear: number | null }) =>
-        e.startYear <= yearNow && (e.endYear ?? MAX_YEAR) >= yearNow;
-
-      // Already showing a match? Don't yank the timeline out from under
-      // the user.
-      if (st.activeConflicts.some(matchesConflict)) return;
-      if (st.empireIndex.some((e) => empireActiveNow(e) && matchesEmpire(e))) return;
-
-      // Tiered search across the full dataset — prefer NAME hits over
-      // description-only hits, and within each tier prefer the earliest
-      // year. Without tiers, typing "british" from 2500 BCE lands on a
-      // 1500 CE colonial war whose description happens to mention the
-      // British, when the user clearly meant the British Empire. Within
-      // a tier, earliest-year wins so a unique-name match (Lagash-Umma)
-      // hits exactly its year.
-      const earliestNamedEmpire = st.empireIndex
-        .filter(matchesEmpire)
-        .reduce<typeof st.empireIndex[number] | null>(
-          (best, e) => (best == null || e.startYear < best.startYear ? e : best),
-          null,
-        );
-      const earliestNamedConflict = st.conflicts
-        .filter((c) => conflictName(c).includes(q))
-        .reduce<Conflict | null>(
-          (best, c) => (best == null || c.startYear < best.startYear ? c : best),
-          null,
-        );
-      const earliestDescConflict = st.conflicts
-        .filter(
-          (c) =>
-            !conflictName(c).includes(q) && conflictDescHay(c).includes(q),
-        )
-        .reduce<Conflict | null>(
-          (best, c) => (best == null || c.startYear < best.startYear ? c : best),
-          null,
-        );
-
-      let target: number | null = null;
-      // Tier 1: empire-name and conflict-name hits — both are explicit
-      // labels. Take the earliest.
-      if (earliestNamedEmpire || earliestNamedConflict) {
-        if (earliestNamedEmpire && earliestNamedConflict) {
-          target = Math.min(
-            earliestNamedEmpire.startYear,
-            earliestNamedConflict.startYear,
-          );
-        } else if (earliestNamedEmpire) {
-          target = earliestNamedEmpire.startYear;
-        } else if (earliestNamedConflict) {
-          target = earliestNamedConflict.startYear;
-        }
-      } else if (earliestDescConflict) {
-        // Tier 2: fall back to description-only matches.
-        target = earliestDescConflict.startYear;
-      }
-      if (target == null) return;
-
-      const clamped = Math.max(st.minYear, Math.min(MAX_YEAR, target));
-      // Stop playback so we don't immediately scroll past the matched era —
-      // and drop the auto-resume intent, since this pause is the user's.
-      wasPlayingRef.current = false;
-      setTimeline((prev) => ({
-        ...prev,
-        currentYear: clamped,
-        isPlaying: false,
-      }));
-    }, 350);
-    return () => clearTimeout(handle);
-  }, [filters.search]);
-
   // Opening the tour (first visit, Tour button, mobile dock) remembers the
   // year so Skip can put the user back where they were.
-  const openTour = useCallback(() => {
+  const openTour = useCallback((exhibitId: string = DEFAULT_EXHIBIT) => {
     tourReturnYearRef.current = currentYearRef.current;
+    setExhibitMenuOpen(false);
+    setPaletteOpen(false);
+    setTourExhibitId(getExhibit(exhibitId) ? exhibitId : DEFAULT_EXHIBIT);
     setTourOpen(true);
   }, []);
+  const openDefaultTour = useCallback(() => openTour(DEFAULT_EXHIBIT), [openTour]);
 
-  // Trigger opening tour for first-time visitors (after data loads)
+  // Trigger the opening tour for first-time visitors (after data loads),
+  // or the exhibit a `#exhibit=` deep link asks for (any visitor).
   useEffect(() => {
     if (!dataLoaded) return;
+    if (initialHash.exhibitId && getExhibit(initialHash.exhibitId)) {
+      const id = initialHash.exhibitId;
+      const timer = setTimeout(() => openTour(id), 400);
+      return () => clearTimeout(timer);
+    }
     const hasYearHash = initialHash.year !== null || initialHash.conflictId !== null || initialHash.empireId !== null;
     if (readTourSeen() || hasYearHash) return;
-    const timer = setTimeout(openTour, 800);
+    const timer = setTimeout(openDefaultTour, 800);
     return () => clearTimeout(timer);
-  }, [dataLoaded, initialHash, openTour]);
+  }, [dataLoaded, initialHash, openTour, openDefaultTour]);
 
   // URL hash + browser history.
   //
@@ -598,13 +510,18 @@ export default function Home() {
   // Set by the popstate handler: the next selection write comes from
   // history itself, so replace rather than push.
   const fromPopRef = useRef(false);
+  // Last settled camera (moveend). Null until the user (or a fly-to) moves
+  // the map, so a plain link stays short; seeded from a camera deep link
+  // so a reload keeps its framing.
+  const cameraRef = useRef<CameraState | null>(initialHash.camera);
+  const exhibitForHash = tourOpen ? tourExhibitId : null;
   useEffect(() => {
     if (!dataLoaded) return;
     const year = Math.round(timeline.currentYear);
     const conflictId = selectedConflict?.id ?? null;
     const empireId = conflictId ? null : selectedEmpire?.id ?? null;
     const key = conflictId ? `c:${conflictId}` : empireId ? `e:${empireId}` : '';
-    const hash = buildHash(year, conflictId, empireId);
+    const hash = buildHash(year, conflictId, empireId, { exhibitId: exhibitForHash, camera: cameraRef.current });
     const state = { year, conflictId, empireId };
     const fromPop = fromPopRef.current;
     fromPopRef.current = false;
@@ -620,7 +537,41 @@ export default function Home() {
       if (window.location.hash !== hash) window.history.replaceState(state, '', hash);
     }, 300);
     return () => clearTimeout(timeout);
-  }, [dataLoaded, timeline.currentYear, selectedConflict, selectedEmpire]);
+  }, [dataLoaded, timeline.currentYear, selectedConflict, selectedEmpire, exhibitForHash]);
+
+  // Camera deep link: after the map settles (`moveend`), rewrite the hash
+  // with lat/lon/zoom — debounced 500 ms, replaceState only, so panning
+  // never adds history entries. Reads the rest of the state through refs.
+  const hashPartsRef = useRef({ year: 0, conflictId: null as string | null, empireId: null as string | null, exhibitId: null as string | null });
+  hashPartsRef.current = {
+    year: Math.round(timeline.currentYear),
+    conflictId: selectedConflict?.id ?? null,
+    empireId: selectedConflict ? null : selectedEmpire?.id ?? null,
+    exhibitId: exhibitForHash,
+  };
+  useEffect(() => {
+    if (!dataLoaded) return;
+    const handle = mapRef.current;
+    if (!handle) return;
+    let t: ReturnType<typeof setTimeout> | null = null;
+    const unsub = handle.onMoveEnd(() => {
+      const cam = handle.getCamera();
+      if (!cam) return;
+      cameraRef.current = cam;
+      if (t) clearTimeout(t);
+      t = setTimeout(() => {
+        const parts = hashPartsRef.current;
+        const hash = buildHash(parts.year, parts.conflictId, parts.empireId, { exhibitId: parts.exhibitId, camera: cam });
+        if (window.location.hash !== hash) {
+          window.history.replaceState({ year: parts.year, conflictId: parts.conflictId, empireId: parts.empireId }, '', hash);
+        }
+      }, 500);
+    });
+    return () => {
+      unsub();
+      if (t) clearTimeout(t);
+    };
+  }, [dataLoaded]);
 
   // Browser Back / Forward → restore that entry's selection and year.
   useEffect(() => {
@@ -629,7 +580,7 @@ export default function Home() {
       const raw = e.state as Partial<HashState> | null;
       const st: HashState =
         raw && ('conflictId' in raw || 'empireId' in raw || 'year' in raw)
-          ? { year: raw.year ?? null, conflictId: raw.conflictId ?? null, empireId: raw.empireId ?? null }
+          ? { ...EMPTY_HASH, year: raw.year ?? null, conflictId: raw.conflictId ?? null, empireId: raw.empireId ?? null }
           : parseHash(window.location.hash);
       fromPopRef.current = true;
       wasPlayingRef.current = false;
@@ -858,6 +809,17 @@ export default function Home() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const target = e.target instanceof Element ? e.target : null;
+      // ⌘K / Ctrl-K opens the palette from anywhere, inputs included (the
+      // palette closes itself on the same chord). Not while the tour runs.
+      if ((e.metaKey || e.ctrlKey) && !e.altKey && (e.key === 'k' || e.key === 'K')) {
+        // Not over the tour or another modal (About, city names) — the
+        // palette closes itself on the same chord.
+        if (tourOpen || cityClickCoords || document.querySelector('[aria-modal="true"]')) return;
+        e.preventDefault();
+        setExhibitMenuOpen(false);
+        setPaletteOpen(true);
+        return;
+      }
       // Native text inputs, selects and editable regions own their keys.
       if (
         target instanceof HTMLInputElement ||
@@ -883,6 +845,14 @@ export default function Home() {
       if (canvasFocused && (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) return;
 
       switch (e.key) {
+        case '/':
+          // Global search. Shift-/ is `?` (About) on US layouts; leave
+          // modifier combinations to the browser.
+          if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) break;
+          e.preventDefault();
+          setExhibitMenuOpen(false);
+          setPaletteOpen(true);
+          break;
         case '[':
         case ']': {
           // Step through this year's conflicts by priority: select + fly.
@@ -931,6 +901,10 @@ export default function Home() {
             setFilterOpen(false);
             break;
           }
+          if (exhibitMenuOpen) {
+            setExhibitMenuOpen(false);
+            break;
+          }
           if (selectedEmpire) handleCloseEmpire();
           if (sidebarOpen) handleCloseSidebar();
           else if (selectedConflict) setSelectedConflict(null); // dot-selected, no sidebar
@@ -960,6 +934,7 @@ export default function Home() {
     sidebarOpen,
     listPanelOpen,
     filterOpen,
+    exhibitMenuOpen,
     selectedEmpire,
     selectedConflict,
     tourOpen,
@@ -1077,6 +1052,7 @@ export default function Home() {
     // Skipped — put the user back on the year they had before the
     // tour started moving the timeline.
     setTourOpen(false);
+    setTourExhibitId(null);
     markTourSeen();
     const back = tourReturnYearRef.current;
     if (back != null) {
@@ -1087,6 +1063,7 @@ export default function Home() {
     // Completed the whole tour — bring them back to the start of the
     // timeline and prompt them to press Play to watch it unfold.
     setTourOpen(false);
+    setTourExhibitId(null);
     markTourSeen();
     setTimeline((prev) => ({ ...prev, currentYear: prev.minYear, isPlaying: false }));
     setShowPlayPrompt(true);
@@ -1098,17 +1075,151 @@ export default function Home() {
   // Mobile dock
   const mobileTab = useMobileTab({
     tourOpen,
+    exhibitMenuOpen,
     filterOpen,
+    paletteOpen,
     sidebarOpen,
   });
   const handleMobileMap = useCallback(() => {
     if (sidebarOpen) handleCloseSidebar();
     if (listPanelOpen) handleCloseListPanel();
     if (filterOpen) setFilterOpen(false);
+    setPaletteOpen(false);
+    setExhibitMenuOpen(false);
   }, [sidebarOpen, listPanelOpen, filterOpen, handleCloseSidebar, handleCloseListPanel]);
-  // Dock "Search" opens the filter sheet (search + region + importance +
-  // legend + export), not the list.
-  const handleMobileSearch = useCallback(() => setFilterOpen(true), []);
+  // Dock "Search" opens the command palette (all years); the year filter
+  // sheet stays reachable from the Filter chip and the palette's footer.
+  const handleMobileSearch = useCallback(() => {
+    setFilterOpen(false);
+    setPaletteOpen(true);
+  }, []);
+  // Dock "Tour" opens the exhibit sheet.
+  const handleMobileTour = useCallback(() => setExhibitMenuOpen(true), []);
+
+  // ── Command palette ──
+  const handleOpenPalette = useCallback(() => {
+    setExhibitMenuOpen(false);
+    setPaletteOpen(true);
+  }, []);
+  const handleClosePalette = useCallback(() => setPaletteOpen(false), []);
+  const handleOpenFiltersFromPalette = useCallback(() => setFilterOpen(true), []);
+  // Empire chosen in the palette: select via the `#empire=` path (the
+  // EmpireSidebar reads the feature properties MapView holds) and fit its
+  // borders. Keeps the year if the empire exists now, else seeks to its
+  // first year. If the empire layer is still loading, the pending id is
+  // picked up by the effect below once it arrives.
+  const pendingEmpireRef = useRef<string | null>(null);
+  const selectEmpireById = useCallback((id: string, seekTo: number | null) => {
+    const empire = mapRef.current?.getEmpire(id);
+    if (!empire) return false;
+    setTimeline((prev) => {
+      if (prev.isPlaying) wasPlayingRef.current = true;
+      const yearNow = Math.round(prev.currentYear);
+      const activeNow = yearNow >= empire.startYear && yearNow <= (empire.endYear ?? MAX_YEAR);
+      const target = activeNow ? prev.currentYear : (seekTo ?? empire.startYear);
+      return { ...prev, isPlaying: false, currentYear: Math.max(prev.minYear, Math.min(MAX_YEAR, target)) };
+    });
+    setSidebarOpen(false);
+    setSelectedConflict(null);
+    setSelectedEmpire(empire);
+    if (empire.bbox) {
+      mapRef.current?.flyToBbox(empire.bbox, { padding: empireFlyPadding(), maxZoom: 5 });
+    }
+    return true;
+  }, []);
+  const handlePaletteEmpire = useCallback((e: EmpireIndexEntry) => {
+    if (!e.id) return;
+    if (!selectEmpireById(e.id, e.startYear)) {
+      pendingEmpireRef.current = e.id;
+      // Seek now so the timeline reflects the choice while the layer loads.
+      setTimeline((prev) => ({
+        ...prev,
+        isPlaying: false,
+        currentYear: Math.max(prev.minYear, Math.min(MAX_YEAR, e.startYear)),
+      }));
+    }
+  }, [selectEmpireById]);
+
+  // Exhibit stops can open a record: conflicts go through the normal
+  // navigate path (select + fly); empires reuse the palette's selection.
+  const empireIndexIds = useMemo(
+    () => empireIndex.map((e) => e.id).filter((id): id is string => typeof id === "string" && id.length > 0),
+    [empireIndex],
+  );
+  const handleTourSelectConflict = useCallback((id: string) => {
+    const c = conflictById.get(resolveConflictId(id));
+    if (c) handleConflictClick(c, { pan: false });
+  }, [conflictById, handleConflictClick]);
+  const handleTourSelectEmpire = useCallback((id: string) => {
+    if (!selectEmpireById(id, null)) pendingEmpireRef.current = id;
+  }, [selectEmpireById]);
+  useEffect(() => {
+    if (!empiresReady || !pendingEmpireRef.current) return;
+    const id = pendingEmpireRef.current;
+    pendingEmpireRef.current = null;
+    selectEmpireById(id, null);
+  }, [empiresReady, selectEmpireById]);
+  // City chosen in the palette: no seek — fly there and open the name
+  // timeline (the same modal a city-dot click opens).
+  const handlePaletteCity = useCallback((city: CitySearchFeature) => {
+    const coords = city.geometry.coordinates;
+    mapRef.current?.flyTo(coords, { zoom: Math.max(mapRef.current.getZoom(), 5) });
+    setCityClickCoords(coords);
+  }, []);
+  const cityFeatures = useMemo<readonly CitySearchFeature[]>(
+    () => (citiesData?.features ?? []) as readonly CitySearchFeature[],
+    [citiesData],
+  );
+
+  // ── This-year ledger + honest tallies ──
+  const yearEvents = useMemo(
+    () => (yearIndex ? getYearEvents(renderYear, yearIndex) : { started: [], ended: [] }),
+    [renderYear, yearIndex],
+  );
+  const deathsThisYear = useMemo(
+    () => (yearIndex ? deathsInYear(renderYear, yearIndex) : 0),
+    [renderYear, yearIndex],
+  );
+  const cumulativeDeaths = useMemo(
+    () => (yearIndex ? cumulativeDeathsThrough(renderYear, yearIndex) : 0),
+    [renderYear, yearIndex],
+  );
+  // The ledger sits just above the Timeline; measure the Timeline root
+  // (the first child of its display:contents wrapper) so the offset is
+  // right on both breakpoints without duplicating its geometry here.
+  const timelineWrapRef = useRef<HTMLDivElement>(null);
+  const legendWrapRef = useRef<HTMLDivElement>(null);
+  const [ledgerPos, setLedgerPos] = useState({ bottom: 160, left: 24 });
+  useEffect(() => {
+    const main = mainRef.current;
+    const root = timelineWrapRef.current?.firstElementChild as HTMLElement | null;
+    if (!main || !root) return;
+    const measure = () => {
+      const m = main.getBoundingClientRect();
+      const r = root.getBoundingClientRect();
+      // 8 px below the top of the Timeline's fade band — clear of the
+      // strip and of its hover chip.
+      const bottom = Math.max(0, Math.round(m.bottom - r.top - 8));
+      // The border legend sits bottom-left (desktop); when its box reaches
+      // into the ledger's band, start the ledger to its right.
+      const mobile = window.innerWidth < 640;
+      let left = mobile ? 12 : 24;
+      const legend = legendWrapRef.current?.firstElementChild as HTMLElement | null;
+      if (legend && !mobile) {
+        const l = legend.getBoundingClientRect();
+        const ledgerTop = m.bottom - bottom - 36;
+        if (l.width > 0 && l.bottom > ledgerTop) left = Math.round(l.right - m.left + 12);
+      }
+      setLedgerPos((prev) => (prev.bottom === bottom && prev.left === left ? prev : { bottom, left }));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(root);
+    ro.observe(main);
+    const legendEl = legendWrapRef.current?.firstElementChild;
+    if (legendEl) ro.observe(legendEl);
+    return () => ro.disconnect();
+  }, [mapReady, chromeHidden]);
   const handleMobileCiteTap = useCallback(() => { void handleMobileCite(); }, [handleMobileCite]);
 
   const selectedConflictId = selectedConflict?.id ?? null;
@@ -1165,6 +1276,7 @@ export default function Home() {
         onEmpireClick={handleEmpireClick}
         selectedEmpireId={selectedEmpire?.id ?? null}
         onHistoricalLoad={handleHistoricalLoad}
+        initialCamera={initialHash.camera}
       />
 
       {/* Map-overlay chrome. All of this is suppressed when the user
@@ -1190,6 +1302,7 @@ export default function Home() {
             onOpenChange={setFilterOpen}
             exportConflicts={filteredActiveNow}
             currentYear={renderYear}
+            onOpenSearch={handleOpenPalette}
           />
 
           {/* "← Previous: X" — back to the conflict the user came from.
@@ -1226,7 +1339,7 @@ export default function Home() {
           )}
 
           {/* Persistent legend explaining solid vs dashed borders */}
-          <div data-avoid="wrap" style={{ display: 'contents' }}>
+          <div ref={legendWrapRef} data-avoid="wrap" style={{ display: 'contents' }}>
             <MemoBorderLegend />
           </div>
 
@@ -1253,10 +1366,13 @@ export default function Home() {
       {/* Guided opening tour */}
       <OpeningTour
         open={tourOpen}
+        exhibitId={tourExhibitId ?? undefined}
         onClose={handleTourClose}
         onFinish={handleTourFinish}
         onSeek={handleTourSeek}
         onFlyToBbox={handleTourFlyToBbox}
+        onSelectConflict={handleTourSelectConflict}
+        onSelectEmpire={handleTourSelectEmpire}
       />
 
       <TopBar
@@ -1265,10 +1381,15 @@ export default function Home() {
         totalCount={conflicts.length}
         onJumpToLive={handleJumpToLive}
         onShowAllConflicts={handleShowAllConflicts}
-        onOpenTour={openTour}
-        // Only fully-active conflicts contribute to the casualty tally, so
-        // the memoised subset gives the same total.
-        activeConflicts={activeNow}
+        onOpenExhibit={openTour}
+        exhibitMenuOpen={exhibitMenuOpen}
+        onExhibitMenuOpenChange={setExhibitMenuOpen}
+        onOpenSearch={handleOpenPalette}
+        // Per-year shares of the headline tolls (lib/casualty-rate.ts),
+        // not the summed totals of everything active.
+        deathsThisYear={deathsThisYear}
+        cumulativeDeaths={cumulativeDeaths}
+        minYear={timeline.minYear}
         // When chrome is hidden, TopBar suppresses the (?), Tour, and Live
         // chrome buttons but keeps the wordmark and the active/mapped
         // stat tallies. The flex layout pushes the tallies to the right
@@ -1292,7 +1413,21 @@ export default function Home() {
         />
       )}
 
-      <div data-avoid="wrap" style={{ display: 'contents' }}>
+      {/* This-year ledger — what began and ended this year, just above
+          the timeline. Suppressed with the rest of the chrome (`t`). */}
+      {!chromeHidden && (
+        <YearLedger
+          year={renderYear}
+          events={yearEvents}
+          onConflictClick={handleConflictNavigate}
+          onShowAll={handleShowAllConflicts}
+          bottom={ledgerPos.bottom}
+          left={ledgerPos.left}
+          panelOpen={panelOpen}
+        />
+      )}
+
+      <div ref={timelineWrapRef} data-avoid="wrap" style={{ display: 'contents' }}>
         <Timeline
           timeline={timeline}
           allConflicts={conflicts}
@@ -1322,6 +1457,7 @@ export default function Home() {
           <EmpireSidebar
             empire={selectedEmpire}
             allConflicts={conflicts}
+            siblingIds={empireFamilyIds(selectedEmpire.id, empireIndexIds)}
             onConflictClick={handleConflictNavigate}
             onClose={handleCloseEmpire}
           />
@@ -1363,11 +1499,26 @@ export default function Home() {
         </div>
       )}
 
+      {/* Command palette — ⌘K / Ctrl-K / `/`, the TopBar magnifier, the
+          mobile dock's Search tab. */}
+      <CommandPalette
+        open={paletteOpen}
+        onClose={handleClosePalette}
+        conflicts={conflicts}
+        empires={empireIndex}
+        cities={cityFeatures}
+        currentYear={renderYear}
+        onSelectConflict={handleConflictNavigate}
+        onSelectEmpire={handlePaletteEmpire}
+        onSelectCity={handlePaletteCity}
+        onOpenFilters={handleOpenFiltersFromPalette}
+      />
+
       {/* Mobile tab dock — Map / Tour / Search / Cite, hidden on ≥sm */}
       <MemoMobileTabDock
         active={mobileTab}
         onMap={handleMobileMap}
-        onTour={openTour}
+        onTour={handleMobileTour}
         onSearch={handleMobileSearch}
         onCite={handleMobileCiteTap}
       />

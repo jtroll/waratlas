@@ -71,6 +71,69 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="4 Sep 2026" tag="r15 · new features">
+          <p>
+            The second half of the review work: performance, design and a
+            set of features that make the atlas easier to read, share and
+            cite. Geometry remains at full precision throughout.
+          </p>
+          <p>
+            <strong>Timeline.</strong> The scrubber now uses a piecewise axis
+            that gives the last two centuries, where half the conflicts fall,
+            a third of the track instead of a sliver. Density is drawn per
+            era-appropriate bucket on a square-root scale; hovering shows the
+            bucket&apos;s count and its most important conflicts; the selected
+            conflict or empire is bracketed on the track; the playhead can be
+            dragged; the year can be typed.
+          </p>
+          <p>
+            <strong>Search and navigation.</strong> Press <kbd>/</kbd> or
+            <kbd>Ctrl</kbd>+<kbd>K</kbd> to search every conflict, empire and
+            city across all years; choosing one seeks the timeline and flies
+            the map. Every selection that lands off-screen now pans to it.
+            Browser Back returns to the previous record. Links can carry the
+            camera (<code>lat</code>, <code>lon</code>, <code>zoom</code>), an
+            empire (<code>empire=</code>) or an exhibit (<code>exhibit=</code>).
+            Press <kbd>[</kbd> and <kbd>]</kbd> to step through the year&apos;s
+            conflicts by importance.
+          </p>
+          <p>
+            <strong>This year.</strong> A strip above the timeline lists the
+            conflicts beginning and ending in the current year, so playback
+            reads as a sequence of events rather than dots appearing. The
+            &quot;deaths this year&quot; tally now spreads each conflict&apos;s
+            headline toll evenly across its duration instead of counting the
+            whole war every year, and a cumulative tally runs alongside it.
+            Method and caveats are on the sources page.
+          </p>
+          <p>
+            <strong>Empires and belligerents.</strong> Two-thirds of conflicts
+            now name their belligerents as atlas polities, so an empire&apos;s
+            panel lists the wars it actually fought rather than every war that
+            overlapped its dates. Twenty-two polities were added at full
+            precision from historical-basemaps, including the Soviet Union,
+            Prussia, Sumer, the Visigothic, Ostrogothic, Vandal and Lombard
+            kingdoms, the Samanids, Balhae and the Kazan Khanate; Athens,
+            Sparta, Phoenicia and the Empire of Nicaea are hand-traced and
+            marked approximate. Every empire has a page at <code>/e/</code>.
+          </p>
+          <p>
+            <strong>Exhibits.</strong> The opening tour is now one of four
+            guided routes: The Mongol century, The scramble for Africa, and The
+            world wars join the welcome tour, each with eight stops that seek
+            the timeline, fly the camera and open the record in question.
+          </p>
+          <p>
+            <strong>Under the hood.</strong> Conflict records load in two
+            parts (core first, narrative text on demand); data files are
+            fingerprinted and cached immutably; the service worker is retired;
+            playback no longer re-renders the page sixty times a second; the
+            project has lint, tests and continuous integration; and the
+            interface has a consolidated type and colour system with contrast
+            fixes, focus management and 44-pixel touch targets.
+          </p>
+        </Entry>
+
         <Entry date="4 Sep 2026" tag="r14 · data repair">
           <p>
             A correctness pass across all three datasets and the interface,

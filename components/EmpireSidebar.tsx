@@ -10,10 +10,16 @@ import {
   formatCompactRange,
   formatCasualties,
   importanceLabel,
+  compareWars,
+  empireBaseId,
+  empireSourceLabel,
+  bordersHeading,
+  bordersCaption,
+  isEmpireDashed,
 } from '@/lib/format';
 import { getEmpireDescription } from '@/lib/empire-descriptions';
 import { useFocusTrap } from '@/lib/focus-trap';
-import { SheetActions } from './Sidebar';
+import { SheetActions, DisclosureButton } from './Sidebar';
 
 /**
  * Wikipedia summary cache shape (matches public/empire-wikipedia.json
@@ -57,19 +63,6 @@ export type EmpireSource =
   | 'cliopatria-seshat'
   | 'manual';
 
-const SOURCE_LABELS: Record<EmpireSource, string> = {
-  'historical-basemaps': 'aourednik / historical-basemaps',
-  'hand-crafted-from-atlases': 'hand-crafted from scholarly atlases',
-  'reconstructed-clipped-country': 'reconstructed from Natural Earth country boundaries',
-  'approximate-cultural-extent': 'approximate cultural extent (no primary GIS source)',
-  'cliopatria-seshat': 'Cliopatria / Seshat Global History Databank (CC BY 4.0)',
-  'manual': 'manual construction / verification',
-};
-
-function sourceLabel(source: string): string {
-  return (SOURCE_LABELS as Record<string, string>)[source] ?? source;
-}
-
 /**
  * Properties carried on every empire feature in public/empires.json.
  * (Geometry isn't in here — the sidebar only needs metadata + bbox.)
@@ -111,8 +104,14 @@ export interface EmpireProperties {
 
 interface Props {
   empire: EmpireProperties;
-  /** All conflicts — used to surface the major wars active during this empire. */
+  /** All conflicts — joined on `polityIds` for "Wars of this empire", with a
+   *  date-overlap fallback while the join is unpopulated. */
   allConflicts: Conflict[];
+  /** Ids of this empire's other time-slices (british-empire-1815 → every
+   *  british-empire-*). `polityIds` stores the slice active at a conflict's
+   *  start year, so any sibling counts as this empire. When omitted, the
+   *  sidebar falls back to a prefix match on the id's base name. */
+  siblingIds?: string[];
   /** Click handler for navigating to a conflict. */
   onConflictClick: (c: Conflict) => void;
   onClose: () => void;
@@ -128,70 +127,22 @@ interface Props {
  *   Narrative     — "What it was" prose
  *   Significance  — "Why it mattered" with amber eyebrow
  *   Borders       — confidence + source attribution + dashed/solid swatch
- *   Active wars   — top-importance conflicts overlapping the empire's lifetime
+ *   Wars          — belligerent join on polityIds (any time-slice of this
+ *                   polity), 12 shown then "Show all"; date-overlap
+ *                   fallback while the join is empty
  *   Footer        — bbox + ID, mono, dashed top rule
  *
  * Only one of EmpireSidebar / Sidebar can be open at once — handled in
  * app/page.tsx via mutually-exclusive selected state.
  * ─────────────────────────────────────────────────────────── */
 
-/** Heading shown above the source-attribution swatch. The dashed/solid state
- *  is already decided in the parent; this just gives it a name that reflects
- *  why the line is dashed — polygon fidelity vs. the polity itself being a
- *  cultural sphere or nomadic range. */
-function bordersHeading(isDashed: boolean, polityType?: string): string {
-  if (!isDashed) return 'Reconstructed borders';
-  switch (polityType) {
-    case 'tributary':     return 'Tributary network';
-    case 'confederation': return 'Confederation';
-    case 'culture':       return 'Cultural sphere';
-    case 'nomadic-range': return 'Nomadic range';
-    case 'chiefdom':      return 'Chiefdom';
-    default:              return 'Approximate borders';
-  }
-}
-
-/** One-sentence explanation paired with the heading. When the polygon itself
- *  is well-traced (isAccurate=true) but rendered dashed because of polity
- *  type, the caption explains that distinction explicitly so the reader
- *  doesn't think we just didn't bother sourcing it. */
-function bordersCaption(
-  isDashed: boolean,
-  polityType?: string,
-  isAccurate?: boolean,
-): string {
-  if (!isDashed) {
-    return 'Solid borders are reconstructed from canonical historical-basemap data or hand-crafted from scholarly atlases.';
-  }
-  switch (polityType) {
-    case 'tributary':
-      return isAccurate
-        ? 'The center is well-attested, but the line is a tribute-relationship periphery rather than a surveyed frontier.'
-        : 'A paramount-chiefdom-style polity with tributary peripheries; exact extent is contested.';
-    case 'confederation':
-      return isAccurate
-        ? 'A confederation of independent groups sharing identity. The shape reflects member-territory union, not a unified state.'
-        : 'A confederation of independent groups; member territories shifted and overlapped, so the perimeter is approximate.';
-    case 'culture':
-      return isAccurate
-        ? 'An archaeological culture defined by material remains. The line is a probability cloud, not a frontier.'
-        : 'An archaeological culture; extent is defined by where its material remains have been found rather than by political control.';
-    case 'nomadic-range':
-      return isAccurate
-        ? 'A pastoralist or hunter-gatherer range. Seasonal use shifted across decades, so the line is the rough envelope of a moving territory.'
-        : 'A pastoralist or hunter-gatherer range whose extent shifted constantly with seasons and alliances.';
-    case 'chiefdom':
-      return isAccurate
-        ? 'A paramount chiefdom with tributary peripheries. The center is well-attested; the outer line marks the reach of tribute and kinship, not a surveyed frontier.'
-        : 'A paramount chiefdom with tributary peripheries; extent is inferred from settlement and tribute patterns and remains approximate.';
-    default:
-      return 'Dashed borders mark empires whose extent we can date but whose precise frontiers are contested or undocumented.';
-  }
-}
+const WARS_CAP = 12;
+const OVERLAP_CAP = 6;
 
 function EmpireSidebar({
   empire,
   allConflicts,
+  siblingIds,
   onConflictClick,
   onClose,
 }: Props) {
@@ -216,8 +167,7 @@ function EmpireSidebar({
   // (accurate=true) AND were administratively-bordered states. Tributary,
   // confederation, culture, nomadic-range and chiefdom types render dashed
   // regardless.
-  const isStatePolity = e.polityType === 'state' || e.polityType === undefined;
-  const isDashed = e.borderStyle === 'dashed' || !isAccurate || !isStatePolity;
+  const isDashed = isEmpireDashed(e);
   const duration = formatDuration(e.startYear, e.endYear);
   // "Copied" confirmation after a successful clipboard write (~1.5 s).
   const [copied, setCopied] = useState(false);
@@ -226,42 +176,52 @@ function EmpireSidebar({
     const t = setTimeout(() => setCopied(false), 1500);
     return () => clearTimeout(t);
   }, [copied]);
+  const [showAllWars, setShowAllWars] = useState(false);
   const bodyRef = useRef<HTMLDivElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const closeRef = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     if (bodyRef.current) bodyRef.current.scrollTop = 0;
     setCopied(false);
+    setShowAllWars(false);
   }, [e.id]);
   // Non-modal: focus lands on Close on open and returns on close.
   useFocusTrap(asideRef, true, { trap: false, initialFocus: closeRef });
 
-  // Permalink for citations — a deep link that seeks the timeline to the
-  // empire's start year and re-opens this flyout (`#empire=` is parsed by
-  // app/page.tsx and the map fits the empire's bounds).
-  const permalinkHash = `#year=${e.startYear}&empire=${encodeURIComponent(e.id)}`;
+  // Permalink for citations — the server-rendered /e/<id> page, which in
+  // turn links into the atlas at the empire's start year with the flyout
+  // open (`#year=…&empire=…`, parsed by app/page.tsx).
+  const permalinkPath = `/e/${encodeURIComponent(e.id)}`;
   const permalink =
-    typeof window !== 'undefined'
-      ? `${window.location.origin}/${permalinkHash}`
-      : `/${permalinkHash}`;
+    typeof window !== 'undefined' ? `${window.location.origin}${permalinkPath}` : permalinkPath;
 
-  // Conflicts whose lifetime overlaps the empire's. We restrict to importance ≥ 3
-  // so the list stays short and editorial-grade.
+  // Wars of this empire — the belligerent join. A conflict counts when its
+  // polityIds name this feature or any sibling time-slice of the same
+  // polity. Sibling ids come from the parent when it has the empire index;
+  // otherwise any id sharing the base name (id minus a trailing year).
+  const wars = useMemo(() => {
+    const family = new Set<string>([e.id, ...(siblingIds ?? [])]);
+    const base = siblingIds ? null : empireBaseId(e.id);
+    const matches = allConflicts.filter((c) =>
+      c.polityIds?.some((p) => family.has(p) || (base !== null && empireBaseId(p) === base)),
+    );
+    return matches.sort(compareWars);
+  }, [allConflicts, e.id, siblingIds]);
+  const visibleWars = showAllWars ? wars : wars.slice(0, WARS_CAP);
+
+  // Fallback while the join is empty (data not yet joined, or no record
+  // names this polity): importance ≥ 3 conflicts overlapping the empire's
+  // lifetime — a date heuristic, labelled as such.
   const overlappingConflicts = useMemo(() => {
+    if (wars.length > 0) return [];
     const empireEnd = e.endYear ?? new Date().getFullYear();
     const matches = allConflicts.filter((c) => {
       if (c.importance < 3) return false;
       const cEnd = c.endYear ?? c.startYear;
-      // Lifetime overlap test
       return c.startYear <= empireEnd && cEnd >= e.startYear;
     });
-    // Sort by importance (desc), then by start year (asc)
-    matches.sort((a, b) => {
-      if (b.importance !== a.importance) return b.importance - a.importance;
-      return a.startYear - b.startYear;
-    });
-    return matches.slice(0, 12);
-  }, [allConflicts, e.startYear, e.endYear]);
+    return matches.sort(compareWars).slice(0, OVERLAP_CAP);
+  }, [allConflicts, wars.length, e.startYear, e.endYear]);
 
   const handleCite = async () => {
     const citation = `${e.name} (${formatYearRange(e.startYear, e.endYear)}). War Atlas. ${permalink}`;
@@ -508,7 +468,7 @@ function EmpireSidebar({
               {e.source && (
                 <li className="font-mono text-mono text-wars-faint">
                   <span className="text-wars-muted mr-1.5">SOURCE</span>
-                  {sourceLabel(e.source)}
+                  {empireSourceLabel(e.source)}
                 </li>
               )}
               {e.sourceDetail && (
@@ -550,44 +510,47 @@ function EmpireSidebar({
           )}
         </section>
 
-        {/* ACTIVE DURING THIS PERIOD */}
-        {overlappingConflicts.length > 0 && (
+        {/* WARS OF THIS EMPIRE — belligerent join on polityIds */}
+        {wars.length > 0 && (
           <section className="py-5 hairline-b" aria-labelledby="es-wars">
-            <h3 id="es-wars" className="eyebrow mb-2.5 m-0">
-              Major wars during this period
-            </h3>
+            <div className="flex items-baseline justify-between gap-3 mb-2.5">
+              <h3 id="es-wars" className="eyebrow m-0">Wars of this empire</h3>
+              <span className="font-mono text-mono text-wars-faint">
+                {wars.length} as a belligerent
+              </span>
+            </div>
+            <div className="space-y-1.5">
+              {visibleWars.map((c) => (
+                <WarRow key={c.id} c={c} onClick={onConflictClick} />
+              ))}
+            </div>
+            {wars.length > WARS_CAP && (
+              <DisclosureButton
+                onClick={() => setShowAllWars((v) => !v)}
+                expanded={showAllWars}
+                className="mt-2"
+              >
+                {showAllWars ? 'Show fewer' : `Show all ${wars.length}`}
+              </DisclosureButton>
+            )}
+          </section>
+        )}
+
+        {/* ALSO DURING THIS PERIOD — date-overlap fallback, only while the
+            join above has nothing for this polity. */}
+        {wars.length === 0 && overlappingConflicts.length > 0 && (
+          <section className="py-5 hairline-b" aria-labelledby="es-period">
+            <h3 id="es-period" className="eyebrow mb-1.5 m-0">Also during this period</h3>
+            <p
+              className="font-display italic text-wars-muted m-0 mb-2.5"
+              style={{ fontSize: 12.5, lineHeight: 1.5 }}
+            >
+              No conflict record yet names this polity as a belligerent; these
+              overlap its dates only.
+            </p>
             <div className="space-y-1.5">
               {overlappingConflicts.map((c) => (
-                <button
-                  key={c.id}
-                  onClick={() => onConflictClick(c)}
-                  className="block w-full text-left transition-colors hover:text-wars-text"
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    padding: '4px 0',
-                    cursor: 'pointer',
-                    color: 'inherit',
-                  }}
-                >
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span
-                      className="font-display text-wars-text"
-                      style={{ fontSize: 13.5, lineHeight: 1.3, fontWeight: 400 }}
-                    >
-                      {c.name}
-                    </span>
-                    <span className="font-mono text-mono text-wars-faint flex-shrink-0">
-                      {formatCompactRange(c.startYear, c.endYear)}
-                    </span>
-                  </div>
-                  <div className="font-mono text-mono text-wars-faint mt-0.5 uppercase" style={{ letterSpacing: '0.04em' }}>
-                    {importanceLabel(c.importance)}
-                    {c.casualties != null && (
-                      <span className="normal-case"> · {formatCasualties(c.casualties)} dead</span>
-                    )}
-                  </div>
-                </button>
+                <WarRow key={c.id} c={c} onClick={onConflictClick} />
               ))}
             </div>
           </section>
@@ -607,6 +570,41 @@ function EmpireSidebar({
         </footer>
       </div>
     </aside>
+  );
+}
+
+/** One conflict line: serif name, compact span, importance · dead. */
+function WarRow({ c, onClick }: { c: Conflict; onClick: (c: Conflict) => void }) {
+  return (
+    <button
+      onClick={() => onClick(c)}
+      className="block w-full text-left transition-colors hover:text-wars-text"
+      style={{
+        background: 'transparent',
+        border: 'none',
+        padding: '4px 0',
+        cursor: 'pointer',
+        color: 'inherit',
+      }}
+    >
+      <div className="flex items-baseline justify-between gap-3">
+        <span
+          className="font-display text-wars-text"
+          style={{ fontSize: 13.5, lineHeight: 1.3, fontWeight: 400 }}
+        >
+          {c.name}
+        </span>
+        <span className="font-mono text-mono text-wars-faint flex-shrink-0">
+          {formatCompactRange(c.startYear, c.endYear)}
+        </span>
+      </div>
+      <div className="font-mono text-mono text-wars-faint mt-0.5 uppercase" style={{ letterSpacing: '0.04em' }}>
+        {importanceLabel(c.importance)}
+        {c.casualties != null && (
+          <span className="normal-case"> · {formatCasualties(c.casualties)} dead</span>
+        )}
+      </div>
+    </button>
   );
 }
 

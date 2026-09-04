@@ -1,5 +1,6 @@
 import { Conflict, ActiveConflict, ConflictTextMap } from './types';
 import { formatYear, formatCasualties, formatYearRange } from './format';
+import { casualtyRatePerYear, casualtySpan } from './casualty-rate';
 
 // Re-exported for compatibility — the canonical implementations live in
 // lib/format.ts.
@@ -69,6 +70,12 @@ export interface YearIndex {
   readonly nextStart: Int32Array;
   readonly candOffsets: Int32Array;
   readonly candIndex: Int32Array;
+  /** Deaths attributed to integer year k: the sum of each active conflict's
+   *  headline toll spread evenly over its calendar years (see
+   *  lib/casualty-rate.ts for the method). */
+  readonly atDeaths: Float64Array;
+  /** Prefix sum of atDeaths: every share attributed to years ≤ k. */
+  readonly cumDeaths: Float64Array;
 }
 
 export function buildYearIndex(conflicts: readonly Conflict[]): YearIndex {
@@ -95,6 +102,9 @@ export function buildYearIndex(conflicts: readonly Conflict[]): YearIndex {
   const dMidNear = new Int32Array(Y + 1);
   const hasStart = new Uint8Array(Y);
   const candCount = new Int32Array(Y);
+  // Per-year casualty shares as a difference array (rate added at the
+  // span start, removed after its end), so the fill is O(n + Y).
+  const dDeaths = new Float64Array(Y + 1);
 
   const clamp = (k: number) => Math.max(0, Math.min(Y, k));
   // Add +1 over the inclusive year range [a, b] (in table coordinates).
@@ -134,6 +144,18 @@ export function buildYearIndex(conflicts: readonly Conflict[]): YearIndex {
     const a = clamp(s - FADE_IN_YEARS);
     const b = Math.min(Y - 1, e + FADE_OUT_YEARS);
     for (let k = a; k <= b; k++) candCount[k]++;
+
+    // Casualty share per active calendar year (open ends run to thisYear).
+    const rate = casualtyRatePerYear(c, thisYear);
+    if (rate > 0) {
+      const span = casualtySpan(c, thisYear);
+      const lo = clamp(span.start - minYear);
+      const hi = clamp(span.end - minYear + 1);
+      if (hi > lo) {
+        dDeaths[lo] += rate;
+        dDeaths[hi] -= rate;
+      }
+    }
   }
 
   const prefix = (d: Int32Array): Int32Array => {
@@ -154,6 +176,21 @@ export function buildYearIndex(conflicts: readonly Conflict[]): YearIndex {
     }
     return out;
   };
+
+  const atDeaths = new Float64Array(Y);
+  const cumDeaths = new Float64Array(Y);
+  {
+    let rate = 0;
+    let total = 0;
+    for (let k = 0; k < Y; k++) {
+      rate += dDeaths[k];
+      // Snap float drift at the end of a span back to zero.
+      if (Math.abs(rate) < 1e-6) rate = 0;
+      atDeaths[k] = rate;
+      total += rate;
+      cumDeaths[k] = total;
+    }
+  }
 
   const nextStart = new Int32Array(Y);
   let next = NO_NEXT_START;
@@ -191,6 +228,8 @@ export function buildYearIndex(conflicts: readonly Conflict[]): YearIndex {
     nextStart,
     candOffsets,
     candIndex,
+    atDeaths,
+    cumDeaths,
   };
 }
 
@@ -203,6 +242,60 @@ function slotFor(index: YearIndex, year: number): number {
   const k = Math.floor(year);
   if (!isFinite(k) || k < index.minYear || k > index.maxYear) return -1;
   return k - index.minYear;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * This-year ledger: what began and what ended in an integer year.
+ * ─────────────────────────────────────────────────────────── */
+
+export interface YearEvents {
+  /** Conflicts whose startYear is `year`, most important first. */
+  started: Conflict[];
+  /** Conflicts whose endYear is `year` (a single-year record appears in
+   *  both lists), most important first. */
+  ended: Conflict[];
+}
+
+const EMPTY_EVENTS: YearEvents = Object.freeze({ started: [], ended: [] }) as YearEvents;
+
+/** Importance desc, then casualties desc, then name — the order the ledger
+ *  and the palette use for ties. */
+export function compareByImportance(a: Conflict, b: Conflict): number {
+  if (b.importance !== a.importance) return b.importance - a.importance;
+  const ca = a.casualties ?? -1;
+  const cb = b.casualties ?? -1;
+  if (cb !== ca) return cb - ca;
+  return a.name.localeCompare(b.name);
+}
+
+/**
+ * Conflicts beginning and ending in `year`. With the YearIndex only the
+ * year's candidate list (the conflicts whose fade window covers it, a
+ * superset of those starting or ending in it) is scanned; with a plain
+ * array the whole dataset is.
+ */
+export function getYearEvents(year: number, source: readonly Conflict[] | YearIndex): YearEvents {
+  const y = Math.round(year);
+  if (!Number.isFinite(y)) return EMPTY_EVENTS;
+  const started: Conflict[] = [];
+  const ended: Conflict[] = [];
+  const visit = (c: Conflict) => {
+    if (c.startYear === y) started.push(c);
+    if (c.endYear === y) ended.push(c);
+  };
+  if (isYearIndex(source)) {
+    const slot = slotFor(source, y);
+    if (slot < 0) return EMPTY_EVENTS;
+    const list = source.conflicts;
+    const end = source.candOffsets[slot + 1];
+    for (let i = source.candOffsets[slot]; i < end; i++) visit(list[source.candIndex[i]]);
+  } else {
+    for (const c of source) visit(c);
+  }
+  if (started.length === 0 && ended.length === 0) return EMPTY_EVENTS;
+  started.sort(compareByImportance);
+  ended.sort(compareByImportance);
+  return { started, ended };
 }
 
 function toActive(c: Conflict, currentYear: number, fadeDimming: number): ActiveConflict | null {

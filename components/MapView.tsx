@@ -4,6 +4,7 @@ import { useRef, useEffect, useState, forwardRef, useImperativeHandle, memo } fr
 import mapboxgl from 'mapbox-gl';
 import { ActiveConflict, Conflict, ScreenPosition } from '@/lib/types';
 import { DATA_URLS } from '@/lib/data-urls';
+import type { CameraState } from '@/lib/hash';
 import { MapboxTokenFallback } from './ErrorBoundary';
 import type { EmpireProperties } from './EmpireSidebar';
 
@@ -31,6 +32,9 @@ interface MapViewProps {
   /** Fires once the historical layers (empires + cities) are on the map —
    *  from then on getEmpire / getEmpireBbox on the handle resolve ids. */
   onHistoricalLoad?: () => void;
+  /** Camera the map is CREATED with (a `lat/lon/zoom` deep link). Read once
+   *  at construction, so it lands before any conflict / empire fly-to. */
+  initialCamera?: CameraState | null;
 }
 
 export interface FlyToOptions {
@@ -79,6 +83,13 @@ export interface MapViewHandle {
   getEmpire: (id: string) => EmpireProperties | undefined;
   /** Move keyboard focus to the map canvas (arrow keys then pan). */
   focus: () => void;
+  /** Current centre + zoom, or null before the map exists. */
+  getCamera: () => CameraState | null;
+  /** Jump (or ease, with `animate`) the camera to a centre + zoom. */
+  setCamera: (camera: CameraState, opts?: { animate?: boolean }) => void;
+  /** Subscribe to Mapbox `moveend` (the camera has settled after a pan,
+   *  zoom or programmatic fly). Returns an unsubscribe. */
+  onMoveEnd: (listener: () => void) => () => void;
 }
 
 const REDUCED_MOTION = () =>
@@ -305,6 +316,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     onEmpireClick,
     selectedEmpireId,
     onHistoricalLoad,
+    initialCamera,
   },
   ref
 ) {
@@ -355,6 +367,10 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   const notifyMove = () => {
     moveListenersRef.current.forEach((l) => l());
   };
+  const moveEndListenersRef = useRef<Set<() => void>>(new Set());
+  // Read once by the init effect; a later prop change must not re-create
+  // the map.
+  const initialCameraRef = useRef<CameraState | null | undefined>(initialCamera);
   // Empire id → [minLon, minLat, maxLon, maxLat], computed once over the
   // full (un-clipped) geometry when empires.json loads. The click handler
   // used to compute this from the rendered geometry, which is tile-clipped,
@@ -503,6 +519,34 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         /* no map yet */
       }
     },
+    getCamera: () => {
+      const m = map.current;
+      if (!m) return null;
+      try {
+        const c = m.getCenter();
+        return { lat: c.lat, lon: c.lng, zoom: m.getZoom() };
+      } catch {
+        return null;
+      }
+    },
+    setCamera: (camera, opts) => {
+      const m = map.current;
+      if (!m) return;
+      const target = { center: [camera.lon, camera.lat] as [number, number], zoom: camera.zoom };
+      try {
+        if (opts?.animate && !REDUCED_MOTION()) m.easeTo({ ...target, duration: 900, essential: false });
+        else m.jumpTo(target);
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.warn('setCamera failed', err);
+      }
+    },
+    onMoveEnd: (listener: () => void) => {
+      moveEndListenersRef.current.add(listener);
+      return () => {
+        moveEndListenersRef.current.delete(listener);
+      };
+    },
   }), []);
 
   // Initialize map
@@ -512,11 +556,14 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
 
+    // A `lat/lon/zoom` deep link becomes the construction camera — no
+    // animation, and it is in place before any fly-to can run.
+    const cam = initialCameraRef.current;
     const m = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/dark-v11',
-      center: [20, 30],
-      zoom: 2,
+      center: cam ? [cam.lon, cam.lat] : [20, 30],
+      zoom: cam ? Math.max(1.5, Math.min(12, cam.zoom)) : 2,
       minZoom: 1.5,
       maxZoom: 12,
       projection: 'mercator',
@@ -1074,6 +1121,9 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     m.on('move', () => {
       notifyMove();
       onMapMoveRef.current?.();
+    });
+    m.on('moveend', () => {
+      moveEndListenersRef.current.forEach((l) => l());
     });
 
     map.current = m;

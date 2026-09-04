@@ -12,11 +12,19 @@ export interface Shortcut {
 
 export const MAP_SHORTCUTS: readonly Shortcut[] = [
   {
+    keys: '⌘K / Ctrl-K',
+    description: 'Search conflicts, empires and cities across all years (also `/` when not typing)',
+  },
+  {
     keys: '[ / ]',
     description: 'Step through this year’s conflicts by importance (selects and flies to each)',
   },
   {
     keys: '← → ↑ ↓',
     description: 'Pan the map when the map has focus (Tab to the map first); otherwise ← → scrub the timeline',
+  },
+  {
+    keys: 't',
+    description: 'Hide or show the chrome (legend, filters, ledger, callouts) to see the bare map',
   },
 ];

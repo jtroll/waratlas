@@ -19,7 +19,9 @@ interface Props {
  * 4-up bottom nav: Map / Tour / Search / Cite. Active tab gets an ivory
  * top-border accent (pressed chrome is ivory + hairline; amber and vermilion
  * are reserved for the current year and conflicts). Hidden on screens ≥ sm —
- * desktop has its own chrome. Search opens the filter sheet.
+ * desktop has its own chrome. Tour opens the exhibit sheet; Search opens
+ * the command palette (the year filter sheet stays reachable from the
+ * Filter chip in the TopBar row and from the palette's footer).
  *
  * Sits at the very bottom of the viewport above the timeline. The Sidebar's
  * bottom-sheet renders ABOVE this when open and pushes the dock out of the
@@ -92,15 +94,21 @@ export default function MobileTabDock({
  */
 export function useMobileTab({
   tourOpen,
+  exhibitMenuOpen = false,
   filterOpen,
+  paletteOpen = false,
   sidebarOpen,
 }: {
   tourOpen: boolean;
+  /** The exhibit picker sheet (the dock's Tour tab opens it). */
+  exhibitMenuOpen?: boolean;
   filterOpen: boolean;
+  /** The command palette (the dock's Search tab opens it). */
+  paletteOpen?: boolean;
   sidebarOpen: boolean;
 }): Props['active'] {
-  if (tourOpen) return 'tour';
-  if (filterOpen) return 'search';
+  if (tourOpen || exhibitMenuOpen) return 'tour';
+  if (filterOpen || paletteOpen) return 'search';
   if (sidebarOpen) return 'cite';
   return 'map';
 }

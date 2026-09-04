@@ -5,6 +5,19 @@ import { createPortal } from 'react-dom';
 import stats from '@/lib/generated/stats.json';
 import { useFocusTrap } from '@/lib/focus-trap';
 import { MAP_SHORTCUTS } from '@/lib/shortcuts';
+import { EXHIBITS } from '@/lib/exhibits';
+import { HASH_PARAMS } from '@/lib/hash';
+
+/** One worked example per hash parameter, keyed by the param name used in
+ *  HASH_PARAMS. Kept here (not in lib/hash.ts) because they are prose. */
+const HASH_EXAMPLES: Record<string, string> = {
+  year: '/#year=-490',
+  conflict: '/#year=1939&conflict=world-war-2',
+  empire: '/#year=1206&empire=mongol-empire',
+  exhibit: '/#exhibit=mongol-century',
+  'lat, lon': '/#year=1942&lat=48.85&lon=2.35&zoom=4.2',
+  zoom: '/#year=1942&lat=48.85&lon=2.35&zoom=4.2',
+};
 
 const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
 const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
@@ -107,6 +120,32 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               Conflict, Yemeni Civil War, Myanmar Civil War, and others) are point-in-time snapshots
               and should be cross-checked against current reporting.
             </Aside>
+          </Section>
+
+          {/* Exhibits — curated routes through the atlas */}
+          <Section heading="Exhibits">
+            <p>
+              Guided routes through the atlas: each stop seeks the timeline, flies
+              the map, and opens the record it is about. Start one from the Tour
+              menu, or follow a link below.
+            </p>
+            <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+              {EXHIBITS.map((ex) => (
+                <li
+                  key={ex.id}
+                  className="flex items-baseline justify-between gap-4"
+                  style={{ padding: '6px 0', borderBottom: '1px dotted var(--rule)' }}
+                >
+                  <span className="min-w-0">
+                    <a href={`/#exhibit=${ex.id}`} onClick={onClose}>{ex.title}</a>
+                    <span className="block text-wars-muted" style={{ fontSize: 13 }}>{ex.summary}</span>
+                  </span>
+                  <span className="font-mono text-mono text-wars-faint flex-shrink-0">
+                    {ex.stops.length} stops
+                  </span>
+                </li>
+              ))}
+            </ul>
           </Section>
 
           {/* How to read borders */}
@@ -218,6 +257,21 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
             </p>
           </Section>
 
+          {/* Belligerent join */}
+          <Section heading="“Wars of this empire”">
+            <p>
+              The empire panel lists conflicts whose belligerents include that
+              polity. The join is <em>name-based</em>: each conflict&apos;s
+              belligerent names are matched to an empire feature active at the
+              conflict&apos;s start year, and stored on the record as{' '}
+              <code>polityIds</code>. A match against any time-slice of the same
+              polity (the British Empire has a dozen) counts. Where no record
+              names a polity yet, the panel falls back to conflicts that merely
+              overlap its dates, and says so. Limits are on the{' '}
+              <a href="/sources">Sources page</a>.
+            </p>
+          </Section>
+
           {/* Historiography teaser — full discussion lives on /sources. */}
           <Section heading="Where the historians disagree">
             <p>
@@ -290,7 +344,38 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               ))}
             </div>
             <Aside>
-              The URL hash tracks the current year — copy it to share a specific moment in history.
+              The URL hash tracks the current year, selection and camera — copy it
+              to share a specific moment in history (see below).
+            </Aside>
+          </Section>
+
+          {/* Sharing — the hash parameters */}
+          <Section heading="Sharing the atlas">
+            <p>
+              Everything about the current view lives in the URL after the{' '}
+              <code>#</code>, so a copied address reproduces it. Parameters are
+              joined with <code>&amp;</code>:
+            </p>
+            <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+              {HASH_PARAMS.map((h) => (
+                <li key={h.param} style={{ padding: '6px 0', borderBottom: '1px dotted var(--rule)' }}>
+                  <code className="text-wars-text">{h.param}</code>
+                  <span className="block" style={{ fontSize: 13.5 }}>{h.description}</span>
+                  {HASH_EXAMPLES[h.param] && (
+                    <span className="block font-mono text-mono text-wars-faint mt-0.5">
+                      e.g.{' '}
+                      <a href={HASH_EXAMPLES[h.param]} onClick={onClose} style={{ color: 'inherit' }}>
+                        {HASH_EXAMPLES[h.param]}
+                      </a>
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <Aside>
+              Conflicts and empires also have permanent, citable pages at{' '}
+              <code>/c/&lt;id&gt;</code> and <code>/e/&lt;id&gt;</code> — the
+              link icon in either panel goes there.
             </Aside>
           </Section>
 
@@ -371,6 +456,7 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
           .about-prose strong { color: var(--ink-text); font-weight: 500; }
           .about-prose a { color: var(--indigo); text-decoration: none; border-bottom: 1px solid currentColor; }
           .about-prose a:hover { color: var(--ink-text); }
+          .about-prose code { font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.85em; padding: 1px 4px; background: var(--tint-ivory); border-radius: 2px; }
         `}</style>
       </div>
     </div>

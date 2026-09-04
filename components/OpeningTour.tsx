@@ -3,94 +3,13 @@
 import { memo, useEffect, useRef, useState } from 'react';
 import { formatYear } from '@/lib/format';
 import { useFocusTrap } from '@/lib/focus-trap';
-import stats from '@/lib/generated/stats.json';
-
-const STAT_CONFLICTS = `over ${(Math.floor(stats.conflicts / 1000) * 1000).toLocaleString('en-US')} conflicts`;
-const STAT_EMPIRES = `${Math.floor(stats.empires / 100) * 100}+ empires`;
-
-interface Stop {
-  /** Year to seek the timeline to. `null` means do not seek (used by the
-   *  intro stop, which just explains what the tool is). */
-  year: number | null;
-  /** Full title (used in the headline of the card). */
-  title: string;
-  /** Short title used in the inline stops index at the bottom. */
-  shortTitle: string;
-  /** Italic editorial blurb shown beside the year. */
-  blurb: string;
-  /** Seconds to spend on this stop when auto-playing. */
-  hold: number;
-  /** Optional bounding box to fly the map to on this stop, as
-   *  [minLng, minLat, maxLng, maxLat]. `null` (or omitted) keeps the
-   *  current camera. */
-  bbox?: [number, number, number, number] | null;
-}
-
-const STOPS: Stop[] = [
-  {
-    year: null, title: 'Welcome to War Atlas', shortTitle: 'Start',
-    blurb: `An interactive cartography of thousands of named wars across 5,000 years of history — ${STAT_CONFLICTS} and ${STAT_EMPIRES}. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict.`,
-    hold: 12,
-    bbox: [-160, -50, 180, 55],
-  },
-  {
-    year: -2500, title: 'Cradle of cities', shortTitle: 'Cradle',
-    blurb: 'Bronze Age Sumer, Egypt, and the Indus Valley fight the first wars we can name. Walls go up around the world’s earliest cities; civilization and conflict arrive together.',
-    hold: 12,
-    bbox: [22, 5, 80, 35],
-  },
-  {
-    year: -490, title: 'Greco-Persian Wars', shortTitle: 'Greco-Persian',
-    blurb: 'A coalition of Greek city-states halts the largest empire the world has yet seen. The Persian invasions force Athens, Sparta, and their neighbours into a fragile alliance.',
-    hold: 12,
-    bbox: [18, 20, 60, 40],
-  },
-  {
-    year: -100, title: 'Two empires emerge', shortTitle: 'Two empires',
-    blurb: 'Rome and Han China industrialize war on opposite ends of Eurasia, professional armies remaking the political map of half the world.',
-    hold: 12,
-    bbox: [-10, 8, 130, 45],
-  },
-  {
-    year: 632, title: 'Arab conquests', shortTitle: 'Caliphate',
-    blurb: 'In a century, the Caliphate reaches from Spain to the Indus. The Mediterranean is cut in half; the Sasanian Empire ceases to exist.',
-    hold: 12,
-    bbox: [-12, 0, 75, 38],
-  },
-  {
-    year: 1240, title: 'Mongol century', shortTitle: 'Mongol',
-    blurb: 'The largest contiguous land empire in history takes shape from the steppe. From Korea to Hungary, the rules of war and statecraft are rewritten in a generation.',
-    hold: 12,
-    bbox: [18, 8, 130, 48],
-  },
-  {
-    year: 1521, title: 'Conquest of the Americas', shortTitle: 'Americas',
-    blurb: 'Cortés enters Tenochtitlan; the demographic catastrophe of the Columbian exchange begins. New diseases and gunpowder collapse millennia-old civilizations within decades.',
-    hold: 12,
-    bbox: [-125, -55, -34, 50],
-  },
-  {
-    year: 1815, title: 'Long peace, hidden wars', shortTitle: 'Long peace',
-    blurb: 'Europe stabilizes after Napoleon while colonial wars expand across Africa, India, the Pacific. Great-power peace abroad coexists with industrial-scale conquest elsewhere.',
-    hold: 12,
-    bbox: [-15, 0, 95, 55],
-  },
-  {
-    year: 1944, title: 'World War II', shortTitle: 'World War II',
-    blurb: 'The deadliest conflict in human history reshapes the political map. By 1944 the Soviets push west, the Allies have landed in Normandy, and empires are about to dissolve.',
-    hold: 12,
-    bbox: [-15, 32, 50, 60],
-  },
-  {
-    year: 1989, title: 'After the Cold War', shortTitle: 'After',
-    blurb: 'Civil wars and insurgencies replace state-on-state conflict as the dominant form. The map gets denser even as the great powers fight each other less.',
-    hold: 12,
-    bbox: [-130, -50, 170, 65],
-  },
-];
+import { DEFAULT_EXHIBIT_ID, getExhibit } from '@/lib/exhibits';
 
 interface Props {
   open: boolean;
+  /** Which curated exhibit to run (lib/exhibits.ts). Unknown or missing
+   *  ids fall back to the welcome tour. */
+  exhibitId?: string;
   /** User dismissed the tour early (Skip/Escape/X). Should NOT reset the
    *  timeline — preserve wherever they were. */
   onClose: () => void;
@@ -102,6 +21,11 @@ interface Props {
   /** Fly the map to a given bounding box on each stop. Optional —
    *  if omitted, the tour just seeks the timeline without panning. */
   onFlyToBbox?: (bbox: [number, number, number, number]) => void;
+  /** Open a conflict's panel when a stop carries `conflictId`. Optional —
+   *  a page that doesn't wire it just gets the year + camera. */
+  onSelectConflict?: (conflictId: string) => void;
+  /** Open an empire's panel when a stop carries `empireId`. Optional. */
+  onSelectEmpire?: (empireId: string) => void;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -114,12 +38,28 @@ interface Props {
  * ivory text (Next is an ivory fill with ink text). No amber: amber is
  * reserved for the current year and selection.
  *
- * Mechanics unchanged: 12 s holds, pause on hover, arrows / Enter / Space /
- * Escape; Skip preserves the year. Focus moves into the card on open and
- * returns on close.
+ * Mechanics: per-stop holds (12 s welcome, 14 s thematic), pause on hover,
+ * arrows / Enter / Space / Escape; Skip preserves the year. Focus moves
+ * into the card on open and returns on close. Stops live in
+ * lib/exhibits.ts; `exhibitId` picks the exhibit.
  * ─────────────────────────────────────────────────────────── */
-function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
-  const [index, setIndex] = useState(0);
+function OpeningTour({
+  open,
+  exhibitId,
+  onClose,
+  onFinish,
+  onSeek,
+  onFlyToBbox,
+  onSelectConflict,
+  onSelectEmpire,
+}: Props) {
+  const exhibit = getExhibit(exhibitId) ?? getExhibit(DEFAULT_EXHIBIT_ID)!;
+  const STOPS = exhibit.stops;
+  const isWelcome = exhibit.id === DEFAULT_EXHIBIT_ID;
+  const [rawIndex, setIndex] = useState(0);
+  // Clamp for the render between an exhibit switch and the reset effect
+  // below, when the previous exhibit's index may exceed this one's length.
+  const index = Math.min(rawIndex, STOPS.length - 1);
   const [paused, setPaused] = useState(false);
   // Auto-advance also holds while the pointer rests on the card, so a
   // reader isn't yanked to the next stop mid-sentence.
@@ -128,11 +68,12 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
+  // Restart from the first stop when the tour opens or switches exhibit.
   useEffect(() => {
     if (!open) return;
     setIndex(0);
     setPaused(false);
-  }, [open]);
+  }, [open, exhibit.id]);
 
   // Seek to current stop's year whenever we change stops. The intro stop's
   // year is null (sentinel) — don't move the timeline for that one so the
@@ -141,14 +82,24 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
     if (!open) return;
     const targetYear = STOPS[index].year;
     if (targetYear !== null) onSeek(targetYear);
-  }, [open, index, onSeek]);
+  }, [open, index, onSeek, STOPS]);
 
   // Pan/zoom the map to the stop's region on each step.
   useEffect(() => {
     if (!open || !onFlyToBbox) return;
     const bbox = STOPS[index].bbox;
     if (bbox) onFlyToBbox(bbox);
-  }, [open, index, onFlyToBbox]);
+  }, [open, index, onFlyToBbox, STOPS]);
+
+  // Open the stop's conflict or empire panel, when the page wires it. A
+  // stop carrying both selects the conflict (one right-side panel at a
+  // time; conflict wins, as in the URL hash).
+  useEffect(() => {
+    if (!open) return;
+    const stop = STOPS[index];
+    if (stop.conflictId && onSelectConflict) onSelectConflict(stop.conflictId);
+    else if (stop.empireId && onSelectEmpire) onSelectEmpire(stop.empireId);
+  }, [open, index, STOPS, onSelectConflict, onSelectEmpire]);
 
   // Auto-advance timer (skipped when paused or while hovering the card)
   useEffect(() => {
@@ -164,7 +115,7 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [open, index, paused, hovering, onFinish]);
+  }, [open, index, paused, hovering, onFinish, STOPS]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -190,7 +141,7 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open, index, onClose, onFinish]);
+  }, [open, index, onClose, onFinish, STOPS]);
 
   // Focus moves to "Next" on open (the primary action) and returns to the
   // Tour button on close; Tab cycles within the card.
@@ -201,10 +152,13 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
   const isLast = index === STOPS.length - 1;
   const isFirst = index === 0;
   const total = STOPS.length;
+  // Welcome: "Exhibit 3 of 10 · 490 BCE". Thematic: "The Mongol century ·
+  // Stop 3 of 8 · 1241" — the exhibit name is the frame, stops count within.
+  const counter = isWelcome
+    ? `Exhibit ${index + 1} of ${total}`
+    : `${exhibit.title} · Stop ${index + 1} of ${total}`;
   const eyebrow =
-    stop.year === null
-      ? `Exhibit ${index + 1} of ${total} · Introduction`
-      : `Exhibit ${index + 1} of ${total} · ${formatYear(stop.year)}`;
+    stop.year === null ? `${counter} · Introduction` : `${counter} · ${formatYear(stop.year)}`;
 
   // Shared button base — hairline chrome, ivory text. Next is an ivory
   // fill with ink text. 40px tall so they clear the touch minimum.
@@ -294,7 +248,7 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
                 <button
                   type="button"
                   onClick={onClose}
-                  aria-label="Skip the tour"
+                  aria-label={isWelcome ? 'Skip the tour' : 'Close the exhibit'}
                   className="icon-btn -mr-2"
                   title="Skip (Esc)"
                 >
@@ -409,7 +363,7 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
             {/* Controls — Skip (quiet) left; Pause · Previous · Next right. */}
             <div className="flex items-center justify-between gap-2 mt-4 pt-3" style={{ borderTop: '1px solid var(--rule)' }}>
               <button type="button" onClick={onClose} style={ctrlQuiet} className="font-ui hover:text-wars-text">
-                Skip tour
+                {isWelcome ? 'Skip tour' : 'Close exhibit'}
               </button>
               <div className="flex items-center gap-2">
                 <button

@@ -58,6 +58,10 @@ interface Props {
    *  ExportMenu is a separate control). */
   exportConflicts?: Conflict[];
   currentYear?: number;
+  /** Open the command palette (global, all-years search). The panel's own
+   *  search box only filters the conflicts active this year; this renders
+   *  the hand-off hint / button. */
+  onOpenSearch?: () => void;
 }
 
 const REGIONS: { key: ConflictFilters['region']; label: string; bbox?: [number, number, number, number] }[] = [
@@ -122,6 +126,7 @@ function FilterPanel({
   onOpenChange,
   exportConflicts,
   currentYear = 0,
+  onOpenSearch,
 }: Props) {
   const [openState, setOpenState] = useState(false);
   const open = openProp ?? openState;
@@ -301,9 +306,11 @@ function FilterPanel({
               </button>
             </div>
 
-            {/* Search */}
+            {/* Search — scoped to the conflicts active THIS year. The global
+                palette (⌘K / `/`) searches every year; the hint under the
+                box points there. */}
             <div className="mb-3">
-              <label htmlFor="filter-search" className="eyebrow block mb-1.5">Search</label>
+              <label htmlFor="filter-search" className="eyebrow block mb-1.5">Filter this year</label>
               <input
                 id="filter-search"
                 type="text"
@@ -312,7 +319,40 @@ function FilterPanel({
                 placeholder="name, country, description…"
                 className="w-full font-ui placeholder-wars-faint"
                 style={fieldStyle}
+                aria-describedby="filter-search-hint"
               />
+              {onOpenSearch ? (
+                <button
+                  id="filter-search-hint"
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    onOpenSearch();
+                  }}
+                  className="font-ui mt-1.5 text-left w-full text-wars-muted hover:text-wars-text transition-colors min-h-[44px] sm:min-h-0"
+                  style={{
+                    fontSize: 12,
+                    background: 'transparent',
+                    border: 'none',
+                    borderRadius: 0,
+                    padding: 0,
+                    cursor: 'pointer',
+                  }}
+                >
+                  <span className="hidden sm:inline">
+                    Press <kbd className="font-mono" style={{ fontSize: 11, color: 'var(--ink-text-2)' }}>/</kbd> to search all years
+                  </span>
+                  <span className="sm:hidden">Search all years →</span>
+                </button>
+              ) : (
+                <div
+                  id="filter-search-hint"
+                  className="font-ui mt-1.5 text-wars-muted"
+                  style={{ fontSize: 12 }}
+                >
+                  Only the conflicts active this year are filtered.
+                </div>
+              )}
               {/* Match navigator — appears once the filter narrows the set.
                   ◀ N/M ▶ pattern: click prev/next to step through filtered
                   matches on the map. Reads the index from selectedConflict so
