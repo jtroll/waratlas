@@ -28,6 +28,11 @@ export interface Conflict {
   hook?: string;
   narrative?: string;
   significance?: string;
+  /** Canonical empire ids (from empires.json) for the belligerents, where a
+   *  matching polity feature exists. Populated by the r15 belligerent
+   *  canonicalisation; absent for records whose belligerents have no
+   *  polygon in the atlas. */
+  polityIds?: string[];
   /** Researcher-grade source attribution (top ~100 conflicts). */
   sources?: ConflictSource[];
 }

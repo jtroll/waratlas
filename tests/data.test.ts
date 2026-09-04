@@ -81,6 +81,30 @@ describe('conflicts.json core invariants', () => {
   });
 });
 
+describe('polityIds (r15 belligerent join)', () => {
+  // Floor of the join rate reached by scripts/r15_polity_join.py for importance >= 3 (61.9% on
+  // 2026-09-04); the target was >= 60%. Raise this when more polities are added, never lower it.
+  const JOIN_RATE_FLOOR_IMPORTANCE_3 = 0.6;
+
+  it('every polityIds entry resolves to an empire feature id, unique, non-empty when present', () => {
+    const empireIds = new Set(sources.empires.features.map((f) => f.properties.id));
+    for (const c of sources.conflicts) {
+      if (!('polityIds' in c)) continue;
+      const ids = c.polityIds as string[];
+      expect(Array.isArray(ids) && ids.length > 0, `${c.id}: polityIds must be a non-empty array`).toBe(true);
+      expect(new Set(ids).size, `${c.id}: duplicate polityIds`).toBe(ids.length);
+      for (const p of ids) expect(empireIds.has(p), `${c.id}: polityIds entry ${p} is not an empire id`).toBe(true);
+    }
+  });
+
+  it(`at least ${JOIN_RATE_FLOOR_IMPORTANCE_3 * 100}% of importance>=3 conflicts carry a polityId`, () => {
+    const major = sources.conflicts.filter((c) => c.importance >= 3);
+    const joined = major.filter((c) => Array.isArray(c.polityIds) && c.polityIds.length > 0);
+    expect(major.length).toBeGreaterThan(0);
+    expect(joined.length / major.length).toBeGreaterThanOrEqual(JOIN_RATE_FLOOR_IMPORTANCE_3);
+  });
+});
+
 describe('empires.json core invariants', () => {
   it('every feature has numeric years, endYear >= startYear and polygon geometry', () => {
     const seen = new Set<string>();
