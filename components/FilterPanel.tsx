@@ -2,6 +2,8 @@
 
 import { memo, useState } from 'react';
 import type { Conflict } from '@/lib/types';
+import { downloadConflictsCSV, downloadConflictsGeoJSON } from '@/lib/export';
+import BorderLegend from './BorderLegend';
 
 export interface ConflictFilters {
   /** Minimum importance 1-5; 1 means "show all". */
@@ -48,6 +50,14 @@ interface Props {
   /** Called when the user clicks ◀ / ▶ in the match navigator. The page
    * handles the rest (panning the map, opening the sidebar). */
   onSelectMatch?: (c: Conflict) => void;
+  /** Controlled open state (the mobile dock's Search tab opens the sheet).
+   *  Omit both to let the panel manage its own state. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** Conflicts + year for the mobile sheet's Export row (the desktop
+   *  ExportMenu is a separate control). */
+  exportConflicts?: Conflict[];
+  currentYear?: number;
 }
 
 const REGIONS: { key: ConflictFilters['region']; label: string; bbox?: [number, number, number, number] }[] = [
@@ -65,9 +75,40 @@ export function regionBboxFor(region: ConflictFilters['region']): [number, numbe
   return REGIONS.find((r) => r.key === region)?.bbox ?? null;
 }
 
+const IMPORTANCE_LABEL: Record<number, string> = {
+  1: 'Minor', 2: 'Regional', 3: 'Significant', 4: 'Major', 5: 'World-changing',
+};
+
+/** Five lightness steps of vermilion (hue 28). Neighbouring steps differ by
+ *  ≥ 1.4:1 in luminance so the ramp reads without relying on hue. */
+const IMPORTANCE_RAMP: Record<number, string> = {
+  1: 'oklch(0.34 0.17 28)',
+  2: 'oklch(0.45 0.17 28)',
+  3: 'oklch(0.56 0.17 28)',
+  4: 'oklch(0.68 0.17 28)',
+  5: 'oklch(0.80 0.14 28)',
+};
+
+const FIELD_BG = 'oklch(0.16 0.012 250 / 0.6)';
+
+// Chevron for the restyled native <select> (ink-muted stroke).
+const CHEVRON =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2396928a' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E\")";
+
+const fieldStyle: React.CSSProperties = {
+  fontSize: 13,
+  padding: '6px 8px',
+  minHeight: 32,
+  background: FIELD_BG,
+  border: '1px solid var(--rule)',
+  borderRadius: 0,
+  color: 'var(--ink-text)',
+};
+
 /**
- * Filter panel — collapsible panel above the timeline. Applies live filters to
- * which conflicts are shown on the map and in the list panel.
+ * Filter panel — collapsible panel below the TopBar on desktop; a bottom
+ * sheet on mobile (opened from the dock's Search tab) that also carries the
+ * border legend and the export row, which have no other home on phones.
  */
 function FilterPanel({
   filters,
@@ -77,8 +118,17 @@ function FilterPanel({
   matches = [],
   selectedConflict = null,
   onSelectMatch,
+  open: openProp,
+  onOpenChange,
+  exportConflicts,
+  currentYear = 0,
 }: Props) {
-  const [open, setOpen] = useState(false);
+  const [openState, setOpenState] = useState(false);
+  const open = openProp ?? openState;
+  const setOpen = (v: boolean) => {
+    setOpenState(v);
+    onOpenChange?.(v);
+  };
   const isFiltering =
     filters.minImportance > 1 ||
     filters.region !== 'all' ||
@@ -108,45 +158,70 @@ function FilterPanel({
     onSelectMatch!(matches[next]);
   };
 
+  const navBtn: React.CSSProperties = {
+    background: FIELD_BG,
+    border: '1px solid var(--rule)',
+    borderRadius: 0,
+  };
+
   return (
     <div
+      data-avoid
       // Mobile: anchor in the TopBar's right area, inline with the LIVE
-      // button. The mobile TopBar pads `py-2` (8px) so the filter button's
-      // top edge needs to match — 8px from the top of the viewport — so it
-      // optically sits in the same row as the ? and Live buttons (both also
-      // 32px tall now).
-      // Desktop: original placement below the TopBar with the full "Filter"
-      // pill + active count.
-      className="absolute top-2 right-[88px] sm:top-[62px] sm:right-[74px] z-30 sm:z-20 pointer-events-auto"
+      // button (44px tap targets, 8px from the top). Desktop: below the
+      // TopBar with the full "Filter" pill + active count. This root is a
+      // stacking context, so while the mobile sheet is open it is raised
+      // above the Timeline (z-30) and the map chrome; the dock (z-30) is
+      // left uncovered by the scrim.
+      className={`absolute top-2 right-[100px] sm:top-[62px] sm:right-[74px] ${open ? 'z-50' : 'z-30'} sm:z-20 pointer-events-auto`}
       style={{ width: 'auto' }}
     >
+      {/* Range-input styling can't be done inline (pseudo-elements). */}
+      <style>{`
+        .fp-range { -webkit-appearance: none; appearance: none; width: 100%; height: 24px; background: transparent; margin: 0; }
+        .fp-range::-webkit-slider-runnable-track { height: 2px; background: var(--rule-strong); }
+        .fp-range::-moz-range-track { height: 2px; background: var(--rule-strong); }
+        .fp-range::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -6px; background: var(--ink-text); border: 1px solid var(--ink-0); border-radius: 0; cursor: pointer; }
+        .fp-range::-moz-range-thumb { width: 14px; height: 14px; background: var(--ink-text); border: 1px solid var(--ink-0); border-radius: 0; cursor: pointer; }
+        .fp-range:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+        .fp-select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+        .fp-select option { background: oklch(0.20 0.014 250); color: oklch(0.94 0.012 85); }
+      `}</style>
+
       <button
         onClick={() => setOpen(!open)}
-        className="font-ui inline-flex items-center transition-colors h-8"
+        className="font-ui inline-flex items-center transition-colors h-11 sm:h-8"
         style={{
           fontSize: 11,
           letterSpacing: '0.04em',
           textTransform: 'uppercase',
+          borderRadius: 0,
           background: isFiltering
             ? 'oklch(0.78 0.14 78 / 0.10)'
-            : 'oklch(0.20 0.014 250 / 0.85)',
-          border: `1px solid ${isFiltering ? 'var(--amber)' : 'var(--rule-strong)'}`,
-          color: isFiltering ? 'var(--amber)' : 'var(--ink-text-2)',
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
+            : open
+              ? 'color-mix(in oklch, var(--ink-text) 10%, transparent)'
+              : 'var(--surface-chrome, oklch(0.20 0.014 250 / 0.85))',
+          border: `1px solid ${
+            isFiltering
+              ? 'var(--amber)'
+              : open
+                ? 'color-mix(in oklch, var(--ink-text) 45%, transparent)'
+                : 'var(--rule-strong)'
+          }`,
+          color: isFiltering ? 'var(--amber)' : open ? 'var(--ink-text)' : 'var(--ink-text-2)',
+          backdropFilter: 'blur(var(--blur-chrome, 8px))',
+          WebkitBackdropFilter: 'blur(var(--blur-chrome, 8px))',
           cursor: 'pointer',
         }}
         aria-expanded={open}
+        aria-pressed={open}
         aria-label={open ? 'Close filters' : 'Open filters'}
         title="Filters"
       >
-        {/* Icon-only on mobile. Desktop shows full pill with text + counts.
-            On mobile, the inner span fills the 32px h-8 button (border-box
-            makes the outer footprint also 32px) so it lines up with the
-            ?  and Live buttons in the same row. */}
+        {/* Icon-only on mobile (44×44). Desktop shows full pill with text + counts. */}
         <span
           className="inline-flex items-center justify-center sm:hidden h-full"
-          style={{ width: 30 }}
+          style={{ width: 42 }}
         >
           <svg width="13" height="13" viewBox="0 0 11 11" aria-hidden="true">
             <path
@@ -174,7 +249,7 @@ function FilterPanel({
           {isFiltering && (
             <span
               className="font-mono text-wars-muted"
-              style={{ fontSize: 10, letterSpacing: '0.02em' }}
+              style={{ fontSize: 11, letterSpacing: '0.02em' }}
             >
               {filteredCount}/{totalActive}
             </span>
@@ -183,216 +258,303 @@ function FilterPanel({
       </button>
 
       {open && (
-        <div
-          // On mobile the trigger is icon-only and pinned to the topbar
-          // row, so the expanded panel pops out anchored to its RIGHT edge
-          // (extending leftward) with a fixed width that fits a Pixel-class
-          // viewport. On desktop the panel flows directly below the pill.
-          className="absolute right-0 top-full mt-1 sm:relative sm:mt-1 w-[min(320px,calc(100vw-32px))] sm:w-[244px]"
-          style={{
-            background: 'oklch(0.20 0.014 250 / 0.95)',
-            backdropFilter: 'blur(18px)',
-            WebkitBackdropFilter: 'blur(18px)',
-            border: '1px solid var(--rule-strong)',
-            padding: 14,
-          }}
-        >
-          {/* Search */}
-          <div className="mb-3">
-            <label htmlFor="filter-search" className="eyebrow block mb-1.5">Search</label>
-            <input
-              id="filter-search"
-              type="text"
-              value={filters.search}
-              onChange={(e) => onChange({ ...filters, search: e.target.value })}
-              placeholder="name, country, description…"
-              className="w-full font-ui text-wars-text placeholder-wars-faint"
-              style={{
-                fontSize: 12.5,
-                padding: '5px 8px',
-                background: 'oklch(0.16 0.012 250 / 0.6)',
-                border: '1px solid var(--rule)',
-              }}
-            />
-            {/* Match navigator — appears once the filter narrows the set.
-                ◀ N/M ▶ pattern: click prev/next to step through filtered
-                matches on the map. Reads the index from selectedConflict so
-                the position stays in sync with sidebar/map selections. */}
-            {canNavigate && (
-              <div
-                className="flex items-center justify-between mt-2 font-ui"
-                style={{ fontSize: 11, color: 'var(--ink-text-2)' }}
+        <>
+          {/* Mobile scrim — tap outside the sheet to close. */}
+          <div
+            className="sm:hidden fixed inset-x-0 top-0 z-30"
+            style={{
+              bottom: 'calc(46px + env(safe-area-inset-bottom, 0px))',
+              background: 'oklch(0.10 0.012 250 / 0.5)',
+            }}
+            onClick={() => setOpen(false)}
+            aria-hidden
+          />
+          <div
+            // Mobile: bottom sheet above the tab dock. Desktop: flows
+            // directly below the pill.
+            className="fixed inset-x-0 z-40 overflow-y-auto sm:overflow-visible sm:static sm:z-auto sm:mt-1 sm:w-[244px] sm:max-h-none"
+            style={{
+              bottom: 'calc(46px + env(safe-area-inset-bottom, 0px))',
+              maxHeight: 'min(72dvh, 560px)',
+              background: 'var(--surface-sheet, oklch(0.20 0.014 250 / 0.97))',
+              backdropFilter: 'blur(var(--blur-panel, 18px))',
+              WebkitBackdropFilter: 'blur(var(--blur-panel, 18px))',
+              border: '1px solid var(--rule-strong)',
+              padding: 14,
+            }}
+            role="dialog"
+            aria-label="Filters"
+          >
+            {/* Sheet header (mobile only) */}
+            <div className="sm:hidden flex items-center justify-between mb-3">
+              <div className="eyebrow" style={{ fontSize: 11 }}>
+                Filters{isFiltering ? ` · ${filteredCount}/${totalActive} conflicts` : ''}
+              </div>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center w-11 h-11 -mr-2 -mt-2 text-wars-muted hover:text-wars-text"
+                style={{ background: 'transparent', border: 'none', borderRadius: 0, fontSize: 18, cursor: 'pointer' }}
+                aria-label="Close filters"
               >
-                <button
-                  type="button"
-                  onClick={goPrev}
-                  disabled={matches.length < 2}
-                  className="inline-flex items-center justify-center transition-colors hover:text-wars-text disabled:opacity-30 disabled:cursor-default"
-                  style={{
-                    width: 28,
-                    height: 24,
-                    background: 'oklch(0.16 0.012 250 / 0.6)',
-                    border: '1px solid var(--rule)',
-                    cursor: matches.length < 2 ? 'default' : 'pointer',
-                  }}
-                  aria-label="Previous match"
-                  title="Previous match"
+                ×
+              </button>
+            </div>
+
+            {/* Search */}
+            <div className="mb-3">
+              <label htmlFor="filter-search" className="eyebrow block mb-1.5">Search</label>
+              <input
+                id="filter-search"
+                type="text"
+                value={filters.search}
+                onChange={(e) => onChange({ ...filters, search: e.target.value })}
+                placeholder="name, country, description…"
+                className="w-full font-ui placeholder-wars-faint"
+                style={fieldStyle}
+              />
+              {/* Match navigator — appears once the filter narrows the set.
+                  ◀ N/M ▶ pattern: click prev/next to step through filtered
+                  matches on the map. Reads the index from selectedConflict so
+                  the position stays in sync with sidebar/map selections. */}
+              {canNavigate && (
+                <div
+                  className="flex items-center justify-between mt-2 font-ui"
+                  style={{ fontSize: 11, color: 'var(--ink-text-2)' }}
                 >
-                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
-                    <path
-                      d="M6.5 1.5 L3 5 L6.5 8.5"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-                <span
-                  className="font-mono text-wars-muted"
-                  style={{ fontSize: 10.5, letterSpacing: '0.04em' }}
-                  aria-live="polite"
-                >
-                  {currentIdx >= 0 ? `${currentIdx + 1} of ${matches.length}` : `${matches.length} match${matches.length === 1 ? '' : 'es'}`}
-                </span>
-                <button
-                  type="button"
-                  onClick={goNext}
-                  disabled={matches.length < 2 && currentIdx >= 0}
-                  className="inline-flex items-center justify-center transition-colors hover:text-wars-text disabled:opacity-30 disabled:cursor-default"
-                  style={{
-                    width: 28,
-                    height: 24,
-                    background: 'oklch(0.16 0.012 250 / 0.6)',
-                    border: '1px solid var(--rule)',
-                    cursor: matches.length < 2 && currentIdx >= 0 ? 'default' : 'pointer',
-                  }}
-                  aria-label="Next match"
-                  title="Next match"
-                >
-                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
-                    <path
-                      d="M3.5 1.5 L7 5 L3.5 8.5"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    disabled={matches.length < 2}
+                    className="inline-flex items-center justify-center transition-colors hover:text-wars-text disabled:opacity-30 disabled:cursor-default w-11 h-11 sm:w-8 sm:h-6"
+                    style={{ ...navBtn, cursor: matches.length < 2 ? 'default' : 'pointer' }}
+                    aria-label="Previous match"
+                    title="Previous match"
+                  >
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                      <path
+                        d="M6.5 1.5 L3 5 L6.5 8.5"
+                        stroke="currentColor"
+                        strokeWidth="1.2"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <span
+                    className="font-mono text-wars-muted"
+                    style={{ fontSize: 11, letterSpacing: '0.04em' }}
+                    aria-live="polite"
+                  >
+                    {currentIdx >= 0 ? `${currentIdx + 1} of ${matches.length}` : `${matches.length} match${matches.length === 1 ? '' : 'es'}`}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    disabled={matches.length < 2 && currentIdx >= 0}
+                    className="inline-flex items-center justify-center transition-colors hover:text-wars-text disabled:opacity-30 disabled:cursor-default w-11 h-11 sm:w-8 sm:h-6"
+                    style={{ ...navBtn, cursor: matches.length < 2 && currentIdx >= 0 ? 'default' : 'pointer' }}
+                    aria-label="Next match"
+                    title="Next match"
+                  >
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                      <path
+                        d="M3.5 1.5 L7 5 L3.5 8.5"
+                        stroke="currentColor"
+                        strokeWidth="1.2"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Region */}
+            <div className="mb-3">
+              <label htmlFor="filter-region" className="eyebrow block mb-1.5">Region</label>
+              <select
+                id="filter-region"
+                value={filters.region}
+                onChange={(e) =>
+                  onChange({ ...filters, region: e.target.value as ConflictFilters['region'] })
+                }
+                className="fp-select w-full font-ui"
+                style={{
+                  ...fieldStyle,
+                  appearance: 'none',
+                  WebkitAppearance: 'none',
+                  MozAppearance: 'none',
+                  paddingRight: 28,
+                  backgroundImage: CHEVRON,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 10px center',
+                  cursor: 'pointer',
+                }}
+              >
+                {REGIONS.map((r) => (
+                  <option key={r.key} value={r.key}>
+                    {r.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Importance — five stepped swatches on a lightness ramp, each
+                labelled; the current minimum carries an ivory outline. */}
+            <div className="mb-3">
+              <div id="filter-importance-label" className="eyebrow block mb-1.5">
+                Min importance · {IMPORTANCE_LABEL[filters.minImportance]}
+              </div>
+              <div className="flex gap-1" role="group" aria-labelledby="filter-importance-label">
+                {[1, 2, 3, 4, 5].map((step) => {
+                  const active = step >= filters.minImportance;
+                  const current = filters.minImportance === step;
+                  return (
+                    <button
+                      key={step}
+                      type="button"
+                      onClick={() => onChange({ ...filters, minImportance: step })}
+                      aria-pressed={current}
+                      aria-label={`${IMPORTANCE_LABEL[step]} (${step} of 5)`}
+                      className="flex-1 flex flex-col items-center justify-end gap-1 transition-colors min-h-[44px] sm:min-h-[30px]"
+                      style={{
+                        padding: '3px 2px',
+                        background: 'transparent',
+                        border: `1px solid ${current ? 'var(--ink-text)' : 'transparent'}`,
+                        borderRadius: 0,
+                        cursor: 'pointer',
+                      }}
+                      title={IMPORTANCE_LABEL[step]}
+                    >
+                      <span
+                        aria-hidden
+                        className="block w-full"
+                        style={{
+                          height: 10,
+                          background: active ? IMPORTANCE_RAMP[step] : FIELD_BG,
+                          border: `1px solid ${active ? 'transparent' : 'var(--rule)'}`,
+                        }}
+                      />
+                      <span
+                        className="font-mono tabular-nums"
+                        style={{
+                          fontSize: 11,
+                          lineHeight: '13px',
+                          color: active ? 'var(--ink-text-2)' : 'var(--ink-muted)',
+                        }}
+                      >
+                        {step}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Min duration */}
+            <div className="mb-3">
+              <label htmlFor="filter-duration" className="eyebrow block mb-1.5">
+                Min duration ·{' '}
+                {filters.minDurationYears === 0
+                  ? 'any'
+                  : `${filters.minDurationYears}y`}
+              </label>
+              <input
+                id="filter-duration"
+                type="range"
+                min={0}
+                max={50}
+                step={1}
+                value={filters.minDurationYears}
+                onChange={(e) =>
+                  onChange({
+                    ...filters,
+                    minDurationYears: parseInt(e.target.value, 10),
+                  })
+                }
+                className="fp-range"
+                style={{ accentColor: 'var(--ink-text)' }}
+              />
+            </div>
+
+            {isFiltering && (
+              <button
+                onClick={() => onChange(DEFAULT_FILTERS)}
+                className="font-ui w-full text-wars-muted hover:text-wars-text transition-colors mt-2 min-h-[44px] sm:min-h-0"
+                style={{
+                  fontSize: 11,
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  background: 'transparent',
+                  border: 'none',
+                  borderRadius: 0,
+                  borderTop: '1px solid var(--rule)',
+                  cursor: 'pointer',
+                  paddingTop: 8,
+                  paddingBottom: 8,
+                }}
+              >
+                Reset all filters
+              </button>
+            )}
+
+            {/* Mobile-only: the legend and export have no other home on
+                phones (BorderLegend and ExportMenu are desktop-only). */}
+            <div className="sm:hidden mt-3 pt-3" style={{ borderTop: '1px solid var(--rule)' }}>
+              <BorderLegend variant="inline" />
+            </div>
+            {exportConflicts && (
+              <div className="sm:hidden mt-3 pt-3" style={{ borderTop: '1px solid var(--rule)' }}>
+                <div className="eyebrow mb-1.5">
+                  Export · {exportConflicts.length} conflicts
+                </div>
+                <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => downloadConflictsCSV(exportConflicts, currentYear)}
+                    className="font-ui flex-1 min-h-[44px] hover:text-wars-text transition-colors"
+                    style={{
+                      fontSize: 12,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      background: FIELD_BG,
+                      border: '1px solid var(--rule)',
+                      borderRadius: 0,
+                      color: 'var(--ink-text-2)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    CSV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => downloadConflictsGeoJSON(exportConflicts, currentYear)}
+                    className="font-ui flex-1 min-h-[44px] hover:text-wars-text transition-colors"
+                    style={{
+                      fontSize: 12,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      background: FIELD_BG,
+                      border: '1px solid var(--rule)',
+                      borderRadius: 0,
+                      color: 'var(--ink-text-2)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    GeoJSON
+                  </button>
+                </div>
               </div>
             )}
           </div>
-
-          {/* Region */}
-          <div className="mb-3">
-            <label htmlFor="filter-region" className="eyebrow block mb-1.5">Region</label>
-            <select
-              id="filter-region"
-              value={filters.region}
-              onChange={(e) =>
-                onChange({ ...filters, region: e.target.value as ConflictFilters['region'] })
-              }
-              className="w-full font-ui text-wars-text"
-              style={{
-                fontSize: 12.5,
-                padding: '5px 8px',
-                background: 'oklch(0.16 0.012 250 / 0.6)',
-                border: '1px solid var(--rule)',
-              }}
-            >
-              {REGIONS.map((r) => (
-                <option key={r.key} value={r.key}>
-                  {r.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Importance — 5 stepped bars instead of slider */}
-          <div className="mb-3">
-            <div id="filter-importance-label" className="eyebrow block mb-1.5">
-              Min importance · {IMPORTANCE_LABEL[filters.minImportance]}
-            </div>
-            <div className="flex gap-1" role="group" aria-labelledby="filter-importance-label">
-              {[1, 2, 3, 4, 5].map((step) => {
-                const active = step <= filters.minImportance;
-                return (
-                  <button
-                    key={step}
-                    onClick={() => onChange({ ...filters, minImportance: step })}
-                    aria-pressed={filters.minImportance === step}
-                    className="flex-1 transition-colors"
-                    style={{
-                      height: 18,
-                      background: active
-                        ? step >= 4
-                          ? 'var(--vermilion)'
-                          : 'var(--vermilion-2)'
-                        : 'oklch(0.16 0.012 250 / 0.6)',
-                      border: '1px solid var(--rule)',
-                      cursor: 'pointer',
-                    }}
-                    title={IMPORTANCE_LABEL[step]}
-                  />
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Min duration */}
-          <div className="mb-3">
-            <label htmlFor="filter-duration" className="eyebrow block mb-1.5">
-              Min duration ·{' '}
-              {filters.minDurationYears === 0
-                ? 'any'
-                : `${filters.minDurationYears}y`}
-            </label>
-            <input
-              id="filter-duration"
-              type="range"
-              min={0}
-              max={50}
-              step={1}
-              value={filters.minDurationYears}
-              onChange={(e) =>
-                onChange({
-                  ...filters,
-                  minDurationYears: parseInt(e.target.value, 10),
-                })
-              }
-              className="w-full"
-            />
-          </div>
-
-          {isFiltering && (
-            <button
-              onClick={() => onChange(DEFAULT_FILTERS)}
-              className="font-ui w-full text-wars-muted hover:text-wars-text transition-colors mt-2 pt-2"
-              style={{
-                fontSize: 11,
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                background: 'transparent',
-                border: 'none',
-                borderTop: '1px solid var(--rule)',
-                cursor: 'pointer',
-                paddingTop: 8,
-              }}
-            >
-              Reset all filters
-            </button>
-          )}
-        </div>
+        </>
       )}
     </div>
   );
 }
-
-const IMPORTANCE_LABEL: Record<number, string> = {
-  1: 'Minor', 2: 'Regional', 3: 'Significant', 4: 'Major', 5: 'World-changing',
-};
 
 export default memo(FilterPanel);

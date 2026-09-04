@@ -9,16 +9,20 @@ import {
   buildYearIndex,
   buildConflictRelations,
   mergeConflictText,
+  isConflictActiveAt,
+  stepConflict,
 } from '@/lib/conflicts';
 import { DATA_URLS } from '@/lib/data-urls';
+import { parseHash, buildHash, type HashState } from '@/lib/hash';
 import { playbackStore } from '@/lib/playback-store';
 import idRedirects from '@/lib/generated/id-redirects.json';
-import MapView, { MapViewHandle } from '@/components/MapView';
+import MapView, { type MapViewHandle, type FlyToConflictOptions } from '@/components/MapView';
 import Timeline from '@/components/Timeline';
 import Sidebar from '@/components/Sidebar';
 import InfoBoxLayer from '@/components/InfoBoxLayer';
 import TopBar from '@/components/TopBar';
 import ConflictListPanel from '@/components/ConflictListPanel';
+import LoadingScreen from '@/components/LoadingScreen';
 import ErrorBoundary, { DataLoadError } from '@/components/ErrorBoundary';
 import BorderLegend from '@/components/BorderLegend';
 import DisputedTerritoryNote from '@/components/DisputedTerritoryNote';
@@ -30,6 +34,7 @@ import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration';
 import CityTimelineModal, { type CityCollection } from '@/components/CityTimelineModal';
 import MobileTabDock, { useMobileTab } from '@/components/MobileTabDock';
 import EmpireSidebar, { type EmpireProperties } from '@/components/EmpireSidebar';
+import SkipLink from '@/components/SkipLink';
 const MAX_YEAR = new Date().getFullYear();
 
 // Components we don't own but render with stable props — memoised here so
@@ -51,17 +56,25 @@ const TOUR_SEEN_KEY = 'wars-atlas-tour-seen';
 // scripts/data/id_redirects.json by scripts/build-data.mjs).
 const ID_REDIRECTS: Record<string, string> = idRedirects;
 
-/** Parse `#year=NNNN&conflict=ID`. Runs synchronously from a lazy state
- *  initializer at mount, so the values are captured before any effect can
- *  rewrite the hash (the URL-sync effect used to win the race against the
- *  data fetch and reset deep links to the start of the timeline). */
-function parseHash(hash: string): { year: number | null; conflictId: string | null } {
-  const yearMatch = hash.match(/year=(-?\d+)/);
-  const conflictMatch = hash.match(/conflict=([\w\-]+)/);
-  return {
-    year: yearMatch ? parseInt(yearMatch[1], 10) : null,
-    conflictId: conflictMatch ? conflictMatch[1] : null,
-  };
+/** Viewport insets (px) covered by the open right-side panel, so fly-to
+ *  can centre a point in the part of the map the user can actually see.
+ *  Desktop: the 460px sidebar plus the TopBar / Timeline strips. Mobile:
+ *  the 72dvh bottom sheet. */
+function panelInset(panelOpen: boolean): FlyToConflictOptions['inset'] {
+  if (typeof window === 'undefined') return {};
+  const mobile = window.innerWidth < 640;
+  if (mobile) {
+    return { top: 56, bottom: panelOpen ? Math.round(window.innerHeight * 0.72) : 160 };
+  }
+  return { top: 60, bottom: 140, right: panelOpen ? 460 : 0 };
+}
+
+/** Empire bbox fly padding: leave the right-side flyout uncovered. */
+function empireFlyPadding(): { top: number; bottom: number; left: number; right: number } {
+  const mobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  return mobile
+    ? { top: 60, bottom: Math.round(window.innerHeight * 0.72) + 16, left: 16, right: 16 }
+    : { top: 80, bottom: 160, left: 40, right: 500 };
 }
 
 function resolveConflictId(id: string): string {
@@ -113,10 +126,12 @@ export default function Home() {
   // Bumping loadAttempt re-runs the fetch.
   const [loadError, setLoadError] = useState<string | null>(null);
   const [loadAttempt, setLoadAttempt] = useState(0);
-  const [initialHash] = useState(() =>
+  // Parsed synchronously from a lazy state initializer at mount, so the
+  // values are captured before any effect can rewrite the hash.
+  const [initialHash] = useState<HashState>(() =>
     typeof window !== 'undefined'
       ? parseHash(window.location.hash)
-      : { year: null, conflictId: null },
+      : { year: null, conflictId: null, empireId: null },
   );
 
   const [timeline, setTimeline] = useState<TimelineState>({
@@ -151,6 +166,18 @@ export default function Home() {
   const [selectedEmpire, setSelectedEmpire] = useState<EmpireProperties | null>(null);
   // Short-lived mobile toast (e.g. "Citation copied").
   const [toast, setToast] = useState<string | null>(null);
+  // FilterPanel open state lives here so the mobile dock's Search tab can
+  // open the sheet and Escape can close it.
+  const [filterOpen, setFilterOpen] = useState(false);
+  // The conflict the user was reading before the current one (related-
+  // conflict clicks, list rows, [ / ] stepping). Rendered as a "← Previous"
+  // chip under the TopBar.
+  const [previousSelection, setPreviousSelection] = useState<Conflict | null>(null);
+  // Historical layers (empires + cities) are on the map — getEmpire() works.
+  const [empiresReady, setEmpiresReady] = useState(false);
+  const handleHistoricalLoad = useCallback(() => setEmpiresReady(true), []);
+  // A `conflict=` deep link waits here until the map can fly to it.
+  const deepLinkConflictRef = useRef<Conflict | null>(null);
 
   // Load the core conflicts data at runtime instead of bundling
   useEffect(() => {
@@ -181,6 +208,7 @@ export default function Home() {
             setSelectedEmpire(null);
             setSelectedConflict(target);
             setSidebarOpen(true);
+            deepLinkConflictRef.current = target;
           }
         }
         setTimeline(prev => ({
@@ -215,6 +243,41 @@ export default function Home() {
     const timer = setTimeout(() => setMapReady(true), 4000);
     return () => clearTimeout(timer);
   }, [dataLoaded, mapStyleLoaded]);
+
+  // `#conflict=` deep link: once the data AND the map style are in, fly to
+  // the conflict (the sidebar is already open from the data commit).
+  useEffect(() => {
+    if (!dataLoaded || !mapStyleLoaded) return;
+    const target = deepLinkConflictRef.current;
+    if (!target) return;
+    deepLinkConflictRef.current = null;
+    mapRef.current?.flyToConflict(target, { pan: true, inset: panelInset(true) });
+  }, [dataLoaded, mapStyleLoaded]);
+
+  // `#empire=` deep link: needs the empire feature properties, which live
+  // in MapView once empires.json has loaded. Select it and fit its bbox.
+  const empireDeepLinkDoneRef = useRef(false);
+  useEffect(() => {
+    if (!dataLoaded || !empiresReady || empireDeepLinkDoneRef.current) return;
+    const id = initialHash.empireId;
+    if (!id) return;
+    empireDeepLinkDoneRef.current = true;
+    const empire = mapRef.current?.getEmpire(id);
+    if (!empire) return;
+    setSidebarOpen(false);
+    setSelectedConflict(null);
+    setSelectedEmpire(empire);
+    if (initialHash.year == null) {
+      setTimeline((prev) => ({
+        ...prev,
+        currentYear: Math.max(prev.minYear, Math.min(MAX_YEAR, empire.startYear)),
+        isPlaying: false,
+      }));
+    }
+    if (empire.bbox) {
+      mapRef.current?.flyToBbox(empire.bbox, { padding: empireFlyPadding(), maxZoom: 5 });
+    }
+  }, [dataLoaded, empiresReady, initialHash]);
 
   // Long-text fields (description / hook / narrative / significance /
   // sources) live in a separate file so the map can paint without them.
@@ -370,6 +433,9 @@ export default function Home() {
       : filteredActiveConflicts.filter((c) => c.isActive)),
     [filteredActiveConflicts, activeConflicts, activeNow],
   );
+  // Ordered (by displayPriority) list the [ / ] shortcuts step through.
+  const stepListRef = useRef<ActiveConflict[]>(filteredActiveNow);
+  stepListRef.current = filteredActiveNow;
 
   // Track whether we were playing before a selection (for auto-resume)
   const wasPlayingRef = useRef(false);
@@ -515,27 +581,96 @@ export default function Home() {
   // Trigger opening tour for first-time visitors (after data loads)
   useEffect(() => {
     if (!dataLoaded) return;
-    const hasYearHash = initialHash.year !== null || initialHash.conflictId !== null;
+    const hasYearHash = initialHash.year !== null || initialHash.conflictId !== null || initialHash.empireId !== null;
     if (readTourSeen() || hasYearHash) return;
     const timer = setTimeout(openTour, 800);
     return () => clearTimeout(timer);
   }, [dataLoaded, initialHash, openTour]);
 
-  // Update URL hash when year or selected conflict changes (debounced).
-  // Gated on dataLoaded so the initial -3000 state never overwrites a deep
-  // link before the data fetch has had a chance to read it.
+  // URL hash + browser history.
+  //
+  // Selection changes (a conflict or empire opening/closing) are pushed so
+  // browser Back returns to the previous panel; year scrubbing only
+  // replaces the current entry (debounced) so a drag doesn't pile up
+  // hundreds of entries. Gated on dataLoaded so the initial -3000 state
+  // never overwrites a deep link before the data fetch has read it.
+  const lastSelectionKeyRef = useRef<string | null>(null);
+  // Set by the popstate handler: the next selection write comes from
+  // history itself, so replace rather than push.
+  const fromPopRef = useRef(false);
   useEffect(() => {
     if (!dataLoaded) return;
     const year = Math.round(timeline.currentYear);
+    const conflictId = selectedConflict?.id ?? null;
+    const empireId = conflictId ? null : selectedEmpire?.id ?? null;
+    const key = conflictId ? `c:${conflictId}` : empireId ? `e:${empireId}` : '';
+    const hash = buildHash(year, conflictId, empireId);
+    const state = { year, conflictId, empireId };
+    const fromPop = fromPopRef.current;
+    fromPopRef.current = false;
+
+    if (lastSelectionKeyRef.current === null || key !== lastSelectionKeyRef.current) {
+      const first = lastSelectionKeyRef.current === null;
+      lastSelectionKeyRef.current = key;
+      if (first || fromPop) window.history.replaceState(state, '', hash);
+      else window.history.pushState(state, '', hash);
+      return;
+    }
     const timeout = setTimeout(() => {
-      let newHash = `#year=${year}`;
-      if (selectedConflict) newHash += `&conflict=${selectedConflict.id}`;
-      if (window.location.hash !== newHash) {
-        window.history.replaceState(null, '', newHash);
-      }
+      if (window.location.hash !== hash) window.history.replaceState(state, '', hash);
     }, 300);
     return () => clearTimeout(timeout);
-  }, [dataLoaded, timeline.currentYear, selectedConflict]);
+  }, [dataLoaded, timeline.currentYear, selectedConflict, selectedEmpire]);
+
+  // Browser Back / Forward → restore that entry's selection and year.
+  useEffect(() => {
+    if (!dataLoaded) return;
+    const onPop = (e: PopStateEvent) => {
+      const raw = e.state as Partial<HashState> | null;
+      const st: HashState =
+        raw && ('conflictId' in raw || 'empireId' in raw || 'year' in raw)
+          ? { year: raw.year ?? null, conflictId: raw.conflictId ?? null, empireId: raw.empireId ?? null }
+          : parseHash(window.location.hash);
+      fromPopRef.current = true;
+      wasPlayingRef.current = false;
+      setTimeline((prev) => ({
+        ...prev,
+        isPlaying: false,
+        currentYear:
+          st.year != null ? Math.max(prev.minYear, Math.min(MAX_YEAR, st.year)) : prev.currentYear,
+      }));
+      const conflict = st.conflictId ? conflictById.get(resolveConflictId(st.conflictId)) : undefined;
+      if (conflict) {
+        setSelectedEmpire(null);
+        setSelectedConflict(conflict);
+        setSidebarOpen(true);
+        return;
+      }
+      const empire = st.empireId ? mapRef.current?.getEmpire(st.empireId) : undefined;
+      setSidebarOpen(false);
+      setSelectedConflict(null);
+      setSelectedEmpire(empire ?? null);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, [dataLoaded, conflictById]);
+
+  // "← Previous" chip: remember the conflict we navigated away from
+  // (conflict → conflict only; closing the panel clears it).
+  const lastSelectedRef = useRef<Conflict | null>(null);
+  const selectedConflictIdForPrev = selectedConflict?.id ?? null;
+  useEffect(() => {
+    const prev = lastSelectedRef.current;
+    if (selectedConflict) {
+      if (prev && prev.id !== selectedConflict.id) setPreviousSelection(prev);
+      lastSelectedRef.current = selectedConflict;
+    } else {
+      lastSelectedRef.current = null;
+      setPreviousSelection(null);
+    }
+    // Keyed on the id: the text merge swaps the object without a navigation.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedConflictIdForPrev]);
 
   // Playback loop with auto-speed support.
   //
@@ -629,20 +764,40 @@ export default function Home() {
     setTimeline(prev => ({ ...prev, speedMode: mode }));
   }, []);
 
-  // Click "Learn more" on an info box → open sidebar, pause timeline.
-  // Also closes any open empire flyout — only one right-side panel at a time.
-  const handleConflictClick = useCallback((conflict: Conflict) => {
+  // Open a conflict in the sidebar and pause the timeline. Also closes any
+  // open empire flyout — only one right-side panel at a time.
+  //
+  // `pan: true` (list rows, related-conflict links, the filter navigator,
+  // [ / ] stepping) always brings the dot into view and, if the conflict
+  // isn't active at the current year, jumps the year to its start. The
+  // default (callout "Details") only pans when the dot would be hidden —
+  // off-screen or under the sidebar that is about to open.
+  const handleConflictClick = useCallback((conflict: Conflict, opts?: { pan?: boolean }) => {
+    const pan = opts?.pan ?? false;
     setTimeline(prev => {
       // Remember "was playing" across chained clicks. Only set the flag
       // when we're actually transitioning from playing → paused; never
       // overwrite it back to false (the close handler clears it).
       if (prev.isPlaying) wasPlayingRef.current = true;
-      return { ...prev, isPlaying: false };
+      const year = pan && !isConflictActiveAt(conflict, Math.round(prev.currentYear))
+        ? Math.max(prev.minYear, Math.min(MAX_YEAR, conflict.startYear))
+        : prev.currentYear;
+      return { ...prev, isPlaying: false, currentYear: year };
     });
     setSelectedEmpire(null);
     setSelectedConflict(conflict);
     setSidebarOpen(true);
+    mapRef.current?.flyToConflict(conflict, { pan, inset: panelInset(true) });
   }, []);
+  // Same, for components that call `onConflictClick(c)` with one argument
+  // (Sidebar, EmpireSidebar, ConflictListPanel, FilterPanel navigator).
+  const handleConflictNavigate = useCallback(
+    (conflict: Conflict) => handleConflictClick(conflict, { pan: true }),
+    [handleConflictClick],
+  );
+  const handlePreviousClick = useCallback(() => {
+    if (previousSelection) handleConflictClick(previousSelection, { pan: true });
+  }, [previousSelection, handleConflictClick]);
 
   // Click a dot on the map → select it (show its info box) but don't open sidebar
   const handleConflictDotClick = useCallback((conflict: Conflict) => {
@@ -720,8 +875,35 @@ export default function Home() {
         !!target && (target.closest('button') !== null || target.closest('[role="slider"]') !== null);
       const isNavKey = e.key === ' ' || e.key === 'ArrowLeft' || e.key === 'ArrowRight';
       if (inControl && isNavKey) return;
+      // With the map canvas focused, Mapbox's own keyboard handler owns the
+      // arrows (pan) and +/- (zoom) — don't scrub the timeline on top.
+      const canvasFocused =
+        document.activeElement instanceof HTMLElement &&
+        document.activeElement.classList.contains('mapboxgl-canvas');
+      if (canvasFocused && (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) return;
 
       switch (e.key) {
+        case '[':
+        case ']': {
+          // Step through this year's conflicts by priority: select + fly.
+          // Keeps the sidebar state as it is (open stays open).
+          if (e.ctrlKey || e.metaKey || e.altKey) break;
+          e.preventDefault();
+          const next = stepConflict(
+            stepListRef.current,
+            selectedConflict?.id ?? null,
+            e.key === ']' ? 1 : -1,
+          );
+          if (!next) break;
+          setTimeline(prev => {
+            if (prev.isPlaying) wasPlayingRef.current = true;
+            return { ...prev, isPlaying: false };
+          });
+          setSelectedEmpire(null);
+          setSelectedConflict(next);
+          mapRef.current?.flyToConflict(next, { pan: true, inset: panelInset(sidebarOpen) });
+          break;
+        }
         case ' ':
           e.preventDefault();
           handlePlay();
@@ -745,6 +927,10 @@ export default function Home() {
           }));
           break;
         case 'Escape':
+          if (filterOpen) {
+            setFilterOpen(false);
+            break;
+          }
           if (selectedEmpire) handleCloseEmpire();
           if (sidebarOpen) handleCloseSidebar();
           else if (selectedConflict) setSelectedConflict(null); // dot-selected, no sidebar
@@ -773,6 +959,7 @@ export default function Home() {
     handleJumpToLive,
     sidebarOpen,
     listPanelOpen,
+    filterOpen,
     selectedEmpire,
     selectedConflict,
     tourOpen,
@@ -793,6 +980,63 @@ export default function Home() {
   const handleShowAllConflicts = useCallback(() => {
     setListPanelOpen(true);
   }, []);
+
+  // Chrome rectangles the callout layer must keep clear of. Everything with
+  // `data-avoid` is measured; `data-avoid="wrap"` wrappers (display:
+  // contents around components we don't own) contribute their children.
+  // Re-measured when a panel opens/closes, on resize, and — via a
+  // MutationObserver on <main> — whenever chrome mounts or unmounts on its
+  // own (EraPanel, DisputedTerritoryNote). Panels slide in over ~280 ms,
+  // so a second pass runs after the animation settles.
+  const mainRef = useRef<HTMLElement>(null);
+  const [avoidRects, setAvoidRects] = useState<DOMRect[]>([]);
+  const measureAvoid = useCallback(() => {
+    const root = mainRef.current;
+    if (!root) return;
+    const rects: DOMRect[] = [];
+    root.querySelectorAll<HTMLElement>('[data-avoid]').forEach((el) => {
+      const targets = el.getAttribute('data-avoid') === 'wrap'
+        ? Array.from(el.children) as HTMLElement[]
+        : [el];
+      for (const t of targets) {
+        const r = t.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0) rects.push(r);
+      }
+    });
+    setAvoidRects((prev) => {
+      if (prev.length === rects.length && prev.every((r, i) =>
+        r.left === rects[i].left && r.top === rects[i].top && r.width === rects[i].width && r.height === rects[i].height)) {
+        return prev;
+      }
+      return rects;
+    });
+  }, []);
+  useEffect(() => {
+    measureAvoid();
+    const settle = setTimeout(measureAvoid, 400);
+    return () => clearTimeout(settle);
+  }, [measureAvoid, sidebarOpen, selectedEmpire, listPanelOpen, filterOpen, chromeHidden, previousSelection, mapReady]);
+  useEffect(() => {
+    const root = mainRef.current;
+    if (!root) return;
+    let t: ReturnType<typeof setTimeout> | null = null;
+    let settle: ReturnType<typeof setTimeout> | null = null;
+    const schedule = () => {
+      if (t) clearTimeout(t);
+      if (settle) clearTimeout(settle);
+      t = setTimeout(measureAvoid, 50);
+      settle = setTimeout(measureAvoid, 450);
+    };
+    const mo = new MutationObserver(schedule);
+    mo.observe(root, { childList: true, subtree: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      mo.disconnect();
+      window.removeEventListener('resize', schedule);
+      if (t) clearTimeout(t);
+      if (settle) clearTimeout(settle);
+    };
+  }, [measureAvoid]);
 
   // Memoized so the OpeningTour's fly-to effect only runs when the stop
   // changes, not on every parent re-render (which would restart the
@@ -854,17 +1098,42 @@ export default function Home() {
   // Mobile dock
   const mobileTab = useMobileTab({
     tourOpen,
-    filterOpen: false, // FilterPanel manages its own open state internally
+    filterOpen,
     sidebarOpen,
   });
   const handleMobileMap = useCallback(() => {
     if (sidebarOpen) handleCloseSidebar();
     if (listPanelOpen) handleCloseListPanel();
-  }, [sidebarOpen, listPanelOpen, handleCloseSidebar, handleCloseListPanel]);
+    if (filterOpen) setFilterOpen(false);
+  }, [sidebarOpen, listPanelOpen, filterOpen, handleCloseSidebar, handleCloseListPanel]);
+  // Dock "Search" opens the filter sheet (search + region + importance +
+  // legend + export), not the list.
+  const handleMobileSearch = useCallback(() => setFilterOpen(true), []);
   const handleMobileCiteTap = useCallback(() => { void handleMobileCite(); }, [handleMobileCite]);
 
   const selectedConflictId = selectedConflict?.id ?? null;
   const handleRetry = useCallback(() => setLoadAttempt((a) => a + 1), []);
+  const panelOpen = (sidebarOpen && !!selectedConflict) || !!selectedEmpire;
+  // The Timeline marks the span of whatever the right-side panel shows.
+  const selectedSpan = useMemo(() => {
+    if (sidebarOpen && selectedConflict && !selectedEmpire) {
+      return {
+        startYear: selectedConflict.startYear,
+        endYear: selectedConflict.endYear,
+        label: selectedConflict.name,
+        kind: 'conflict' as const,
+      };
+    }
+    if (selectedEmpire) {
+      return {
+        startYear: selectedEmpire.startYear,
+        endYear: selectedEmpire.endYear,
+        label: selectedEmpire.name,
+        kind: 'empire' as const,
+      };
+    }
+    return null;
+  }, [sidebarOpen, selectedConflict, selectedEmpire]);
 
   return (
     <ErrorBoundary>
@@ -872,22 +1141,16 @@ export default function Home() {
     {/* 100dvh (dynamic viewport) instead of 100vh so Pixel/iOS Chrome
         URL-bar collapse doesn't shove the timeline + tab dock off-screen.
         Fallback to h-screen for browsers that don't yet understand dvh. */}
-    <main className="relative w-screen h-screen overflow-hidden bg-wars-bg" style={{ height: '100dvh' }}>
+    <main ref={mainRef} className="relative w-screen h-screen overflow-hidden bg-wars-bg" style={{ height: '100dvh' }}>
+      {/* First focusable element: jump past the chrome to the map
+          (id="map", tabIndex -1 on MapView's container). */}
+      <SkipLink href="#map">Skip to map</SkipLink>
+
       {/* Data-load error (with Retry) or loading screen */}
       {loadError ? (
         <DataLoadError message={loadError} onRetry={handleRetry} />
       ) : !mapReady && (
-        <div className="absolute inset-0 z-50 bg-wars-bg flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-wars-text mb-2">
-              <span className="text-wars-red">War</span> Atlas
-            </h1>
-            <p className="text-sm text-wars-muted">Loading 5,000 years of history...</p>
-            <div className="mt-4 w-32 h-1 bg-wars-border rounded-full mx-auto overflow-hidden">
-              <div className="h-full bg-wars-accent rounded-full animate-pulse" style={{ width: '60%' }} />
-            </div>
-          </div>
-        </div>
+        <LoadingScreen />
       )}
 
       <MapView
@@ -901,6 +1164,7 @@ export default function Home() {
         onCityClick={handleCityClick}
         onEmpireClick={handleEmpireClick}
         selectedEmpireId={selectedEmpire?.id ?? null}
+        onHistoricalLoad={handleHistoricalLoad}
       />
 
       {/* Map-overlay chrome. All of this is suppressed when the user
@@ -917,28 +1181,72 @@ export default function Home() {
             totalActive={activeNow.length}
             filteredCount={filteredActiveNow.length}
             // Match navigator: pass the currently-active filtered conflicts so
-            // ◀ / ▶ inside the panel can step through them on the map. We use
-            // the existing handleConflictClick so a match selection opens the
-            // sidebar the same way clicking a callout does.
+            // ◀ / ▶ inside the panel can step through them on the map. The
+            // navigate variant opens the sidebar and pans to the match.
             matches={filteredActiveNow}
             selectedConflict={selectedConflict}
-            onSelectMatch={handleConflictClick}
-          />
-
-          {/* Persistent legend explaining solid vs dashed borders */}
-          <MemoBorderLegend />
-
-          {/* Disputed-territory note in modern era */}
-          <MemoDisputedTerritoryNote year={renderYear} />
-
-          {/* Era context panel — appears briefly when crossing era boundaries */}
-          <MemoEraPanel year={renderYear} />
-
-          {/* Researcher CSV / GeoJSON export — uses filtered set so users can export their query */}
-          <ExportMenu
-            conflicts={filteredActiveNow}
+            onSelectMatch={handleConflictNavigate}
+            open={filterOpen}
+            onOpenChange={setFilterOpen}
+            exportConflicts={filteredActiveNow}
             currentYear={renderYear}
           />
+
+          {/* "← Previous: X" — back to the conflict the user came from.
+              Desktop only; sits under the TopBar on the left, clear of
+              the Filter pill. */}
+          {previousSelection && (
+            <div data-avoid="wrap" style={{ display: 'contents' }}>
+              <button
+                type="button"
+                onClick={handlePreviousClick}
+                className="font-ui hidden sm:inline-flex absolute top-[62px] left-6 z-20 items-center gap-2 h-8 px-3 max-w-[320px] hover:text-wars-text transition-colors"
+                style={{
+                  fontSize: 12,
+                  letterSpacing: '0.01em',
+                  background: 'var(--surface-chrome, oklch(0.20 0.014 250 / 0.85))',
+                  backdropFilter: 'blur(var(--blur-chrome, 8px))',
+                  WebkitBackdropFilter: 'blur(var(--blur-chrome, 8px))',
+                  border: '1px solid var(--rule-strong)',
+                  borderRadius: 0,
+                  color: 'var(--ink-text-2)',
+                  cursor: 'pointer',
+                  lineHeight: 1,
+                }}
+                aria-label={`Back to previous conflict: ${previousSelection.name}`}
+                title={`Back to ${previousSelection.name}`}
+              >
+                <span aria-hidden>←</span>
+                <span className="truncate">
+                  <span style={{ color: 'var(--ink-muted)' }}>Previous:</span>{' '}
+                  {previousSelection.name}
+                </span>
+              </button>
+            </div>
+          )}
+
+          {/* Persistent legend explaining solid vs dashed borders */}
+          <div data-avoid="wrap" style={{ display: 'contents' }}>
+            <MemoBorderLegend />
+          </div>
+
+          {/* Disputed-territory note in modern era */}
+          <div data-avoid="wrap" style={{ display: 'contents' }}>
+            <MemoDisputedTerritoryNote year={renderYear} />
+          </div>
+
+          {/* Era context panel — appears briefly when crossing era boundaries */}
+          <div data-avoid="wrap" style={{ display: 'contents' }}>
+            <MemoEraPanel year={renderYear} />
+          </div>
+
+          {/* Researcher CSV / GeoJSON export — uses filtered set so users can export their query */}
+          <div data-avoid="wrap" style={{ display: 'contents' }}>
+            <ExportMenu
+              conflicts={filteredActiveNow}
+              currentYear={renderYear}
+            />
+          </div>
         </>
       )}
 
@@ -978,46 +1286,58 @@ export default function Home() {
           mapRef={mapRef}
           onConflictClick={handleConflictClick}
           selectedId={selectedConflictId}
+          avoidRects={avoidRects}
+          compact={panelOpen}
+          onShowNearby={handleShowAllConflicts}
         />
       )}
 
-      <Timeline
-        timeline={timeline}
-        allConflicts={conflicts}
-        onPlay={handlePlay}
-        onYearChange={handleYearChange}
-        onSpeedChange={handleSpeedChange}
-        onSpeedModeChange={handleSpeedModeChange}
-        showPlayPrompt={showPlayPrompt}
-      />
+      <div data-avoid="wrap" style={{ display: 'contents' }}>
+        <Timeline
+          timeline={timeline}
+          allConflicts={conflicts}
+          onPlay={handlePlay}
+          onYearChange={handleYearChange}
+          onSpeedChange={handleSpeedChange}
+          onSpeedModeChange={handleSpeedModeChange}
+          showPlayPrompt={showPlayPrompt}
+          selectedSpan={selectedSpan}
+        />
+      </div>
 
       {sidebarOpen && selectedConflict && !selectedEmpire && (
-        <Sidebar
-          conflict={selectedConflict}
-          onClose={handleCloseSidebar}
-          allConflicts={conflicts}
-          relations={relations}
-          onConflictClick={handleConflictClick}
-        />
+        <div data-avoid="wrap" style={{ display: 'contents' }}>
+          <Sidebar
+            conflict={selectedConflict}
+            onClose={handleCloseSidebar}
+            allConflicts={conflicts}
+            relations={relations}
+            onConflictClick={handleConflictNavigate}
+          />
+        </div>
       )}
 
       {selectedEmpire && (
-        <EmpireSidebar
-          empire={selectedEmpire}
-          allConflicts={conflicts}
-          onConflictClick={handleConflictClick}
-          onClose={handleCloseEmpire}
-        />
+        <div data-avoid="wrap" style={{ display: 'contents' }}>
+          <EmpireSidebar
+            empire={selectedEmpire}
+            allConflicts={conflicts}
+            onConflictClick={handleConflictNavigate}
+            onClose={handleCloseEmpire}
+          />
+        </div>
       )}
 
       {listPanelOpen && (
-        <ConflictListPanel
-          conflicts={filteredActiveConflicts}
-          currentYear={renderYear}
-          onConflictClick={handleConflictClick}
-          onClose={handleCloseListPanel}
-          selectedId={selectedConflictId}
-        />
+        <div data-avoid="wrap" style={{ display: 'contents' }}>
+          <ConflictListPanel
+            conflicts={filteredActiveConflicts}
+            currentYear={renderYear}
+            onConflictClick={handleConflictNavigate}
+            onClose={handleCloseListPanel}
+            selectedId={selectedConflictId}
+          />
+        </div>
       )}
 
       {/* City name-timeline modal — shows all historical names for a clicked city location */}
@@ -1032,10 +1352,9 @@ export default function Home() {
         <div
           role="status"
           aria-live="polite"
-          className="sm:hidden fixed left-1/2 -translate-x-1/2 z-50 font-mono text-[11px] px-3 py-2 whitespace-nowrap"
+          className="surface-panel sm:hidden fixed left-1/2 -translate-x-1/2 z-50 font-mono text-[11px] px-3 py-2 whitespace-nowrap"
           style={{
             bottom: 'calc(58px + env(safe-area-inset-bottom, 0px))',
-            background: 'oklch(0.20 0.014 250 / 0.95)',
             border: '1px solid var(--rule-strong)',
             color: 'var(--ink-text)',
           }}
@@ -1049,7 +1368,7 @@ export default function Home() {
         active={mobileTab}
         onMap={handleMobileMap}
         onTour={openTour}
-        onSearch={handleShowAllConflicts}
+        onSearch={handleMobileSearch}
         onCite={handleMobileCiteTap}
       />
     </main>

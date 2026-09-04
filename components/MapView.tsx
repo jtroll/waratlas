@@ -28,6 +28,28 @@ interface MapViewProps {
   onEmpireClick?: (empire: EmpireProperties) => void;
   /** id of the currently-selected empire (so we can tone the polygon). */
   selectedEmpireId?: string | null;
+  /** Fires once the historical layers (empires + cities) are on the map —
+   *  from then on getEmpire / getEmpireBbox on the handle resolve ids. */
+  onHistoricalLoad?: () => void;
+}
+
+export interface FlyToOptions {
+  /** Target zoom. Default: max(current zoom, 4). */
+  zoom?: number;
+  /** Animation length in ms (default 900). */
+  duration?: number;
+  /** Screen-space offset [x, y] applied to the target so a point can be
+   *  centred in the part of the map not covered by a side panel. */
+  offset?: [number, number];
+}
+
+export interface FlyToConflictOptions extends FlyToOptions {
+  /** When true, always fly. When false (default) only fly if the point is
+   *  outside the visible viewport (`inset` shrinks that viewport). */
+  pan?: boolean;
+  /** Viewport insets in px (panels covering the map) used for the
+   *  visibility check and to offset the target. */
+  inset?: { top?: number; right?: number; bottom?: number; left?: number };
 }
 
 export interface MapViewHandle {
@@ -41,7 +63,91 @@ export interface MapViewHandle {
   /** Fly the map to fit the given bounding box. Used by the opening tour to
    *  pan the camera to the area being discussed on each stop. The padding
    *  leaves room for the tour card pinned to the bottom of the screen. */
-  flyToBbox: (bbox: [number, number, number, number]) => void;
+  flyToBbox: (
+    bbox: [number, number, number, number],
+    opts?: { padding?: { top: number; bottom: number; left: number; right: number }; maxZoom?: number },
+  ) => void;
+  /** Ease the camera to a point (900 ms; instant under reduced motion). */
+  flyTo: (lngLat: [number, number], opts?: FlyToOptions) => void;
+  /** Bring a conflict into view. Returns true if the camera moved. */
+  flyToConflict: (conflict: Conflict, opts?: FlyToConflictOptions) => boolean;
+  /** Is the point inside the (inset) visible viewport? */
+  isInView: (lngLat: [number, number], inset?: FlyToConflictOptions['inset']) => boolean;
+  /** Full-geometry bbox of an empire (available once empires.json loaded). */
+  getEmpireBbox: (id: string) => [number, number, number, number] | undefined;
+  /** Feature properties of an empire by id (for selecting from a deep link). */
+  getEmpire: (id: string) => EmpireProperties | undefined;
+  /** Move keyboard focus to the map canvas (arrow keys then pan). */
+  focus: () => void;
+}
+
+const REDUCED_MOTION = () =>
+  typeof window !== 'undefined' &&
+  !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+/** Map GeoJSON feature properties → the EmpireSidebar payload. */
+function toEmpireProperties(
+  props: Record<string, unknown>,
+  bbox: [number, number, number, number] | undefined,
+): EmpireProperties {
+  return {
+    id: String(props.id),
+    name: String(props.name ?? ''),
+    startYear: Number(props.startYear ?? 0),
+    endYear: props.endYear == null ? null : Number(props.endYear),
+    color: typeof props.color === 'string' ? props.color : undefined,
+    accurate: props.accurate === true,
+    borderStyle: props.borderStyle === 'dashed' ? 'dashed' as const : props.borderStyle === 'solid' ? 'solid' as const : undefined,
+    source: typeof props.source === 'string' ? props.source : undefined,
+    sourceDetail: typeof props.sourceDetail === 'string' ? props.sourceDetail : undefined,
+    borderNote: typeof props.borderNote === 'string' ? props.borderNote : undefined,
+    borderYear:
+      typeof props.borderYear === 'number'
+        ? props.borderYear
+        : typeof props.borderYear === 'string'
+          ? Number(props.borderYear)
+          : undefined,
+    matchedRegion: typeof props.matchedRegion === 'string' ? props.matchedRegion : undefined,
+    handCraftedNote: typeof props.handCraftedNote === 'string' ? props.handCraftedNote : undefined,
+    polityType: typeof props.polityType === 'string' ? props.polityType : undefined,
+    bbox,
+  };
+}
+
+// Palette equivalents (Mapbox GL JS 3.30 does not parse oklch() literals;
+// these are the sRGB conversions of the tokens in app/globals.css):
+//   --vermilion oklch(0.62 0.18 28) → rgb(222, 79, 68)
+//   --amber     oklch(0.78 0.14 78) → rgb(232, 171, 62)
+//   --ink-text  oklch(0.94 0.012 85) → rgb(239, 235, 226)
+//   --ink-0     oklch(0.16 0.012 250) → rgb(9, 14, 18)
+const VERMILION = 'rgb(222, 79, 68)';
+const AMBER = 'rgb(232, 171, 62)';
+const IVORY = 'rgb(239, 235, 226)';
+const INK = 'rgb(9, 14, 18)';
+
+/** Zoom-scaled version of a per-feature expression. Mapbox only accepts
+ *  ["zoom"] as the input of a top-level interpolate, so the zoom curve has
+ *  to be the outer expression and the data-driven part goes in each stop. */
+function zoomScaled(
+  build: (k: number) => mapboxgl.ExpressionSpecification | number,
+  k15: number, k4: number, k7: number,
+): mapboxgl.ExpressionSpecification {
+  return ['interpolate', ['linear'], ['zoom'], 1.5, build(k15), 4, build(k4), 7, build(k7)];
+}
+
+/** Importance-stop radius, scaled by zoom so the world view stays legible
+ *  while every dot remains on the map (no clustering, no zoom gating). */
+function zoomRadius(r1: number, r3: number, r5: number): mapboxgl.ExpressionSpecification {
+  const byImportance = (k: number): mapboxgl.ExpressionSpecification => [
+    'interpolate', ['linear'], ['get', 'importance'],
+    1, r1 * k, 3, r3 * k, 5, r5 * k,
+  ];
+  return [
+    'interpolate', ['linear'], ['zoom'],
+    1.5, byImportance(0.55),
+    4, byImportance(0.8),
+    7, byImportance(1),
+  ];
 }
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || 'YOUR_MAPBOX_TOKEN_HERE';
@@ -162,6 +268,30 @@ const SETTLEMENT_LAYERS = [
   'settlement-subdivision-label',
 ];
 
+/** Point inside the viewport minus panel insets (with a small margin so a
+ *  dot hugging the edge still counts as "needs a pan"). */
+function isInView(
+  m: mapboxgl.Map | null,
+  lngLat: [number, number],
+  inset: FlyToConflictOptions['inset'] = {},
+): boolean {
+  if (!m) return false;
+  try {
+    const p = m.project(lngLat);
+    const w = m.getContainer().clientWidth;
+    const h = m.getContainer().clientHeight;
+    const margin = 24;
+    return (
+      p.x >= (inset.left ?? 0) + margin &&
+      p.x <= w - (inset.right ?? 0) - margin &&
+      p.y >= (inset.top ?? 0) + margin &&
+      p.y <= h - (inset.bottom ?? 0) - margin
+    );
+  } catch {
+    return false;
+  }
+}
+
 const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   {
     activeConflicts,
@@ -174,9 +304,12 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     onCityClick,
     onEmpireClick,
     selectedEmpireId,
+    onHistoricalLoad,
   },
   ref
 ) {
+  const onHistoricalLoadRef = useRef(onHistoricalLoad);
+  useEffect(() => { onHistoricalLoadRef.current = onHistoricalLoad; }, [onHistoricalLoad]);
   const onCityClickRef = useRef(onCityClick);
   useEffect(() => { onCityClickRef.current = onCityClick; }, [onCityClick]);
   const onMapLoadRef = useRef(onMapLoad);
@@ -227,6 +360,8 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   // used to compute this from the rendered geometry, which is tile-clipped,
   // so a large empire got the bbox of the visible tiles.
   const empireBboxRef = useRef<Map<string, [number, number, number, number]>>(new Map());
+  // Empire id → raw feature properties, for getEmpire(id) (deep links).
+  const empirePropsRef = useRef<Map<string, Record<string, unknown>>>(new Map());
 
   useEffect(() => {
     activeConflictsRef.current = activeConflicts;
@@ -253,17 +388,18 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         moveListenersRef.current.delete(listener);
       };
     },
-    flyToBbox: (bbox: [number, number, number, number]) => {
+    flyToBbox: (bbox, opts) => {
       const m = map.current;
       if (!m) return;
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-      // Padding pushes the focal region above the bottom-anchored tour card.
-      // Mobile uses a lighter bottom padding than before — heavy padding made
-      // fitBounds unable to satisfy the welcome stop (world view) under the
-      // map's minZoom (1.5), so the call silently no-op'd.
-      const padding = isMobile
+      // Default padding pushes the focal region above the bottom-anchored
+      // tour card. Mobile uses a lighter bottom padding than before — heavy
+      // padding made fitBounds unable to satisfy the welcome stop (world
+      // view) under the map's minZoom (1.5), so the call silently no-op'd.
+      const padding = opts?.padding ?? (isMobile
         ? { top: 50, bottom: 320, left: 16, right: 16 }
-        : { top: 70, bottom: 320, left: 60, right: 60 };
+        : { top: 70, bottom: 320, left: 60, right: 60 });
+      const maxZoom = opts?.maxZoom ?? 5;
       const bounds: [[number, number], [number, number]] = [
         [bbox[0], bbox[1]],
         [bbox[2], bbox[3]],
@@ -279,7 +415,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       );
       const run = () => {
         try {
-          const cam = m.cameraForBounds(bounds, { padding, maxZoom: 5 });
+          const cam = m.cameraForBounds(bounds, { padding, maxZoom });
           if (cam) {
             m.easeTo({ ...cam, duration: 1100, essential });
           } else {
@@ -299,6 +435,73 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       // every style change, unlike `load`, which fires exactly once).
       if (m.isStyleLoaded()) run();
       else m.once('idle', run);
+    },
+    flyTo: (lngLat, opts) => {
+      const m = map.current;
+      if (!m) return;
+      const run = () => {
+        try {
+          m.easeTo({
+            center: lngLat,
+            zoom: opts?.zoom ?? Math.max(m.getZoom(), 4),
+            duration: REDUCED_MOTION() ? 0 : opts?.duration ?? 900,
+            offset: opts?.offset ?? [0, 0],
+            essential: false,
+          });
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.warn('flyTo failed', err);
+        }
+      };
+      if (m.isStyleLoaded()) run();
+      else m.once('idle', run);
+    },
+    isInView: (lngLat, inset) => isInView(map.current, lngLat, inset),
+    flyToConflict: (conflict, opts) => {
+      const m = map.current;
+      if (!m) return false;
+      const inset = opts?.inset ?? {};
+      const visible = isInView(m, conflict.coordinates, inset);
+      if (!opts?.pan && visible) return false;
+      // Centre the point in the uncovered part of the viewport: shift the
+      // target by half of each panel inset.
+      const offset: [number, number] = opts?.offset ?? [
+        ((inset.left ?? 0) - (inset.right ?? 0)) / 2,
+        ((inset.top ?? 0) - (inset.bottom ?? 0)) / 2,
+      ];
+      const current = m.getZoom();
+      // Never zoom out below the current zoom; an off-screen point is
+      // simply centred at the current zoom (or 4, whichever is larger).
+      const zoom = opts?.zoom ?? Math.max(current, 4);
+      const run = () => {
+        try {
+          m.easeTo({
+            center: conflict.coordinates,
+            zoom,
+            duration: REDUCED_MOTION() ? 0 : opts?.duration ?? 900,
+            offset,
+            essential: false,
+          });
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.warn('flyToConflict failed', err);
+        }
+      };
+      if (m.isStyleLoaded()) run();
+      else m.once('idle', run);
+      return true;
+    },
+    getEmpireBbox: (id) => empireBboxRef.current.get(id),
+    getEmpire: (id) => {
+      const props = empirePropsRef.current.get(id);
+      return props ? toEmpireProperties(props, empireBboxRef.current.get(id)) : undefined;
+    },
+    focus: () => {
+      try {
+        map.current?.getCanvas().focus();
+      } catch {
+        /* no map yet */
+      }
     },
   }), []);
 
@@ -397,8 +600,8 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'text-padding': 4,
         },
         paint: {
-          'text-color': 'rgba(200, 200, 210, 0.7)',
-          'text-halo-color': 'rgba(10, 14, 23, 0.9)',
+          'text-color': 'rgba(239, 235, 226, 0.72)',
+          'text-halo-color': 'rgba(9, 14, 18, 0.9)',
           'text-halo-width': 1.5,
           'text-opacity': 0, // set dynamically
         },
@@ -416,8 +619,22 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
             2, 2,
             3, 2.5,
           ],
-          'circle-color': 'rgba(200, 200, 210, 0.5)',
+          'circle-color': 'rgba(239, 235, 226, 0.6)',
           'circle-opacity': 0, // set dynamically
+        },
+      }, beforeId);
+
+      // Invisible 8px hit area so the 1.5–2.5px city dots are actually
+      // clickable (the click/hover handlers below bind to this layer).
+      m.addLayer({
+        id: 'city-hit',
+        type: 'circle',
+        source: 'cities',
+        filter: ['==', ['get', 'foundedYear'], 999999],
+        paint: {
+          'circle-radius': 8,
+          'circle-color': 'rgba(0,0,0,0)',
+          'circle-opacity': 0,
         },
       }, beforeId);
 
@@ -438,9 +655,11 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 
       // One pass over the full geometry for the click handler's bbox.
       const bboxes = new Map<string, [number, number, number, number]>();
+      const propsById = new Map<string, Record<string, unknown>>();
       for (const f of (empiresData as GeoJSON.FeatureCollection).features) {
         const id = (f.properties as { id?: unknown } | null)?.id;
         if (typeof id !== 'string' || !f.geometry) continue;
+        propsById.set(id, (f.properties ?? {}) as Record<string, unknown>);
         try {
           const b = computeBbox(f.geometry as GeoJSON.Geometry);
           if (b) bboxes.set(id, b);
@@ -449,6 +668,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         }
       }
       empireBboxRef.current = bboxes;
+      empirePropsRef.current = propsById;
 
       // promoteId tells Mapbox to use properties.id as the feature id, which
       // is required for setFeatureState() to work (used for hover tone below).
@@ -461,15 +681,17 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       // ——— Build a Point source for empire labels ———
       // Each empire gets exactly one label at its precomputed labelPoint
       // (avoids the Mapbox "one label per MultiPolygon part" issue)
+      // areaRank (0 = largest) feeds symbol-sort-key so the biggest empires
+      // win label collisions explicitly rather than by source order.
       const labelFeatures: GeoJSON.Feature[] = (empiresData as GeoJSON.FeatureCollection).features
         .filter((f) => Array.isArray((f.properties as { labelPoint?: unknown } | null)?.labelPoint))
-        .map((f) => ({
+        .map((f, areaRank) => ({
           type: 'Feature',
           geometry: {
             type: 'Point',
             coordinates: (f.properties as { labelPoint: [number, number] }).labelPoint,
           },
-          properties: f.properties,
+          properties: { ...f.properties, areaRank },
         }));
       m.addSource('empire-labels', {
         type: 'geojson',
@@ -516,8 +738,26 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         },
       }, beforeId);
 
+      // Selected-empire outline: an ivory ring on top of the coloured
+      // border so the selection still reads after the cursor leaves.
+      // Opacity is feature-state driven (0 unless selected).
+      m.addLayer({
+        id: 'empire-border-selected',
+        type: 'line',
+        source: 'empires',
+        filter: ['==', ['get', 'startYear'], 999999],
+        paint: {
+          'line-color': IVORY,
+          'line-width': 2.5,
+          'line-opacity': 0,
+        },
+      }, beforeId);
+
       // Empire label — uses the dedicated Point source so each empire gets exactly ONE label
       // Initial filter is impossible-to-match so no labels show until currentYear effect runs
+      // Ivory text (the empire colour lives in the fill/border only), quiet
+      // 11px regular so the labels recede behind the conflict layer. Mapbox's
+      // glyph catalogue has no Source Serif, so DIN Pro stays.
       m.addLayer({
         id: 'empire-label',
         type: 'symbol',
@@ -525,23 +765,23 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         filter: ['==', ['get', 'startYear'], 999999],
         layout: {
           'text-field': ['get', 'name'],
-          'text-size': 12,
-          'text-font': ['DIN Pro Medium', 'Arial Unicode MS Regular'],
-          'text-transform': 'uppercase',
-          'text-letter-spacing': 0.18,
+          'text-size': 11,
+          'text-font': ['DIN Pro Regular', 'Arial Unicode MS Regular'],
+          'text-letter-spacing': 0.08,
           'text-max-width': 10,
           'text-allow-overlap': false,
+          'symbol-sort-key': ['get', 'areaRank'],
         },
         paint: {
-          'text-color': ['get', 'color'],
+          'text-color': 'rgba(239, 235, 226, 0.92)',
           'text-opacity': 0,
-          'text-halo-color': 'rgba(0, 0, 0, 0.8)',
-          'text-halo-width': 1.5,
+          'text-halo-color': 'rgba(9, 14, 18, 0.85)',
+          'text-halo-width': 1.4,
         },
       }, beforeId);
 
       // City click: open the city-name-timeline modal
-      m.on('click', 'city-dots', (e) => {
+      m.on('click', 'city-hit', (e) => {
         if (e.features?.[0]?.geometry?.type === 'Point') {
           const coords = (e.features[0].geometry as GeoJSON.Point).coordinates as [number, number];
           if (onCityClickRef.current) {
@@ -550,10 +790,10 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           }
         }
       });
-      m.on('mouseenter', 'city-dots', () => {
+      m.on('mouseenter', 'city-hit', () => {
         m.getCanvas().style.cursor = 'pointer';
       });
-      m.on('mouseleave', 'city-dots', () => {
+      m.on('mouseleave', 'city-hit', () => {
         m.getCanvas().style.cursor = '';
       });
 
@@ -623,28 +863,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         // tile-clipped, so it can't be used here).
         const bbox = empireBboxRef.current.get(String(props.id));
 
-        const empireProps: EmpireProperties = {
-          id: String(props.id),
-          name: String(props.name ?? ''),
-          startYear: Number(props.startYear ?? 0),
-          endYear: props.endYear == null ? null : Number(props.endYear),
-          color: typeof props.color === 'string' ? props.color : undefined,
-          accurate: props.accurate === true,
-          borderStyle: props.borderStyle === 'dashed' ? 'dashed' as const : props.borderStyle === 'solid' ? 'solid' as const : undefined,
-          source: typeof props.source === 'string' ? props.source : undefined,
-          sourceDetail: typeof props.sourceDetail === 'string' ? props.sourceDetail : undefined,
-          borderNote: typeof props.borderNote === 'string' ? props.borderNote : undefined,
-          borderYear:
-            typeof props.borderYear === 'number'
-              ? props.borderYear
-              : typeof props.borderYear === 'string'
-                ? Number(props.borderYear)
-                : undefined,
-          matchedRegion: typeof props.matchedRegion === 'string' ? props.matchedRegion : undefined,
-          handCraftedNote: typeof props.handCraftedNote === 'string' ? props.handCraftedNote : undefined,
-          polityType: typeof props.polityType === 'string' ? props.polityType : undefined,
-          bbox,
-        };
+        const empireProps = toEmpireProperties(props, bbox);
 
         if (onEmpireClickRef.current) {
           e.originalEvent.stopPropagation();
@@ -656,6 +875,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       // Make the year-driven filter/opacity effect re-run for the new layers.
       lastEmpireYearRef.current = NaN;
       setBordersVersion((v) => v + 1);
+      onHistoricalLoadRef.current?.();
       return true;
     };
     retryHistoricalRef.current = loadHistoricalLayers;
@@ -711,50 +931,39 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       ];
 
       // ─── 3-layer conflict markers (step 7 of redesign) ───────────────
-      // NOTE: Mapbox GL JS 3.3 does not parse oklch() color literals; that
-      // landed in 3.5. So these layers use the rgba() equivalents of the
-      // editorial palette tokens. The empire fill/border layers escape this
-      // because their `color` is data-driven (hex strings stored on the
-      // feature properties) — only inline color literals had to be rewritten.
-      //
-      // Palette equivalents:
-      //   --vermilion oklch(0.62 0.18 28) ≈ rgba(200, 85, 59, 1)
-      //   --amber     oklch(0.78 0.14 78) ≈ rgba(217, 153, 67, 1)
-      //   --ink-text  oklch(0.94 0.012 85) ≈ rgba(236, 227, 211, 1)
-      //   --ink-0     oklch(0.10 0.012 250) ≈ rgba(14, 18, 24, 1)
+      // Every conflict is a dot at every zoom and every year — no
+      // clustering, no zoom gating. Radii and the glow opacity are
+      // zoom-interpolated (see zoomRadius) so the world view is legible
+      // while the dense field of dots stays intact. Colours are the sRGB
+      // equivalents of the palette tokens (VERMILION / AMBER / IVORY).
 
-      // Outer breathing ring — soft 10% vermilion fill, big radius
+      // Outer breathing ring — soft vermilion fill, big radius; fades
+      // toward (never to) 5% at world zoom so 100+ dots don't smear.
       m.addLayer({
         id: 'conflict-glow',
         type: 'circle',
         source: 'conflicts',
         paint: {
-          'circle-radius': [
-            'interpolate', ['linear'], ['get', 'importance'],
-            1, 10, 3, 18, 5, 30,
-          ],
-          'circle-color': 'rgb(200, 85, 59)',
-          'circle-opacity': ['*', ['get', 'opacity'], 0.10],
+          'circle-radius': zoomRadius(10, 18, 30),
+          'circle-color': VERMILION,
+          'circle-opacity': zoomScaled((k) => ['*', ['get', 'opacity'], k], 0.05, 0.08, 0.10),
           'circle-blur': 1.1,
         },
       });
 
-      // Mid ring — 1px stroke, transparent fill
+      // Mid ring — hairline stroke, transparent fill
       m.addLayer({
         id: 'conflict-mid',
         type: 'circle',
         source: 'conflicts',
         paint: {
-          'circle-radius': [
-            'interpolate', ['linear'], ['get', 'importance'],
-            1, 6, 3, 10, 5, 16,
-          ],
+          'circle-radius': zoomRadius(6, 10, 16),
           'circle-color': 'rgba(0,0,0,0)',
-          'circle-stroke-width': 1,
+          'circle-stroke-width': ['interpolate', ['linear'], ['zoom'], 1.5, 0.6, 4, 0.8, 7, 1],
           'circle-stroke-color': [
             'case',
-            isSelected, 'rgba(217, 153, 67, 0.85)',
-            'rgba(200, 85, 59, 0.7)',
+            isSelected, 'rgba(232, 171, 62, 0.85)',
+            'rgba(222, 79, 68, 0.7)',
           ],
           'circle-stroke-opacity': ['get', 'opacity'],
         },
@@ -769,26 +978,35 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         type: 'circle',
         source: 'conflicts',
         paint: {
-          'circle-radius': [
-            'interpolate', ['linear'], ['get', 'importance'],
-            1, 4, 3, 6.5, 5, 10,
-          ],
+          'circle-radius': zoomRadius(4, 6.5, 10),
           'circle-color': [
             'case',
-            isSelected, 'rgb(217, 153, 67)',
-            'rgb(200, 85, 59)',
+            isSelected, AMBER,
+            VERMILION,
           ],
           'circle-opacity': ['get', 'opacity'],
-          'circle-stroke-width': [
-            'case',
-            isSelected, 1.5, 0.5,
-          ],
+          'circle-stroke-width': zoomScaled((k) => ['case', isSelected, 1.5, k], 0.3, 0.4, 0.5),
           'circle-stroke-color': [
             'case',
-            isSelected, 'rgba(236, 227, 211, 0.6)',
-            'rgba(14, 18, 24, 0.7)',
+            isSelected, 'rgba(239, 235, 226, 0.6)',
+            'rgba(9, 14, 18, 0.7)',
           ],
           'circle-stroke-opacity': ['get', 'opacity'],
+        },
+      });
+
+      // Selection halo — a 1.5px ivory ring just outside the amber dot so
+      // the selection reads even against amber-ish empire fills.
+      m.addLayer({
+        id: 'conflict-selected-halo',
+        type: 'circle',
+        source: 'conflicts',
+        paint: {
+          'circle-radius': zoomRadius(7.5, 10, 13.5),
+          'circle-color': 'rgba(0,0,0,0)',
+          'circle-stroke-width': ['case', isSelected, 1.5, 0],
+          'circle-stroke-color': IVORY,
+          'circle-stroke-opacity': ['case', isSelected, 0.95, 0],
         },
       });
 
@@ -799,9 +1017,9 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         source: 'conflicts',
         filter: ['>=', ['get', 'importance'], 5],
         paint: {
-          'circle-radius': ['interpolate', ['linear'], ['get', 'importance'], 5, 18],
-          'circle-color': 'rgb(200, 85, 59)',
-          'circle-opacity': ['*', ['get', 'opacity'], 0.08],
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 1.5, 10, 4, 14, 7, 18],
+          'circle-color': VERMILION,
+          'circle-opacity': zoomScaled((k) => ['*', ['get', 'opacity'], k], 0.05, 0.065, 0.08),
           'circle-blur': 0.8,
         },
       });
@@ -992,6 +1210,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       ],
     ]);
     m.setFilter('empire-label', filter);
+    if (m.getLayer('empire-border-selected')) m.setFilter('empire-border-selected', filter);
 
     // Opacity: full (1.0) within the empire's actual span, fading in/out
     // for FADE years before/after. This way an empire of duration 3 still
@@ -1056,7 +1275,13 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     m.setPaintProperty('empire-border-solid', 'line-width', lineWidthBoost);
     m.setPaintProperty('empire-border-dashed', 'line-opacity', ['*', opacityExpr, dashedHoverBoost]);
     m.setPaintProperty('empire-border-dashed', 'line-width', dashedWidthBoost);
-    m.setPaintProperty('empire-label', 'text-opacity', ['*', opacityExpr, 0.75]);
+    m.setPaintProperty('empire-label', 'text-opacity', ['*', opacityExpr, 0.8]);
+    if (m.getLayer('empire-border-selected')) {
+      m.setPaintProperty('empire-border-selected', 'line-opacity', [
+        '*', opacityExpr,
+        ['case', ['boolean', ['feature-state', 'selected'], false], 0.6, 0],
+      ]);
+    }
     }
 
     // ——— Filter cities to only show ones that exist at the current year ———
@@ -1072,6 +1297,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 
     m.setFilter('city-labels', cityFilter);
     m.setFilter('city-dots', cityFilter);
+    if (m.getLayer('city-hit')) m.setFilter('city-hit', cityFilter);
 
     // Fade cities in over 50 years after founding
     const CITY_FADE = 50;
@@ -1082,7 +1308,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     ];
 
     m.setPaintProperty('city-labels', 'text-opacity', ['*', cityOpacityExpr, 0.7]);
-    m.setPaintProperty('city-dots', 'circle-opacity', ['*', cityOpacityExpr, 0.5]);
+    m.setPaintProperty('city-dots', 'circle-opacity', ['*', cityOpacityExpr, 0.6]);
     }
 
     // ——— Update modern political borders opacity as timeline approaches present ———
@@ -1107,7 +1333,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 
   return (
     <>
-      <div ref={mapContainer} className="absolute inset-0 w-full h-full" />
+      <div id="map" ref={mapContainer} tabIndex={-1} className="absolute inset-0 w-full h-full" />
       {notice && (
         <div
           role="status"

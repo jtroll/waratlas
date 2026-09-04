@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import stats from '@/lib/generated/stats.json';
 import { useFocusTrap } from '@/lib/focus-trap';
+import { MAP_SHORTCUTS } from '@/lib/shortcuts';
 
 const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
 const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
@@ -284,6 +285,9 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               <Kbd label="Hide / show chrome" keys="T" />
               <Kbd label="Close panels" keys="Esc" />
               <Kbd label="Open this dialog" keys="?" />
+              {MAP_SHORTCUTS.map((s) => (
+                <Kbd key={s.keys} label={s.description} keys={s.keys} />
+              ))}
             </div>
             <Aside>
               The URL hash tracks the current year — copy it to share a specific moment in history.

@@ -236,13 +236,14 @@ function EmpireSidebar({
   // Non-modal: focus lands on Close on open and returns on close.
   useFocusTrap(asideRef, true, { trap: false, initialFocus: closeRef });
 
-  // Permalink for citations — empires don't have a /e/[id] route yet, so this
-  // builds a year-anchored deep-link that scrolls the timeline to the empire's
-  // start year. It's a useful share target even without a per-empire page.
+  // Permalink for citations — a deep link that seeks the timeline to the
+  // empire's start year and re-opens this flyout (`#empire=` is parsed by
+  // app/page.tsx and the map fits the empire's bounds).
+  const permalinkHash = `#year=${e.startYear}&empire=${encodeURIComponent(e.id)}`;
   const permalink =
     typeof window !== 'undefined'
-      ? `${window.location.origin}/#year=${e.startYear}`
-      : `/#year=${e.startYear}`;
+      ? `${window.location.origin}/${permalinkHash}`
+      : `/${permalinkHash}`;
 
   // Conflicts whose lifetime overlaps the empire's. We restrict to importance ≥ 3
   // so the list stays short and editorial-grade.

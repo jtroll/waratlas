@@ -20,6 +20,15 @@ interface InfoBoxLayerProps {
   mapRef: RefObject<MapViewHandle | null>;
   onConflictClick: (conflict: Conflict) => void;
   selectedId: string | null;
+  /** Screen rectangles occupied by chrome (sidebar, panels, legend, top bar,
+   *  timeline). Callouts are never placed over them, and dots underneath
+   *  them get no callout. Measured by the page from `[data-avoid]`. */
+  avoidRects?: DOMRect[];
+  /** A side panel is open — show at most two callouts (the selection plus
+   *  the top-priority conflict); the panel carries the detail. */
+  compact?: boolean;
+  /** "+N nearby" was pressed — open the conflict list. */
+  onShowNearby?: () => void;
 }
 
 interface PositionedBox {
@@ -46,10 +55,34 @@ interface BoxPosition {
   opacity: number;
 }
 
-const BOX_W = 230;
-const BOX_H = 85;
+const BOX_W = 216;
+const BOX_H = 78;
 const CLUSTER_PX = 100;
 const DOT_OFFSET = 22; // distance from dot center to box edge
+
+interface Rect { x: number; y: number; w: number; h: number }
+
+function rectsOverlap(a: Rect, b: Rect, padding = 4): boolean {
+  return !(
+    a.x + a.w + padding < b.x ||
+    b.x + b.w + padding < a.x ||
+    a.y + a.h + padding < b.y ||
+    b.y + b.h + padding < a.y
+  );
+}
+
+function pointInRects(x: number, y: number, rects: readonly Rect[]): boolean {
+  for (const r of rects) {
+    if (x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h) return true;
+  }
+  return false;
+}
+
+function boxHitsAvoid(pos: { x: number; y: number }, rects: readonly Rect[]): boolean {
+  const box = { x: pos.x, y: pos.y, w: BOX_W, h: BOX_H };
+  for (const r of rects) if (rectsOverlap(box, r)) return true;
+  return false;
+}
 
 // 8 candidate angles (in radians): right, upper-right, up, upper-left, left, lower-left, down, lower-right
 const ANGLES = [
@@ -109,16 +142,21 @@ function placeBoxes(
   map: MapViewHandle,
   selectedId: string | null,
   screenW: number,
-  screenH: number
+  screenH: number,
+  avoid: readonly Rect[],
+  compact: boolean,
 ): PositionedBox[] {
   const zoom = map.getZoom();
   const active = conflicts.filter(c => c.isActive && c.opacity > 0.5);
 
-  // Project all active conflicts to screen coords
+  // Project all active conflicts to screen coords. Dots hidden under a
+  // panel (avoid rect) get no callout — except the selection, which the
+  // page pans into view.
   const projected: { conflict: ActiveConflict; screen: ScreenPosition }[] = [];
   for (const c of active) {
     const pos = map.project(c.coordinates);
     if (pos && pos.x > -50 && pos.x < screenW + 50 && pos.y > -50 && pos.y < screenH + 50) {
+      if (c.id !== selectedId && pointInRects(pos.x, pos.y, avoid)) continue;
       projected.push({ conflict: c, screen: pos });
     }
   }
@@ -165,16 +203,20 @@ function placeBoxes(
   // and the boxes are 230px wide, so showing more would stack them on
   // top of each other. The skip-on-overlap pass below ensures we never
   // end up with visually overlapping callouts even at the cap.
+  // With a side panel open, two at most: the selection + the top priority.
   const isMobile = screenW < 640;
-  const maxBoxes = isMobile
-    ? 3
-    : zoom > 5 ? 12 : zoom > 3 ? 8 : 6;
+  const maxBoxes = compact
+    ? 2
+    : isMobile
+      ? 3
+      : zoom > 5 ? 12 : zoom > 3 ? 8 : 6;
   const visibleClusters = clusters.slice(0, maxBoxes);
 
   // If a conflict is selected but didn't make the cut, force-add it.
   if (selectedId) {
     const selectedInVisible = visibleClusters.some(cl => cl.primary.id === selectedId);
     if (!selectedInVisible) {
+      if (compact && visibleClusters.length >= maxBoxes) visibleClusters.pop();
       const selectedCluster = clusters.find(cl => cl.primary.id === selectedId);
       if (selectedCluster) {
         visibleClusters.push(selectedCluster);
@@ -211,12 +253,15 @@ function placeBoxes(
     for (const angle of ANGLES) {
       const pos = getBoxPosition(cluster.screen.x, cluster.screen.y, angle, screenW, screenH);
 
-      // Hard test: does this angle overlap any already-placed box?
-      let overlaps = false;
-      for (const placed of placedBoxes) {
-        if (boxesOverlap(pos, { x: placed.boxX, y: placed.boxY })) {
-          overlaps = true;
-          break;
+      // Hard test: does this angle overlap any already-placed box, or
+      // land on chrome (sidebar, legend, top bar, timeline…)?
+      let overlaps = boxHitsAvoid(pos, avoid);
+      if (!overlaps) {
+        for (const placed of placedBoxes) {
+          if (boxesOverlap(pos, { x: placed.boxX, y: placed.boxY })) {
+            overlaps = true;
+            break;
+          }
         }
       }
 
@@ -263,11 +308,16 @@ function placeBoxes(
  * Otherwise the new positions are written directly to the card transforms
  * and the connector line endpoints. All connectors share one SVG.
  */
+const NO_RECTS: DOMRect[] = [];
+
 function InfoBoxLayer({
   conflicts,
   mapRef,
   onConflictClick,
   selectedId,
+  avoidRects = NO_RECTS,
+  compact = false,
+  onShowNearby,
 }: InfoBoxLayerProps) {
   const [boxes, setBoxes] = useState<RenderedBox[]>([]);
   const signatureRef = useRef('');
@@ -280,8 +330,8 @@ function InfoBoxLayer({
   const lineEls = useRef<Map<string, SVGLineElement>>(new Map());
   const rafRef = useRef<number | null>(null);
   // Latest inputs for the move handler, which is subscribed once.
-  const inputsRef = useRef({ conflicts, selectedId });
-  inputsRef.current = { conflicts, selectedId };
+  const inputsRef = useRef({ conflicts, selectedId, avoidRects, compact });
+  inputsRef.current = { conflicts, selectedId, avoidRects, compact };
 
   const applyPositions = useCallback(() => {
     positionsRef.current.forEach((p, id) => {
@@ -303,8 +353,12 @@ function InfoBoxLayer({
   const compute = useCallback(() => {
     const map = mapRef.current;
     if (!map || typeof window === 'undefined') return;
-    const { conflicts: list, selectedId: sel } = inputsRef.current;
-    const placed = placeBoxes(list, map, sel, window.innerWidth, window.innerHeight);
+    const { conflicts: list, selectedId: sel, avoidRects: rects, compact: cmp } = inputsRef.current;
+    const avoid: Rect[] = [];
+    for (const r of rects) {
+      if (r.width > 0 && r.height > 0) avoid.push({ x: r.left, y: r.top, w: r.width, h: r.height });
+    }
+    const placed = placeBoxes(list, map, sel, window.innerWidth, window.innerHeight, avoid, cmp);
 
     const positions = new Map<string, BoxPosition>();
     const latest = new Map<string, ActiveConflict>();
@@ -335,7 +389,7 @@ function InfoBoxLayer({
   // Inputs changed (new active set, selection) → recompute now.
   useEffect(() => {
     compute();
-  }, [compute, conflicts, selectedId]);
+  }, [compute, conflicts, selectedId, avoidRects, compact]);
 
   // Map moved → recompute at most once per animation frame, outside React.
   useEffect(() => {
@@ -391,9 +445,10 @@ function InfoBoxLayer({
                 if (el) lineEls.current.set(box.conflict.id, el);
                 else lineEls.current.delete(box.conflict.id);
               }}
-              stroke={isSelected ? 'rgba(245,158,11,0.35)' : 'rgba(230,57,70,0.2)'}
+              stroke={isSelected ? 'var(--amber)' : 'var(--rule-strong)'}
+              strokeOpacity={isSelected ? 0.7 : 1}
               strokeWidth="1"
-              strokeDasharray="3,3"
+              strokeDasharray={isSelected ? undefined : '3,3'}
             />
           );
         })}
@@ -401,6 +456,7 @@ function InfoBoxLayer({
 
       {boxes.map((box) => {
         const isSelected = box.conflict.id === selectedId;
+        const nearby = box.clusterSize - 1;
         return (
           <div
             key={box.conflict.id}
@@ -421,55 +477,111 @@ function InfoBoxLayer({
               willChange: 'transform',
             }}
           >
-            <div
-              className={`info-box-enter bg-wars-panel/95 backdrop-blur-lg border rounded-lg p-2.5 cursor-pointer transition-colors hover:border-wars-accent/50 ${
-                isSelected
-                  ? 'border-wars-accent shadow-lg shadow-wars-accent/20'
-                  : 'border-wars-border'
-              }`}
+          <div
+            className="info-box-enter relative"
+            style={{
+              background: 'var(--surface-panel, oklch(0.20 0.014 250 / 0.95))',
+              backdropFilter: 'blur(var(--blur-panel, 18px))',
+              WebkitBackdropFilter: 'blur(var(--blur-panel, 18px))',
+              border: `1px solid ${isSelected ? 'var(--amber)' : 'var(--rule-strong)'}`,
+              borderRadius: 0,
+            }}
+          >
+            {/* The whole card is the button (a11y); "+N nearby" is a
+                sibling control so buttons don't nest. */}
+            <button
+              type="button"
               onClick={() => handleClick(box.conflict.id, box.conflict)}
+              className="block w-full text-left transition-colors"
+              style={{
+                background: 'transparent',
+                border: 'none',
+                borderRadius: 0,
+                padding: '8px 10px 7px',
+                cursor: 'pointer',
+                color: 'var(--ink-text)',
+                // Reserve the bottom-right corner for the nearby control.
+                paddingRight: nearby > 0 ? 88 : 10,
+              }}
+              aria-label={`${box.conflict.name}, ${formatYearRange(box.conflict.startYear, box.conflict.endYear)}. Show details`}
             >
-              <div className="flex items-start gap-2">
-                <div className="mt-1.5 flex-shrink-0">
-                  <div className="w-2 h-2 rounded-full bg-wars-red conflict-pulse" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-[12px] font-semibold text-wars-text leading-tight truncate">
+              <span className="flex items-start gap-2">
+                <span
+                  aria-hidden
+                  className="flex-shrink-0"
+                  style={{
+                    width: 6,
+                    height: 6,
+                    marginTop: 5,
+                    background: isSelected ? 'var(--amber)' : 'var(--vermilion)',
+                  }}
+                />
+                <span className="flex-1 min-w-0">
+                  <span
+                    className="block font-display truncate"
+                    style={{ fontSize: 12.5, lineHeight: '16px', fontWeight: 500 }}
+                  >
                     {box.conflict.name}
-                  </h3>
-                  <p className="text-[10px] text-wars-muted mt-0.5">
+                  </span>
+                  <span
+                    className="block font-mono tabular-nums"
+                    style={{ fontSize: 11, lineHeight: '14px', color: 'var(--ink-muted)', marginTop: 1 }}
+                  >
                     {formatYearRange(box.conflict.startYear, box.conflict.endYear)}
-                  </p>
+                  </span>
                   {box.conflict.countries.length > 0 && (
-                    <p className="text-[10px] text-wars-muted/70 mt-0.5 truncate">
+                    <span
+                      className="block font-ui truncate"
+                      style={{ fontSize: 11, lineHeight: '14px', color: 'var(--ink-muted)' }}
+                    >
                       {box.conflict.countries.slice(0, 3).join(' vs ')}
                       {box.conflict.countries.length > 3
                         ? ` +${box.conflict.countries.length - 3}`
                         : ''}
-                    </p>
+                    </span>
                   )}
-                  <div className="flex items-center gap-2 mt-1">
-                    <button
-                      className="text-[10px] text-wars-accent hover:text-wars-accent/80 font-medium flex items-center gap-0.5"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleClick(box.conflict.id, box.conflict);
-                      }}
-                    >
-                      Learn more
-                      <svg width="8" height="8" viewBox="0 0 10 10">
-                        <path d="M3 1 L7 5 L3 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                      </svg>
-                    </button>
-                    {box.clusterSize > 1 && (
-                      <span className="text-[10px] text-wars-muted/50">
-                        +{box.clusterSize - 1} nearby
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+                  <span
+                    className="block font-ui"
+                    style={{
+                      fontSize: 12,
+                      lineHeight: '16px',
+                      marginTop: 3,
+                      color: isSelected ? 'var(--amber)' : 'var(--ink-text-2)',
+                    }}
+                  >
+                    Details ›
+                  </span>
+                </span>
+              </span>
+            </button>
+            {nearby > 0 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onShowNearby?.();
+                }}
+                className="absolute font-ui hover:text-wars-text transition-colors"
+                style={{
+                  right: 8,
+                  bottom: 6,
+                  fontSize: 12,
+                  lineHeight: '16px',
+                  padding: '2px 6px',
+                  background: 'transparent',
+                  border: '1px solid var(--rule)',
+                  borderRadius: 0,
+                  color: 'var(--ink-muted)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                }}
+                aria-label={`${nearby} more ${nearby === 1 ? 'conflict' : 'conflicts'} nearby — open the list`}
+                title="Open the list of active conflicts"
+              >
+                +{nearby} nearby
+              </button>
+            )}
+          </div>
           </div>
         );
       })}

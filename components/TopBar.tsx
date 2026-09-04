@@ -40,6 +40,19 @@ interface TopBarProps {
  * Chrome buttons: 11px Inter Tight uppercase, square corners,
  * hairline borders, no rounded pills (except the live dot).
  * ─────────────────────────────────────────────────────────── */
+/** Chrome button surfaces. Pressed = ivory text on an ivory-tinted
+ *  hairline; resting = secondary ink on the standard hairline. */
+const RESTING: React.CSSProperties = {
+  background: 'transparent',
+  border: '1px solid var(--rule-strong)',
+  color: 'var(--ink-text-2)',
+};
+const PRESSED: React.CSSProperties = {
+  background: 'color-mix(in oklch, var(--ink-text) 10%, transparent)',
+  border: '1px solid color-mix(in oklch, var(--ink-text) 45%, transparent)',
+  color: 'var(--ink-text)',
+};
+
 function TopBar({
   currentYear,
   activeCount,
@@ -78,6 +91,7 @@ function TopBar({
 
   return (
     <div
+      data-avoid
       className="absolute top-0 left-0 right-0 z-30 pointer-events-none"
       style={{
         background:
@@ -121,15 +135,16 @@ function TopBar({
           </span>
 
           {/* About button (also `?` key)
-              Mobile: 32×32 square so it visually matches the Filter and Live
-              buttons in the same row. Desktop: small 20×20 chip inline with
-              the wordmark/tagline. Suppressed when chromeHidden. */}
+              Mobile: 44×44 tap target, matching the Filter and Live buttons
+              in the same row. Desktop: 24×24 chip inline with the
+              wordmark/tagline. Suppressed when chromeHidden. */}
           {!chromeHidden && (
             <button
               onClick={() => setShowInfo(true)}
-              className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 sm:w-5 sm:h-5 text-wars-muted hover:text-wars-text transition-colors"
+              className="flex-shrink-0 inline-flex items-center justify-center w-11 h-11 sm:w-6 sm:h-6 text-wars-muted hover:text-wars-text transition-colors"
               style={{
                 border: '1px solid var(--rule-strong)',
+                borderRadius: 0,
                 fontSize: 12,
                 lineHeight: 1,
                 background: 'transparent',
@@ -166,7 +181,7 @@ function TopBar({
             </span>
             <span
               className="eyebrow mt-1"
-              style={{ fontSize: 9, color: 'var(--ink-faint)' }}
+              style={{ fontSize: 11, color: 'var(--ink-muted)' }}
             >
               active
             </span>
@@ -182,7 +197,7 @@ function TopBar({
             </span>
             <span
               className="eyebrow mt-1"
-              style={{ fontSize: 9, color: 'var(--ink-faint)' }}
+              style={{ fontSize: 11, color: 'var(--ink-muted)' }}
             >
               mapped
             </span>
@@ -199,7 +214,7 @@ function TopBar({
               </span>
               <span
                 className="eyebrow mt-1"
-                style={{ fontSize: 9, color: 'var(--ink-faint)' }}
+                style={{ fontSize: 11, color: 'var(--ink-muted)' }}
               >
                 est. dead this year
               </span>
@@ -228,15 +243,15 @@ function TopBar({
               onClick={onOpenTour}
               className="font-ui hidden sm:inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 px-3"
               style={{
-                fontSize: 11,
+                fontSize: 12,
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
-                background: 'transparent',
-                border: '1px solid var(--rule-strong)',
-                color: 'var(--ink-text-2)',
+                borderRadius: 0,
+                ...(tourOpen ? PRESSED : RESTING),
                 cursor: 'pointer',
                 lineHeight: 1,
               }}
+              aria-pressed={tourOpen}
               aria-label="Open the guided tour"
               title="Open the guided tour"
             >
@@ -260,20 +275,20 @@ function TopBar({
             </button>
           )}
 
-          {/* Live button — 32px tall on mobile to match the ? / Filter
-              buttons in the same row. Desktop keeps the slightly looser
-              vertical rhythm. Suppressed when chromeHidden. */}
+          {/* Live button — 44px tall on mobile (tap target) to match the
+              ? / Filter buttons in the same row; 32px on desktop. Pressed
+              (live) state is ivory + hairline, like every other pressed
+              chrome control. Suppressed when chromeHidden. */}
           {!chromeHidden && (
             <button
               onClick={onJumpToLive}
-              className="font-ui inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-8 px-3"
+              className="font-ui inline-flex items-center justify-center gap-2 transition-colors hover:text-wars-text h-11 sm:h-8 px-3"
               style={{
-                fontSize: 11,
+                fontSize: 12,
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
-                background: 'transparent',
-                border: '1px solid var(--rule-strong)',
-                color: isLive ? 'var(--vermilion)' : 'var(--ink-text-2)',
+                borderRadius: 0,
+                ...(isLive ? PRESSED : RESTING),
                 cursor: 'pointer',
                 lineHeight: 1,
               }}

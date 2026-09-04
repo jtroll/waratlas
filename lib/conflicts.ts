@@ -482,3 +482,26 @@ export function conflictCitation(c: Conflict, origin: string): string {
 export function getMajorConflicts(allConflicts: Conflict[]): Conflict[] {
   return allConflicts.filter((c) => c.importance >= 4);
 }
+
+/** True when `year` falls inside the conflict's span (inclusive; open-ended
+ *  conflicts run to the present). */
+export function isConflictActiveAt(c: Conflict, year: number): boolean {
+  return year >= c.startYear && year <= (c.endYear ?? Infinity);
+}
+
+/**
+ * Step through an ordered conflict list (the active set is already sorted by
+ * displayPriority, highest first) relative to the current selection. Wraps
+ * at both ends; with nothing selected, +1 lands on the first item and -1 on
+ * the last. Returns undefined for an empty list.
+ */
+export function stepConflict<T extends Conflict>(
+  list: readonly T[],
+  currentId: string | null,
+  dir: 1 | -1,
+): T | undefined {
+  if (list.length === 0) return undefined;
+  const idx = currentId ? list.findIndex((c) => c.id === currentId) : -1;
+  if (idx < 0) return dir > 0 ? list[0] : list[list.length - 1];
+  return list[(idx + dir + list.length) % list.length];
+}

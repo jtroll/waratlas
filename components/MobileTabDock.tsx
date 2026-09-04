@@ -16,8 +16,10 @@ interface Props {
 /**
  * Mobile tab dock (step 8 of redesign).
  *
- * 4-up bottom nav: Map / Tour / Search / Cite. Active tab gets a vermilion
- * top-border accent. Hidden on screens ≥ sm — desktop has its own chrome.
+ * 4-up bottom nav: Map / Tour / Search / Cite. Active tab gets an ivory
+ * top-border accent (pressed chrome is ivory + hairline; amber and vermilion
+ * are reserved for the current year and conflicts). Hidden on screens ≥ sm —
+ * desktop has its own chrome. Search opens the filter sheet.
  *
  * Sits at the very bottom of the viewport above the timeline. The Sidebar's
  * bottom-sheet renders ABOVE this when open and pushes the dock out of the
@@ -41,9 +43,9 @@ export default function MobileTabDock({
     <nav
       className="sm:hidden fixed bottom-0 left-0 right-0 z-30 flex"
       style={{
-        background: 'oklch(0.16 0.012 250 / 0.96)',
-        backdropFilter: 'blur(18px)',
-        WebkitBackdropFilter: 'blur(18px)',
+        background: 'var(--surface-sheet, oklch(0.16 0.012 250 / 0.96))',
+        backdropFilter: 'blur(var(--blur-panel, 18px))',
+        WebkitBackdropFilter: 'blur(var(--blur-panel, 18px))',
         borderTop: '1px solid var(--rule-strong)',
         paddingBottom: 'env(safe-area-inset-bottom, 0)',
       }}
@@ -57,14 +59,18 @@ export default function MobileTabDock({
             onClick={t.onClick}
             className="flex-1 font-ui transition-colors"
             style={{
+              minHeight: 46,
               padding: '10px 0 12px',
-              fontSize: 10,
+              fontSize: 11,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              background: 'transparent',
+              background: isActive
+                ? 'color-mix(in oklch, var(--ink-text) 6%, transparent)'
+                : 'transparent',
               border: 'none',
+              borderRadius: 0,
               borderTop: isActive
-                ? '1px solid var(--vermilion)'
+                ? '1px solid var(--ink-text)'
                 : '1px solid transparent',
               color: isActive ? 'var(--ink-text)' : 'var(--ink-muted)',
               cursor: 'pointer',

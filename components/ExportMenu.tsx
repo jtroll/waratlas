@@ -2,6 +2,7 @@
 
 import { memo, useState } from 'react';
 import { Conflict } from '@/lib/types';
+import { downloadConflictsCSV, downloadConflictsGeoJSON } from '@/lib/export';
 
 interface Props {
   conflicts: Conflict[];
@@ -16,61 +17,12 @@ function ExportMenu({ conflicts, currentYear }: Props) {
   const [open, setOpen] = useState(false);
 
   const downloadCSV = () => {
-    const rows: string[] = [];
-    rows.push([
-      'id', 'name', 'startYear', 'endYear', 'lon', 'lat',
-      'countries', 'casualties', 'casualties_low', 'casualties_high',
-      'casualties_source', 'importance', 'wikipediaUrl', 'description',
-    ].join(','));
-
-    for (const c of conflicts) {
-      const cells = [
-        c.id,
-        c.name,
-        c.startYear,
-        c.endYear ?? '',
-        c.coordinates[0],
-        c.coordinates[1],
-        (c.countries ?? []).join('; '),
-        c.casualties ?? '',
-        c.casualtyRange?.low ?? '',
-        c.casualtyRange?.high ?? '',
-        c.casualtyRange?.source ?? '',
-        c.importance,
-        c.wikipediaUrl ?? '',
-        c.description ?? '',
-      ].map(csvCell);
-      rows.push(cells.join(','));
-    }
-    // UTF-8 BOM so Excel decodes non-ASCII names (Đại Việt, Kościuszko…)
-    // instead of showing mojibake.
-    const blob = new Blob(['\ufeff' + rows.join('\n')], { type: 'text/csv;charset=utf-8' });
-    triggerDownload(blob, `wars-atlas-${Math.round(currentYear)}.csv`);
+    downloadConflictsCSV(conflicts, currentYear);
     setOpen(false);
   };
 
   const downloadGeoJSON = () => {
-    const fc = {
-      type: 'FeatureCollection' as const,
-      features: conflicts.map((c) => ({
-        type: 'Feature' as const,
-        geometry: { type: 'Point' as const, coordinates: c.coordinates },
-        properties: {
-          id: c.id,
-          name: c.name,
-          startYear: c.startYear,
-          endYear: c.endYear,
-          countries: c.countries,
-          casualties: c.casualties,
-          casualtyRange: c.casualtyRange,
-          importance: c.importance,
-          wikipediaUrl: c.wikipediaUrl,
-          description: c.description ?? '',
-        },
-      })),
-    };
-    const blob = new Blob([JSON.stringify(fc, null, 2)], { type: 'application/geo+json' });
-    triggerDownload(blob, `wars-atlas-${Math.round(currentYear)}.geojson`);
+    downloadConflictsGeoJSON(conflicts, currentYear);
     setOpen(false);
   };
 
@@ -144,35 +96,6 @@ function ExportMenu({ conflicts, currentYear }: Props) {
       )}
     </div>
   );
-}
-
-function csvEscape(s: string | undefined | null): string {
-  if (s === null || s === undefined) return '';
-  const str = String(s);
-  if (/[",\n\r]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
-  return str;
-}
-
-/** Every cell goes through csvEscape. Text cells that start with = + - @
- *  are prefixed with a single quote so spreadsheet apps don't evaluate
- *  them as formulas (CSV injection). Numeric cells (years, coordinates,
- *  counts — including negative BCE years) are left as numbers. */
-function csvCell(v: string | number | null | undefined): string {
-  if (v === null || v === undefined) return '';
-  if (typeof v === 'number') return csvEscape(String(v));
-  const guarded = /^[=+\-@]/.test(v) ? `'${v}` : v;
-  return csvEscape(guarded);
-}
-
-function triggerDownload(blob: Blob, filename: string) {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 export default memo(ExportMenu);
