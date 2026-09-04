@@ -73,6 +73,45 @@ export default class ErrorBoundary extends Component<Props, State> {
 }
 
 /**
+ * Full-screen panel shown when conflicts.json fails to load (network error,
+ * non-2xx, malformed JSON). Same visual treatment as the boundary fallback
+ * above, with a Retry that re-runs the fetch instead of reloading the page.
+ */
+export function DataLoadError({ message, onRetry }: { message: string; onRetry: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-wars-bg">
+      <div className="max-w-md w-full bg-wars-panel border border-wars-border rounded-xl p-6 text-center" role="alert">
+        <div className="text-wars-red text-3xl mb-3" aria-hidden="true">
+          ⚠
+        </div>
+        <h2 className="text-lg font-bold text-wars-text mb-2">Couldn&apos;t load the atlas data</h2>
+        <p className="text-sm text-wars-muted mb-4">
+          The conflict dataset failed to download. Check your connection and try again — if it
+          keeps failing, the site may be mid-deploy.
+        </p>
+        <pre className="text-[10px] text-wars-muted/60 bg-wars-bg/60 border border-wars-border/40 rounded p-2 text-left overflow-x-auto mb-4">
+          {message}
+        </pre>
+        <div className="flex gap-2 justify-center">
+          <button
+            onClick={onRetry}
+            className="px-4 py-2 bg-wars-accent/20 border border-wars-accent/40 rounded text-sm text-wars-accent hover:bg-wars-accent/30 transition-colors"
+          >
+            Retry
+          </button>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-wars-border/40 border border-wars-border rounded text-sm text-wars-muted hover:text-wars-text transition-colors"
+          >
+            Reload page
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
  * Inline fallback used by MapView when the Mapbox token is missing or
  * the data files fail to load. Keeps the rest of the UI usable.
  */

@@ -1,6 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { formatYear, formatYearParts } from '@/lib/format';
+import stats from '@/lib/generated/stats.json';
+
+const STAT_CONFLICTS = `over ${(Math.floor(stats.conflicts / 1000) * 1000).toLocaleString('en-US')} conflicts`;
+const STAT_EMPIRES = `${Math.floor(stats.empires / 100) * 100}+ empires`;
 
 interface Stop {
   /** Year to seek the timeline to. `null` means do not seek (used by the
@@ -23,62 +28,62 @@ interface Stop {
 const STOPS: Stop[] = [
   {
     year: null, title: 'Welcome to War Atlas', shortTitle: 'Start',
-    blurb: 'An interactive cartography of thousands of named wars across 5,000 years of history — over 10,000 conflicts and 400+ empires. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict. This project has been assembled via countless amazing open source resources, Claude Cowork, and several late nights.',
-    hold: 9,
+    blurb: `An interactive cartography of thousands of named wars across 5,000 years of history — ${STAT_CONFLICTS} and ${STAT_EMPIRES}. Scrub the timeline at the bottom to watch borders shift; click a polygon for empire detail, click a red dot for a conflict.`,
+    hold: 12,
     bbox: [-160, -50, 180, 55],
   },
   {
     year: -2500, title: 'Cradle of cities', shortTitle: 'Cradle',
     blurb: 'Bronze Age Sumer, Egypt, and the Indus Valley fight the first wars we can name. Walls go up around the world’s earliest cities; civilization and conflict arrive together.',
-    hold: 5,
+    hold: 12,
     bbox: [22, 5, 80, 35],
   },
   {
     year: -490, title: 'Greco-Persian Wars', shortTitle: 'Greco-Persian',
     blurb: 'A coalition of Greek city-states halts the largest empire the world has yet seen. The Persian invasions force Athens, Sparta, and their neighbours into a fragile alliance.',
-    hold: 5,
+    hold: 12,
     bbox: [18, 20, 60, 40],
   },
   {
     year: -100, title: 'Two empires emerge', shortTitle: 'Two empires',
     blurb: 'Rome and Han China industrialize war on opposite ends of Eurasia, professional armies remaking the political map of half the world.',
-    hold: 5,
+    hold: 12,
     bbox: [-10, 8, 130, 45],
   },
   {
     year: 632, title: 'Arab conquests', shortTitle: 'Caliphate',
     blurb: 'In a century, the Caliphate reaches from Spain to the Indus. The Mediterranean is cut in half; the Sasanian Empire ceases to exist.',
-    hold: 5,
+    hold: 12,
     bbox: [-12, 0, 75, 38],
   },
   {
     year: 1240, title: 'Mongol century', shortTitle: 'Mongol',
     blurb: 'The largest contiguous land empire in history takes shape from the steppe. From Korea to Hungary, the rules of war and statecraft are rewritten in a generation.',
-    hold: 5,
+    hold: 12,
     bbox: [18, 8, 130, 48],
   },
   {
     year: 1521, title: 'Conquest of the Americas', shortTitle: 'Americas',
     blurb: 'Cortés enters Tenochtitlan; the demographic catastrophe of the Columbian exchange begins. New diseases and gunpowder collapse millennia-old civilizations within decades.',
-    hold: 5,
+    hold: 12,
     bbox: [-125, -55, -34, 50],
   },
   {
     year: 1815, title: 'Long peace, hidden wars', shortTitle: 'Long peace',
     blurb: 'Europe stabilizes after Napoleon while colonial wars expand across Africa, India, the Pacific. Great-power peace abroad coexists with industrial-scale conquest elsewhere.',
-    hold: 5,
+    hold: 12,
     bbox: [-15, 0, 95, 55],
   },
   {
     year: 1944, title: 'World War II', shortTitle: 'World War II',
     blurb: 'The deadliest conflict in human history reshapes the political map. By 1944 the Soviets push west, the Allies have landed in Normandy, and empires are about to dissolve.',
-    hold: 5,
+    hold: 12,
     bbox: [-15, 32, 50, 60],
   },
   {
     year: 1989, title: 'After the Cold War', shortTitle: 'After',
     blurb: 'Civil wars and insurgencies replace state-on-state conflict as the dominant form. The map gets denser even as the great powers fight each other less.',
-    hold: 5,
+    hold: 12,
     bbox: [-130, -50, 170, 65],
   },
 ];
@@ -98,17 +103,11 @@ interface Props {
   onFlyToBbox?: (bbox: [number, number, number, number]) => void;
 }
 
-function formatStopYear(y: number) {
-  return y < 0 ? `${-y} BCE` : `${y} CE`;
-}
-
-function formatBigYear(y: number) {
-  // Years are conventionally written without thousands separators
-  // ("2500 BCE", not "2,500 BCE"). Casualty counts keep their commas;
-  // years do not.
-  if (y < 0) return { num: String(Math.abs(y)), suffix: 'BCE' };
-  return { num: String(y), suffix: 'CE' };
-}
+const formatStopYear = formatYear;
+// Years are conventionally written without thousands separators
+// ("2500 BCE", not "2,500 BCE"). Casualty counts keep their commas;
+// years do not.
+const formatBigYear = formatYearParts;
 
 /* ─────────────────────────────────────────────────────────────
  * OPENING TOUR — restyled as an editorial exhibit card.
@@ -125,6 +124,9 @@ function formatBigYear(y: number) {
 export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  // Auto-advance also holds while the pointer rests on the card, so a
+  // reader isn't yanked to the next stop mid-sentence.
+  const [hovering, setHovering] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -149,9 +151,9 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBb
     if (bbox) onFlyToBbox(bbox);
   }, [open, index, onFlyToBbox]);
 
-  // Auto-advance timer (skipped when paused)
+  // Auto-advance timer (skipped when paused or while hovering the card)
   useEffect(() => {
-    if (!open || paused) return;
+    if (!open || paused || hovering) return;
     const stop = STOPS[index];
     timerRef.current = setTimeout(() => {
       if (index < STOPS.length - 1) {
@@ -163,7 +165,7 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBb
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [open, index, paused, onFinish]);
+  }, [open, index, paused, hovering, onFinish]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -256,6 +258,8 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBb
       >
         <div
           className="pointer-events-auto relative w-full"
+          onPointerEnter={() => setHovering(true)}
+          onPointerLeave={() => setHovering(false)}
           style={{
             maxWidth: 720,
             background: 'oklch(0.18 0.014 250 / 0.97)',
@@ -404,7 +408,7 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBb
                         : 'var(--ink-1)',
                   }}
                 >
-                  {isCurrent && !paused && (
+                  {isCurrent && !paused && !hovering && (
                     <div
                       key={`fill-${i}-${paused}`}
                       className="absolute inset-y-0 left-0"
@@ -414,7 +418,7 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBb
                       }}
                     />
                   )}
-                  {isCurrent && paused && (
+                  {isCurrent && (paused || hovering) && (
                     <div
                       className="absolute inset-y-0 left-0"
                       style={{

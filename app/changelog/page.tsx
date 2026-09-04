@@ -61,6 +61,59 @@ export default function ChangelogPage() {
 
         {/* ───── Entries (newest first) ───── */}
 
+        <Entry date="4 Sep 2026" tag="r14 · data repair">
+          <p>
+            A correctness pass across all three datasets and the interface,
+            following a full review. Every polygon keeps its full-precision
+            geometry; nothing was rounded or simplified.
+          </p>
+          <p>
+            <strong>Empires.</strong> Three polygons had been drawn on the wrong
+            continent by a mis-matched basemap pull: the Neo-Assyrian Empire over
+            Taiwan, the Neo-Babylonian Empire over New Zealand, and Manchukuo over
+            Antarctica. Manchukuo is re-pulled from historical-basemaps; the two
+            Mesopotamian extents are hand-traced and honestly marked
+            approximate. Eleven duplicate polities were removed, overlapping
+            time slices made exclusive, and the British Empire 1914–18 and
+            Byzantine 600–843 and 1261–1453 gaps filled. Chronology corrected for
+            the Holy Roman Empire (to 1806), the Abbasid Caliphate (to 1258),
+            Oyo, Vijayanagara, Tu&apos;i Tonga, Wari, Tiwanaku, Teotihuacan and
+            Mali. Polity type and source fields now use closed vocabularies with
+            the original provenance kept verbatim.
+          </p>
+          <p>
+            <strong>Conflicts.</strong> Parent-war links now resolve for 96% of
+            the 8,300 battle-to-war references (previously 3%): the HCED
+            vocabulary is mapped to existing records and 331 umbrella wars were
+            added where none existed, so the conflict graph works for the whole
+            dataset. 55 casualty figures were corrected where the headline
+            contradicted its own range (Operation Barbarossa 27M → 5M, among
+            others), 36 conflicts with a million or more deaths were raised to
+            importance 4 or 5, 27 exact duplicates merged with permalink
+            redirects, 177 records that listed &quot;Draw&quot; as a belligerent
+            cleaned, 190 anachronistic country labels replaced by the polity of
+            the day, and 17 mis-placed pins moved. Judgment calls on about 60
+            near-duplicate clusters are held for review rather than applied.
+          </p>
+          <p>
+            <strong>Cities.</strong> Name periods within a chain no longer
+            overlap (Kiev hands over to Kyiv in 1991; Byzantium, Constantinople
+            and Istanbul are sequential), Beijing is labelled through the Ming and
+            Qing, and five conflated cities were separated.
+          </p>
+          <p>
+            <strong>Interface.</strong> Shared links no longer reset to 3000 BCE
+            on slow connections. Duration labels are correct for single-year and
+            ongoing conflicts and for BCE ranges. Auto-play covers the full
+            timeline in about five minutes instead of thirty, and restarts from
+            the beginning when it reaches the present. Keyboard shortcuts no
+            longer fire while typing, during the tour, or twice on the timeline.
+            Every conflict now has Cite and Permalink actions. Loading failures
+            show a retry instead of an endless spinner. The disputed-territory
+            note no longer covers the map attribution.
+          </p>
+        </Entry>
+
         <Entry date="11 Jul 2026" tag="r13 · post-launch fixes">
           <p>
             A round of fixes prompted by feedback after the atlas reached the

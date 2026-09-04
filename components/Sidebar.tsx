@@ -1,8 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Conflict } from '@/lib/types';
-import { formatYear } from '@/lib/conflicts';
+import { conflictCitation } from '@/lib/conflicts';
+import {
+  formatYear,
+  formatYearRange,
+  formatDuration,
+  formatCompactRange,
+  formatCasualties,
+  importanceLabel,
+} from '@/lib/format';
 import { CasualtyRange } from './CasualtyBar';
 
 interface SidebarProps {
@@ -31,28 +39,6 @@ interface SidebarProps {
  * Ranges, not headlines. Source attribution always visible.
  * ─────────────────────────────────────────────────────────── */
 
-function fmtCasualty(n: number | null): string {
-  if (n == null) return '—';
-  if (n >= 1e9) return `${(n / 1e9).toFixed(1)}B`;
-  if (n >= 1e6) return `${(n / 1e6).toFixed(n >= 1e7 ? 0 : 1)}M`;
-  if (n >= 1e3) return `${(n / 1e3).toFixed(n >= 1e4 ? 0 : 1)}K`;
-  return n.toLocaleString();
-}
-
-function shortYear(y: number): string {
-  return y < 0 ? `${-y} BCE` : `${y}`;
-}
-
-function importanceLabel(i: number): string {
-  switch (i) {
-    case 5: return 'World-changing';
-    case 4: return 'Major conflict';
-    case 3: return 'Significant';
-    case 2: return 'Regional';
-    default: return 'Minor';
-  }
-}
-
 export default function Sidebar({
   conflict,
   onClose,
@@ -73,29 +59,31 @@ export default function Sidebar({
   // narrative are hidden above the fold and it looks like the panel didn't
   // update. Reset on conflict.id change.
   const bodyRef = useRef<HTMLDivElement | null>(null);
+  // "Copied" confirmation after a successful clipboard write (~1.5 s).
+  const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (bodyRef.current) {
       bodyRef.current.scrollTop = 0;
     }
+    setCopied(false);
   }, [conflict.id]);
-
-  // Permalink for citations
-  const permalink =
-    typeof window !== 'undefined'
-      ? `${window.location.origin}/c/${c.id}`
-      : `/c/${c.id}`;
+  useEffect(() => {
+    if (!copied) return;
+    const t = setTimeout(() => setCopied(false), 1500);
+    return () => clearTimeout(t);
+  }, [copied]);
 
   const handleCite = async () => {
-    const yearRange = c.endYear && c.endYear !== c.startYear
-      ? `${formatYear(c.startYear)}–${formatYear(c.endYear)}`
-      : formatYear(c.startYear);
-    const citation = `${c.name} (${yearRange}). War Atlas. ${permalink}`;
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const citation = conflictCitation(c, origin);
     try {
       await navigator.clipboard.writeText(citation);
+      setCopied(true);
     } catch {
       // Clipboard might be blocked; fall back to selection.
     }
   };
+  const duration = formatDuration(c.startYear, c.endYear);
 
   return (
     <aside
@@ -176,18 +164,13 @@ export default function Sidebar({
           className="font-mono mt-2.5 text-meta text-wars-text-2"
           style={{ letterSpacing: '0.05em' }}
         >
-          {formatYear(c.startYear)}
-          {c.endYear && c.endYear !== c.startYear
-            ? ` — ${formatYear(c.endYear)}`
-            : !c.endYear && c.startYear > 2000
-              ? ' — present'
-              : ''}
-          <span className="text-wars-faint mx-2">·</span>
-          {c.endYear
-            ? `${c.endYear - c.startYear} years`
-            : c.startYear > 2000
-              ? 'Ongoing'
-              : '< 1 year'}
+          {formatYearRange(c.startYear, c.endYear)}
+          {duration && (
+            <>
+              <span className="text-wars-faint mx-2">·</span>
+              {duration}
+            </>
+          )}
         </div>
       </header>
 
@@ -344,8 +327,7 @@ export default function Sidebar({
         )}
 
         {/* SOURCES — numbered ol with dotted dividers + indigo links */}
-        {((c.sources && c.sources.length > 0) || c.wikipediaUrl) && (
-          <section className="py-5">
+        <section className="py-5">
             {c.sources && c.sources.length > 0 && (
               <>
                 <div className="eyebrow mb-2.5">Sources</div>
@@ -392,7 +374,8 @@ export default function Sidebar({
               </>
             )}
 
-            {/* Editorial action row — indigo links, no buttons */}
+            {/* Editorial action row — indigo links, no buttons. Rendered for
+                every conflict, not only those with sources / a Wikipedia URL. */}
             <div className="mt-3.5 flex flex-wrap gap-2 items-center text-meta text-wars-muted">
               <button
                 onClick={handleCite}
@@ -411,6 +394,9 @@ export default function Sidebar({
               >
                 Cite this entry
               </button>
+              <span role="status" aria-live="polite" className="font-mono text-mono-xs" style={{ color: 'var(--amber)' }}>
+                {copied ? 'Copied' : ''}
+              </span>
               <span className="text-wars-faint">·</span>
               <a
                 href={`/c/${c.id}`}
@@ -446,8 +432,7 @@ export default function Sidebar({
                 </>
               )}
             </div>
-          </section>
-        )}
+        </section>
 
         {/* Footer — coords + ID, dashed top rule */}
         <footer
@@ -470,9 +455,8 @@ export default function Sidebar({
  * Inline conflict graph — vertical lineage line, "You are here"
  * with amber square node, parents above + children/siblings below.
  *
- * Defined inline (not pulled from ConflictGraph.tsx) so the visual
- * structure here is owned by the sidebar redesign. Step 6 will
- * decide whether to extract it back out.
+ * Defined inline so the visual structure here is owned by the sidebar
+ * redesign (the old standalone ConflictGraph component was removed).
  * ─────────────────────────────────────────────────────────── */
 
 interface GraphProps {
@@ -535,7 +519,7 @@ function ConflictGraphInline({ conflict, allConflicts, onConflictClick }: GraphP
           >
             {conflict.name}
             <span className="font-mono text-mono-xs text-wars-faint ml-2">
-              {shortYear(conflict.startYear)}
+              {formatYear(conflict.startYear)}
             </span>
           </div>
           <div
@@ -634,15 +618,12 @@ function GraphRow({ c, role, onClick }: GraphRowProps) {
           {c.name}
         </span>
         <span className="font-mono text-mono-xs text-wars-faint flex-shrink-0">
-          {shortYear(c.startYear)}
-          {c.endYear && c.endYear !== c.startYear
-            ? `–${String(c.endYear).slice(-2)}`
-            : ''}
+          {formatCompactRange(c.startYear, c.endYear)}
         </span>
       </div>
       {c.casualties != null && (
         <div className="font-mono text-mono-xs text-wars-faint mt-0.5">
-          {fmtCasualty(c.casualties)} dead
+          {formatCasualties(c.casualties)} dead
         </div>
       )}
     </button>

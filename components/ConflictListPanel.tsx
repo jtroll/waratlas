@@ -1,7 +1,7 @@
 'use client';
 
 import { ActiveConflict, Conflict } from '@/lib/types';
-import { formatYear, formatCasualties } from '@/lib/conflicts';
+import { formatYear, formatYearRange, formatCasualties } from '@/lib/format';
 
 interface ConflictListPanelProps {
   conflicts: ActiveConflict[];
@@ -85,9 +85,7 @@ export default function ConflictListPanel({
                       {c.name}
                     </h3>
                     <p className="text-[11px] text-wars-muted mt-0.5">
-                      {formatYear(c.startYear)}
-                      {c.endYear && c.endYear !== c.startYear ? ` – ${formatYear(c.endYear)}` : ''}
-                      {!c.endYear && c.startYear > 2000 ? ' – present' : ''}
+                      {formatYearRange(c.startYear, c.endYear)}
                     </p>
                     <p className="text-[11px] text-wars-muted/70 mt-0.5 truncate">
                       {c.countries.slice(0, 4).join(' vs ')}

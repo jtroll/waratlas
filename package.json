@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "generate:sw": "node scripts/generate-sw.mjs",
-    "prebuild": "npm run generate:sw",
+    "prebuild": "npm run stats && npm run generate:sw",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "stats": "node scripts/generate-stats.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.3.1",

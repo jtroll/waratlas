@@ -1,73 +1,50 @@
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import fs from 'fs';
-import path from 'path';
+import { notFound, redirect } from 'next/navigation';
+import { findConflict, resolveConflictId } from '@/lib/server/conflict-index';
+import { formatYearRange } from '@/lib/format';
+import { getSiteUrl } from '@/lib/site-url';
 
-interface Conflict {
-  id: string;
-  name: string;
-  startYear: number;
-  endYear: number | null;
-  coordinates: [number, number];
-  countries: string[];
-  description: string;
-  hook?: string;
-  narrative?: string;
-  significance?: string;
-  importance: number;
-  casualties: number | null;
+// ISR: the conflict dataset changes on deploy, not per request. Cache each
+// permalink for a day instead of parsing the 9 MB data file per hit.
+export const revalidate = 86400;
+
+interface RouteProps {
+  params: { id: string };
 }
 
-function loadConflicts(): Conflict[] {
-  try {
-    const p = path.join(process.cwd(), 'public', 'conflicts.json');
-    return JSON.parse(fs.readFileSync(p, 'utf8')) as Conflict[];
-  } catch {
-    return [];
-  }
-}
-
-function findConflict(id: string): Conflict | null {
-  const conflicts = loadConflicts();
-  return conflicts.find((c) => c.id === id) ?? null;
-}
-
-function formatYear(year: number) {
-  if (year < 0) return `${Math.abs(year)} BCE`;
-  if (year < 1000) return `${year} CE`;
-  return `${year}`;
-}
-
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const conflict = findConflict(params.id);
+export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
+  const conflict = findConflict(resolveConflictId(params.id));
   if (!conflict) {
     return {
       title: 'Conflict not found · War Atlas',
       description: 'This conflict could not be found in the War Atlas dataset.',
+      robots: { index: false },
     };
   }
-  const yearRange =
-    conflict.endYear && conflict.endYear !== conflict.startYear
-      ? `${formatYear(conflict.startYear)} – ${formatYear(conflict.endYear)}`
-      : formatYear(conflict.startYear);
+  const yearRange = formatYearRange(conflict.startYear, conflict.endYear);
   const summary =
     conflict.hook ?? conflict.description ?? `Conflict in ${yearRange}.`;
   const description = summary.length > 200 ? summary.slice(0, 197) + '...' : summary;
+  const canonical = `${getSiteUrl()}/c/${conflict.id}`;
 
   const title = `${conflict.name} (${yearRange}) · War Atlas`;
   return {
     title,
     description,
+    alternates: { canonical },
     openGraph: {
       title,
       description,
       type: 'article',
       siteName: 'War Atlas',
+      url: canonical,
+      images: ['/og-card.png'],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title,
       description,
+      images: ['/og-card.png'],
     },
   };
 }
@@ -76,17 +53,23 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
  * Per-conflict permalink. Renders an HTML stub with proper meta tags
  * (so social previews and search engines work) and then redirects the
  * user into the main app pre-scrolled to the conflict's year.
+ *
+ * Rendered inside the root layout — returns a fragment, not its own
+ * document. Unknown ids 404; ids that were merged or renamed
+ * (scripts/data/id_redirects.json) 307 to the canonical permalink.
  */
-export default function ConflictPage({ params }: { params: { id: string } }) {
-  const conflict = findConflict(params.id);
-  if (!conflict) {
-    redirect('/');
+export default function ConflictPage({ params }: RouteProps) {
+  const canonicalId = resolveConflictId(params.id);
+  if (canonicalId !== params.id) {
+    redirect(`/c/${canonicalId}`);
   }
-  const yearRange =
-    conflict.endYear && conflict.endYear !== conflict.startYear
-      ? `${formatYear(conflict.startYear)} – ${formatYear(conflict.endYear)}`
-      : formatYear(conflict.startYear);
+  const conflict = findConflict(canonicalId);
+  if (!conflict) {
+    notFound();
+  }
+  const yearRange = formatYearRange(conflict.startYear, conflict.endYear);
   const targetYear = conflict.startYear;
+  const appHref = `/#year=${targetYear}&conflict=${conflict.id}`;
 
   // schema.org Event JSON-LD for rich search results
   const jsonLd = {
@@ -107,16 +90,15 @@ export default function ConflictPage({ params }: { params: { id: string } }) {
   };
 
   return (
-    <html lang="en">
-      <head>
-        <meta httpEquiv="refresh" content={`0; url=/#year=${targetYear}&conflict=${conflict.id}`} />
-        <link rel="canonical" href={`/c/${conflict.id}`} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body
+    <>
+      {/* Browsers honour a refresh pragma wherever it appears in the
+          document; React 18 does not hoist it, so it lands in <body>. */}
+      <meta httpEquiv="refresh" content={`0; url=${appHref}`} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <main
         style={{
           background: '#0a0e17',
           color: '#e7e9ef',
@@ -125,6 +107,7 @@ export default function ConflictPage({ params }: { params: { id: string } }) {
           maxWidth: '60ch',
           margin: '0 auto',
           lineHeight: 1.6,
+          minHeight: '100vh',
         }}
       >
         <h1 style={{ color: '#fff', marginBottom: '0.25rem' }}>{conflict.name}</h1>
@@ -145,14 +128,14 @@ export default function ConflictPage({ params }: { params: { id: string } }) {
           <p>{conflict.description}</p>
         )}
         <p style={{ marginTop: '2rem' }}>
-          <a href={`/#year=${targetYear}&conflict=${conflict.id}`} style={{ color: '#e63946' }}>
+          <a href={appHref} style={{ color: '#e63946' }}>
             View on the War Atlas →
           </a>
         </p>
         <p style={{ marginTop: '0.5rem', fontSize: '0.85em', color: '#666' }}>
           Redirecting…
         </p>
-      </body>
-    </html>
+      </main>
+    </>
   );
 }

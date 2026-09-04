@@ -3,6 +3,8 @@ import { Source_Serif_4, Inter_Tight, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
+import stats from '@/lib/generated/stats.json';
+import { getSiteUrl } from '@/lib/site-url';
 
 /**
  * Editorial type families per redesign handoff.
@@ -33,12 +35,12 @@ const mono = JetBrains_Mono({
   display: 'swap',
 })
 
-// Headline statistics — keep in sync with public/conflicts.json + public/empires.json
-// counts. AboutModal reads the same numbers; if you bump these here, bump them there too.
-const STAT_CONFLICTS = '10,584';
-const STAT_EMPIRES = '427';
+// Headline statistics — derived from the data files by
+// scripts/generate-stats.mjs (runs in `prebuild` / `npm run stats`).
+const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
+const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://wars-atlas.example';
+const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

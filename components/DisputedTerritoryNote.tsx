@@ -4,14 +4,14 @@ import { useState } from 'react';
 
 /**
  * Disclaimer about contested borders. Shown only in modern eras (>= 1900) where
- * Natural Earth's modern country shapes carry implicit political stances on
- * disputed territories. Dismissible per-session.
+ * the basemap's modern boundary lines (Mapbox boundary data) carry implicit
+ * political stances on disputed territories. Dismissible per-session.
  */
 
 const DISPUTED_REGIONS = [
-  { name: 'Crimea', note: 'Shown as Ukrainian per Natural Earth; Russia has occupied since 2014.' },
+  { name: 'Crimea', note: 'Shown as Ukrainian per Mapbox\u2019s boundary data; Russia has occupied since 2014.' },
   { name: 'Taiwan', note: 'Shown as separate from China; the PRC claims it.' },
-  { name: 'Israel / Palestine', note: 'West Bank, Gaza, Golan, and East Jerusalem are shown per Natural Earth conventions; status remains contested.' },
+  { name: 'Israel / Palestine', note: 'West Bank, Gaza, Golan, and East Jerusalem are shown per Mapbox\u2019s boundary conventions; status remains contested.' },
   { name: 'Kashmir', note: 'India, Pakistan, and China all claim portions; the de-facto Line of Control is approximated.' },
   { name: 'Tibet', note: 'Shown within China per international recognition; many Tibetans dispute this.' },
   { name: 'Western Sahara', note: 'Largely controlled by Morocco; sovereignty contested by the Sahrawi (Polisario).' },
@@ -41,12 +41,12 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
   return (
     <div
       // z-30 raises this above InfoBoxLayer (z-20) so the disputed-borders
-      // disclaimer never gets covered by a conflict callout. Stacks
-      // directly above the Export button with a 24px visible gap
-      // (matching the editorial right-6 rhythm): Export is at bottom-32
-      // (128px) + h-8 (32px) = top at 160px; this button sits at
-      // bottom-[184px] so its bottom edge is 24px above Export's top.
-      className="absolute right-3 sm:right-6 z-30 pointer-events-auto bottom-44 sm:bottom-[184px]"
+      // disclaimer never gets covered by a conflict callout. Stacks above
+      // the Mapbox attribution (i) chip, which globals.css pins at
+      // bottom:176px (desktop) / calc(170px + safe-area) (mobile) with a
+      // 24px-tall button — so its top edge is at 200 / 194px. This chip
+      // sits 16px above that (216 / 210px) so the two never overlap.
+      className="absolute right-3 sm:right-6 z-30 pointer-events-auto bottom-[calc(210px+env(safe-area-inset-bottom,0px))] sm:bottom-[216px]"
       role="region"
       aria-label="Disputed territory note"
     >
@@ -96,8 +96,9 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
             Notes on disputed borders
           </div>
           <p className="text-wars-text/90 mb-2">
-            Modern country shapes follow Natural Earth conventions, which approximate
-            internationally recognized borders. These designations are not endorsements:
+            Modern borders come from Mapbox&apos;s boundary data (default worldview), which
+            approximates internationally recognized borders. These designations are not
+            endorsements:
           </p>
           <ul className="space-y-1.5">
             {DISPUTED_REGIONS.map((r) => (
