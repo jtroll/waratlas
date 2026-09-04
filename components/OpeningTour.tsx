@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { formatYear, formatYearParts } from '@/lib/format';
 import stats from '@/lib/generated/stats.json';
 
@@ -121,7 +121,7 @@ const formatBigYear = formatYearParts;
  * Auto-advance, pause/resume, and keyboard nav are unchanged
  * from the previous version (arrows, Enter, Space, Escape).
  * ─────────────────────────────────────────────────────────── */
-export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
+function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   // Auto-advance also holds while the pointer rests on the card, so a
@@ -508,3 +508,5 @@ export default function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBb
     </>
   );
 }
+
+export default memo(OpeningTour);

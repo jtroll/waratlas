@@ -1,6 +1,6 @@
 # Empire & city data repair — review round 14 (2026-09-04)
 
-Scope: `public/empires.json`, `public/cities.json`, `public/empire-wikipedia.json`.
+Scope: `data/empires.json`, `data/cities.json`, `data/empire-wikipedia.json`.
 Scripts: `scripts/empires_fix_r14.py` (+ `scripts/empires_hand_traced_r14.py`),
 `scripts/cities_normalize_r14.py`, `scripts/validate-empires.mjs`.
 Full per-step log: `docs/data-review/empires-r14.log`. Duplicate decisions:

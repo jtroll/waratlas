@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Conflict } from '@/lib/types';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
  * Researcher export: download active conflicts as CSV or GeoJSON.
  * Tucked into the bottom-right of the map, above the timeline.
  */
-export default function ExportMenu({ conflicts, currentYear }: Props) {
+function ExportMenu({ conflicts, currentYear }: Props) {
   const [open, setOpen] = useState(false);
 
   const downloadCSV = () => {
@@ -65,7 +65,7 @@ export default function ExportMenu({ conflicts, currentYear }: Props) {
           casualtyRange: c.casualtyRange,
           importance: c.importance,
           wikipediaUrl: c.wikipediaUrl,
-          description: c.description,
+          description: c.description ?? '',
         },
       })),
     };
@@ -175,3 +175,5 @@ function triggerDownload(blob: Blob, filename: string) {
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
+
+export default memo(ExportMenu);

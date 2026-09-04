@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scan public/empires.json for polygons with shape pathology — primitives
+Scan data/empires.json for polygons with shape pathology — primitives
 (rectangles, ovals, half-circles) and large territories with too few anchors.
 
 Heuristics:
@@ -21,7 +21,7 @@ import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-EMPIRES = ROOT / 'public' / 'empires.json'
+EMPIRES = ROOT / 'data' / 'empires.json'
 
 
 def ring_metrics(ring):

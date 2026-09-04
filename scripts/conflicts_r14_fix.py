@@ -2,12 +2,12 @@
 """
 conflicts_r14_fix.py — War Atlas conflict-dataset defect pass (review round 14).
 
-Reads public/conflicts.json and the tables under scripts/data/, applies the r14
+Reads data/conflicts.json and the tables under scripts/data/, applies the r14
 fixes (partOf resolution + stub parents, casualty/range corrections, exact-duplicate
 merges, Draw removal, anachronistic belligerent labels, coordinate fixes,
 importance floor, small text fixes, polity canonicalisation) and writes:
 
-  public/conflicts.json                 (pretty-printed, 2-space indent, key order preserved)
+  data/conflicts.json                 (pretty-printed, 2-space indent, key order preserved)
   scripts/data/id_redirects.json        {oldId: newId} for merged / renamed / deleted records
   scripts/data/parent_unresolved.json   partOf strings that still do not resolve to an id
   <log dir>/r14_log.json                machine-readable change log used by docs/data-review/conflicts-r14.md
@@ -18,7 +18,7 @@ Python 3 stdlib only; shapely is optional (point-in-country pass is skipped with
 import argparse, collections, copy, difflib, json, math, os, re, sys, unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CONF = os.path.join(ROOT, 'public', 'conflicts.json')
+CONF = os.path.join(ROOT, 'data', 'conflicts.json')
 DATA = os.path.join(ROOT, 'scripts', 'data')
 KEY_ORDER = ['id', 'name', 'startYear', 'endYear', 'coordinates', 'locations', 'countries', 'partOf',
              'casualties', 'casualtyRange', 'wikipediaUrl', 'importance', 'description',

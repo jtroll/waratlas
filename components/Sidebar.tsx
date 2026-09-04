@@ -1,8 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Conflict } from '@/lib/types';
-import { conflictCitation } from '@/lib/conflicts';
+import {
+  conflictCitation,
+  buildConflictRelations,
+  getConflictChildren,
+  resolveConflictRef,
+  type ConflictRelations,
+} from '@/lib/conflicts';
 import {
   formatYear,
   formatYearRange,
@@ -20,6 +26,9 @@ interface SidebarProps {
   allConflicts?: Conflict[];
   /** Click handler for navigating to a related conflict. */
   onConflictClick?: (c: Conflict) => void;
+  /** Parent/child index built once per dataset (lib/conflicts.ts). When
+   *  omitted it is derived from allConflicts here. */
+  relations?: ConflictRelations | null;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -39,18 +48,19 @@ interface SidebarProps {
  * Ranges, not headlines. Source attribution always visible.
  * ─────────────────────────────────────────────────────────── */
 
-export default function Sidebar({
+function Sidebar({
   conflict,
   onClose,
   allConflicts,
   onConflictClick,
+  relations,
 }: SidebarProps) {
-  const c = conflict as Conflict & {
-    hook?: string;
-    narrative?: string;
-    significance?: string;
-  };
+  const c = conflict;
   const hasTiered = !!(c.hook || c.narrative || c.significance);
+  const rel = useMemo(
+    () => relations ?? (allConflicts ? buildConflictRelations(allConflicts) : null),
+    [relations, allConflicts],
+  );
 
   // Scroll the panel back to the top whenever we switch wars. Without
   // this, clicking a related conflict (or another dot on the map) re-renders
@@ -272,9 +282,7 @@ export default function Sidebar({
             <div className="eyebrow mb-2.5">Part of</div>
             <div className="flex flex-wrap gap-x-2 gap-y-1">
               {c.partOf.map((parent) => {
-                const parentConflict = allConflicts?.find(
-                  (a) => a.id === parent || a.name === parent
-                );
+                const parentConflict = rel ? resolveConflictRef(rel, parent) : undefined;
                 const label = parentConflict?.name ?? parent;
                 if (parentConflict && onConflictClick) {
                   return (
@@ -316,11 +324,11 @@ export default function Sidebar({
         )}
 
         {/* CONFLICT GRAPH */}
-        {allConflicts && onConflictClick && (
+        {rel && onConflictClick && (
           <section className="py-5 hairline-b">
             <ConflictGraphInline
               conflict={c}
-              allConflicts={allConflicts}
+              relations={rel}
               onConflictClick={onConflictClick}
             />
           </section>
@@ -461,29 +469,24 @@ export default function Sidebar({
 
 interface GraphProps {
   conflict: Conflict;
-  allConflicts: Conflict[];
+  relations: ConflictRelations;
   onConflictClick: (c: Conflict) => void;
 }
 
-function ConflictGraphInline({ conflict, allConflicts, onConflictClick }: GraphProps) {
-  const parents = (conflict.partOf || [])
-    .map((p) => allConflicts.find((c) => c.id === p || c.name === p))
-    .filter((c): c is Conflict => Boolean(c));
-
-  const children = allConflicts.filter((c) =>
-    (c.partOf || []).some((p) => p === conflict.id || p === conflict.name)
-  );
-
-  const firstParent = parents[0];
-  const siblings = firstParent
-    ? allConflicts.filter(
-        (c) =>
-          c.id !== conflict.id &&
-          (c.partOf || []).some(
-            (p) => p === firstParent.id || p === firstParent.name
-          )
-      )
-    : [];
+function ConflictGraphInline({ conflict, relations, onConflictClick }: GraphProps) {
+  // Parents / children / siblings come from the per-dataset index — each is
+  // O(result) instead of a full scan of every record per render.
+  const { parents, children, siblings, firstParent } = useMemo(() => {
+    const parents = (conflict.partOf || [])
+      .map((p) => resolveConflictRef(relations, p))
+      .filter((c): c is Conflict => Boolean(c));
+    const children = getConflictChildren(relations, conflict);
+    const firstParent = parents[0];
+    const siblings = firstParent
+      ? getConflictChildren(relations, firstParent).filter((c) => c.id !== conflict.id)
+      : [];
+    return { parents, children, siblings, firstParent };
+  }, [conflict, relations]);
 
   if (parents.length === 0 && children.length === 0) return null;
 
@@ -629,3 +632,5 @@ function GraphRow({ c, role, onClick }: GraphRowProps) {
     </button>
   );
 }
+
+export default memo(Sidebar);

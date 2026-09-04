@@ -68,7 +68,7 @@ export default function SourcesPage() {
 
         <Section title="Conflict records">
           <p>
-            The {STAT_CONFLICTS} conflict entries in <Code>public/conflicts.json</Code> were
+            The {STAT_CONFLICTS} conflict entries in <Code>data/conflicts.json</Code> were
             seeded from the leads of English Wikipedia articles
             (<License href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</License>),
             then cross-checked against:
@@ -127,13 +127,13 @@ export default function SourcesPage() {
             records sit at lower visual prominence (importance 2), carry{' '}
             <Code>casualties: null</Code> where the source gives no reliable
             figure, and each cites its source dataset on the record. Per each
-            provider's requested attribution:
+            provider&apos;s requested attribution:
           </p>
           <ul>
             <li>
               <strong>HCED (geocoded battles, 1468 BCE-2003):</strong> Miller,
-              Charles, and K. Shuvo Bakar (2023). "Conflict Events Worldwide
-              Since 1468BC: Introducing the Historical Conflict Event Dataset."{' '}
+              Charles, and K. Shuvo Bakar (2023). &quot;Conflict Events Worldwide
+              Since 1468BC: Introducing the Historical Conflict Event Dataset.&quot;{' '}
               <em>Journal of Conflict Resolution</em> 67(2-3): 522-554.{' '}
               <a href="https://doi.org/10.7910/DVN/6ZFC0V" target="_blank" rel="noopener noreferrer">doi:10.7910/DVN/6ZFC0V</a>.
               HCED draws primarily on Tony Jaques, <em>Dictionary of Battles and Sieges</em> (2007).
@@ -161,8 +161,8 @@ export default function SourcesPage() {
               <strong>Brecke Conflict Catalog</strong> (consulted for casualty
               cross-checking, not bulk-imported, since its fatality figures are
               war-level and could not be honestly attached to battle-level
-              records): Brecke, Peter (1999). "Violent Conflicts 1400 A.D. to the
-              Present in Different Regions of the World." Peace Science Society.
+              records): Brecke, Peter (1999). &quot;Violent Conflicts 1400 A.D. to the
+              Present in Different Regions of the World.&quot; Peace Science Society.
             </li>
           </ul>
           <p style={{ marginTop: 12, fontSize: 13, opacity: 0.85 }}>
@@ -176,8 +176,8 @@ export default function SourcesPage() {
 
         <Section title="Empire summaries">
           <p>
-            The lead-paragraph summaries shown under "Overview" / "From
-            Wikipedia" in the empire flyout come from the English Wikipedia
+            The lead-paragraph summaries shown under &quot;Overview&quot; / &quot;From
+            Wikipedia&quot; in the empire flyout come from the English Wikipedia
             REST summary API. Reused under{' '}
             <License href="https://creativecommons.org/licenses/by-sa/4.0/">
               CC BY-SA 4.0
@@ -188,7 +188,7 @@ export default function SourcesPage() {
             The fetcher script (<Code>scripts/fetch_wikipedia_summaries.py</Code>)
             sends a polite User-Agent identifying the project and its
             maintainer, rate-limits to a few requests per second, and caches
-            results in <Code>public/empire-wikipedia.json</Code>. Curated
+            results in <Code>data/empire-wikipedia.json</Code>. Curated
             editorial summaries (<Code>lib/empire-descriptions.ts</Code>) take
             precedence in the UI; Wikipedia content fills the gap and is
             always labelled as such.
@@ -197,7 +197,7 @@ export default function SourcesPage() {
 
         <Section title="Borders, polygons, geometry">
           <p>
-            The {STAT_EMPIRES} empire polygons in <Code>public/empires.json</Code> come
+            The {STAT_EMPIRES} empire polygons in <Code>data/empires.json</Code> come
             from several kinds of source, in roughly this order of priority:
           </p>
           <ul>

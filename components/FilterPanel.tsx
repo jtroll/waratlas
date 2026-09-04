@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import type { Conflict } from '@/lib/types';
 
 export interface ConflictFilters {
@@ -20,6 +20,18 @@ export const DEFAULT_FILTERS: ConflictFilters = {
   search: '',
   minDurationYears: 0,
 };
+
+/** Structural "nothing is filtering" check. The object identity check the
+ *  page used to make (`filters === DEFAULT_FILTERS`) fails as soon as any
+ *  field has been edited and reset by hand. */
+export function isDefaultFilters(f: ConflictFilters): boolean {
+  return (
+    f.minImportance <= DEFAULT_FILTERS.minImportance &&
+    f.region === DEFAULT_FILTERS.region &&
+    f.search.trim() === '' &&
+    f.minDurationYears <= DEFAULT_FILTERS.minDurationYears
+  );
+}
 
 interface Props {
   filters: ConflictFilters;
@@ -57,7 +69,7 @@ export function regionBboxFor(region: ConflictFilters['region']): [number, numbe
  * Filter panel — collapsible panel above the timeline. Applies live filters to
  * which conflicts are shown on the map and in the list panel.
  */
-export default function FilterPanel({
+function FilterPanel({
   filters,
   onChange,
   totalActive,
@@ -382,3 +394,5 @@ export default function FilterPanel({
 const IMPORTANCE_LABEL: Record<number, string> = {
   1: 'Minor', 2: 'Regional', 3: 'Significant', 4: 'Major', 5: 'World-changing',
 };
+
+export default memo(FilterPanel);

@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Any pk.* string satisfies the build; the map is never rendered in CI.
+      NEXT_PUBLIC_MAPBOX_TOKEN: pk.ci-dummy-token-000000000000
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Validate source datasets
+        run: npm run validate
+
+      - name: Build hashed data files
+        run: npm run data
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npx eslint . --max-warnings=0
+        continue-on-error: false
+
+      - name: Unit + data tests
+        run: npm test
+
+      - name: Build
+        run: npm run build

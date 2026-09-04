@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * validate-empires.mjs — schema / integrity checks for public/empires.json
- * and public/cities.json.  No dependencies.  Exits 1 on any failure.
+ * validate-empires.mjs — schema / integrity checks for data/empires.json
+ * and data/cities.json.  No dependencies.  Exits 1 on any failure.
  *
  *   node scripts/validate-empires.mjs
  *
@@ -51,7 +51,7 @@ function bbox(geometry) {
 }
 
 // ---------------------------------------------------------------- empires
-const empires = JSON.parse(readFileSync(path.join(ROOT, 'public', 'empires.json'), 'utf8'));
+const empires = JSON.parse(readFileSync(path.join(ROOT, 'data', 'empires.json'), 'utf8'));
 const feats = empires.features;
 const ids = new Map();
 const byName = new Map();
@@ -105,7 +105,7 @@ for (const [name, list] of byName) {
 }
 
 // ---------------------------------------------------------------- cities
-const cities = JSON.parse(readFileSync(path.join(ROOT, 'public', 'cities.json'), 'utf8'));
+const cities = JSON.parse(readFileSync(path.join(ROOT, 'data', 'cities.json'), 'utf8'));
 const cityIds = new Set();
 const chains = new Map();
 for (const c of cities.features) {

@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { Conflict } from '@/lib/types';
+import { DATA_URLS } from '@/lib/data-urls';
 import {
   formatYear,
   formatYearRange,
@@ -29,7 +30,7 @@ interface WikipediaEntry {
 let wikipediaCachePromise: Promise<Record<string, WikipediaEntry>> | null = null;
 function loadWikipediaCache(): Promise<Record<string, WikipediaEntry>> {
   if (wikipediaCachePromise) return wikipediaCachePromise;
-  wikipediaCachePromise = fetch('/empire-wikipedia.json')
+  wikipediaCachePromise = fetch(DATA_URLS.empireWikipedia)
     .then((r) => (r.ok ? r.json() : {}))
     .catch(() => ({} as Record<string, WikipediaEntry>));
   return wikipediaCachePromise;
@@ -186,7 +187,7 @@ function bordersCaption(
   }
 }
 
-export default function EmpireSidebar({
+function EmpireSidebar({
   empire,
   allConflicts,
   onConflictClick,
@@ -659,3 +660,5 @@ export default function EmpireSidebar({
     </aside>
   );
 }
+
+export default memo(EmpireSidebar);

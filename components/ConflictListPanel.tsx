@@ -1,5 +1,6 @@
 'use client';
 
+import { memo, useMemo } from 'react';
 import { ActiveConflict, Conflict } from '@/lib/types';
 import { formatYear, formatYearRange, formatCasualties } from '@/lib/format';
 
@@ -11,14 +12,14 @@ interface ConflictListPanelProps {
   selectedId: string | null;
 }
 
-export default function ConflictListPanel({
+function ConflictListPanel({
   conflicts,
   currentYear,
   onConflictClick,
   onClose,
   selectedId,
 }: ConflictListPanelProps) {
-  const activeConflicts = conflicts.filter(c => c.isActive);
+  const activeConflicts = useMemo(() => conflicts.filter(c => c.isActive), [conflicts]);
 
   return (
     <div
@@ -105,3 +106,5 @@ export default function ConflictListPanel({
     </div>
   );
 }
+
+export default memo(ConflictListPanel);

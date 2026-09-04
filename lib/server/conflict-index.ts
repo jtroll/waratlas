@@ -4,7 +4,7 @@ import type { Conflict } from '@/lib/types';
 import idRedirects from '@/lib/generated/id-redirects.json';
 
 /**
- * Server-side, module-level cache of public/conflicts.json with an id index.
+ * Server-side, module-level cache of data/conflicts.json with an id index.
  * The 9 MB file is parsed at most once per server process instead of once
  * per request (and previously twice per request — generateMetadata and the
  * page body each re-read it).
@@ -20,7 +20,7 @@ export function getConflictIndex(): ConflictIndex {
   if (cached) return cached;
   let list: Conflict[] = [];
   try {
-    const p = path.join(process.cwd(), 'public', 'conflicts.json');
+    const p = path.join(process.cwd(), 'data', 'conflicts.json');
     const parsed: unknown = JSON.parse(fs.readFileSync(p, 'utf8'));
     if (Array.isArray(parsed)) list = parsed as Conflict[];
   } catch {

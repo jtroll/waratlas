@@ -1,8 +1,9 @@
 'use client';
 
-import { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
+import { useRef, useEffect, useState, forwardRef, useImperativeHandle, memo } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { ActiveConflict, Conflict, ScreenPosition } from '@/lib/types';
+import { DATA_URLS } from '@/lib/data-urls';
 import { MapboxTokenFallback } from './ErrorBoundary';
 import type { EmpireProperties } from './EmpireSidebar';
 
@@ -16,7 +17,9 @@ interface MapViewProps {
    *  lift the loading screen instead of guessing with a timeout. Zoom is
    *  covered by onMapMove — Mapbox fires `move` during zooms too. */
   onMapLoad?: () => void;
-  onMapMove: () => void;
+  /** Optional per-`move` callback. Prefer MapViewHandle.onMove for anything
+   *  that needs to react per frame — it doesn't go through React state. */
+  onMapMove?: () => void;
   /** Called when the user clicks a city dot. Receives the city's coordinates. */
   onCityClick?: (coords: [number, number]) => void;
   /** Called when the user clicks an empire polygon. Receives the empire's
@@ -30,6 +33,11 @@ interface MapViewProps {
 export interface MapViewHandle {
   project: (lngLat: [number, number]) => ScreenPosition | null;
   getZoom: () => number;
+  /** Subscribe to Mapbox `move` (fires during pans and zooms) plus the
+   *  initial `load`. Returns an unsubscribe. Listeners run synchronously on
+   *  Mapbox's event, outside React, so a per-frame subscriber (the callout
+   *  layer) can position DOM directly without a state round-trip. */
+  onMove: (listener: () => void) => () => void;
   /** Fly the map to fit the given bounding box. Used by the opening tour to
    *  pan the camera to the area being discussed on each stop. The padding
    *  leaves room for the tour card pinned to the bottom of the screen. */
@@ -173,6 +181,12 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   useEffect(() => { onCityClickRef.current = onCityClick; }, [onCityClick]);
   const onMapLoadRef = useRef(onMapLoad);
   useEffect(() => { onMapLoadRef.current = onMapLoad; }, [onMapLoad]);
+  // The init effect runs once; handlers it installs read the latest props
+  // through refs so a changed callback is never a stale closure.
+  const onConflictDotClickRef = useRef(onConflictDotClick);
+  useEffect(() => { onConflictDotClickRef.current = onConflictDotClick; }, [onConflictDotClick]);
+  const onMapMoveRef = useRef(onMapMove);
+  useEffect(() => { onMapMoveRef.current = onMapMove; }, [onMapMove]);
   // Non-blocking notices. bordersError: cities/empires fetch failed (the
   // conflict dots still render); tileError: Mapbox rejected the token.
   const [bordersError, setBordersError] = useState<string | null>(null);
@@ -202,6 +216,17 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   const [mapLoaded, setMapLoaded] = useState(false);
   const activeConflictsRef = useRef<ActiveConflict[]>(activeConflicts);
   const currentYearRef = useRef(currentYear);
+  // Per-frame move subscribers (see MapViewHandle.onMove). Lives in a ref so
+  // subscriptions survive the map being created after the subscriber mounts.
+  const moveListenersRef = useRef<Set<() => void>>(new Set());
+  const notifyMove = () => {
+    moveListenersRef.current.forEach((l) => l());
+  };
+  // Empire id → [minLon, minLat, maxLon, maxLat], computed once over the
+  // full (un-clipped) geometry when empires.json loads. The click handler
+  // used to compute this from the rendered geometry, which is tile-clipped,
+  // so a large empire got the bbox of the visible tiles.
+  const empireBboxRef = useRef<Map<string, [number, number, number, number]>>(new Map());
 
   useEffect(() => {
     activeConflictsRef.current = activeConflicts;
@@ -222,6 +247,12 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       }
     },
     getZoom: () => map.current?.getZoom() ?? 2,
+    onMove: (listener: () => void) => {
+      moveListenersRef.current.add(listener);
+      return () => {
+        moveListenersRef.current.delete(listener);
+      };
+    },
     flyToBbox: (bbox: [number, number, number, number]) => {
       const m = map.current;
       if (!m) return;
@@ -269,7 +300,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       if (m.isStyleLoaded()) run();
       else m.once('idle', run);
     },
-  }));
+  }), []);
 
   // Initialize map
   useEffect(() => {
@@ -315,11 +346,11 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       let empiresData: GeoJSON.FeatureCollection;
       try {
         const [citiesRes, empiresRes] = await Promise.all([
-          fetch('/cities.json'),
-          fetch('/empires.json'),
+          fetch(DATA_URLS.cities),
+          fetch(DATA_URLS.empires),
         ]);
-        if (!citiesRes.ok) throw new Error(`cities.json: HTTP ${citiesRes.status}`);
-        if (!empiresRes.ok) throw new Error(`empires.json: HTTP ${empiresRes.status}`);
+        if (!citiesRes.ok) throw new Error(`cities: HTTP ${citiesRes.status}`);
+        if (!empiresRes.ok) throw new Error(`empires: HTTP ${empiresRes.status}`);
         [citiesData, empiresData] = await Promise.all([
           citiesRes.json() as Promise<GeoJSON.FeatureCollection>,
           empiresRes.json() as Promise<GeoJSON.FeatureCollection>,
@@ -404,6 +435,20 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       (empiresData as GeoJSON.FeatureCollection).features.sort(
         (a, b) => featureArea(b) - featureArea(a)
       );
+
+      // One pass over the full geometry for the click handler's bbox.
+      const bboxes = new Map<string, [number, number, number, number]>();
+      for (const f of (empiresData as GeoJSON.FeatureCollection).features) {
+        const id = (f.properties as { id?: unknown } | null)?.id;
+        if (typeof id !== 'string' || !f.geometry) continue;
+        try {
+          const b = computeBbox(f.geometry as GeoJSON.Geometry);
+          if (b) bboxes.set(id, b);
+        } catch {
+          /* bbox is optional in the sidebar UI */
+        }
+      }
+      empireBboxRef.current = bboxes;
 
       // promoteId tells Mapbox to use properties.id as the feature id, which
       // is required for setFeatureState() to work (used for hover tone below).
@@ -574,16 +619,9 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         const props = feats[0].properties as Record<string, unknown> | null;
         if (!props || !props.id) return;
 
-        // Compute a bbox for the clicked feature using the rendered geometry.
-        // (We could pre-store bboxes on properties, but rendering-time is fine
-        //  since this only runs on click.)
-        let bbox: [number, number, number, number] | undefined;
-        try {
-          const g = feats[0].geometry as GeoJSON.Geometry;
-          bbox = computeBbox(g);
-        } catch {
-          /* swallow — bbox is optional in the sidebar UI */
-        }
+        // Full-geometry bbox precomputed at load (rendered geometry is
+        // tile-clipped, so it can't be used here).
+        const bbox = empireBboxRef.current.get(String(props.id));
 
         const empireProps: EmpireProperties = {
           id: String(props.id),
@@ -660,10 +698,17 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       if (map.current !== m) return;
 
       // ——— Conflict layers (on top of empires) ———
+      // promoteId so the selected dot is a feature-state flag (like the
+      // empire hover/selected states) instead of a property baked into the
+      // data — selecting a conflict no longer re-uploads the whole set.
       m.addSource('conflicts', {
         type: 'geojson',
         data: { type: 'FeatureCollection', features: [] },
+        promoteId: 'id',
       });
+      const isSelected: mapboxgl.ExpressionSpecification = [
+        'boolean', ['feature-state', 'selected'], false,
+      ];
 
       // ─── 3-layer conflict markers (step 7 of redesign) ───────────────
       // NOTE: Mapbox GL JS 3.3 does not parse oklch() color literals; that
@@ -708,7 +753,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           'circle-stroke-width': 1,
           'circle-stroke-color': [
             'case',
-            ['==', ['get', 'isSelected'], true], 'rgba(217, 153, 67, 0.85)',
+            isSelected, 'rgba(217, 153, 67, 0.85)',
             'rgba(200, 85, 59, 0.7)',
           ],
           'circle-stroke-opacity': ['get', 'opacity'],
@@ -730,17 +775,17 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           ],
           'circle-color': [
             'case',
-            ['==', ['get', 'isSelected'], true], 'rgb(217, 153, 67)',
+            isSelected, 'rgb(217, 153, 67)',
             'rgb(200, 85, 59)',
           ],
           'circle-opacity': ['get', 'opacity'],
           'circle-stroke-width': [
             'case',
-            ['==', ['get', 'isSelected'], true], 1.5, 0.5,
+            isSelected, 1.5, 0.5,
           ],
           'circle-stroke-color': [
             'case',
-            ['==', ['get', 'isSelected'], true], 'rgba(236, 227, 211, 0.6)',
+            isSelected, 'rgba(236, 227, 211, 0.6)',
             'rgba(14, 18, 24, 0.7)',
           ],
           'circle-stroke-opacity': ['get', 'opacity'],
@@ -772,7 +817,7 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
         const conflict = activeConflictsRef.current.find((c) => c.id === id);
         if (!conflict) return;
         e.originalEvent.stopPropagation();
-        onConflictDotClick(conflict);
+        onConflictDotClickRef.current(conflict);
       };
       for (const layerId of conflictMarkerLayers) {
         m.on('click', layerId, handleMarkerClick);
@@ -785,6 +830,9 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       }
 
       setMapLoaded(true);
+      // Subscribers (callout layer) may have projected before the map
+      // existed; give them a pass now that it can project.
+      notifyMove();
     });
 
     // Log the first Mapbox error (tile 401/403, style fetch failures, bad
@@ -806,7 +854,8 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     });
 
     m.on('move', () => {
-      onMapMove();
+      notifyMove();
+      onMapMoveRef.current?.();
     });
 
     map.current = m;
@@ -817,7 +866,8 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
     };
   }, []);
 
-  // Update conflict points
+  // Update conflict points — only when the active set changes (once per
+  // integer year during playback). Selection is feature-state below.
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
@@ -831,7 +881,6 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
           name: c.name,
           importance: c.importance,
           opacity: c.opacity,
-          isSelected: c.id === selectedConflictId,
           casualties: c.casualties,
         },
       })),
@@ -839,7 +888,27 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
 
     const source = map.current.getSource('conflicts') as mapboxgl.GeoJSONSource;
     if (source) source.setData(geojson);
-  }, [activeConflicts, selectedConflictId, mapLoaded]);
+  }, [activeConflicts, mapLoaded]);
+
+  // Selected conflict → feature-state.selected. Feature state is keyed by
+  // the promoted id and survives setData, so a selection made while the dot
+  // is off-map applies as soon as it appears.
+  const previousSelectedConflictRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+    const m = map.current;
+    const prev = previousSelectedConflictRef.current;
+    const next = selectedConflictId ?? null;
+    if (prev === next) return;
+    if (!m.getSource('conflicts')) return;
+    if (prev != null) {
+      m.setFeatureState({ source: 'conflicts', id: prev }, { selected: false });
+    }
+    if (next != null) {
+      m.setFeatureState({ source: 'conflicts', id: next }, { selected: true });
+    }
+    previousSelectedConflictRef.current = next;
+  }, [selectedConflictId, mapLoaded]);
 
   // Helper: compute opacity for modern borders based on year
   const computeModernBorderOpacity = (year: number, fadeStart: number, fadeEnd: number, maxOpacity: number): number => {
@@ -1078,4 +1147,4 @@ const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
   );
 });
 
-export default MapView;
+export default memo(MapView);

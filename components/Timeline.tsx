@@ -1,8 +1,9 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { TimelineState, Conflict } from '@/lib/types';
 import { formatYear, formatYearParts } from '@/lib/format';
+import { usePlaybackYear } from '@/lib/playback-store';
 
 interface TimelineProps {
   timeline: TimelineState;
@@ -83,7 +84,80 @@ const HIST_HEIGHT = 36;     // px
 // nonexistent year 0 consistently with the rest of the UI.
 const formatYearDisplay = formatYearParts;
 
-export default function Timeline({
+/**
+ * Playhead — the one element that needs the smooth float year. While the
+ * loop runs it reads the float from the playback store (updated per frame
+ * without a React commit at the page level); otherwise it uses the
+ * committed state year, so scrubbing has no lag.
+ */
+function Playhead({
+  currentYear,
+  isPlaying,
+  minYear,
+  yearRange,
+}: {
+  currentYear: number;
+  isPlaying: boolean;
+  minYear: number;
+  yearRange: number;
+}) {
+  const storeYear = usePlaybackYear();
+  const year = isPlaying ? storeYear : currentYear;
+  const progress = (year - minYear) / yearRange;
+  return (
+    <div
+      className="absolute"
+      style={{
+        left: `${progress * 100}%`,
+        bottom: 6,
+        height: HIST_HEIGHT + 4,
+        transform: 'translateX(-50%)',
+        pointerEvents: 'none',
+      }}
+    >
+      {/* Bloom */}
+      <div
+        className="absolute"
+        style={{
+          left: -1.5,
+          bottom: 0,
+          width: 5,
+          height: '100%',
+          background:
+            'linear-gradient(to top, oklch(0.78 0.14 78 / 0.45), oklch(0.78 0.14 78 / 0))',
+          filter: 'blur(2px)',
+        }}
+      />
+      {/* Bar */}
+      <div
+        className="absolute"
+        style={{
+          left: 0,
+          bottom: 0,
+          width: 2,
+          height: '100%',
+          background: 'var(--amber)',
+        }}
+      />
+      {/* Down-arrow on top */}
+      <svg
+        width="6"
+        height="6"
+        viewBox="0 0 6 6"
+        style={{
+          position: 'absolute',
+          left: -2,
+          top: -6,
+          color: 'var(--amber)',
+        }}
+      >
+        <path d="M0 0 L6 0 L3 6 Z" fill="currentColor" />
+      </svg>
+    </div>
+  );
+}
+
+function Timeline({
   timeline,
   allConflicts,
   onPlay,
@@ -94,7 +168,6 @@ export default function Timeline({
 }: TimelineProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const yearRange = timeline.maxYear - timeline.minYear;
-  const progress = (timeline.currentYear - timeline.minYear) / yearRange;
   const [showEraPresets, setShowEraPresets] = useState(false);
 
   /* ── Density histogram (memoized — pure function of conflicts + range) ── */
@@ -183,7 +256,6 @@ export default function Timeline({
     return timeline.speedMode === 'manual' && timeline.playbackSpeed === option.value;
   };
 
-  const playheadLeft = `${progress * 100}%`;
   const yearDisplay = formatYearDisplay(timeline.currentYear);
 
   return (
@@ -465,55 +537,12 @@ export default function Timeline({
               ))}
 
               {/* Playhead — bar + arrow + bloom */}
-              <div
-                className="absolute"
-                style={{
-                  left: playheadLeft,
-                  bottom: 6,
-                  height: HIST_HEIGHT + 4,
-                  transform: 'translateX(-50%)',
-                  pointerEvents: 'none',
-                }}
-              >
-                {/* Bloom */}
-                <div
-                  className="absolute"
-                  style={{
-                    left: -1.5,
-                    bottom: 0,
-                    width: 5,
-                    height: '100%',
-                    background:
-                      'linear-gradient(to top, oklch(0.78 0.14 78 / 0.45), oklch(0.78 0.14 78 / 0))',
-                    filter: 'blur(2px)',
-                  }}
-                />
-                {/* Bar */}
-                <div
-                  className="absolute"
-                  style={{
-                    left: 0,
-                    bottom: 0,
-                    width: 2,
-                    height: '100%',
-                    background: 'var(--amber)',
-                  }}
-                />
-                {/* Down-arrow on top */}
-                <svg
-                  width="6"
-                  height="6"
-                  viewBox="0 0 6 6"
-                  style={{
-                    position: 'absolute',
-                    left: -2,
-                    top: -6,
-                    color: 'var(--amber)',
-                  }}
-                >
-                  <path d="M0 0 L6 0 L3 6 Z" fill="currentColor" />
-                </svg>
-              </div>
+              <Playhead
+                currentYear={timeline.currentYear}
+                isPlaying={timeline.isPlaying}
+                minYear={timeline.minYear}
+                yearRange={yearRange}
+              />
             </div>
           </div>
 
@@ -574,3 +603,5 @@ export default function Timeline({
     </div>
   );
 }
+
+export default memo(Timeline);

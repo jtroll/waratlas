@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// validate-conflicts.mjs — CI guard for public/conflicts.json (no dependencies).
+// validate-conflicts.mjs — CI guard for data/conflicts.json (no dependencies).
 // Exit code 1 on: duplicate ids; non-slug ids; endYear < startYear; coordinates out of range or [0,0];
 // importance not 1-5; casualtyRange with low > high or headline outside the range; wikiLink present;
 // "Draw" in countries; partOf entries that are neither an existing id nor listed in
@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const recs = JSON.parse(readFileSync(join(root, 'public', 'conflicts.json'), 'utf8'));
+const recs = JSON.parse(readFileSync(join(root, 'data', 'conflicts.json'), 'utf8'));
 let unresolved = {};
 try {
   unresolved = JSON.parse(readFileSync(join(root, 'scripts', 'data', 'parent_unresolved.json'), 'utf8')).strings || {};

@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 
-// Long-cache for static assets that only change on deploy. Stale-while-revalidate
-// keeps the next visit fast even when the dataset changes.
-const LONG_CACHE = 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800';
+// Data files under /data/ carry a content hash in their filename (see
+// scripts/build-data.mjs), so a URL's bytes never change and browsers + CDN
+// may keep them for a year. A deploy that changes a dataset changes its URL.
+const IMMUTABLE_CACHE = 'public, max-age=31536000, immutable';
 // Mid cache for OG images and favicon — change rarely.
 const MID_CACHE = 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800';
 // Short edge cache for robots / sitemap.
@@ -22,8 +23,9 @@ const SHORT_CACHE = 'public, max-age=3600, s-maxage=86400';
 //   - script-src 'unsafe-eval': mapbox-gl-js v3 compiles WebGL shaders at runtime
 //   - script-src 'unsafe-inline': Next.js App Router emits inline hydration scripts.
 //                                 Nonces would be tighter but require middleware.
-//   - style-src api.mapbox.com: we link mapbox-gl.css from the Mapbox CDN
 //   - style-src 'unsafe-inline': mapbox-gl + next/font both emit inline styles
+//                                (mapbox-gl.css itself is bundled from the npm
+//                                package, so no CDN entry is needed)
 //   - connect-src mapbox/tiles : tile fetches, telemetry, glyph + sprite URLs
 //   - img-src mapbox + data:   : raster tiles, embedded SVG data URIs
 //   - worker-src blob:         : mapbox-gl spawns workers from blob: URLs
@@ -32,7 +34,7 @@ const SHORT_CACHE = 'public, max-age=3600, s-maxage=86400';
 const CSP_DIRECTIVES = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-  "style-src 'self' 'unsafe-inline' https://api.mapbox.com",
+  "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://api.mapbox.com https://*.tiles.mapbox.com",
   "font-src 'self' data:",
   "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://*.tiles.mapbox.com https://*.mapbox.com",
@@ -42,7 +44,8 @@ const CSP_DIRECTIVES = [
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  "upgrade-insecure-requests",
+  // NB: no `upgrade-insecure-requests` — it is ignored (and warned about) in
+  // Report-Only mode; add it back only when promoting to enforcing.
 ].join('; ');
 
 const SECURITY_HEADERS = [
@@ -63,24 +66,29 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
 
+  // The /c/[id] permalink page and the sitemap read data/conflicts.json with
+  // fs at request time; make sure the file is traced into the serverless
+  // bundle on Vercel even though nothing imports it.
+  experimental: {
+    outputFileTracingIncludes: {
+      '/c/[id]': ['./data/conflicts.json'],
+      '/sitemap.xml': ['./data/conflicts.json'],
+    },
+  },
+
   async headers() {
-    const longCacheFiles = [
-      '/empires.json',
-      '/conflicts.json',
-      '/cities.json',
-      '/empire-wikipedia.json',
-    ];
-    const midCacheFiles = ['/og-card.png', '/og-image.png', '/og-image.svg', '/favicon.svg'];
+    const midCacheFiles = ['/og-card.png', '/favicon.svg'];
     const shortCacheFiles = ['/sitemap.xml'];
 
     return [
-      ...longCacheFiles.map((source) => ({
-        source,
+      // Content-hashed data files: immutable for a year.
+      {
+        source: '/data/:path*',
         headers: [
-          { key: 'Cache-Control', value: LONG_CACHE },
+          { key: 'Cache-Control', value: IMMUTABLE_CACHE },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
         ],
-      })),
+      },
       ...midCacheFiles.map((source) => ({
         source,
         headers: [{ key: 'Cache-Control', value: MID_CACHE }],
@@ -89,14 +97,12 @@ const nextConfig = {
         source,
         headers: [{ key: 'Cache-Control', value: SHORT_CACHE }],
       })),
-      // Service worker must NOT be cached — otherwise a deploy can leave
-      // visitors stuck on a stale SW that keeps serving old data forever.
+      // /sw.js is now a kill-switch that unregisters the legacy service
+      // worker. It must never be cached, or a visitor could be stuck on the
+      // old caching worker forever.
       {
         source: '/sw.js',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
-          { key: 'Service-Worker-Allowed', value: '/' },
-        ],
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }],
       },
       // Defense-in-depth security headers for all responses.
       {
@@ -109,7 +115,7 @@ const nextConfig = {
 
 // Bundle analyzer is opt-in via ANALYZE=true. Run `npm run analyze` to get
 // the treemap report (output under .next/analyze/). Useful for keeping an
-// eye on mapbox-gl + the conflict/empire data payloads.
+// eye on mapbox-gl; the data payloads live outside the bundle under public/data/.
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });

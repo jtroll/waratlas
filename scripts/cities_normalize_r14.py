@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Data-review round 14: normalise public/cities.json (audit M7).
+"""Data-review round 14: normalise data/cities.json (audit M7).
 
 * name chains sharing one site get non-overlapping periods
   (earlier name endYear == next name foundedYear)
@@ -22,7 +22,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CITIES = ROOT / 'public' / 'cities.json'
+CITIES = ROOT / 'data' / 'cities.json'
 
 # (name, foundedYear) -> reason.  Removed as duplicates of another record.
 DROP = {

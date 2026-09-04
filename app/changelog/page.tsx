@@ -202,7 +202,7 @@ export default function ChangelogPage() {
           <ul>
             <li>
               The HCED battles are shown at <strong>importance 2</strong> —
-              visible by default but hidden once the map's importance filter is
+              visible by default but hidden once the map&apos;s importance filter is
               raised, so the curated high-level view stays uncluttered. They
               carry <code>casualties: null</code> where no reliable figure
               exists, never an invented number.
@@ -238,7 +238,7 @@ export default function ChangelogPage() {
               <em>Aztec Empire</em>, <em>Luba Empire</em>,{' '}
               <em>Merina Kingdom</em> (the one the reader caught), and{' '}
               <em>Kingdom of Benin</em>. For each pair, kept the
-              higher-vertex-count polygon, merged the other's metadata
+              higher-vertex-count polygon, merged the other&apos;s metadata
               in, and dropped the duplicate <code>empire-wikipedia.json</code>{' '}
               entry.
             </li>
@@ -252,10 +252,10 @@ export default function ChangelogPage() {
               entries even had{' '}
               <code>source: &ldquo;… (duplicate)&rdquo;</code>{' '}
               already noted in the metadata — explicit acknowledgement
-              of the bug that just hadn't been cleaned up. For each
+              of the bug that just hadn&apos;t been cleaned up. For each
               pair: kept the higher-vertex-count polygon, took the
               widest date span between the two, used the canonical
-              Wikipedia title for the name, merged the other's
+              Wikipedia title for the name, merged the other&apos;s
               metadata in.
             </li>
             <li>
@@ -377,7 +377,7 @@ export default function ChangelogPage() {
               and <code>loango-expansion</code> (all umbrellas without
               named events, or gradual displacements rather than
               discrete wars). The remaining 37 low-confidence entries
-              are kept; they're real but thinly-sourced.
+              are kept; they&apos;re real but thinly-sourced.
             </li>
             <li>
               <strong>Coordinate axis-swap audit, atlas-wide.</strong>{' '}
@@ -788,7 +788,7 @@ export default function ChangelogPage() {
               adds Denmark, Norway, the Netherlands, Belgium, Luxembourg,
               and France (April–June 1940), and Yugoslavia and Greece
               (April 1941). Vichy is included under the merged-occupied
-              convention. Operation Barbarossa hasn't pushed deep yet, so
+              convention. Operation Barbarossa hasn&apos;t pushed deep yet, so
               western USSR is not in this snapshot.
             </li>
             <li>
@@ -816,9 +816,9 @@ export default function ChangelogPage() {
             <li>
               <strong>Sudetenland (1938)</strong> clipped from Czechoslovakia
               using a 14-vertex hand-drawn border ring. The shape captures
-              the crescent that appears in standard atlases but isn't
+              the crescent that appears in standard atlases but isn&apos;t
               district-perfect — the real boundary followed the 1930
-              census's German-language lines.
+              census&apos;s German-language lines.
             </li>
             <li>
               <strong>German half of partitioned Poland (1939)</strong>

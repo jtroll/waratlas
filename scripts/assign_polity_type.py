@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Assign a `polityType` to every feature in public/empires.json. The polity
+Assign a `polityType` to every feature in data/empires.json. The polity
 type captures whether the polity had FIXED BORDERS as a matter of historical
 reality, separate from the question of whether our polygon is well-traced.
 
@@ -40,7 +40,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-EMPIRES = ROOT / 'public' / 'empires.json'
+EMPIRES = ROOT / 'data' / 'empires.json'
 
 
 # Explicit overrides — when the id appears here, the category is used directly.

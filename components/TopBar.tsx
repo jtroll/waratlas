@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { ActiveConflict } from '@/lib/types';
 import { formatCasualties } from '@/lib/format';
 import AboutModal from './AboutModal';
@@ -40,7 +40,7 @@ interface TopBarProps {
  * Chrome buttons: 11px Inter Tight uppercase, square corners,
  * hairline borders, no rounded pills (except the live dot).
  * ─────────────────────────────────────────────────────────── */
-export default function TopBar({
+function TopBar({
   currentYear,
   activeCount,
   totalCount,
@@ -298,3 +298,5 @@ export default function TopBar({
     </div>
   );
 }
+
+export default memo(TopBar);

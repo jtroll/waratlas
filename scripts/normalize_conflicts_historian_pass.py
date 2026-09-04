@@ -1,7 +1,7 @@
 """
 One-shot normalization pass driven by a from-the-historian-perspective audit
 (May 14 2026). Resolves the data-integrity issues that a careful reader of the
-sidebar — or a researcher inspecting public/conflicts.json directly — would
+sidebar — or a researcher inspecting data/conflicts.json directly — would
 catch in the first session with the site.
 
 Fixes applied:
@@ -54,7 +54,7 @@ from pathlib import Path
 from copy import deepcopy
 
 REPO = Path(__file__).resolve().parents[1]
-CONFLICTS = REPO / "public" / "conflicts.json"
+CONFLICTS = REPO / "data" / "conflicts.json"
 
 
 # Records whose `coordinates` and `casualties` were imported in the wrong

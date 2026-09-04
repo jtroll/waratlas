@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Hand-traced replacement polygons for the worst geometric offenders in
-public/empires.json. Each polygon is constructed vertex-by-vertex from
+data/empires.json. Each polygon is constructed vertex-by-vertex from
 geographic anchors documented in the cited Wikipedia article(s) and
 cross-referenced against modern coastlines / rivers / mountain ranges.
 
@@ -24,7 +24,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-EMPIRES = ROOT / 'public' / 'empires.json'
+EMPIRES = ROOT / 'data' / 'empires.json'
 
 
 REPLACEMENTS: dict[str, dict] = {
