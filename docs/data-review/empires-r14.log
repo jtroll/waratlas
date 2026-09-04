@@ -1,0 +1,45 @@
+== Task 1: wrong-continent polygons
+  assyrian-empire-peak bbox before [29.8, 25.2, 49.5, 38.6]
+  assyrian-empire-peak bbox after  [29.8, 25.2, 49.5, 38.6]
+  neo-babylonian-empire bbox before [33.8, 27.15, 48.5, 38.0]
+  neo-babylonian-empire bbox after  [33.8, 27.15, 48.5, 38.0]
+  manchukuo bbox before [115.6, 38.75, 134.72, 53.51]
+  manchukuo bbox after  [115.6, 38.75, 134.72, 53.51]
+  kingdom-of-burgundy bbox before [1.55, 46.2, 6.9, 52.92]
+  kingdom-of-burgundy bbox after  [1.55, 46.2, 6.9, 52.92]
+== Task 2: antimeridian
+  pacific-tonga-tui: feature bbox [-180.0, -21.45, 180.0, -13.21]; widest single ring spans 1.52 deg lon
+  russian-empire: feature bbox [-180.0, 35.14, 180.0, 81.82]; widest single ring spans 165.88 deg lon
+  british-empire-1858: feature bbox [-141.0, -50.85, 175.0, 83.12]; widest single ring spans 85.39 deg lon
+  british-empire-1880: feature bbox [-176.84, -50.85, 180.0, 83.12]; widest single ring spans 85.39 deg lon
+  british-empire-1900: feature bbox [-176.84, -50.85, 180.0, 83.12]; widest single ring spans 85.39 deg lon
+  british-empire-1921: feature bbox [-176.84, -50.85, 180.0, 83.12]; widest single ring spans 85.39 deg lon
+  british-empire-1939: feature bbox [-176.84, -50.85, 180.0, 83.12]; widest single ring spans 85.39 deg lon
+  british-empire-1947: feature bbox [-176.84, -50.85, 180.0, 83.12]; widest single ring spans 85.39 deg lon
+  manchukuo: feature bbox [115.6, 38.75, 134.72, 53.51]; widest single ring spans 19.12 deg lon
+== Task 3: duplicate polities
+  ashikaga 1338-1467 / sengoku-ashikaga 1467-1573; frankish 481-800 / carolingian 800-843
+== Task 4: slice overlaps / gaps
+  Mughal: 1526-1556 / 1556-1605 / 1605-1658 / 1658-1707 / 1707-1857
+  British India: 1757-1794 / 1795-1839 / 1840-1859 / 1860-1947
+  Roman: augustus -27-98 / trajan 98-180 / late 180-395
+  United States: 1848-slice 1819-1848 / 1860-slice 1849-1861
+  British Empire: 1815-slice ->1829, 1837-slice ->1857, 1900-slice ->1918
+  Ethiopia: medieval 1270-1855 / menelik 1855-1900 / ethiopian-empire 1900-1974
+  Byzantium: 395-527 / 527-600 / 600-750 / 750-843 / 843-1204 / [1204-1261 Latin Empire+Nicaea gap] / 1261-1350 / 1350-1453
+  borderYear egyptian-old-kingdom: None -> None (kept-original geometry; no HBM snapshot inside -2686..-2181)
+  borderYear egyptian-new-kingdom-late: None -> None (HBM -1000 "Egypt" outline; no snapshot inside -1200..-1070)
+  borderYear assyrian-neo-early: None -> None (hand-traced, not an HBM snapshot)
+  borderYear americas-hohokam: None -> None (HBM 1492 "Hohokam" outline; no in-range snapshot carries it)
+  borderYear americas-ancestral-pueblo: None -> None (HBM 1492 "Pueblos" outline; no in-range snapshot carries it)
+  borderYear africa-nobatia-kingdom: 600 -> 600 (HBM 600 "Nobatia" is vertex-identical to the 700 pull)
+  borderYear asia-tangut-western-xia: 1100 -> 1100 (HBM 1100 "Xixia" is vertex-identical to the 1000 pull)
+  borderYear africa-mossi-wagadougou: 1880 -> 1880 (HBM 1880 "Mossi States" is vertex-identical to the 1900 pull)
+  borderYear ndongo-kingdom: 1500 -> 1500 (HBM 1500 "Ndongo" is vertex-identical to the 1492 pull)
+  borderYear americas-comancheria: None -> None (HBM 1492 "Nʉmʉnʉʉ (Comanche)" outline; the 1500-1600 Comanche polygons differ and no 1700+ snapshot carries one)
+== Task 5: chronology
+  HRE ->1806, Abbasid ->1258, Oyo ->1836, Vijayanagara ->1646, Tonga ->1865, Aksum 100-, Wari 600-1000, Tiwanaku 550-1000, Teotihuacan 100-550, Mali ->1670, Russia renamed, Eswatini renamed
+== Task 7: taxonomy
+== Task 6: label points
+  moved 0 label points
+wrote /home/user/waratlas/public/empires.json: 420 -> 420 features
