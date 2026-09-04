@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Wordmark } from '@/components/LoadingScreen';
 
 export const metadata: Metadata = {
   title: 'Changelog · War Atlas',
@@ -26,34 +27,43 @@ export default function ChangelogPage() {
       <style>{`html, body { overflow: auto !important; height: auto !important; }`}</style>
       <main
         className="min-h-screen px-6 py-10 sm:py-14"
-        style={{ background: 'var(--ink-0, #06090f)', color: 'var(--ink-text, #ece3d3)' }}
+        style={{ background: 'var(--ink-0)', color: 'var(--ink-text)' }}
       >
       <article className="mx-auto" style={{ maxWidth: 720 }}>
         <header className="mb-10">
-          <Link
-            href="/"
-            className="font-mono inline-block mb-6"
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.12em',
-              color: 'var(--ink-muted, #9ca3af)',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderBottom: '1px solid currentColor',
-              paddingBottom: 2,
-            }}
+          {/* Masthead — the same wordmark as the TopBar, with the way back. */}
+          <div
+            className="flex items-baseline justify-between gap-4 mb-8 pb-3"
+            style={{ borderBottom: '1px solid var(--rule)' }}
           >
-            ← Back to the atlas
-          </Link>
+            <Link href="/" style={{ textDecoration: 'none' }} aria-label="War Atlas home">
+              <Wordmark size={22} />
+            </Link>
+            <Link
+              href="/"
+              className="font-mono"
+              style={{
+                fontSize: 12,
+                letterSpacing: '0.08em',
+                color: 'var(--ink-muted)',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                borderBottom: '1px solid currentColor',
+                paddingBottom: 2,
+              }}
+            >
+              ← Back to the atlas
+            </Link>
+          </div>
           <h1
             className="font-display"
             style={{ fontSize: 40, fontWeight: 400, lineHeight: 1.1, margin: 0, letterSpacing: '-0.01em' }}
           >
-            <span style={{ fontStyle: 'italic', color: 'var(--vermilion, #c8553b)' }}>Changelog</span>
+            <span style={{ fontStyle: 'italic', color: 'var(--vermilion)' }}>Changelog</span>
           </h1>
           <p
             className="font-display italic mt-3"
-            style={{ fontSize: 17, color: 'var(--ink-text-2, #d1d5db)', lineHeight: 1.5 }}
+            style={{ fontSize: 17, color: 'var(--ink-text-2)', lineHeight: 1.5 }}
           >
             Dataset revisions, border corrections, and methodology changes — newest first.
           </p>
@@ -981,10 +991,10 @@ export default function ChangelogPage() {
         <footer
           className="mt-14 pt-6 font-mono"
           style={{
-            borderTop: '1px solid var(--rule, rgba(255,255,255,0.1))',
+            borderTop: '1px solid var(--rule))',
             fontSize: 11,
             letterSpacing: '0.06em',
-            color: 'var(--ink-faint, #6b7280)',
+            color: 'var(--ink-faint)',
             display: 'flex',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
@@ -994,7 +1004,7 @@ export default function ChangelogPage() {
           <span>WARS-ATLAS · /CHANGELOG · A RESEARCH PREVIEW</span>
           <Link
             href="/sources"
-            style={{ color: 'var(--ink-faint, #6b7280)', textDecoration: 'none', borderBottom: '1px solid currentColor', paddingBottom: 1 }}
+            style={{ color: 'var(--ink-faint)', textDecoration: 'none', borderBottom: '1px solid currentColor', paddingBottom: 1 }}
           >
             Sources &amp; attribution →
           </Link>
@@ -1023,7 +1033,7 @@ function Entry({
             fontSize: 22,
             fontWeight: 500,
             margin: 0,
-            color: 'var(--ink-text, #ece3d3)',
+            color: 'var(--ink-text)',
             letterSpacing: '-0.005em',
           }}
         >
@@ -1033,10 +1043,10 @@ function Entry({
           <span
             className="font-mono"
             style={{
-              fontSize: 10,
-              letterSpacing: '0.12em',
+              fontSize: 11,
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              color: 'var(--vermilion, #c8553b)',
+              color: 'var(--vermilion)',
               borderBottom: '1px solid currentColor',
               paddingBottom: 1,
             }}
@@ -1047,7 +1057,7 @@ function Entry({
       </div>
       <div
         className="font-display changelog-prose"
-        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2, #d1d5db)' }}
+        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2)' }}
       >
         {children}
       </div>
@@ -1056,9 +1066,9 @@ function Entry({
         .changelog-prose p { margin: 0 0 12px; }
         .changelog-prose ul { margin: 0 0 12px; padding-left: 1.1em; }
         .changelog-prose ul li { margin-bottom: 8px; }
-        .changelog-prose a { color: var(--indigo, #6366f1); text-decoration: none; border-bottom: 1px solid currentColor; }
-        .changelog-prose a:hover { color: var(--ink-text, #ece3d3); }
-        .changelog-prose em { font-style: italic; color: var(--ink-text, #ece3d3); }
+        .changelog-prose a { color: var(--indigo); text-decoration: none; border-bottom: 1px solid currentColor; }
+        .changelog-prose a:hover { color: var(--ink-text); }
+        .changelog-prose em { font-style: italic; color: var(--ink-text); }
       `}</style>
     </section>
   );

@@ -19,7 +19,7 @@
   --ink-text:     oklch(0.94 0.012 85);    /* primary */
   --ink-text-2:   oklch(0.78 0.012 85);    /* secondary */
   --ink-muted:    oklch(0.62 0.010 85);    /* tertiary / labels */
-  --ink-faint:    oklch(0.46 0.008 85);    /* meta / IDs */
+  --ink-faint:    oklch(0.60 0.008 85);    /* meta / IDs — 4.58:1 on ink-1, never under 11px */
 
   /* HAIRLINES — derived from text alpha so they harmonize automatically */
   --rule:         color-mix(in oklch, var(--ink-text) 14%, transparent);
@@ -29,9 +29,23 @@
   --vermilion:    oklch(0.62 0.18 28);     /* conflict red — oxidized */
   --vermilion-2:  oklch(0.50 0.16 28);     /* darker pair */
   --amber:        oklch(0.78 0.14 78);     /* current-year, single highlight */
-  --indigo:       oklch(0.58 0.14 264);    /* researcher / sources */
+  --indigo:       oklch(0.68 0.12 264);    /* researcher / sources — 6.2:1 on ink-1 */
   --moss:         oklch(0.62 0.10 145);    /* "active in this year" only */
   --uncertain:    oklch(0.66 0.06 78);     /* dashed-border accent */
+
+  /* SURFACES — exactly three. Chrome chips (Export, Filter, zoom, (i)),
+     panels (legend, era card, menus), and sheets (sidebars, modals, tour).
+     Every translucent dark surface in the app resolves to one of these. */
+  --surface-chrome: oklch(0.20 0.014 250 / 0.85);
+  --surface-panel:  oklch(0.20 0.014 250 / 0.95);
+  --surface-sheet:  oklch(0.18 0.014 250 / 0.97);
+  --blur-chrome:    8px;
+  --blur-panel:     18px;
+  /* Modal scrim — the only other translucent dark on screen. */
+  --scrim:          oklch(0.16 0.012 250 / 0.72);
+  /* Ivory tints for pressed / hover chrome states (never amber). */
+  --tint-ivory:     color-mix(in oklch, var(--ink-text) 8%, transparent);
+  --tint-ivory-2:   color-mix(in oklch, var(--ink-text) 14%, transparent);
 
   /* LEGACY ALIASES — keep so existing components that read these vars still work */
   --wars-bg:       var(--ink-0);
@@ -63,12 +77,12 @@
   --t-body:       14px; --lh-body:       1.55;
   --t-body-s:     13px; --lh-body-s:     1.55;
   --t-meta:       12px; --lh-meta:       1.40;
-  --t-label:      10.5px; --lh-label:    1.30;
+  --t-label:      11px; --lh-label:      1.30;
   --t-data:       11px;
 
   --tr-display:   -0.018em;
   --tr-body:      -0.005em;
-  --tr-label:      0.10em;
+  --tr-label:      0.08em;
   --tr-mono:       0.02em;
 
   /* SPACING (4px base) */
@@ -78,10 +92,11 @@
   --inset-s:        8px;
   --inset-xs:       4px;
 
-  /* RADIUS — atlases don't have rounded corners */
-  --r-card:        4px;
+  /* RADIUS — atlases don't have rounded corners. Only 0 and 2px exist;
+     the Live dot and the mobile drag handle are the sole exceptions. */
+  --r-card:        2px;
   --r-chip:        2px;
-  --r-pill:       999px;   /* used sparingly: Live indicator, breathing rings */
+  --r-pill:       999px;   /* Live indicator only */
 
   /* MOTION */
   --dur-fast:      120ms;
@@ -141,13 +156,74 @@ input, button, select, [data-mono], .mono, .tabular {
 .hairline    { border-color: var(--rule); }
 .hairline-t  { border-top: 1px solid var(--rule); }
 .hairline-b  { border-bottom: 1px solid var(--rule); }
-.hairline-l  { border-left: 1px solid var(--rule); }
-.hairline-r  { border-right: 1px solid var(--rule); }
 .hairline-strong-t { border-top: 1px solid var(--rule-strong); }
 .hairline-strong-b { border-bottom: 1px solid var(--rule-strong); }
 
-/* Map base color (for any non-Mapbox surfaces or canvas placeholders) */
-.map-canvas { background: #06090f; }
+/* Surfaces — background + blur + hairline. Use these instead of inline
+   oklch literals; see the SURFACES token block above. */
+@layer components {
+  .surface-chrome {
+    background: var(--surface-chrome);
+    backdrop-filter: blur(var(--blur-chrome));
+    -webkit-backdrop-filter: blur(var(--blur-chrome));
+    border: 1px solid var(--rule-strong);
+  }
+  .surface-panel {
+    background: var(--surface-panel);
+    backdrop-filter: blur(var(--blur-panel));
+    -webkit-backdrop-filter: blur(var(--blur-panel));
+    border: 1px solid var(--rule-strong);
+  }
+  .surface-sheet {
+    background: var(--surface-sheet);
+    backdrop-filter: blur(var(--blur-panel));
+    -webkit-backdrop-filter: blur(var(--blur-panel));
+    border: 1px solid var(--rule-strong);
+  }
+  .scrim {
+    background: var(--scrim);
+    backdrop-filter: blur(var(--blur-chrome));
+    -webkit-backdrop-filter: blur(var(--blur-chrome));
+  }
+  /* Pressed / hover chrome states — ivory tint + hairline, never amber. */
+  .hover-tint:hover { background: var(--tint-ivory); color: var(--ink-text); }
+  .pressed-ivory    { background: var(--tint-ivory-2); color: var(--ink-text); }
+  /* 32×32 icon button (44×44 on touch) with a hairline border. */
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid var(--rule-strong);
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: color var(--dur-fast), background var(--dur-fast);
+  }
+  .icon-btn:hover { color: var(--ink-text); background: var(--tint-ivory); }
+  @media (min-width: 640px) {
+    .icon-btn { width: 32px; height: 32px; }
+  }
+  /* Skip link — visually hidden until focused, then a chrome chip top-left. */
+  .skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 200;
+    padding: 8px 12px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-text);
+    background: var(--surface-panel);
+    border: 1px solid var(--rule-strong);
+    transform: translateY(-200%);
+    transition: transform var(--dur-fast);
+  }
+  .skip-link:focus-visible { transform: translateY(0); outline: 2px solid var(--amber); outline-offset: 2px; }
+}
 
 /* ─── Mapbox overrides ───────────────────────────────────────
  * We disable Mapbox's default top-right attribution via JS
@@ -189,12 +265,12 @@ input, button, select, [data-mono], .mono, .tabular {
  * as the rest of the chrome. Padding-right leaves room for the (i)
  * button anchored at the right edge. */
 .mapboxgl-ctrl-attrib.mapboxgl-compact-show {
-  background: oklch(0.20 0.014 250 / 0.85) !important;
+  background: var(--surface-chrome) !important;
   border: 1px solid var(--rule-strong) !important;
   border-radius: 0 !important;
   padding: 6px 40px 6px 10px !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(var(--blur-chrome));
+  -webkit-backdrop-filter: blur(var(--blur-chrome));
 }
 
 .mapboxgl-ctrl-attrib .mapboxgl-ctrl-attrib-inner,
@@ -202,8 +278,8 @@ input, button, select, [data-mono], .mono, .tabular {
 .mapboxgl-ctrl-attrib-inner * {
   color: var(--ink-muted) !important;
   font-family: var(--font-mono), ui-monospace, monospace !important;
-  font-size: 9.5px !important;
-  letter-spacing: 0.04em;
+  font-size: 11px !important;
+  letter-spacing: 0.02em;
 }
 .mapboxgl-ctrl-attrib a:hover {
   color: var(--ink-text) !important;
@@ -222,7 +298,7 @@ input, button, select, [data-mono], .mono, .tabular {
   width: 32px !important;
   height: 32px !important;
   border-radius: 0 !important;
-  background-color: oklch(0.20 0.014 250 / 0.85) !important;
+  background-color: var(--surface-chrome) !important;
   /* Icon stroke/fill use the same hex (#c7c5bb) as --ink-text-2, the
    * muted warm-gray that Export's text and the zoom buttons render in.
    * `#` is URL-encoded as `%23` inside the data URI. */
@@ -230,8 +306,8 @@ input, button, select, [data-mono], .mono, .tabular {
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: 14px 14px !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(var(--blur-chrome));
+  -webkit-backdrop-filter: blur(var(--blur-chrome));
   border: 1px solid var(--rule-strong) !important;
   cursor: pointer;
   opacity: 0.9;
@@ -299,7 +375,7 @@ input, button, select, [data-mono], .mono, .tabular {
 }
 
 /* Desktop: restyle the +/- zoom group to match the editorial
- * chrome — dark surface, amber accent on hover, hairline border,
+ * chrome — dark surface, ivory tint on hover, hairline border,
  * positioned below the TopBar so it doesn't collide with the
  * masthead chrome. */
 @media (min-width: 640px) {
@@ -314,9 +390,9 @@ input, button, select, [data-mono], .mono, .tabular {
     margin: 62px 24px 0 0 !important;
   }
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group {
-    background: oklch(0.20 0.014 250 / 0.85) !important;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: var(--surface-chrome) !important;
+    backdrop-filter: blur(var(--blur-chrome));
+    -webkit-backdrop-filter: blur(var(--blur-chrome));
     border: 1px solid var(--rule-strong) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -331,16 +407,17 @@ input, button, select, [data-mono], .mono, .tabular {
     border-top: 1px solid var(--rule) !important;
   }
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button:hover {
-    background-color: oklch(0.78 0.14 78 / 0.10) !important;
+    background-color: var(--tint-ivory) !important;
   }
   /* The +/- glyphs use mask-image SVGs in Mapbox; recolor them to
-     muted text and shift to amber on hover. */
+     muted text and lift to ivory on hover (no amber — amber is reserved
+     for the current year and selection). */
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button .mapboxgl-ctrl-icon {
     filter: invert(0.78) sepia(0.08) hue-rotate(180deg);
     opacity: 0.85;
   }
   .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group button:hover .mapboxgl-ctrl-icon {
-    filter: invert(0.78) sepia(0.6) hue-rotate(8deg) saturate(2);
+    filter: invert(0.94) sepia(0.08) hue-rotate(180deg);
     opacity: 1;
   }
 }
@@ -356,14 +433,14 @@ input, button, select, [data-mono], .mono, .tabular {
 
 ::-webkit-scrollbar-thumb {
   background: var(--ink-3);
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--ink-muted);
 }
 
-/* ─── Timeline slider (legacy fallback — replaced in step 4) ─ */
+/* ─── Range input (FilterPanel importance slider) — token-styled ── */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -373,35 +450,36 @@ input[type="range"] {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-  background: var(--ink-3);
-  border-radius: 2px;
+  height: 2px;
+  background: var(--rule-strong);
+  border-radius: 0;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--amber);
+  width: 14px;
+  height: 14px;
+  border-radius: var(--r-chip);
+  background: var(--ink-text);
+  border: 1px solid var(--ink-0);
   margin-top: -6px;
-  box-shadow: 0 0 8px color-mix(in oklch, var(--amber) 50%, transparent);
+  box-shadow: none;
 }
 
 input[type="range"]::-moz-range-track {
-  height: 4px;
-  background: var(--ink-3);
-  border-radius: 2px;
+  height: 2px;
+  background: var(--rule-strong);
+  border-radius: 0;
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--amber);
-  border: none;
-  box-shadow: 0 0 8px color-mix(in oklch, var(--amber) 50%, transparent);
+  width: 14px;
+  height: 14px;
+  border-radius: var(--r-chip);
+  background: var(--ink-text);
+  border: 1px solid var(--ink-0);
+  box-shadow: none;
 }
 
 /* ─── Animations ───────────────────────────────────────────── */
@@ -428,11 +506,6 @@ input[type="range"]::-moz-range-thumb {
   to   { transform: translateX(0); }
 }
 
-@keyframes slide-in-left {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(0); }
-}
-
 @keyframes slide-up-bottom {
   from { transform: translateY(100%); }
   to   { transform: translateY(0); }
@@ -440,10 +513,6 @@ input[type="range"]::-moz-range-thumb {
 
 .sidebar-enter {
   animation: slide-in-right var(--dur-slow) var(--ease-out);
-}
-
-.panel-enter-left {
-  animation: slide-in-left var(--dur-base) var(--ease-out);
 }
 
 /* Sidebar sheet — slides up from bottom on mobile, in from right on desktop */
@@ -456,25 +525,19 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
-/* Timeline marker tooltip */
-.timeline-marker:hover .timeline-tooltip {
-  opacity: 1;
-  visibility: visible;
+/* Loading screen — calm indeterminate hairline sweep (no fake percent). */
+@keyframes loading-sweep {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(400%); }
+}
+.loading-sweep {
+  animation: loading-sweep 1.6s var(--ease-standard) infinite;
 }
 
-.timeline-tooltip {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--dur-fast), visibility var(--dur-fast);
-}
-
-@keyframes live-pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.4; }
-}
-
-.live-pulse {
-  animation: live-pulse 1.5s ease-in-out infinite;
+/* Opening tour — per-stop progress segment (width set via --seg). */
+@keyframes tour-progress {
+  from { width: 0; }
+  to   { width: var(--seg, 10%); }
 }
 
 @keyframes era-panel-fade {
@@ -483,7 +546,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .era-panel-enter {
-  animation: era-panel-fade 0.4s var(--ease-out);
+  animation: era-panel-fade var(--dur-slow) var(--ease-out);
 }
 
 /* ─── A11y ─────────────────────────────────────────────────── */
@@ -507,7 +570,7 @@ select:focus-visible {
     scroll-behavior: auto !important;
   }
   .conflict-pulse,
-  .live-pulse {
+  .loading-sweep {
     animation: none !important;
   }
 }
@@ -537,4 +600,50 @@ select:focus-visible {
  * callouts, sidebars) stays untouched. */
 body.chrome-hidden .mapboxgl-ctrl-top-right {
   display: none !important;
+}
+
+/* ─── Timeline (components/Timeline.tsx) ───────────────────────
+ * Bespoke rules for the piecewise-linear timeline. Layout and colour
+ * live inline in the component (they depend on measured geometry);
+ * only the things CSS does better sit here: the playing bloom
+ * animation, the number-input chrome, and reduced-motion overrides. */
+@keyframes timeline-bloom {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+.timeline-bloom {
+  animation: timeline-bloom 2.4s ease-in-out infinite;
+}
+.timeline-handle {
+  cursor: ew-resize;
+  touch-action: none;
+}
+.timeline-track {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.timeline-year-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.timeline-year-input::-webkit-outer-spin-button,
+.timeline-year-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.timeline-era-btn {
+  background: transparent;
+  border: 0;
+  padding: 0 4px;
+  cursor: pointer;
+}
+.timeline-era-btn:hover {
+  color: var(--ink-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline-bloom {
+    animation: none !important;
+    opacity: 0.7;
+  }
 }

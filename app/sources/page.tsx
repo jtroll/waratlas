@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Wordmark } from '@/components/LoadingScreen';
 import stats from '@/lib/generated/stats.json';
 
 const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
@@ -32,35 +33,44 @@ export default function SourcesPage() {
       <style>{`html, body { overflow: auto !important; height: auto !important; }`}</style>
       <main
         className="min-h-screen px-6 py-10 sm:py-14"
-        style={{ background: 'var(--ink-0, #06090f)', color: 'var(--ink-text, #ece3d3)' }}
+        style={{ background: 'var(--ink-0)', color: 'var(--ink-text)' }}
       >
       <article className="mx-auto" style={{ maxWidth: 720 }}>
         <header className="mb-10">
-          <Link
-            href="/"
-            className="font-mono inline-block mb-6"
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.12em',
-              color: 'var(--ink-muted, #9ca3af)',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderBottom: '1px solid currentColor',
-              paddingBottom: 2,
-            }}
+          {/* Masthead — the same wordmark as the TopBar, with the way back. */}
+          <div
+            className="flex items-baseline justify-between gap-4 mb-8 pb-3"
+            style={{ borderBottom: '1px solid var(--rule)' }}
           >
-            ← Back to the atlas
-          </Link>
+            <Link href="/" style={{ textDecoration: 'none' }} aria-label="War Atlas home">
+              <Wordmark size={22} />
+            </Link>
+            <Link
+              href="/"
+              className="font-mono"
+              style={{
+                fontSize: 12,
+                letterSpacing: '0.08em',
+                color: 'var(--ink-muted)',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                borderBottom: '1px solid currentColor',
+                paddingBottom: 2,
+              }}
+            >
+              ← Back to the atlas
+            </Link>
+          </div>
           <h1
             className="font-display"
             style={{ fontSize: 40, fontWeight: 400, lineHeight: 1.1, margin: 0, letterSpacing: '-0.01em' }}
           >
-            <span style={{ fontStyle: 'italic', color: 'var(--vermilion, #c8553b)' }}>Sources</span>
+            <span style={{ fontStyle: 'italic', color: 'var(--vermilion)' }}>Sources</span>
             <span style={{ marginLeft: 6 }}>&amp; attribution</span>
           </h1>
           <p
             className="font-display italic mt-3"
-            style={{ fontSize: 17, color: 'var(--ink-text-2, #d1d5db)', lineHeight: 1.5 }}
+            style={{ fontSize: 17, color: 'var(--ink-text-2)', lineHeight: 1.5 }}
           >
             What we drew on, who owns it, and how to file a correction.
           </p>
@@ -268,7 +278,7 @@ export default function SourcesPage() {
             nothing checkable would defeat the point.
           </p>
 
-          <h3 style={{fontSize: 16, fontWeight: 500, margin: '20px 0 8px', color: 'var(--ink-text, #ece3d3)'}}>Solid vs. dashed: two questions, not one</h3>
+          <h3 style={{fontSize: 16, fontWeight: 500, margin: '20px 0 8px', color: 'var(--ink-text)'}}>Solid vs. dashed: two questions, not one</h3>
           <p>
             The dashed/solid distinction tries to answer two questions at
             once: <em>is the polygon faithful to its source?</em> and{' '}
@@ -582,10 +592,10 @@ export default function SourcesPage() {
         <footer
           className="mt-14 pt-6 font-mono"
           style={{
-            borderTop: '1px solid var(--rule, rgba(255,255,255,0.1))',
+            borderTop: '1px solid var(--rule))',
             fontSize: 11,
             letterSpacing: '0.06em',
-            color: 'var(--ink-faint, #6b7280)',
+            color: 'var(--ink-faint)',
           }}
         >
           WARS-ATLAS · /SOURCES · A RESEARCH PREVIEW
@@ -605,7 +615,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
           fontSize: 22,
           fontWeight: 500,
           margin: '0 0 10px',
-          color: 'var(--ink-text, #ece3d3)',
+          color: 'var(--ink-text)',
           letterSpacing: '-0.005em',
         }}
       >
@@ -613,7 +623,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </h2>
       <div
         className="font-display sources-prose"
-        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2, #d1d5db)' }}
+        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2)' }}
       >
         {children}
       </div>
@@ -623,9 +633,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
         .sources-prose p { margin: 0 0 12px; }
         .sources-prose ul { margin: 0 0 12px; padding-left: 1.1em; }
         .sources-prose ul li { margin-bottom: 6px; }
-        .sources-prose a { color: var(--indigo, #6366f1); text-decoration: none; border-bottom: 1px solid currentColor; }
-        .sources-prose a:hover { color: var(--ink-text, #ece3d3); }
-        .sources-prose code { font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.85em; padding: 1px 4px; background: rgba(255,255,255,0.04); border-radius: 2px; }
+        .sources-prose a { color: var(--indigo); text-decoration: none; border-bottom: 1px solid currentColor; }
+        .sources-prose a:hover { color: var(--ink-text); }
+        .sources-prose code { font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.85em; padding: 1px 4px; background: var(--tint-ivory); border-radius: 2px; }
       `}</style>
     </section>
   );

@@ -42,6 +42,8 @@ for (const r of recs) {
 }
 
 // partOf resolution, date containment, cycles
+const byName = new Map();
+for (const r of recs) { if (!byName.has(r.name)) byName.set(r.name, []); byName.get(r.name).push(r); }
 for (const r of recs) {
   for (const p of r.partOf) {
     if (ids.has(p)) {
@@ -50,6 +52,16 @@ for (const r of recs) {
       if (p === r.id) err(`${r.id}: self-reference in partOf`);
     } else if (!(p in unresolved)) {
       err(`${r.id}: partOf "${p}" is neither an id nor listed in scripts/data/parent_unresolved.json`);
+    } else {
+      // A raw string that happens to equal an existing conflict's NAME will
+      // be linked by the sidebar's name fallback. Refuse it when the dates
+      // can't overlap — that is how an 1835 battle ended up "part of"
+      // World War II.
+      for (const par of byName.get(p) || []) {
+        if (r.startYear > END(par) + 1 || END(r) < par.startYear - 1) {
+          err(`${r.id} (${r.startYear}): raw partOf "${p}" name-matches ${par.id} (${par.startYear}-${par.endYear}) but the dates do not overlap — fix the year or the parent`);
+        }
+      }
     }
   }
 }

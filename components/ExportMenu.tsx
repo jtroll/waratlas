@@ -75,17 +75,13 @@ function ExportMenu({ conflicts, currentYear }: Props) {
   };
 
   // Editorial chrome — matches the Mapbox zoom +/- group above and the
-  // TopBar "Live" button. Square corners, hairline border, dark glass
-  // surface, 11px uppercase. Right-aligned at 24px (right-6) so the
-  // right edge agrees with the zoom controls.
+  // TopBar "Live" button: .surface-chrome (dark glass, hairline, square),
+  // 11px uppercase. Right-aligned at 24px (right-6) so the right edge
+  // agrees with the zoom controls. Open state is ivory-tinted, not amber.
   const chromeBtn: React.CSSProperties = {
-    fontSize: 11,
+    fontSize: 12,
     letterSpacing: '0.04em',
     textTransform: 'uppercase',
-    background: 'oklch(0.20 0.014 250 / 0.85)',
-    backdropFilter: 'blur(8px)',
-    WebkitBackdropFilter: 'blur(8px)',
-    border: '1px solid var(--rule-strong)',
     color: 'var(--ink-text-2)',
     cursor: 'pointer',
     lineHeight: 1,
@@ -94,10 +90,12 @@ function ExportMenu({ conflicts, currentYear }: Props) {
   return (
     <div className="absolute bottom-32 right-6 z-20 pointer-events-auto hidden md:block">
       <button
+        type="button"
         onClick={() => setOpen(!open)}
-        className="font-ui inline-flex items-center justify-center gap-2 transition-colors h-8 px-3 hover:text-wars-text"
+        className={`surface-chrome hover-tint font-ui inline-flex items-center justify-center gap-2 transition-colors h-8 px-3 ${open ? 'pressed-ivory' : ''}`}
         style={chromeBtn}
         aria-expanded={open}
+        aria-haspopup="menu"
         aria-label="Export current view"
         title="Export current view"
       >
@@ -108,36 +106,37 @@ function ExportMenu({ conflicts, currentYear }: Props) {
       </button>
       {open && (
         <div
-          className="mt-1 overflow-hidden text-[11px] min-w-[10rem]"
-          style={{
-            background: 'oklch(0.20 0.014 250 / 0.95)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            border: '1px solid var(--rule-strong)',
-          }}
+          className="surface-panel mt-1 overflow-hidden min-w-[11rem]"
+          role="menu"
+          aria-label="Export formats"
         >
           <div
-            className="eyebrow px-3 py-1.5"
-            style={{ borderBottom: '1px solid var(--rule)' }}
+            className="font-mono text-mono text-wars-muted px-3 py-2"
+            style={{ borderBottom: '1px solid var(--rule)', letterSpacing: '0.04em' }}
           >
-            {conflicts.length} conflicts
+            {conflicts.length.toLocaleString('en-US')} conflicts · {Math.round(currentYear) < 0 ? `${-Math.round(currentYear)} BCE` : Math.round(currentYear)}
           </div>
           <button
+            type="button"
+            role="menuitem"
             onClick={downloadCSV}
-            className="w-full text-left px-3 py-2 text-wars-text hover:bg-wars-border/30 transition-colors"
+            className="hover-tint font-ui w-full text-left px-3 py-2.5 text-wars-text transition-colors"
+            style={{ fontSize: 12.5, background: 'transparent', border: 'none', cursor: 'pointer' }}
           >
             Download CSV
           </button>
           <button
+            type="button"
+            role="menuitem"
             onClick={downloadGeoJSON}
-            className="w-full text-left px-3 py-2 text-wars-text hover:bg-wars-border/30 transition-colors"
-            style={{ borderTop: '1px solid var(--rule)' }}
+            className="hover-tint font-ui w-full text-left px-3 py-2.5 text-wars-text transition-colors"
+            style={{ fontSize: 12.5, background: 'transparent', border: 'none', cursor: 'pointer', borderTop: '1px solid var(--rule)' }}
           >
             Download GeoJSON
           </button>
           <div
-            className="px-3 py-1.5 text-[10px] text-wars-muted/60"
-            style={{ borderTop: '1px solid var(--rule)' }}
+            className="font-display italic px-3 py-2 text-wars-muted"
+            style={{ fontSize: 11.5, borderTop: '1px solid var(--rule)' }}
           >
             CC-BY citation appreciated
           </div>

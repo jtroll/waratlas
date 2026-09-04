@@ -27,17 +27,10 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
   // Only show in modern era when the borders matter
   if (year < 1900 || dismissed) return null;
 
-  // Editorial chrome — matches the Mapbox zoom +/- group and the
-  // ExportMenu button below. Square corners, hairline border, dark
-  // glass surface. Desktop: 32x32 icon-only square sitting directly
-  // above the Export button at right:24px. Mobile: 44x44 touch target.
-  const chromeSurface: React.CSSProperties = {
-    background: 'oklch(0.20 0.014 250 / 0.85)',
-    backdropFilter: 'blur(8px)',
-    WebkitBackdropFilter: 'blur(8px)',
-    border: '1px solid var(--rule-strong)',
-  };
-
+  // Editorial chrome — .surface-chrome, matching the Mapbox zoom +/- group
+  // and the ExportMenu button below. Desktop: 32x32 icon-only square
+  // sitting directly above the Export button at right:24px. Mobile: 44x44
+  // touch target. Open state is ivory-tinted, never amber.
   return (
     <div
       // z-30 raises this above InfoBoxLayer (z-20) so the disputed-borders
@@ -51,16 +44,14 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
       aria-label="Disputed territory note"
     >
       <button
+        type="button"
         onClick={() => setExpanded(!expanded)}
-        // Mobile: rounded 44x44 touch target (legacy). Desktop: 32x32
-        // square icon-only chip matching the editorial chrome of the
-        // Export button (dark glass, hairline border, muted-gray glyph).
-        // SVG icon used instead of the unicode ⓘ glyph because that
-        // character renders as a heavy filled circle in most font stacks
-        // and reads as black against the dark surface even when tinted.
-        className="rounded-md sm:rounded-none text-wars-muted hover:text-wars-text transition-colors flex items-center justify-center w-11 h-11 sm:w-8 sm:h-8"
-        style={chromeSurface}
+        // 44x44 touch target on mobile, 32x32 square chip on desktop —
+        // same square chrome as Export. SVG icon instead of the unicode ⓘ
+        // glyph, which renders as a heavy filled circle in most font stacks.
+        className={`surface-chrome hover-tint text-wars-muted transition-colors flex items-center justify-center w-11 h-11 sm:w-8 sm:h-8 ${expanded ? 'pressed-ivory' : ''}`}
         aria-expanded={expanded}
+        aria-controls="disputed-note-body"
         aria-label="Notes on disputed borders"
         title="Notes on disputed borders"
       >
@@ -81,35 +72,30 @@ export default function DisputedTerritoryNote({ year }: { year: number }) {
           // Anchored to the right edge of the button, opening upward so the
           // note doesn't collide with the Export button below. 320px wide,
           // capped to viewport on small screens.
-          className="absolute right-0 bottom-full mb-1 px-3 py-2 text-[11px] text-wars-muted leading-relaxed max-h-72 overflow-y-auto"
-          style={{
-            ...chromeSurface,
-            background: 'oklch(0.20 0.014 250 / 0.95)',
-            width: 320,
-            maxWidth: 'calc(100vw - 1.5rem)',
-          }}
+          className="surface-panel absolute right-0 bottom-full mb-1 px-3.5 py-3 max-h-72 overflow-y-auto"
+          style={{ width: 320, maxWidth: 'calc(100vw - 1.5rem)' }}
+          id="disputed-note-body"
         >
-          <div
-            className="eyebrow pb-1.5 mb-2"
-            style={{ borderBottom: '1px solid var(--rule)' }}
-          >
+          <h3 className="eyebrow m-0 pb-1.5 mb-2" style={{ borderBottom: '1px solid var(--rule)' }}>
             Notes on disputed borders
-          </div>
-          <p className="text-wars-text/90 mb-2">
+          </h3>
+          <p className="font-display text-wars-text-2 m-0 mb-2" style={{ fontSize: 12.5, lineHeight: 1.5 }}>
             Modern borders come from Mapbox&apos;s boundary data (default worldview), which
             approximates internationally recognized borders. These designations are not
             endorsements:
           </p>
-          <ul className="space-y-1.5">
+          <ul className="font-display text-wars-text-2 m-0 p-0 list-none space-y-1.5" style={{ fontSize: 12.5, lineHeight: 1.5 }}>
             {DISPUTED_REGIONS.map((r) => (
               <li key={r.name}>
-                <strong className="text-wars-text">{r.name}:</strong> {r.note}
+                <strong className="text-wars-text" style={{ fontWeight: 500 }}>{r.name}:</strong> {r.note}
               </li>
             ))}
           </ul>
           <button
+            type="button"
             onClick={() => setDismissed(true)}
-            className="mt-3 text-[10px] text-wars-muted/70 hover:text-wars-text transition-colors"
+            className="font-ui mt-3 text-wars-muted hover:text-wars-text transition-colors"
+            style={{ fontSize: 12, letterSpacing: '0.02em', background: 'transparent', border: 'none', padding: '4px 0', cursor: 'pointer', borderBottom: '1px solid var(--rule-strong)' }}
           >
             Dismiss for this session
           </button>

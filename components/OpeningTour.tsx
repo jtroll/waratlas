@@ -1,7 +1,8 @@
 'use client';
 
 import { memo, useEffect, useRef, useState } from 'react';
-import { formatYear, formatYearParts } from '@/lib/format';
+import { formatYear } from '@/lib/format';
+import { useFocusTrap } from '@/lib/focus-trap';
 import stats from '@/lib/generated/stats.json';
 
 const STAT_CONFLICTS = `over ${(Math.floor(stats.conflicts / 1000) * 1000).toLocaleString('en-US')} conflicts`;
@@ -103,23 +104,19 @@ interface Props {
   onFlyToBbox?: (bbox: [number, number, number, number]) => void;
 }
 
-const formatStopYear = formatYear;
-// Years are conventionally written without thousands separators
-// ("2500 BCE", not "2,500 BCE"). Casualty counts keep their commas;
-// years do not.
-const formatBigYear = formatYearParts;
-
 /* ─────────────────────────────────────────────────────────────
- * OPENING TOUR — restyled as an editorial exhibit card.
+ * OPENING TOUR — an exhibit guide, not a wizard.
  *
- * 720px-wide centered card on dimmed map. Header bar with amber
- * eyebrow + mono keyboard hints; oversized amber year next to a
- * serif title and italic blurb; 9-segment progress strip; inline
- * stops index in display serif (mono year + short name); footer
- * with Skip / Pause / Previous (outlined) / Next stop (amber).
+ * A ≤560px sheet anchored bottom-left over the map on desktop (the map
+ * does the talking; the card is a placard beside it) and a bottom sheet
+ * ≤45vh on mobile. Mono eyebrow "Exhibit 3 · 490 BCE", serif title 26px,
+ * italic serif blurb 16px, a thin progress rule, hairline buttons with
+ * ivory text (Next is an ivory fill with ink text). No amber: amber is
+ * reserved for the current year and selection.
  *
- * Auto-advance, pause/resume, and keyboard nav are unchanged
- * from the previous version (arrows, Enter, Space, Escape).
+ * Mechanics unchanged: 12 s holds, pause on hover, arrows / Enter / Space /
+ * Escape; Skip preserves the year. Focus moves into the card on open and
+ * returns on close.
  * ─────────────────────────────────────────────────────────── */
 function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
   const [index, setIndex] = useState(0);
@@ -128,6 +125,8 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
   // reader isn't yanked to the next stop mid-sentence.
   const [hovering, setHovering] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -174,6 +173,8 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
       const target = e.target as HTMLElement;
       if (target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA') return;
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        // Let a focused button keep its native Enter activation.
+        if (e.key === 'Enter' && target?.tagName === 'BUTTON') return;
         e.preventDefault();
         if (index < STOPS.length - 1) setIndex((i) => i + 1);
         else onFinish();
@@ -191,318 +192,274 @@ function OpeningTour({ open, onClose, onFinish, onSeek, onFlyToBbox }: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, [open, index, onClose, onFinish]);
 
+  // Focus moves to "Next" on open (the primary action) and returns to the
+  // Tour button on close; Tab cycles within the card.
+  useFocusTrap(cardRef, open, { initialFocus: nextRef });
+
   if (!open) return null;
   const stop = STOPS[index];
   const isLast = index === STOPS.length - 1;
   const isFirst = index === 0;
-  // The intro stop has no year — we hide the giant amber year and let the
-  // title + blurb breathe instead.
-  const big = stop.year === null ? null : formatBigYear(stop.year);
+  const total = STOPS.length;
+  const eyebrow =
+    stop.year === null
+      ? `Exhibit ${index + 1} of ${total} · Introduction`
+      : `Exhibit ${index + 1} of ${total} · ${formatYear(stop.year)}`;
 
-  // Shared button base style — keeps Pause / Previous / Next visually
-  // consistent (same height, same font, same letter-spacing). The only
-  // visual diff is the Next button's amber fill.
+  // Shared button base — hairline chrome, ivory text. Next is an ivory
+  // fill with ink text. 40px tall so they clear the touch minimum.
   const ctrlBase: React.CSSProperties = {
     fontSize: 12,
     fontWeight: 500,
     letterSpacing: '0.04em',
     textTransform: 'uppercase',
-    padding: '10px 14px',
-    minHeight: 40,
+    padding: '0 14px',
+    height: 40,
     cursor: 'pointer',
     background: 'transparent',
     border: '1px solid var(--rule-strong)',
-    color: 'var(--ink-text-2)',
+    color: 'var(--ink-text)',
     transition: 'color 120ms, background 120ms, opacity 120ms',
   };
   const ctrlPrimary: React.CSSProperties = {
     ...ctrlBase,
-    background: 'var(--amber)',
-    border: '1px solid var(--amber)',
+    background: 'var(--ink-text)',
+    border: '1px solid var(--ink-text)',
     color: 'var(--ink-0)',
     fontWeight: 600,
   };
   const ctrlDisabled: React.CSSProperties = {
     cursor: 'not-allowed',
-    opacity: 0.35,
-    color: 'var(--ink-faint)',
+    opacity: 0.4,
+  };
+  const ctrlQuiet: React.CSSProperties = {
+    ...ctrlBase,
+    border: '1px solid transparent',
+    color: 'var(--ink-text-2)',
+    padding: '0 6px',
   };
 
   return (
     <>
-      {/* Soft dim — much lighter than before so the map stays legible while
+      {/* Soft dim toward the card's corner so the map stays legible while
           the tour is open. Tour is a guide, not a wall. */}
       <div
         className="fixed inset-0 z-30 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, oklch(0.10 0.012 250 / 0) 0%, oklch(0.10 0.012 250 / 0.32) 60%, oklch(0.10 0.012 250 / 0.55) 100%)',
+            'linear-gradient(to bottom, transparent 0%, color-mix(in oklch, var(--ink-0) 30%, transparent) 60%, color-mix(in oklch, var(--ink-0) 55%, transparent) 100%)',
         }}
         aria-hidden
       />
 
-      {/* Tour panel — bottom-anchored on desktop so the map stays visible
-          above; full-width on mobile but capped at 56vh so the map peeks
-          through. */}
+      {/* Placement: bottom-left over the map on desktop, clearing the
+          timeline strip (which can publish --timeline-height); a bottom
+          sheet above the tab dock on mobile. */}
       <div
-        className="fixed left-0 right-0 z-40 flex items-end justify-center pointer-events-none px-3 sm:px-4"
-        style={{
-          // Anchored to bottom edge on every breakpoint, with a small inset
-          // so the panel doesn't touch the timeline/dock. On mobile we lift
-          // it higher to keep the map visible.
-          bottom: 0,
-          top: 'auto',
-        }}
-        role="dialog"
-        aria-label="Guided tour"
+        className="fixed z-40 pointer-events-none left-0 right-0 sm:right-auto sm:left-6"
+        style={{ bottom: 0 }}
       >
         <div
-          className="pointer-events-auto relative w-full"
+          ref={cardRef}
+          className="tour-card surface-sheet pointer-events-auto relative w-full sm:w-[min(560px,calc(100vw-48px))] border-x-0 border-b-0 sm:border"
           onPointerEnter={() => setHovering(true)}
           onPointerLeave={() => setHovering(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="tour-title"
+          aria-describedby="tour-blurb"
           style={{
-            maxWidth: 720,
-            background: 'oklch(0.18 0.014 250 / 0.97)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid var(--rule-strong)',
             color: 'var(--ink-text)',
-            // Generous padding on desktop, tighter on mobile. Bottom padding
-            // leaves room for the timeline + (on mobile) the tab dock.
-            padding: '20px 22px 18px',
-            // Limit total height so the user always sees some map.
-            maxHeight: '56vh',
-            overflowY: 'auto',
             boxShadow: 'var(--shadow-pop)',
-            // Lift above the timeline (~88–120px tall) and (on mobile) the
-            // tab dock (~56px). 24px clear on desktop, 96px on mobile.
-            marginBottom: 'max(24px, calc(env(safe-area-inset-bottom) + 24px))',
+            overflowY: 'auto',
           }}
         >
-          {/* X close (Skip) — top-right corner. Single discrete affordance
-              to leave the tour at any moment, separates "leave" from "navigate". */}
-          <button
-            onClick={onClose}
-            aria-label="Close tour"
-            className="absolute top-2 right-2 sm:top-3 sm:right-3 inline-flex items-center justify-center text-wars-muted hover:text-wars-text transition-colors"
-            style={{
-              width: 36,
-              height: 36,
-              background: 'transparent',
-              border: '1px solid var(--rule)',
-              cursor: 'pointer',
-            }}
-          >
-            <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden>
-              <path d="M1 1 L10 10 M10 1 L1 10" stroke="currentColor" strokeWidth="1.2" />
-            </svg>
-          </button>
-
-          {/* Header bar */}
-          <div
-            className="flex justify-between items-baseline pb-3 pr-12"
-            style={{ borderBottom: '1px solid var(--rule-strong)' }}
-          >
-            <div className="eyebrow" style={{ color: 'var(--amber)' }}>
-              Exhibit · Stop {index + 1} of {STOPS.length}
-            </div>
-            <div
-              className="font-mono text-wars-muted hidden md:block"
-              style={{ fontSize: 10, letterSpacing: '0.04em' }}
-            >
-              ← prev · space to pause · esc to skip
-            </div>
-          </div>
-
-          {/* Title + year (or title-only for intro stop) */}
-          <div className="flex items-start gap-4 sm:gap-7 py-5">
-            {big && (
-              <div
-                className="font-display tabular-nums flex-shrink-0 hidden sm:block"
-                style={{
-                  fontSize: 48,
-                  lineHeight: 1,
-                  fontWeight: 400,
-                  color: 'var(--amber)',
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                {big.num}
-                <div
-                  className="font-mono"
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: '0.06em',
-                    color: 'oklch(0.78 0.14 78 / 0.7)',
-                    marginTop: 4,
-                  }}
-                >
-                  {big.suffix}
-                </div>
-              </div>
-            )}
-            <div className="flex-1 min-w-0">
-              {/* Mobile-only year (inline, smaller) for non-intro stops. */}
-              {big && (
-                <div
-                  className="font-mono sm:hidden mb-1.5"
-                  style={{
-                    fontSize: 10,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    color: 'var(--amber)',
-                  }}
-                >
-                  {big.num} {big.suffix}
-                </div>
-              )}
-              <h2
-                className="font-display"
-                style={{
-                  margin: 0,
-                  fontSize: 'clamp(22px, 4.5vw, 30px)',
-                  lineHeight: 1.1,
-                  fontWeight: 400,
-                  letterSpacing: '-0.015em',
-                  color: 'var(--ink-text)',
-                  textWrap: 'balance' as React.CSSProperties['textWrap'],
-                }}
-              >
-                {stop.title}
-              </h2>
+          <div className="px-5 pt-4 pb-4 sm:px-6 sm:pt-5 sm:pb-5">
+            {/* Eyebrow row: exhibit number · year, keyboard hint, close */}
+            <div className="flex items-center justify-between gap-3">
               <p
-                className="font-display italic"
-                style={{
-                  fontSize: 'clamp(14px, 2.6vw, 16px)',
-                  lineHeight: 1.55,
-                  color: 'var(--ink-text-2)',
-                  margin: '12px 0 0',
-                  textWrap: 'pretty' as React.CSSProperties['textWrap'],
-                  maxWidth: 540,
-                }}
+                className="font-mono m-0 uppercase text-wars-text-2"
+                style={{ fontSize: 11, letterSpacing: '0.08em' }}
               >
-                {stop.blurb}
+                {eyebrow}
               </p>
-            </div>
-          </div>
-
-          {/* Progress strip — one segment per stop */}
-          <div
-            className="flex gap-1 pt-3 pb-2"
-            style={{ borderTop: '1px solid var(--rule)' }}
-            aria-hidden
-          >
-            {STOPS.map((_, i) => {
-              const isPast = i < index;
-              const isCurrent = i === index;
-              return (
-                <div
-                  key={i}
-                  className="flex-1 relative"
-                  style={{
-                    height: 2,
-                    background: isPast
-                      ? 'var(--ink-3)'
-                      : isCurrent
-                        ? 'oklch(0.78 0.14 78 / 0.25)'
-                        : 'var(--ink-1)',
-                  }}
+              <div className="flex items-center gap-3">
+                <span
+                  className="font-mono text-wars-faint hidden md:inline"
+                  style={{ fontSize: 11, letterSpacing: '0.02em' }}
+                  aria-hidden
                 >
-                  {isCurrent && !paused && !hovering && (
-                    <div
-                      key={`fill-${i}-${paused}`}
-                      className="absolute inset-y-0 left-0"
-                      style={{
-                        background: 'var(--amber)',
-                        animation: `tour-progress ${stop.hold}s linear forwards`,
-                      }}
-                    />
-                  )}
-                  {isCurrent && (paused || hovering) && (
-                    <div
-                      className="absolute inset-y-0 left-0"
-                      style={{
-                        width: '50%',
-                        background: 'var(--amber)',
-                        opacity: 0.5,
-                      }}
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                  ← → · space · esc
+                </span>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  aria-label="Skip the tour"
+                  className="icon-btn -mr-2"
+                  title="Skip (Esc)"
+                >
+                  <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden>
+                    <path d="M1 1 L10 10 M10 1 L1 10" stroke="currentColor" strokeWidth="1.2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
 
-          {/* Stops index — desktop only. Helpful on a wide screen, just
-              clutter on mobile where progress strip already shows position. */}
-          <div
-            className="hidden md:flex flex-wrap mt-3 gap-x-5 gap-y-2"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            {STOPS.map((s, i) => (
-              <button
-                key={`${i}-${s.shortTitle}`}
-                onClick={() => setIndex(i)}
-                className="flex items-baseline gap-1.5 transition-colors hover:text-wars-text"
-                style={{
-                  fontSize: 12,
-                  fontStyle: i === index ? 'italic' : 'normal',
-                  color: i === index ? 'var(--ink-text)' : 'var(--ink-faint)',
-                  background: 'transparent',
-                  border: 'none',
-                  padding: 0,
-                  cursor: 'pointer',
-                }}
-                aria-current={i === index ? 'step' : undefined}
-              >
-                {s.year !== null && (
-                  <span className="font-mono" style={{ fontSize: 10 }}>
-                    {formatStopYear(s.year)}
-                  </span>
-                )}
-                {s.shortTitle}
+            {/* Title + blurb */}
+            <h2
+              id="tour-title"
+              className="font-display text-wars-text"
+              style={{
+                margin: '10px 0 0',
+                fontSize: 26,
+                lineHeight: 1.1,
+                fontWeight: 400,
+                letterSpacing: '-0.018em',
+                textWrap: 'balance' as React.CSSProperties['textWrap'],
+              }}
+            >
+              {stop.title}
+            </h2>
+            <p
+              id="tour-blurb"
+              className="font-display italic"
+              style={{
+                fontSize: 16,
+                lineHeight: 1.5,
+                color: 'var(--ink-text-2)',
+                margin: '10px 0 0',
+                textWrap: 'pretty' as React.CSSProperties['textWrap'],
+              }}
+            >
+              {stop.blurb}
+            </p>
+
+            {/* Progress rule — one hairline; ivory fill for completed stops,
+                the current stop's segment fills over its hold time. */}
+            <div
+              className="relative mt-4"
+              style={{ height: 1, background: 'var(--rule)' }}
+              role="progressbar"
+              aria-valuemin={1}
+              aria-valuemax={total}
+              aria-valuenow={index + 1}
+              aria-label={`Stop ${index + 1} of ${total}`}
+            >
+              <div
+                className="absolute inset-y-0 left-0"
+                style={{ width: `${(index / total) * 100}%`, background: 'var(--ink-text-2)' }}
+              />
+              {!paused && !hovering ? (
+                <div
+                  key={`fill-${index}`}
+                  className="absolute inset-y-0"
+                  style={{
+                    left: `${(index / total) * 100}%`,
+                    ['--seg' as string]: `${100 / total}%`,
+                    background: 'var(--ink-text)',
+                    animation: `tour-progress ${stop.hold}s linear forwards`,
+                  }}
+                />
+              ) : (
+                <div
+                  className="absolute inset-y-0"
+                  style={{
+                    left: `${(index / total) * 100}%`,
+                    width: `${50 / total}%`,
+                    background: 'var(--ink-text)',
+                    opacity: 0.5,
+                  }}
+                />
+              )}
+            </div>
+
+            {/* Stops index — desktop only. */}
+            <nav
+              className="hidden md:flex flex-wrap mt-3 gap-x-4 gap-y-1.5 font-display"
+              aria-label="Tour stops"
+            >
+              {STOPS.map((s, i) => (
+                <button
+                  key={`${i}-${s.shortTitle}`}
+                  type="button"
+                  onClick={() => setIndex(i)}
+                  className="flex items-baseline gap-1.5 transition-colors hover:text-wars-text"
+                  style={{
+                    fontSize: 12.5,
+                    fontStyle: i === index ? 'italic' : 'normal',
+                    color: i === index ? 'var(--ink-text)' : 'var(--ink-muted)',
+                    background: 'transparent',
+                    border: 'none',
+                    padding: '2px 0',
+                    cursor: 'pointer',
+                    borderBottom: i === index ? '1px solid var(--ink-text)' : '1px solid transparent',
+                  }}
+                  aria-current={i === index ? 'step' : undefined}
+                >
+                  {s.year !== null && (
+                    <span className="font-mono" style={{ fontSize: 11 }}>
+                      {formatYear(s.year)}
+                    </span>
+                  )}
+                  {s.shortTitle}
+                </button>
+              ))}
+            </nav>
+
+            {/* Controls — Skip (quiet) left; Pause · Previous · Next right. */}
+            <div className="flex items-center justify-between gap-2 mt-4 pt-3" style={{ borderTop: '1px solid var(--rule)' }}>
+              <button type="button" onClick={onClose} style={ctrlQuiet} className="font-ui hover:text-wars-text">
+                Skip tour
               </button>
-            ))}
-          </div>
-
-          {/* Controls — three same-height buttons. Pause / Previous match;
-              Next is the primary amber fill. Skip lives in the X above. */}
-          <div
-            className="flex items-center justify-end gap-2 mt-5 pt-4"
-            style={{ borderTop: '1px solid var(--rule)' }}
-          >
-            <button
-              onClick={() => setPaused((p) => !p)}
-              style={ctrlBase}
-              aria-pressed={paused}
-              aria-label={paused ? 'Resume tour' : 'Pause tour'}
-              className="font-ui hover:text-wars-text"
-            >
-              {paused ? 'Resume' : 'Pause'}
-            </button>
-            <button
-              onClick={() => !isFirst && setIndex((i) => i - 1)}
-              disabled={isFirst}
-              style={isFirst ? { ...ctrlBase, ...ctrlDisabled } : ctrlBase}
-              className="font-ui hover:text-wars-text"
-            >
-              ← Previous
-            </button>
-            <button
-              onClick={() => (isLast ? onFinish() : setIndex((i) => i + 1))}
-              style={ctrlPrimary}
-              className="font-ui hover:opacity-90"
-            >
-              {isLast ? 'Finish →' : 'Next stop →'}
-            </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setPaused((p) => !p)}
+                  style={ctrlBase}
+                  aria-pressed={paused}
+                  aria-label={paused ? 'Resume tour' : 'Pause tour'}
+                  className="font-ui hover-tint hidden sm:inline-flex items-center"
+                >
+                  {paused ? 'Resume' : 'Pause'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => !isFirst && setIndex((i) => i - 1)}
+                  disabled={isFirst}
+                  style={isFirst ? { ...ctrlBase, ...ctrlDisabled } : ctrlBase}
+                  className="font-ui hover-tint inline-flex items-center"
+                  aria-label="Previous stop"
+                >
+                  ← Prev
+                </button>
+                <button
+                  ref={nextRef}
+                  type="button"
+                  onClick={() => (isLast ? onFinish() : setIndex((i) => i + 1))}
+                  style={ctrlPrimary}
+                  className="font-ui hover:opacity-90 inline-flex items-center"
+                >
+                  {isLast ? 'Finish →' : 'Next →'}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes tour-progress {
-          from { width: 0%; }
-          to   { width: 100%; }
+        .tour-card {
+          /* Mobile: bottom sheet above the tab dock, ≤45vh. */
+          max-height: 45vh;
+          margin-bottom: calc(46px + env(safe-area-inset-bottom, 0px));
+        }
+        @media (min-width: 640px) {
+          .tour-card {
+            max-height: min(60vh, 520px);
+            /* Sit above the timeline strip; Timeline may publish its own
+               height as --timeline-height on :root. */
+            margin-bottom: var(--timeline-height, 128px);
+          }
         }
       `}</style>
     </>

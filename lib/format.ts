@@ -82,3 +82,18 @@ export function importanceLabel(i: number): string {
     default: return 'Minor';
   }
 }
+
+/** Decade bucket label for grouping: "1940s", "490s BCE". Years are
+ *  floored toward −∞ so -495 lands in "500s BCE", not "490s BCE". */
+export function formatDecade(year: number): string {
+  const d = Math.floor(year / 10) * 10;
+  if (d < 0) return `${-d}s BCE`;
+  if (d === 0) return '0s CE';
+  if (d < 1000) return `${d}s CE`;
+  return `${d}s`;
+}
+
+/** "48.85°N · 2.35°E" from a [lon, lat] pair. */
+export function formatCoordinates([lon, lat]: readonly [number, number]): string {
+  return `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} · ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`;
+}

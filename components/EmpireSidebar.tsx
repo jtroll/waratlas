@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Conflict } from '@/lib/types';
 import { DATA_URLS } from '@/lib/data-urls';
 import {
@@ -12,6 +12,8 @@ import {
   importanceLabel,
 } from '@/lib/format';
 import { getEmpireDescription } from '@/lib/empire-descriptions';
+import { useFocusTrap } from '@/lib/focus-trap';
+import { SheetActions } from './Sidebar';
 
 /**
  * Wikipedia summary cache shape (matches public/empire-wikipedia.json
@@ -120,8 +122,8 @@ interface Props {
  * EMPIRE SIDEBAR — editorial detail panel for a polygon click.
  *
  * Mirrors the conflict Sidebar's hierarchy:
- *   Header        — confidence eyebrow + ID + close
- *   Title         — serif name; mono date range + duration
+ *   Header        — mono line: swatch · EMPIRE · dates · duration;
+ *                   serif title + action toolbar (Cite · Link · Wikipedia · Close)
  *   Hook          — italic display serif (curated for top empires)
  *   Narrative     — "What it was" prose
  *   Significance  — "Why it mattered" with amber eyebrow
@@ -224,6 +226,15 @@ function EmpireSidebar({
     const t = setTimeout(() => setCopied(false), 1500);
     return () => clearTimeout(t);
   }, [copied]);
+  const bodyRef = useRef<HTMLDivElement | null>(null);
+  const asideRef = useRef<HTMLElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+  useEffect(() => {
+    if (bodyRef.current) bodyRef.current.scrollTop = 0;
+    setCopied(false);
+  }, [e.id]);
+  // Non-modal: focus lands on Close on open and returns on close.
+  useFocusTrap(asideRef, true, { trap: false, initialFocus: closeRef });
 
   // Permalink for citations — empires don't have a /e/[id] route yet, so this
   // builds a year-anchored deep-link that scrolls the timeline to the empire's
@@ -263,25 +274,20 @@ function EmpireSidebar({
 
   // Tone for the swatch — falls back to vermilion if the empire color is
   // missing or non-hex.
-  const swatchColor = e.color && /^#?[0-9a-f]{3,8}$/i.test(e.color) ? e.color : 'rgb(200, 85, 59)';
+  const swatchColor = e.color && /^#?[0-9a-f]{3,8}$/i.test(e.color) ? e.color : 'var(--vermilion)';
 
   return (
     <aside
-      className="sidebar-sheet fixed sm:absolute z-40 flex flex-col overflow-hidden
+      ref={asideRef}
+      className="sidebar-sheet surface-sheet border-0 border-t sm:border-t-0 sm:border-l
+                 fixed sm:absolute z-40 flex flex-col overflow-hidden
                  left-0 right-0 top-auto h-[72dvh] sm:h-auto
                  bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:bottom-0
                  sm:top-0 sm:right-0 sm:left-auto
                  w-full sm:max-w-[460px]"
-      style={{
-        background: 'oklch(0.18 0.014 250 / 0.97)',
-        backdropFilter: 'blur(22px)',
-        WebkitBackdropFilter: 'blur(22px)',
-        borderTop: '1px solid var(--rule-strong)',
-        color: 'var(--ink-text)',
-        boxShadow: 'var(--shadow-pop)',
-      }}
+      style={{ color: 'var(--ink-text)', boxShadow: 'var(--shadow-pop)' }}
       role="dialog"
-      aria-label={`Details for ${e.name}`}
+      aria-labelledby="empire-sidebar-title"
     >
       {/* Mobile drag handle */}
       <div className="sm:hidden flex justify-center pt-2 pb-1 flex-shrink-0" aria-hidden>
@@ -295,71 +301,62 @@ function EmpireSidebar({
         />
       </div>
 
-      {/* ─── Header ─────────────────────────────────────────── */}
-      <header className="px-6 pt-3 sm:pt-5 pb-4 hairline-b flex-shrink-0">
-        <div className="flex items-center gap-2.5 mb-3">
+      {/* ─── Header (sticky: outside the scroll container) ───── */}
+      <header className="px-5 sm:px-6 pt-2 sm:pt-4 pb-4 hairline-b flex-shrink-0">
+        <div
+          className="font-mono text-mono text-wars-text-2 flex items-center gap-2 flex-wrap"
+          style={{ letterSpacing: '0.04em' }}
+        >
           <span
-            className="inline-block w-2.5 h-2.5"
+            className="inline-block w-2.5 h-2.5 flex-shrink-0"
             style={{
               background: swatchColor,
               opacity: 0.8,
-              border: isDashed
-                ? '1px dashed currentColor'
-                : '1px solid currentColor',
+              border: isDashed ? '1px dashed currentColor' : '1px solid currentColor',
               color: swatchColor,
             }}
             aria-hidden
           />
-          <span className="eyebrow">Empire</span>
-          <span className="font-mono text-mono-xs text-wars-faint ml-auto">
-            {e.id}
-          </span>
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="ml-2 inline-flex items-center justify-center w-[22px] h-[22px] text-wars-muted hover:text-wars-text transition-colors"
-            style={{
-              background: 'transparent',
-              border: '1px solid var(--rule-strong)',
-            }}
-          >
-            <svg width="9" height="9" viewBox="0 0 9 9">
-              <path
-                d="M1 1 L8 8 M8 1 L1 8"
-                stroke="currentColor"
-                strokeWidth="1.2"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <h2
-          className="font-display text-display-l text-wars-text"
-          style={{
-            fontWeight: 400,
-            margin: 0,
-            textWrap: 'balance' as React.CSSProperties['textWrap'],
-          }}
-        >
-          {e.name}
-        </h2>
-
-        <div
-          className="font-mono mt-2.5 text-meta text-wars-text-2"
-          style={{ letterSpacing: '0.05em' }}
-        >
-          {formatYearRange(e.startYear, e.endYear)}
+          <span className="uppercase">{isDashed ? 'Empire · approximate' : 'Empire'}</span>
+          <span className="text-wars-faint" aria-hidden>·</span>
+          <span>{formatYearRange(e.startYear, e.endYear)}</span>
           {duration && (
             <>
-              <span className="text-wars-faint mx-2">·</span>
-              {duration}
+              <span className="text-wars-faint" aria-hidden>·</span>
+              <span>{duration}</span>
             </>
           )}
+          <span role="status" aria-live="polite" className="ml-auto text-wars-text">
+            {copied ? 'Copied' : ''}
+          </span>
+        </div>
+
+        <div className="flex items-start justify-between gap-3 mt-2">
+          <h2
+            id="empire-sidebar-title"
+            className="font-display text-display-l text-wars-text flex-1 min-w-0"
+            style={{
+              fontWeight: 400,
+              margin: 0,
+              paddingTop: 2,
+              textWrap: 'balance' as React.CSSProperties['textWrap'],
+            }}
+          >
+            {e.name}
+          </h2>
+          <SheetActions
+            onCite={handleCite}
+            permalink={permalink}
+            wikipediaUrl={wiki?.url ?? null}
+            onClose={onClose}
+            closeRef={closeRef}
+            closeLabel={`Close ${e.name}`}
+          />
         </div>
       </header>
 
       {/* ─── Body (scrollable) ──────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-6 pb-8">
+      <div ref={bodyRef} className="flex-1 overflow-y-auto px-5 sm:px-6 pb-8">
         {/* HOOK — italic display serif */}
         {desc?.hook && (
           <div className="py-5 hairline-b">
@@ -377,13 +374,13 @@ function EmpireSidebar({
 
         {/* NARRATIVE */}
         {desc?.narrative && (
-          <section className="py-5 hairline-b">
-            <div className="eyebrow mb-2.5">What it was</div>
+          <section className="py-5 hairline-b" aria-labelledby="es-narrative">
+            <h3 id="es-narrative" className="eyebrow mb-2.5 m-0">What it was</h3>
             <p
               className="font-display text-wars-text m-0"
               style={{
                 fontSize: 14.5,
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 fontWeight: 400,
                 textWrap: 'pretty' as React.CSSProperties['textWrap'],
               }}
@@ -395,18 +392,15 @@ function EmpireSidebar({
 
         {/* SIGNIFICANCE — amber eyebrow signals commentary */}
         {desc?.significance && (
-          <section className="py-5 hairline-b">
-            <div
-              className="eyebrow mb-2.5"
-              style={{ color: 'var(--amber)' }}
-            >
+          <section className="py-5 hairline-b" aria-labelledby="es-significance">
+            <h3 id="es-significance" className="eyebrow mb-2.5 m-0" style={{ color: 'var(--amber)' }}>
               Why it mattered
-            </div>
+            </h3>
             <p
-              className="font-display italic text-wars-text-2 m-0"
+              className="font-display text-wars-text-2 m-0"
               style={{
                 fontSize: 14,
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 fontWeight: 400,
                 textWrap: 'pretty' as React.CSSProperties['textWrap'],
               }}
@@ -420,10 +414,10 @@ function EmpireSidebar({
             or fills the body for empires without a curated description.
             CC-BY-SA license requires clear attribution + a link to the source. */}
         {wiki?.extract && (
-          <section className="py-5 hairline-b">
-            <div className="eyebrow mb-2.5">
+          <section className="py-5 hairline-b" aria-labelledby="es-wiki">
+            <h3 id="es-wiki" className="eyebrow mb-2.5 m-0">
               {desc ? 'From Wikipedia' : 'Overview'}
-            </div>
+            </h3>
             <p
               className="font-display text-wars-text m-0"
               style={{
@@ -437,14 +431,14 @@ function EmpireSidebar({
             </p>
             <p
               className="font-mono mt-2.5 text-wars-faint"
-              style={{ fontSize: 10, letterSpacing: '0.02em' }}
+              style={{ fontSize: 12, letterSpacing: '0.02em' }}
             >
               {wiki.url ? (
                 <a
                   href={wiki.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-wars-accent transition-colors"
+                  className="hover:text-wars-text transition-colors"
                   style={{
                     color: 'var(--indigo)',
                     textDecoration: 'none',
@@ -478,8 +472,8 @@ function EmpireSidebar({
         )}
 
         {/* BORDERS & ACCURACY */}
-        <section className="py-5 hairline-b">
-          <div className="eyebrow mb-2.5">Borders &amp; accuracy</div>
+        <section className="py-5 hairline-b" aria-labelledby="es-borders">
+          <h3 id="es-borders" className="eyebrow mb-2.5 m-0">Borders &amp; accuracy</h3>
           <div className="flex items-center gap-3 mb-2">
             <svg width="44" height="6" aria-hidden>
               <line
@@ -495,7 +489,7 @@ function EmpireSidebar({
             </svg>
             <span
               className="font-display text-wars-text"
-              style={{ fontSize: 14, fontWeight: 500 }}
+              style={{ fontSize: 14.5, fontWeight: 500 }}
             >
               {bordersHeading(isDashed, e.polityType)}
             </span>
@@ -511,25 +505,25 @@ function EmpireSidebar({
           {(e.source || e.sourceDetail || e.borderNote || e.borderYear || e.matchedRegion || e.handCraftedNote) && (
             <ul className="mt-3 space-y-1.5">
               {e.source && (
-                <li className="font-mono text-mono-xs text-wars-faint">
+                <li className="font-mono text-mono text-wars-faint">
                   <span className="text-wars-muted mr-1.5">SOURCE</span>
                   {sourceLabel(e.source)}
                 </li>
               )}
               {e.sourceDetail && (
-                <li className="font-mono text-mono-xs text-wars-faint break-words">
+                <li className="font-mono text-mono text-wars-faint break-words">
                   <span className="text-wars-muted mr-1.5">DETAIL</span>
                   {e.sourceDetail}
                 </li>
               )}
               {e.borderYear !== undefined && (
-                <li className="font-mono text-mono-xs text-wars-faint">
+                <li className="font-mono text-mono text-wars-faint">
                   <span className="text-wars-muted mr-1.5">SNAPSHOT</span>
                   {formatYear(e.borderYear)}
                 </li>
               )}
               {e.matchedRegion && (
-                <li className="font-mono text-mono-xs text-wars-faint">
+                <li className="font-mono text-mono text-wars-faint">
                   <span className="text-wars-muted mr-1.5">MATCHED</span>
                   {e.matchedRegion}
                 </li>
@@ -545,8 +539,9 @@ function EmpireSidebar({
               {e.borderNote && (
                 <li
                   className="font-display italic text-wars-text-2"
-                  style={{ fontSize: 12, lineHeight: 1.5 }}
+                  style={{ fontSize: 12.5, lineHeight: 1.5 }}
                 >
+                  <span className="font-mono not-italic text-mono text-wars-muted mr-1.5">NOTE</span>
                   {e.borderNote}
                 </li>
               )}
@@ -556,16 +551,16 @@ function EmpireSidebar({
 
         {/* ACTIVE DURING THIS PERIOD */}
         {overlappingConflicts.length > 0 && (
-          <section className="py-5 hairline-b">
-            <div className="eyebrow mb-2.5">
+          <section className="py-5 hairline-b" aria-labelledby="es-wars">
+            <h3 id="es-wars" className="eyebrow mb-2.5 m-0">
               Major wars during this period
-            </div>
+            </h3>
             <div className="space-y-1.5">
               {overlappingConflicts.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => onConflictClick(c)}
-                  className="block w-full text-left transition-colors hover:text-wars-accent"
+                  className="block w-full text-left transition-colors hover:text-wars-text"
                   style={{
                     background: 'transparent',
                     border: 'none',
@@ -581,21 +576,14 @@ function EmpireSidebar({
                     >
                       {c.name}
                     </span>
-                    <span className="font-mono text-mono-xs text-wars-faint flex-shrink-0">
+                    <span className="font-mono text-mono text-wars-faint flex-shrink-0">
                       {formatCompactRange(c.startYear, c.endYear)}
                     </span>
                   </div>
-                  <div className="flex items-baseline gap-2 mt-0.5">
-                    <span
-                      className="eyebrow"
-                      style={{ fontSize: 9, color: 'var(--ink-faint)' }}
-                    >
-                      {importanceLabel(c.importance)}
-                    </span>
+                  <div className="font-mono text-mono text-wars-faint mt-0.5 uppercase" style={{ letterSpacing: '0.04em' }}>
+                    {importanceLabel(c.importance)}
                     {c.casualties != null && (
-                      <span className="font-mono text-mono-xs text-wars-faint">
-                        · {formatCasualties(c.casualties)} dead
-                      </span>
+                      <span className="normal-case"> · {formatCasualties(c.casualties)} dead</span>
                     )}
                   </div>
                 </button>
@@ -604,49 +592,9 @@ function EmpireSidebar({
           </section>
         )}
 
-        {/* Editorial action row */}
-        <section className="py-5">
-          <div className="flex flex-wrap gap-2 items-center text-meta text-wars-muted">
-            <button
-              onClick={handleCite}
-              className="font-ui hover:text-wars-text transition-colors"
-              style={{
-                color: 'var(--indigo)',
-                background: 'transparent',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                borderBottom: '1px solid currentColor',
-                paddingBottom: 1,
-                fontSize: 11,
-              }}
-              aria-label="Copy citation to clipboard"
-            >
-              Cite this entry
-            </button>
-            <span role="status" aria-live="polite" className="font-mono text-mono-xs" style={{ color: 'var(--amber)' }}>
-              {copied ? 'Copied' : ''}
-            </span>
-            <span className="text-wars-faint">·</span>
-            <a
-              href={permalink}
-              className="font-ui hover:text-wars-text transition-colors"
-              style={{
-                color: 'var(--indigo)',
-                textDecoration: 'none',
-                borderBottom: '1px solid currentColor',
-                paddingBottom: 1,
-                fontSize: 11,
-              }}
-            >
-              Permalink
-            </a>
-          </div>
-        </section>
-
         {/* Footer */}
         <footer
-          className="font-mono text-mono-xs text-wars-faint flex justify-between mt-3 pt-3"
+          className="font-mono text-mono text-wars-faint flex justify-between gap-3 flex-wrap mt-5 pt-3"
           style={{ borderTop: '1px dashed var(--rule)' }}
         >
           <span>

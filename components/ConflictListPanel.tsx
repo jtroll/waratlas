@@ -1,8 +1,9 @@
 'use client';
 
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useRef } from 'react';
 import { ActiveConflict, Conflict } from '@/lib/types';
-import { formatYear, formatYearRange, formatCasualties } from '@/lib/format';
+import { formatYear, formatSpan, formatCasualties } from '@/lib/format';
+import { useFocusTrap } from '@/lib/focus-trap';
 
 interface ConflictListPanelProps {
   conflicts: ActiveConflict[];
@@ -12,6 +13,11 @@ interface ConflictListPanelProps {
   selectedId: string | null;
 }
 
+/**
+ * Left-hand list of the conflicts active in the current year. Rows carry
+ * name · span · belligerents · casualties. The empty state is designed, not
+ * a blank: a quiet year is a real state of the dataset and says so.
+ */
 function ConflictListPanel({
   conflicts,
   currentYear,
@@ -20,32 +26,38 @@ function ConflictListPanel({
   selectedId,
 }: ConflictListPanelProps) {
   const activeConflicts = useMemo(() => conflicts.filter(c => c.isActive), [conflicts]);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  useFocusTrap(panelRef, true);
 
   return (
     <div
+      ref={panelRef}
       // On mobile this is `inset-0` (full screen) — but inset-0 puts the
       // bottom flush with the screen edge, hidden by the MobileTabDock.
       // Override `bottom` to sit above the dock instead.
-      className="sidebar-enter fixed sm:absolute inset-0 bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:inset-auto sm:bottom-0 sm:top-0 sm:left-0 w-full sm:max-w-sm z-40 bg-wars-panel/98 backdrop-blur-xl sm:border-r border-wars-border overflow-hidden flex flex-col"
+      className="sidebar-enter surface-sheet border-0 sm:border-r fixed sm:absolute inset-0 bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:inset-auto sm:bottom-0 sm:top-0 sm:left-0 w-full sm:max-w-sm z-40 overflow-hidden flex flex-col"
       role="dialog"
-      aria-label="Active conflicts list"
+      aria-labelledby="conflict-list-title"
     >
       {/* Header — sticky at top of panel */}
-      <div className="flex-shrink-0 border-b border-wars-border p-4 flex items-center justify-between">
-        <div>
-          <h2 className="text-base font-bold text-wars-text">
-            Active Conflicts
-          </h2>
-          <p className="text-xs text-wars-muted mt-0.5">
-            {formatYear(Math.round(currentYear))} · {activeConflicts.length} conflicts
+      <div className="flex-shrink-0 hairline-b px-5 pt-4 pb-3 flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <p className="font-mono text-mono text-wars-text-2 m-0 mb-1.5" style={{ letterSpacing: '0.04em' }}>
+            {formatYear(Math.round(currentYear))}
+            <span className="text-wars-faint mx-2" aria-hidden>·</span>
+            {activeConflicts.length} active
           </p>
+          <h2
+            id="conflict-list-title"
+            className="font-display text-display-m text-wars-text m-0"
+            style={{ fontWeight: 400 }}
+          >
+            Active conflicts
+          </h2>
         </div>
-        <button
-          onClick={onClose}
-          className="flex-shrink-0 w-8 h-8 rounded-full bg-wars-border/50 flex items-center justify-center hover:bg-wars-border transition-colors"
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14">
-            <path d="M2 2 L12 12 M12 2 L2 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <button type="button" onClick={onClose} className="icon-btn flex-shrink-0" aria-label="Close conflict list">
+          <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden>
+            <path d="M1 1 L10 10 M10 1 L1 10" stroke="currentColor" strokeWidth="1.2" />
           </svg>
         </button>
       </div>
@@ -53,54 +65,83 @@ function ConflictListPanel({
       {/* Scrollable list */}
       <div className="flex-1 overflow-y-auto">
         {activeConflicts.length === 0 ? (
-          <div className="p-8 text-center">
-            <div className="text-3xl mb-3 opacity-40" aria-hidden="true">☮</div>
-            <p className="text-sm text-wars-text font-medium mb-1">A relatively quiet moment</p>
-            <p className="text-[11px] text-wars-muted leading-relaxed">
-              No major conflicts mapped at this exact year. Either the world was at relative peace,
-              or our records for this period are sparse — pre-modern war records are uneven.
+          <div className="px-6 py-10">
+            <p className="eyebrow m-0 mb-3">A quiet year</p>
+            <p
+              className="font-display italic text-wars-text m-0"
+              style={{ fontSize: 17, lineHeight: 1.35, textWrap: 'balance' as React.CSSProperties['textWrap'] }}
+            >
+              No conflict in the dataset is recorded as active in {formatYear(Math.round(currentYear))}.
             </p>
-            <p className="text-[11px] text-wars-muted/70 mt-3">
-              Try scrubbing the timeline by ±50 years to find nearby conflicts.
+            <p className="font-display text-wars-text-2 m-0 mt-3" style={{ fontSize: 13.5, lineHeight: 1.55 }}>
+              Either the world was at relative peace, or the records for this period are thin —
+              pre-modern war records are uneven, and filters narrow the set further.
+            </p>
+            <p
+              className="font-mono text-mono text-wars-muted m-0 mt-5 pt-3"
+              style={{ borderTop: '1px dashed var(--rule)' }}
+            >
+              Try ±50 years on the timeline, or clear the filters.
             </p>
           </div>
         ) : (
-          <div className="divide-y divide-wars-border/50">
-            {activeConflicts.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => onConflictClick(c)}
-                className={`w-full text-left px-4 py-3 hover:bg-wars-border/20 transition-colors ${
-                  c.id === selectedId ? 'bg-wars-accent/10 border-l-2 border-l-wars-accent' : ''
-                }`}
-              >
-                <div className="flex items-start gap-2.5">
-                  <div className="mt-1.5 flex-shrink-0">
-                    <div
-                      className="w-2 h-2 rounded-full bg-wars-red"
-                      style={{ opacity: c.opacity }}
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold text-wars-text leading-tight">
-                      {c.name}
-                    </h3>
-                    <p className="text-[11px] text-wars-muted mt-0.5">
-                      {formatYearRange(c.startYear, c.endYear)}
-                    </p>
-                    <p className="text-[11px] text-wars-muted/70 mt-0.5 truncate">
-                      {c.countries.slice(0, 4).join(' vs ')}
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 mt-1">
-                    <span className="text-[10px] text-wars-muted/50">
-                      {c.casualties ? formatCasualties(c.casualties) : ''}
-                    </span>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
+          <ul className="m-0 p-0 list-none">
+            {activeConflicts.map((c) => {
+              const selected = c.id === selectedId;
+              const belligerents = c.countries.slice(0, 4).join(' · ');
+              return (
+                <li key={c.id} className="hairline-b">
+                  <button
+                    type="button"
+                    onClick={() => onConflictClick(c)}
+                    aria-current={selected ? 'true' : undefined}
+                    className="hover-tint w-full text-left px-5 py-3 transition-colors"
+                    style={{
+                      // Unselected rows leave background to .hover-tint.
+                      background: selected ? 'color-mix(in oklch, var(--amber) 8%, transparent)' : undefined,
+                      // Amber = selection; the left rule marks the open entry.
+                      boxShadow: selected ? 'inset 2px 0 0 var(--amber)' : 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: 'inherit',
+                    }}
+                  >
+                    <div className="flex items-start gap-3">
+                      <span
+                        className="mt-[7px] flex-shrink-0 w-1.5 h-1.5"
+                        style={{ background: 'var(--vermilion)', opacity: c.opacity }}
+                        aria-hidden
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-baseline justify-between gap-3">
+                          <span
+                            className="font-display text-wars-text"
+                            style={{ fontSize: 14.5, lineHeight: 1.3, fontWeight: selected ? 500 : 400 }}
+                          >
+                            {c.name}
+                          </span>
+                          <span className="font-mono text-mono text-wars-faint flex-shrink-0 tabular-nums">
+                            {c.casualties ? `${formatCasualties(c.casualties)} dead` : ''}
+                          </span>
+                        </div>
+                        <div className="font-mono text-mono text-wars-muted mt-1">
+                          {formatSpan(c.startYear, c.endYear)}
+                        </div>
+                        {belligerents && (
+                          <div className="font-ui text-wars-text-2 mt-0.5 truncate" style={{ fontSize: 12 }}>
+                            {belligerents}
+                            {c.countries.length > 4 && (
+                              <span className="text-wars-faint"> +{c.countries.length - 4}</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         )}
       </div>
     </div>

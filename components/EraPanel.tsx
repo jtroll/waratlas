@@ -94,8 +94,9 @@ interface Props {
 /**
  * Era context "wall card" — appears when the timeline crosses an era boundary.
  *
- * Editorial polish (step 6): amber "Exhibit · Era" eyebrow, serif title,
- * italic blurb, theme chips with hairline borders.
+ * Panel surface, muted "Exhibit · Era" eyebrow (amber is reserved for the
+ * current year and selection), serif title, italic blurb, hairline theme
+ * chips. Collapses to a left-edge chrome tab after 12 s.
  */
 export default function EraPanel({ year }: Props) {
   const [shown, setShown] = useState<{ era: Era; key: string } | null>(null);
@@ -130,31 +131,24 @@ export default function EraPanel({ year }: Props) {
   if (collapsed) {
     return (
       <button
+        type="button"
         onClick={() => setCollapsed(false)}
-        className="absolute top-20 left-0 z-30 hidden md:inline-flex items-center gap-2 transition-colors hover:text-wars-text group"
+        className="surface-chrome hover-tint absolute top-20 left-0 z-30 hidden md:inline-flex items-center gap-2 transition-colors group"
         style={{
           height: 36,
           padding: '0 12px 0 14px',
-          background: 'oklch(0.20 0.014 250 / 0.85)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          border: '1px solid var(--rule-strong)',
           borderLeft: 'none',
           color: 'var(--ink-text-2)',
           cursor: 'pointer',
         }}
         aria-label={`Expand era card: ${shown.era.name}`}
+        aria-expanded={false}
         title={`Expand: ${shown.era.name}`}
       >
-        <span
-          className="eyebrow"
-          style={{ color: 'var(--amber)', fontSize: 9 }}
-        >
-          Era
-        </span>
+        <span className="eyebrow">Era</span>
         <span
           className="font-display"
-          style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink-text)' }}
+          style={{ fontSize: 13.5, fontWeight: 500, color: 'var(--ink-text)' }}
         >
           {shown.era.name}
         </span>
@@ -182,28 +176,20 @@ export default function EraPanel({ year }: Props) {
   return (
     <aside
       key={shown.key}
-      className="era-panel-enter absolute top-20 left-6 z-30 hidden md:block"
+      className="era-panel-enter surface-panel absolute top-20 left-6 z-30 hidden md:block"
       style={{
         width: 290,
-        background: 'oklch(0.20 0.014 250 / 0.94)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        border: '1px solid var(--rule-strong)',
         padding: '14px 18px 16px',
         boxShadow: 'var(--shadow-panel)',
       }}
       role="region"
-      aria-label={`Era: ${shown.era.name}`}
+      aria-labelledby="era-panel-title"
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex-1">
-          <div
-            className="eyebrow mb-1.5"
-            style={{ color: 'var(--amber)' }}
-          >
-            Exhibit · Era
-          </div>
+        <div className="flex-1 min-w-0">
+          <p className="eyebrow m-0 mb-1.5">Exhibit · Era</p>
           <h3
+            id="era-panel-title"
             className="font-display"
             style={{
               margin: 0,
@@ -216,35 +202,26 @@ export default function EraPanel({ year }: Props) {
           >
             {shown.era.name}
           </h3>
-          <div
-            className="font-mono mt-1 text-wars-faint"
-            style={{ fontSize: 10, letterSpacing: '0.04em' }}
-          >
+          <div className="font-mono text-mono mt-1 text-wars-muted" style={{ letterSpacing: '0.04em' }}>
             {formatBound(shown.era.start)} — {formatBound(shown.era.end)}
           </div>
         </div>
         <button
+          type="button"
           onClick={() => setCollapsed(true)}
-          className="flex-shrink-0 inline-flex items-center justify-center w-5 h-5 text-wars-muted hover:text-wars-text transition-colors -mr-1"
-          style={{
-            border: '1px solid var(--rule)',
-            background: 'transparent',
-          }}
+          className="icon-btn flex-shrink-0 -mr-2 -mt-1"
           aria-label="Collapse era panel"
+          aria-expanded={true}
           title="Collapse — click the left-edge tab to bring it back"
         >
-          <svg width="9" height="9" viewBox="0 0 9 9">
-            <path
-              d="M1 1 L8 8 M8 1 L1 8"
-              stroke="currentColor"
-              strokeWidth="1.2"
-            />
+          <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden>
+            <path d="M1 1 L10 10 M10 1 L1 10" stroke="currentColor" strokeWidth="1.2" />
           </svg>
         </button>
       </div>
 
       <p
-        className="font-display italic mt-3 mb-3"
+        className="font-display italic"
         style={{
           fontSize: 13.5,
           lineHeight: 1.55,
@@ -257,22 +234,22 @@ export default function EraPanel({ year }: Props) {
       </p>
 
       {shown.era.themes.length > 0 && (
-        <div className="flex flex-wrap gap-1">
+        <ul className="flex flex-wrap gap-1 m-0 p-0 list-none" aria-label="Themes">
           {shown.era.themes.map((t) => (
-            <span
+            <li
               key={t}
               className="font-ui text-wars-muted"
               style={{
-                fontSize: 10.5,
+                fontSize: 11,
                 letterSpacing: '0.02em',
-                padding: '2px 6px',
+                padding: '3px 7px',
                 border: '1px solid var(--rule)',
               }}
             >
               {t}
-            </span>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </aside>
   );

@@ -79745,15 +79745,13 @@
     ],
     "countries": [
       "Macedon",
-      "Ptolmeic Egypt"
+      "Ptolemaic Egypt"
     ],
-    "partOf": [
-      "Macedonian Wars"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Andros (245 BCE), part of the Macedonian Wars. Macedon defeated Ptolmeic Egypt.",
+    "description": "Battle of Andros (245 BCE). Macedon defeated Ptolemaic Egypt. Fought between Antigonid Macedon and Ptolemaic Egypt; not part of the Roman-Macedonian Wars.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -83292,13 +83290,11 @@
       "Macedonia",
       "Epirus"
     ],
-    "partOf": [
-      "Pyrrhic War"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Argos (272 BCE), part of the Pyrrhic War . Macedonia defeated Epirus.",
+    "description": "Battle of Argos (272 BCE). Macedonia defeated Epirus. Pyrrhus of Epirus's final campaign in Greece, distinct from his earlier war against Rome.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -119650,8 +119646,8 @@
   {
     "id": "battle-of-cerro-de-pasco",
     "name": "Battle of Cerro de Pasco",
-    "startYear": 1862,
-    "endYear": 1862,
+    "startYear": 1820,
+    "endYear": 1820,
     "coordinates": [
       -76.2613,
       -10.6777
@@ -119664,12 +119660,12 @@
       "Spain"
     ],
     "partOf": [
-      "Peruvian War of Independence"
+      "peruvian-independence-war"
     ],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Cerro de Pasco (1862), part of the Peruvian War of Independence. Peruvian Rebels defeated Spain.",
+    "description": "Battle of Cerro de Pasco (1820), part of the Peruvian War of Independence. Patriot forces under Arenales defeated the royalists.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -126419,13 +126415,11 @@
       "Liang Dynasty",
       "Vietnamese rebels"
     ],
-    "partOf": [
-      "Sino-Vietnamese War"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Chu Dien (547), part of the Sino-Vietnamese War. Liang Dynasty defeated Vietnam.",
+    "description": "Battle of Chu Dien (547). Liang Dynasty defeated Vietnam. Part of the Vạn Xuân resistance to the Liang dynasty.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -147356,13 +147350,11 @@
       "Colorados",
       "Blancos"
     ],
-    "partOf": [
-      "Uruguayan Civil War"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of El Sauce (1871), part of the Uruguayan Civil War. Colorados defeated Blancos.",
+    "description": "Battle of El Sauce (1871). Colorados defeated Blancos. An engagement of the Revolución de las Lanzas (1870–72).",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -167201,13 +167193,11 @@
       "Poland",
       "Polish Hussites"
     ],
-    "partOf": [
-      "Hussite Wars"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Grotniki (1439), part of the Hussite Wars. Poland defeated Polish Hussites.",
+    "description": "Battle of Grotniki (1439). Poland defeated Polish Hussites. Fought in Poland in the aftermath of the Hussite Wars.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -181909,12 +181899,12 @@
       "Japan"
     ],
     "partOf": [
-      "World War I"
+      "world-war-2"
     ],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Irriwaddy (1945), part of the World War I. United Kingdom defeated Japan.",
+    "description": "Battle of Irriwaddy (1945), part of World War II. United Kingdom defeated Japan.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -189142,13 +189132,11 @@
       "Tibet",
       "Kanauj"
     ],
-    "partOf": [
-      "Sino-Indian War"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Kanauj (648), part of the Sino-Indian War. Tang Dynasty, Nepal, Tibet defeated Kanauj.",
+    "description": "Battle of Kanauj (648). Tang Dynasty, Nepal, Tibet defeated Kanauj. Wang Xuance's Tang-Tibetan-Nepalese expedition against Arunasva; unrelated to the 1962 war.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -207426,12 +207414,12 @@
       "Germany"
     ],
     "partOf": [
-      "World War I"
+      "world-war-2"
     ],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Leningrad (1941), part of the World War I. USSR defeated Germany.",
+    "description": "Battle of Leningrad (1941), part of World War II. USSR defeated Germany.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -233540,8 +233528,8 @@
   {
     "id": "battle-of-moulmein",
     "name": "Battle of Moulmein",
-    "startYear": 1835,
-    "endYear": 1835,
+    "startYear": 1942,
+    "endYear": 1942,
     "coordinates": [
       97.644,
       16.4543
@@ -233554,12 +233542,12 @@
       "United Kingdom"
     ],
     "partOf": [
-      "World War II"
+      "world-war-2"
     ],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Moulmein (1835), part of the World War II. Japan defeated United Kingdom.",
+    "description": "Battle of Moulmein (1942), part of World War II: the Japanese capture of Moulmein at the opening of the Burma campaign. Japan defeated United Kingdom.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -271221,7 +271209,7 @@
     ],
     "countries": [
       "Rhodes",
-      "Ptolmeic Egypt",
+      "Ptolemaic Egypt",
       "Demetrius Poliorcetes"
     ],
     "partOf": [
@@ -271230,7 +271218,7 @@
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Rhodes (305 BCE), part of the Wars of the Diadochi. Rhodes, Ptolmeic Egypt defeated Demetrius Poliorcetes.",
+    "description": "Battle of Rhodes (305 BCE), part of the Wars of the Diadochi. Rhodes, Ptolemaic Egypt defeated Demetrius Poliorcetes.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -285152,13 +285140,11 @@
       "Costa Rican Conservatives",
       "Costa Rican Christian Socialists"
     ],
-    "partOf": [
-      "Costa Rican Civil War"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Santa Rosa de Copan (1955), part of the Costa Rican Civil War. Costa Rican Conservatives defeated Costa Rican Christian Socialists.",
+    "description": "Battle of Santa Rosa de Copan (1955). Costa Rican Conservatives defeated Costa Rican Christian Socialists. Part of the 1955 Calderonista invasion of Costa Rica, not the 1948 civil war.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -298023,13 +298009,11 @@
       "Bolivia",
       "Paraguay"
     ],
-    "partOf": [
-      "Chaco War"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Sorpresa (1927), part of the Chaco War. Bolivia defeated Paraguay.",
+    "description": "Battle of Sorpresa (1927). Bolivia defeated Paraguay. A border incident preceding the Chaco War.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -321707,8 +321691,8 @@
   {
     "id": "battle-of-vanguardia",
     "name": "Battle of Vanguardia",
-    "startYear": 1906,
-    "endYear": 1906,
+    "startYear": 1928,
+    "endYear": 1928,
     "coordinates": [
       -58.3434,
       -20.1202
@@ -321720,13 +321704,11 @@
       "Bolivia",
       "Paraguay"
     ],
-    "partOf": [
-      "Chaco War"
-    ],
+    "partOf": [],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Vanguardia (1906), part of the Chaco War. Bolivia defeated Paraguay.",
+    "description": "Battle of Vanguardia (1928). Bolivia defeated Paraguay. The Vanguardia incident of December 1928, a prelude to the Chaco War.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
@@ -324849,8 +324831,8 @@
   {
     "id": "battle-of-vilcaconga",
     "name": "Battle of Vilcaconga",
-    "startYear": 1524,
-    "endYear": 1524,
+    "startYear": 1533,
+    "endYear": 1533,
     "coordinates": [
       -72.36,
       -13.47
@@ -324863,12 +324845,12 @@
       "Inca Empire"
     ],
     "partOf": [
-      "Spanish Conquest of Peru"
+      "spanish-conquest-peru"
     ],
     "casualties": null,
     "wikipediaUrl": null,
     "importance": 2,
-    "description": "Battle of Vilcaconga (1524), part of the Spanish Conquest of Peru. Spain defeated Inca Empire.",
+    "description": "Battle of Vilcaconga (1533), part of Spanish conquest of Peru. Spain defeated Inca Empire.",
     "sources": [
       {
         "label": "HCED — Miller & Bakar (2023), Historical Conflict Event Dataset, J. Conflict Resolution 67(2-3)",
