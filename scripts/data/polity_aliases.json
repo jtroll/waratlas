@@ -1,0 +1,963 @@
+{
+ "USA": {
+  "canonical": "United States",
+  "apply": true
+ },
+ "United States of America": {
+  "canonical": "United States",
+  "apply": true
+ },
+ "United States Army": {
+  "canonical": "United States",
+  "apply": true
+ },
+ "U.S.": {
+  "canonical": "United States",
+  "apply": true
+ },
+ "US": {
+  "canonical": "United States",
+  "apply": true
+ },
+ "Byzantinum": {
+  "canonical": "Byzantine Empire",
+  "apply": true
+ },
+ "Byzantium": {
+  "canonical": "Byzantine Empire",
+  "apply": true
+ },
+ "Eastern Roman Empire": {
+  "canonical": "Byzantine Empire",
+  "apply": true
+ },
+ "Great Britain": {
+  "canonical": "United Kingdom",
+  "apply": true,
+  "era": "1707-",
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+ },
+ "Britain": {
+  "canonical": "United Kingdom",
+  "apply": true,
+  "era": "1707-",
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+ },
+ "Kingdom of Great Britain": {
+  "canonical": "United Kingdom",
+  "apply": true,
+  "era": "1707-",
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+ },
+ "British": {
+  "canonical": "United Kingdom",
+  "apply": true,
+  "era": "1707-",
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+ },
+ "United Kingdom and Commonwealth": {
+  "canonical": "United Kingdom",
+  "apply": true,
+  "era": "1707-",
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+ },
+ "USSR": {
+  "canonical": "Soviet Union",
+  "apply": true
+ },
+ "Soviet Russia": {
+  "canonical": "Soviet Union",
+  "apply": true
+ },
+ "Sassanid Persia": {
+  "canonical": "Sasanian Empire",
+  "apply": true
+ },
+ "Sassanid Empire": {
+  "canonical": "Sasanian Empire",
+  "apply": true
+ },
+ "Sasanian Persia": {
+  "canonical": "Sasanian Empire",
+  "apply": true
+ },
+ "Sassanids": {
+  "canonical": "Sasanian Empire",
+  "apply": true
+ },
+ "Ottomans": {
+  "canonical": "Ottoman Empire",
+  "apply": false,
+  "era": "1299-1922"
+ },
+ "Turks": {
+  "canonical": "Ottoman Empire",
+  "apply": false,
+  "era": "1299-1922"
+ },
+ "Ottoman Turks": {
+  "canonical": "Ottoman Empire",
+  "apply": false,
+  "era": "1299-1922"
+ },
+ "Habsburg Empire": {
+  "canonical": "Habsburg Monarchy / Austria",
+  "apply": false,
+  "era": "1526-1867",
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+ },
+ "Habsburg Monarchy": {
+  "canonical": "Habsburg Monarchy / Austria",
+  "apply": false,
+  "era": "1526-1867",
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+ },
+ "Habsburgs": {
+  "canonical": "Habsburg Monarchy / Austria",
+  "apply": false,
+  "era": "1526-1867",
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+ },
+ "Habsburg Austria": {
+  "canonical": "Habsburg Monarchy / Austria",
+  "apply": false,
+  "era": "1526-1867",
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+ },
+ "Austrian Empire": {
+  "canonical": "Habsburg Monarchy / Austria",
+  "apply": false,
+  "era": "1526-1867",
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+ },
+ "Austria": {
+  "canonical": "Habsburg Monarchy / Austria",
+  "apply": false,
+  "era": "1526-1867",
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+ },
+ "Prussia": {
+  "canonical": "Germany (by era)",
+  "apply": false,
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+ },
+ "German Empire": {
+  "canonical": "Germany (by era)",
+  "apply": false,
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+ },
+ "Nazi Germany": {
+  "canonical": "Germany (by era)",
+  "apply": false,
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+ },
+ "Germans": {
+  "canonical": "Germany (by era)",
+  "apply": false,
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+ },
+ "Germany": {
+  "canonical": "Germany (by era)",
+  "apply": false,
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+ },
+ "Persia": {
+  "canonical": "Iran (by dynasty)",
+  "apply": false,
+  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-"
+ },
+ "Persian Empire": {
+  "canonical": "Iran (by dynasty)",
+  "apply": false,
+  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-"
+ },
+ "Iran": {
+  "canonical": "Iran (by dynasty)",
+  "apply": false,
+  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-"
+ },
+ "Safavid Persia": {
+  "canonical": "Safavid Iran",
+  "apply": false
+ },
+ "Safavid Empire": {
+  "canonical": "Safavid Iran",
+  "apply": false
+ },
+ "Qajar Persia": {
+  "canonical": "Qajar Iran",
+  "apply": false
+ },
+ "Qajar Iran": {
+  "canonical": "Qajar Iran",
+  "apply": false
+ },
+ "Achaemenid Empire": {
+  "canonical": "Achaemenid Empire",
+  "apply": false
+ },
+ "Achaemenid Persia": {
+  "canonical": "Achaemenid Empire",
+  "apply": false
+ },
+ "Russian Empire": {
+  "canonical": "Russia (by era)",
+  "apply": false,
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+ },
+ "Russia": {
+  "canonical": "Russia (by era)",
+  "apply": false,
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+ },
+ "Muscovy": {
+  "canonical": "Russia (by era)",
+  "apply": false,
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+ },
+ "Kievan Rus": {
+  "canonical": "Russia (by era)",
+  "apply": false,
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+ },
+ "China": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "PRC": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Republic of China": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Qing Dynasty": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Qing": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Qing China": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Ming": {
+  "canonical": "Ming dynasty",
+  "apply": false
+ },
+ "Ming Dynasty": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Ming China": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Tang Dynasty": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Han Dynasty": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Song Dynasty": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Yuan Dynasty": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Chinese Nationalists": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Chinese Communists": {
+  "canonical": "China (by dynasty)",
+  "apply": false,
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+ },
+ "Burma": {
+  "canonical": "Burma/Myanmar (by era)",
+  "apply": false,
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+ },
+ "Konbaung dynasty": {
+  "canonical": "Burma/Myanmar (by era)",
+  "apply": false,
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+ },
+ "Konbaung Burma": {
+  "canonical": "Burma/Myanmar (by era)",
+  "apply": false,
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+ },
+ "Toungoo": {
+  "canonical": "Burma/Myanmar (by era)",
+  "apply": false,
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+ },
+ "Myanmar": {
+  "canonical": "Burma/Myanmar (by era)",
+  "apply": false,
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+ },
+ "Netherlands": {
+  "canonical": "Netherlands (by era)",
+  "apply": false,
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+ },
+ "Dutch Republic": {
+  "canonical": "Netherlands (by era)",
+  "apply": false,
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+ },
+ "Dutch": {
+  "canonical": "Netherlands (by era)",
+  "apply": false,
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+ },
+ "United Provinces": {
+  "canonical": "Netherlands (by era)",
+  "apply": false,
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+ },
+ "Holland": {
+  "canonical": "Netherlands (by era)",
+  "apply": false,
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+ },
+ "Dutch East India Company": {
+  "canonical": "Netherlands (by era)",
+  "apply": false,
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+ },
+ "VOC": {
+  "canonical": "Netherlands (by era)",
+  "apply": false,
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+ },
+ "England": {
+  "canonical": "England",
+  "apply": false,
+  "era": "<1707"
+ },
+ "Kingdom of England": {
+  "canonical": "England",
+  "apply": false,
+  "era": "<1707"
+ },
+ "British Empire": {
+  "canonical": "United Kingdom (colonial)",
+  "apply": false
+ },
+ "British East India Company": {
+  "canonical": "United Kingdom (colonial)",
+  "apply": false
+ },
+ "British India": {
+  "canonical": "United Kingdom (colonial)",
+  "apply": false
+ },
+ "British Raj": {
+  "canonical": "United Kingdom (colonial)",
+  "apply": false
+ },
+ "Rome": {
+  "canonical": "Rome (by era)",
+  "apply": false,
+  "era": "Roman Republic <-27; Roman Empire -27-476"
+ },
+ "Roman Republic": {
+  "canonical": "Rome (by era)",
+  "apply": false,
+  "era": "Roman Republic <-27; Roman Empire -27-476"
+ },
+ "Roman Empire": {
+  "canonical": "Rome (by era)",
+  "apply": false,
+  "era": "Roman Republic <-27; Roman Empire -27-476"
+ },
+ "Confederate States of America": {
+  "canonical": "Confederate States of America",
+  "apply": false
+ },
+ "Confederacy": {
+  "canonical": "Confederate States of America",
+  "apply": false
+ },
+ "Union (US Civil War)": {
+  "canonical": "United States",
+  "apply": false
+ },
+ "Union": {
+  "canonical": "United States",
+  "apply": false
+ },
+ "Marathas": {
+  "canonical": "Maratha Empire",
+  "apply": false
+ },
+ "Maratha Empire": {
+  "canonical": "Maratha Empire",
+  "apply": false
+ },
+ "Maratha Confederacy": {
+  "canonical": "Maratha Empire",
+  "apply": false
+ },
+ "Egypt": {
+  "canonical": "Egypt (by era)",
+  "apply": false
+ },
+ "Mamluk Sultanate": {
+  "canonical": "Egypt (by era)",
+  "apply": false
+ },
+ "Ptolemaic Egypt": {
+  "canonical": "Egypt (by era)",
+  "apply": false
+ },
+ "Ptolmeic Egypt": {
+  "canonical": "Egypt (by era)",
+  "apply": false
+ },
+ "Khedivate of Egypt": {
+  "canonical": "Egypt (by era)",
+  "apply": false
+ },
+ "Spain": {
+  "canonical": "Spain (by era)",
+  "apply": false,
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+ },
+ "Spanish Empire": {
+  "canonical": "Spain (by era)",
+  "apply": false,
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+ },
+ "Kingdom of Spain": {
+  "canonical": "Spain (by era)",
+  "apply": false,
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+ },
+ "Castile": {
+  "canonical": "Spain (by era)",
+  "apply": false,
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+ },
+ "Aragon": {
+  "canonical": "Spain (by era)",
+  "apply": false,
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+ },
+ "France": {
+  "canonical": "France (by era)",
+  "apply": false
+ },
+ "Kingdom of France": {
+  "canonical": "France (by era)",
+  "apply": false
+ },
+ "First French Republic": {
+  "canonical": "France (by era)",
+  "apply": false
+ },
+ "Napoleonic France": {
+  "canonical": "France (by era)",
+  "apply": false
+ },
+ "Vichy France": {
+  "canonical": "France (by era)",
+  "apply": false
+ },
+ "Free France": {
+  "canonical": "France (by era)",
+  "apply": false
+ },
+ "Japan": {
+  "canonical": "Japan (by era)",
+  "apply": false
+ },
+ "Empire of Japan": {
+  "canonical": "Japan (by era)",
+  "apply": false
+ },
+ "Tokugawa shogunate": {
+  "canonical": "Japan (by era)",
+  "apply": false
+ },
+ "Poland": {
+  "canonical": "Poland (by era)",
+  "apply": false,
+  "era": "Poland-Lithuania 1569-1795"
+ },
+ "Poland-Lithuania": {
+  "canonical": "Poland (by era)",
+  "apply": false,
+  "era": "Poland-Lithuania 1569-1795"
+ },
+ "Polish-Lithuanian Commonwealth": {
+  "canonical": "Poland (by era)",
+  "apply": false,
+  "era": "Poland-Lithuania 1569-1795"
+ },
+ "Sweden": {
+  "canonical": "Sweden",
+  "apply": false
+ },
+ "Swedish Empire": {
+  "canonical": "Sweden",
+  "apply": false
+ },
+ "Denmark": {
+  "canonical": "Denmark (by era)",
+  "apply": false,
+  "era": "Denmark-Norway 1524-1814"
+ },
+ "Denmark-Norway": {
+  "canonical": "Denmark (by era)",
+  "apply": false,
+  "era": "Denmark-Norway 1524-1814"
+ },
+ "Portugal": {
+  "canonical": "Portugal",
+  "apply": false
+ },
+ "Portuguese Empire": {
+  "canonical": "Portugal",
+  "apply": false
+ },
+ "Kingdom of Portugal": {
+  "canonical": "Portugal",
+  "apply": false
+ },
+ "Venice": {
+  "canonical": "Republic of Venice",
+  "apply": false
+ },
+ "Republic of Venice": {
+  "canonical": "Republic of Venice",
+  "apply": false
+ },
+ "Carthage": {
+  "canonical": "Carthage",
+  "apply": false
+ },
+ "Carthaginian Empire": {
+  "canonical": "Carthage",
+  "apply": false
+ },
+ "Athens": {
+  "canonical": "Athens",
+  "apply": false
+ },
+ "Athenian Empire": {
+  "canonical": "Athens",
+  "apply": false
+ },
+ "Delian League": {
+  "canonical": "Athens",
+  "apply": false
+ },
+ "Sparta": {
+  "canonical": "Sparta",
+  "apply": false
+ },
+ "Lacedaemon": {
+  "canonical": "Sparta",
+  "apply": false
+ },
+ "Mexico": {
+  "canonical": "Mexico",
+  "apply": false
+ },
+ "Mexican Empire": {
+  "canonical": "Mexico",
+  "apply": false
+ },
+ "Republic of Mexico": {
+  "canonical": "Mexico",
+  "apply": false
+ },
+ "Scotland": {
+  "canonical": "Scotland",
+  "apply": false,
+  "era": "<1707"
+ },
+ "Kingdom of Scotland": {
+  "canonical": "Scotland",
+  "apply": false,
+  "era": "<1707"
+ },
+ "Indian Rebels": {
+  "canonical": "Indian rebels (1857)",
+  "apply": false,
+  "note": "non-polity faction label from HCED; keep but flag"
+ },
+ "Indian rebels": {
+  "canonical": "Indian rebels (1857)",
+  "apply": false,
+  "note": "non-polity faction label from HCED; keep but flag"
+ },
+ "Royalists": {
+  "canonical": "Royalists (English Civil War)",
+  "apply": false
+ },
+ "Cavaliers": {
+  "canonical": "Royalists (English Civil War)",
+  "apply": false
+ },
+ "Parliamentarians": {
+  "canonical": "Parliamentarians (English Civil War)",
+  "apply": false
+ },
+ "Roundheads": {
+  "canonical": "Parliamentarians (English Civil War)",
+  "apply": false
+ },
+ "Carlists": {
+  "canonical": "Carlists",
+  "apply": false
+ },
+ "Bolsheviks": {
+  "canonical": "Soviet Russia (Bolsheviks)",
+  "apply": false,
+  "era": "1917-1922"
+ },
+ "Red Army": {
+  "canonical": "Soviet Russia (Bolsheviks)",
+  "apply": false,
+  "era": "1917-1922"
+ },
+ "Soviets": {
+  "canonical": "Soviet Russia (Bolsheviks)",
+  "apply": false,
+  "era": "1917-1922"
+ },
+ "Spanish Republicans": {
+  "canonical": "Spanish Republic",
+  "apply": false,
+  "era": "1936-39"
+ },
+ "Republicans (Spain)": {
+  "canonical": "Spanish Republic",
+  "apply": false,
+  "era": "1936-39"
+ },
+ "Nationalists (Spain)": {
+  "canonical": "Nationalist Spain",
+  "apply": false,
+  "era": "1936-39"
+ },
+ "Spanish Nationalists": {
+  "canonical": "Nationalist Spain",
+  "apply": false,
+  "era": "1936-39"
+ },
+ "rebels": {
+  "canonical": "(unspecified rebels)",
+  "apply": false,
+  "note": "lowercase faction labels; need per-record belligerent"
+ },
+ "insurgents": {
+  "canonical": "(unspecified rebels)",
+  "apply": false,
+  "note": "lowercase faction labels; need per-record belligerent"
+ },
+ "Rebels": {
+  "canonical": "(unspecified rebels)",
+  "apply": false,
+  "note": "lowercase faction labels; need per-record belligerent"
+ },
+ "Insurgents": {
+  "canonical": "(unspecified rebels)",
+  "apply": false,
+  "note": "lowercase faction labels; need per-record belligerent"
+ },
+ "al-Qaeda": {
+  "canonical": "al-Qaeda",
+  "apply": false
+ },
+ "Al-Qaeda": {
+  "canonical": "al-Qaeda",
+  "apply": false
+ },
+ "Al Qaeda": {
+  "canonical": "al-Qaeda",
+  "apply": false
+ },
+ "Taliban": {
+  "canonical": "Taliban",
+  "apply": false
+ },
+ "Taleban": {
+  "canonical": "Taliban",
+  "apply": false
+ },
+ "Communist forces": {
+  "canonical": "Chinese Communist Party",
+  "apply": false
+ },
+ "Communist Party of China": {
+  "canonical": "Chinese Communist Party",
+  "apply": false
+ },
+ "Chinese Communist Party": {
+  "canonical": "Chinese Communist Party",
+  "apply": false
+ },
+ "Joseon Korea": {
+  "canonical": "Joseon",
+  "apply": false,
+  "era": "1392-1897"
+ },
+ "Korea": {
+  "canonical": "Joseon",
+  "apply": false,
+  "era": "1392-1897"
+ },
+ "Joseon": {
+  "canonical": "Joseon",
+  "apply": false,
+  "era": "1392-1897"
+ },
+ "Mongols": {
+  "canonical": "Mongol Empire",
+  "apply": false,
+  "era": "1206-1368"
+ },
+ "Mongol Empire": {
+  "canonical": "Mongol Empire",
+  "apply": false,
+  "era": "1206-1368"
+ },
+ "Arabs": {
+  "canonical": "Caliphate (by era)",
+  "apply": false
+ },
+ "Rashidun Caliphate": {
+  "canonical": "Caliphate (by era)",
+  "apply": false
+ },
+ "Umayyad Caliphate": {
+  "canonical": "Caliphate (by era)",
+  "apply": false
+ },
+ "Abbasid Caliphate": {
+  "canonical": "Caliphate (by era)",
+  "apply": false
+ },
+ "Various": {
+  "canonical": "(various)",
+  "apply": false,
+  "note": "placeholder labels"
+ },
+ "Various factions": {
+  "canonical": "(various)",
+  "apply": false,
+  "note": "placeholder labels"
+ },
+ "Various Japanese daimyo": {
+  "canonical": "(various)",
+  "apply": false,
+  "note": "placeholder labels"
+ },
+ "Warlords": {
+  "canonical": "(various)",
+  "apply": false,
+  "note": "placeholder labels"
+ },
+ "Hungary": {
+  "canonical": "Hungary",
+  "apply": false
+ },
+ "Kingdom of Hungary": {
+  "canonical": "Hungary",
+  "apply": false
+ },
+ "Serbia": {
+  "canonical": "Serbia (by era)",
+  "apply": false
+ },
+ "Kingdom of Serbia": {
+  "canonical": "Serbia (by era)",
+  "apply": false
+ },
+ "Austria-Hungary": {
+  "canonical": "Austria-Hungary",
+  "apply": false,
+  "era": "1867-1918"
+ },
+ "Austro-Hungarian Empire": {
+  "canonical": "Austria-Hungary",
+  "apply": false,
+  "era": "1867-1918"
+ },
+ "Italy": {
+  "canonical": "Italy",
+  "apply": false,
+  "era": "1861-"
+ },
+ "Kingdom of Italy": {
+  "canonical": "Italy",
+  "apply": false,
+  "era": "1861-"
+ },
+ "Sardinia": {
+  "canonical": "Kingdom of Sardinia",
+  "apply": false
+ },
+ "Piedmont-Sardinia": {
+  "canonical": "Kingdom of Sardinia",
+  "apply": false
+ },
+ "Kingdom of Sardinia": {
+  "canonical": "Kingdom of Sardinia",
+  "apply": false
+ },
+ "Kingdom of Jerusalem": {
+  "canonical": "Crusader states",
+  "apply": false
+ },
+ "Crusaders": {
+  "canonical": "Crusader states",
+  "apply": false
+ },
+ "Crusader states": {
+  "canonical": "Crusader states",
+  "apply": false
+ },
+ "Aztec Empire": {
+  "canonical": "Aztec Empire",
+  "apply": false
+ },
+ "Aztecs": {
+  "canonical": "Aztec Empire",
+  "apply": false
+ },
+ "Mexica": {
+  "canonical": "Aztec Empire",
+  "apply": false
+ },
+ "Inca Empire": {
+  "canonical": "Inca Empire",
+  "apply": false
+ },
+ "Incas": {
+  "canonical": "Inca Empire",
+  "apply": false
+ },
+ "Inca": {
+  "canonical": "Inca Empire",
+  "apply": false
+ },
+ "Zulu": {
+  "canonical": "Zulu Kingdom",
+  "apply": false
+ },
+ "Zulu Kingdom": {
+  "canonical": "Zulu Kingdom",
+  "apply": false
+ },
+ "Zulus": {
+  "canonical": "Zulu Kingdom",
+  "apply": false
+ },
+ "Ashanti": {
+  "canonical": "Asante Empire",
+  "apply": false
+ },
+ "Asante": {
+  "canonical": "Asante Empire",
+  "apply": false
+ },
+ "Ashanti Empire": {
+  "canonical": "Asante Empire",
+  "apply": false
+ },
+ "Asante Empire": {
+  "canonical": "Asante Empire",
+  "apply": false
+ },
+ "Boers": {
+  "canonical": "Boer republics",
+  "apply": false
+ },
+ "Boer Republics": {
+  "canonical": "Boer republics",
+  "apply": false
+ },
+ "South African Republic": {
+  "canonical": "Boer republics",
+  "apply": false
+ },
+ "Orange Free State": {
+  "canonical": "Boer republics",
+  "apply": false
+ },
+ "North Vietnam": {
+  "canonical": "North Vietnam / Viet Cong",
+  "apply": false,
+  "era": "1945-1976"
+ },
+ "Vietcong": {
+  "canonical": "North Vietnam / Viet Cong",
+  "apply": false,
+  "era": "1945-1976"
+ },
+ "Viet Cong": {
+  "canonical": "North Vietnam / Viet Cong",
+  "apply": false,
+  "era": "1945-1976"
+ },
+ "Democratic Republic of Vietnam": {
+  "canonical": "North Vietnam / Viet Cong",
+  "apply": false,
+  "era": "1945-1976"
+ },
+ "South Vietnam": {
+  "canonical": "South Vietnam",
+  "apply": false,
+  "era": "1955-1975"
+ },
+ "Republic of Vietnam": {
+  "canonical": "South Vietnam",
+  "apply": false,
+  "era": "1955-1975"
+ },
+ "UN": {
+  "canonical": "United Nations",
+  "apply": false
+ },
+ "United Nations": {
+  "canonical": "United Nations",
+  "apply": false
+ },
+ "United Nations Command": {
+  "canonical": "United Nations",
+  "apply": false
+ },
+ "Draw": {
+  "canonical": "(remove)",
+  "apply": true,
+  "note": "HCED outcome column leaked into countries; removed in r14"
+ }
+}

@@ -1,0 +1,193 @@
+[
+ {
+  "label": "Turkey",
+  "from": -5000,
+  "to": 1922,
+  "replace": "Ottoman Empire",
+  "note": "Republic of Turkey founded 1923; pre-1299 uses are Seljuk/beylik but HCED only has Ottoman-era rows"
+ },
+ {
+  "label": "Germany",
+  "from": -5000,
+  "to": 1805,
+  "replace": "Holy Roman Empire"
+ },
+ {
+  "label": "Germany",
+  "from": 1806,
+  "to": 1814,
+  "replace": "German states"
+ },
+ {
+  "label": "Germany",
+  "from": 1815,
+  "to": 1863,
+  "replace": "German Confederation"
+ },
+ {
+  "label": "Germany",
+  "from": 1864,
+  "to": 1870,
+  "replace": "Prussia",
+  "note": "Wars of unification were Prussian-led"
+ },
+ {
+  "label": "Mughal Empire",
+  "from": -5000,
+  "to": 1525,
+  "replace": "Timurids (Babur)"
+ },
+ {
+  "label": "Israel",
+  "from": -5000,
+  "to": -1,
+  "replace": "Kingdom of Israel"
+ },
+ {
+  "label": "United Kingdom",
+  "from": -5000,
+  "to": 1706,
+  "replace": "Scotland",
+  "bbox": [
+   -8.0,
+   54.6,
+   -0.5,
+   61.0
+  ]
+ },
+ {
+  "label": "United Kingdom",
+  "from": -5000,
+  "to": 1706,
+  "replace": "England"
+ },
+ {
+  "label": "Afghanistan",
+  "from": 977,
+  "to": 1186,
+  "replace": "Ghaznavid Empire"
+ },
+ {
+  "label": "Afghanistan",
+  "from": 1187,
+  "to": 1215,
+  "replace": "Ghurid dynasty"
+ },
+ {
+  "label": "Afghanistan",
+  "from": 1709,
+  "to": 1738,
+  "replace": "Hotaki dynasty"
+ },
+ {
+  "label": "Afghanistan",
+  "from": -5000,
+  "to": 1746,
+  "replace": "Afghan tribes"
+ },
+ {
+  "label": "Vietnam",
+  "from": -5000,
+  "to": 937,
+  "replace": "Vietnamese rebels"
+ },
+ {
+  "label": "Vietnam",
+  "from": 938,
+  "to": 1803,
+  "replace": "Đại Việt"
+ },
+ {
+  "label": "Vietnam",
+  "from": 1804,
+  "to": 1944,
+  "replace": "Nguyễn Vietnam"
+ },
+ {
+  "label": "Saudi Arabia",
+  "from": -5000,
+  "to": 1931,
+  "replace": "Emirate of Nejd"
+ },
+ {
+  "label": "Canada",
+  "from": -5000,
+  "to": 1866,
+  "replace": "British North America"
+ },
+ {
+  "label": "Serbia",
+  "from": 1217,
+  "to": 1345,
+  "replace": "Kingdom of Serbia (medieval)"
+ },
+ {
+  "label": "Serbia",
+  "from": 1346,
+  "to": 1371,
+  "replace": "Serbian Empire"
+ },
+ {
+  "label": "Serbia",
+  "from": 1372,
+  "to": 1459,
+  "replace": "Serbian Despotate"
+ },
+ {
+  "label": "Serbia",
+  "from": 1804,
+  "to": 1814,
+  "replace": "Serbian insurgents"
+ },
+ {
+  "label": "Ireland",
+  "from": -5000,
+  "to": 1918,
+  "replace": "Irish forces"
+ },
+ {
+  "label": "Italy",
+  "from": -5000,
+  "to": 1860,
+  "replace": "Italian states"
+ },
+ {
+  "label": "Belgium",
+  "from": -5000,
+  "to": 1829,
+  "replace": "Austrian Netherlands",
+  "note": "only 1714-1794 strictly; earlier rows are Spanish Netherlands/Flanders",
+  "from_strict": 1714
+ },
+ {
+  "label": "Romania",
+  "from": -5000,
+  "to": 1858,
+  "replace": "Wallachia and Moldavia"
+ },
+ {
+  "label": "Greece",
+  "from": 300,
+  "to": 1820,
+  "replace": "Greek forces",
+  "note": "no Greek state between antiquity and 1821"
+ },
+ {
+  "label": "Pakistan",
+  "from": -5000,
+  "to": 1946,
+  "replace": "Punjab and Sindh forces"
+ },
+ {
+  "label": "Indonesia",
+  "from": -5000,
+  "to": 1944,
+  "replace": "Indonesian sultanates"
+ },
+ {
+  "label": "Iraq",
+  "from": -5000,
+  "to": 1920,
+  "replace": "Mesopotamian forces"
+ }
+]

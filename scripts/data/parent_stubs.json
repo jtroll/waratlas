@@ -1,0 +1,4433 @@
+[
+ {
+  "id": "war-of-the-first-coalition",
+  "name": "War of the First Coalition",
+  "startYear": 1792,
+  "endYear": 1797,
+  "aliases": [
+   "French Revolutionary Wars (1st Coalition)",
+   "French Revolutionary War (1st Coalition)",
+   "French Revolutionary Wars 1st Coalition",
+   "French Revolutionary Wars (1st Coaliton)"
+  ],
+  "description": "First attempt by a coalition of European monarchies to defeat Revolutionary France, ended by the Treaty of Campo Formio in 1797.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_First_Coalition",
+  "importance": 4,
+  "partOf": [
+   "french-revolution-wars"
+  ]
+ },
+ {
+  "id": "war-of-the-second-coalition",
+  "name": "War of the Second Coalition",
+  "startYear": 1798,
+  "endYear": 1802,
+  "aliases": [
+   "French Revolutionary Wars (2nd Coalition)",
+   "French Revolutionary War (2nd Coalition)"
+  ],
+  "description": "Second coalition war against Revolutionary France, fought in Italy, Switzerland, Holland, Egypt and at sea; ended by the treaties of Lunéville and Amiens.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Second_Coalition",
+  "importance": 4,
+  "partOf": [
+   "french-revolution-wars"
+  ]
+ },
+ {
+  "id": "war-of-the-fifth-coalition",
+  "name": "War of the Fifth Coalition",
+  "startYear": 1809,
+  "endYear": 1809,
+  "aliases": [],
+  "description": "Austria's 1809 war against Napoleonic France and its German allies, decided at Wagram.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Fifth_Coalition",
+  "importance": 4,
+  "partOf": [
+   "napoleonic-wars"
+  ]
+ },
+ {
+  "id": "finnish-war",
+  "name": "Finnish War",
+  "startYear": 1808,
+  "endYear": 1809,
+  "aliases": [
+   "Napoleonic Wars (Russo-Swedish War)"
+  ],
+  "description": "Russia's conquest of Finland from Sweden during the Napoleonic Wars; Finland became a Russian grand duchy.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Finnish_War",
+  "importance": 3,
+  "partOf": [
+   "napoleonic-wars"
+  ]
+ },
+ {
+  "id": "war-in-the-vendee",
+  "name": "War in the Vendée",
+  "startYear": 1793,
+  "endYear": 1796,
+  "aliases": [
+   "French Revolutionary Wars (Vendee War)",
+   "French Revolutionary Wars (Vendeen War)",
+   "French Revolutionary War (Vendee War)"
+  ],
+  "description": "Royalist and Catholic counter-revolutionary uprising in western France, crushed with great loss of civilian life.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_in_the_Vendée",
+  "importance": 3,
+  "partOf": [
+   "french-revolution-wars"
+  ]
+ },
+ {
+  "id": "irish-rebellion-of-1798",
+  "name": "Irish Rebellion of 1798",
+  "startYear": 1798,
+  "endYear": 1798,
+  "aliases": [
+   "Irish Rebellion",
+   "French Revolutionary Wars (Irish Rising)"
+  ],
+  "description": "United Irishmen rising against British rule, supported by a small French landing, defeated at Vinegar Hill and Ballinamuck.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Irish_Rebellion_of_1798",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "wars-of-the-three-kingdoms",
+  "name": "Wars of the Three Kingdoms",
+  "startYear": 1639,
+  "endYear": 1653,
+  "aliases": [
+   "British Civil Wars",
+   "British Civil War"
+  ],
+  "description": "Interlinked civil wars in England, Scotland and Ireland, including the English Civil War, the Bishops' Wars and the Irish Confederate Wars.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Wars_of_the_Three_Kingdoms",
+  "importance": 4,
+  "partOf": []
+ },
+ {
+  "id": "second-northern-war",
+  "name": "Second Northern War",
+  "startYear": 1655,
+  "endYear": 1660,
+  "aliases": [
+   "1st Northern War"
+  ],
+  "description": "Sweden's war against Poland–Lithuania, Russia, Denmark, Brandenburg and the Habsburgs, including the Swedish Deluge in Poland.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Northern_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "central-american-wars-19th",
+  "name": "Central American national wars (1823–1907)",
+  "startYear": 1823,
+  "endYear": 1907,
+  "aliases": [
+   "Central American National Wars",
+   "Central American Wars"
+  ],
+  "description": "Civil and inter-state wars among the Central American republics after independence, from the Federal Republic's civil wars to the Honduran–Nicaraguan conflicts of 1907.",
+  "wikipediaUrl": null,
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "first-carlist-war",
+  "name": "First Carlist War",
+  "startYear": 1833,
+  "endYear": 1840,
+  "aliases": [
+   "1st Carlist War"
+  ],
+  "description": "Spanish civil war between supporters of the infante Carlos and the liberal regency of Isabella II, fought mainly in the Basque Country, Navarre and the Maestrazgo.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Carlist_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "second-carlist-war",
+  "name": "Second Carlist War",
+  "startYear": 1846,
+  "endYear": 1849,
+  "aliases": [],
+  "description": "Minor Carlist rising in Catalonia (the War of the Matiners).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Carlist_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "third-carlist-war",
+  "name": "Third Carlist War",
+  "startYear": 1872,
+  "endYear": 1876,
+  "aliases": [
+   "2nd Carlist War"
+  ],
+  "description": "Last Carlist rising, in the Basque Country, Navarre and Catalonia, ended by the fall of Estella in 1876 (Jaques counts it as the second).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Carlist_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "franco-dutch-war",
+  "name": "Franco-Dutch War",
+  "startYear": 1672,
+  "endYear": 1678,
+  "aliases": [
+   "3rd Dutch War",
+   "Dutch War"
+  ],
+  "description": "Louis XIV's war against the Dutch Republic and its allies Spain, the Empire and Brandenburg; England fought alongside France until 1674.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Franco-Dutch_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "first-anglo-dutch-war",
+  "name": "First Anglo-Dutch War",
+  "startYear": 1652,
+  "endYear": 1654,
+  "aliases": [
+   "1st Dutch War"
+  ],
+  "description": "Naval war between the Commonwealth of England and the Dutch Republic over trade and the Navigation Acts.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Anglo-Dutch_War",
+  "importance": 3,
+  "partOf": [
+   "anglo-dutch-wars"
+  ]
+ },
+ {
+  "id": "second-anglo-dutch-war",
+  "name": "Second Anglo-Dutch War",
+  "startYear": 1665,
+  "endYear": 1667,
+  "aliases": [
+   "2nd Dutch War"
+  ],
+  "description": "Naval war between England and the Dutch Republic, ended by the Treaty of Breda after the Dutch raid on the Medway.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Anglo-Dutch_War",
+  "importance": 3,
+  "partOf": [
+   "anglo-dutch-wars"
+  ]
+ },
+ {
+  "id": "crusader-states-wars",
+  "name": "Wars of the Crusader states",
+  "startYear": 1099,
+  "endYear": 1291,
+  "aliases": [
+   "Crusader-Muslim Wars",
+   "Later Crusader-Muslim Wars",
+   "Crusader Muslim Wars"
+  ],
+  "description": "Two centuries of warfare between the Latin states of Outremer and their Muslim neighbours, from the aftermath of the First Crusade to the fall of Acre.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Crusader_states",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "conquests-of-genghis-khan",
+  "name": "Conquests of Genghis Khan",
+  "startYear": 1203,
+  "endYear": 1227,
+  "aliases": [
+   "Conquests of Genghis Khan"
+  ],
+  "description": "Genghis Khan's campaigns against the Western Xia, the Jin dynasty, the Qara Khitai and the Khwarazmian Empire.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Genghis_Khan",
+  "importance": 4,
+  "partOf": []
+ },
+ {
+  "id": "anglo-saxon-heptarchy-wars",
+  "name": "Wars of the Anglo-Saxon kingdoms",
+  "startYear": 550,
+  "endYear": 829,
+  "aliases": [
+   "Anglo-Saxon Territorial Wars",
+   "Anglo-Saxon Territorial War"
+  ],
+  "description": "Wars among the Anglo-Saxon kingdoms of the Heptarchy and against the Britons, until Wessex's supremacy under Egbert.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Heptarchy",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-saxon-settlement-of-britain",
+  "name": "Anglo-Saxon conquest of Britain",
+  "startYear": 449,
+  "endYear": 660,
+  "aliases": [
+   "Anglo-Saxon Conquest of Britain"
+  ],
+  "description": "Germanic settlement and conquest of lowland Britain against the Romano-British, as recorded in the Anglo-Saxon Chronicle.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Saxon_settlement_of_Britain",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "first-war-of-scottish-independence",
+  "name": "First War of Scottish Independence",
+  "startYear": 1296,
+  "endYear": 1328,
+  "aliases": [
+   "Rise of Robert the Bruce",
+   "William Wallace Revolt",
+   "English Invasion of Scotland"
+  ],
+  "description": "Scotland's war against Edward I and Edward II, from Wallace's rising to Bruce's victory at Bannockburn and the Treaty of Edinburgh–Northampton.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_War_of_Scottish_Independence",
+  "importance": 4,
+  "partOf": [
+   "anglo-scottish-wars"
+  ]
+ },
+ {
+  "id": "second-war-of-scottish-independence",
+  "name": "Second War of Scottish Independence",
+  "startYear": 1332,
+  "endYear": 1357,
+  "aliases": [
+   "Anglo-Scottish War of Succession"
+  ],
+  "description": "Edward Balliol's and Edward III's attempts to subjugate Scotland, ended by the Treaty of Berwick.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_War_of_Scottish_Independence",
+  "importance": 3,
+  "partOf": [
+   "anglo-scottish-wars"
+  ]
+ },
+ {
+  "id": "byzantine-sasanian-wars",
+  "name": "Byzantine–Sasanian wars",
+  "startYear": 502,
+  "endYear": 628,
+  "aliases": [
+   "Byzantine-Persian Wars"
+  ],
+  "description": "Wars between the Eastern Roman Empire and Sasanian Persia from the Anastasian War to Heraclius's victory in 628.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Byzantine–Sasanian_wars",
+  "importance": 4,
+  "partOf": []
+ },
+ {
+  "id": "roman-sasanian-wars",
+  "name": "Roman–Sasanian wars",
+  "startYear": 224,
+  "endYear": 363,
+  "aliases": [
+   "Roman-Persian Wars",
+   "Later Roman-Persian Wars",
+   "Later Roman Persian Wars"
+  ],
+  "description": "Wars between Rome and the Sasanian Empire from Ardashir I to Julian's failed invasion of 363.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Roman–Persian_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "mughal-sikh-wars",
+  "name": "Mughal–Sikh wars",
+  "startYear": 1621,
+  "endYear": 1716,
+  "aliases": [
+   "Mughal-Sikh Wars",
+   "Early Mughal-Sikh Wars",
+   "Mughal Sikh Wars"
+  ],
+  "description": "Conflicts between the Sikh gurus and their followers and the Mughal Empire, from Guru Hargobind to the execution of Banda Singh Bahadur.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mughal–Sikh_wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "ottoman-hungarian-wars-1366",
+  "name": "Ottoman–Hungarian wars (1366–1526)",
+  "startYear": 1366,
+  "endYear": 1526,
+  "aliases": [
+   "Turkish-Hungarian Wars",
+   "Turkish Hungarian Wars"
+  ],
+  "description": "Wars between the Kingdom of Hungary and the expanding Ottoman Empire, from Louis I to the catastrophe at Mohács.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ottoman–Hungarian_wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "early-islamic-civil-wars",
+  "name": "Early Islamic civil wars",
+  "startYear": 632,
+  "endYear": 763,
+  "aliases": [
+   "Muslim Civil Wars"
+  ],
+  "description": "Civil wars of the early caliphate, from the Ridda wars through the First, Second and Third Fitnas to the Abbasid consolidation.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Fitna_(word)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "second-italian-war-of-independence",
+  "name": "Second Italian War of Independence",
+  "startYear": 1859,
+  "endYear": 1860,
+  "aliases": [
+   "2nd Italian War of Independence"
+  ],
+  "description": "Franco-Sardinian war against Austria (Magenta, Solferino) followed by Garibaldi's Expedition of the Thousand.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Italian_War_of_Independence",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "first-italian-war-of-independence",
+  "name": "First Italian War of Independence",
+  "startYear": 1848,
+  "endYear": 1849,
+  "aliases": [
+   "1st Italian War of Independence"
+  ],
+  "description": "Piedmont-Sardinia's war against Austria during the revolutions of 1848, ended by Radetzky's victory at Novara.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Italian_War_of_Independence",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "third-italian-war-of-independence",
+  "name": "Third Italian War of Independence",
+  "startYear": 1866,
+  "endYear": 1866,
+  "aliases": [
+   "3rd Italian War of Independence",
+   "Italian War"
+  ],
+  "description": "Italy's war against Austria alongside Prussia, which gained Venetia despite defeats at Custoza and Lissa.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Italian_War_of_Independence",
+  "importance": 3,
+  "partOf": [
+   "austro-prussian-war"
+  ]
+ },
+ {
+  "id": "hotaki-safavid-wars",
+  "name": "Hotaki–Safavid wars",
+  "startYear": 1709,
+  "endYear": 1738,
+  "aliases": [
+   "Persian-Afghan Wars"
+  ],
+  "description": "Rebellion of the Ghilzai Afghans of Kandahar under Mirwais Hotak, their conquest of Safavid Persia in 1722, and Nader Shah's reconquest ending with the fall of Kandahar.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hotak_dynasty",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "early-medieval-indian-dynastic-wars",
+  "name": "Early medieval Indian dynastic wars",
+  "startYear": 600,
+  "endYear": 1200,
+  "aliases": [
+   "Later Indian Dynastic Wars",
+   "Indian Dynastic Wars",
+   "Indian Dynastic War"
+  ],
+  "description": "Wars among the Indian dynasties of the early medieval period, including the Tripartite Struggle for Kannauj and the Chola, Chalukya, Pallava and Pandya rivalries.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Medieval_India",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ottoman-persian-wars",
+  "name": "Ottoman–Persian wars",
+  "startYear": 1514,
+  "endYear": 1823,
+  "aliases": [
+   "Turko-Persian Wars",
+   "Turkish-Persian War",
+   "Turco-Persian War",
+   "Turko-Persian War in Anatolia",
+   "Turko-Persian Wars of Nadir Shah"
+  ],
+  "description": "Series of wars between the Ottoman Empire and Safavid, Afsharid and Qajar Persia from Chaldiran (1514) to the Treaty of Erzurum (1823).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ottoman–Persian_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "persian-succession-wars-1747",
+  "name": "Persian wars of succession after Nader Shah",
+  "startYear": 1747,
+  "endYear": 1796,
+  "aliases": [
+   "Persian Wars of Succession"
+  ],
+  "description": "Struggles among the Afsharid, Zand and Qajar contenders for Persia after the assassination of Nader Shah, ending with Agha Mohammad Khan's consolidation.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Zand_dynasty",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "herero-wars",
+  "name": "Herero Wars",
+  "startYear": 1904,
+  "endYear": 1908,
+  "aliases": [],
+  "description": "German colonial war against the Herero and Nama in South West Africa, accompanied by genocide.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Herero_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "colombian-civil-wars-19th",
+  "name": "Colombian civil wars of the 19th century",
+  "startYear": 1823,
+  "endYear": 1902,
+  "aliases": [
+   "Colombian Civil Wars"
+  ],
+  "description": "Recurring civil wars between liberals and conservatives in Colombia (New Granada) after the dissolution of Gran Colombia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Colombian_Civil_War_(1860–1862)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "scanian-war",
+  "name": "Scanian War",
+  "startYear": 1675,
+  "endYear": 1679,
+  "aliases": [
+   "Scania War"
+  ],
+  "description": "Danish–Swedish war for Scania fought alongside the Franco-Dutch War; Brandenburg defeated Sweden at Fehrbellin.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Scanian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "campaigns-of-muhammad",
+  "name": "Military campaigns of Muhammad",
+  "startYear": 622,
+  "endYear": 632,
+  "aliases": [
+   "Campaigns of the Prophet Mohammad"
+  ],
+  "description": "Battles and expeditions of the early Muslim community against the Meccan Quraysh and Arab tribes, from Badr to the conquest of Mecca.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/List_of_expeditions_of_Muhammad",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "japanese-invasion-of-manchuria",
+  "name": "Japanese invasion of Manchuria",
+  "startYear": 1931,
+  "endYear": 1933,
+  "aliases": [
+   "Manchuria Incident"
+  ],
+  "description": "Japan's seizure of Manchuria after the Mukden Incident, followed by the creation of Manchukuo and the Rehe campaign.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Japanese_invasion_of_Manchuria",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "wars-of-the-second-triumvirate",
+  "name": "Wars of the Second Triumvirate",
+  "startYear": -44,
+  "endYear": -30,
+  "aliases": [
+   "Wars of the Second Triumvirate"
+  ],
+  "description": "Roman civil wars from Mutina and Philippi through the Perusine and Sicilian wars to Actium.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Liberators'_civil_war",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "roman-gallic-wars",
+  "name": "Roman–Gallic wars",
+  "startYear": -390,
+  "endYear": -50,
+  "aliases": [
+   "Gallic Wars in Italy",
+   "Rome's Gallic Wars"
+  ],
+  "description": "Wars between Rome and the Gauls from the sack of Rome (390 BC) through the Cisalpine campaigns to Caesar's conquest.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Roman–Gallic_wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "cimbrian-war",
+  "name": "Cimbrian War",
+  "startYear": -113,
+  "endYear": -101,
+  "aliases": [
+   "Cimbrian War"
+  ],
+  "description": "Rome's war against the migrating Cimbri and Teutones, decided by Marius at Aquae Sextiae and Vercellae.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Cimbrian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "civil-wars-of-the-tetrarchy",
+  "name": "Civil wars of the Tetrarchy",
+  "startYear": 306,
+  "endYear": 324,
+  "aliases": [
+   "Roman Wars of Succession"
+  ],
+  "description": "Wars among the rival Roman emperors after Diocletian's abdication, ending with Constantine's sole rule.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Civil_wars_of_the_Tetrarchy",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "late-roman-civil-wars-337",
+  "name": "Late Roman civil wars (337–394)",
+  "startYear": 337,
+  "endYear": 394,
+  "aliases": [
+   "Later Roman Military Civil Wars"
+  ],
+  "description": "Civil wars of the Constantinian and Valentinianic dynasties, including Magnentius, Procopius, Magnus Maximus and Eugenius.",
+  "wikipediaUrl": null,
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "crisis-of-the-third-century",
+  "name": "Crisis of the Third Century",
+  "startYear": 235,
+  "endYear": 285,
+  "aliases": [
+   "Roman Military Civil Wars"
+  ],
+  "description": "Half-century of usurpations, civil wars and invasions in the Roman Empire between the death of Severus Alexander and the accession of Diocletian.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Crisis_of_the_Third_Century",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "fall-of-the-western-roman-empire",
+  "name": "Fall of the Western Roman Empire",
+  "startYear": 395,
+  "endYear": 486,
+  "aliases": [
+   "Later Roman Wars of Succession",
+   "Fall of the Western Roman Empire"
+  ],
+  "description": "Civil wars, usurpations and barbarian settlements that dissolved the Western Roman Empire.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "year-of-the-five-emperors",
+  "name": "Year of the Five Emperors",
+  "startYear": 193,
+  "endYear": 197,
+  "aliases": [
+   "Wars of Emperor Severus",
+   "Wars of the Emperor Severus"
+  ],
+  "description": "Civil wars after the murder of Commodus, won by Septimius Severus over Pescennius Niger and Clodius Albinus.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Year_of_the_Five_Emperors",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "year-of-the-four-emperors",
+  "name": "Year of the Four Emperors",
+  "startYear": 69,
+  "endYear": 69,
+  "aliases": [
+   "Vitellian Civil War"
+  ],
+  "description": "Civil war of AD 69 among Galba, Otho, Vitellius and Vespasian.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Year_of_the_Four_Emperors",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "caucasian-war",
+  "name": "Caucasian War",
+  "startYear": 1817,
+  "endYear": 1864,
+  "aliases": [
+   "Russian Conquest of the Caucasus"
+  ],
+  "description": "Russia's conquest of the North Caucasus against the Circassians and the imamate of Shamil in Chechnya and Dagestan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Caucasian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "spring-and-autumn-period-wars",
+  "name": "Wars of the Spring and Autumn period",
+  "startYear": -770,
+  "endYear": -476,
+  "aliases": [
+   "Wars of China's Spring and Autumn Era"
+  ],
+  "description": "Wars among the states of Zhou China during the Spring and Autumn period.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Spring_and_Autumn_period",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "first-peloponnesian-war",
+  "name": "First Peloponnesian War",
+  "startYear": -460,
+  "endYear": -445,
+  "aliases": [
+   "1st Peleponesian War"
+  ],
+  "description": "War between Athens and Sparta's allies, chiefly Corinth, ended by the Thirty Years' Peace.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Peloponnesian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "sixteen-kingdoms-wars",
+  "name": "Wars of the Sixteen Kingdoms",
+  "startYear": 304,
+  "endYear": 439,
+  "aliases": [
+   "Wars of the Sixteen Kingdoms Era"
+  ],
+  "description": "Wars among the short-lived states of northern China after the fall of the Western Jin.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sixteen_Kingdoms",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "western-han-wars",
+  "name": "Wars of the Western Han dynasty",
+  "startYear": -206,
+  "endYear": 9,
+  "aliases": [
+   "Wars of the Former Han"
+  ],
+  "description": "Military campaigns of the Western Han, including the wars against the Xiongnu and the expeditions to Central Asia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Han_dynasty",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "eastern-han-wars",
+  "name": "Wars of the Eastern Han dynasty",
+  "startYear": 25,
+  "endYear": 220,
+  "aliases": [
+   "Wars of the Later Han"
+  ],
+  "description": "Campaigns of the Eastern Han, from Guangwu's reunification to the frontier wars against the Xiongnu, Qiang and the Trung sisters' revolt.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Han_dynasty",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "polish-russian-war-of-1792",
+  "name": "Polish–Russian War of 1792",
+  "startYear": 1792,
+  "endYear": 1792,
+  "aliases": [
+   "War of the 2nd Polish Partition",
+   "Polish Rising"
+  ],
+  "description": "Russian invasion to overturn the Constitution of 3 May, leading to the Second Partition of Poland.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Polish–Russian_War_of_1792",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "kosciuszko-uprising",
+  "name": "Kościuszko Uprising",
+  "startYear": 1794,
+  "endYear": 1794,
+  "aliases": [],
+  "description": "Polish–Lithuanian rising against Russia and Prussia, crushed at Maciejowice and followed by the Third Partition.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kościuszko_Uprising",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "bar-confederation",
+  "name": "Bar Confederation",
+  "startYear": 1768,
+  "endYear": 1772,
+  "aliases": [],
+  "description": "Polish noble confederation fighting Russian influence and King Stanisław August; its defeat preceded the First Partition.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bar_Confederation",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "afghan-war-of-succession-1863",
+  "name": "Afghan war of succession (1863–1869)",
+  "startYear": 1863,
+  "endYear": 1869,
+  "aliases": [
+   "Later Afghan War of Succession"
+  ],
+  "description": "Civil war among the sons of Dost Mohammad Khan after his death at Herat, won by Sher Ali Khan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sher_Ali_Khan",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "durrani-succession-wars",
+  "name": "Durrani wars of succession",
+  "startYear": 1793,
+  "endYear": 1834,
+  "aliases": [],
+  "description": "Fratricidal wars among the sons of Timur Shah Durrani that broke up the Durrani Empire and brought the Barakzai to power.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Durrani_Empire",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "byzantine-ottoman-wars",
+  "name": "Byzantine–Ottoman wars",
+  "startYear": 1265,
+  "endYear": 1453,
+  "aliases": [
+   "Byzantine-Ottoman Wars"
+  ],
+  "description": "Wars between the declining Byzantine Empire and the rising Ottomans, from Bapheus to the fall of Constantinople.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Byzantine–Ottoman_wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "mughal-wars-of-succession",
+  "name": "Mughal wars of succession",
+  "startYear": 1556,
+  "endYear": 1748,
+  "aliases": [
+   "Mughal Wars of Succession",
+   "War of the Mughal Princes",
+   "Rebellion of Prince Shahjahan"
+  ],
+  "description": "Rebellions and succession wars among Mughal princes, including the war of 1657–1659 won by Aurangzeb and the struggles after his death.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mughal_war_of_succession_(1657–1661)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "kievan-rus-succession-wars",
+  "name": "Kievan Rus' wars of succession",
+  "startYear": 1015,
+  "endYear": 1113,
+  "aliases": [
+   "Russian Dynastic Wars"
+  ],
+  "description": "Wars among the Rurikid princes for Kiev after the deaths of Vladimir the Great and Yaroslav the Wise.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kievan_Rus'",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "northern-seven-years-war",
+  "name": "Northern Seven Years' War",
+  "startYear": 1563,
+  "endYear": 1570,
+  "aliases": [
+   "Nordic Seven Years War"
+  ],
+  "description": "War between Sweden and a coalition of Denmark–Norway, Lübeck and Poland for supremacy in the Baltic.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Northern_Seven_Years'_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "russo-persian-war-1804",
+  "name": "Russo-Persian War (1804–1813)",
+  "startYear": 1804,
+  "endYear": 1813,
+  "aliases": [],
+  "description": "War over the Caucasus ended by the Treaty of Gulistan, which ceded Georgia, Dagestan and much of Azerbaijan to Russia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Persian_War_(1804–1813)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "russo-persian-war-1826",
+  "name": "Russo-Persian War (1826–1828)",
+  "startYear": 1826,
+  "endYear": 1828,
+  "aliases": [],
+  "description": "Qajar Persia's attempt to recover the Caucasus, ended by the Treaty of Turkmenchay.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Persian_War_(1826–1828)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "maccabean-revolt",
+  "name": "Maccabean Revolt",
+  "startYear": -167,
+  "endYear": -160,
+  "aliases": [
+   "Maccabean War"
+  ],
+  "description": "Jewish revolt led by Judas Maccabeus against the Seleucid Empire.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Maccabean_Revolt",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "wars-in-lombardy",
+  "name": "Wars in Lombardy",
+  "startYear": 1423,
+  "endYear": 1454,
+  "aliases": [
+   "Venetian-Milanese Wars",
+   "Milanese War of Succession"
+  ],
+  "description": "Wars between Venice, Florence and Milan for northern Italy, ended by the Peace of Lodi.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Wars_in_Lombardy",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "cossack-uprisings",
+  "name": "Cossack uprisings against Poland–Lithuania",
+  "startYear": 1591,
+  "endYear": 1638,
+  "aliases": [],
+  "description": "Series of Cossack rebellions (Kosiński, Nalyvaiko, Fedorovych, Pavliuk) preceding the Khmelnytsky Uprising.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Cossack_uprisings",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "austro-turkish-war-1663",
+  "name": "Austro-Turkish War (1663–1664)",
+  "startYear": 1663,
+  "endYear": 1664,
+  "aliases": [],
+  "description": "Ottoman invasion of Habsburg Hungary defeated at Saint Gotthard; ended by the Peace of Vasvár.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Austro-Turkish_War_(1663–1664)",
+  "importance": 3,
+  "partOf": [
+   "ottoman-austro-hungarian-wars"
+  ]
+ },
+ {
+  "id": "austro-turkish-war-1716",
+  "name": "Austro-Turkish War (1716–1718)",
+  "startYear": 1716,
+  "endYear": 1718,
+  "aliases": [],
+  "description": "Habsburg war against the Ottomans won by Eugene of Savoy at Petrovaradin and Belgrade; ended by the Treaty of Passarowitz. Venice fought alongside Austria in the Morea and Corfu.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Austro-Turkish_War_(1716–1718)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "austro-russian-turkish-war-1735",
+  "name": "Austro-Russian–Turkish War (1735–1739)",
+  "startYear": 1735,
+  "endYear": 1739,
+  "aliases": [
+   "Austro-Russian-Turkish War",
+   "Austro-Russo-Turkish War"
+  ],
+  "description": "Russian and Habsburg war against the Ottomans; Austria lost Belgrade by the Treaty of Belgrade.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Austro-Russian–Turkish_War_(1735–1739)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "austro-turkish-war-1788",
+  "name": "Austro-Turkish War (1788–1791)",
+  "startYear": 1788,
+  "endYear": 1791,
+  "aliases": [],
+  "description": "Joseph II's war against the Ottomans alongside Catherine the Great's Russia, ended by the Treaty of Sistova.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Austro-Turkish_War_(1788–1791)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "austro-hungarian-occupation-of-bosnia",
+  "name": "Austro-Hungarian occupation of Bosnia (1878)",
+  "startYear": 1878,
+  "endYear": 1878,
+  "aliases": [],
+  "description": "Austro-Hungarian campaign to occupy Bosnia and Herzegovina under the Treaty of Berlin, resisted by local Muslim and Serb forces.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Austro-Hungarian_campaign_in_Bosnia_and_Herzegovina_in_1878",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "transylvanian-wallachian-wars-1575",
+  "name": "Transylvanian and Wallachian wars (1575–1611)",
+  "startYear": 1575,
+  "endYear": 1611,
+  "aliases": [
+   "Balkan National Wars"
+  ],
+  "description": "Dynastic and anti-Ottoman wars in Transylvania, Wallachia and Moldavia, including the campaigns of Michael the Brave.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Michael_the_Brave",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-norman-succession-wars",
+  "name": "Anglo-Norman succession wars",
+  "startYear": 1077,
+  "endYear": 1128,
+  "aliases": [
+   "Norman Dynastic Wars"
+  ],
+  "description": "Wars among William the Conqueror's sons and their heirs for England and Normandy, decided at Tinchebray (1106).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Robert_Curthose",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "revolt-of-1173",
+  "name": "Revolt of 1173–1174",
+  "startYear": 1173,
+  "endYear": 1174,
+  "aliases": [
+   "Anglo-Norman Rebellion"
+  ],
+  "description": "Rebellion of Henry II's sons and Eleanor of Aquitaine, backed by France, Scotland and Flanders.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Revolt_of_1173–1174",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-norman-invasion-of-ireland",
+  "name": "Anglo-Norman invasion of Ireland",
+  "startYear": 1169,
+  "endYear": 1175,
+  "aliases": [
+   "Anglo-Norman Conquest of Ireland"
+  ],
+  "description": "Cambro-Norman intervention in Leinster followed by Henry II's expedition and the Treaty of Windsor.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Norman_invasion_of_Ireland",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "william-of-normandy-consolidation",
+  "name": "William of Normandy's consolidation wars",
+  "startYear": 1047,
+  "endYear": 1060,
+  "aliases": [
+   "Rise of William of Normandy"
+  ],
+  "description": "Wars by which Duke William secured Normandy, from Val-ès-Dunes to Varaville.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/William_the_Conqueror",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "polish-ottoman-war-1672",
+  "name": "Polish–Ottoman War (1672–1676)",
+  "startYear": 1672,
+  "endYear": 1676,
+  "aliases": [],
+  "description": "Ottoman conquest of Podolia and Sobieski's victories at Khotyn and Lwów, ended by the Treaty of Żurawno.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Polish–Ottoman_War_(1672–1676)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "eastern-islamic-dynastic-wars",
+  "name": "Eastern Islamic dynastic wars (990–1120)",
+  "startYear": 990,
+  "endYear": 1120,
+  "aliases": [
+   "Eastern Muslim Dynastic Wars"
+  ],
+  "description": "Wars among the Samanids, Ghaznavids, Karakhanids, Buyids and Seljuks for Khurasan, Transoxiana and Persia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ghaznavids",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "seljuk-empire-wars",
+  "name": "Wars of the Seljuk Empire",
+  "startYear": 1037,
+  "endYear": 1194,
+  "aliases": [
+   "Seljuk Wars of Expansion",
+   "Wars of the Great Seljuk Sultanate"
+  ],
+  "description": "Seljuk conquest of Persia and the Middle East and the later wars of the Great Seljuk sultans.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Seljuk_Empire",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "second-bulgarian-empire-wars",
+  "name": "Wars of the Second Bulgarian Empire",
+  "startYear": 1185,
+  "endYear": 1396,
+  "aliases": [
+   "Bulgarian Imperial Wars"
+  ],
+  "description": "Wars of the restored Bulgarian state against Byzantium, the Latin Empire, Hungary and Serbia until the Ottoman conquest.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Bulgarian_Empire",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "mughal-uzbek-wars",
+  "name": "Mughal–Uzbek wars",
+  "startYear": 1500,
+  "endYear": 1647,
+  "aliases": [
+   "Mughal-Uzbek Wars",
+   "Mughal Uzbek Wars"
+  ],
+  "description": "Wars of Babur and his Mughal successors against the Shaybanid and Janid Uzbeks for Transoxiana, Kandahar and Balkh.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Babur",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "medieval-german-civil-wars",
+  "name": "Medieval German civil wars (1018–1141)",
+  "startYear": 1018,
+  "endYear": 1141,
+  "aliases": [
+   "German Civil Wars"
+  ],
+  "description": "Rebellions and succession wars in the Holy Roman Empire under the Salian and early Hohenstaufen kings, including the Saxon revolts.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Investiture_Controversy",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "east-frankish-ottonian-wars",
+  "name": "Wars of East Francia and the Ottonians",
+  "startYear": 900,
+  "endYear": 1002,
+  "aliases": [
+   "German Imperial Wars",
+   "Later German Imperial Wars"
+  ],
+  "description": "Wars of the East Frankish and Ottonian kings against the Magyars, Slavs and rebellious dukes.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ottonian_dynasty",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "hungarian-invasions-of-europe",
+  "name": "Hungarian invasions of Europe",
+  "startYear": 899,
+  "endYear": 970,
+  "aliases": [
+   "Magyar Invasion of Germany"
+  ],
+  "description": "Magyar raids into Germany, Italy and France, ended by Otto I's victory at Lechfeld.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hungarian_invasions_of_Europe",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "neo-assyrian-wars",
+  "name": "Wars of the Neo-Assyrian Empire",
+  "startYear": -911,
+  "endYear": -609,
+  "aliases": [
+   "Assyrian Wars"
+  ],
+  "description": "Campaigns of the Neo-Assyrian kings from Adad-nirari II to the fall of Nineveh.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Neo-Assyrian_Empire",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "first-serbian-uprising",
+  "name": "First Serbian Uprising",
+  "startYear": 1804,
+  "endYear": 1813,
+  "aliases": [
+   "1st Serbian Rising"
+  ],
+  "description": "Serbian revolt against Ottoman rule led by Karađorđe, crushed in 1813.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Serbian_Uprising",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "serbian-ottoman-war-1876",
+  "name": "Serbian–Ottoman Wars (1876–1878)",
+  "startYear": 1876,
+  "endYear": 1878,
+  "aliases": [
+   "Serbo-Turkish War"
+  ],
+  "description": "Serbia and Montenegro's wars against the Ottoman Empire during the Great Eastern Crisis.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Serbian–Ottoman_Wars_(1876–1878)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "serbo-bulgarian-war",
+  "name": "Serbo-Bulgarian War",
+  "startYear": 1885,
+  "endYear": 1885,
+  "aliases": [
+   "Serbo-Bulgarian War"
+  ],
+  "description": "Serbia's brief war against Bulgaria after the unification with Eastern Rumelia, won by Bulgaria at Slivnitsa.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Serbo-Bulgarian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "serbian-empire-wars",
+  "name": "Wars of Stefan Dušan",
+  "startYear": 1331,
+  "endYear": 1355,
+  "aliases": [
+   "Serbian Imperial Wars"
+  ],
+  "description": "Serbian expansion into Macedonia, Albania and Greece under Stefan Dušan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Stefan_Dušan",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "swabian-war",
+  "name": "Swabian War",
+  "startYear": 1499,
+  "endYear": 1499,
+  "aliases": [
+   "Swabian War"
+  ],
+  "description": "War between the Swiss Confederacy and the Swabian League and Habsburgs, securing Swiss de facto independence.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Swabian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "franco-spanish-war-1635",
+  "name": "Franco-Spanish War (1635–1659)",
+  "startYear": 1635,
+  "endYear": 1659,
+  "aliases": [
+   "Franco-Habsburg War"
+  ],
+  "description": "French war against Habsburg Spain begun during the Thirty Years' War and ended by the Peace of the Pyrenees.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Franco-Spanish_War_(1635–1659)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "war-of-the-reunions",
+  "name": "War of the Reunions",
+  "startYear": 1683,
+  "endYear": 1684,
+  "aliases": [],
+  "description": "Louis XIV's short war against Spain and the Empire to enforce his annexations, ended by the Truce of Ratisbon.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Reunions",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "french-invasion-of-spain-1823",
+  "name": "French invasion of Spain (1823)",
+  "startYear": 1823,
+  "endYear": 1823,
+  "aliases": [],
+  "description": "The 'Hundred Thousand Sons of Saint Louis' restored Ferdinand VII's absolute rule, ending the Liberal Triennium.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hundred_Thousand_Sons_of_Saint_Louis",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "war-of-the-quadruple-alliance",
+  "name": "War of the Quadruple Alliance",
+  "startYear": 1718,
+  "endYear": 1720,
+  "aliases": [
+   "War of the Quadruple Alliance"
+  ],
+  "description": "Spain's attempt to recover Sardinia and Sicily, defeated by Britain, France, Austria and the Dutch Republic.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Quadruple_Alliance",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "roman-vandal-wars-455",
+  "name": "Roman–Vandal wars (455–468)",
+  "startYear": 455,
+  "endYear": 468,
+  "aliases": [],
+  "description": "Vandal sack of Rome and the failed Roman expeditions against Gaiseric's Carthage, culminating in the disaster at Cape Bon.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Vandal_Kingdom",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "kaidu-kublai-war",
+  "name": "Kaidu–Kublai war",
+  "startYear": 1268,
+  "endYear": 1301,
+  "aliases": [
+   "Mongol Dynastic Wars"
+  ],
+  "description": "War between Kublai Khan's Yuan dynasty and Kaidu of the Ögedeid line for control of the Mongol Empire.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kaidu–Kublai_war",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "rus-golden-horde-wars",
+  "name": "Rus'–Golden Horde wars",
+  "startYear": 1362,
+  "endYear": 1480,
+  "aliases": [
+   "Russian-Mongol Wars"
+  ],
+  "description": "Wars of the Rus' principalities against the Golden Horde, from Blue Waters and Kulikovo to the Great Stand on the Ugra.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Golden_Horde",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "mongol-invasions-of-india",
+  "name": "Mongol invasions of India",
+  "startYear": 1221,
+  "endYear": 1327,
+  "aliases": [
+   "Mongol Invasions of India"
+  ],
+  "description": "Repeated Mongol and Chagatai invasions of the Delhi Sultanate, repulsed by the Mamluk and Khalji sultans.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mongol_invasions_of_India",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "corinthian-war",
+  "name": "Corinthian War",
+  "startYear": -395,
+  "endYear": -387,
+  "aliases": [
+   "Corinthian War"
+  ],
+  "description": "War of Athens, Thebes, Corinth and Argos, backed by Persia, against Sparta, ended by the King's Peace.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Corinthian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "theban-spartan-war",
+  "name": "Theban–Spartan War",
+  "startYear": -378,
+  "endYear": -362,
+  "aliases": [
+   "Wars of the Greek City States"
+  ],
+  "description": "Thebes' war against Spartan hegemony, won at Leuctra and ended at Mantinea.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Theban–Spartan_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "third-sacred-war",
+  "name": "Third Sacred War",
+  "startYear": -356,
+  "endYear": -346,
+  "aliases": [
+   "3rd Sacred War"
+  ],
+  "description": "War of the Amphictyonic League and Philip II of Macedon against Phocis.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Sacred_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "lamian-war",
+  "name": "Lamian War",
+  "startYear": -323,
+  "endYear": -322,
+  "aliases": [
+   "Lamian War"
+  ],
+  "description": "Greek revolt against Macedon after Alexander's death, defeated at Crannon.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Lamian_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "chremonidean-war",
+  "name": "Chremonidean War",
+  "startYear": -267,
+  "endYear": -261,
+  "aliases": [
+   "Chremonidian War"
+  ],
+  "description": "Athens' and Sparta's war against Antigonid Macedon with Ptolemaic support.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Chremonidean_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "cleomenean-war",
+  "name": "Cleomenean War",
+  "startYear": -229,
+  "endYear": -222,
+  "aliases": [
+   "Cleomenic War"
+  ],
+  "description": "War of Cleomenes III of Sparta against the Achaean League and Macedon, ended at Sellasia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Cleomenean_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "sicilian-wars",
+  "name": "Sicilian Wars (Greek–Punic)",
+  "startYear": -580,
+  "endYear": -265,
+  "aliases": [
+   "Carthaginian-Syracusan Wars",
+   "Agathoclean War",
+   "3rd Dionysian War",
+   "Timoleons War"
+  ],
+  "description": "Three centuries of war between Carthage and the Greek cities of Sicily, chiefly Syracuse.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sicilian_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "roman-conquest-of-britain",
+  "name": "Roman conquest of Britain",
+  "startYear": 43,
+  "endYear": 84,
+  "aliases": [
+   "Roman Conquest of Britain"
+  ],
+  "description": "Roman conquest of Britain from the Claudian invasion to Agricola's campaigns in Caledonia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Roman_conquest_of_Britain",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "caesars-invasions-of-britain",
+  "name": "Caesar's invasions of Britain",
+  "startYear": -55,
+  "endYear": -54,
+  "aliases": [
+   "Roman Invasion of Britain"
+  ],
+  "description": "Julius Caesar's two expeditions across the Channel during the Gallic Wars.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Caesar's_invasions_of_Britain",
+  "importance": 2,
+  "partOf": [
+   "gallic-wars-caesar"
+  ]
+ },
+ {
+  "id": "early-imperial-germanic-wars",
+  "name": "Early imperial campaigns in Germania",
+  "startYear": -12,
+  "endYear": 16,
+  "aliases": [
+   "Rome's Germanic Wars"
+  ],
+  "description": "Roman campaigns beyond the Rhine under Augustus and Tiberius, including the Teutoburg disaster and Germanicus's wars.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Early_imperial_campaigns_in_Germania",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "roman-alemannic-wars",
+  "name": "Roman–Alemannic wars",
+  "startYear": 213,
+  "endYear": 378,
+  "aliases": [
+   "Alemannic Invasion of Roman Gaul"
+  ],
+  "description": "Wars between Rome and the Alemanni on the Rhine and Danube frontiers, including Julian's victory at Strasbourg.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Alemanni",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "second-samnite-war",
+  "name": "Second Samnite War",
+  "startYear": -326,
+  "endYear": -304,
+  "aliases": [
+   "2nd Samnite War"
+  ],
+  "description": "Rome's long war against the Samnites, including the humiliation at the Caudine Forks.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Samnite_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "third-samnite-war",
+  "name": "Third Samnite War",
+  "startYear": -298,
+  "endYear": -290,
+  "aliases": [
+   "3rd Samnite War"
+  ],
+  "description": "Final Samnite war, decided at Sentinum.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Samnite_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "roman-etruscan-wars",
+  "name": "Roman–Etruscan Wars",
+  "startYear": -509,
+  "endYear": -264,
+  "aliases": [
+   "Early Roman-Etruscan Wars",
+   "Roman-Etruscan War"
+  ],
+  "description": "Wars between Rome and the Etruscan city-states, from Veii to the conquest of Volsinii.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Roman–Etruscan_Wars",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "roman-seleucid-war",
+  "name": "Roman–Seleucid war",
+  "startYear": -192,
+  "endYear": -188,
+  "aliases": [
+   "Roman-Syrian War"
+  ],
+  "description": "Rome's war against Antiochus III, won at Thermopylae and Magnesia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Roman–Seleucid_war",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "medo-babylonian-conquest-of-assyria",
+  "name": "Medo-Babylonian conquest of Assyria",
+  "startYear": -626,
+  "endYear": -609,
+  "aliases": [
+   "Babylon's War of Conquest"
+  ],
+  "description": "Babylonian and Median campaigns that destroyed the Neo-Assyrian Empire, including the fall of Nineveh.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Medo-Babylonian_conquest_of_the_Assyrian_Empire",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "greco-turkish-war-1897",
+  "name": "Greco-Turkish War (1897)",
+  "startYear": 1897,
+  "endYear": 1897,
+  "aliases": [
+   "1st Greco-Turkish War"
+  ],
+  "description": "Thirty Days' War over Crete, in which the Ottomans quickly defeated Greece in Thessaly.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Greco-Turkish_War_(1897)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "attila-balkan-campaigns",
+  "name": "Attila's Balkan campaigns",
+  "startYear": 441,
+  "endYear": 447,
+  "aliases": [],
+  "description": "Hunnic invasions of the Eastern Roman Balkans that sacked Sirmium, Naissus and other cities.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Attila",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "huguenot-rebellions",
+  "name": "Huguenot rebellions",
+  "startYear": 1621,
+  "endYear": 1629,
+  "aliases": [
+   "French Civil War",
+   "1st Hugenot Rebellion",
+   "3rd Hugenot Rebellion"
+  ],
+  "description": "Rebellions of the French Protestants under Louis XIII, ended by the fall of La Rochelle and the Peace of Alès.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Huguenot_rebellions",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "richard-i-war-with-philip-ii",
+  "name": "Richard I's war with Philip II",
+  "startYear": 1194,
+  "endYear": 1199,
+  "aliases": [
+   "French War of Richard I"
+  ],
+  "description": "Richard the Lionheart's war to recover his Norman and Angevin lands from Philip Augustus.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Richard_I_of_England",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ahmad-shah-durrani-campaigns",
+  "name": "Ahmad Shah Durrani's campaigns",
+  "startYear": 1747,
+  "endYear": 1767,
+  "aliases": [
+   "Indian Campaigns of Ahmad Shah",
+   "Indian Campaigns of Ahmed Shah"
+  ],
+  "description": "Campaigns of the founder of the Durrani Empire in Khurasan, Punjab and northern India, including the Third Battle of Panipat.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ahmad_Shah_Durrani",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "north-west-rebellion",
+  "name": "North-West Rebellion",
+  "startYear": 1885,
+  "endYear": 1885,
+  "aliases": [
+   "2nd Riel Rebellion",
+   "Riel Rebellion"
+  ],
+  "description": "Métis and Cree rising in Saskatchewan led by Louis Riel, defeated at Batoche.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/North-West_Rebellion",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "time-of-troubles",
+  "name": "Time of Troubles",
+  "startYear": 1598,
+  "endYear": 1618,
+  "aliases": [
+   "Russian Time of Troubles"
+  ],
+  "description": "Russian interregnum of famine, civil war, pretenders and Polish and Swedish intervention.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Time_of_Troubles",
+  "importance": 4,
+  "partOf": []
+ },
+ {
+  "id": "pugachev-rebellion",
+  "name": "Pugachev's Rebellion",
+  "startYear": 1773,
+  "endYear": 1775,
+  "aliases": [
+   "Pugachev Rebellion"
+  ],
+  "description": "Cossack and peasant revolt on the Volga and Urals against Catherine the Great.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Pugachev's_Rebellion",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "franco-flemish-wars",
+  "name": "Franco-Flemish wars (1297–1328)",
+  "startYear": 1297,
+  "endYear": 1328,
+  "aliases": [
+   "Franco-Flemish Wars"
+  ],
+  "description": "Wars between France and the County of Flanders, from the Golden Spurs to the Peasant revolt crushed at Cassel.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Franco-Flemish_War_(1297–1305)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "burgundian-state-wars",
+  "name": "Wars of the Burgundian State",
+  "startYear": 1453,
+  "endYear": 1482,
+  "aliases": [
+   "Franco-Burgundian Wars"
+  ],
+  "description": "Wars of the Valois dukes of Burgundy against Ghent, Liège and France, ending in the Burgundian Wars.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Burgundian_State",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "burgundian-wars",
+  "name": "Burgundian Wars",
+  "startYear": 1474,
+  "endYear": 1477,
+  "aliases": [
+   "Burgundian Swiss War"
+  ],
+  "description": "Charles the Bold's war against the Swiss and Lorraine, ending with his death at Nancy.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Burgundian_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "portuguese-colonial-wars-in-asia",
+  "name": "Portuguese colonial wars in Asia",
+  "startYear": 1500,
+  "endYear": 1663,
+  "aliases": [
+   "Portuguese Colonial Wars in Asia",
+   "Early Portuguese Colonial Wars in Asia",
+   "Later Portuguese Colonial Wars in Asia",
+   "Later Portuguese Colonial Wars in Arabia"
+  ],
+  "description": "Wars of the Portuguese Estado da Índia against Indian, Arabian, Malay and Ottoman powers, from Calicut and Diu to the loss of Hormuz and Cochin.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Portuguese_India",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "avar-byzantine-wars",
+  "name": "Avar–Byzantine wars",
+  "startYear": 568,
+  "endYear": 626,
+  "aliases": [
+   "Byzantine-Balkan Wars"
+  ],
+  "description": "Wars between the Avar Khaganate (with Slavic allies) and the Byzantine Empire in the Balkans, ending with the failed siege of Constantinople.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Avar–Byzantine_wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "byzantine-norman-wars",
+  "name": "Byzantine–Norman wars",
+  "startYear": 1081,
+  "endYear": 1185,
+  "aliases": [
+   "1st Byzantine-Norman War",
+   "Byzantine-Norman Wars"
+  ],
+  "description": "Norman invasions of the Byzantine Balkans under Robert Guiscard, Bohemond and William II of Sicily.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Byzantine–Norman_wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "nicaean-latin-wars",
+  "name": "Nicaean–Latin wars",
+  "startYear": 1204,
+  "endYear": 1264,
+  "aliases": [
+   "Latin-Byzantine Imperial War",
+   "3rd Latin-Byzantine Imperial War",
+   "3rd Latin-Byzantine War"
+  ],
+  "description": "Wars between the Empire of Nicaea and the Latin Empire of Constantinople, ending with the Byzantine recovery of the city. Later Byzantine campaigns against the Latin Principality of Achaea (1263–1264) are included.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Nicaean–Latin_wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "tang-military-campaigns",
+  "name": "Tang dynasty military campaigns",
+  "startYear": 618,
+  "endYear": 907,
+  "aliases": [
+   "Tang Imperial Wars",
+   "Later Tang Imperial Wars"
+  ],
+  "description": "Frontier and internal wars of the Tang dynasty against the Turks, Tibetans, Nanzhao and rebellious governors.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Tang_dynasty",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "transition-from-sui-to-tang",
+  "name": "Transition from Sui to Tang",
+  "startYear": 617,
+  "endYear": 628,
+  "aliases": [
+   "Rise of the Tang Dynasty"
+  ],
+  "description": "Civil wars in which Li Yuan and Li Shimin overthrew the Sui and defeated rival warlords to found the Tang.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Transition_from_Sui_to_Tang",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "delhi-sultanate-wars",
+  "name": "Wars of the Delhi Sultanate",
+  "startYear": 1206,
+  "endYear": 1526,
+  "aliases": [
+   "Wars of the Delhi Sultanate"
+  ],
+  "description": "Wars of expansion, succession and defence of the Delhi Sultanate until its fall to Babur at Panipat.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Delhi_Sultanate",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "mughal-safavid-wars",
+  "name": "Mughal–Safavid wars",
+  "startYear": 1558,
+  "endYear": 1653,
+  "aliases": [
+   "Persian-Mughal Wars"
+  ],
+  "description": "Recurrent Mughal–Safavid wars for Kandahar.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mughal–Persian_wars",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "safavid-uzbek-wars",
+  "name": "Safavid–Uzbek wars",
+  "startYear": 1502,
+  "endYear": 1740,
+  "aliases": [
+   "Persian-Uzbek Wars"
+  ],
+  "description": "Wars between Safavid (later Afsharid) Persia and the Shaybanid and Janid Uzbeks for Khurasan and Transoxiana.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Safavid_Iran",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "safavid-aq-qoyunlu-wars",
+  "name": "Safavid–Aq Qoyunlu wars",
+  "startYear": 1488,
+  "endYear": 1513,
+  "aliases": [
+   "Persian-Turkoman Wars",
+   "Persian-Turcoman Wars"
+  ],
+  "description": "Wars of the Safavid order under Haydar and Ismail I against the Aq Qoyunlu Turkomans, ending in the Safavid conquest of Persia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ismail_I",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "peruvian-conquistador-civil-wars",
+  "name": "Civil wars of the conquistadors in Peru",
+  "startYear": 1537,
+  "endYear": 1554,
+  "aliases": [
+   "Spanish Civil War in Peru"
+  ],
+  "description": "Wars among the Spanish conquerors of Peru (Pizarro, Almagro, Gonzalo Pizarro, Hernández Girón) and the Crown.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Spanish_conquest_of_the_Inca_Empire",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "dominican-war-of-independence",
+  "name": "Dominican War of Independence",
+  "startYear": 1844,
+  "endYear": 1856,
+  "aliases": [
+   "Dominican War of Independence"
+  ],
+  "description": "Dominican Republic's war of independence from Haiti and repulse of later Haitian invasions.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Dominican_War_of_Independence",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "filibuster-war",
+  "name": "Filibuster War",
+  "startYear": 1855,
+  "endYear": 1857,
+  "aliases": [
+   "National (Filibuster) War",
+   "National Filibuster War",
+   "National Filibuster Wars"
+  ],
+  "description": "Central American coalition war against William Walker's filibuster regime in Nicaragua.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Filibuster_War",
+  "importance": 3,
+  "partOf": [
+   "central-american-wars-19th"
+  ]
+ },
+ {
+  "id": "war-of-canudos",
+  "name": "War of Canudos",
+  "startYear": 1896,
+  "endYear": 1897,
+  "aliases": [
+   "Canudos Rebellion"
+  ],
+  "description": "Brazilian army's destruction of the millenarian settlement of Canudos in Bahia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_Canudos",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "barbary-corsair-wars",
+  "name": "Barbary corsair wars",
+  "startYear": 1600,
+  "endYear": 1830,
+  "aliases": [
+   "Corsair Wars",
+   "Franco-Barbary Wars"
+  ],
+  "description": "European naval expeditions and bombardments against the corsair states of Algiers, Tunis, Tripoli and Salé.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Barbary_pirates",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-welsh-wars",
+  "name": "Anglo-Welsh wars",
+  "startYear": 1032,
+  "endYear": 1295,
+  "aliases": [
+   "Anglo-Welsh Wars",
+   "English Conquest of Wales",
+   "Welsh Dynastic Wars",
+   "Welsh Dynastic War"
+  ],
+  "description": "Wars between the Welsh principalities and the English kings and Marcher lords, ending with Edward I's conquest.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Conquest_of_Wales_by_Edward_I",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "glyndwr-rising",
+  "name": "Glyndŵr rebellion",
+  "startYear": 1400,
+  "endYear": 1415,
+  "aliases": [
+   "Glendower's Rebellion"
+  ],
+  "description": "Welsh revolt against Henry IV led by Owain Glyndŵr.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Glyndŵr_rebellion",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "kalmar-war",
+  "name": "Kalmar War",
+  "startYear": 1611,
+  "endYear": 1613,
+  "aliases": [
+   "War of Kalmar"
+  ],
+  "description": "Danish–Swedish war over the Kalmar Union's legacy and the northern trade routes.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kalmar_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "thirteen-years-war-1454",
+  "name": "Thirteen Years' War (1454–1466)",
+  "startYear": 1454,
+  "endYear": 1466,
+  "aliases": [
+   "Thirteen Years War"
+  ],
+  "description": "War of the Prussian Confederation and Poland against the Teutonic Order, ended by the Second Peace of Thorn.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Thirteen_Years'_War_(1454–1466)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "first-schleswig-war",
+  "name": "First Schleswig War",
+  "startYear": 1848,
+  "endYear": 1851,
+  "aliases": [
+   "1st Schleswig-Holstein War"
+  ],
+  "description": "War between Denmark and the Schleswig-Holstein rebels backed by Prussia and the German Confederation.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Schleswig_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "swiss-peasant-war-of-1653",
+  "name": "Swiss peasant war of 1653",
+  "startYear": 1653,
+  "endYear": 1653,
+  "aliases": [
+   "Swiss Peasant War"
+  ],
+  "description": "Peasant revolt in the Swiss cantons of Lucerne, Bern, Solothurn and Basel.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Swiss_peasant_war_of_1653",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "war-of-the-league-of-cambrai",
+  "name": "War of the League of Cambrai",
+  "startYear": 1508,
+  "endYear": 1516,
+  "aliases": [
+   "War of the League of Cambrai",
+   "War of the Holy League",
+   "y War of the Holy League"
+  ],
+  "description": "Italian War of 1508–1516 involving the Papacy, France, Venice, Spain and the Swiss.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_League_of_Cambrai",
+  "importance": 3,
+  "partOf": [
+   "spanish-french-wars"
+  ]
+ },
+ {
+  "id": "williamite-war-in-ireland",
+  "name": "Williamite War in Ireland",
+  "startYear": 1689,
+  "endYear": 1691,
+  "aliases": [],
+  "description": "War between the Jacobite supporters of James II and the forces of William III in Ireland, decided at the Boyne and Aughrim.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Williamite_War_in_Ireland",
+  "importance": 3,
+  "partOf": [
+   "jacobite-risings"
+  ]
+ },
+ {
+  "id": "monmouth-rebellion",
+  "name": "Monmouth Rebellion",
+  "startYear": 1685,
+  "endYear": 1685,
+  "aliases": [
+   "Monmouth Rebellion"
+  ],
+  "description": "Duke of Monmouth's attempt to overthrow James II, crushed at Sedgemoor.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Monmouth_Rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "prayer-book-rebellion",
+  "name": "Prayer Book Rebellion",
+  "startYear": 1549,
+  "endYear": 1549,
+  "aliases": [
+   "Western Rebellion"
+  ],
+  "description": "Revolt in Devon and Cornwall against the Book of Common Prayer.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Prayer_Book_Rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "scottish-clan-wars",
+  "name": "Scottish clan wars",
+  "startYear": 1370,
+  "endYear": 1680,
+  "aliases": [
+   "Scottish Clan Wars",
+   "Later Scottish Clan Wars"
+  ],
+  "description": "Feuds and battles among the Highland and Border clans of Scotland.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Scottish_clan",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "lordship-of-the-isles-rebellions",
+  "name": "Lordship of the Isles rebellions",
+  "startYear": 1411,
+  "endYear": 1493,
+  "aliases": [
+   "McDonald Rebellion"
+  ],
+  "description": "Wars of the MacDonald Lords of the Isles against the Scottish crown, from Harlaw to the forfeiture of the Lordship.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Lord_of_the_Isles",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "early-scottish-dynastic-wars",
+  "name": "Early Scottish dynastic wars",
+  "startYear": 843,
+  "endYear": 1130,
+  "aliases": [
+   "Scottish Dynastic Wars",
+   "Scottish War of Succession"
+  ],
+  "description": "Succession wars among the kings of Alba and Scotland, including the reign of Macbeth.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_Alba",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "covenanter-risings",
+  "name": "Covenanter risings",
+  "startYear": 1666,
+  "endYear": 1679,
+  "aliases": [
+   "Scottish Covenanter Rebellion"
+  ],
+  "description": "Presbyterian risings in south-west Scotland against the Restoration church settlement (Pentland Rising, Drumclog, Bothwell Bridge).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Covenanters",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "frankish-civil-war-715",
+  "name": "Frankish civil war (715–718)",
+  "startYear": 715,
+  "endYear": 718,
+  "aliases": [
+   "Rise of Charles Martel"
+  ],
+  "description": "Civil war after the death of Pepin of Herstal, won by Charles Martel.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Frankish_Civil_War_(715–718)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "frankish-burgundian-wars",
+  "name": "Frankish–Burgundian wars",
+  "startYear": 500,
+  "endYear": 534,
+  "aliases": [
+   "Burgundian-Frankish War"
+  ],
+  "description": "Wars by which the Merovingian Franks conquered the Kingdom of the Burgundians.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kingdom_of_the_Burgundians",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "nine-years-war-ireland",
+  "name": "Nine Years' War (Ireland)",
+  "startYear": 1593,
+  "endYear": 1603,
+  "aliases": [
+   "Tyrone Rebellion"
+  ],
+  "description": "Hugh O'Neill's war against English rule in Ireland, ended after Kinsale by the Treaty of Mellifont.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Nine_Years'_War_(Ireland)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "hungarian-romanian-war",
+  "name": "Hungarian–Romanian War",
+  "startYear": 1918,
+  "endYear": 1919,
+  "aliases": [
+   "Hungarian-Romanian War"
+  ],
+  "description": "Romania's war against the Hungarian Soviet Republic, ending with the occupation of Budapest.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hungarian–Romanian_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "latvian-war-of-independence",
+  "name": "Latvian War of Independence",
+  "startYear": 1918,
+  "endYear": 1920,
+  "aliases": [
+   "Latvian War of Independence"
+  ],
+  "description": "Latvia's war against Soviet Russia, the Baltic Germans and the West Russian Volunteer Army.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Latvian_War_of_Independence",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "estonian-war-of-independence",
+  "name": "Estonian War of Independence",
+  "startYear": 1918,
+  "endYear": 1920,
+  "aliases": [
+   "Estonian War of Independence"
+  ],
+  "description": "Estonia's war against Soviet Russia and the Baltic German Landeswehr.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Estonian_War_of_Independence",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "lithuanian-wars-of-independence",
+  "name": "Lithuanian Wars of Independence",
+  "startYear": 1918,
+  "endYear": 1920,
+  "aliases": [
+   "Lithuanian War of Independence"
+  ],
+  "description": "Lithuania's wars against the Soviets, the Bermontians and Poland.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Lithuanian_Wars_of_Independence",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "muscovite-lithuanian-wars",
+  "name": "Muscovite–Lithuanian Wars",
+  "startYear": 1487,
+  "endYear": 1537,
+  "aliases": [
+   "1st Muscovite-Lithuanian War",
+   "1st Muscovite Lithuanian War"
+  ],
+  "description": "Series of wars in which Muscovy took Chernigov, Smolensk and other lands from the Grand Duchy of Lithuania.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Muscovite–Lithuanian_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "russo-kazan-wars",
+  "name": "Russo-Kazan Wars",
+  "startYear": 1437,
+  "endYear": 1552,
+  "aliases": [
+   "Russia's Volga Wars"
+  ],
+  "description": "Wars between Muscovy and the Khanate of Kazan, ended by Ivan IV's conquest of Kazan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Kazan_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "montenegrin-ottoman-wars-1852",
+  "name": "Montenegrin–Ottoman wars (1852–1862)",
+  "startYear": 1852,
+  "endYear": 1862,
+  "aliases": [
+   "Turko-Montenegran Wars"
+  ],
+  "description": "Ottoman campaigns against Montenegro under Omar Pasha, including Grahovac (1858).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Montenegrin–Ottoman_War_(1861–1862)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "jebel-akhdar-war",
+  "name": "Jebel Akhdar War",
+  "startYear": 1954,
+  "endYear": 1959,
+  "aliases": [
+   "Imam Revolt"
+  ],
+  "description": "Revolt of the Imamate of Oman against the Sultan of Muscat, defeated with British help.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Jebel_Akhdar_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "iraqi-revolt-of-1920",
+  "name": "Iraqi revolt of 1920",
+  "startYear": 1920,
+  "endYear": 1920,
+  "aliases": [
+   "Iraqi Revolt"
+  ],
+  "description": "Nationwide uprising against the British Mandate in Iraq.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Iraqi_revolt_of_1920",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "chitral-expedition",
+  "name": "Chitral Expedition",
+  "startYear": 1895,
+  "endYear": 1895,
+  "aliases": [
+   "Chitral Campaign"
+  ],
+  "description": "British relief of the besieged fort at Chitral on the North-West Frontier.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Chitral_Expedition",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "waziristan-campaign-1919",
+  "name": "Waziristan campaign (1919–1920)",
+  "startYear": 1919,
+  "endYear": 1920,
+  "aliases": [
+   "Waziristan Campaign"
+  ],
+  "description": "British-Indian campaign against the Wazir and Mahsud tribes after the Third Anglo-Afghan War.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Waziristan_campaign_(1919–1920)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-nepalese-war",
+  "name": "Anglo-Nepalese War",
+  "startYear": 1814,
+  "endYear": 1816,
+  "aliases": [
+   "British-Gurkha War",
+   "British Gurkha War",
+   "British-Gurkha Wars"
+  ],
+  "description": "War between the East India Company and the Kingdom of Nepal, ended by the Treaty of Sugauli.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Nepalese_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "conquest-of-sindh",
+  "name": "Conquest of Sindh",
+  "startYear": 1843,
+  "endYear": 1843,
+  "aliases": [
+   "British Conquest of Sindh"
+  ],
+  "description": "Charles Napier's conquest of the Talpur emirs of Sindh at Miani and Hyderabad.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Conquest_of_Sindh",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "gwalior-campaign",
+  "name": "Gwalior campaign",
+  "startYear": 1843,
+  "endYear": 1843,
+  "aliases": [
+   "British Gwalior War"
+  ],
+  "description": "British defeat of the Gwalior army at Maharajpur and Punniar.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Gwalior_campaign",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "afghan-sikh-wars",
+  "name": "Afghan–Sikh wars",
+  "startYear": 1748,
+  "endYear": 1837,
+  "aliases": [
+   "Afghan-Sikh Wars",
+   "Afghan Sikh Wars",
+   "Punjab Campaigns of Shah Zaman"
+  ],
+  "description": "Wars between the Durrani Afghans and the Sikh misls and Sikh Empire for the Punjab and Peshawar.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Afghan–Sikh_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "persian-gulf-campaign-1809",
+  "name": "Persian Gulf campaigns (1809–1821)",
+  "startYear": 1809,
+  "endYear": 1821,
+  "aliases": [],
+  "description": "British expeditions against the Qawasim of Ras al-Khaimah and the tribes of Oman, leading to the General Maritime Treaty of 1820.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Persian_Gulf_campaign_of_1809",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "aden-expedition",
+  "name": "Aden Expedition",
+  "startYear": 1839,
+  "endYear": 1839,
+  "aliases": [],
+  "description": "British capture of Aden from the Sultan of Lahej.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Aden_Expedition",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "maratha-bijapur-wars",
+  "name": "Maratha–Bijapur wars",
+  "startYear": 1648,
+  "endYear": 1677,
+  "aliases": [
+   "Bijapur-Maratha Wars"
+  ],
+  "description": "Shivaji's wars against the Adil Shahi sultanate of Bijapur, including Pratapgad and the conquest of the Konkan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Shivaji",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "mexican-civil-wars-1823",
+  "name": "Mexican civil wars of the early republic",
+  "startYear": 1823,
+  "endYear": 1846,
+  "aliases": [
+   "Mexican Civil Wars",
+   "Mexican Federalist War",
+   "Mexican Civil War"
+  ],
+  "description": "Federalist–centralist civil wars and pronunciamientos of the first Mexican republic.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Mexican_Republic",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "revolution-of-tuxtepec",
+  "name": "Revolution of Tuxtepec",
+  "startYear": 1876,
+  "endYear": 1876,
+  "aliases": [
+   "Diaz Revolt in Mexico"
+  ],
+  "description": "Porfirio Díaz's revolt against President Lerdo de Tejada, won at Tecoac.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Plan_of_Tuxtepec",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "republic-of-texas-conflicts",
+  "name": "Republic of Texas frontier conflicts",
+  "startYear": 1836,
+  "endYear": 1845,
+  "aliases": [],
+  "description": "Wars of the Republic of Texas against the Cherokee and Comanche and the Mexican incursions and expeditions of 1842.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Republic_of_Texas",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "cayuse-war",
+  "name": "Cayuse War",
+  "startYear": 1847,
+  "endYear": 1855,
+  "aliases": [
+   "Cayuse Indian War"
+  ],
+  "description": "War between the Cayuse and American settlers in Oregon after the Whitman massacre.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Cayuse_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ridda-wars",
+  "name": "Ridda Wars",
+  "startYear": 632,
+  "endYear": 633,
+  "aliases": [],
+  "description": "Campaigns of Abu Bakr against the Arab tribes that renounced Islam after Muhammad's death.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ridda_Wars",
+  "importance": 3,
+  "partOf": [
+   "early-islamic-civil-wars"
+  ]
+ },
+ {
+  "id": "first-fitna",
+  "name": "First Fitna",
+  "startYear": 656,
+  "endYear": 661,
+  "aliases": [],
+  "description": "First Muslim civil war, between Ali and his opponents (Aisha, Talha, Zubayr and Mu'awiya).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Fitna",
+  "importance": 3,
+  "partOf": [
+   "early-islamic-civil-wars"
+  ]
+ },
+ {
+  "id": "second-fitna",
+  "name": "Second Fitna",
+  "startYear": 680,
+  "endYear": 692,
+  "aliases": [],
+  "description": "Second Muslim civil war after the death of Mu'awiya, including Karbala and the caliphate of Ibn al-Zubayr.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Second_Fitna",
+  "importance": 3,
+  "partOf": [
+   "early-islamic-civil-wars"
+  ]
+ },
+ {
+  "id": "third-fitna",
+  "name": "Third Fitna",
+  "startYear": 744,
+  "endYear": 750,
+  "aliases": [],
+  "description": "Umayyad civil war and the Abbasid Revolution that overthrew the dynasty.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Third_Fitna",
+  "importance": 3,
+  "partOf": [
+   "early-islamic-civil-wars"
+  ]
+ },
+ {
+  "id": "carausian-revolt",
+  "name": "Carausian revolt",
+  "startYear": 286,
+  "endYear": 296,
+  "aliases": [],
+  "description": "Usurpation of Carausius and Allectus in Britain, ended by Constantius Chlorus.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Carausian_revolt",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "gothic-war-376",
+  "name": "Gothic War (376–382)",
+  "startYear": 376,
+  "endYear": 382,
+  "aliases": [],
+  "description": "Revolt of the Gothic refugees in Thrace, which destroyed Valens's army at Adrianople.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Gothic_War_(376–382)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "ostrogothic-conquest-of-italy",
+  "name": "Ostrogothic conquest of Italy",
+  "startYear": 488,
+  "endYear": 493,
+  "aliases": [
+   "Goth Invasion of Italy"
+  ],
+  "description": "Theodoric the Great's conquest of Odoacer's Italy.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Theodoric_the_Great",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "appenzell-wars",
+  "name": "Appenzell Wars",
+  "startYear": 1401,
+  "endYear": 1429,
+  "aliases": [],
+  "description": "Revolt of Appenzell against the Abbey of St Gall and the Habsburgs.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Appenzell_Wars",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-spanish-war-1625",
+  "name": "Anglo-Spanish War (1625–1630)",
+  "startYear": 1625,
+  "endYear": 1630,
+  "aliases": [],
+  "description": "War between Charles I's England and Spain, opened by the failed Cádiz expedition.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Spanish_War_(1625–1630)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-spanish-war-1654",
+  "name": "Anglo-Spanish War (1654–1660)",
+  "startYear": 1654,
+  "endYear": 1660,
+  "aliases": [],
+  "description": "Cromwell's war against Spain, in which England took Jamaica and Dunkirk.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Spanish_War_(1654–1660)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "anglo-spanish-war-1727",
+  "name": "Anglo-Spanish War (1727–1729)",
+  "startYear": 1727,
+  "endYear": 1729,
+  "aliases": [],
+  "description": "Spain's unsuccessful siege of Gibraltar and the British blockade of Porto Bello.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Anglo-Spanish_War_(1727–1729)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ingrian-war",
+  "name": "Ingrian War",
+  "startYear": 1610,
+  "endYear": 1617,
+  "aliases": [],
+  "description": "Swedish intervention in Russia's Time of Troubles, ended by the Treaty of Stolbovo.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ingrian_War",
+  "importance": 2,
+  "partOf": [
+   "time-of-troubles"
+  ]
+ },
+ {
+  "id": "russo-swedish-war-1656",
+  "name": "Russo-Swedish War (1656–1658)",
+  "startYear": 1656,
+  "endYear": 1658,
+  "aliases": [],
+  "description": "Russia's attempt to gain a Baltic port during the Second Northern War.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Swedish_War_(1656–1658)",
+  "importance": 2,
+  "partOf": [
+   "second-northern-war"
+  ]
+ },
+ {
+  "id": "russo-swedish-war-1788",
+  "name": "Russo-Swedish War (1788–1790)",
+  "startYear": 1788,
+  "endYear": 1790,
+  "aliases": [
+   "2nd Russo-Swedish War"
+  ],
+  "description": "Gustav III's war against Russia, marked by the naval battles of Hogland and Svensksund.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Swedish_War_(1788–1790)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "russo-turkish-war-1877",
+  "name": "Russo-Turkish War (1877–1878)",
+  "startYear": 1877,
+  "endYear": 1878,
+  "aliases": [],
+  "description": "War in which Russia and its Balkan allies defeated the Ottomans, leading to the independence of Romania, Serbia and Montenegro and an autonomous Bulgaria.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Turkish_War_(1877–1878)",
+  "importance": 4,
+  "partOf": [
+   "russo-turkish-wars"
+  ]
+ },
+ {
+  "id": "rebellions-of-1837",
+  "name": "Rebellions of 1837–1838",
+  "startYear": 1837,
+  "endYear": 1838,
+  "aliases": [
+   "French-Canadian Rebellion"
+  ],
+  "description": "Risings in Lower and Upper Canada against British colonial rule.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Rebellions_of_1837–1838",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "liberal-wars",
+  "name": "Liberal Wars",
+  "startYear": 1828,
+  "endYear": 1834,
+  "aliases": [
+   "Miguelite Wars"
+  ],
+  "description": "Portuguese civil war between the liberal supporters of Maria II and the absolutist Miguel I.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Liberal_Wars",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "the-fronde",
+  "name": "Fronde",
+  "startYear": 1648,
+  "endYear": 1653,
+  "aliases": [
+   "War of the 2nd Fronde"
+  ],
+  "description": "Civil wars in France against Mazarin's regency during the minority of Louis XIV.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Fronde",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "genko-war",
+  "name": "Genkō War",
+  "startYear": 1331,
+  "endYear": 1333,
+  "aliases": [
+   "Genko War"
+  ],
+  "description": "Civil war in which Emperor Go-Daigo overthrew the Kamakura shogunate.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Genkō_War",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "aragonese-conquest-of-naples",
+  "name": "Aragonese conquest of Naples",
+  "startYear": 1435,
+  "endYear": 1465,
+  "aliases": [
+   "Aragon's Conquest of Naples"
+  ],
+  "description": "Alfonso V of Aragon's conquest of the Kingdom of Naples and the later suppression of the barons' revolt.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Alfonso_V_of_Aragon",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ottoman-invasion-of-otranto",
+  "name": "Ottoman invasion of Otranto",
+  "startYear": 1480,
+  "endYear": 1481,
+  "aliases": [],
+  "description": "Ottoman capture of Otranto in southern Italy and its recovery by the Neapolitans.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ottoman_invasion_of_Otranto",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "saudi-rashidi-wars",
+  "name": "Unification of Saudi Arabia",
+  "startYear": 1887,
+  "endYear": 1932,
+  "aliases": [
+   "Saudi-Hashemite Wars"
+  ],
+  "description": "Wars by which Ibn Saud conquered Riyadh, Hasa, Ha'il, the Hejaz and Asir from the Rashidis, Hashemites and others to form Saudi Arabia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Unification_of_Saudi_Arabia",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "ikhwan-revolt",
+  "name": "Ikhwan revolt",
+  "startYear": 1927,
+  "endYear": 1930,
+  "aliases": [
+   "Ikhwan Rebellion"
+  ],
+  "description": "Rebellion of the Ikhwan tribal militias against Ibn Saud, crushed at Sabilla.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ikhwan_revolt",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "afghan-civil-war-1928",
+  "name": "Afghan Civil War (1928–1929)",
+  "startYear": 1928,
+  "endYear": 1929,
+  "aliases": [],
+  "description": "Overthrow of Amanullah Khan by Habibullah Kalakani and the latter's defeat by Nadir Khan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Afghan_Civil_War_(1928–1929)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "afghan-civil-war-1989",
+  "name": "Afghan Civil War (1989–1992)",
+  "startYear": 1989,
+  "endYear": 1992,
+  "aliases": [],
+  "description": "War between the Najibullah government and the mujahideen after the Soviet withdrawal, ending with the fall of Kabul.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Afghan_Civil_War_(1989–1992)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "afghan-civil-war-1992",
+  "name": "Afghan Civil War (1992–1996)",
+  "startYear": 1992,
+  "endYear": 1996,
+  "aliases": [],
+  "description": "Factional war among the mujahideen for Kabul, ended by the Taliban's capture of the city.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Afghan_Civil_War_(1992–1996)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "holy-roman-empire-throne-wars-1298",
+  "name": "Holy Roman Empire throne wars (1298–1322)",
+  "startYear": 1298,
+  "endYear": 1322,
+  "aliases": [
+   "Habsburg Wars of Succession"
+  ],
+  "description": "Contests for the German crown between the Habsburgs, Nassau and Wittelsbach, decided at Göllheim (1298) and Mühldorf (1322).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mühldorf",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "transylvanian-war-1658",
+  "name": "Transylvanian war of 1658–1662",
+  "startYear": 1658,
+  "endYear": 1662,
+  "aliases": [
+   "Transylvanian National Revolt"
+  ],
+  "description": "Ottoman campaigns to depose George II Rákóczi of Transylvania and his successor János Kemény.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/George_II_Rákóczi",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "venezuelan-civil-wars-1892",
+  "name": "Venezuelan civil wars (1892–1903)",
+  "startYear": 1892,
+  "endYear": 1903,
+  "aliases": [
+   "Venezuelan Civil Wars"
+  ],
+  "description": "The Legalist Revolution, the Liberal Restoration and the Liberating Revolution against the Andrade and Castro governments.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Liberating_Revolution",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "shane-oneills-rebellion",
+  "name": "Shane O'Neill's rebellion",
+  "startYear": 1558,
+  "endYear": 1567,
+  "aliases": [
+   "O'Neill Rebellion"
+  ],
+  "description": "Shane O'Neill's wars against the English crown, the MacDonnells and the O'Donnells in Ulster.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Shane_O'Neill",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "marian-civil-war",
+  "name": "Marian civil war",
+  "startYear": 1567,
+  "endYear": 1573,
+  "aliases": [
+   "Uprising against Mary Queen of Scots"
+  ],
+  "description": "Civil war in Scotland between the supporters of Mary, Queen of Scots and the regents for James VI.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Marian_civil_war",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "douglas-rebellion-1452",
+  "name": "Black Douglas rebellion",
+  "startYear": 1452,
+  "endYear": 1455,
+  "aliases": [
+   "Douglas Rebellion"
+  ],
+  "description": "Revolt of the Black Douglases against James II of Scotland, crushed at Arkinholm.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/James_II_of_Scotland",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-scottish-border-wars-1093",
+  "name": "Anglo-Scottish border wars (1093–1157)",
+  "startYear": 1093,
+  "endYear": 1157,
+  "aliases": [
+   "Anglo-Scottish Territorial Wars"
+  ],
+  "description": "Wars between the Scottish kings and Norman England, from Malcolm III's death at Alnwick to the Battle of the Standard.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_the_Standard",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "war-against-nabis",
+  "name": "Spartan–Achaean wars (207–192 BC)",
+  "startYear": -207,
+  "endYear": -192,
+  "aliases": [
+   "Spartan-Achaen Wars"
+  ],
+  "description": "Wars of Sparta under Machanidas and Nabis against the Achaean League and Rome.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_against_Nabis",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "social-war-357",
+  "name": "Social War (357–355 BC)",
+  "startYear": -357,
+  "endYear": -355,
+  "aliases": [
+   "1st Greek Social War"
+  ],
+  "description": "Revolt of Chios, Rhodes, Cos and Byzantium against the Second Athenian League.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Social_War_(357–355_BC)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "wars-of-kappel",
+  "name": "Wars of Kappel",
+  "startYear": 1529,
+  "endYear": 1531,
+  "aliases": [],
+  "description": "Wars between the Protestant and Catholic cantons of the Swiss Confederacy, in which Zwingli was killed.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Wars_of_Kappel",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "swedish-succession-wars-12th",
+  "name": "Swedish wars of succession (1130–1250)",
+  "startYear": 1130,
+  "endYear": 1250,
+  "aliases": [
+   "Swedish Wars of Succession"
+  ],
+  "description": "Rivalry of the houses of Sverker and Erik for the Swedish throne.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/House_of_Sverker",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "seleucid-attalid-wars",
+  "name": "Seleucid–Attalid wars",
+  "startYear": -263,
+  "endYear": -189,
+  "aliases": [
+   "Pergamum-Seleucid Wars"
+  ],
+  "description": "Wars of the Attalid kingdom of Pergamon against the Seleucids and Galatians.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Attalid_dynasty",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "late-viking-age-scandinavian-wars",
+  "name": "Scandinavian wars of the late Viking Age",
+  "startYear": 985,
+  "endYear": 1030,
+  "aliases": [
+   "Scandinavian National Wars",
+   "Norwegian Wars of Succession"
+  ],
+  "description": "Wars among the Danish, Norwegian and Swedish kings and jarls from Hjörungavágr to Stiklestad.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Olaf_II_of_Norway",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anglo-portuguese-conflicts-in-asia",
+  "name": "Anglo-Portuguese conflicts in the Indian Ocean",
+  "startYear": 1612,
+  "endYear": 1622,
+  "aliases": [
+   "Anglo-Portuguese Colonial Wars"
+  ],
+  "description": "East India Company fleets defeated the Portuguese at Swally and Jask and took Hormuz with Persian help.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Capture_of_Ormuz_(1622)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "bulavin-rebellion",
+  "name": "Bulavin Rebellion",
+  "startYear": 1707,
+  "endYear": 1708,
+  "aliases": [
+   "Bulavin's Revolt"
+  ],
+  "description": "Don Cossack revolt against Peter the Great.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bulavin_Rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "chilean-revolution-of-1859",
+  "name": "Chilean Revolution of 1859",
+  "startYear": 1859,
+  "endYear": 1859,
+  "aliases": [
+   "2nd Chilean Liberal Revolt"
+  ],
+  "description": "Liberal rising against President Montt, defeated at Cerro Grande.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Chilean_Revolution_of_1859",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "chilean-revolution-of-1851",
+  "name": "Chilean Revolution of 1851",
+  "startYear": 1851,
+  "endYear": 1851,
+  "aliases": [
+   "1st Chilean Liberal Revolt"
+  ],
+  "description": "Liberal revolt against the election of Manuel Montt, defeated at Loncomilla.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Chilean_Revolution_of_1851",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "chilean-civil-war-of-1829",
+  "name": "Chilean Civil War of 1829–1830",
+  "startYear": 1829,
+  "endYear": 1830,
+  "aliases": [
+   "Chilean Conservative Revolution"
+  ],
+  "description": "Conservative victory over the liberals at Lircay that established the Portalian state.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Chilean_Civil_War_of_1829–1830",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "danish-hanseatic-war-1361",
+  "name": "Danish–Hanseatic War (1361–1370)",
+  "startYear": 1361,
+  "endYear": 1370,
+  "aliases": [
+   "Wars of the Hanseatic League"
+  ],
+  "description": "War between Valdemar IV of Denmark and the Hanseatic League, ended by the Treaty of Stralsund.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Danish–Hanseatic_War_(1361–1370)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "danzig-rebellion",
+  "name": "Danzig rebellion",
+  "startYear": 1577,
+  "endYear": 1577,
+  "aliases": [
+   "Gdansk War"
+  ],
+  "description": "Revolt of Danzig against King Stephen Báthory of Poland.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Danzig_rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ottoman-aq-qoyunlu-war",
+  "name": "Ottoman–Aq Qoyunlu war (1472–1473)",
+  "startYear": 1472,
+  "endYear": 1473,
+  "aliases": [
+   "Ottoman-Turcoman War"
+  ],
+  "description": "Mehmed II's war against Uzun Hasan, decided at Otlukbeli.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Otlukbeli",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "dummers-war",
+  "name": "Dummer's War",
+  "startYear": 1722,
+  "endYear": 1725,
+  "aliases": [
+   "Dummers War"
+  ],
+  "description": "War between New England and the Wabanaki Confederacy allied with New France.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Dummer's_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ghurid-ghaznavid-wars",
+  "name": "Ghurid–Ghaznavid wars",
+  "startYear": 1148,
+  "endYear": 1186,
+  "aliases": [
+   "Ghor-Ghazni Wars"
+  ],
+  "description": "Wars in which the Ghurids sacked Ghazni and finally destroyed the Ghaznavid dynasty at Lahore.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ghurid_dynasty",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "sikkim-expedition",
+  "name": "Sikkim expedition",
+  "startYear": 1888,
+  "endYear": 1888,
+  "aliases": [
+   "Sikkim War"
+  ],
+  "description": "British expedition that drove Tibetan forces out of Sikkim.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sikkim_expedition",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "zebrzydowski-rebellion",
+  "name": "Zebrzydowski rebellion",
+  "startYear": 1606,
+  "endYear": 1608,
+  "aliases": [
+   "Zebrzydowski's Rebellion"
+  ],
+  "description": "Rokosz of the Polish nobility against Sigismund III Vasa, defeated at Guzów.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Zebrzydowski_rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "anti-qin-rebellions",
+  "name": "Rebellions against the Qin dynasty",
+  "startYear": -209,
+  "endYear": -206,
+  "aliases": [
+   "Fall of the Qin Dynasty"
+  ],
+  "description": "Uprisings of Chen Sheng, Xiang Yu and Liu Bang that overthrew the Qin.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Dazexiang_uprising",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "sino-russian-border-conflicts",
+  "name": "Sino-Russian border conflicts (1652–1689)",
+  "startYear": 1652,
+  "endYear": 1689,
+  "aliases": [
+   "Russo-Ming War"
+  ],
+  "description": "Clashes between Qing China and Russian Cossacks on the Amur, ended by the Treaty of Nerchinsk.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sino-Russian_border_conflicts",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "berke-hulagu-war",
+  "name": "Berke–Hulagu war",
+  "startYear": 1262,
+  "endYear": 1266,
+  "aliases": [
+   "Mongol Dynastic Wars"
+  ],
+  "description": "War between the Golden Horde and the Ilkhanate in the Caucasus.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Berke–Hulagu_war",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "henry-morgan-raids",
+  "name": "Henry Morgan's raids",
+  "startYear": 1667,
+  "endYear": 1671,
+  "aliases": [
+   "Morgan's Raids on Panama",
+   "Morgan's Raid on Panama"
+  ],
+  "description": "Privateering raids on Spanish Puerto Príncipe, Portobelo, Maracaibo and Panama.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Henry_Morgan",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "uruguayan-revolution-of-1904",
+  "name": "Uruguayan Revolution of 1904",
+  "startYear": 1904,
+  "endYear": 1904,
+  "aliases": [
+   "2nd Uruguayan Civil War"
+  ],
+  "description": "Blanco rising under Aparicio Saravia, defeated at Masoller.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Revolution_of_1904",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "mentana-campaign",
+  "name": "Garibaldi's march on Rome (1867)",
+  "startYear": 1867,
+  "endYear": 1867,
+  "aliases": [
+   "Garibaldi's Second March on Rome"
+  ],
+  "description": "Garibaldi's volunteers were defeated by papal and French troops at Mentana.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Mentana",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "italian-revolutions-of-1820",
+  "name": "Italian revolutions of 1820–1821",
+  "startYear": 1820,
+  "endYear": 1821,
+  "aliases": [
+   "Italian Revolt Against Austria"
+  ],
+  "description": "Liberal risings in Naples and Piedmont suppressed by Austrian intervention.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Revolutions_of_1820",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "first-war-of-villmergen",
+  "name": "First War of Villmergen",
+  "startYear": 1656,
+  "endYear": 1656,
+  "aliases": [
+   "1st Villmergen War"
+  ],
+  "description": "Confessional war between the Catholic and Protestant Swiss cantons.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_War_of_Villmergen",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "drakes-great-expedition",
+  "name": "Drake's Great Expedition (1585–1586)",
+  "startYear": 1585,
+  "endYear": 1586,
+  "aliases": [
+   "Drakes Caribean Raid"
+  ],
+  "description": "Drake's raid on the Spanish Caribbean, sacking Santo Domingo and Cartagena and burning St Augustine.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Francis_Drake",
+  "importance": 2,
+  "partOf": [
+   "anglo-spanish-war-1585-1604"
+  ]
+ },
+ {
+  "id": "domitians-dacian-war",
+  "name": "Domitian's Dacian War",
+  "startYear": 86,
+  "endYear": 88,
+  "aliases": [
+   "Dominitians Dacian War"
+  ],
+  "description": "Roman war against Decebalus of Dacia under Domitian.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Domitian's_Dacian_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "wyatts-rebellion",
+  "name": "Wyatt's rebellion",
+  "startYear": 1554,
+  "endYear": 1554,
+  "aliases": [
+   "Wyatts Rebellion"
+  ],
+  "description": "Rising against Mary I's Spanish marriage, defeated at London.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Wyatt's_rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "voortrekker-zulu-war",
+  "name": "Voortrekker–Zulu war",
+  "startYear": 1838,
+  "endYear": 1840,
+  "aliases": [
+   "Boer-Zulu War"
+  ],
+  "description": "War between the Voortrekkers and Dingane's Zulu kingdom, including Blood River.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Blood_River",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "easter-rising",
+  "name": "Easter Rising",
+  "startYear": 1916,
+  "endYear": 1916,
+  "aliases": [
+   "Easter Rising"
+  ],
+  "description": "Irish republican insurrection in Dublin against British rule.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Easter_Rising",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "latin-war",
+  "name": "Latin War",
+  "startYear": -340,
+  "endYear": -338,
+  "aliases": [
+   "Latin War"
+  ],
+  "description": "Rome's war against the Latin League, which ended Latin independence.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Latin_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "first-samnite-war",
+  "name": "First Samnite War",
+  "startYear": -343,
+  "endYear": -341,
+  "aliases": [
+   "1st Samnite War"
+  ],
+  "description": "Rome's first war with the Samnites over Campania.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Samnite_Wars",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "first-servile-war",
+  "name": "First Servile War",
+  "startYear": -135,
+  "endYear": -132,
+  "aliases": [
+   "1st Servile War",
+   "Servile War"
+  ],
+  "description": "Slave revolt in Sicily led by Eunus.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Servile_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "illyrian-wars",
+  "name": "Illyrian Wars",
+  "startYear": -229,
+  "endYear": -168,
+  "aliases": [
+   "Illyrian War",
+   "2nd Illyrian War"
+  ],
+  "description": "Rome's wars against the Illyrian kingdoms of Teuta, Demetrius of Pharos and Gentius.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Illyrian_Wars",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "achaean-war",
+  "name": "Achaean War",
+  "startYear": -146,
+  "endYear": -146,
+  "aliases": [
+   "Roman-Achaean War",
+   "Roman-Achean War"
+  ],
+  "description": "Rome's defeat of the Achaean League and the destruction of Corinth.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Achaean_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "cyrus-the-younger-revolt",
+  "name": "Revolt of Cyrus the Younger",
+  "startYear": -401,
+  "endYear": -401,
+  "aliases": [
+   "Persian Civil War"
+  ],
+  "description": "Cyrus the Younger's march against Artaxerxes II with Greek mercenaries, defeated at Cunaxa.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Cunaxa",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "frankish-visigothic-war-507",
+  "name": "Frankish–Visigothic war (507–508)",
+  "startYear": 507,
+  "endYear": 508,
+  "aliases": [
+   "Visigoth-Frankish Wars",
+   "Visigothic-Frankish War"
+  ],
+  "description": "Clovis's conquest of Visigothic Aquitaine after Vouillé.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Vouillé",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "carolingian-civil-war",
+  "name": "Carolingian civil war (840–843)",
+  "startYear": 840,
+  "endYear": 843,
+  "aliases": [
+   "Frankish War of Succession"
+  ],
+  "description": "War among the sons of Louis the Pious, decided at Fontenoy and ended by the Treaty of Verdun.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Fontenoy_(841)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "viking-raids-in-germany",
+  "name": "Viking raids on East Francia",
+  "startYear": 880,
+  "endYear": 891,
+  "aliases": [
+   "Viking Raids on Germany",
+   "Viking-German Wars"
+  ],
+  "description": "Danish Viking raids on the Rhineland and Saxony, ended by Arnulf's victory at Leuven.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Leuven_(891)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "umayyad-conquest-of-sindh",
+  "name": "Umayyad conquest of Sindh",
+  "startYear": 711,
+  "endYear": 714,
+  "aliases": [
+   "Muslim Conquest of Sindh",
+   "Muslim Conquest of Sind"
+  ],
+  "description": "Muhammad ibn al-Qasim's conquest of Sindh and Multan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Umayyad_conquest_of_Sindh",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "sviatoslavs-invasion-of-bulgaria",
+  "name": "Sviatoslav's invasion of Bulgaria",
+  "startYear": 967,
+  "endYear": 971,
+  "aliases": [
+   "Byzantine-Russian War",
+   "Byzantine-Russian Wars"
+  ],
+  "description": "Rus' invasion of Bulgaria and the ensuing war with Byzantium, ended at Dorostolon.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sviatoslav's_invasion_of_Bulgaria",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "bardas-rebellions",
+  "name": "Rebellions of Bardas Skleros and Bardas Phokas",
+  "startYear": 976,
+  "endYear": 989,
+  "aliases": [
+   "Byzantine Military Rebellions",
+   "Byzantine Military Rebellion"
+  ],
+  "description": "Military revolts against Basil II in Anatolia, ended at Abydos with Rus' help.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bardas_Skleros",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "nika-riots",
+  "name": "Nika riots",
+  "startYear": 532,
+  "endYear": 532,
+  "aliases": [
+   "Nike Insurrection"
+  ],
+  "description": "Riot in Constantinople against Justinian, suppressed with great slaughter in the Hippodrome.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Nika_riots",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "alexandrian-crusade",
+  "name": "Alexandrian Crusade",
+  "startYear": 1365,
+  "endYear": 1365,
+  "aliases": [
+   "Egyptian Crusade of Peter of Cyprus"
+  ],
+  "description": "Peter I of Cyprus's sack of Alexandria.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Alexandrian_Crusade",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "frederick-barbarossa-italian-campaigns",
+  "name": "Frederick Barbarossa's Italian campaigns",
+  "startYear": 1154,
+  "endYear": 1183,
+  "aliases": [
+   "Frederick's 1st Expedition to Italy",
+   "Frederick's 2nd Expedition to Sicily",
+   "Frederick's 3rd Expedition to Italy",
+   "Frederick's Expedition to Italy"
+  ],
+  "description": "Frederick I's six expeditions against the Lombard cities and the papacy, ended by the Peace of Constance.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Frederick_I,_Holy_Roman_Emperor",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "florentine-milanese-wars",
+  "name": "Florentine–Milanese wars",
+  "startYear": 1351,
+  "endYear": 1402,
+  "aliases": [
+   "Florentine-Milanese War",
+   "Florentine-Milanese Wars"
+  ],
+  "description": "Wars between Florence and the Visconti of Milan.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Gian_Galeazzo_Visconti",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "old-zurich-war",
+  "name": "Old Zürich War",
+  "startYear": 1440,
+  "endYear": 1446,
+  "aliases": [
+   "Old Zurich Wars"
+  ],
+  "description": "War between Zürich (with Habsburg support) and the rest of the Swiss Confederacy over Toggenburg.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Old_Zürich_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "gugler-war",
+  "name": "Gugler War",
+  "startYear": 1375,
+  "endYear": 1375,
+  "aliases": [
+   "Gugler's War"
+  ],
+  "description": "Swiss defeat of the Gugler mercenaries of Enguerrand de Coucy.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Gugler_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "mad-war",
+  "name": "Mad War",
+  "startYear": 1485,
+  "endYear": 1488,
+  "aliases": [
+   "Mad War"
+  ],
+  "description": "Revolt of French nobles and Brittany against the regency of Anne of Beaujeu.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Mad_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "dozsa-rebellion",
+  "name": "Dózsa's peasant war",
+  "startYear": 1514,
+  "endYear": 1514,
+  "aliases": [
+   "Transylvanian Peasant War"
+  ],
+  "description": "Hungarian peasant uprising led by György Dózsa.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/György_Dózsa",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "pruth-river-campaign",
+  "name": "Pruth River Campaign",
+  "startYear": 1710,
+  "endYear": 1711,
+  "aliases": [
+   "Russian Invasion of Moldavia"
+  ],
+  "description": "Peter the Great's failed campaign against the Ottomans in Moldavia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Pruth_River_Campaign",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "russo-swedish-war-1741",
+  "name": "Russo-Swedish War (1741–1743)",
+  "startYear": 1741,
+  "endYear": 1743,
+  "aliases": [
+   "1st Russo-Swedish War"
+  ],
+  "description": "Sweden's attempt to recover territory lost in the Great Northern War, ended by the Treaty of Åbo.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Swedish_War_(1741–1743)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "war-against-sigismund",
+  "name": "War against Sigismund",
+  "startYear": 1598,
+  "endYear": 1599,
+  "aliases": [
+   "Swedish War of Succession"
+  ],
+  "description": "Duke Charles's war against King Sigismund of Poland-Sweden, won at Stångebro.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_against_Sigismund",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "counts-feud",
+  "name": "Count's Feud",
+  "startYear": 1534,
+  "endYear": 1536,
+  "aliases": [
+   "Counts War",
+   "Danish Counts War"
+  ],
+  "description": "Danish civil war that ended with the victory of Christian III and the Reformation.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Count's_Feud",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "dacke-war",
+  "name": "Dacke War",
+  "startYear": 1542,
+  "endYear": 1543,
+  "aliases": [
+   "Dacke's Rebellion"
+  ],
+  "description": "Peasant uprising in Småland against Gustav Vasa.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Dacke_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "war-of-the-polish-succession-1587",
+  "name": "War of the Polish Succession (1587–1588)",
+  "startYear": 1587,
+  "endYear": 1588,
+  "aliases": [
+   "Habsburg-Polish War"
+  ],
+  "description": "War between Sigismund Vasa and Archduke Maximilian for the Polish crown, decided at Byczyna.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Polish_Succession_(1587–1588)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "lubomirski-rokosz",
+  "name": "Lubomirski's rokosz",
+  "startYear": 1665,
+  "endYear": 1666,
+  "aliases": [
+   "Lubomirski's Rebellion"
+  ],
+  "description": "Noble rebellion against John II Casimir of Poland.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Lubomirski's_rokosz",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "rakoczis-war-of-independence",
+  "name": "Rákóczi's War of Independence",
+  "startYear": 1703,
+  "endYear": 1711,
+  "aliases": [
+   "Rakoczi Rebellion",
+   "Rakozci Rebellion"
+  ],
+  "description": "Hungarian uprising against Habsburg rule led by Francis II Rákóczi.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Rákóczi's_War_of_Independence",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "polish-czechoslovak-war",
+  "name": "Polish–Czechoslovak War",
+  "startYear": 1919,
+  "endYear": 1919,
+  "aliases": [
+   "Polish-Czech War"
+  ],
+  "description": "Seven-day war over Cieszyn Silesia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Polish–Czechoslovak_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "hungarian-czechoslovak-war",
+  "name": "Hungarian–Czechoslovak War",
+  "startYear": 1919,
+  "endYear": 1919,
+  "aliases": [
+   "Hungarian Czech War",
+   "Hungarian-Czech War"
+  ],
+  "description": "War between the Hungarian Soviet Republic and Czechoslovakia over Slovakia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hungarian–Czechoslovak_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "polish-crimean-tatar-wars",
+  "name": "Polish–Crimean Tatar wars",
+  "startYear": 1482,
+  "endYear": 1699,
+  "aliases": [
+   "Polish Crimean Tatar Wars",
+   "Polish Tatar Rebellion",
+   "Polish Tatar Wars",
+   "Polish-Tatar Wars"
+  ],
+  "description": "Crimean Tatar raids into Poland–Lithuania and Polish counter-campaigns.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Crimean–Nogai_slave_raids_in_Eastern_Europe",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "polish-moldavian-war-1531",
+  "name": "Polish–Moldavian War (1530–1531)",
+  "startYear": 1530,
+  "endYear": 1531,
+  "aliases": [
+   "Polish Moldavian War"
+  ],
+  "description": "Petru Rareş's invasion of Pokuttya, defeated at Obertyn.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Obertyn",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "german-polish-wars-medieval",
+  "name": "German–Polish wars (972–1109)",
+  "startYear": 972,
+  "endYear": 1109,
+  "aliases": [
+   "Polish German Wars",
+   "Polish-German Wars"
+  ],
+  "description": "Wars between the Piast dukes and the German kings, from Cedynia to Hundsfeld.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/German–Polish_War_(1002–1018)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "muscovite-civil-war",
+  "name": "Muscovite Civil War",
+  "startYear": 1425,
+  "endYear": 1453,
+  "aliases": [
+   "Wars of Russian Succession"
+  ],
+  "description": "Dynastic war between Vasily II and his uncle Yuri of Zvenigorod and cousins.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Muscovite_Civil_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "russo-crimean-wars",
+  "name": "Russo-Crimean Wars (1571–1572)",
+  "startYear": 1571,
+  "endYear": 1572,
+  "aliases": [
+   "Russian Tatar Wars",
+   "Russian-Tatar Wars"
+  ],
+  "description": "Crimean Tatar burning of Moscow (1571) and defeat at Molodi (1572).",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Russo-Crimean_Wars",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "razin-rebellion",
+  "name": "Razin's Rebellion",
+  "startYear": 1670,
+  "endYear": 1671,
+  "aliases": [
+   "Cossack Rebellion"
+  ],
+  "description": "Cossack and peasant revolt on the Volga led by Stenka Razin.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Stepan_Razin",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "persian-invasion-of-georgia-1795",
+  "name": "Persian invasion of Georgia (1795)",
+  "startYear": 1795,
+  "endYear": 1795,
+  "aliases": [
+   "Persian-Georgian War",
+   "Persian-Georgian Wars"
+  ],
+  "description": "Agha Mohammad Khan's sack of Tbilisi after Krtsanisi.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Krtsanisi",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "panjdeh-incident",
+  "name": "Panjdeh incident",
+  "startYear": 1885,
+  "endYear": 1885,
+  "aliases": [
+   "Russo-Afghan War"
+  ],
+  "description": "Russian seizure of Panjdeh from Afghanistan, nearly provoking an Anglo-Russian war.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Panjdeh_incident",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "rohilla-war",
+  "name": "Rohilla War",
+  "startYear": 1773,
+  "endYear": 1774,
+  "aliases": [
+   "Rohilla War"
+  ],
+  "description": "Conquest of Rohilkhand by Awadh with East India Company troops.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Rohilla_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "kandyan-wars",
+  "name": "Kandyan Wars",
+  "startYear": 1803,
+  "endYear": 1818,
+  "aliases": [
+   "1st British Kandyan War",
+   "1st British-Kandyan War",
+   "2nd British-Kandyan War",
+   "3rd British-Kandyan War"
+  ],
+  "description": "British wars against the Kingdom of Kandy, ending with its annexation and the Uva rebellion.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kandyan_Wars",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "kuwait-najd-war",
+  "name": "Kuwait–Najd War",
+  "startYear": 1919,
+  "endYear": 1920,
+  "aliases": [
+   "Saudi-Kuwait War",
+   "Saudi-Kuwaiti War"
+  ],
+  "description": "Ikhwan raids on Kuwait, repulsed at Jahra.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kuwait–Najd_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "franco-syrian-war",
+  "name": "Franco-Syrian War",
+  "startYear": 1920,
+  "endYear": 1920,
+  "aliases": [
+   "French Occupation of Syria"
+  ],
+  "description": "French defeat of the Arab Kingdom of Syria at Maysalun.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Franco-Syrian_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "annexation-of-tibet",
+  "name": "Annexation of Tibet by China",
+  "startYear": 1950,
+  "endYear": 1951,
+  "aliases": [
+   "Chinese Conquest of Tibet"
+  ],
+  "description": "PLA invasion of Chamdo and the Seventeen Point Agreement.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Annexation_of_Tibet_by_the_People's_Republic_of_China",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "sino-soviet-conflict-1929",
+  "name": "Sino-Soviet conflict (1929)",
+  "startYear": 1929,
+  "endYear": 1929,
+  "aliases": [
+   "Sino-Russian Border War"
+  ],
+  "description": "Soviet campaign against the Chinese warlord Zhang Xueliang over the Chinese Eastern Railway.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sino-Soviet_conflict_(1929)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "soviet-japanese-border-conflicts",
+  "name": "Soviet–Japanese border conflicts",
+  "startYear": 1932,
+  "endYear": 1939,
+  "aliases": [
+   "Russo-Japanese Border Wars"
+  ],
+  "description": "Border clashes between the Soviet Union/Mongolia and Japan/Manchukuo, culminating at Khalkhin Gol.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Soviet–Japanese_border_conflicts",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "january-28-incident",
+  "name": "January 28 incident",
+  "startYear": 1932,
+  "endYear": 1932,
+  "aliases": [
+   "Shanghai Incident"
+  ],
+  "description": "Sino-Japanese fighting in Shanghai in early 1932.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/January_28_incident",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "jin-liao-war",
+  "name": "Jin–Liao War",
+  "startYear": 1114,
+  "endYear": 1125,
+  "aliases": [
+   "Jurchen Invasion of Northern China"
+  ],
+  "description": "Jurchen conquest of the Khitan Liao dynasty.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Jin–Liao_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "hogen-rebellion",
+  "name": "Hōgen rebellion",
+  "startYear": 1156,
+  "endYear": 1156,
+  "aliases": [
+   "Hogen War"
+  ],
+  "description": "Succession dispute in Kyoto that brought the samurai clans to power.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Hōgen_rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "johei-tengyo-rebellions",
+  "name": "Jōhei and Tengyō rebellions",
+  "startYear": 935,
+  "endYear": 941,
+  "aliases": [
+   "Masakado Uprising",
+   "Sumitomo Uprising"
+  ],
+  "description": "Revolts of Taira no Masakado in the east and Fujiwara no Sumitomo in the Inland Sea.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Taira_no_Masakado",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "jokyu-war",
+  "name": "Jōkyū War",
+  "startYear": 1221,
+  "endYear": 1221,
+  "aliases": [
+   "Jokyo Disturbance"
+  ],
+  "description": "Failed attempt by Emperor Go-Toba to overthrow the Kamakura shogunate.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Jōkyū_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "shimonoseki-campaign",
+  "name": "Shimonoseki campaign",
+  "startYear": 1863,
+  "endYear": 1864,
+  "aliases": [
+   "Shimonoseki War"
+  ],
+  "description": "Western naval bombardments of Chōshū's Shimonoseki batteries.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Shimonoseki_campaign",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "war-of-the-castilian-succession",
+  "name": "War of the Castilian Succession",
+  "startYear": 1475,
+  "endYear": 1479,
+  "aliases": [
+   "Portuguese-Castilian War"
+  ],
+  "description": "War between Isabella of Castile and Joanna la Beltraneja, backed by Portugal.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Castilian_Succession",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "castilian-civil-war",
+  "name": "Castilian Civil War",
+  "startYear": 1351,
+  "endYear": 1369,
+  "aliases": [
+   "Castilian War of Succession"
+  ],
+  "description": "War between Peter of Castile and Henry of Trastámara, part of the Hundred Years' War.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Castilian_Civil_War",
+  "importance": 2,
+  "partOf": [
+   "hundred-years-war"
+  ]
+ },
+ {
+  "id": "war-of-the-three-sanchos",
+  "name": "War of the Three Sanchos",
+  "startYear": 1065,
+  "endYear": 1067,
+  "aliases": [
+   "War of the Three Sanchos"
+  ],
+  "description": "War among the cousin kings Sancho II of Castile, Sancho IV of Navarre and Sancho I of Aragon.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/War_of_the_Three_Sanchos",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "revolt-of-the-comuneros",
+  "name": "Revolt of the Comuneros",
+  "startYear": 1520,
+  "endYear": 1521,
+  "aliases": [
+   "Comuneros Uprising"
+  ],
+  "description": "Castilian cities' rising against Charles V, defeated at Villalar.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Revolt_of_the_Comuneros",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "reapers-war",
+  "name": "Reapers' War",
+  "startYear": 1640,
+  "endYear": 1659,
+  "aliases": [
+   "Catalonian Uprising",
+   "Reapers War"
+  ],
+  "description": "Catalan revolt against Spain with French support.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Reapers'_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "glorious-revolution-spain",
+  "name": "Glorious Revolution (Spain)",
+  "startYear": 1868,
+  "endYear": 1868,
+  "aliases": [
+   "Spanish Revolution"
+  ],
+  "description": "Revolution that deposed Isabella II.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Glorious_Revolution_(Spain)",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "spanish-reconquest-attempt-mexico-1829",
+  "name": "Spanish attempt to reconquer Mexico (1829)",
+  "startYear": 1829,
+  "endYear": 1829,
+  "aliases": [
+   "Spanish Invasion of Mexico"
+  ],
+  "description": "Barradas's expedition defeated at Tampico.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Spanish_reconquest_attempts_in_Mexico",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "paiute-war",
+  "name": "Paiute War",
+  "startYear": 1860,
+  "endYear": 1860,
+  "aliases": [
+   "Pyramid Lake",
+   "Pyramid Lake Indian War"
+  ],
+  "description": "War between the Northern Paiute and Nevada settlers.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Paiute_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "utah-war",
+  "name": "Utah War",
+  "startYear": 1857,
+  "endYear": 1858,
+  "aliases": [
+   "Mormon War"
+  ],
+  "description": "Armed confrontation between Mormon settlers and the US Army.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Utah_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "united-states-expedition-to-korea",
+  "name": "United States expedition to Korea",
+  "startYear": 1871,
+  "endYear": 1871,
+  "aliases": [
+   "US Korean Expedition"
+  ],
+  "description": "US naval attack on Ganghwa Island.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/United_States_expedition_to_Korea",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "fourth-anglo-dutch-war",
+  "name": "Fourth Anglo-Dutch War",
+  "startYear": 1780,
+  "endYear": 1784,
+  "aliases": [
+   "Anglo-Dutch War"
+  ],
+  "description": "War between Britain and the Dutch Republic during the American Revolutionary War.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Fourth_Anglo-Dutch_War",
+  "importance": 2,
+  "partOf": [
+   "anglo-dutch-wars"
+  ]
+ },
+ {
+  "id": "bishops-wars",
+  "name": "Bishops' Wars",
+  "startYear": 1639,
+  "endYear": 1640,
+  "aliases": [
+   "Bishops War",
+   "1st Bishop's War",
+   "2nd Bishop's War"
+  ],
+  "description": "Charles I's failed attempts to impose episcopacy on Scotland, opening the Wars of the Three Kingdoms.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bishops'_Wars",
+  "importance": 2,
+  "partOf": [
+   "wars-of-the-three-kingdoms"
+  ]
+ },
+ {
+  "id": "jack-cades-rebellion",
+  "name": "Jack Cade's Rebellion",
+  "startYear": 1450,
+  "endYear": 1450,
+  "aliases": [
+   "Cade's Rebellion",
+   "Cades Rebellion"
+  ],
+  "description": "Kentish revolt against Henry VI's government.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Jack_Cade's_Rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "ketts-rebellion",
+  "name": "Kett's Rebellion",
+  "startYear": 1549,
+  "endYear": 1549,
+  "aliases": [
+   "Kett's Rebellion",
+   "Ketts Rebellion"
+  ],
+  "description": "Norfolk revolt against enclosure, crushed at Dussindale.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Kett's_Rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "cornish-rebellion-of-1497",
+  "name": "Cornish rebellion of 1497",
+  "startYear": 1497,
+  "endYear": 1497,
+  "aliases": [
+   "Flammock's Rebellion"
+  ],
+  "description": "Cornish march on London against Henry VII's taxes, defeated at Blackheath.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Cornish_rebellion_of_1497",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "desmond-rebellions",
+  "name": "Desmond Rebellions",
+  "startYear": 1569,
+  "endYear": 1583,
+  "aliases": [
+   "Geradline Rebellion",
+   "Geraldine Rebellion",
+   "Dacres Rebellion"
+  ],
+  "description": "Rebellions of the FitzGerald earls of Desmond in Munster against Tudor rule.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Desmond_Rebellions",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "bruce-campaign-in-ireland",
+  "name": "Bruce campaign in Ireland",
+  "startYear": 1315,
+  "endYear": 1318,
+  "aliases": [
+   "English Invasion of Ireland",
+   "Anglo-Norman invasion of Ireland"
+  ],
+  "description": "Edward Bruce's invasion of Ireland, ended by his death at Faughart.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Bruce_campaign_in_Ireland",
+  "importance": 2,
+  "partOf": [
+   "first-war-of-scottish-independence"
+  ]
+ },
+ {
+  "id": "scottish-norwegian-war",
+  "name": "Scottish–Norwegian War",
+  "startYear": 1262,
+  "endYear": 1266,
+  "aliases": [
+   "Norwegian Invasion of Scotland"
+  ],
+  "description": "War over the Hebrides, ended by the Treaty of Perth after Largs.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Scottish–Norwegian_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "despenser-war",
+  "name": "Despenser War",
+  "startYear": 1321,
+  "endYear": 1322,
+  "aliases": [
+   "Rebellion of the Marches"
+  ],
+  "description": "Baronial revolt against Edward II and the Despensers, crushed at Boroughbridge.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Despenser_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "percy-rebellions",
+  "name": "Percy rebellions",
+  "startYear": 1403,
+  "endYear": 1408,
+  "aliases": [
+   "Percy's Rebellion"
+  ],
+  "description": "Risings of the Percy family against Henry IV, from Shrewsbury to Bramham Moor.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Shrewsbury",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "eureka-rebellion",
+  "name": "Eureka Rebellion",
+  "startYear": 1854,
+  "endYear": 1854,
+  "aliases": [
+   "Eureka Rebellion"
+  ],
+  "description": "Gold miners' revolt at Ballarat.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Eureka_Rebellion",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "corinthian-corcyrean-war",
+  "name": "Corinthian–Corcyraean War",
+  "startYear": -435,
+  "endYear": -433,
+  "aliases": [
+   "Corinthian-Corcyrean War",
+   "Corinthean-Corcyrean War"
+  ],
+  "description": "War between Corinth and Corcyra over Epidamnus, a prelude to the Peloponnesian War.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Battle_of_Sybota",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "first-sacred-war",
+  "name": "First Sacred War",
+  "startYear": -595,
+  "endYear": -585,
+  "aliases": [
+   "1st Sacred War"
+  ],
+  "description": "War of the Amphictyonic League against Crisa for control of Delphi.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/First_Sacred_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "fourth-sacred-war",
+  "name": "Fourth Sacred War",
+  "startYear": -339,
+  "endYear": -338,
+  "aliases": [
+   "4th Sacred War"
+  ],
+  "description": "Philip II's intervention against Amphissa, ending at Chaeronea.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Fourth_Sacred_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "philistine-israelite-wars",
+  "name": "Philistine–Israelite wars",
+  "startYear": -1050,
+  "endYear": -1000,
+  "aliases": [
+   "Philistine-Israel War",
+   "Philistine-Israeli Wars",
+   "Philistine-Israelite Wars"
+  ],
+  "description": "Biblical wars between the Philistines and Israel under Saul and David.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Philistines",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "babylonian-campaigns-levant",
+  "name": "Neo-Babylonian campaigns in the Levant",
+  "startYear": -605,
+  "endYear": -582,
+  "aliases": [
+   "Babylon's Wars of Conquest",
+   "Babylon's Wars of Conquests"
+  ],
+  "description": "Nebuchadnezzar II's campaigns against Judah and its neighbours, including the destruction of Jerusalem.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Siege_of_Jerusalem_(587_BC)",
+  "importance": 3,
+  "partOf": []
+ },
+ {
+  "id": "catalan-company-campaigns",
+  "name": "Campaigns of the Catalan Company",
+  "startYear": 1303,
+  "endYear": 1311,
+  "aliases": [
+   "Wars of the Catalan Company"
+  ],
+  "description": "Catalan mercenaries' campaigns in Anatolia and Greece, ending with the conquest of Athens.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Catalan_Company",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "flemish-succession-war-1127",
+  "name": "War of the Flemish succession (1127–1128)",
+  "startYear": 1127,
+  "endYear": 1128,
+  "aliases": [
+   "War of Flemish Succession"
+  ],
+  "description": "War between William Clito and Thierry of Alsace for Flanders.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/William_Clito",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "portuguese-interregnum-war",
+  "name": "1383–1385 Portuguese interregnum",
+  "startYear": 1383,
+  "endYear": 1385,
+  "aliases": [],
+  "description": "Castilian attempt to claim the Portuguese throne, defeated at Aljubarrota.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/1383–1385_Portuguese_interregnum",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "italian-war-of-1542",
+  "name": "Italian War of 1542–1546",
+  "startYear": 1542,
+  "endYear": 1546,
+  "aliases": [
+   "French War of Henry VIII"
+  ],
+  "description": "War of Francis I and Suleiman against Charles V and Henry VIII.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Italian_War_of_1542–1546",
+  "importance": 2,
+  "partOf": [
+   "spanish-french-wars"
+  ]
+ },
+ {
+  "id": "knights-revolt",
+  "name": "Knights' Revolt",
+  "startYear": 1522,
+  "endYear": 1523,
+  "aliases": [
+   "German Knights War"
+  ],
+  "description": "Rising of the imperial knights under Sickingen.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Knights'_Revolt",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "celali-rebellions",
+  "name": "Celali rebellions",
+  "startYear": 1590,
+  "endYear": 1660,
+  "aliases": [
+   "Anatolian Rebellion"
+  ],
+  "description": "Rebellions of irregular troops and provincial governors in Ottoman Anatolia.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Celali_rebellions",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "brabant-revolution",
+  "name": "Brabant Revolution",
+  "startYear": 1789,
+  "endYear": 1790,
+  "aliases": [
+   "Brabantine Rebellion"
+  ],
+  "description": "Revolt of the Austrian Netherlands against Joseph II.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Brabant_Revolution",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "masaniello-revolt",
+  "name": "Revolt of Masaniello",
+  "startYear": 1647,
+  "endYear": 1648,
+  "aliases": [
+   "Allesis Insurrection",
+   "Masaniello's Insurrection"
+  ],
+  "description": "Popular revolt in Spanish Naples.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Masaniello",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "toggenburg-war",
+  "name": "Toggenburg War",
+  "startYear": 1712,
+  "endYear": 1712,
+  "aliases": [
+   "Villmergen War",
+   "2nd Villmergen War",
+   "the First Villmergen War"
+  ],
+  "description": "Second War of Villmergen between the Protestant and Catholic cantons.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Toggenburg_War",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "djidjelli-expedition",
+  "name": "Djidjelli expedition",
+  "startYear": 1664,
+  "endYear": 1664,
+  "aliases": [
+   "North African War of Louis XIV"
+  ],
+  "description": "Failed French expedition against the Algerian port of Djidjelli.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Djidjelli_expedition",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "persian-constitutional-revolution",
+  "name": "Persian Constitutional Revolution",
+  "startYear": 1905,
+  "endYear": 1911,
+  "aliases": [
+   "Persian Revolution"
+  ],
+  "description": "Constitutionalist revolution in Qajar Iran and the civil war of 1908–1911.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Persian_Constitutional_Revolution",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "vellore-mutiny",
+  "name": "Vellore mutiny",
+  "startYear": 1806,
+  "endYear": 1806,
+  "aliases": [
+   "Vellore Mutiny"
+  ],
+  "description": "Mutiny of sepoys at Vellore.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Vellore_mutiny",
+  "importance": 2,
+  "partOf": []
+ },
+ {
+  "id": "sonderbund-war",
+  "name": "Sonderbund War",
+  "startYear": 1847,
+  "endYear": 1847,
+  "aliases": [
+   "Sonderbund War"
+  ],
+  "description": "Swiss civil war against the Catholic Sonderbund cantons.",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Sonderbund_War",
+  "importance": 2,
+  "partOf": []
+ }
+]

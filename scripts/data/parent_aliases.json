@@ -1,0 +1,3289 @@
+{
+ "War of the American Revolution": "american-revolution",
+ "y War of the American Revolution": "american-revolution",
+ "American War of Independence": "american-revolution",
+ "Seven Years War": [
+  {
+   "id": "french-indian-war",
+   "from": 1754,
+   "to": 1755
+  },
+  {
+   "id": "seven-years-war",
+   "from": 1756,
+   "to": 1763
+  }
+ ],
+ "Napoleonic Wars (Peninsula Campaign)": [
+  {
+   "id": "peninsular-war",
+   "from": 1808,
+   "to": 1814
+  },
+  {
+   "id": "napoleonic-wars"
+  }
+ ],
+ "Napoleonic Wars (Peninsula War)": [
+  {
+   "id": "peninsular-war",
+   "from": 1808,
+   "to": 1814
+  },
+  {
+   "id": "napoleonic-wars"
+  }
+ ],
+ "Napoleonic War (Peninsula Campaign)": [
+  {
+   "id": "peninsular-war",
+   "from": 1808,
+   "to": 1814
+  },
+  {
+   "id": "napoleonic-wars"
+  }
+ ],
+ "Indian Mutiny": "indian-rebellion-1857",
+ "Netherlands War of Independence": "eighty-years-war",
+ "2nd Great Northern War": "great-northern-war",
+ "Napoleonic Wars (4th Coalition)": [
+  {
+   "id": "war-fourth-coalition",
+   "from": 1806,
+   "to": 1807
+  },
+  {
+   "id": "napoleonic-wars"
+  }
+ ],
+ "Napoleonic Wars (5th Coalition)": [
+  {
+   "id": "war-of-the-fifth-coalition",
+   "from": 1809,
+   "to": 1809
+  },
+  {
+   "id": "napoleonic-wars"
+  }
+ ],
+ "Napoleonic Wars (3rd Coalition)": [
+  {
+   "id": "war-third-coalition",
+   "from": 1805,
+   "to": 1805
+  },
+  {
+   "id": "napoleonic-wars"
+  }
+ ],
+ "Napoleonic Wars (War of Liberation)": "war-sixth-coalition",
+ "Napoleonic Wars (Russian Campaign)": [
+  {
+   "id": "french-invasion-russia",
+   "from": 1812,
+   "to": 1812
+  },
+  {
+   "id": "war-sixth-coalition"
+  }
+ ],
+ "Napoleonic Wars (Russia Campaign)": [
+  {
+   "id": "french-invasion-russia",
+   "from": 1812,
+   "to": 1812
+  },
+  {
+   "id": "war-sixth-coalition"
+  }
+ ],
+ "Napoleonic Wars (French Campaign)": "war-sixth-coalition",
+ "Napoleonic Wars (100 Days Campaign)": "hundred-days",
+ "Napoleonic Wars (100 Days)": "hundred-days",
+ "French Revolutionary Wars (Middle East)": "french-invasion-egypt",
+ "2nd Anglo-Boer War": "boer-war-second",
+ "Sino-Japanese War": [
+  {
+   "id": "first-sino-japanese-war",
+   "from": 1894,
+   "to": 1895
+  },
+  {
+   "id": "japanese-invasion-of-manchuria",
+   "from": 1931,
+   "to": 1933
+  },
+  {
+   "id": "second-sino-japanese-war",
+   "from": 1937,
+   "to": 1945
+  }
+ ],
+ "Sino Japanese War": "first-sino-japanese-war",
+ "Carlist War": [
+  {
+   "id": "first-carlist-war",
+   "from": 1833,
+   "to": 1840
+  },
+  {
+   "id": "second-carlist-war",
+   "from": 1846,
+   "to": 1849
+  },
+  {
+   "id": "third-carlist-war",
+   "from": 1872,
+   "to": 1876
+  }
+ ],
+ "World War": "world-war-1",
+ "World War One": "world-war-1",
+ "World War Ii": "world-war-2",
+ "World War Two": "world-war-2",
+ "(War at Sea": [
+  {
+   "id": "world-war-1",
+   "from": 1914,
+   "to": 1918
+  },
+  {
+   "id": "world-war-2",
+   "from": 1939,
+   "to": 1945
+  }
+ ],
+ "2nd New Zealand War": "new-zealand-land-wars",
+ "1st New Zealand War": "new-zealand-land-wars",
+ "New Zealand Wars": "new-zealand-land-wars",
+ "Mexican-French War": "americas-french-intervention-mexico-1861",
+ "Mexican French War": "americas-french-intervention-mexico-1861",
+ "Early Christian Reconquest of Spain": "reconquista-iberia",
+ "Later Christian Reconquest of Spain": "reconquista-iberia",
+ "Christian-Muslim Wars in Spain": "reconquista-iberia",
+ "Later Christian-Muslim Wars in Spain": "reconquista-iberia",
+ "Christian Reconquest of Portugal": "reconquista-iberia",
+ "Spanish Territorial Wars": "reconquista-iberia",
+ "Final Christian Reconquest of Spain": "spanish-conquest-granada",
+ "Seven Weeks War": "austro-prussian-war",
+ "Viking Wars in Britain": "viking-invasions-england",
+ "Viking Raids on Britain": "viking-invasions-england",
+ "Later Viking Raids on Britain": "viking-invasions-england",
+ "Danish Conquest of England": "viking-invasions-england",
+ "Viking Raids on France": "viking-invasions-of-france",
+ "Civil War": [
+  {
+   "id": "us-civil-war",
+   "from": 1861,
+   "to": 1865
+  },
+  {
+   "id": "russian-civil-war",
+   "from": 1918,
+   "to": 1922,
+   "bbox": [
+    20,
+    40,
+    180,
+    80
+   ]
+  },
+  {
+   "id": "spanish-civil-war",
+   "from": 1936,
+   "to": 1939,
+   "bbox": [
+    -10,
+    35,
+    5,
+    44
+   ]
+  },
+  {
+   "id": "peruvian-conquistador-civil-wars",
+   "from": 1537,
+   "to": 1554,
+   "bbox": [
+    -82,
+    -20,
+    -68,
+    0
+   ]
+  }
+ ],
+ "Civil War (Western Theatre": "us-civil-war",
+ "American Civil War (Lower Seaboard": "us-civil-war",
+ "American Civil Wars": "us-civil-war",
+ "US Civil War": "us-civil-war",
+ "Sioux Indian Wars": "sioux-wars",
+ "Israeli War of Independence": "arab-israeli-war-1948",
+ "3rd Chinese Revolutionary Civil War": [
+  {
+   "id": "chinese-civil-war-main",
+   "from": 1946,
+   "to": 1949
+  },
+  {
+   "id": "chinese-civil-war"
+  }
+ ],
+ "3rd Chinese Revolutionary War": [
+  {
+   "id": "chinese-civil-war-main",
+   "from": 1946,
+   "to": 1949
+  },
+  {
+   "id": "chinese-civil-war"
+  }
+ ],
+ "3rd Chinese Revolutionary Wars": [
+  {
+   "id": "chinese-civil-war-main",
+   "from": 1946,
+   "to": 1949
+  },
+  {
+   "id": "chinese-civil-war"
+  }
+ ],
+ "3rd Chinese Revolutionary Civil Wars": [
+  {
+   "id": "chinese-civil-war-main",
+   "from": 1946,
+   "to": 1949
+  },
+  {
+   "id": "chinese-civil-war"
+  }
+ ],
+ "2nd Chinese Revolutionary Civil War": [
+  {
+   "id": "first-chinese-civil-war",
+   "from": 1927,
+   "to": 1937
+  },
+  {
+   "id": "chinese-civil-war"
+  }
+ ],
+ "2nd Chinese Revolutionary War": [
+  {
+   "id": "first-chinese-civil-war",
+   "from": 1927,
+   "to": 1937
+  },
+  {
+   "id": "chinese-civil-war"
+  }
+ ],
+ "1st Chinese Revolutionary Civil War": [
+  {
+   "id": "northern-expedition-1926",
+   "from": 1926,
+   "to": 1928
+  },
+  {
+   "id": "xinhai-revolution",
+   "from": 1911,
+   "to": 1913
+  }
+ ],
+ "1st Chinese Revolutionary War": [
+  {
+   "id": "northern-expedition-1926",
+   "from": 1926,
+   "to": 1928
+  },
+  {
+   "id": "xinhai-revolution",
+   "from": 1911,
+   "to": 1913
+  }
+ ],
+ "1st Chinese Revolution": "xinhai-revolution",
+ "2nd Chinese Revolution": "xinhai-revolution",
+ "War of the Grand Alliance": "nine-years-war",
+ "Iraq-Iran War": "iran-iraq-war",
+ "Catherine the Great's 1st Turkish War": "russo-turkish-war-1768-1774",
+ "Catherine the Great's Turkish War": "russo-turkish-war-1768-1774",
+ "Catherine the Great's 2nd Turkish War": "russo-turkish-war-1787-1792",
+ "French Colonial Wars in North Africa": [
+  {
+   "id": "french-conquest-of-morocco",
+   "from": 1907,
+   "to": 1934
+  },
+  {
+   "id": "french-conquest-of-the-sahara",
+   "from": 1881,
+   "to": 1906
+  }
+ ],
+ "French Colonial War in North Africa": [
+  {
+   "id": "french-conquest-of-morocco",
+   "from": 1907,
+   "to": 1934
+  },
+  {
+   "id": "french-conquest-of-the-sahara",
+   "from": 1881,
+   "to": 1906
+  }
+ ],
+ "British-Sudan Wars": "mahdist-war",
+ "Muslim Conquest of Iraq": "arab-conquest-persia",
+ "Muslim Conquest of Syria": "arab-conquest-levant",
+ "Muslim Conquest of Spain": "visigothic-invasion-iberia",
+ "Muslim Conquest of North Africa": "muslim-conquest-of-the-maghreb",
+ "Muslim Invasion of France": "pyrenees-conflicts",
+ "Muslim Conquest of Northern India": "muslim-conquests-india-start",
+ "Byzantine-Muslim Wars": "arab-byzantine-wars",
+ "Early Byzantine-Muslim Wars": "arab-byzantine-wars",
+ "Later Byzantine-Muslim Wars": "arab-byzantine-wars",
+ "Byzantine Muslim Wars": "arab-byzantine-wars",
+ "Afghan Civil War": [
+  {
+   "id": "afghan-civil-war-1928",
+   "from": 1928,
+   "to": 1929
+  },
+  {
+   "id": "soviet-afghanistan-war",
+   "from": 1979,
+   "to": 1988
+  },
+  {
+   "id": "afghan-civil-war-1989",
+   "from": 1989,
+   "to": 1991
+  },
+  {
+   "id": "afghan-civil-war-1992",
+   "from": 1992,
+   "to": 1996
+  },
+  {
+   "id": "afghan-war-2001-2021",
+   "from": 2001,
+   "to": 2021
+  }
+ ],
+ "Later Mughal-Maratha Wars": [
+  {
+   "id": "mughal-maratha-wars",
+   "from": 1680,
+   "to": 1750
+  },
+  {
+   "id": "maratha-wars"
+  }
+ ],
+ "Mughal-Maratha War": "maratha-wars",
+ "Mughal-Maratha War of Ismail Beg": "maratha-wars",
+ "Maratha Territorial Wars": "maratha-wars",
+ "Maratha Wars of Succession": "maratha-wars",
+ "Maratha Rebellions": "maratha-wars",
+ "Maratha-Mysore Wars": "maratha-wars",
+ "Mexican War of the Reform": "americas-war-reform-mexico-1858",
+ "Mexican War": "americas-war-reform-mexico-1858",
+ "Mexicos Revolution": "mexican-revolution",
+ "Wars of the First Triumvirate": [
+  {
+   "id": "roman-civil-war-first",
+   "from": -49,
+   "to": -45
+  },
+  {
+   "id": "gallic-wars-caesar",
+   "from": -58,
+   "to": -50
+  }
+ ],
+ "Hungarian Revolutionary War": "hungarian-revolution-1848",
+ "Hungarian Revolutionary Wars": "hungarian-revolution-1848",
+ "Indian War": [
+  {
+   "id": "pequot-war",
+   "from": 1636,
+   "to": 1638
+  },
+  {
+   "id": "creek-war",
+   "from": 1813,
+   "to": 1814
+  },
+  {
+   "id": "blackhawk-war",
+   "from": 1832,
+   "to": 1832
+  },
+  {
+   "id": "second-seminole-war",
+   "from": 1835,
+   "to": 1842
+  },
+  {
+   "id": "americas-third-seminole-war-1855",
+   "from": 1855,
+   "to": 1858
+  },
+  {
+   "id": "arapaho-cheyenne-conflicts",
+   "from": 1864,
+   "to": 1879
+  },
+  {
+   "id": "red-river-war",
+   "from": 1874,
+   "to": 1875
+  },
+  {
+   "id": "nez-perce-war",
+   "from": 1877,
+   "to": 1877
+  },
+  {
+   "id": "bannock-war",
+   "from": 1878,
+   "to": 1878
+  },
+  {
+   "id": "american-indian-wars-long-term"
+  }
+ ],
+ "Kickapoo Indian Wars": "american-indian-wars-long-term",
+ "Cherokee Indian Wars": [
+  {
+   "id": "cherokee-war",
+   "from": 1759,
+   "to": 1761
+  },
+  {
+   "id": "republic-of-texas-conflicts",
+   "from": 1836,
+   "to": 1845
+  }
+ ],
+ "Ute Indian Wars": [
+  {
+   "id": "ute-war",
+   "from": 1879,
+   "to": 1880
+  },
+  {
+   "id": "american-indian-wars-long-term"
+  }
+ ],
+ "Apache Indian Wars": "apache-wars",
+ "Apache Indian War": "apache-wars",
+ "Comanche Indian Wars": "comanche-wars",
+ "Yakima Indian Wars": "americas-yakima-war-1855",
+ "Modoc Indian War": "modoc-war",
+ "Nez Perce Indian War": "nez-perce-war",
+ "Red River Indian Wars": "red-river-war",
+ "Red River Indian War": "red-river-war",
+ "Creek Indian War": "creek-war",
+ "Bannock Indian War": "bannock-war",
+ "Cheyenne-Arapaho Indian War": [
+  {
+   "id": "colorado-war",
+   "from": 1863,
+   "to": 1865
+  },
+  {
+   "id": "arapaho-cheyenne-conflicts"
+  }
+ ],
+ "Cheyenne-Arapaho War": [
+  {
+   "id": "colorado-war",
+   "from": 1863,
+   "to": 1865
+  },
+  {
+   "id": "arapaho-cheyenne-conflicts"
+  }
+ ],
+ "Cheyenne-Arapaho Wars": [
+  {
+   "id": "colorado-war",
+   "from": 1863,
+   "to": 1865
+  },
+  {
+   "id": "arapaho-cheyenne-conflicts"
+  }
+ ],
+ "Navajo Indian War": "americas-navajo-wars-1849",
+ "Black Hawk Indian War": "blackhawk-war",
+ "Tuscarora Indian War": "tuscarora-war",
+ "Powhatan Indian Wars": "anglo-powhatan-wars",
+ "Pontiacs War": "pontiacs-rebellion",
+ "Pontiac's War": "pontiacs-rebellion",
+ "2nd Seminole Indian War": "second-seminole-war",
+ "2nd Seminole Indian Wars": "second-seminole-war",
+ "1st Seminole Indian War": "americas-first-seminole-war-1816",
+ "American-Mexican War": "mexican-american-war",
+ "American Mexican War": "mexican-american-war",
+ "American- Mexican War": "mexican-american-war",
+ "Texan Wars of Independence": [
+  {
+   "id": "texas-revolution",
+   "from": 1835,
+   "to": 1836
+  },
+  {
+   "id": "republic-of-texas-conflicts",
+   "from": 1837,
+   "to": 1845
+  }
+ ],
+ "Texan War of Independence": [
+  {
+   "id": "texas-revolution",
+   "from": 1835,
+   "to": 1836
+  },
+  {
+   "id": "republic-of-texas-conflicts",
+   "from": 1837,
+   "to": 1845
+  }
+ ],
+ "Texas War of Independence": [
+  {
+   "id": "texas-revolution",
+   "from": 1835,
+   "to": 1836
+  },
+  {
+   "id": "republic-of-texas-conflicts",
+   "from": 1837,
+   "to": 1845
+  }
+ ],
+ "Persian Afghan Wars": [
+  {
+   "id": "hotaki-safavid-wars",
+   "from": 1709,
+   "to": 1738
+  },
+  {
+   "id": "first-herat-war",
+   "from": 1837,
+   "to": 1838
+  },
+  {
+   "id": "anglo-persian-war",
+   "from": 1856,
+   "to": 1857
+  },
+  {
+   "id": "afghan-war-of-succession-1863",
+   "from": 1863,
+   "to": 1869
+  }
+ ],
+ "Persian-Afghan Wars": [
+  {
+   "id": "hotaki-safavid-wars",
+   "from": 1709,
+   "to": 1738
+  },
+  {
+   "id": "ahmad-shah-durrani-campaigns",
+   "from": 1747,
+   "to": 1767
+  },
+  {
+   "id": "first-herat-war",
+   "from": 1837,
+   "to": 1838
+  },
+  {
+   "id": "anglo-persian-war",
+   "from": 1856,
+   "to": 1857
+  },
+  {
+   "id": "afghan-war-of-succession-1863",
+   "from": 1863,
+   "to": 1869
+  }
+ ],
+ "Mughal Conquest of Northern India": "mughal-expansion-india",
+ "Gempei War": "genpei-war",
+ "Venetian-Turkish Wars": [
+  {
+   "id": "ottoman-venetian-wars",
+   "from": 1416,
+   "to": 1479
+  },
+  {
+   "id": "ottoman-venetian-war-1499",
+   "from": 1499,
+   "to": 1503
+  },
+  {
+   "id": "ottoman-venetian-war-1537",
+   "from": 1537,
+   "to": 1540
+  },
+  {
+   "id": "ottoman-venetian-war-1570",
+   "from": 1570,
+   "to": 1573
+  },
+  {
+   "id": "ottoman-venetian-war-crete",
+   "from": 1645,
+   "to": 1669
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1684,
+   "to": 1699
+  },
+  {
+   "id": "austro-turkish-war-1716",
+   "from": 1714,
+   "to": 1718
+  }
+ ],
+ "Venetian-Turkish War": [
+  {
+   "id": "ottoman-venetian-wars",
+   "from": 1416,
+   "to": 1479
+  },
+  {
+   "id": "ottoman-venetian-war-1499",
+   "from": 1499,
+   "to": 1503
+  },
+  {
+   "id": "ottoman-venetian-war-1537",
+   "from": 1537,
+   "to": 1540
+  },
+  {
+   "id": "ottoman-venetian-war-1570",
+   "from": 1570,
+   "to": 1573
+  },
+  {
+   "id": "ottoman-venetian-war-crete",
+   "from": 1645,
+   "to": 1669
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1684,
+   "to": 1699
+  },
+  {
+   "id": "austro-turkish-war-1716",
+   "from": 1714,
+   "to": 1718
+  }
+ ],
+ "Japan's Era of the Warring States": "sengoku-period",
+ "Japan's Warring States Period": "sengoku-period",
+ "Warring States Period in Japan": "sengoku-period",
+ "Conquests of Tamerlane": "timurid-conquests",
+ "Turko-Persian Wars": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turkish-Persian War": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turco-Persian War": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turko-Persian War in Anatolia": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turko-Persian Wars of Nadir Shah": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Goth Invasion of the Roman Empire": "barbarian-invasions-rome",
+ "Gothic War": [
+  {
+   "id": "crisis-of-the-third-century",
+   "from": 235,
+   "to": 285
+  },
+  {
+   "id": "gothic-war-376",
+   "from": 376,
+   "to": 382
+  },
+  {
+   "id": "italo-byzantine-wars",
+   "from": 535,
+   "to": 554
+  }
+ ],
+ "1st Gothic War": "crisis-of-the-third-century",
+ "5th Gothic War": "gothic-war-376",
+ "2nd Cuban War of Independence": "cuban-war-of-independence",
+ "Cuban War": "cuban-war-of-independence",
+ "1st Cuban War of Independence": "cuban-independence-war-1868",
+ "Carnatic War": "carnatic-wars-1749",
+ "German Colonial Wars in Africa": [
+  {
+   "id": "abushiri-revolt",
+   "from": 1888,
+   "to": 1890,
+   "bbox": [
+    30,
+    -12,
+    45,
+    0
+   ]
+  },
+  {
+   "id": "hehe-wars",
+   "from": 1891,
+   "to": 1898,
+   "bbox": [
+    30,
+    -12,
+    45,
+    0
+   ]
+  },
+  {
+   "id": "maji-maji-rebellion",
+   "from": 1905,
+   "to": 1907,
+   "bbox": [
+    30,
+    -12,
+    45,
+    0
+   ]
+  },
+  {
+   "id": "herero-wars",
+   "from": 1904,
+   "to": 1908,
+   "bbox": [
+    10,
+    -30,
+    25,
+    -16
+   ]
+  }
+ ],
+ "Colombian War": [
+  {
+   "id": "colombian-independence",
+   "from": 1810,
+   "to": 1824
+  },
+  {
+   "id": "war-of-the-supremes",
+   "from": 1839,
+   "to": 1842
+  }
+ ],
+ "Colombian War of the Supreme Commanders": "war-of-the-supremes",
+ "Colombian War of Supreme Commanders": "war-of-the-supremes",
+ "Colombian War of the Thousand Days": "thousand-days-war",
+ "Wars of the Mad Mullah": "anglo-somali-war-dervish-state",
+ "Wars of the Six Dynasties": "southern-northern-dynasties",
+ "Wei Dynastic Wars": "southern-northern-dynasties",
+ "China's Era of the Warring States": "chinese-warring-states",
+ "Great Peloponnesian War": "peloponnesian-war",
+ "Great Peloponesian War": "peloponnesian-war",
+ "Great Peleponesian War": "peloponnesian-war",
+ "Great Peleponnesian War": "peloponnesian-war",
+ "Polish Rebellion": [
+  {
+   "id": "bar-confederation",
+   "from": 1768,
+   "to": 1772
+  },
+  {
+   "id": "kosciuszko-uprising",
+   "from": 1794,
+   "to": 1794
+  },
+  {
+   "id": "polish-november-uprising-1830",
+   "from": 1830,
+   "to": 1831
+  },
+  {
+   "id": "january-uprising-1863",
+   "from": 1863,
+   "to": 1864
+  }
+ ],
+ "Afghan War": "anglo-afghan-wars",
+ "Afghan Wars of Succession": [
+  {
+   "id": "eastern-islamic-dynastic-wars",
+   "from": 990,
+   "to": 1120
+  },
+  {
+   "id": "durrani-succession-wars",
+   "from": 1793,
+   "to": 1834
+  }
+ ],
+ "Wars of the Kalmar Union": "kalmar-union-wars",
+ "Russo-Turkish War": [
+  {
+   "id": "russo-turkish-war-1768-1774",
+   "from": 1768,
+   "to": 1774
+  },
+  {
+   "id": "russo-turkish-war-1787-1792",
+   "from": 1787,
+   "to": 1792
+  },
+  {
+   "id": "russo-turkish-war-1806",
+   "from": 1806,
+   "to": 1812
+  },
+  {
+   "id": "russo-turkish-war-1828",
+   "from": 1828,
+   "to": 1829
+  },
+  {
+   "id": "russo-turkish-war-1877",
+   "from": 1877,
+   "to": 1878
+  },
+  {
+   "id": "russo-turkish-wars"
+  }
+ ],
+ "Russo Turkish Wars": [
+  {
+   "id": "russo-turkish-war-1768-1774",
+   "from": 1768,
+   "to": 1774
+  },
+  {
+   "id": "russo-turkish-war-1787-1792",
+   "from": 1787,
+   "to": 1792
+  },
+  {
+   "id": "russo-turkish-war-1806",
+   "from": 1806,
+   "to": 1812
+  },
+  {
+   "id": "russo-turkish-war-1828",
+   "from": 1828,
+   "to": 1829
+  },
+  {
+   "id": "russo-turkish-war-1877",
+   "from": 1877,
+   "to": 1878
+  },
+  {
+   "id": "russo-turkish-wars"
+  }
+ ],
+ "Turkish War": [
+  {
+   "id": "austro-russian-turkish-war-1735",
+   "from": 1735,
+   "to": 1739
+  },
+  {
+   "id": "austro-turkish-war-1788",
+   "from": 1788,
+   "to": 1791
+  }
+ ],
+ "Western Sahara Wars": [
+  {
+   "id": "sand-war",
+   "from": 1963,
+   "to": 1963
+  },
+  {
+   "id": "western-sahara-conflict",
+   "from": 1975,
+   "to": 2030
+  }
+ ],
+ "Conquests of Alexander the Great": "macedonian-conquest-alexander",
+ "Anglo-Spanish Wars": [
+  {
+   "id": "anglo-spanish-war-1585-1604",
+   "from": 1585,
+   "to": 1604
+  },
+  {
+   "id": "anglo-spanish-war-1625",
+   "from": 1625,
+   "to": 1630
+  },
+  {
+   "id": "anglo-spanish-war-1654",
+   "from": 1654,
+   "to": 1660
+  }
+ ],
+ "Anglo-Spanish War": [
+  {
+   "id": "anglo-spanish-war-1654",
+   "from": 1654,
+   "to": 1660
+  },
+  {
+   "id": "anglo-spanish-war-1727",
+   "from": 1727,
+   "to": 1729
+  }
+ ],
+ "Philippines War of Independence": "philippine-revolution-1896",
+ "Russo-Swedish Wars": [
+  {
+   "id": "ingrian-war",
+   "from": 1610,
+   "to": 1617
+  },
+  {
+   "id": "russo-swedish-war-1656",
+   "from": 1656,
+   "to": 1658
+  },
+  {
+   "id": "russo-swedish-war-1788",
+   "from": 1788,
+   "to": 1790
+  },
+  {
+   "id": "finnish-war",
+   "from": 1808,
+   "to": 1809
+  }
+ ],
+ "Russo-Swedish War": [
+  {
+   "id": "ingrian-war",
+   "from": 1610,
+   "to": 1617
+  },
+  {
+   "id": "russo-swedish-war-1656",
+   "from": 1656,
+   "to": 1658
+  },
+  {
+   "id": "russo-swedish-war-1788",
+   "from": 1788,
+   "to": 1790
+  },
+  {
+   "id": "finnish-war",
+   "from": 1808,
+   "to": 1809
+  }
+ ],
+ "Anglo-Scottish Border Wars": "anglo-scottish-wars",
+ "Anglo-Scottish Royal Wars": "anglo-scottish-wars",
+ "Saudi-Rashidi Wars": "saudi-rashidi-wars",
+ "Ottoman Saudi War 1811": "wahhabi-war",
+ "Anglo-Arab Wars": [
+  {
+   "id": "persian-gulf-campaign-1809",
+   "from": 1809,
+   "to": 1821
+  },
+  {
+   "id": "aden-expedition",
+   "from": 1839,
+   "to": 1839
+  }
+ ],
+ "French Indo-China War": "indochina-war",
+ "French Indo-China Wars": "indochina-war",
+ "Druze Rebellion": "druze-revolt-1925",
+ "Finnish War of Independence": "finnish-civil-war-1918",
+ "Russo-Persian Wars": [
+  {
+   "id": "russo-persian-war-1804",
+   "from": 1804,
+   "to": 1813
+  },
+  {
+   "id": "russo-persian-war-1826",
+   "from": 1826,
+   "to": 1828
+  }
+ ],
+ "2nd Italo-Ethiopian War": "second-italo-ethiopian-war-1935",
+ "Russo-Chinese War": "boxer-rebellion",
+ "Cossack-Polish Wars": [
+  {
+   "id": "khmelnytsky-uprising-1648",
+   "from": 1648,
+   "to": 1657
+  },
+  {
+   "id": "cossack-uprisings",
+   "from": 1591,
+   "to": 1638
+  }
+ ],
+ "Cossack Polish Wars": [
+  {
+   "id": "khmelnytsky-uprising-1648",
+   "from": 1648,
+   "to": 1657
+  },
+  {
+   "id": "cossack-uprisings",
+   "from": 1591,
+   "to": 1638
+  }
+ ],
+ "Later Turkish-Habsburg Wars": [
+  {
+   "id": "austro-turkish-war-1663",
+   "from": 1663,
+   "to": 1664
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1683,
+   "to": 1699
+  }
+ ],
+ "Later Turkish Habsburg Wars": [
+  {
+   "id": "austro-turkish-war-1663",
+   "from": 1663,
+   "to": 1664
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1683,
+   "to": 1699
+  }
+ ],
+ "Austro-Turkish War": [
+  {
+   "id": "austro-turkish-war-1716",
+   "from": 1716,
+   "to": 1718
+  },
+  {
+   "id": "austro-russian-turkish-war-1735",
+   "from": 1735,
+   "to": 1739
+  },
+  {
+   "id": "austro-turkish-war-1788",
+   "from": 1788,
+   "to": 1791
+  },
+  {
+   "id": "austro-hungarian-occupation-of-bosnia",
+   "from": 1878,
+   "to": 1878
+  }
+ ],
+ "Turkish-Habsburg Wars": [
+  {
+   "id": "ottoman-hafsburg-long-war",
+   "from": 1593,
+   "to": 1606
+  },
+  {
+   "id": "austro-turkish-war-1663",
+   "from": 1663,
+   "to": 1664
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1683,
+   "to": 1699
+  },
+  {
+   "id": "ottoman-austro-hungarian-wars"
+  }
+ ],
+ "Turkish-Habsburg War": "ottoman-austro-hungarian-wars",
+ "Turkish Habsburg Wars": [
+  {
+   "id": "ottoman-hafsburg-long-war",
+   "from": 1593,
+   "to": 1606
+  },
+  {
+   "id": "austro-turkish-war-1663",
+   "from": 1663,
+   "to": 1664
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1683,
+   "to": 1699
+  },
+  {
+   "id": "ottoman-austro-hungarian-wars"
+  }
+ ],
+ "Norman Conquest of Southern Italy": "norman-sicily-wars",
+ "Norman Conquest of Britain": "norman-conquest-england",
+ "Wars of the Three Kingdoms": "three-kingdoms-war-184",
+ "Turkish Invasion of the Ukraine": [
+  {
+   "id": "polish-ottoman-war-1672",
+   "from": 1672,
+   "to": 1676
+  },
+  {
+   "id": "russo-turkish-wars-early",
+   "from": 1677,
+   "to": 1681
+  }
+ ],
+ "Bengal War": "bengal-regional-wars",
+ "Rome's Later Gallic Wars": [
+  {
+   "id": "gallic-wars-caesar",
+   "from": -58,
+   "to": -50
+  },
+  {
+   "id": "roman-gallic-wars"
+  }
+ ],
+ "Roman-Vandal Wars": [
+  {
+   "id": "vandal-conquest-of-north-africa",
+   "from": 429,
+   "to": 439
+  },
+  {
+   "id": "roman-vandal-wars-455",
+   "from": 455,
+   "to": 468
+  }
+ ],
+ "Mongol Wars of Kublai Khan": [
+  {
+   "id": "first-mongol-invasion-of-ai-viet",
+   "from": 1257,
+   "to": 1258
+  },
+  {
+   "id": "mongol-conquest-song",
+   "from": 1259,
+   "to": 1279,
+   "bbox": [
+    100,
+    18,
+    125,
+    40
+   ]
+  },
+  {
+   "id": "third-mongol-invasion-of-ai-viet",
+   "from": 1287,
+   "to": 1288,
+   "bbox": [
+    102,
+    8,
+    110,
+    24
+   ]
+  },
+  {
+   "id": "mongol-invasion-of-java",
+   "from": 1293,
+   "to": 1293
+  },
+  {
+   "id": "mongol-conquests"
+  }
+ ],
+ "Mongol Conquest of Russia": "tatar-invasions-of-eastern-europe",
+ "Hun Invasion of the Roman Empire": [
+  {
+   "id": "attila-balkan-campaigns",
+   "from": 441,
+   "to": 447
+  },
+  {
+   "id": "attila-gaul-invasion",
+   "from": 451,
+   "to": 451
+  },
+  {
+   "id": "attila-italy-invasion",
+   "from": 452,
+   "to": 452
+  }
+ ],
+ "9th French War of Religion": "french-wars-of-religion",
+ "3rd French War of Religion": "french-wars-of-religion",
+ "1st French War of Religion": "french-wars-of-religion",
+ "8th French War of Religion": "french-wars-of-religion",
+ "French War": [
+  {
+   "id": "italian-war-of-1542",
+   "from": 1542,
+   "to": 1546
+  },
+  {
+   "id": "french-wars-of-religion",
+   "from": 1562,
+   "to": 1598
+  }
+ ],
+ "Burmese Dynastic Wars": [
+  {
+   "id": "toungoo-expansion",
+   "from": 1510,
+   "to": 1590
+  }
+ ],
+ "1st British Afghan War": "first-anglo-afghan-war",
+ "American-Moro Wars": "moro-rebellion-1899",
+ "American Moro Wars": "moro-rebellion-1899",
+ "Habsburg-Swiss Wars": [
+  {
+   "id": "swiss-independence-wars",
+   "from": 1291,
+   "to": 1386
+  },
+  {
+   "id": "appenzell-wars",
+   "from": 1401,
+   "to": 1429
+  }
+ ],
+ "2nd Opium War": "opium-war-second",
+ "1st Opium War": "first-opium-war",
+ "Byzantine-Pecheneg Wars": "petchenegs-byzantium",
+ "Byzantine-Turkish Wars": "seljuk-byzantium-wars",
+ "Byzantine Wars of Tsar Samuel": "bulgarian-independent-state-wars",
+ "Rise of the Ming Dynasty": "red-turban-rebellion",
+ "Ming Imperial Wars": [
+  {
+   "id": "tumu-crisis",
+   "from": 1449,
+   "to": 1449
+  },
+  {
+   "id": "ming-chinese-wars"
+  }
+ ],
+ "Chinese-Mongol Wars": "dzungar-qing-wars",
+ "Chu-Han War": "chu-han-contention",
+ "Sino-Korean Wars": [
+  {
+   "id": "goguryeo-sui-wars",
+   "from": 598,
+   "to": 614
+  },
+  {
+   "id": "goguryeo-tang-wars",
+   "from": 645,
+   "to": 668
+  }
+ ],
+ "Sino-Burmese War": "sino-burmese-war-1765-1769",
+ "Wars of Sosso": "malisosso-wars",
+ "Fall of Ghana": "ghana-empire-conflicts",
+ "Wars of the Songhai Empire": "songhai-expansion",
+ "Persian-Mughal Wars": "mughal-safavid-wars",
+ "Spanish Civil War in Peru": "peruvian-conquistador-civil-wars",
+ "Peruvian War": [
+  {
+   "id": "peruvian-independence-upper-peru",
+   "from": 1809,
+   "to": 1820
+  },
+  {
+   "id": "peruvian-independence-war",
+   "from": 1821,
+   "to": 1826
+  }
+ ],
+ "Peruvian-Spanish War": "chincha-islands-war",
+ "Bolivian-Peruvian War": "americas-war-confederation-1836",
+ "Chilean War of the Confederation": "americas-war-confederation-1836",
+ "Chilean Civil War": "chilean-civil-war-of-1891",
+ "Argentine-Brazilian War": "americas-cisplatine-war-1825",
+ "Argentine-Uruguayan War": "uruguayan-civil-war",
+ "Venezuelan War": "venezuelan-war-of-independence",
+ "Venezuelan Federalist Revolt": "federal-war-venezuela",
+ "Santo Domingo Rising": "haitian-revolution",
+ "Brazilian War of Independence": "brazilian-independence-war",
+ "Tupac Amaru Rebellion": "americas-tupac-amaru-ii-rebellion-1780",
+ "Mexico-Yaqui War": "yaqui-wars",
+ "Spanish Conquest of Yucatan": "americas-spanish-conquest-yucatan-1527",
+ "Spanish Conquest of Chile": "araucanian-war-mapuche-resistance",
+ "Aztec Wars of Conquest": "aztec-expansion",
+ "Spanish-Portuguese War": "spanish-invasion-portugal",
+ "Spanish-Portuguese Wars": "portuguese-independence-war",
+ "Spanish- Portuguese Wars": "portuguese-independence-war",
+ "Spanish-Moroccan War": "hispano-moroccan-war",
+ "Spanish Rif War": "rif-war-1920",
+ "Spanish-Algerian Wars": [
+  {
+   "id": "spanish-algerian-war-1775",
+   "from": 1775,
+   "to": 1785
+  }
+ ],
+ "Spanish Colonial Wars in North Africa": "spanish-expansion-north-africa",
+ "Tripolitan War": "first-barbary-war",
+ "Franco-American Quasi-War": "quasi-war-france",
+ "Danish Wars of Expansion": "teutonic-crusades",
+ "Early Wars of the Teutonic Knights": "teutonic-crusades",
+ "Wars of the Teutonic Knights": "teutonic-crusades",
+ "Later Wars of the Teutonic Knights": "teutonic-crusades",
+ "2nd Schleswig-Holstein War": "schleswig-holstein-war",
+ "Papal-Imperial Wars": "guelph-ghibelline-wars",
+ "Wars of the Lombard League": "guelph-ghibelline-wars",
+ "Italian War of Louis XII": "spanish-french-wars",
+ "Italian War of Charles VIII": "italian-wars-start",
+ "1st Habsburg-Valois War": "french-italian-wars",
+ "2nd Habsburg-Valois War": "french-italian-wars",
+ "4th Habsburg-Valois War": "french-italian-wars",
+ "5th Habsburg-Valois War": "french-italian-wars",
+ "Habsburg-Valois War": "french-italian-wars",
+ "French-Aragonese War": "aragonese-crusade",
+ "Jacobite Rebellion (the 45)": "jacobite-risings",
+ "Jacobite Rebellion": "jacobite-risings",
+ "Jacobite Rebellion (the 15)": "jacobite-risings",
+ "First Jacobite Rebellion": "jacobite-risings",
+ "War of the Glorious Revolution": [
+  {
+   "id": "williamite-war-in-ireland",
+   "from": 1689,
+   "to": 1691,
+   "bbox": [
+    -11,
+    51,
+    -5.3,
+    55.5
+   ]
+  },
+  {
+   "id": "jacobite-risings"
+  }
+ ],
+ "y War of the Glorious Revolution": [
+  {
+   "id": "williamite-war-in-ireland",
+   "from": 1689,
+   "to": 1691,
+   "bbox": [
+    -11,
+    51,
+    -5.3,
+    55.5
+   ]
+  },
+  {
+   "id": "jacobite-risings"
+  }
+ ],
+ "English Period of Anarchy": "anarchy-stephen",
+ "Wars of Charlemagne": "charlemagne-frankish-wars",
+ "Star Wars": "tikal-calakmul-rivalry",
+ "Anglo-Irish War": "irish-independence-war",
+ "Russo-Finnish War": "winter-war",
+ "Russian Civil Wars": "russian-civil-war",
+ "1st Polish-Swedish War": "swedish-polish-war",
+ "2nd Polish-Swedish War": "swedish-polish-war",
+ "2nd Polish Swedish War": "swedish-polish-war",
+ "Muscovite Wars of Expansion": "muscovite-novgorod-wars",
+ "Ottoman Conquest of the Balkans": "ottoman-conquest-balkans",
+ "Albanian-Turkish Wars": "albania-skanderbeg",
+ "Albanian Turkish Wars": "albania-skanderbeg",
+ "Mamluk Wars": "mamluk-ottoman-war-1768-74",
+ "Mamluk-Ottoman Wars": [
+  {
+   "id": "mamluk-ottoman-war-1768-74",
+   "from": 1768,
+   "to": 1774
+  }
+ ],
+ "Arabi's Egyptian Rebellion": "urabi-revolt",
+ "Arab-Israeli Six Day War": "six-day-war",
+ "Arab Israeli Six Day War": "six-day-war",
+ "Arab-Israeli Yom Kippur War": "yom-kippur-war",
+ "Arab Israeli Yom Kippur War": "yom-kippur-war",
+ "Arab-Israeli Sinai War": "suez-crisis",
+ "Lebanon Civil War": "lebanese-civil-war",
+ "Libyan-Chad War": "chadian-libyan-war",
+ "Dhofar War": "dhofar-rebellion",
+ "Yemeni Civil Wars": [
+  {
+   "id": "yemeni-civil-war-1994",
+   "from": 1994,
+   "to": 1994
+  }
+ ],
+ "Sudanese-Ethiopian War": "mahdist-war-in-ethiopia",
+ "Zulu Rebellion": "anglo-zulu-civil-war-usuthu-vs-mandlakazi",
+ "Matabele War": "first-matabele-war",
+ "British Conquest of Northern Nigeria": "anglo-sokoto-war",
+ "1st British-Ashanti War": "anglo-asante-war-1823",
+ "2nd British Ashanti War": "sagrenti-war-third-anglo-ashanti-war",
+ "Great Frontier Rising": "tirah-campaign",
+ "British Invasion of Tibet": "british-expedition-to-tibet",
+ "Vijayanagar-Bahmani Wars": "bahmani-vijayanagara-wars",
+ "Xinjiang Rebellion": "dungan-revolt",
+ "Taiping War": "taiping-rebellion",
+ "Ashikaga Rebellion": "nanboku-cho-war",
+ "War of the Meiji Restoration": [
+  {
+   "id": "boshin-war",
+   "from": 1868,
+   "to": 1869
+  }
+ ],
+ "Burmese-Siamese War": "burmese-siamese-wars",
+ "Vietnamese Civil War": "tay-son-wars",
+ "Dutch Conquest of Bali": "dutch-intervention-in-lombok-and-karangasem",
+ "Early Dutch Wars in the East Indies": "dutch-expansion-asia",
+ "Dutch Wars in the East Indies": "dutch-expansion-asia",
+ "Later Dutch Wars in the East Indies": "dutch-expansion-asia",
+ "Dutch-Spanish Colonial Wars": "dutch-spanish-wars",
+ "Brunei Rebellion": "brunei-revolt",
+ "Indonesian Civil Wars": "prri-rebellion",
+ "Guinea-Bissau War": "guinea-bissau-independence-war",
+ "Eritrean War": "eritrean-war-independence-1961",
+ "Tanzanian-Ugandan War": "tanzaniauganda-war",
+ "Croatian War": "croatian-war-independence",
+ "Algerian War": "algerian-war-of-independence",
+ "1st Gulf War": "gulf-war",
+ "2nd Gulf War": "iraq-war",
+ "Belgian War": "belgian-independence-war",
+ "Greek War": "greek-independence-war",
+ "2nd Greco-Turkish War": "greco-turkish-war",
+ "Mughal-Ahmadnagar Wars": "mughal-conquest-deccan",
+ "Portuguese Colonial Wars in Africa": [
+  {
+   "id": "portuguese-conquest-of-angola",
+   "from": 1575,
+   "to": 1671,
+   "bbox": [
+    8,
+    -18,
+    25,
+    -4
+   ]
+  },
+  {
+   "id": "portuguese-swahili-conflicts",
+   "from": 1505,
+   "to": 1700,
+   "bbox": [
+    30,
+    -27,
+    52,
+    5
+   ]
+  },
+  {
+   "id": "portuguese-expansion-africa",
+   "from": 1500,
+   "to": 1600
+  }
+ ],
+ "Portuguese Colonial Wars in East Africa": [
+  {
+   "id": "portuguese-swahili-conflicts",
+   "from": 1505,
+   "to": 1700
+  }
+ ],
+ "Portuguese Colonial Wars in West Africa": [
+  {
+   "id": "portuguese-conquest-of-angola",
+   "from": 1575,
+   "to": 1671,
+   "bbox": [
+    8,
+    -18,
+    25,
+    -4
+   ]
+  },
+  {
+   "id": "portuguese-expansion-africa"
+  }
+ ],
+ "French Conquest of Indo-China": "french-conquest-indochina",
+ "French Conquest of Madagascar": [
+  {
+   "id": "first-franco-hova-war",
+   "from": 1883,
+   "to": 1885
+  },
+  {
+   "id": "second-franco-hova-war",
+   "from": 1894,
+   "to": 1895
+  }
+ ],
+ "Anglo-French Wars": [
+  {
+   "id": "angevin-french-wars",
+   "from": 1202,
+   "to": 1259
+  }
+ ],
+ "Later Tang Imperial Wars": [
+  {
+   "id": "tibetan-capture-of-chang-an",
+   "from": 763,
+   "to": 763
+  },
+  {
+   "id": "jiedushi-rebellions",
+   "from": 755,
+   "to": 880
+  }
+ ],
+ "Tang Imperial Wars": [
+  {
+   "id": "tang-campaign-against-the-eastern-turks",
+   "from": 629,
+   "to": 630
+  },
+  {
+   "id": "tuyuhun-conflicts",
+   "from": 600,
+   "to": 670
+  },
+  {
+   "id": "tang-tibetan-conflicts",
+   "from": 650,
+   "to": 790,
+   "bbox": [
+    73,
+    25,
+    110,
+    45
+   ]
+  },
+  {
+   "id": "tang-military-campaigns"
+  }
+ ],
+ "Mexican Civil Wars": [
+  {
+   "id": "central-american-wars-19th",
+   "from": 1823,
+   "to": 1907,
+   "bbox": [
+    -93,
+    7,
+    -82,
+    18
+   ]
+  },
+  {
+   "id": "mexican-civil-wars-1823"
+  }
+ ],
+ "Balkan War": "balkan-wars",
+ "Spanish conquest of the Inca Empire": "spanish-conquest-inca-empire",
+ "Later Roman Parthian Wars": "parthian-wars-rome",
+ "Persian-Lydian War": "cyrus-lydian-conquest",
+ "Truceless War": "mercenary-war",
+ "Roman Social War": "social-war-rome",
+ "Sullan Civil War": "sulla-marian-civil-war",
+ "2nd Macedonian War": "macedonian-wars-rome",
+ "Roman-Alemmanic Wars": "crisis-of-the-third-century",
+ "Roman-Palmyrean War": "crisis-of-the-third-century",
+ "Samnite War": [
+  {
+   "id": "second-samnite-war",
+   "from": -326,
+   "to": -304
+  },
+  {
+   "id": "third-samnite-war",
+   "from": -298,
+   "to": -290
+  }
+ ],
+ "Rome's Germanic Wars": "early-imperial-germanic-wars",
+ "Serbian Imperial Wars": "serbian-empire-wars",
+ "Byzantine-Bulgarian Wars": "bulgarian-independent-state-wars",
+ "Persian Wars of Succession": "persian-succession-wars-1747",
+ "Later Afghan War of Succession": "afghan-war-of-succession-1863",
+ "Franco-Spanish War": [
+  {
+   "id": "spanish-french-wars",
+   "from": 1494,
+   "to": 1559
+  },
+  {
+   "id": "franco-spanish-war-1635",
+   "from": 1635,
+   "to": 1659
+  },
+  {
+   "id": "war-of-the-reunions",
+   "from": 1683,
+   "to": 1684
+  },
+  {
+   "id": "french-invasion-of-spain-1823",
+   "from": 1823,
+   "to": 1823
+  }
+ ],
+ "Roman Military Civil Wars": [
+  {
+   "id": "crisis-of-the-third-century",
+   "from": 235,
+   "to": 285
+  },
+  {
+   "id": "carausian-revolt",
+   "from": 286,
+   "to": 296
+  }
+ ],
+ "Later Roman Wars of Succession": [
+  {
+   "id": "fall-of-the-western-roman-empire",
+   "from": 395,
+   "to": 480
+  }
+ ],
+ "Turkish Imperial Wars": [
+  {
+   "id": "ottoman-invasion-of-otranto",
+   "from": 1480,
+   "to": 1481,
+   "bbox": [
+    15,
+    38,
+    20,
+    42
+   ]
+  }
+ ],
+ "Muslim Civil Wars": [
+  {
+   "id": "ridda-wars",
+   "from": 632,
+   "to": 633
+  },
+  {
+   "id": "first-fitna",
+   "from": 656,
+   "to": 661
+  },
+  {
+   "id": "second-fitna",
+   "from": 680,
+   "to": 692
+  },
+  {
+   "id": "berber-revolt",
+   "from": 740,
+   "to": 743,
+   "bbox": [
+    -10,
+    25,
+    12,
+    44
+   ]
+  },
+  {
+   "id": "third-fitna",
+   "from": 744,
+   "to": 750
+  },
+  {
+   "id": "early-islamic-civil-wars"
+  }
+ ],
+ "Central American National Wars": [
+  {
+   "id": "filibuster-war",
+   "from": 1855,
+   "to": 1857
+  },
+  {
+   "id": "central-american-wars-19th"
+  }
+ ],
+ "Wars of the Delian League": "persian-wars-greece",
+ "Mughal Conquest of the Deccan Sultanates": "maratha-mughal-wars",
+ "War of the 2nd Polish Partition": [
+  {
+   "id": "polish-russian-war-of-1792",
+   "from": 1792,
+   "to": 1792
+  },
+  {
+   "id": "kosciuszko-uprising",
+   "from": 1794,
+   "to": 1794
+  }
+ ],
+ "American Indian Wars": [
+  {
+   "id": "american-indian-wars-long-term",
+   "from": 1600,
+   "to": 1890
+  },
+  {
+   "id": "american-frontier-wars"
+  }
+ ],
+ "Gothic War in Italy": "italo-byzantine-wars",
+ "2nd English Baron's War": "barons-war-second",
+ "1st English Baron's War": "barons-war-first",
+ "English Barons War": [
+  {
+   "id": "barons-war-first",
+   "from": 1215,
+   "to": 1217
+  },
+  {
+   "id": "barons-war-second",
+   "from": 1264,
+   "to": 1267
+  }
+ ],
+ "English Baron's War": [
+  {
+   "id": "barons-war-first",
+   "from": 1215,
+   "to": 1217
+  },
+  {
+   "id": "barons-war-second",
+   "from": 1264,
+   "to": 1267
+  }
+ ],
+ "French Revolutionary Wars (1st Coalition)": [
+  {
+   "id": "war-of-the-first-coalition",
+   "from": 1792,
+   "to": 1797
+  },
+  {
+   "id": "war-of-the-second-coalition",
+   "from": 1798,
+   "to": 1802
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "French Revolutionary War (1st Coalition)": [
+  {
+   "id": "war-of-the-first-coalition",
+   "from": 1792,
+   "to": 1797
+  },
+  {
+   "id": "war-of-the-second-coalition",
+   "from": 1798,
+   "to": 1802
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "French Revolutionary Wars 1st Coalition": [
+  {
+   "id": "war-of-the-first-coalition",
+   "from": 1792,
+   "to": 1797
+  },
+  {
+   "id": "war-of-the-second-coalition",
+   "from": 1798,
+   "to": 1802
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "French Revolutionary Wars (1st Coaliton)": [
+  {
+   "id": "war-of-the-first-coalition",
+   "from": 1792,
+   "to": 1797
+  },
+  {
+   "id": "war-of-the-second-coalition",
+   "from": 1798,
+   "to": 1802
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "French Revolutionary Wars (2nd Coalition)": [
+  {
+   "id": "war-of-the-second-coalition",
+   "from": 1798,
+   "to": 1802
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "French Revolutionary War (2nd Coalition)": [
+  {
+   "id": "war-of-the-second-coalition",
+   "from": 1798,
+   "to": 1802
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "y War of the Spanish": "war-spanish-succession",
+ "Berber Rebellion": [
+  {
+   "id": "berber-revolt",
+   "from": 740,
+   "to": 743
+  }
+ ],
+ "3rd Crusade": [
+  {
+   "id": "third-crusade",
+   "from": 1189,
+   "to": 1192
+  },
+  {
+   "id": "saladin-s-campaigns",
+   "from": 1175,
+   "to": 1188
+  }
+ ],
+ "Pathan War": "maratha-wars",
+ "Swiss Religious Wars": [
+  {
+   "id": "wars-of-kappel",
+   "from": 1529,
+   "to": 1531
+  }
+ ],
+ "Huntly Rebellion": [
+  {
+   "id": "marian-civil-war",
+   "from": 1567,
+   "to": 1573
+  }
+ ],
+ "Chickasaw-French War": "americas-chickasaw-wars-1721",
+ "Gutierrez-Magee Expedition": "mexican-independence-war",
+ "Mughal-Hyderabad War": "mughal-wars-of-succession",
+ "Portuguese-Maratha War": "maratha-wars",
+ "Chinese Conquest of Taiwan": [
+  {
+   "id": "koxinga-resistance",
+   "from": 1645,
+   "to": 1662
+  }
+ ],
+ "Prussian War": "franco-prussian-war",
+ "Pit River Indian War": "american-indian-wars-long-term",
+ "Later Wars of Wessex": "anglo-saxon-heptarchy-wars",
+ "Spanish Comanche War": "comanche-wars",
+ "King Phillip's War": "king-philips-war",
+ "Thirty Years War (Palatinate War)": "thirty-years-war",
+ "4th Crusade": [
+  {
+   "id": "fourth-crusade",
+   "from": 1202,
+   "to": 1204
+  },
+  {
+   "id": "crusader-states-wars"
+  }
+ ],
+ "Rise of Russia": "teutonic-crusades",
+ "Moldavian-Turkish War": "ottoman-conquest-moldova",
+ "Guo Songling's Revolt": "warlord-era",
+ "Transylvanian-Polish War": "second-northern-war",
+ "Numantian War": "numantine-war",
+ "Napoleonic Wars (Hundred Days)": "hundred-days",
+ "Napoleonic Wars (the Hundred Days)": "hundred-days",
+ "Napoleonic Wars (Santo Domingo Campaign)": "haitian-revolution",
+ "Napoleonic Wars (Spanish campaign)": "peninsular-war",
+ "Napoleonic Wars (Peninsula Campaigns)": "peninsular-war",
+ "Napoleonic Wars (Peninsula Wars)": "peninsular-war",
+ "French Revolutionary Wars (5th Coalition)": "war-of-the-fifth-coalition",
+ "French Revolutionary Wars (Peninsula Campaign)": "war-of-the-first-coalition",
+ "French Revolutionary War (Vendee)": "war-in-the-vendee",
+ "French Revolutionary Wars (Vendee": "war-in-the-vendee",
+ "French Revolutionary Wars (Vendee Revolt)": "war-in-the-vendee",
+ "Vendee War": "war-in-the-vendee",
+ "French Revolutionary War (Irish Rising)": [
+  {
+   "id": "irish-rebellion-of-1798",
+   "from": 1798,
+   "to": 1798
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "French Revolutionary Wars (Irish Rebels)": [
+  {
+   "id": "irish-rebellion-of-1798",
+   "from": 1798,
+   "to": 1798
+  },
+  {
+   "id": "french-revolution-wars"
+  }
+ ],
+ "(War of Liberation": "war-sixth-coalition",
+ "Franco-Prussian W": "franco-prussian-war",
+ "Seven Week's War": "austro-prussian-war",
+ "Mau Mau Rebellion": "mau-mau-uprising",
+ "Mau Mau Revolt": "mau-mau-uprising",
+ "Sinai War": "suez-crisis",
+ "Israeli War": "arab-israeli-war-1948",
+ "Arab-Israeli Border Wars": "war-of-attrition",
+ "Kronstadt Rebellion": "russian-civil-war",
+ "Boudican revolt": "roman-conquest-of-britain",
+ "Bar-Cocheba's Revolt": "bar-kokhba-revolt",
+ "Jewish Rising against Rome": "judean-war-first",
+ "3rd Macedonian War": "macedonian-wars-rome",
+ "Gallic Invasion of Italy": "roman-gallic-wars",
+ "Roman-Pontian Wars": "roman-civil-war-first",
+ "Roman Pontian Wars": "roman-civil-war-first",
+ "Roman Syrian War": "roman-seleucid-war",
+ "Rome's Gallic War": [
+  {
+   "id": "gallic-wars-caesar",
+   "from": -58,
+   "to": -50
+  },
+  {
+   "id": "roman-gallic-wars"
+  }
+ ],
+ "Rome's Later Gallic War": [
+  {
+   "id": "gallic-wars-caesar",
+   "from": -58,
+   "to": -50
+  },
+  {
+   "id": "roman-gallic-wars"
+  }
+ ],
+ "Romes Later Gallic Wars": [
+  {
+   "id": "gallic-wars-caesar",
+   "from": -58,
+   "to": -50
+  },
+  {
+   "id": "roman-gallic-wars"
+  }
+ ],
+ "Roman Civil Wars": "crisis-of-the-third-century",
+ "Roman Alemannic Wars": "crisis-of-the-third-century",
+ "Roman-Palmyran War": "crisis-of-the-third-century",
+ "2nd Gothic War": "crisis-of-the-third-century",
+ "3rd Gothic War": "crisis-of-the-third-century",
+ "Roman Wars of Succesion": "civil-wars-of-the-tetrarchy",
+ "Later Persian-Roman Wars": "roman-sasanian-wars",
+ "Early Byzantine-Persian Wars": "roman-sasanian-wars",
+ "Byzantine Persian War": "byzantine-sasanian-wars",
+ "Byzantine Persian Wars": "byzantine-sasanian-wars",
+ "Byzantine- Persian Wars": "byzantine-sasanian-wars",
+ "Alemannic Invasion of Italy": "roman-alemannic-wars",
+ "Alemmanic Invasion of Gaul": "roman-alemannic-wars",
+ "Alemmanic Invasion of Roman Gaul": "roman-alemannic-wars",
+ "German Invasion of Italy": "marcus-aurelius-marcomannic-war-first",
+ "Goth invasion of Italy": "ostrogothic-conquest-of-italy",
+ "Roman Vandal Wars": [
+  {
+   "id": "vandal-conquest-of-north-africa",
+   "from": 429,
+   "to": 439
+  },
+  {
+   "id": "roman-vandal-wars-455",
+   "from": 455,
+   "to": 468
+  }
+ ],
+ "Rome, Sarus the Goth, Uldin the Hun": "barbarian-invasions-rome",
+ "Burgundian Frankish War": "frankish-burgundian-wars",
+ "Anglo Saxon Territorial War": "anglo-saxon-heptarchy-wars",
+ "Anglo-Saxon Conquest of England": "anglo-saxon-settlement-of-britain",
+ "Viking Invasions of Britain": "viking-invasions-england",
+ "Viking Wars": "viking-invasions-england",
+ "the Viking War": "viking-invasions-england",
+ "Later Viking Wars in Britain": "viking-invasions-england",
+ "Zandj Slave Rebellion": "zanj-rebellion-iraq",
+ "Byzantine-Bulgar wars": "bulgarian-independent-state-wars",
+ "Later Byzantine-Bulgarian Wars": "bulgarian-independent-state-wars",
+ "Byzantine-Sicillian Wars": "byzantine-norman-wars",
+ "1st Byzantine-Sicilian War": "byzantine-norman-wars",
+ "2nd Byzantine- Sicilian War": "byzantine-norman-wars",
+ "2nd Byzantine-Sicilian War": "byzantine-norman-wars",
+ "2nd Byzantine-Norman War": "byzantine-norman-wars",
+ "Byzantine- Turkish Wars": "seljuk-byzantium-wars",
+ "Byzantine-Turkish War": "seljuk-byzantium-wars",
+ "1st Latin Byzantine Imperial War": "nicaean-latin-wars",
+ "3rd Latin Byzantine War": "nicaean-latin-wars",
+ "Crusader Wars of Conquest": "crusader-states-wars",
+ "Crusader- Muslim Wars": "crusader-states-wars",
+ "Crusader-Muslim War": "crusader-states-wars",
+ "Later Crusader Muslim Wars": "crusader-states-wars",
+ "Guelf-Ghibbeline Wars": "guelph-ghibelline-wars",
+ "Guelf-Ghibeline Wars": "guelph-ghibelline-wars",
+ "Guelf-Ghibelline Wars": "guelph-ghibelline-wars",
+ "Burgundian-Swiss War": [
+  {
+   "id": "burgundian-wars",
+   "from": 1474,
+   "to": 1477
+  }
+ ],
+ "Burgundian-Swiss Wars": [
+  {
+   "id": "burgundian-wars",
+   "from": 1474,
+   "to": 1477
+  }
+ ],
+ "Burgundian Swiss Wars": [
+  {
+   "id": "burgundian-wars",
+   "from": 1474,
+   "to": 1477
+  }
+ ],
+ "Franco-Austrian War": "burgundian-state-wars",
+ "Franco- Burgundian Wars": "burgundian-state-wars",
+ "Trannsylvanian-Turkish Wars": "ottoman-hungarian-wars-1366",
+ "Turkish-Hungarian War": "ottoman-hungarian-wars-1366",
+ "Later Turkish-Hungarian Wars": "great-turkish-war",
+ "Later Turkish-Habsburg War": "ottoman-hafsburg-long-war",
+ "Venetian- Turkish Wars": [
+  {
+   "id": "ottoman-venetian-wars",
+   "from": 1416,
+   "to": 1479
+  },
+  {
+   "id": "ottoman-venetian-war-1499",
+   "from": 1499,
+   "to": 1503
+  },
+  {
+   "id": "ottoman-venetian-war-1537",
+   "from": 1537,
+   "to": 1540
+  },
+  {
+   "id": "ottoman-venetian-war-1570",
+   "from": 1570,
+   "to": 1573
+  },
+  {
+   "id": "ottoman-venetian-war-crete",
+   "from": 1645,
+   "to": 1669
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1684,
+   "to": 1699
+  },
+  {
+   "id": "austro-turkish-war-1716",
+   "from": 1714,
+   "to": 1718
+  }
+ ],
+ "Later Venetian Turkish Wars": [
+  {
+   "id": "ottoman-venetian-wars",
+   "from": 1416,
+   "to": 1479
+  },
+  {
+   "id": "ottoman-venetian-war-1499",
+   "from": 1499,
+   "to": 1503
+  },
+  {
+   "id": "ottoman-venetian-war-1537",
+   "from": 1537,
+   "to": 1540
+  },
+  {
+   "id": "ottoman-venetian-war-1570",
+   "from": 1570,
+   "to": 1573
+  },
+  {
+   "id": "ottoman-venetian-war-crete",
+   "from": 1645,
+   "to": 1669
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1684,
+   "to": 1699
+  },
+  {
+   "id": "austro-turkish-war-1716",
+   "from": 1714,
+   "to": 1718
+  }
+ ],
+ "Later Venetian-Turkish War": [
+  {
+   "id": "ottoman-venetian-wars",
+   "from": 1416,
+   "to": 1479
+  },
+  {
+   "id": "ottoman-venetian-war-1499",
+   "from": 1499,
+   "to": 1503
+  },
+  {
+   "id": "ottoman-venetian-war-1537",
+   "from": 1537,
+   "to": 1540
+  },
+  {
+   "id": "ottoman-venetian-war-1570",
+   "from": 1570,
+   "to": 1573
+  },
+  {
+   "id": "ottoman-venetian-war-crete",
+   "from": 1645,
+   "to": 1669
+  },
+  {
+   "id": "great-turkish-war",
+   "from": 1684,
+   "to": 1699
+  },
+  {
+   "id": "austro-turkish-war-1716",
+   "from": 1714,
+   "to": 1718
+  }
+ ],
+ "Albanian-Turkish War": "albania-skanderbeg",
+ "Russian Invasion of the Caspian": "russo-persian-wars-1722",
+ "Northern War": "great-northern-war",
+ "2nd Russo-Swedish Wars": "russo-swedish-war-1788",
+ "Swedish War": "thirty-years-war",
+ "Cossack-Polish War": "khmelnytsky-uprising-1648",
+ "Cossak Polish Wars": "khmelnytsky-uprising-1648",
+ "Turkish Invasion of Ukraine": "russo-turkish-wars-early",
+ "Bulavin's Report": "bulavin-rebellion",
+ "Persian Reconquest of Khorasan": "safavid-uzbek-wars",
+ "Persian Invasion of India": "nader-shah-invasion-india-1738",
+ "Persian-Afghan War": "hotaki-safavid-wars",
+ "Persian War of Succession": "persian-succession-wars-1747",
+ "Turko-Persian Gulf War": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turko-Persian War in Azerbaijan": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turkish-Persian Wars": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turko-Persian War": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Turco-Persian Wars of Nadir Shah": [
+  {
+   "id": "ottoman-safavid-wars-1532",
+   "from": 1532,
+   "to": 1555
+  },
+  {
+   "id": "ottoman-safavid-wars-1578",
+   "from": 1578,
+   "to": 1590
+  },
+  {
+   "id": "ottoman-safavid-wars-1603",
+   "from": 1603,
+   "to": 1618
+  },
+  {
+   "id": "ottoman-safavid-wars-1623",
+   "from": 1623,
+   "to": 1639
+  },
+  {
+   "id": "ottoman-safavid-wars-1730",
+   "from": 1730,
+   "to": 1735
+  },
+  {
+   "id": "ottoman-safavid-wars-1743",
+   "from": 1743,
+   "to": 1746
+  },
+  {
+   "id": "ottoman-persian-wars"
+  }
+ ],
+ "Afghan Reformist War": "afghan-civil-war-1928",
+ "Later Mughal-Maratha War": "maratha-wars",
+ "Maratha Civil War": "maratha-wars",
+ "Mughal War of Succession": "mughal-wars-of-succession",
+ "Mughal-Hyderabad Wars": "mughal-wars-of-succession",
+ "Mughal Dynastic War": "mughal-uzbek-wars",
+ "Mughal-Uzbek War": "mughal-uzbek-wars",
+ "Mughal-Ahmadagar Wars": "mughal-conquest-deccan",
+ "Mughal-Ahmadnagar War": "mughal-conquest-deccan",
+ "Mughal-Ahmadnaggar Wars": "mughal-conquest-deccan",
+ "Mughal-Ahom War": "ahom-mughal-conflicts",
+ "Mughal-Sikh War": "mughal-sikh-wars",
+ "Later Muslim Conquest of Northern India": "muslim-conquests-india-start",
+ "Delhi Sultanate-Bengal War": "delhi-sultanate-wars",
+ "Vijayanagar- Bahmani Wars": "bahmani-vijayanagara-wars",
+ "Vijayanagar-Bahmani War": "bahmani-vijayanagara-wars",
+ "War of the Deccan Sultanate": "bahmani-vijayanagara-wars",
+ "War of the Deccan Sultanates": "bahmani-vijayanagara-wars",
+ "1st British-Mysore War": [
+  {
+   "id": "anglo-mysore-war-1767",
+   "from": 1767,
+   "to": 1769
+  },
+  {
+   "id": "anglo-mysore-war-1780",
+   "from": 1780,
+   "to": 1784
+  }
+ ],
+ "British Conquest of Nigeria": "anglo-sokoto-conquest-of-bida",
+ "British Conquest of Sind": "conquest-of-sindh",
+ "British Expedition to Ethiopia": "british-expedition-to-abyssinia",
+ "British-Bhutanese Wars": "duar-war",
+ "British Sudan Wars": "mahdist-war",
+ "British-Sudan War": "mahdist-war",
+ "British-Sudanese War": "mahdist-war",
+ "British-Sudanese Wars": "mahdist-war",
+ "Italo-Sudanese Wars": "mahdist-war",
+ "British Gurkha Wars": "anglo-nepalese-war",
+ "Bannock Indian Wars": "bannock-war",
+ "Boer Zulu War": "voortrekker-zulu-war",
+ "Boer-Zulu Wars": "voortrekker-zulu-war",
+ "2nd Boer-Zulu War": "voortrekker-zulu-war",
+ "Zulu Civil Wars": "anglo-zulu-civil-war-usuthu-vs-mandlakazi",
+ "Zulu War of Succession": "zulu-civil-war-of-1840",
+ "Rise of Shaka Zulu": "zulu-expansion-africa",
+ "Rise of Sokoto": "sokoto-jihad-of-usman-dan-fodio",
+ "1st Anglo-Boer War": "boer-war-first",
+ "2nd Anglo-Boer Wars": "boer-war-second",
+ "Jameson's Raid": "jameson-raid",
+ "Third Anglo-Ashanti War": "sagrenti-war-third-anglo-ashanti-war",
+ "2nd British-Ashanti War": "sagrenti-war-third-anglo-ashanti-war",
+ "First British Ashanti War": "anglo-asante-war-1823",
+ "First British-Ashanti War": "anglo-asante-war-1823",
+ "3rd Franco-Dahomean War": "second-franco-dahomean-war",
+ "Madagascan Insurrection": "madagascar-1947-uprising",
+ "Ethiopian War": "ethiopianegyptian-war",
+ "Ethiopian-Eritrean War": "eritrea-ethiopia-border-war",
+ "Libyan Chad War": "chadian-libyan-war",
+ "Chad-Libyan War": "chadian-libyan-war",
+ "Chadian Civil War": "chad-civil-war",
+ "Saudi Hashemite Wars": "saudi-rashidi-wars",
+ "Saudi Rashidi Wars": "saudi-rashidi-wars",
+ "Saudi-Ottoman Wars": "saudi-rashidi-wars",
+ "Ottoman Saudi War 1818": "wahhabi-war",
+ "Ottoman-Saudi War, 1811": "wahhabi-war",
+ "Ottoman-Saudi War1811": "wahhabi-war",
+ "Turko-Wahhabi War": "wahhabi-war",
+ "Turkish Invasion of Cyprus": "turkey-greece-cypriot-campaign",
+ "Arab Israel Yom Kippur War": "yom-kippur-war",
+ "Arab-Israeli Yom Kipur War": "yom-kippur-war",
+ "Arab-Israeli Six Day Wars": "six-day-war",
+ "Indo-Pakistan War": "second-indo-pakistan-war",
+ "1st Zhili-Fengtian War": "warlord-era",
+ "2nd Zhili-Fengtian War": "warlord-era",
+ "Anhui-Zhili War": "warlord-era",
+ "Ningxia Mutiny": "ningxia-rebellion",
+ "Xixia-Song War": "song-tangut-wars",
+ "Wars of the Five Dynasties": "fives-dynasties-ten-kingdoms-907",
+ "An Lu-Shan Rebellion": "an-lushan-rebellion",
+ "Sino-Korean War": "goguryeo-tang-wars",
+ "Wars of China's Spring and Autumn Eras": "spring-and-autumn-period-wars",
+ "War of the Japanese Emperors": "nanboku-cho-war",
+ "Japan's Era of Warring States": "sengoku-period",
+ "Japans Era of the Warring States": "sengoku-period",
+ "Japanese Internal Conflict": "sengoku-period",
+ "Japanese Christian Uprising": "shimabara-rebellion",
+ "Shimabara Revolt": "shimabara-rebellion",
+ "Burmese Civil War": "konbaung-hanthawaddy-war",
+ "Burmese Civil Wars": "konbaung-hanthawaddy-war",
+ "Burmese Invasions of Siam": "burmese-siamese-war-1785-1786",
+ "Siamese Laotian Wars": "lao-rebellion-1826-1828",
+ "Siamese-Cambodian Wars": "cambodian-thai-wars",
+ "Vietnam-Cham War": "cham-vietnamese-war-1471",
+ "Vietnman War": "vietnam-war",
+ "Franco-Thai War of 1688": "siamese-revolution-of-1688",
+ "Dutch Conquest of Aceh": "aceh-war",
+ "Dutch-Indonesian War": "trikora-operation",
+ "Early Dutch Indonesian Wars": "dutch-expansion-asia",
+ "Indonesian- Malaysian Confrontation": "indonesian-konfrontasi-1963",
+ "Indonesian-Malaysian Conflict": "indonesian-konfrontasi-1963",
+ "Indonesian-Malaysian Confrontation": "indonesian-konfrontasi-1963",
+ "Phillipines War of Independence": "philippine-revolution-1896",
+ "Philippines War": "philippine-revolution-1896",
+ "Porguese Colonial Wars in Arabia": "portuguese-colonial-wars-in-asia",
+ "Porguguese Colonial Wars in Arabia": "portuguese-colonial-wars-in-asia",
+ "Portuguese Colonial Wars in Arabia": "portuguese-colonial-wars-in-asia",
+ "Portuguese Colonial Wars in North Africa": "portuguese-moroccan-wars",
+ "Portuguese Wars in Africa": "portuguese-expansion-africa",
+ "Later Portuguese Colonial Wars": "portuguese-swahili-conflicts",
+ "Later Portuguese Colonial Wars in East Africa": "portuguese-swahili-conflicts",
+ "Later Portuguese Wars in East Africa": "portuguese-swahili-conflicts",
+ "Portuguese-Dutch Colonial Wars": "dutch-portuguese-wars-1602",
+ "Portuguese-Castillian Wars": [
+  {
+   "id": "portuguese-interregnum-war",
+   "from": 1383,
+   "to": 1385
+  }
+ ],
+ "Christian Reconquest of Zamora": "reconquista-iberia",
+ "Spanish Colonial War in North Africa": "spanish-expansion-north-africa",
+ "Spanish-Rif War": "rif-war-1920",
+ "Spanish-Riff War": "rif-war-1920",
+ "Spanish Conquest of Haiti": "americas-columbian-exchange-contact-1492",
+ "Spanish-Yaqui War": "yaqui-wars",
+ "Spanish Navajo War": "comanche-wars",
+ "Spanish Commanche War": "comanche-wars",
+ "Pueblo Rising": "pueblo-revolt",
+ "Tupac Amaru Revolt": "spanish-conquest-of-vilcabamba",
+ "Inca War of Succession": "americas-inca-civil-war-1529",
+ "Mayan Revolt in Belize": "caste-war-yucatan",
+ "Guarani War": "americas-jesuit-guarani-wars-1750",
+ "Brazillian Occupation of Uruguay": "americas-uruguay-independence-1811",
+ "Uruguyan War of Independence": "americas-uruguay-independence-1811",
+ "Argentine War": "argentine-independence-war",
+ "Chilean War": "chilean-independence-war",
+ "Argentine- Brazilian War": "americas-cisplatine-war-1825",
+ "Argentine-Uruguayan Wars": "uruguayan-civil-war",
+ "Peruvian-Colombian War": "gran-colombia-peru-war",
+ "Colombia's Civil Wars": [
+  {
+   "id": "colombian-civil-wars-19th",
+   "from": 1823,
+   "to": 1902
+  },
+  {
+   "id": "colombian-civil-war",
+   "from": 1964,
+   "to": 2017
+  }
+ ],
+ "Central American National War": "central-american-wars-19th",
+ "Nicaraguan-Honduran War": "central-american-wars-19th",
+ "Nicaraguan- Honduran War": "central-american-wars-19th",
+ "Nicaraguan Colonial War": "central-american-wars-19th",
+ "National Fillibuster War": "filibuster-war",
+ "National Filibuster War": "filibuster-war",
+ "Mexican Federalist Wars": "mexican-civil-wars-1823",
+ "Mexican Liberal Rebellion": "revolution-of-ayutla",
+ "Mexican- French War": "americas-french-intervention-mexico-1861",
+ "Mexican-Apache Wars": "apache-comanche-raids",
+ "Mexican-Yaqui War": "yaqui-wars",
+ "Pastry War": "americas-pastry-war-1838",
+ "Expedition against Villa": "pershing-expedition",
+ "Villa's Raids": "pershing-expedition",
+ "Villas Raids": "pershing-expedition",
+ "Leticia War": "americas-colombia-peru-war-1932",
+ "Paraguayan Civil War": "paraguayan-civil-war-1947",
+ "War of the Triple Allliance": "war-of-triple-alliance",
+ "y War of the Triple Alliance Falling": "war-of-triple-alliance",
+ "War of the Desert": "americas-conquista-desierto-1878",
+ "y War of the Desert": "americas-conquista-desierto-1878",
+ "Bay of Pigs Incident": "bay-of-pigs-invasion",
+ "Venezuelan Civil War": "venezuelan-civil-wars-1892",
+ "Drake's Caribbean Raids": "drakes-great-expedition",
+ "Dominican War of Indepedence": "dominican-war-of-independence",
+ "Gutierrez Magee Expedition": "mexican-independence-war",
+ "Gutierrez- Magee Expedition": "mexican-independence-war",
+ "Gutierrez Rebellion": "mexican-independence-war",
+ "Texas-Cherokee War": "republic-of-texas-conflicts",
+ "Comanche Indian War": "comanche-wars",
+ "Cheyenne Indian War": [
+  {
+   "id": "arapaho-cheyenne-conflicts",
+   "from": 1864,
+   "to": 1879
+  },
+  {
+   "id": "cheyenne-conflicts",
+   "from": 1851,
+   "to": 1879
+  }
+ ],
+ "Cheyenne Arapaho Wars": [
+  {
+   "id": "arapaho-cheyenne-conflicts",
+   "from": 1864,
+   "to": 1879
+  },
+  {
+   "id": "cheyenne-conflicts",
+   "from": 1851,
+   "to": 1879
+  }
+ ],
+ "Canadian River Expedition": [
+  {
+   "id": "arapaho-cheyenne-conflicts",
+   "from": 1864,
+   "to": 1879
+  },
+  {
+   "id": "cheyenne-conflicts",
+   "from": 1851,
+   "to": 1879
+  }
+ ],
+ "Apache Indians War": "apache-wars",
+ "Apache-Confederate War": "apache-wars",
+ "Creek Indian Wars": "creek-war",
+ "Seminole Indian War": "second-seminole-war",
+ "Seminole War": "second-seminole-war",
+ "3rd Seminole Indian War": "americas-third-seminole-war-1855",
+ "Pequot Indian War": "pequot-war",
+ "Philips War": "king-philips-war",
+ "Yamasee Indian War": "yamasee-war",
+ "Cresaps War": "americas-lord-dunmores-war-1774",
+ "Dunmore's War": "americas-lord-dunmores-war-1774",
+ "Little Turtle's War": "northwest-indian-war",
+ "Canadian Rebellion": "rebellions-of-1837",
+ "Sioux Indians": "great-sioux-war",
+ "Great Sioux War of 1876": "great-sioux-war",
+ "Sheepeater War": "americas-sheepeater-war-1879",
+ "American Civil War (Western Theatre)": "us-civil-war",
+ "War of the American Revolutio": "american-revolution",
+ "y War of the American": "american-revolution",
+ "y War of the American Revolution Campaigning": "american-revolution",
+ "Franco-American Quasi War": "quasi-war-france",
+ "Algerine War": "second-barbary-war",
+ "1st Jacobite Rebellion": "jacobite-risings",
+ "Jacobite Rebellion (the Fifteen)": "jacobite-risings",
+ "the River Boyne": "williamite-war-in-ireland",
+ "Simnels Rebellion": "wars-roses",
+ "Hedgeley Moor": "wars-roses",
+ "O'Donnell's Rebellion": "nine-years-war-ireland",
+ "the Scottish War": "first-war-of-scottish-independence",
+ "Scottish War": "second-war-of-scottish-independence",
+ "War of Welsh Succession": "anglo-welsh-wars",
+ "Anglo-Irish Wars": "irish-independence-war",
+ "1st Dionysian War": "sicilian-wars",
+ "1st Dyonisian War": "sicilian-wars",
+ "2nd Dionysian War": "sicilian-wars",
+ "4th Dionysian War": "sicilian-wars",
+ "Carthaginian Invasion of Sicily": "sicilian-wars",
+ "Carthaginian-Greek Wars": "sicilian-wars",
+ "Syracusan-Etruscan War": "sicilian-wars",
+ "1st Peloponesian War": "first-peloponnesian-war",
+ "1st Peloponnesian War": "first-peloponnesian-war",
+ "War of the Greek City States": "theban-spartan-war",
+ "Macedonia Conquests": "macedonian-conquest-alexander",
+ "Macedonian Conquests": "macedonian-conquest-alexander",
+ "Sogdian Rock": "macedonian-conquest-alexander",
+ "Spartan-Achaean War": "war-against-nabis",
+ "Spartan-Achean Wars": "war-against-nabis",
+ "Egyptian-Nubian War": "psamtik-ii-s-nubian-campaign",
+ "Aksum-Sabaean War": "aksumite-invasion-of-himyar-kaleb",
+ "Etruscan War": "roman-etruscan-wars",
+ "Later Roman Etruscan War": "roman-etruscan-wars",
+ "Early Roman Etruscan War": "roman-etruscan-wars",
+ "Roman-Nubian War": "roman-kushite-war",
+ "Hun Invasion of India": "huns-invasions-india",
+ "Eastern Dynastic Muslim Wars": "eastern-islamic-dynastic-wars",
+ "Mongol Conquest of Asia Minor": "mongol-conquests",
+ "Mongol Conquest of Europe": "tatar-invasions-of-eastern-europe",
+ "Mongol Invasion of Europe": "tatar-invasions-of-eastern-europe",
+ "Mongol Invasion of India": "mongol-invasions-of-india",
+ "Mongol Wars of Kubilai Khan": [
+  {
+   "id": "first-mongol-invasion-of-ai-viet",
+   "from": 1257,
+   "to": 1258
+  },
+  {
+   "id": "mongol-conquest-song",
+   "from": 1259,
+   "to": 1279,
+   "bbox": [
+    100,
+    18,
+    125,
+    40
+   ]
+  },
+  {
+   "id": "third-mongol-invasion-of-ai-viet",
+   "from": 1287,
+   "to": 1288,
+   "bbox": [
+    102,
+    8,
+    110,
+    24
+   ]
+  },
+  {
+   "id": "mongol-invasion-of-java",
+   "from": 1293,
+   "to": 1293
+  },
+  {
+   "id": "mongol-conquests"
+  }
+ ],
+ "Conquest of Genghis Khan": "conquests-of-genghis-khan",
+ "Conquests of Tamberlane": "timurid-conquests",
+ "One Hundred Years War": "hundred-years-war",
+ "2nd Muscovite- Lithuanian War": "muscovite-lithuanian-wars",
+ "Russian Mongol War": "rus-golden-horde-wars",
+ "Russian Mongol Wars": "rus-golden-horde-wars",
+ "Norman Dyanstic Wars": "anglo-norman-succession-wars",
+ "Scottish War of Succesion": "early-scottish-dynastic-wars",
+ "1st Habsburg Valois War": "french-italian-wars",
+ "1st Valois-Habsburg War": "french-italian-wars",
+ "2nd Habsburg Valois War": "french-italian-wars",
+ "3rd Habsburg-Valois War": "french-italian-wars",
+ "5th Habsburg Valois War": "french-italian-wars",
+ "5th Habsburg-Valois Wars": "french-italian-wars",
+ "French War of": [
+  {
+   "id": "italian-war-of-1542",
+   "from": 1542,
+   "to": 1546
+  },
+  {
+   "id": "french-wars-of-religion",
+   "from": 1562,
+   "to": 1598
+  }
+ ],
+ "War of the German Reformation": "schmalkaldic-war",
+ "War of the Germany Reformation": "schmalkaldic-war",
+ "Palatinate War": "thirty-years-war",
+ "Netherlands War": "eighty-years-war",
+ "y Netherlands War of Independence": "eighty-years-war",
+ "Dutch Spanish Colonial Wars": "dutch-spanish-wars",
+ "Franco-Habsburg Wars": "franco-spanish-war-1635",
+ "Italian War against Austria": "first-italian-war-of-independence",
+ "Italian War of Independence": "first-italian-war-of-independence",
+ "Italian Wars of Independence": "first-italian-war-of-independence",
+ "Attack on the Canton Forts": "opium-war-second",
+ "Masulipatam": "carnatic-wars-1756",
+ "Finnish War": "finnish-civil-war-1918",
+ "Yugoslav Civil War": "yugoslav-wars",
+ "Croatian Wars": "croatian-war-independence",
+ "Wars of Scandinavian Union": "kalmar-union-wars",
+ "Fall of the Western Roman Empire": "fall-of-the-western-roman-empire",
+ "Napoleonic Wars (Russo-Swedish War)": "finnish-war",
+ "French Revolutionary Wars (Vendee War)": "war-in-the-vendee",
+ "French Revolutionary Wars (Vendeen War)": "war-in-the-vendee",
+ "French Revolutionary War (Vendee War)": "war-in-the-vendee",
+ "Irish Rebellion": "irish-rebellion-of-1798",
+ "French Revolutionary Wars (Irish Rising)": "irish-rebellion-of-1798",
+ "British Civil Wars": "wars-of-the-three-kingdoms",
+ "British Civil War": "wars-of-the-three-kingdoms",
+ "1st Northern War": "second-northern-war",
+ "Central American Wars": "central-american-wars-19th",
+ "1st Carlist War": "first-carlist-war",
+ "2nd Carlist War": "third-carlist-war",
+ "3rd Dutch War": "franco-dutch-war",
+ "Dutch War": "franco-dutch-war",
+ "1st Dutch War": "first-anglo-dutch-war",
+ "2nd Dutch War": "second-anglo-dutch-war",
+ "Crusader-Muslim Wars": "crusader-states-wars",
+ "Later Crusader-Muslim Wars": "crusader-states-wars",
+ "Crusader Muslim Wars": "crusader-states-wars",
+ "Conquests of Genghis Khan": "conquests-of-genghis-khan",
+ "Anglo-Saxon Territorial Wars": "anglo-saxon-heptarchy-wars",
+ "Anglo-Saxon Territorial War": "anglo-saxon-heptarchy-wars",
+ "Anglo-Saxon Conquest of Britain": "anglo-saxon-settlement-of-britain",
+ "Rise of Robert the Bruce": "first-war-of-scottish-independence",
+ "William Wallace Revolt": "first-war-of-scottish-independence",
+ "English Invasion of Scotland": "first-war-of-scottish-independence",
+ "Anglo-Scottish War of Succession": "second-war-of-scottish-independence",
+ "Byzantine-Persian Wars": "byzantine-sasanian-wars",
+ "Roman-Persian Wars": "roman-sasanian-wars",
+ "Later Roman-Persian Wars": "roman-sasanian-wars",
+ "Later Roman Persian Wars": "roman-sasanian-wars",
+ "Mughal-Sikh Wars": "mughal-sikh-wars",
+ "Early Mughal-Sikh Wars": "mughal-sikh-wars",
+ "Mughal Sikh Wars": "mughal-sikh-wars",
+ "Turkish-Hungarian Wars": "ottoman-hungarian-wars-1366",
+ "Turkish Hungarian Wars": "ottoman-hungarian-wars-1366",
+ "2nd Italian War of Independence": "second-italian-war-of-independence",
+ "1st Italian War of Independence": "first-italian-war-of-independence",
+ "3rd Italian War of Independence": "third-italian-war-of-independence",
+ "Italian War": "third-italian-war-of-independence",
+ "Later Indian Dynastic Wars": "early-medieval-indian-dynastic-wars",
+ "Indian Dynastic Wars": "early-medieval-indian-dynastic-wars",
+ "Indian Dynastic War": "early-medieval-indian-dynastic-wars",
+ "Colombian Civil Wars": "colombian-civil-wars-19th",
+ "Scania War": "scanian-war",
+ "Campaigns of the Prophet Mohammad": "campaigns-of-muhammad",
+ "Manchuria Incident": "japanese-invasion-of-manchuria",
+ "Wars of the Second Triumvirate": "wars-of-the-second-triumvirate",
+ "Gallic Wars in Italy": "roman-gallic-wars",
+ "Rome's Gallic Wars": "roman-gallic-wars",
+ "Cimbrian War": "cimbrian-war",
+ "Roman Wars of Succession": "civil-wars-of-the-tetrarchy",
+ "Later Roman Military Civil Wars": "late-roman-civil-wars-337",
+ "Wars of Emperor Severus": "year-of-the-five-emperors",
+ "Wars of the Emperor Severus": "year-of-the-five-emperors",
+ "Vitellian Civil War": "year-of-the-four-emperors",
+ "Russian Conquest of the Caucasus": "caucasian-war",
+ "Wars of China's Spring and Autumn Era": "spring-and-autumn-period-wars",
+ "1st Peleponesian War": "first-peloponnesian-war",
+ "Wars of the Sixteen Kingdoms Era": "sixteen-kingdoms-wars",
+ "Wars of the Former Han": "western-han-wars",
+ "Wars of the Later Han": "eastern-han-wars",
+ "Polish Rising": "polish-russian-war-of-1792",
+ "Byzantine-Ottoman Wars": "byzantine-ottoman-wars",
+ "Mughal Wars of Succession": "mughal-wars-of-succession",
+ "War of the Mughal Princes": "mughal-wars-of-succession",
+ "Rebellion of Prince Shahjahan": "mughal-wars-of-succession",
+ "Russian Dynastic Wars": "kievan-rus-succession-wars",
+ "Nordic Seven Years War": "northern-seven-years-war",
+ "Maccabean War": "maccabean-revolt",
+ "Venetian-Milanese Wars": "wars-in-lombardy",
+ "Milanese War of Succession": "wars-in-lombardy",
+ "Austro-Russian-Turkish War": "austro-russian-turkish-war-1735",
+ "Austro-Russo-Turkish War": "austro-russian-turkish-war-1735",
+ "Balkan National Wars": "transylvanian-wallachian-wars-1575",
+ "Norman Dynastic Wars": "anglo-norman-succession-wars",
+ "Anglo-Norman Rebellion": "revolt-of-1173",
+ "Anglo-Norman Conquest of Ireland": "anglo-norman-invasion-of-ireland",
+ "Rise of William of Normandy": "william-of-normandy-consolidation",
+ "Eastern Muslim Dynastic Wars": "eastern-islamic-dynastic-wars",
+ "Seljuk Wars of Expansion": "seljuk-empire-wars",
+ "Wars of the Great Seljuk Sultanate": "seljuk-empire-wars",
+ "Bulgarian Imperial Wars": "second-bulgarian-empire-wars",
+ "Mughal-Uzbek Wars": "mughal-uzbek-wars",
+ "Mughal Uzbek Wars": "mughal-uzbek-wars",
+ "German Civil Wars": "medieval-german-civil-wars",
+ "German Imperial Wars": "east-frankish-ottonian-wars",
+ "Later German Imperial Wars": "east-frankish-ottonian-wars",
+ "Magyar Invasion of Germany": "hungarian-invasions-of-europe",
+ "Assyrian Wars": "neo-assyrian-wars",
+ "1st Serbian Rising": "first-serbian-uprising",
+ "Serbo-Turkish War": "serbian-ottoman-war-1876",
+ "Serbo-Bulgarian War": "serbo-bulgarian-war",
+ "Swabian War": "swabian-war",
+ "Franco-Habsburg War": "franco-spanish-war-1635",
+ "War of the Quadruple Alliance": "war-of-the-quadruple-alliance",
+ "Mongol Dynastic Wars": "kaidu-kublai-war",
+ "Russian-Mongol Wars": "rus-golden-horde-wars",
+ "Mongol Invasions of India": "mongol-invasions-of-india",
+ "Corinthian War": "corinthian-war",
+ "Wars of the Greek City States": "theban-spartan-war",
+ "3rd Sacred War": "third-sacred-war",
+ "Lamian War": "lamian-war",
+ "Chremonidian War": "chremonidean-war",
+ "Cleomenic War": "cleomenean-war",
+ "Carthaginian-Syracusan Wars": "sicilian-wars",
+ "Agathoclean War": "sicilian-wars",
+ "3rd Dionysian War": "sicilian-wars",
+ "Timoleons War": "sicilian-wars",
+ "Roman Conquest of Britain": "roman-conquest-of-britain",
+ "Roman Invasion of Britain": "caesars-invasions-of-britain",
+ "Alemannic Invasion of Roman Gaul": "roman-alemannic-wars",
+ "2nd Samnite War": "second-samnite-war",
+ "3rd Samnite War": "third-samnite-war",
+ "Early Roman-Etruscan Wars": "roman-etruscan-wars",
+ "Roman-Etruscan War": "roman-etruscan-wars",
+ "Roman-Syrian War": "roman-seleucid-war",
+ "Babylon's War of Conquest": "medo-babylonian-conquest-of-assyria",
+ "1st Greco-Turkish War": "greco-turkish-war-1897",
+ "French Civil War": "huguenot-rebellions",
+ "1st Hugenot Rebellion": "huguenot-rebellions",
+ "3rd Hugenot Rebellion": "huguenot-rebellions",
+ "French War of Richard I": "richard-i-war-with-philip-ii",
+ "Indian Campaigns of Ahmad Shah": "ahmad-shah-durrani-campaigns",
+ "Indian Campaigns of Ahmed Shah": "ahmad-shah-durrani-campaigns",
+ "2nd Riel Rebellion": "north-west-rebellion",
+ "Riel Rebellion": "north-west-rebellion",
+ "Russian Time of Troubles": "time-of-troubles",
+ "Pugachev Rebellion": "pugachev-rebellion",
+ "Franco-Flemish Wars": "franco-flemish-wars",
+ "Franco-Burgundian Wars": "burgundian-state-wars",
+ "Burgundian Swiss War": "burgundian-wars",
+ "Portuguese Colonial Wars in Asia": "portuguese-colonial-wars-in-asia",
+ "Early Portuguese Colonial Wars in Asia": "portuguese-colonial-wars-in-asia",
+ "Later Portuguese Colonial Wars in Asia": "portuguese-colonial-wars-in-asia",
+ "Later Portuguese Colonial Wars in Arabia": "portuguese-colonial-wars-in-asia",
+ "Byzantine-Balkan Wars": "avar-byzantine-wars",
+ "1st Byzantine-Norman War": "byzantine-norman-wars",
+ "Byzantine-Norman Wars": "byzantine-norman-wars",
+ "Latin-Byzantine Imperial War": "nicaean-latin-wars",
+ "3rd Latin-Byzantine Imperial War": "nicaean-latin-wars",
+ "3rd Latin-Byzantine War": "nicaean-latin-wars",
+ "Rise of the Tang Dynasty": "transition-from-sui-to-tang",
+ "Wars of the Delhi Sultanate": "delhi-sultanate-wars",
+ "Persian-Uzbek Wars": "safavid-uzbek-wars",
+ "Persian-Turkoman Wars": "safavid-aq-qoyunlu-wars",
+ "Persian-Turcoman Wars": "safavid-aq-qoyunlu-wars",
+ "Dominican War of Independence": "dominican-war-of-independence",
+ "National (Filibuster) War": "filibuster-war",
+ "National Filibuster Wars": "filibuster-war",
+ "Canudos Rebellion": "war-of-canudos",
+ "Corsair Wars": "barbary-corsair-wars",
+ "Franco-Barbary Wars": "barbary-corsair-wars",
+ "Anglo-Welsh Wars": "anglo-welsh-wars",
+ "English Conquest of Wales": "anglo-welsh-wars",
+ "Welsh Dynastic Wars": "anglo-welsh-wars",
+ "Welsh Dynastic War": "anglo-welsh-wars",
+ "Glendower's Rebellion": "glyndwr-rising",
+ "War of Kalmar": "kalmar-war",
+ "Thirteen Years War": "thirteen-years-war-1454",
+ "1st Schleswig-Holstein War": "first-schleswig-war",
+ "Swiss Peasant War": "swiss-peasant-war-of-1653",
+ "War of the League of Cambrai": "war-of-the-league-of-cambrai",
+ "War of the Holy League": "war-of-the-league-of-cambrai",
+ "y War of the Holy League": "war-of-the-league-of-cambrai",
+ "Monmouth Rebellion": "monmouth-rebellion",
+ "Western Rebellion": "prayer-book-rebellion",
+ "Scottish Clan Wars": "scottish-clan-wars",
+ "Later Scottish Clan Wars": "scottish-clan-wars",
+ "McDonald Rebellion": "lordship-of-the-isles-rebellions",
+ "Scottish Dynastic Wars": "early-scottish-dynastic-wars",
+ "Scottish War of Succession": "early-scottish-dynastic-wars",
+ "Scottish Covenanter Rebellion": "covenanter-risings",
+ "Rise of Charles Martel": "frankish-civil-war-715",
+ "Burgundian-Frankish War": "frankish-burgundian-wars",
+ "Tyrone Rebellion": "nine-years-war-ireland",
+ "Hungarian-Romanian War": "hungarian-romanian-war",
+ "Latvian War of Independence": "latvian-war-of-independence",
+ "Estonian War of Independence": "estonian-war-of-independence",
+ "Lithuanian War of Independence": "lithuanian-wars-of-independence",
+ "1st Muscovite-Lithuanian War": "muscovite-lithuanian-wars",
+ "1st Muscovite Lithuanian War": "muscovite-lithuanian-wars",
+ "Russia's Volga Wars": "russo-kazan-wars",
+ "Turko-Montenegran Wars": "montenegrin-ottoman-wars-1852",
+ "Imam Revolt": "jebel-akhdar-war",
+ "Iraqi Revolt": "iraqi-revolt-of-1920",
+ "Chitral Campaign": "chitral-expedition",
+ "Waziristan Campaign": "waziristan-campaign-1919",
+ "British-Gurkha War": "anglo-nepalese-war",
+ "British Gurkha War": "anglo-nepalese-war",
+ "British-Gurkha Wars": "anglo-nepalese-war",
+ "British Conquest of Sindh": "conquest-of-sindh",
+ "British Gwalior War": "gwalior-campaign",
+ "Afghan-Sikh Wars": "afghan-sikh-wars",
+ "Afghan Sikh Wars": "afghan-sikh-wars",
+ "Punjab Campaigns of Shah Zaman": "afghan-sikh-wars",
+ "Bijapur-Maratha Wars": "maratha-bijapur-wars",
+ "Mexican Federalist War": "mexican-civil-wars-1823",
+ "Mexican Civil War": "mexican-civil-wars-1823",
+ "Diaz Revolt in Mexico": "revolution-of-tuxtepec",
+ "Cayuse Indian War": "cayuse-war",
+ "Goth Invasion of Italy": "ostrogothic-conquest-of-italy",
+ "2nd Russo-Swedish War": "russo-swedish-war-1788",
+ "French-Canadian Rebellion": "rebellions-of-1837",
+ "Miguelite Wars": "liberal-wars",
+ "War of the 2nd Fronde": "the-fronde",
+ "Genko War": "genko-war",
+ "Aragon's Conquest of Naples": "aragonese-conquest-of-naples",
+ "Saudi-Hashemite Wars": "saudi-rashidi-wars",
+ "Ikhwan Rebellion": "ikhwan-revolt",
+ "Habsburg Wars of Succession": "holy-roman-empire-throne-wars-1298",
+ "Transylvanian National Revolt": "transylvanian-war-1658",
+ "Venezuelan Civil Wars": "venezuelan-civil-wars-1892",
+ "O'Neill Rebellion": "shane-oneills-rebellion",
+ "Uprising against Mary Queen of Scots": "marian-civil-war",
+ "Douglas Rebellion": "douglas-rebellion-1452",
+ "Anglo-Scottish Territorial Wars": "anglo-scottish-border-wars-1093",
+ "Spartan-Achaen Wars": "war-against-nabis",
+ "1st Greek Social War": "social-war-357",
+ "Swedish Wars of Succession": "swedish-succession-wars-12th",
+ "Pergamum-Seleucid Wars": "seleucid-attalid-wars",
+ "Scandinavian National Wars": "late-viking-age-scandinavian-wars",
+ "Norwegian Wars of Succession": "late-viking-age-scandinavian-wars",
+ "Anglo-Portuguese Colonial Wars": "anglo-portuguese-conflicts-in-asia",
+ "Bulavin's Revolt": "bulavin-rebellion",
+ "2nd Chilean Liberal Revolt": "chilean-revolution-of-1859",
+ "1st Chilean Liberal Revolt": "chilean-revolution-of-1851",
+ "Chilean Conservative Revolution": "chilean-civil-war-of-1829",
+ "Wars of the Hanseatic League": "danish-hanseatic-war-1361",
+ "Gdansk War": "danzig-rebellion",
+ "Ottoman-Turcoman War": "ottoman-aq-qoyunlu-war",
+ "Dummers War": "dummers-war",
+ "Ghor-Ghazni Wars": "ghurid-ghaznavid-wars",
+ "Sikkim War": "sikkim-expedition",
+ "Zebrzydowski's Rebellion": "zebrzydowski-rebellion",
+ "Fall of the Qin Dynasty": "anti-qin-rebellions",
+ "Russo-Ming War": "sino-russian-border-conflicts",
+ "Morgan's Raids on Panama": "henry-morgan-raids",
+ "Morgan's Raid on Panama": "henry-morgan-raids",
+ "2nd Uruguayan Civil War": "uruguayan-revolution-of-1904",
+ "Garibaldi's Second March on Rome": "mentana-campaign",
+ "Italian Revolt Against Austria": "italian-revolutions-of-1820",
+ "1st Villmergen War": "first-war-of-villmergen",
+ "Drakes Caribean Raid": "drakes-great-expedition",
+ "Dominitians Dacian War": "domitians-dacian-war",
+ "Wyatts Rebellion": "wyatts-rebellion",
+ "Boer-Zulu War": "voortrekker-zulu-war",
+ "Easter Rising": "easter-rising",
+ "Latin War": "latin-war",
+ "1st Samnite War": "first-samnite-war",
+ "1st Servile War": "first-servile-war",
+ "Servile War": "first-servile-war",
+ "Illyrian War": "illyrian-wars",
+ "2nd Illyrian War": "illyrian-wars",
+ "Roman-Achaean War": "achaean-war",
+ "Roman-Achean War": "achaean-war",
+ "Persian Civil War": "cyrus-the-younger-revolt",
+ "Visigoth-Frankish Wars": "frankish-visigothic-war-507",
+ "Visigothic-Frankish War": "frankish-visigothic-war-507",
+ "Frankish War of Succession": "carolingian-civil-war",
+ "Viking Raids on Germany": "viking-raids-in-germany",
+ "Viking-German Wars": "viking-raids-in-germany",
+ "Muslim Conquest of Sindh": "umayyad-conquest-of-sindh",
+ "Muslim Conquest of Sind": "umayyad-conquest-of-sindh",
+ "Byzantine-Russian War": "sviatoslavs-invasion-of-bulgaria",
+ "Byzantine-Russian Wars": "sviatoslavs-invasion-of-bulgaria",
+ "Byzantine Military Rebellions": "bardas-rebellions",
+ "Byzantine Military Rebellion": "bardas-rebellions",
+ "Nike Insurrection": "nika-riots",
+ "Egyptian Crusade of Peter of Cyprus": "alexandrian-crusade",
+ "Frederick's 1st Expedition to Italy": "frederick-barbarossa-italian-campaigns",
+ "Frederick's 2nd Expedition to Sicily": "frederick-barbarossa-italian-campaigns",
+ "Frederick's 3rd Expedition to Italy": "frederick-barbarossa-italian-campaigns",
+ "Frederick's Expedition to Italy": "frederick-barbarossa-italian-campaigns",
+ "Florentine-Milanese War": "florentine-milanese-wars",
+ "Florentine-Milanese Wars": "florentine-milanese-wars",
+ "Old Zurich Wars": "old-zurich-war",
+ "Gugler's War": "gugler-war",
+ "Mad War": "mad-war",
+ "Transylvanian Peasant War": "dozsa-rebellion",
+ "Russian Invasion of Moldavia": "pruth-river-campaign",
+ "1st Russo-Swedish War": "russo-swedish-war-1741",
+ "Swedish War of Succession": "war-against-sigismund",
+ "Counts War": "counts-feud",
+ "Danish Counts War": "counts-feud",
+ "Dacke's Rebellion": "dacke-war",
+ "Habsburg-Polish War": "war-of-the-polish-succession-1587",
+ "Lubomirski's Rebellion": "lubomirski-rokosz",
+ "Rakoczi Rebellion": "rakoczis-war-of-independence",
+ "Rakozci Rebellion": "rakoczis-war-of-independence",
+ "Polish-Czech War": "polish-czechoslovak-war",
+ "Hungarian Czech War": "hungarian-czechoslovak-war",
+ "Hungarian-Czech War": "hungarian-czechoslovak-war",
+ "Polish Crimean Tatar Wars": "polish-crimean-tatar-wars",
+ "Polish Tatar Rebellion": "polish-crimean-tatar-wars",
+ "Polish Tatar Wars": "polish-crimean-tatar-wars",
+ "Polish-Tatar Wars": "polish-crimean-tatar-wars",
+ "Polish Moldavian War": "polish-moldavian-war-1531",
+ "Polish German Wars": "german-polish-wars-medieval",
+ "Polish-German Wars": "german-polish-wars-medieval",
+ "Wars of Russian Succession": "muscovite-civil-war",
+ "Russian Tatar Wars": "russo-crimean-wars",
+ "Russian-Tatar Wars": "russo-crimean-wars",
+ "Cossack Rebellion": "razin-rebellion",
+ "Persian-Georgian War": "persian-invasion-of-georgia-1795",
+ "Persian-Georgian Wars": "persian-invasion-of-georgia-1795",
+ "Russo-Afghan War": "panjdeh-incident",
+ "Rohilla War": "rohilla-war",
+ "1st British Kandyan War": "kandyan-wars",
+ "1st British-Kandyan War": "kandyan-wars",
+ "2nd British-Kandyan War": "kandyan-wars",
+ "3rd British-Kandyan War": "kandyan-wars",
+ "Saudi-Kuwait War": "kuwait-najd-war",
+ "Saudi-Kuwaiti War": "kuwait-najd-war",
+ "French Occupation of Syria": "franco-syrian-war",
+ "Chinese Conquest of Tibet": "annexation-of-tibet",
+ "Sino-Russian Border War": "sino-soviet-conflict-1929",
+ "Russo-Japanese Border Wars": "soviet-japanese-border-conflicts",
+ "Shanghai Incident": "january-28-incident",
+ "Jurchen Invasion of Northern China": "jin-liao-war",
+ "Hogen War": "hogen-rebellion",
+ "Masakado Uprising": "johei-tengyo-rebellions",
+ "Sumitomo Uprising": "johei-tengyo-rebellions",
+ "Jokyo Disturbance": "jokyu-war",
+ "Shimonoseki War": "shimonoseki-campaign",
+ "Portuguese-Castilian War": "war-of-the-castilian-succession",
+ "Castilian War of Succession": "castilian-civil-war",
+ "War of the Three Sanchos": "war-of-the-three-sanchos",
+ "Comuneros Uprising": "revolt-of-the-comuneros",
+ "Catalonian Uprising": "reapers-war",
+ "Reapers War": "reapers-war",
+ "Spanish Revolution": "glorious-revolution-spain",
+ "Spanish Invasion of Mexico": "spanish-reconquest-attempt-mexico-1829",
+ "Pyramid Lake": "paiute-war",
+ "Pyramid Lake Indian War": "paiute-war",
+ "Mormon War": "utah-war",
+ "US Korean Expedition": "united-states-expedition-to-korea",
+ "Anglo-Dutch War": "fourth-anglo-dutch-war",
+ "Bishops War": "bishops-wars",
+ "1st Bishop's War": "bishops-wars",
+ "2nd Bishop's War": "bishops-wars",
+ "Cade's Rebellion": "jack-cades-rebellion",
+ "Cades Rebellion": "jack-cades-rebellion",
+ "Kett's Rebellion": "ketts-rebellion",
+ "Ketts Rebellion": "ketts-rebellion",
+ "Flammock's Rebellion": "cornish-rebellion-of-1497",
+ "Geradline Rebellion": "desmond-rebellions",
+ "Geraldine Rebellion": "desmond-rebellions",
+ "Dacres Rebellion": "desmond-rebellions",
+ "English Invasion of Ireland": "bruce-campaign-in-ireland",
+ "Anglo-Norman invasion of Ireland": "bruce-campaign-in-ireland",
+ "Norwegian Invasion of Scotland": "scottish-norwegian-war",
+ "Rebellion of the Marches": "despenser-war",
+ "Percy's Rebellion": "percy-rebellions",
+ "Eureka Rebellion": "eureka-rebellion",
+ "Corinthian-Corcyrean War": "corinthian-corcyrean-war",
+ "Corinthean-Corcyrean War": "corinthian-corcyrean-war",
+ "1st Sacred War": "first-sacred-war",
+ "4th Sacred War": "fourth-sacred-war",
+ "Philistine-Israel War": "philistine-israelite-wars",
+ "Philistine-Israeli Wars": "philistine-israelite-wars",
+ "Philistine-Israelite Wars": "philistine-israelite-wars",
+ "Babylon's Wars of Conquest": "babylonian-campaigns-levant",
+ "Babylon's Wars of Conquests": "babylonian-campaigns-levant",
+ "Wars of the Catalan Company": "catalan-company-campaigns",
+ "War of Flemish Succession": "flemish-succession-war-1127",
+ "French War of Henry VIII": "italian-war-of-1542",
+ "German Knights War": "knights-revolt",
+ "Anatolian Rebellion": "celali-rebellions",
+ "Brabantine Rebellion": "brabant-revolution",
+ "Allesis Insurrection": "masaniello-revolt",
+ "Masaniello's Insurrection": "masaniello-revolt",
+ "Villmergen War": "toggenburg-war",
+ "2nd Villmergen War": "toggenburg-war",
+ "the First Villmergen War": "toggenburg-war",
+ "North African War of Louis XIV": "djidjelli-expedition",
+ "Persian Revolution": "persian-constitutional-revolution",
+ "Vellore Mutiny": "vellore-mutiny",
+ "Sonderbund War": "sonderbund-war"
+}
