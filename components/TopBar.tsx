@@ -103,7 +103,7 @@ function Tally({
     return (
       <button
         onClick={onClick}
-        className={`flex-col items-end leading-none hover:opacity-90 transition-opacity ${className}`}
+        className={`flex-col items-end leading-none flex-shrink-0 whitespace-nowrap hover:opacity-90 transition-opacity ${className}`}
         title={title}
         style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer' }}
       >
@@ -112,7 +112,7 @@ function Tally({
     );
   }
   return (
-    <div className={`flex-col items-end leading-none ${className}`} title={title}>
+    <div className={`flex-col items-end leading-none flex-shrink-0 whitespace-nowrap ${className}`} title={title}>
       {inner}
     </div>
   );
@@ -223,7 +223,7 @@ function TopBar({
     >
       <div className="flex items-center justify-between px-3 sm:px-6 py-2 sm:py-3.5 gap-3 sm:gap-4">
         {/* ─ Wordmark + tagline ─ */}
-        <div className="pointer-events-auto flex items-center sm:items-baseline gap-2 sm:gap-3.5 min-w-0">
+        <div className="pointer-events-auto flex items-center sm:items-baseline gap-2 sm:gap-3.5 min-w-0 flex-1">
           <h1
             className="font-display"
             style={{
@@ -276,7 +276,7 @@ function TopBar({
         </div>
 
         {/* ─ Stats + chrome ─ */}
-        <div className="pointer-events-auto flex items-center gap-5 sm:gap-6">
+        <div className="pointer-events-auto flex items-center gap-5 sm:gap-6 flex-shrink-0">
           {/* Active conflicts — rendered at 0 too ("0 active") so the list
               panel's quiet-moment empty state stays reachable. */}
           <Tally

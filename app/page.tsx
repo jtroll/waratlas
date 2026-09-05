@@ -1189,7 +1189,7 @@ export default function Home() {
   // right on both breakpoints without duplicating its geometry here.
   const timelineWrapRef = useRef<HTMLDivElement>(null);
   const legendWrapRef = useRef<HTMLDivElement>(null);
-  const [ledgerPos, setLedgerPos] = useState({ bottom: 160, left: 24 });
+  const [ledgerPos, setLedgerPos] = useState({ bottom: 160, left: 24, right: 140 });
   useEffect(() => {
     const main = mainRef.current;
     const root = timelineWrapRef.current?.firstElementChild as HTMLElement | null;
@@ -1197,20 +1197,29 @@ export default function Home() {
     const measure = () => {
       const m = main.getBoundingClientRect();
       const r = root.getBoundingClientRect();
-      // 8 px below the top of the Timeline's fade band — clear of the
-      // strip and of its hover chip.
-      const bottom = Math.max(0, Math.round(m.bottom - r.top - 8));
-      // The border legend sits bottom-left (desktop); when its box reaches
-      // into the ledger's band, start the ledger to its right.
       const mobile = window.innerWidth < 640;
-      let left = mobile ? 12 : 24;
+      // Desktop: share the legend's and Export's baseline (bottom-32 =
+      // 128px) so the three bottom-align; the strip is 32px tall like the
+      // Export button. Mobile has neither, so sit 8px above the Timeline's
+      // fade band instead.
+      const GAP = 16;
       const legend = legendWrapRef.current?.firstElementChild as HTMLElement | null;
-      if (legend && !mobile) {
+      const exportBtn = main.querySelector<HTMLElement>('[aria-label="Export current view"]');
+      const chromeVisible = !mobile && !!legend && legend.getBoundingClientRect().width > 0;
+      const bottom = chromeVisible ? 128 : Math.max(0, Math.round(m.bottom - r.top - 8));
+      let left = mobile ? 12 : 24;
+      let right = 140;
+      if (chromeVisible) {
         const l = legend.getBoundingClientRect();
-        const ledgerTop = m.bottom - bottom - 36;
-        if (l.width > 0 && l.bottom > ledgerTop) left = Math.round(l.right - m.left + 12);
+        left = Math.round(l.right - m.left + GAP);
+        if (exportBtn) {
+          const x = exportBtn.getBoundingClientRect();
+          if (x.width > 0) right = Math.round(m.right - x.left + GAP);
+        }
       }
-      setLedgerPos((prev) => (prev.bottom === bottom && prev.left === left ? prev : { bottom, left }));
+      setLedgerPos((prev) =>
+        prev.bottom === bottom && prev.left === left && prev.right === right ? prev : { bottom, left, right },
+      );
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -1423,6 +1432,7 @@ export default function Home() {
           onShowAll={handleShowAllConflicts}
           bottom={ledgerPos.bottom}
           left={ledgerPos.left}
+          right={ledgerPos.right}
           panelOpen={panelOpen}
         />
       )}

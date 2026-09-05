@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { VERSION_LABEL } from '@/lib/version';
 import { Wordmark } from '@/components/LoadingScreen';
 
 export const metadata: Metadata = {
@@ -67,124 +68,109 @@ export default function ChangelogPage() {
           >
             Dataset revisions, border corrections, and methodology changes — newest first.
           </p>
+          <p
+            className="font-mono mt-3"
+            style={{ fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-muted)' }}
+          >
+            Current release · {VERSION_LABEL}
+          </p>
         </header>
 
         {/* ───── Entries (newest first) ───── */}
 
-        <Entry date="4 Sep 2026" tag="r15 · new features">
+        <Entry date="4 Sep 2026" tag="r15 · v0.2.0 · features">
           <p>
-            The second half of the review work: performance, design and a
-            set of features that make the atlas easier to read, share and
-            cite. Geometry remains at full precision throughout.
+            The atlas moves to <strong>version 0.2.0</strong>: a faster,
+            searchable, more legible site on the repaired r14 data. Every
+            border keeps its full-precision geometry.
           </p>
-          <p>
-            <strong>Timeline.</strong> The scrubber now uses a piecewise axis
-            that gives the last two centuries, where half the conflicts fall,
-            a third of the track instead of a sliver. Density is drawn per
-            era-appropriate bucket on a square-root scale; hovering shows the
-            bucket&apos;s count and its most important conflicts; the selected
-            conflict or empire is bracketed on the track; the playhead can be
-            dragged; the year can be typed.
-          </p>
-          <p>
-            <strong>Search and navigation.</strong> Press <kbd>/</kbd> or
-            <kbd>Ctrl</kbd>+<kbd>K</kbd> to search every conflict, empire and
-            city across all years; choosing one seeks the timeline and flies
-            the map. Every selection that lands off-screen now pans to it.
-            Browser Back returns to the previous record. Links can carry the
-            camera (<code>lat</code>, <code>lon</code>, <code>zoom</code>), an
-            empire (<code>empire=</code>) or an exhibit (<code>exhibit=</code>).
-            Press <kbd>[</kbd> and <kbd>]</kbd> to step through the year&apos;s
-            conflicts by importance.
-          </p>
-          <p>
-            <strong>This year.</strong> A strip above the timeline lists the
-            conflicts beginning and ending in the current year, so playback
-            reads as a sequence of events rather than dots appearing. The
-            &quot;deaths this year&quot; tally now spreads each conflict&apos;s
-            headline toll evenly across its duration instead of counting the
-            whole war every year, and a cumulative tally runs alongside it.
-            Method and caveats are on the sources page.
-          </p>
-          <p>
-            <strong>Empires and belligerents.</strong> Two-thirds of conflicts
-            now name their belligerents as atlas polities, so an empire&apos;s
-            panel lists the wars it actually fought rather than every war that
-            overlapped its dates. Twenty-two polities were added at full
-            precision from historical-basemaps, including the Soviet Union,
-            Prussia, Sumer, the Visigothic, Ostrogothic, Vandal and Lombard
-            kingdoms, the Samanids, Balhae and the Kazan Khanate; Athens,
-            Sparta, Phoenicia and the Empire of Nicaea are hand-traced and
-            marked approximate. Every empire has a page at <code>/e/</code>.
-          </p>
-          <p>
-            <strong>Exhibits.</strong> The opening tour is now one of four
-            guided routes: The Mongol century, The scramble for Africa, and The
-            world wars join the welcome tour, each with eight stops that seek
-            the timeline, fly the camera and open the record in question.
-          </p>
-          <p>
-            <strong>Under the hood.</strong> Conflict records load in two
-            parts (core first, narrative text on demand); data files are
-            fingerprinted and cached immutably; the service worker is retired;
-            playback no longer re-renders the page sixty times a second; the
-            project has lint, tests and continuous integration; and the
-            interface has a consolidated type and colour system with contrast
-            fixes, focus management and 44-pixel touch targets.
-          </p>
+          <ul>
+            <li>
+              <strong>Timeline redrawn.</strong> A piecewise axis gives the
+              last two centuries a third of the track instead of a sliver;
+              density bars per era; hover for each period&apos;s count and
+              headline conflicts; drag the playhead or type a year; the
+              selected conflict or empire is bracketed on the track.
+            </li>
+            <li>
+              <strong>Search everything.</strong> <kbd>/</kbd> or{' '}
+              <kbd>Ctrl</kbd>+<kbd>K</kbd> finds any conflict, empire or city
+              across all years and takes you there. <kbd>[</kbd> and{' '}
+              <kbd>]</kbd> step through the year&apos;s conflicts; Back returns
+              to the previous record.
+            </li>
+            <li>
+              <strong>This year, honestly counted.</strong> A strip above the
+              timeline lists what began and ended in the current year. The
+              &quot;deaths this year&quot; tally spreads each toll across the
+              conflict&apos;s duration instead of counting the whole war every
+              year; a cumulative tally runs alongside. Method on the sources
+              page.
+            </li>
+            <li>
+              <strong>Empires and their wars.</strong> Two-thirds of conflicts
+              now name their belligerents as atlas polities, so each empire
+              lists the wars it actually fought. 22 polities added, including
+              the Soviet Union, Prussia, Sumer and the post-Roman kingdoms;
+              Athens, Sparta, Phoenicia and Nicaea hand-traced and marked
+              approximate.
+            </li>
+            <li>
+              <strong>Exhibits.</strong> Three guided routes join the welcome
+              tour: The Mongol century, The scramble for Africa, The world
+              wars.
+            </li>
+            <li>
+              <strong>Pages and links.</strong> Every conflict and empire has a
+              real page (<code>/c/</code>, <code>/e/</code>). Links can carry
+              the camera, an empire or an exhibit.
+            </li>
+            <li>
+              <strong>Under the hood.</strong> Text loads on demand; data files
+              are fingerprinted and cached; the service worker is retired;
+              playback no longer re-renders the page sixty times a second;
+              contrast, focus handling and touch targets fixed; lint, tests
+              and CI added.
+            </li>
+          </ul>
         </Entry>
 
         <Entry date="4 Sep 2026" tag="r14 · data repair">
           <p>
-            A correctness pass across all three datasets and the interface,
-            following a full review. Every polygon keeps its full-precision
-            geometry; nothing was rounded or simplified.
+            A correctness pass across all three datasets following a full
+            review. Nothing was rounded or simplified.
           </p>
-          <p>
-            <strong>Empires.</strong> Three polygons had been drawn on the wrong
-            continent by a mis-matched basemap pull: the Neo-Assyrian Empire over
-            Taiwan, the Neo-Babylonian Empire over New Zealand, and Manchukuo over
-            Antarctica. Manchukuo is re-pulled from historical-basemaps; the two
-            Mesopotamian extents are hand-traced and honestly marked
-            approximate. Eleven duplicate polities were removed, overlapping
-            time slices made exclusive, and the British Empire 1914–18 and
-            Byzantine 600–843 and 1261–1453 gaps filled. Chronology corrected for
-            the Holy Roman Empire (to 1806), the Abbasid Caliphate (to 1258),
-            Oyo, Vijayanagara, Tu&apos;i Tonga, Wari, Tiwanaku, Teotihuacan and
-            Mali. Polity type and source fields now use closed vocabularies with
-            the original provenance kept verbatim.
-          </p>
-          <p>
-            <strong>Conflicts.</strong> Parent-war links now resolve for 96% of
-            the 8,300 battle-to-war references (previously 3%): the HCED
-            vocabulary is mapped to existing records and 331 umbrella wars were
-            added where none existed, so the conflict graph works for the whole
-            dataset. 55 casualty figures were corrected where the headline
-            contradicted its own range (Operation Barbarossa 27M → 5M, among
-            others), 36 conflicts with a million or more deaths were raised to
-            importance 4 or 5, 27 exact duplicates merged with permalink
-            redirects, 177 records that listed &quot;Draw&quot; as a belligerent
-            cleaned, 190 anachronistic country labels replaced by the polity of
-            the day, and 17 mis-placed pins moved. Judgment calls on about 60
-            near-duplicate clusters are held for review rather than applied.
-          </p>
-          <p>
-            <strong>Cities.</strong> Name periods within a chain no longer
-            overlap (Kiev hands over to Kyiv in 1991; Byzantium, Constantinople
-            and Istanbul are sequential), Beijing is labelled through the Ming and
-            Qing, and five conflated cities were separated.
-          </p>
-          <p>
-            <strong>Interface.</strong> Shared links no longer reset to 3000 BCE
-            on slow connections. Duration labels are correct for single-year and
-            ongoing conflicts and for BCE ranges. Auto-play covers the full
-            timeline in about five minutes instead of thirty, and restarts from
-            the beginning when it reaches the present. Keyboard shortcuts no
-            longer fire while typing, during the tour, or twice on the timeline.
-            Every conflict now has Cite and Permalink actions. Loading failures
-            show a retry instead of an endless spinner. The disputed-territory
-            note no longer covers the map attribution.
-          </p>
+          <ul>
+            <li>
+              <strong>Empires.</strong> Three polygons drawn on the wrong
+              continent (Neo-Assyria over Taiwan, Neo-Babylonia over New
+              Zealand, Manchukuo over Antarctica) put back in place; 11
+              duplicates removed; time slices made exclusive; British 1914–18
+              and Byzantine 600–843 and 1261–1453 gaps filled; chronology fixed
+              for the Holy Roman Empire, the Abbasids and seven others.
+            </li>
+            <li>
+              <strong>Conflicts.</strong> Parent-war links resolve for 96% of
+              8,300 battles (was 3%), with 331 umbrella wars added; 55 casualty
+              figures corrected (Barbarossa 27M → 5M); 36 million-death wars
+              raised to importance 4 or 5; 27 exact duplicates merged with
+              redirects; &quot;Draw&quot; belligerents and 190 anachronistic
+              country labels cleaned; 17 pins moved. About 60 near-duplicate
+              clusters are held for review, not applied.
+            </li>
+            <li>
+              <strong>Cities.</strong> Name periods no longer overlap (Kiev →
+              Kyiv in 1991); Beijing labelled through the Ming and Qing; five
+              conflated cities separated.
+            </li>
+            <li>
+              <strong>Interface.</strong> Shared links no longer reset to 3000
+              BCE; duration labels correct for single-year, ongoing and BCE
+              conflicts; auto-play runs in five minutes, not thirty; keyboard
+              shortcuts stop firing while typing; every conflict has Cite and
+              Permalink; loading failures offer a retry.
+            </li>
+          </ul>
         </Entry>
 
         <Entry date="11 Jul 2026" tag="r13 · post-launch fixes">

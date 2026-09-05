@@ -474,15 +474,14 @@ function InfoBoxLayer({
               // move together during drags.
               transition: 'opacity 0.2s',
               zIndex: isSelected ? 10 : 1,
-              willChange: 'transform',
+              // No will-change here: a promoted ancestor can leave the
+              // card's backdrop-filter with nothing to sample, which is how
+              // the translucent blur silently disappeared.
             }}
           >
           <div
-            className="info-box-enter relative"
+            className="info-box-enter surface-callout relative"
             style={{
-              background: 'var(--surface-panel, oklch(0.20 0.014 250 / 0.95))',
-              backdropFilter: 'blur(var(--blur-panel, 18px))',
-              WebkitBackdropFilter: 'blur(var(--blur-panel, 18px))',
               border: `1px solid ${isSelected ? 'var(--amber)' : 'var(--rule-strong)'}`,
               borderRadius: 0,
             }}
