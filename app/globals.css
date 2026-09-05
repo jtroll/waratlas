@@ -39,6 +39,9 @@
   --surface-chrome: oklch(0.20 0.014 250 / 0.85);
   --surface-panel:  oklch(0.20 0.014 250 / 0.95);
   --surface-sheet:  oklch(0.18 0.014 250 / 0.97);
+  /* Callout cards and the this-year strip: translucent enough for the map
+     to show through the blur, unlike the near-opaque panels. */
+  --surface-callout: oklch(0.20 0.014 250 / 0.78);
   --blur-chrome:    8px;
   --blur-panel:     18px;
   /* Modal scrim — the only other translucent dark on screen. */
@@ -176,6 +179,12 @@ input, button, select, [data-mono], .mono, .tabular {
   }
   .surface-sheet {
     background: var(--surface-sheet);
+    backdrop-filter: blur(var(--blur-panel));
+    -webkit-backdrop-filter: blur(var(--blur-panel));
+    border: 1px solid var(--rule-strong);
+  }
+  .surface-callout {
+    background: var(--surface-callout);
     backdrop-filter: blur(var(--blur-panel));
     -webkit-backdrop-filter: blur(var(--blur-panel));
     border: 1px solid var(--rule-strong);

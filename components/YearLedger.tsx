@@ -19,6 +19,10 @@ interface Props {
   /** Left edge (px) — the page measures the border legend so the strip
    *  starts to its right on desktop (12 on mobile). */
   left?: number;
+  /** Distance (px) from the right edge of the map container to the strip's
+   *  right edge on desktop — measured by the page from the Export button so
+   *  the gap matches the legend gap on the left. */
+  right?: number;
   /** A right-side panel is open: keep the strip clear of it. */
   panelOpen?: boolean;
 }
@@ -36,7 +40,7 @@ const MAX_NAMES = 6;
  * nothing began or ended, and in hidden-chrome mode (the page omits it).
  * Mobile collapses to the eyebrow line, tappable to open the list.
  * ─────────────────────────────────────────────────────────── */
-function YearLedger({ year, events, onConflictClick, onShowAll, bottom, left = 24, panelOpen = false }: Props) {
+function YearLedger({ year, events, onConflictClick, onShowAll, bottom, left = 24, right = 140, panelOpen = false }: Props) {
   const { started, ended } = events;
 
   // Merge both lists by importance so the six slots go to the conflicts
@@ -128,19 +132,24 @@ function YearLedger({ year, events, onConflictClick, onShowAll, bottom, left = 2
       // (the page measures it) and stop short of the Export button, or of
       // the open side panel.
       ref={wrapRef}
-      className={`absolute z-30 pointer-events-none right-3 ${panelOpen ? 'sm:right-[484px]' : 'sm:right-[140px]'}`}
-      style={{ bottom, left }}
+      className={`ledger-wrap absolute z-30 pointer-events-none right-3 ${panelOpen ? 'sm:right-[484px]' : ''}`}
+      style={{ bottom, left, ...(panelOpen ? {} : { ['--ledger-right' as string]: `${right}px` }) }}
     >
       <style>{`
         @keyframes ledger-fade { from { opacity: 0; } to { opacity: 1; } }
         .ledger-enter { animation: ledger-fade var(--dur-base, 180ms) var(--ease-out); }
         @media (prefers-reduced-motion: reduce) { .ledger-enter { animation: none; } }
+        /* Desktop: same 32px height as the Export button and the legend's
+           bottom edge; the right gap is measured from Export by the page. */
+        @media (min-width: 640px) {
+          .ledger-wrap { right: var(--ledger-right, 140px); }
+          .ledger-strip { height: 32px; }
+        }
       `}</style>
       <div
         key={year}
         data-avoid
-        className="surface-chrome ledger-enter pointer-events-auto inline-flex items-center max-w-full"
-        style={{ minHeight: 30 }}
+        className="surface-callout ledger-strip ledger-enter pointer-events-auto inline-flex items-center max-w-full"
         role="region"
         aria-label={`Conflicts beginning and ending in ${formatYear(year)}`}
       >
