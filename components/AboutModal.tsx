@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import stats from '@/lib/generated/stats.json';
+import { VERSION_LABEL } from '@/lib/version';
 import { useFocusTrap } from '@/lib/focus-trap';
 import { MAP_SHORTCUTS } from '@/lib/shortcuts';
 import { EXHIBITS } from '@/lib/exhibits';
@@ -115,7 +116,8 @@ export default function AboutModal({ open, onClose }: AboutModalProps) {
               countless amazing open source resources, Claude Cowork, and several late nights.
             </p>
             <Aside>
-              <strong>Dataset version:</strong> May 2026.
+              <strong>Version:</strong> {VERSION_LABEL} (see the{' '}
+              <a href="/changelog" style={{ color: 'var(--indigo)' }}>changelog</a>).
               Casualty figures for ongoing conflicts (Russo-Ukrainian War, Israel-Hamas War, Sudan
               Conflict, Yemeni Civil War, Myanmar Civil War, and others) are point-in-time snapshots
               and should be cross-checked against current reporting.
