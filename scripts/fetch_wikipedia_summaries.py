@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Fetch Wikipedia summaries for every empire in public/empires.json and write
-them to public/empire-wikipedia.json. Run incrementally — already-fetched
+Fetch Wikipedia summaries for every empire in data/empires.json and write
+them to data/empire-wikipedia.json. Run incrementally — already-fetched
 entries are skipped on subsequent runs unless --force is passed.
 
 Usage:
@@ -31,8 +31,8 @@ except ImportError:
     sys.exit(1)
 
 ROOT = Path(__file__).resolve().parent.parent
-EMPIRES_PATH = ROOT / 'public' / 'empires.json'
-OUTPUT_PATH = ROOT / 'public' / 'empire-wikipedia.json'
+EMPIRES_PATH = ROOT / 'data' / 'empires.json'
+OUTPUT_PATH = ROOT / 'data' / 'empire-wikipedia.json'
 
 USER_AGENT = (
     'WarAtlas/1.0 (https://github.com/jtroll/waratlas; contact: jtroll@gmail.com) '

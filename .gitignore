@@ -15,6 +15,10 @@ datasets/**
 /.next/
 /out/
 
+# build artefacts derived from data/ by scripts/build-data.mjs (npm run data).
+# lib/generated/*.json ARE committed; the hashed served copies are not.
+/public/data/
+
 # production
 /build
 
@@ -39,16 +43,16 @@ next-env.d.ts
 
 # ─────────────────────────────────────────────────────────────
 # Dev / data-build artifacts at the project root.
-# These are SOURCES used to build public/empires.json + public/cities.json,
+# These are SOURCES used to build data/empires.json + data/cities.json,
 # not runtime files. Excluded from the repo to keep clone + deploy fast.
 # Keep them locally if you'll re-run the data build; copy off-machine if
 # you want them under version control elsewhere.
+# (Audit outputs cited by the reports are tracked under docs/reports/outputs/.)
 # ─────────────────────────────────────────────────────────────
 /world_*.geojson
 /world_*.json
 /places.geojson
 /fix_*.json
-/outputs/
 /backups/
 
 # Old standalone 

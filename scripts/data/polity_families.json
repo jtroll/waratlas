@@ -1,0 +1,364 @@
+{
+ "note": "r15: ordered slice lists used by scripts/r15_polity_join.py; \"from\"/\"to\" override the feature years for matching; order = priority when several slices contain the conflict start year. Overrides in use: soviet-union-1938 from 1917/1918 (RSFSR), empire-of-japan-1895 from 1868 (Meiji), third-reich-1938 from 1933, americas-united-states-1860 to 1865 (Civil War Union), kingdom-of-england to 1707 / british-empire from 1707 for England/UK labels, kingdom-of-castile to 1492 / spanish-americas from 1492 for Spain, asia-afsharid-dynasty to 1795 / asia-qajar-dynasty from 1796 for generic Persia, mena-ayyubid-sultanate from 1171 for generic Egypt, holy-roman-empire to 1806 for generic Germany, roman-republic-late to -27 for Roman civil-war factions",
+ "families": {
+  "rome": [
+   "roman-republic-early",
+   "roman-republic-late",
+   "roman-empire-augustus",
+   "roman-empire-trajan",
+   "roman-empire-late",
+   "western-roman-empire"
+  ],
+  "byzantine": [
+   "eastern-roman-byzantine-early",
+   "byzantine-justinian",
+   "byzantine-empire-700",
+   "byzantine-empire-800",
+   "byzantine-late-1025",
+   "empire-of-nicaea",
+   "byzantine-empire-1300",
+   "byzantine-empire-1400"
+  ],
+  "ottoman": [
+   "ottoman-early",
+   "ottoman-mid",
+   "ottoman-peak",
+   "ottoman-late"
+  ],
+  "british-empire": [
+   "british-empire-1700",
+   "british-empire-1750",
+   "british-empire-1763",
+   "british-empire-1783",
+   "british-empire-1815",
+   "british-empire-1837",
+   "british-empire-1858",
+   "british-empire-1880",
+   "british-empire-1900",
+   "british-empire-1921",
+   "british-empire-1939",
+   "british-empire-1947"
+  ],
+  "united-kingdom": [
+   {
+    "id": "kingdom-of-england",
+    "to": 1707
+   },
+   {
+    "id": "british-empire-1700",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1750",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1763",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1783",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1815",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1837",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1858",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1880",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1900",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1921",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1939",
+    "from": 1707
+   },
+   {
+    "id": "british-empire-1947",
+    "from": 1707
+   }
+  ],
+  "british-india": [
+   "british-india-1765",
+   "british-india-1805",
+   "british-india-1850",
+   "british-india"
+  ],
+  "united-states": [
+   "americas-united-states-1790",
+   "americas-united-states-1804",
+   "americas-united-states-1848",
+   {
+    "id": "americas-united-states-1860",
+    "to": 1865
+   }
+  ],
+  "france": [
+   "kingdom-of-france"
+  ],
+  "franks": [
+   "europe-frankish-kingdom",
+   "carolingian-empire"
+  ],
+  "spain": [
+   {
+    "id": "kingdom-of-castile",
+    "to": 1492
+   },
+   {
+    "id": "spanish-americas",
+    "from": 1492
+   }
+  ],
+  "portugal": [
+   "kingdom-of-portugal"
+  ],
+  "russia": [
+   "kyivan-rus",
+   "grand-duchy-moscow",
+   "russian-empire",
+   {
+    "id": "soviet-union-1938",
+    "from": 1918
+   },
+   "soviet-union-1960"
+  ],
+  "soviet": [
+   {
+    "id": "soviet-union-1938",
+    "from": 1917
+   },
+   "soviet-union-1960"
+  ],
+  "germany": [
+   {
+    "id": "holy-roman-empire",
+    "to": 1806
+   },
+   "german-empire",
+   {
+    "id": "third-reich-1938",
+    "from": 1933
+   },
+   "third-reich-1939",
+   "third-reich-1941",
+   "third-reich-1942"
+  ],
+  "third-reich": [
+   {
+    "id": "third-reich-1938",
+    "from": 1933
+   },
+   "third-reich-1939",
+   "third-reich-1941",
+   "third-reich-1942"
+  ],
+  "prussia": [
+   "kingdom-of-prussia-1715",
+   "kingdom-of-prussia-1783",
+   "kingdom-of-prussia-1815",
+   "german-empire"
+  ],
+  "austria": [
+   "austro-hungarian"
+  ],
+  "netherlands": [
+   "dutch-republic"
+  ],
+  "sweden": [
+   "kalmar-union",
+   "swedish-empire"
+  ],
+  "poland": [
+   "poland-lithuania"
+  ],
+  "hungary": [
+   "kingdom-of-hungary",
+   "austro-hungarian"
+  ],
+  "persia": [
+   "achaemenid-persian-empire",
+   "parthian-empire",
+   "sassanid-empire",
+   "safavid-empire",
+   {
+    "id": "asia-afsharid-dynasty",
+    "to": 1795
+   },
+   {
+    "id": "asia-qajar-dynasty",
+    "from": 1796
+   }
+  ],
+  "mughal": [
+   "mughal-early",
+   "asia-mughal-akbar",
+   "mughal-peak",
+   "asia-mughal-aurangzeb",
+   "mughal-late"
+  ],
+  "china": [
+   "asia-shang-dynasty",
+   "asia-zhou-dynasty",
+   "qin-dynasty",
+   "han-dynasty-china",
+   "asia-three-kingdoms",
+   "asia-jin-dynasty",
+   "asia-northern-southern-dynasties",
+   "sui-dynasty",
+   "tang-dynasty",
+   "song-dynasty-northern",
+   "song-dynasty-southern",
+   "yuan-dynasty",
+   "ming-dynasty-1400",
+   "qing-dynasty-1790"
+  ],
+  "song": [
+   "song-dynasty-northern",
+   "song-dynasty-southern"
+  ],
+  "three-kingdoms": [
+   "asia-three-kingdoms"
+  ],
+  "jin": [
+   "asia-jin-dynasty",
+   "asia-jurchen-jin"
+  ],
+  "japan": [
+   "asia-yamato-kingdom",
+   "asia-heian-period",
+   "asia-kamakura-shogunate",
+   "asia-ashikaga-shogunate",
+   "asia-sengoku-ashikaga",
+   "tokugawa-shogunate",
+   {
+    "id": "empire-of-japan-1895",
+    "from": 1868
+   },
+   "empire-of-japan-1910",
+   "empire-of-japan-1937",
+   "empire-of-japan-1942"
+  ],
+  "empire-of-japan": [
+   {
+    "id": "empire-of-japan-1895",
+    "from": 1868
+   },
+   "empire-of-japan-1910",
+   "empire-of-japan-1937",
+   "empire-of-japan-1942"
+  ],
+  "egypt": [
+   "egyptian-old-kingdom",
+   "egyptian-middle-kingdom",
+   "egyptian-new-kingdom-early",
+   "egyptian-new-kingdom-peak",
+   "egyptian-new-kingdom-late",
+   "ptolemaic-egypt",
+   "fatimid-caliphate",
+   {
+    "id": "mena-ayyubid-sultanate",
+    "from": 1171
+   },
+   "mena-mamluk-sultanate",
+   "khedivate-of-egypt"
+  ],
+  "mexico": [
+   "americas-mexican-empire-iturbide",
+   "americas-mexican-republic-1824",
+   "americas-mexico-1848"
+  ],
+  "burma": [
+   "asia-bagan-kingdom",
+   "toungoo-burma",
+   "asia-konbaung-burma"
+  ],
+  "siam": [
+   "ayutthaya-kingdom",
+   "siam-rattanakosin"
+  ],
+  "korea": [
+   "asia-goryeo",
+   "joseon-dynasty",
+   "korean-empire"
+  ],
+  "vietnam": [
+   "dai-viet-vietnam",
+   "asia-nguyen-vietnam"
+  ],
+  "caliphate": [
+   "rashidun-caliphate",
+   "umayyad-caliphate",
+   "abbasid-caliphate"
+  ],
+  "seljuk": [
+   "mena-great-seljuk",
+   "mena-seljuk-rum"
+  ],
+  "mongols": [
+   "mongol-empire",
+   "asia-golden-horde"
+  ],
+  "tatars": [
+   "asia-golden-horde",
+   "crimean-khanate"
+  ],
+  "ethiopia": [
+   "africa-ethiopian-empire-medieval",
+   "africa-ethiopian-empire-menelik",
+   "ethiopian-empire"
+  ],
+  "assyria": [
+   "assyrian-middle",
+   "assyrian-neo-early",
+   "assyrian-empire-peak"
+  ],
+  "babylon": [
+   "babylonian-hammurabi",
+   "neo-babylonian-empire"
+  ],
+  "goths": [
+   "visigothic-kingdom-toulouse",
+   "visigothic-kingdom-toledo",
+   "ostrogothic-kingdom"
+  ],
+  "visigoths": [
+   "visigothic-kingdom-toulouse",
+   "visigothic-kingdom-toledo"
+  ],
+  "bulgaria": [
+   "europe-bulgarian-first",
+   "europe-bulgarian-second"
+  ],
+  "gokturk": [
+   "asia-first-turkic-gokturk",
+   "asia-eastern-gokturk",
+   "asia-eastern-gokturk-second"
+  ],
+  "kanem": [
+   "africa-kanem-empire",
+   "africa-kanem-bornu-empire"
+  ],
+  "roman-faction": [
+   {
+    "id": "roman-republic-late",
+    "to": -27
+   }
+  ]
+ }
+}

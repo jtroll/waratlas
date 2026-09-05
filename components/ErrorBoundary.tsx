@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Component, ReactNode } from 'react';
+import { Wordmark } from './LoadingScreen';
 
 interface Props {
   children: ReactNode;
@@ -10,6 +11,110 @@ interface Props {
 interface State {
   hasError: boolean;
   error: Error | null;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Editorial notice card shared by every failure path: wordmark, a mono
+ * status line, serif heading, body, optional mono detail, and a button
+ * row (primary = ivory fill / ink text, secondary = hairline).
+ * app/error.tsx and app/not-found.tsx mirror this treatment.
+ * ─────────────────────────────────────────────────────────── */
+
+export function NoticeButton({
+  primary,
+  onClick,
+  children,
+}: {
+  primary?: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`font-ui uppercase transition-colors ${primary ? '' : 'hover-tint'}`}
+      style={{
+        fontSize: 12,
+        fontWeight: 500,
+        letterSpacing: '0.04em',
+        height: 40,
+        padding: '0 16px',
+        cursor: 'pointer',
+        background: primary ? 'var(--ink-text)' : 'transparent',
+        color: primary ? 'var(--ink-0)' : 'var(--ink-text-2)',
+        border: primary ? '1px solid var(--ink-text)' : '1px solid var(--rule-strong)',
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function EditorialNotice({
+  status,
+  title,
+  children,
+  detail,
+  actions,
+  role,
+}: {
+  status: string;
+  title: string;
+  children: ReactNode;
+  detail?: string | null;
+  actions?: ReactNode;
+  role?: 'alert';
+}) {
+  return (
+    <div
+      className="max-w-md w-full p-6 sm:p-7"
+      role={role}
+      style={{ background: 'var(--ink-1)', border: '1px solid var(--rule-strong)', color: 'var(--ink-text)' }}
+    >
+      <Wordmark size={24} />
+      <p
+        className="font-mono uppercase m-0 mt-4"
+        style={{ fontSize: 11, letterSpacing: '0.08em', color: 'var(--ink-muted)' }}
+      >
+        {status}
+      </p>
+      <h2
+        className="font-display m-0 mt-1.5"
+        style={{ fontSize: 22, lineHeight: 1.2, fontWeight: 400, letterSpacing: '-0.012em' }}
+      >
+        {title}
+      </h2>
+      <div
+        className="font-display m-0 mt-3"
+        style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--ink-text-2)' }}
+      >
+        {children}
+      </div>
+      {detail && (
+        <pre
+          className="font-mono text-left overflow-x-auto m-0 mt-4 px-3 py-2"
+          style={{
+            fontSize: 11,
+            lineHeight: 1.5,
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word',
+            color: 'var(--ink-muted)',
+            background: 'var(--ink-0)',
+            border: '1px solid var(--rule)',
+          }}
+        >
+          {detail}
+        </pre>
+      )}
+      {actions && <div className="flex flex-wrap gap-2 mt-5">{actions}</div>}
+    </div>
+  );
+}
+
+function modifierKey(): string {
+  if (typeof navigator === 'undefined') return 'Ctrl';
+  return /Mac|iPhone|iPad/.test(navigator.platform) ? 'Cmd' : 'Ctrl';
 }
 
 /**
@@ -34,37 +139,22 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       if (this.props.fallback) return this.props.fallback;
       return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-wars-bg">
-          <div className="max-w-md w-full bg-wars-panel border border-wars-border rounded-xl p-6 text-center">
-            <div className="text-wars-red text-3xl mb-3" aria-hidden="true">
-              ⚠
-            </div>
-            <h2 className="text-lg font-bold text-wars-text mb-2">Something went wrong</h2>
-            <p className="text-sm text-wars-muted mb-4">
-              The atlas hit a rendering error. The data file may be loading; try a hard refresh
-              ({navigator.platform.includes('Mac') ? 'Cmd' : 'Ctrl'}+Shift+R) — or report a bug if it
-              persists.
-            </p>
-            {this.state.error && (
-              <pre className="text-[10px] text-wars-muted/60 bg-wars-bg/60 border border-wars-border/40 rounded p-2 text-left overflow-x-auto mb-4">
-                {this.state.error.message}
-              </pre>
-            )}
-            <div className="flex gap-2 justify-center">
-              <button
-                onClick={this.reset}
-                className="px-4 py-2 bg-wars-accent/20 border border-wars-accent/40 rounded text-sm text-wars-accent hover:bg-wars-accent/30 transition-colors"
-              >
-                Try again
-              </button>
-              <button
-                onClick={() => window.location.reload()}
-                className="px-4 py-2 bg-wars-border/40 border border-wars-border rounded text-sm text-wars-muted hover:text-wars-text transition-colors"
-              >
-                Reload page
-              </button>
-            </div>
-          </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-6" style={{ background: 'var(--ink-0)' }}>
+          <EditorialNotice
+            status="Status · Render error"
+            title="The atlas hit a rendering error"
+            detail={this.state.error?.message}
+            role="alert"
+            actions={
+              <>
+                <NoticeButton primary onClick={this.reset}>Try again</NoticeButton>
+                <NoticeButton onClick={() => window.location.reload()}>Reload page</NoticeButton>
+              </>
+            }
+          >
+            The data file may still be loading. Try again, or a hard refresh
+            ({modifierKey()}+Shift+R) — and report a bug if it persists.
+          </EditorialNotice>
         </div>
       );
     }
@@ -74,39 +164,27 @@ export default class ErrorBoundary extends Component<Props, State> {
 
 /**
  * Full-screen panel shown when conflicts.json fails to load (network error,
- * non-2xx, malformed JSON). Same visual treatment as the boundary fallback
- * above, with a Retry that re-runs the fetch instead of reloading the page.
+ * non-2xx, malformed JSON). Same treatment as the boundary fallback above,
+ * with a Retry that re-runs the fetch instead of reloading the page.
  */
 export function DataLoadError({ message, onRetry }: { message: string; onRetry: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-wars-bg">
-      <div className="max-w-md w-full bg-wars-panel border border-wars-border rounded-xl p-6 text-center" role="alert">
-        <div className="text-wars-red text-3xl mb-3" aria-hidden="true">
-          ⚠
-        </div>
-        <h2 className="text-lg font-bold text-wars-text mb-2">Couldn&apos;t load the atlas data</h2>
-        <p className="text-sm text-wars-muted mb-4">
-          The conflict dataset failed to download. Check your connection and try again — if it
-          keeps failing, the site may be mid-deploy.
-        </p>
-        <pre className="text-[10px] text-wars-muted/60 bg-wars-bg/60 border border-wars-border/40 rounded p-2 text-left overflow-x-auto mb-4">
-          {message}
-        </pre>
-        <div className="flex gap-2 justify-center">
-          <button
-            onClick={onRetry}
-            className="px-4 py-2 bg-wars-accent/20 border border-wars-accent/40 rounded text-sm text-wars-accent hover:bg-wars-accent/30 transition-colors"
-          >
-            Retry
-          </button>
-          <button
-            onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-wars-border/40 border border-wars-border rounded text-sm text-wars-muted hover:text-wars-text transition-colors"
-          >
-            Reload page
-          </button>
-        </div>
-      </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-6" style={{ background: 'var(--ink-0)' }}>
+      <EditorialNotice
+        status="Status · Data unavailable"
+        title="Couldn’t load the atlas data"
+        detail={message}
+        role="alert"
+        actions={
+          <>
+            <NoticeButton primary onClick={onRetry}>Retry</NoticeButton>
+            <NoticeButton onClick={() => window.location.reload()}>Reload page</NoticeButton>
+          </>
+        }
+      >
+        The conflict dataset failed to download. Check your connection and try again — if it
+        keeps failing, the site may be mid-deploy.
+      </EditorialNotice>
     </div>
   );
 }
@@ -117,18 +195,28 @@ export function DataLoadError({ message, onRetry }: { message: string; onRetry: 
  */
 export function MapboxTokenFallback() {
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-wars-bg p-6 text-center">
-      <div className="max-w-md">
-        <h2 className="text-lg font-bold text-wars-text mb-2">Map unavailable</h2>
-        <p className="text-sm text-wars-muted mb-3">
+    <div className="absolute inset-0 flex items-center justify-center p-6" style={{ background: 'var(--ink-0)' }}>
+      <EditorialNotice status="Status · Map unavailable" title="The map needs a Mapbox token">
+        <p className="m-0">
           The map needs a Mapbox access token to render. The token in this build is missing or
-          expired.
+          expired. The timeline and conflict list still work.
         </p>
-        <p className="text-xs text-wars-muted/70">
-          If you&apos;re a developer running locally, copy <code className="font-mono px-1 bg-wars-bg/60 border border-wars-border/40 rounded">.env.local.example</code> to{' '}
-          <code className="font-mono px-1 bg-wars-bg/60 border border-wars-border/40 rounded">.env.local</code> and add your Mapbox token, then restart the dev server.
+        <p className="m-0 mt-3" style={{ fontSize: 13, color: 'var(--ink-muted)' }}>
+          If you&apos;re a developer running locally, copy <Code>.env.local.example</Code> to{' '}
+          <Code>.env.local</Code>, add your Mapbox token, and restart the dev server.
         </p>
-      </div>
+      </EditorialNotice>
     </div>
+  );
+}
+
+function Code({ children }: { children: ReactNode }) {
+  return (
+    <code
+      className="font-mono px-1"
+      style={{ fontSize: '0.9em', background: 'var(--ink-0)', border: '1px solid var(--rule)', borderRadius: 2 }}
+    >
+      {children}
+    </code>
   );
 }

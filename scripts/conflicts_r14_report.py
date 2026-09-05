@@ -75,7 +75,7 @@ def main():
     ap.add_argument('--orig', default=None)
     a = ap.parse_args()
     L = json.load(open(os.path.join(a.log, 'r14_log.json'), encoding='utf-8'))
-    recs = json.load(open(os.path.join(ROOT, 'public', 'conflicts.json'), encoding='utf-8'))
+    recs = json.load(open(os.path.join(ROOT, 'data', 'conflicts.json'), encoding='utf-8'))
     byid = {r['id']: r for r in recs}
     redirects = json.load(open(os.path.join(ROOT, 'scripts', 'data', 'id_redirects.json'), encoding='utf-8'))
     unresolved = json.load(open(os.path.join(ROOT, 'scripts', 'data', 'parent_unresolved.json'), encoding='utf-8'))['strings']
@@ -86,7 +86,7 @@ def main():
     o = []
     w = o.append
     w('# Conflicts dataset — review round 14 (data-defect pass)\n')
-    w('Scope: `public/conflicts.json` only. Applied by `scripts/conflicts_r14_fix.py` from the tables under `scripts/data/`; '
+    w('Scope: `data/conflicts.json` only. Applied by `scripts/conflicts_r14_fix.py` from the tables under `scripts/data/`; '
       'verified by `scripts/validate-conflicts.mjs`. Companion review list (judgment calls, NOT applied): `duplicate-clusters-r14.md`.\n')
     w('## Headline numbers\n')
     w('| Metric | Before | After |\n|---|---|---|')

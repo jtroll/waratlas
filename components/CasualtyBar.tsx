@@ -4,20 +4,20 @@ import { Conflict } from '@/lib/types';
 import { formatCasualties as fmt } from '@/lib/format';
 
 /**
- * CasualtyRange — bespoke microvisualization (step 3 of redesign).
+ * CasualtyRange — bespoke microvisualization.
  *
  * Three deliberate decisions:
- *   1. Logarithmic axis. Orders of magnitude is what historians actually
- *      argue about; a linear scale collapses small wars into nothing.
- *   2. Range band, not a single bar. Casualty figures are estimates with
- *      uncertainty — show the low/high explicitly with whiskers at each end.
- *   3. Diamond notch at the most-cited point estimate, with source attribution
- *      visible inline (not in a tooltip the researcher has to hunt for).
+ *   1. Logarithmic axis from 100 to ~130M. Orders of magnitude is what
+ *      historians actually argue about; a linear scale collapses small wars
+ *      into nothing, and a 1K floor collapsed the 104 conflicts under 1,000.
+ *   2. Range band, not a single bar — but only when a range was published.
+ *      When low === high (10,300+ conflicts carry a single figure) we draw a
+ *      lone labelled notch and say so, instead of a fake 0.6%-wide band.
+ *   3. The point estimate is labelled with its value, and the source line is
+ *      always rendered — "source: unrecorded" makes absence visible.
  *
- * Drop-in replacement for the old CasualtyBar — same import path. Kept the
- * old default export name as a re-export so existing call sites keep working
- * during the transition; the new structured API is exported as
- * CasualtyRange and is what Sidebar uses.
+ * Ranges with source attribution are a researcher-credibility requirement;
+ * nothing here hides a number.
  */
 
 interface CasualtyRangeProps {
@@ -37,6 +37,7 @@ interface CasualtyRangeProps {
 }
 
 const TICKS: Array<[number, string]> = [
+  [1e2, '100'],
   [1e3, '1K'],
   [1e4, '10K'],
   [1e5, '100K'],
@@ -45,7 +46,7 @@ const TICKS: Array<[number, string]> = [
   [1e8, '100M'],
 ];
 
-const LOG_MIN = 3;       // 1K
+const LOG_MIN = 2;       // 100
 const LOG_MAX = 8.1;     // ~130M ceiling
 const LOG_SPAN = LOG_MAX - LOG_MIN;
 
@@ -53,106 +54,144 @@ const log10 = (v: number) => Math.log10(Math.max(1, v));
 const pct = (v: number) =>
   Math.max(0, Math.min(1, (log10(v) - LOG_MIN) / LOG_SPAN)) * 100;
 
+/** Keep a centred label inside the axis near either edge. */
+function labelTransform(p: number): string {
+  if (p < 7) return 'translateX(0)';
+  if (p > 93) return 'translateX(-100%)';
+  return 'translateX(-50%)';
+}
+
+const BAND_FILL = 'color-mix(in oklch, var(--vermilion) 18%, transparent)';
+const BAND_EDGE = 'color-mix(in oklch, var(--vermilion) 60%, transparent)';
+const WHISKER = 'color-mix(in oklch, var(--vermilion) 90%, transparent)';
+
 export function CasualtyRange({
   casualties,
   range,
   showHeadline = true,
 }: CasualtyRangeProps) {
-  const lo = range?.low ?? casualties ?? 0;
-  const hi = range?.high ?? casualties ?? 0;
-
   if (casualties == null && !range) {
     return (
-      <div className="text-meta text-wars-faint italic">
+      <p className="font-display italic text-body-s text-wars-muted m-0">
         Casualty figures unrecorded for this conflict.
-      </div>
+      </p>
     );
   }
+
+  const lo = range?.low ?? casualties ?? 0;
+  const hi = range?.high ?? casualties ?? 0;
+  // Never invent a point estimate: a range without a headline figure draws
+  // the band alone; a degenerate range (low === high) is a single figure.
+  const hasRange = !!range && hi > lo;
+  const point = casualties ?? (!hasRange ? lo : null);
+  const pointPct = point != null && point > 0 ? pct(point) : null;
 
   return (
     <div className="pt-1">
       {showHeadline && (
         <div className="flex items-baseline gap-2 mb-3.5">
           <div
-            className="font-display tabular-nums text-[28px] leading-none text-wars-text"
-            style={{ letterSpacing: '-0.018em' }}
+            className="font-display tabular-nums text-wars-text"
+            style={{ fontSize: 28, lineHeight: 1, letterSpacing: '-0.018em' }}
           >
-            {fmt(lo)}
-            <span className="text-wars-faint mx-1.5 font-light">–</span>
-            {fmt(hi)}
+            {hasRange ? (
+              <>
+                {fmt(lo)}
+                <span className="text-wars-muted mx-1.5" style={{ fontWeight: 300 }}>–</span>
+                {fmt(hi)}
+              </>
+            ) : (
+              fmt(point ?? lo)
+            )}
           </div>
-          <span className="eyebrow ml-auto text-wars-faint">
-            estimated dead
-          </span>
+          <span className="eyebrow ml-auto">{hasRange ? 'published range' : 'single estimate'}</span>
         </div>
       )}
 
       {/* Axis */}
-      <div className="relative h-11">
+      <div className="relative h-14" role="img" aria-label={
+        hasRange
+          ? `Estimated ${fmt(lo)} to ${fmt(hi)} dead${point != null ? `, point estimate ${fmt(point)}` : ''}, on a log scale from 100 to 100 million`
+          : `Single estimate of ${fmt(point ?? lo)} dead, on a log scale from 100 to 100 million`
+      }>
         {/* baseline */}
-        <div className="absolute inset-x-0 top-[22px] h-px bg-[var(--rule)]" />
+        <div className="absolute inset-x-0 top-[30px] h-px" style={{ background: 'var(--rule)' }} />
 
         {/* ticks */}
         {TICKS.map(([v, label]) => (
           <div
             key={v}
-            className="absolute top-[18px]"
+            className="absolute top-[26px]"
             style={{ left: `${pct(v)}%` }}
           >
-            <div className="w-px h-2 bg-[var(--rule-strong)]" />
+            <div className="w-px h-2" style={{ background: 'var(--rule-strong)' }} />
             <div
-              className="font-mono text-mono-xs text-wars-faint mt-1 whitespace-nowrap"
-              style={{ transform: 'translateX(-50%)' }}
+              className="font-mono text-mono text-wars-muted mt-1 whitespace-nowrap"
+              style={{ transform: labelTransform(pct(v)) }}
             >
               {label}
             </div>
           </div>
         ))}
 
-        {/* range band */}
-        <div
-          className="absolute top-3 h-5 border-y"
-          style={{
-            left: `${pct(lo)}%`,
-            width: `${Math.max(pct(hi) - pct(lo), 0.6)}%`,
-            background: 'oklch(0.62 0.18 28 / 0.18)',
-            borderColor: 'oklch(0.62 0.18 28 / 0.6)',
-          }}
-        />
+        {hasRange && (
+          <>
+            {/* range band */}
+            <div
+              className="absolute top-[20px] h-5 border-y"
+              style={{
+                left: `${pct(lo)}%`,
+                width: `${Math.max(pct(hi) - pct(lo), 0.6)}%`,
+                background: BAND_FILL,
+                borderColor: BAND_EDGE,
+              }}
+            />
+            {/* whiskers */}
+            <div
+              className="absolute top-4 w-px h-7"
+              style={{ left: `${pct(lo)}%`, background: WHISKER }}
+            />
+            <div
+              className="absolute top-4 w-px h-7"
+              style={{ left: `${pct(hi)}%`, background: WHISKER }}
+            />
+          </>
+        )}
 
-        {/* whiskers */}
-        <div
-          className="absolute top-2 w-px h-7"
-          style={{ left: `${pct(lo)}%`, background: 'oklch(0.62 0.18 28 / 0.9)' }}
-        />
-        <div
-          className="absolute top-2 w-px h-7"
-          style={{ left: `${pct(hi)}%`, background: 'oklch(0.62 0.18 28 / 0.9)' }}
-        />
-
-        {/* point estimate notch */}
-        {casualties != null && casualties > 0 && (
+        {/* point estimate notch + value label */}
+        {pointPct != null && point != null && (
           <div
-            className="absolute top-1.5 h-8 w-px bg-wars-text"
-            style={{ left: `${pct(casualties)}%` }}
+            className="absolute top-[14px] h-8 w-px bg-wars-text"
+            style={{ left: `${pointPct}%` }}
           >
             <div
               className="absolute -top-1.5 -left-[3px] w-[7px] h-[7px] bg-wars-text"
               style={{ transform: 'rotate(45deg)' }}
             />
+            <div
+              className="absolute font-mono text-mono text-wars-text whitespace-nowrap"
+              style={{ top: -18, transform: labelTransform(pointPct) }}
+            >
+              {fmt(point)}
+            </div>
           </div>
         )}
       </div>
 
+      {!hasRange && (
+        <p className="mt-1 font-display italic text-meta text-wars-muted m-0">
+          no range published{casualties == null ? '' : ' · point estimate only'}
+        </p>
+      )}
       {range?.notes && (
-        <p className="mt-2.5 text-meta text-wars-text-2 leading-relaxed">
+        <p className="mt-2.5 font-display text-body-s text-wars-text-2 m-0" style={{ lineHeight: 1.55 }}>
           {range.notes}
         </p>
       )}
-      {range?.source && (
-        <p className="mt-1.5 font-mono text-mono-xs text-wars-faint">
+      {range && (
+        <p className="mt-1.5 font-mono text-mono text-wars-faint m-0">
           <span className="text-wars-muted mr-1.5">SOURCE</span>
-          {range.source}
+          {range.source || 'unrecorded'}
         </p>
       )}
     </div>
@@ -182,7 +221,7 @@ export function CompactCasualtyBar({ casualties }: CompactBarProps) {
         className="absolute inset-y-0 left-0"
         style={{
           width,
-          background: 'oklch(0.62 0.18 28 / 0.7)',
+          background: 'color-mix(in oklch, var(--vermilion) 70%, transparent)',
         }}
       />
     </div>

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Wordmark } from '@/components/LoadingScreen';
 import stats from '@/lib/generated/stats.json';
+import { EXHIBITS } from '@/lib/exhibits';
+import { HASH_PARAMS } from '@/lib/hash';
 
 const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
 const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
@@ -32,35 +35,44 @@ export default function SourcesPage() {
       <style>{`html, body { overflow: auto !important; height: auto !important; }`}</style>
       <main
         className="min-h-screen px-6 py-10 sm:py-14"
-        style={{ background: 'var(--ink-0, #06090f)', color: 'var(--ink-text, #ece3d3)' }}
+        style={{ background: 'var(--ink-0)', color: 'var(--ink-text)' }}
       >
       <article className="mx-auto" style={{ maxWidth: 720 }}>
         <header className="mb-10">
-          <Link
-            href="/"
-            className="font-mono inline-block mb-6"
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.12em',
-              color: 'var(--ink-muted, #9ca3af)',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderBottom: '1px solid currentColor',
-              paddingBottom: 2,
-            }}
+          {/* Masthead — the same wordmark as the TopBar, with the way back. */}
+          <div
+            className="flex items-baseline justify-between gap-4 mb-8 pb-3"
+            style={{ borderBottom: '1px solid var(--rule)' }}
           >
-            ← Back to the atlas
-          </Link>
+            <Link href="/" style={{ textDecoration: 'none' }} aria-label="War Atlas home">
+              <Wordmark size={22} />
+            </Link>
+            <Link
+              href="/"
+              className="font-mono"
+              style={{
+                fontSize: 12,
+                letterSpacing: '0.08em',
+                color: 'var(--ink-muted)',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                borderBottom: '1px solid currentColor',
+                paddingBottom: 2,
+              }}
+            >
+              ← Back to the atlas
+            </Link>
+          </div>
           <h1
             className="font-display"
             style={{ fontSize: 40, fontWeight: 400, lineHeight: 1.1, margin: 0, letterSpacing: '-0.01em' }}
           >
-            <span style={{ fontStyle: 'italic', color: 'var(--vermilion, #c8553b)' }}>Sources</span>
+            <span style={{ fontStyle: 'italic', color: 'var(--vermilion)' }}>Sources</span>
             <span style={{ marginLeft: 6 }}>&amp; attribution</span>
           </h1>
           <p
             className="font-display italic mt-3"
-            style={{ fontSize: 17, color: 'var(--ink-text-2, #d1d5db)', lineHeight: 1.5 }}
+            style={{ fontSize: 17, color: 'var(--ink-text-2)', lineHeight: 1.5 }}
           >
             What we drew on, who owns it, and how to file a correction.
           </p>
@@ -68,7 +80,7 @@ export default function SourcesPage() {
 
         <Section title="Conflict records">
           <p>
-            The {STAT_CONFLICTS} conflict entries in <Code>public/conflicts.json</Code> were
+            The {STAT_CONFLICTS} conflict entries in <Code>data/conflicts.json</Code> were
             seeded from the leads of English Wikipedia articles
             (<License href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</License>),
             then cross-checked against:
@@ -120,6 +132,50 @@ export default function SourcesPage() {
           </p>
         </Section>
 
+        <Section title="Belligerent polities (polityIds)">
+          <p>
+            Each conflict record carries a free-text list of belligerents
+            (<Code>countries</Code>) as they appear in the source articles —
+            &ldquo;Mongol Empire&rdquo;, &ldquo;Kingdom of Hungary&rdquo;,
+            &ldquo;Abbasid Caliphate&rdquo;. Where one of those names matches an
+            empire feature in <Code>data/empires.json</Code> that was active at
+            the conflict&apos;s start year, the feature&apos;s id is stored on
+            the record as <Code>polityIds</Code>. The empire panel and the{' '}
+            <Code>/e/&lt;id&gt;</Code> pages read that list back as{' '}
+            <strong>&ldquo;Wars of this empire&rdquo;</strong>.
+          </p>
+          <p>Limits worth knowing before you cite the list:</p>
+          <ul>
+            <li>
+              <strong>It is a name join, not a historian&apos;s judgement.</strong>{' '}
+              A belligerent spelled differently from the feature name (Byzantium
+              vs. Byzantine Empire, Qing vs. Manchu) is missed unless an alias
+              exists; a polity with no polygon in the atlas can never match. The
+              absence of a war from the list is not evidence the empire
+              didn&apos;t fight it.
+            </li>
+            <li>
+              <strong>Time-slices.</strong> Long-lived polities are stored as
+              several features (<Code>british-empire-1815</Code>,{' '}
+              <Code>british-empire-1900</Code>…). The join records the slice
+              active at the conflict&apos;s start year; the panel matches any
+              slice sharing the base name, so a 1900 war shows under the 1815
+              feature too.
+            </li>
+            <li>
+              <strong>Sides are not recorded.</strong> <Code>polityIds</Code>{' '}
+              says a polity took part, not which side it fought on or whether it
+              won. Civil wars list the state once.
+            </li>
+            <li>
+              <strong>Fallback.</strong> Where a feature has no matching records
+              yet, the panel shows conflicts that merely overlap its dates,
+              under the heading &ldquo;Also during this period&rdquo; with a
+              note. Don&apos;t read those as belligerency.
+            </li>
+          </ul>
+        </Section>
+
         <Section title="Bulk historical datasets (2026 expansion)">
           <p>
             In 2026 the atlas was expanded from ~2,571 to {STAT_CONFLICTS} conflicts by
@@ -127,13 +183,13 @@ export default function SourcesPage() {
             records sit at lower visual prominence (importance 2), carry{' '}
             <Code>casualties: null</Code> where the source gives no reliable
             figure, and each cites its source dataset on the record. Per each
-            provider's requested attribution:
+            provider&apos;s requested attribution:
           </p>
           <ul>
             <li>
               <strong>HCED (geocoded battles, 1468 BCE-2003):</strong> Miller,
-              Charles, and K. Shuvo Bakar (2023). "Conflict Events Worldwide
-              Since 1468BC: Introducing the Historical Conflict Event Dataset."{' '}
+              Charles, and K. Shuvo Bakar (2023). &quot;Conflict Events Worldwide
+              Since 1468BC: Introducing the Historical Conflict Event Dataset.&quot;{' '}
               <em>Journal of Conflict Resolution</em> 67(2-3): 522-554.{' '}
               <a href="https://doi.org/10.7910/DVN/6ZFC0V" target="_blank" rel="noopener noreferrer">doi:10.7910/DVN/6ZFC0V</a>.
               HCED draws primarily on Tony Jaques, <em>Dictionary of Battles and Sieges</em> (2007).
@@ -161,8 +217,8 @@ export default function SourcesPage() {
               <strong>Brecke Conflict Catalog</strong> (consulted for casualty
               cross-checking, not bulk-imported, since its fatality figures are
               war-level and could not be honestly attached to battle-level
-              records): Brecke, Peter (1999). "Violent Conflicts 1400 A.D. to the
-              Present in Different Regions of the World." Peace Science Society.
+              records): Brecke, Peter (1999). &quot;Violent Conflicts 1400 A.D. to the
+              Present in Different Regions of the World.&quot; Peace Science Society.
             </li>
           </ul>
           <p style={{ marginTop: 12, fontSize: 13, opacity: 0.85 }}>
@@ -176,8 +232,8 @@ export default function SourcesPage() {
 
         <Section title="Empire summaries">
           <p>
-            The lead-paragraph summaries shown under "Overview" / "From
-            Wikipedia" in the empire flyout come from the English Wikipedia
+            The lead-paragraph summaries shown under &quot;Overview&quot; / &quot;From
+            Wikipedia&quot; in the empire flyout come from the English Wikipedia
             REST summary API. Reused under{' '}
             <License href="https://creativecommons.org/licenses/by-sa/4.0/">
               CC BY-SA 4.0
@@ -188,7 +244,7 @@ export default function SourcesPage() {
             The fetcher script (<Code>scripts/fetch_wikipedia_summaries.py</Code>)
             sends a polite User-Agent identifying the project and its
             maintainer, rate-limits to a few requests per second, and caches
-            results in <Code>public/empire-wikipedia.json</Code>. Curated
+            results in <Code>data/empire-wikipedia.json</Code>. Curated
             editorial summaries (<Code>lib/empire-descriptions.ts</Code>) take
             precedence in the UI; Wikipedia content fills the gap and is
             always labelled as such.
@@ -197,7 +253,7 @@ export default function SourcesPage() {
 
         <Section title="Borders, polygons, geometry">
           <p>
-            The {STAT_EMPIRES} empire polygons in <Code>public/empires.json</Code> come
+            The {STAT_EMPIRES} empire polygons in <Code>data/empires.json</Code> come
             from several kinds of source, in roughly this order of priority:
           </p>
           <ul>
@@ -268,7 +324,7 @@ export default function SourcesPage() {
             nothing checkable would defeat the point.
           </p>
 
-          <h3 style={{fontSize: 16, fontWeight: 500, margin: '20px 0 8px', color: 'var(--ink-text, #ece3d3)'}}>Solid vs. dashed: two questions, not one</h3>
+          <h3 style={{fontSize: 16, fontWeight: 500, margin: '20px 0 8px', color: 'var(--ink-text)'}}>Solid vs. dashed: two questions, not one</h3>
           <p>
             The dashed/solid distinction tries to answer two questions at
             once: <em>is the polygon faithful to its source?</em> and{' '}
@@ -509,6 +565,19 @@ export default function SourcesPage() {
               range with source attribution rather than a single number.
             </li>
             <li>
+              <strong>&ldquo;Deaths this year&rdquo;</strong> — the running
+              figure in the top bar spreads each active conflict&apos;s headline
+              toll evenly across its duration (a six-year war with 85 million
+              dead contributes about 14 million to each of its six years), then
+              sums the active conflicts. It is a reading aid, not a statistic:
+              real death rates are anything but even; conflicts with an
+              unrecorded toll (<Code>casualties: null</Code>) contribute nothing,
+              so pre-modern years run low; and where a war and its
+              sub-conflicts both carry figures (World War II and the Eastern
+              Front, say) the same deaths can be counted twice. The per-conflict
+              ranges in the sidebar are the numbers to cite.
+            </li>
+            <li>
               <strong>Deaths vs. displacement.</strong> Events whose defining
               toll is forced migration rather than killing — the Nakba, the
               Trail of Tears, Partition of India — keep these as separate
@@ -559,6 +628,49 @@ export default function SourcesPage() {
           </ul>
         </Section>
 
+        <Section title="Exhibits">
+          <p>
+            The guided routes under the Tour menu (<Code>lib/exhibits.ts</Code>)
+            are editorial: each stop is a year, a map extent, a short blurb, and
+            where a record exists, the conflict or empire it opens. The copy
+            follows the same rules as the rest of the atlas — dates and figures
+            as the mainstream literature has them, ranges where historians
+            disagree — but it is narrative, and it links to the records rather
+            than replacing them. A test checks every referenced id against the
+            data files so a renamed record can&apos;t silently break a tour.
+          </p>
+          <ul>
+            {EXHIBITS.map((ex) => (
+              <li key={ex.id}>
+                <a href={`/#exhibit=${ex.id}`}>{ex.title}</a>
+                {' — '}{ex.summary}{' '}
+                <span style={{ opacity: 0.7 }}>({ex.stops.length} stops)</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section title="Sharing the atlas (URL parameters)">
+          <p>
+            The state of the map lives in the URL fragment, after{' '}
+            <Code>#</Code>, joined with <Code>&amp;</Code>. Conflicts and empires
+            also have permanent pages at <Code>/c/&lt;id&gt;</Code> and{' '}
+            <Code>/e/&lt;id&gt;</Code>, which are the addresses to cite.
+          </p>
+          <ul>
+            {HASH_PARAMS.map((h) => (
+              <li key={h.param}>
+                <Code>{h.param}</Code> — {h.description}
+              </li>
+            ))}
+          </ul>
+          <p style={{ fontSize: 13, opacity: 0.85 }}>
+            Example: <Code>/#year=1942&amp;conflict=world-war-2</Code> opens the
+            atlas in 1942 with World War II selected;{' '}
+            <Code>/#exhibit=scramble-for-africa</Code> starts an exhibit.
+          </p>
+        </Section>
+
         <Section title="Corrections & feedback">
           <p>
             Spotted a wrong date, an under-counted casualty figure, an
@@ -582,10 +694,10 @@ export default function SourcesPage() {
         <footer
           className="mt-14 pt-6 font-mono"
           style={{
-            borderTop: '1px solid var(--rule, rgba(255,255,255,0.1))',
+            borderTop: '1px solid var(--rule))',
             fontSize: 11,
             letterSpacing: '0.06em',
-            color: 'var(--ink-faint, #6b7280)',
+            color: 'var(--ink-faint)',
           }}
         >
           WARS-ATLAS · /SOURCES · A RESEARCH PREVIEW
@@ -605,7 +717,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
           fontSize: 22,
           fontWeight: 500,
           margin: '0 0 10px',
-          color: 'var(--ink-text, #ece3d3)',
+          color: 'var(--ink-text)',
           letterSpacing: '-0.005em',
         }}
       >
@@ -613,7 +725,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </h2>
       <div
         className="font-display sources-prose"
-        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2, #d1d5db)' }}
+        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2)' }}
       >
         {children}
       </div>
@@ -623,9 +735,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
         .sources-prose p { margin: 0 0 12px; }
         .sources-prose ul { margin: 0 0 12px; padding-left: 1.1em; }
         .sources-prose ul li { margin-bottom: 6px; }
-        .sources-prose a { color: var(--indigo, #6366f1); text-decoration: none; border-bottom: 1px solid currentColor; }
-        .sources-prose a:hover { color: var(--ink-text, #ece3d3); }
-        .sources-prose code { font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.85em; padding: 1px 4px; background: rgba(255,255,255,0.04); border-radius: 2px; }
+        .sources-prose a { color: var(--indigo); text-decoration: none; border-bottom: 1px solid currentColor; }
+        .sources-prose a:hover { color: var(--ink-text); }
+        .sources-prose code { font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.85em; padding: 1px 4px; background: var(--tint-ivory); border-radius: 2px; }
       `}</style>
     </section>
   );

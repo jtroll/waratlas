@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Data-review round 14: repair public/empires.json.
+"""Data-review round 14: repair data/empires.json.
 
 Covers (see docs/data-review/empires-r14.md for the narrative):
   1. wrong-continent polygons (Neo-Assyrian, Neo-Babylonian, Manchukuo)
@@ -42,8 +42,8 @@ from empires_hand_traced_r14 import (  # noqa: E402
 )
 
 ROOT = Path(__file__).resolve().parent.parent
-EMPIRES = ROOT / 'public' / 'empires.json'
-WIKI = ROOT / 'public' / 'empire-wikipedia.json'
+EMPIRES = ROOT / 'data' / 'empires.json'
+WIKI = ROOT / 'data' / 'empire-wikipedia.json'
 HBM_URL = 'https://raw.githubusercontent.com/aourednik/historical-basemaps/master/geojson/world_{}.geojson'
 
 POLITY_TYPES = {'state', 'tributary', 'confederation', 'culture', 'nomadic-range', 'chiefdom'}

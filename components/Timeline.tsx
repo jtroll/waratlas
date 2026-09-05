@@ -1,8 +1,24 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { TimelineState, Conflict } from '@/lib/types';
 import { formatYear, formatYearParts } from '@/lib/format';
+import { playbackStore, usePlaybackRate, usePlaybackYear } from '@/lib/playback-store';
+import {
+  createAxis,
+  densityHeight,
+  formatBucketRange,
+  type DensityBucket,
+  type TimelineAxis,
+} from '@/lib/timeline-axis';
 
 interface TimelineProps {
   timeline: TimelineState;
@@ -16,74 +32,439 @@ interface TimelineProps {
    *  and cleared automatically when they press Play. Desktop-only — on
    *  mobile the prompt would crowd the small play button. */
   showPlayPrompt?: boolean;
+  /** Span of the currently selected conflict or empire, drawn as a bracket
+   *  on the track so the timeline is the shared axis of the interface. */
+  selectedSpan?: { startYear: number; endYear: number | null; label: string; kind: 'conflict' | 'empire' } | null;
 }
 
 /* ─────────────────────────────────────────────────────────────
- * Editorial timeline (step 4 of redesign).
+ * Timeline — bespoke data-vis, not a slider.
  *
- * Replaces the per-conflict importance-bar swarm with:
- *   1. 50-year density histogram, importance-weighted
- *      (importance ≥ 3 = ×2, ≥ 4 = ×3). Past buckets are
- *      vermilion 55%, future buckets are dimmed to 18%.
- *   2. Era labels above (Bronze Age, Iron Age, Classical,
- *      Medieval, Early Modern, Modern), 9px uppercase eyebrow.
- *   3. Epoch ticks below the rail (CE, 1000, 1500, 1800, 1900,
- *      2000), JetBrains Mono 9px.
- *   4. Playhead — 2×14px amber bar + 6px amber down-arrow,
- *      with a 3px amber bloom underneath. No round dot.
- *   5. Year display — 28px Source Serif 4, mono "BCE/CE"
- *      suffix. Never transitions opacity (must feel weighted).
- *   6. Speed selector — Auto / 1× / 10× / 100× as mono pills
- *      (1× = 5 yr/s, so the multipliers are literal).
+ *   Axis      piecewise-linear (lib/timeline-axis.ts): five era segments
+ *             with fixed width shares, so the 226 years since 1800 (half
+ *             the conflicts) get 35% of the track instead of 4%. Each
+ *             boundary is drawn as an honest axis break: hairline + ⫽.
+ *   Density   histogram, one bar per bucket with bucket width following
+ *             the axis (250 y in the Bronze Age, 10 y after 1800). Height
+ *             is log-scaled so pre-1500 buckets are visible. Every
+ *             conflict counts; importance only scales the weight, and
+ *             importance ≥ 4 is stacked as a brighter cap.
+ *   Hover     ivory hairline + mono chip: bucket range, count, top three
+ *             names. Click seeks, drag scrubs, keyboard steps.
+ *   Playhead  2 px amber bar with a 12 px grabbable handle; the bloom
+ *             breathes only while playing (never under reduced motion).
+ *   Selection the selected conflict / empire span is bracketed above the
+ *             bars (vermilion / uncertain), label in mono.
+ *   Readout   serif year (click → type a year), live "▶ 2.1 yr/s" while
+ *             playing, honest speed pills (Auto · 5 · 50 · 500 yr/s).
  * ─────────────────────────────────────────────────────────── */
 
 const SPEED_OPTIONS = [
   { label: 'Auto', value: 0,   mode: 'auto'   as const, title: 'Adaptive speed' },
-  { label: '1×',   value: 5,   mode: 'manual' as const, title: '5 years per second' },
-  { label: '10×',  value: 50,  mode: 'manual' as const, title: '50 years per second' },
-  { label: '100×', value: 500, mode: 'manual' as const, title: '500 years per second' },
+  { label: '5',    value: 5,   mode: 'manual' as const, title: '5 years per second' },
+  { label: '50',   value: 50,  mode: 'manual' as const, title: '50 years per second' },
+  { label: '500',  value: 500, mode: 'manual' as const, title: '500 years per second' },
 ];
 
-const ERA_LABELS = [
-  { year: -2500, label: 'Bronze Age' },
-  { year: -1200, label: 'Iron Age' },
-  { year: -500,  label: 'Classical' },
-  { year: 476,   label: 'Medieval' },
-  { year: 1453,  label: 'Early Modern' },
-  { year: 1800,  label: 'Modern' },
-];
+// Track geometry (px, measured from the bottom of the track).
+const TICKS_H = 16;              // tick marks + labels under the baseline
+const HIST_H = 36;               // histogram bars above the baseline
+const BRACKET_H = 18;            // selected-span bracket + label zone
+const TRACK_H = TICKS_H + 1 + HIST_H + BRACKET_H;   // 71
+const HIST_BOTTOM = TICKS_H + 1; // bars sit on the 1 px baseline
+const ERA_H = 14;                // era-label row above the track
+const HANDLE_W = 12;
+const HANDLE_H = 10;
+const NARROW_TRACK = 480;        // below this: majors only, coarser fit
 
-const EPOCH_TICKS = [
-  { year: 0,    label: 'CE' },
-  { year: 1000, label: '1000' },
-  { year: 1500, label: '1500' },
-  { year: 1800, label: '1800' },
-  { year: 1900, label: '1900' },
-  { year: 2000, label: '2000' },
-];
+const VERMILION_PAST = 'oklch(0.62 0.18 28 / 0.55)';
+const VERMILION_FUTURE = 'oklch(0.62 0.18 28 / 0.18)';
+const VERMILION_CAP_PAST = 'oklch(0.72 0.19 30 / 0.95)';
+const VERMILION_CAP_FUTURE = 'oklch(0.72 0.19 30 / 0.40)';
+const STRIP_BG = 'oklch(0.16 0.012 250 / 0.96)';
 
-const ERA_PRESETS = [
-  { label: 'Bronze Age', year: -2500 },
-  { label: 'Greco-Persian', year: -490 },
-  { label: 'Fall of Rome', year: 400 },
-  { label: 'Crusades', year: 1100 },
-  { label: 'Mongol Era', year: 1240 },
-  { label: 'Renaissance', year: 1500 },
-  { label: 'Napoleonic', year: 1805 },
-  { label: 'World War I', year: 1914 },
-  { label: 'World War II', year: 1939 },
-  { label: 'Cold War', year: 1960 },
-];
+/** Measured pixel width of an element (0 before mount). Updates only on
+ *  resize, so the component re-renders when the track changes size, not
+ *  on every pointer move. */
+function useMeasuredWidth<T extends HTMLElement>(ref: React.RefObject<T>): number {
+  const [width, setWidth] = useState(0);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setWidth(Math.round(el.getBoundingClientRect().width));
+    update();
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [ref]);
+  return width;
+}
 
-const BUCKET_SIZE = 50;     // years per histogram bucket
-const HIST_HEIGHT = 36;     // px
+/* ── Leaf: playhead (re-renders per frame while playing) ─────────── */
+function Playhead({
+  axis,
+  currentYear,
+  isPlaying,
+}: {
+  axis: TimelineAxis;
+  currentYear: number;
+  isPlaying: boolean;
+}) {
+  const storeYear = usePlaybackYear();
+  const year = isPlaying ? storeYear : currentYear;
+  const pos = axis.yearToPos(year);
+  return (
+    <div
+      className="absolute"
+      style={{
+        left: `${pos * 100}%`,
+        bottom: HIST_BOTTOM,
+        width: 2,
+        height: HIST_H + HANDLE_H,
+        transform: 'translateX(-1px)',
+        pointerEvents: 'none',
+        zIndex: 5,
+      }}
+    >
+      {isPlaying && (
+        <div
+          aria-hidden
+          className="absolute timeline-bloom"
+          style={{
+            left: -2,
+            bottom: 0,
+            width: 6,
+            height: HIST_H,
+            background:
+              'linear-gradient(to top, oklch(0.78 0.14 78 / 0.5), oklch(0.78 0.14 78 / 0))',
+            filter: 'blur(2px)',
+          }}
+        />
+      )}
+      {/* Bar */}
+      <div
+        className="absolute"
+        style={{ left: 0, bottom: 0, width: 2, height: HIST_H, background: 'var(--amber)' }}
+      />
+      {/* Handle — the one part of the playhead that takes the pointer */}
+      <svg
+        className="absolute timeline-handle"
+        width={HANDLE_W}
+        height={HANDLE_H}
+        viewBox={`0 0 ${HANDLE_W} ${HANDLE_H}`}
+        style={{
+          left: -(HANDLE_W / 2) + 1,
+          top: 0,
+          pointerEvents: 'auto',
+          color: 'var(--amber)',
+        }}
+        aria-hidden
+      >
+        <path d={`M0 0 H${HANDLE_W} V${HANDLE_H - 4} L${HANDLE_W / 2} ${HANDLE_H} L0 ${HANDLE_H - 4} Z`} fill="currentColor" />
+      </svg>
+    </div>
+  );
+}
 
-// Years are conventionally written without thousands separators
-// ("2500 BCE", not "2,500 BCE"). formatYearParts handles BCE and the
-// nonexistent year 0 consistently with the rest of the UI.
-const formatYearDisplay = formatYearParts;
+/* ── Leaf: live rate readout (≤ 4 updates/s while playing) ──────── */
+function RateReadout({ mode }: { mode: 'auto' | 'manual' }) {
+  const rate = usePlaybackRate();
+  return (
+    <span
+      className="font-mono tabular-nums"
+      style={{ fontSize: 11, letterSpacing: '0.04em', color: 'var(--amber)' }}
+      aria-live="off"
+      title={mode === 'auto' ? 'Adaptive speed — slows down where history is dense' : 'Playback speed'}
+    >
+      ▶ {rate.toFixed(1)} yr/s
+    </span>
+  );
+}
 
-export default function Timeline({
+/* ── Year readout: serif display that becomes a number input on click ── */
+function YearReadout({
+  year,
+  minYear,
+  maxYear,
+  isPlaying,
+  speedMode,
+  size,
+  onCommit,
+}: {
+  year: number;
+  minYear: number;
+  maxYear: number;
+  isPlaying: boolean;
+  speedMode: 'auto' | 'manual';
+  size: 'l' | 's';
+  onCommit: (year: number) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const parts = formatYearParts(year);
+  const fontSize = size === 'l' ? 28 : 22;
+
+  useEffect(() => {
+    if (editing) {
+      inputRef.current?.focus();
+      inputRef.current?.select();
+    }
+  }, [editing]);
+
+  const commit = () => {
+    const el = inputRef.current;
+    setEditing(false);
+    if (!el) return;
+    const v = parseInt(el.value, 10);
+    if (!Number.isFinite(v)) return;
+    onCommit(Math.max(minYear, Math.min(maxYear, v)));
+  };
+
+  if (editing) {
+    return (
+      <div className={size === 'l' ? 'text-right' : ''} style={{ minWidth: size === 'l' ? 100 : undefined }}>
+        <input
+          ref={inputRef}
+          type="number"
+          inputMode="numeric"
+          min={minYear}
+          max={maxYear}
+          step={1}
+          defaultValue={Math.round(year)}
+          className="timeline-year-input font-mono tabular-nums text-wars-text"
+          style={{
+            width: size === 'l' ? 100 : 96,
+            fontSize: size === 'l' ? 20 : 18,
+            lineHeight: 1.2,
+            padding: '2px 6px',
+            background: 'oklch(0.20 0.014 250)',
+            border: '1px solid var(--amber)',
+            borderRadius: 'var(--r-chip)',
+            textAlign: size === 'l' ? 'right' : 'left',
+          }}
+          aria-label="Go to year (BCE as a negative number)"
+          onKeyDown={(e) => {
+            e.stopPropagation();
+            if (e.key === 'Enter') { e.preventDefault(); commit(); }
+            else if (e.key === 'Escape') { e.preventDefault(); setEditing(false); }
+          }}
+          onBlur={commit}
+        />
+        <div
+          className="font-mono"
+          style={{ fontSize: 10, lineHeight: '14px', letterSpacing: '0.04em', color: 'var(--ink-faint)', marginTop: 2 }}
+        >
+          BCE as negative · Enter to go
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={size === 'l' ? 'text-right' : ''} style={{ minWidth: size === 'l' ? 100 : undefined }}>
+      <button
+        type="button"
+        onClick={() => setEditing(true)}
+        className="font-display tabular-nums text-wars-text"
+        style={{
+          fontSize,
+          lineHeight: 1,
+          letterSpacing: '-0.018em',
+          fontWeight: 400,
+          background: 'transparent',
+          border: 0,
+          padding: 0,
+          cursor: 'text',
+          minHeight: size === 's' ? 32 : undefined,
+        }}
+        title="Click to type a year (BCE as a negative number)"
+        aria-label={`Current year ${formatYear(year)}. Click to type a year.`}
+      >
+        {parts.num}
+        <span
+          className="font-mono text-wars-muted"
+          style={{ fontSize: 11, letterSpacing: '0.05em', marginLeft: 6 }}
+        >
+          {parts.suffix}
+        </span>
+      </button>
+      {/* Reserve the line so the rate appearing does not shift layout. */}
+      <div style={{ height: 14, lineHeight: '14px', marginTop: 2 }}>
+        {isPlaying && <RateReadout mode={speedMode} />}
+      </div>
+    </div>
+  );
+}
+
+/* ── Speed pills ─────────────────────────────────────────────────── */
+function SpeedPills({
+  timeline,
+  onSpeedChange,
+  onSpeedModeChange,
+  dense,
+}: {
+  timeline: TimelineState;
+  onSpeedChange: (speed: number) => void;
+  onSpeedModeChange: (mode: 'auto' | 'manual') => void;
+  dense: boolean;
+}) {
+  const isActive = (o: (typeof SPEED_OPTIONS)[number]) =>
+    o.mode === 'auto'
+      ? timeline.speedMode === 'auto'
+      : timeline.speedMode === 'manual' && timeline.playbackSpeed === o.value;
+  return (
+    <div className="flex items-center gap-1" role="group" aria-label="Playback speed">
+      {SPEED_OPTIONS.map((option) => {
+        const active = isActive(option);
+        return (
+          <button
+            key={option.label}
+            type="button"
+            onClick={() => {
+              if (option.mode === 'auto') onSpeedModeChange('auto');
+              else { onSpeedModeChange('manual'); onSpeedChange(option.value); }
+            }}
+            className="font-mono tabular-nums transition-colors"
+            style={{
+              fontSize: 11,
+              lineHeight: '14px',
+              letterSpacing: '0.04em',
+              padding: dense ? '6px 8px' : '4px 8px',
+              minWidth: dense ? 34 : undefined,
+              border: '1px solid',
+              borderColor: active ? 'var(--amber)' : 'var(--rule)',
+              color: active ? 'var(--amber)' : 'var(--ink-muted)',
+              background: active ? 'oklch(0.78 0.14 78 / 0.10)' : 'transparent',
+            }}
+            aria-pressed={active}
+            title={option.title}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+      <span
+        className="font-mono"
+        style={{ fontSize: 10, letterSpacing: '0.04em', color: 'var(--ink-faint)', marginLeft: 2 }}
+        aria-hidden
+      >
+        yr/s
+      </span>
+    </div>
+  );
+}
+
+/* ── Play / pause / replay ───────────────────────────────────────── */
+function PlayButton({
+  timeline,
+  onPlay,
+  showPlayPrompt,
+}: {
+  timeline: TimelineState;
+  onPlay: () => void;
+  showPlayPrompt: boolean;
+}) {
+  const atEnd = !timeline.isPlaying && timeline.currentYear >= timeline.maxYear;
+  const title = timeline.isPlaying
+    ? 'Pause (Space)'
+    : atEnd
+      ? 'Replay from the start'
+      : 'Play (Space)';
+  return (
+    <div className="relative flex-shrink-0">
+      <button
+        type="button"
+        onClick={onPlay}
+        className="w-11 h-11 sm:w-10 sm:h-10 inline-flex items-center justify-center hover:opacity-90 transition-opacity"
+        style={{
+          border: '1px solid var(--rule-strong)',
+          // Tinted while playing — the "you are watching this" cue.
+          background: timeline.isPlaying ? 'oklch(0.78 0.14 78 / 0.12)' : 'transparent',
+          color: 'var(--amber)',
+          boxShadow: showPlayPrompt
+            ? '0 0 0 2px oklch(0.78 0.14 78 / 0.35), 0 0 16px 4px oklch(0.78 0.14 78 / 0.20)'
+            : undefined,
+        }}
+        title={title}
+        aria-label={
+          timeline.isPlaying
+            ? 'Pause timeline playback'
+            : atEnd
+              ? 'Replay timeline from the start'
+              : 'Play timeline playback'
+        }
+        aria-pressed={timeline.isPlaying}
+      >
+        {timeline.isPlaying ? (
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+            <rect x="2" y="2" width="3" height="10" fill="currentColor" />
+            <rect x="9" y="2" width="3" height="10" fill="currentColor" />
+          </svg>
+        ) : atEnd ? (
+          // ↺ replay
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
+            <path
+              d="M8 2.5a5.5 5.5 0 1 1-4.9 3"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+            <path d="M2.2 2.4 L3.4 6.2 L7.2 5.2 Z" fill="currentColor" />
+          </svg>
+        ) : (
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+            <path d="M3 2 L12 7 L3 12 Z" fill="currentColor" />
+          </svg>
+        )}
+      </button>
+
+      {/* Post-tour prompt — desktop only. Anchored to the button's left
+          edge so it extends rightward into open space. */}
+      {showPlayPrompt && (
+        <div
+          className="hidden sm:flex absolute bottom-full mb-3 left-0 items-center pointer-events-none whitespace-nowrap"
+          role="status"
+          aria-live="polite"
+        >
+          <div
+            className="font-mono"
+            style={{
+              fontSize: 10,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: 'var(--amber)',
+              background: 'oklch(0.18 0.014 250 / 0.97)',
+              border: '1px solid var(--amber)',
+              padding: '6px 10px',
+              boxShadow: 'var(--shadow-pop)',
+            }}
+          >
+            Press Play to watch the world change
+          </div>
+          <div
+            aria-hidden
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 20,
+              transform: 'translateY(-1px) rotate(45deg)',
+              width: 8,
+              height: 8,
+              background: 'oklch(0.18 0.014 250 / 0.97)',
+              borderRight: '1px solid var(--amber)',
+              borderBottom: '1px solid var(--amber)',
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Main component ──────────────────────────────────────────────── */
+function Timeline({
   timeline,
   allConflicts,
   onPlay,
@@ -91,486 +472,488 @@ export default function Timeline({
   onSpeedChange,
   onSpeedModeChange,
   showPlayPrompt = false,
+  selectedSpan = null,
 }: TimelineProps) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const yearRange = timeline.maxYear - timeline.minYear;
-  const progress = (timeline.currentYear - timeline.minYear) / yearRange;
-  const [showEraPresets, setShowEraPresets] = useState(false);
+  const trackPx = useMeasuredWidth(trackRef);
+  const narrow = trackPx > 0 && trackPx < NARROW_TRACK;
 
-  /* ── Density histogram (memoized — pure function of conflicts + range) ── */
-  const histogram = useMemo(() => {
-    const start = Math.floor(timeline.minYear / BUCKET_SIZE) * BUCKET_SIZE;
-    const end = Math.ceil(timeline.maxYear / BUCKET_SIZE) * BUCKET_SIZE;
-    const nBuckets = Math.max(1, Math.round((end - start) / BUCKET_SIZE));
-    const weights = new Array<number>(nBuckets).fill(0);
+  // Hover chrome is driven imperatively (refs, not state) so pointer moves
+  // never re-render the histogram.
+  const hoverLineRef = useRef<HTMLDivElement>(null);
+  const chipRef = useRef<HTMLDivElement>(null);
+  const chipYearRef = useRef<HTMLSpanElement>(null);
+  const chipRangeRef = useRef<HTMLSpanElement>(null);
+  const chipCountRef = useRef<HTMLSpanElement>(null);
+  const chipNamesRef = useRef<HTMLSpanElement>(null);
+  const draggingRef = useRef(false);
 
-    for (const c of allConflicts) {
-      const sy = c.startYear;
-      const ey = c.endYear ?? c.startYear;
-      const w =
-        c.importance >= 4 ? 3 :
-        c.importance >= 3 ? 2 : 1;
-      const i0 = Math.max(0, Math.floor((sy - start) / BUCKET_SIZE));
-      const i1 = Math.min(nBuckets - 1, Math.floor((ey - start) / BUCKET_SIZE));
-      for (let i = i0; i <= i1; i++) weights[i] += w;
-    }
+  const axis = useMemo(
+    () => createAxis(timeline.minYear, timeline.maxYear),
+    [timeline.minYear, timeline.maxYear]
+  );
 
-    const max = Math.max(1, ...weights);
-    return weights.map((w, i) => ({
-      year: start + i * BUCKET_SIZE,
-      weight: w,
-      h: Math.max(1.5, (w / max) * HIST_HEIGHT),
-    }));
-  }, [allConflicts, timeline.minYear, timeline.maxYear]);
+  const buckets = useMemo(() => axis.densityBuckets(allConflicts), [axis, allConflicts]);
+  const maxWeight = useMemo(() => buckets.reduce((m, b) => Math.max(m, b.weight), 0), [buckets]);
 
-  /* ── Filtered era labels (drop any too close to neighbours) ── */
-  const eras = useMemo(() => {
-    const filtered: Array<{ year: number; label: string; position: number }> = [];
-    for (const e of ERA_LABELS) {
-      if (e.year < timeline.minYear || e.year > timeline.maxYear) continue;
-      const position = (e.year - timeline.minYear) / yearRange;
-      if (filtered.some((p) => Math.abs(p.position - position) < 0.08)) continue;
-      filtered.push({ ...e, position });
-    }
-    return filtered;
-  }, [timeline.minYear, timeline.maxYear, yearRange]);
+  const ticks = useMemo(
+    () => (trackPx > 0 ? axis.ticks(trackPx, { minors: !narrow }) : []),
+    [axis, trackPx, narrow]
+  );
 
-  const ticks = useMemo(() => {
-    return EPOCH_TICKS.filter(
-      (t) => t.year >= timeline.minYear && t.year <= timeline.maxYear
-    ).map((t) => ({
-      ...t,
-      position: (t.year - timeline.minYear) / yearRange,
-    }));
-  }, [timeline.minYear, timeline.maxYear, yearRange]);
+  // Era labels: full label if it fits the segment, else the short one,
+  // else nothing (the ⫽ breaks still mark the segment).
+  const eraLabels = useMemo(() => {
+    const charPx = 6.9; // Inter Tight 10.5px uppercase + 0.10em tracking
+    return axis.segments.map((s) => {
+      const px = (s.pos1 - s.pos0) * trackPx;
+      const fits = (t: string) => t.length * charPx + 8 <= px;
+      const text = trackPx === 0 ? s.label : fits(s.label) ? s.label : fits(s.short) ? s.short : null;
+      return { ...s, text };
+    });
+  }, [axis, trackPx]);
 
-  /* ── Click-anywhere-on-track to seek (no native range input painted) ── */
+  // Forget frame history when playback stops so the rate readout never
+  // shows a stale number on the next Play.
+  useEffect(() => {
+    if (!timeline.isPlaying) playbackStore.resetRate();
+  }, [timeline.isPlaying]);
+
+  /* ── Seek helpers ── */
+  const posFromClientX = useCallback((clientX: number): number => {
+    const track = trackRef.current;
+    if (!track) return 0;
+    const rect = track.getBoundingClientRect();
+    if (rect.width <= 0) return 0;
+    return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  }, []);
+
   const seekFromEvent = useCallback(
     (clientX: number) => {
-      const track = trackRef.current;
-      if (!track) return;
-      const rect = track.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      onYearChange(timeline.minYear + pct * yearRange);
+      onYearChange(axis.posToYear(posFromClientX(clientX)));
     },
-    [onYearChange, timeline.minYear, yearRange]
+    [axis, onYearChange, posFromClientX]
   );
 
-  const handleTrackPointer = (e: React.PointerEvent) => {
+  /* ── Hover chip (imperative) ── */
+  const hideHover = useCallback(() => {
+    if (hoverLineRef.current) hoverLineRef.current.style.opacity = '0';
+    if (chipRef.current) chipRef.current.style.opacity = '0';
+  }, []);
+
+  const updateHover = useCallback(
+    (clientX: number) => {
+      const track = trackRef.current;
+      const line = hoverLineRef.current;
+      const chip = chipRef.current;
+      if (!track || !line || !chip || buckets.length === 0) return;
+      const rect = track.getBoundingClientRect();
+      const pos = posFromClientX(clientX);
+      const year = axis.posToYear(pos);
+      const b = buckets[axis.bucketIndexAt(buckets, year)];
+      const x = pos * rect.width;
+
+      line.style.left = `${x}px`;
+      line.style.opacity = '1';
+
+      if (chipYearRef.current) chipYearRef.current.textContent = formatYear(year);
+      if (chipRangeRef.current) chipRangeRef.current.textContent = formatBucketRange(b.startYear, b.endYear);
+      if (chipCountRef.current) {
+        chipCountRef.current.textContent =
+          b.count === 1 ? '1 conflict' : `${b.count.toLocaleString('en-US')} conflicts`;
+      }
+      if (chipNamesRef.current) {
+        const names = b.top.map((t) => t.name).join(', ');
+        chipNamesRef.current.textContent = names ? (b.count > b.top.length ? `${names}…` : names) : '';
+      }
+      chip.style.opacity = '1';
+      // Clamp the chip inside the track once its width is known.
+      const w = chip.offsetWidth;
+      const left = Math.max(w / 2, Math.min(rect.width - w / 2, x));
+      chip.style.left = `${left}px`;
+    },
+    [axis, buckets, posFromClientX]
+  );
+
+  /* ── Pointer handlers (capture-based drag) ── */
+  const handlePointerDown = (e: React.PointerEvent) => {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
     (e.target as Element).setPointerCapture?.(e.pointerId);
+    draggingRef.current = true;
     seekFromEvent(e.clientX);
+    updateHover(e.clientX);
   };
-  const handleTrackPointerMove = (e: React.PointerEvent) => {
-    if (e.buttons !== 1) return;
-    seekFromEvent(e.clientX);
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (draggingRef.current && e.buttons === 1) seekFromEvent(e.clientX);
+    if (e.pointerType === 'mouse' || draggingRef.current) updateHover(e.clientX);
   };
-
-  const handleSpeedClick = useCallback(
-    (option: typeof SPEED_OPTIONS[number]) => {
-      if (option.mode === 'auto') {
-        onSpeedModeChange('auto');
-      } else {
-        onSpeedModeChange('manual');
-        onSpeedChange(option.value);
-      }
-    },
-    [onSpeedChange, onSpeedModeChange]
-  );
-
-  const isActiveSpeed = (option: typeof SPEED_OPTIONS[number]) => {
-    if (option.mode === 'auto') return timeline.speedMode === 'auto';
-    return timeline.speedMode === 'manual' && timeline.playbackSpeed === option.value;
+  const handlePointerUp = (e: React.PointerEvent) => {
+    draggingRef.current = false;
+    if (e.pointerType !== 'mouse') hideHover();
+    else {
+      const rect = trackRef.current?.getBoundingClientRect();
+      if (rect && (e.clientX < rect.left || e.clientX > rect.right)) hideHover();
+    }
+  };
+  const handlePointerLeave = () => {
+    if (!draggingRef.current) hideHover();
   };
 
-  const playheadLeft = `${progress * 100}%`;
-  const yearDisplay = formatYearDisplay(timeline.currentYear);
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // stopPropagation so the window-level ±10-year handler in
+    // app/page.tsx doesn't also fire.
+    const step = e.shiftKey ? 50 : 1;
+    const cur = timeline.currentYear;
+    let next: number | null = null;
+    if (e.key === 'ArrowLeft') next = Math.max(timeline.minYear, cur - step);
+    else if (e.key === 'ArrowRight') next = Math.min(timeline.maxYear, cur + step);
+    else if (e.key === 'Home') next = timeline.minYear;
+    else if (e.key === 'End') next = timeline.maxYear;
+    if (next === null) return;
+    e.preventDefault();
+    e.stopPropagation();
+    onYearChange(next);
+  };
+
+  /* ── Selected span geometry ── */
+  const span = useMemo(() => {
+    if (!selectedSpan) return null;
+    const start = Math.max(timeline.minYear, selectedSpan.startYear);
+    const end = Math.min(timeline.maxYear, selectedSpan.endYear ?? timeline.maxYear);
+    const p0 = axis.yearToPos(start);
+    const p1 = axis.yearToPos(Math.max(end, start));
+    return {
+      p0,
+      p1,
+      color: selectedSpan.kind === 'conflict' ? 'var(--vermilion)' : 'var(--uncertain)',
+      label: selectedSpan.label,
+      // Right-align the label when the bracket starts in the last third
+      // so it stays readable instead of being clipped at the track edge.
+      anchorEnd: p0 > 0.66,
+    };
+  }, [selectedSpan, axis, timeline.minYear, timeline.maxYear]);
 
   return (
-    // Mobile: sit ABOVE the MobileTabDock (which is ~46px tall + safe-area
-    // inset). Desktop: anchor to the very bottom. Previously both the
-    // Timeline and the dock were at `bottom-0 z-30`, so the dock occluded
-    // the timeline on mobile.
+    // Mobile: sit ABOVE the MobileTabDock (~46px + safe-area). Desktop:
+    // anchor to the very bottom.
     <div className="absolute left-0 right-0 z-30 bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:bottom-0">
       {/* Top fade — keeps map visible behind the strip */}
       <div
         className="h-12 pointer-events-none"
         style={{
-          background:
-            'linear-gradient(to top, oklch(0.16 0.012 250 / 0.85) 0%, transparent 100%)',
+          background: 'linear-gradient(to top, oklch(0.16 0.012 250 / 0.85) 0%, transparent 100%)',
         }}
       />
 
-      <div
-        className="px-3 sm:px-6 pb-3 pt-2 hairline-strong-t"
-        style={{ background: 'oklch(0.16 0.012 250 / 0.96)' }}
-      >
-        {/* Era jump presets — toggleable secondary row */}
-        {showEraPresets && (
-          <div className="flex flex-wrap gap-1.5 mb-2 mx-16">
-            {ERA_PRESETS.map((era) => (
-              <button
-                key={era.label}
-                onClick={() => onYearChange(era.year)}
-                className="font-mono text-mono-xs text-wars-muted hover:text-wars-text transition-colors px-2 py-0.5"
-                style={{
-                  border: '1px solid var(--rule)',
-                  background: 'transparent',
-                  letterSpacing: '0.04em',
-                }}
-              >
-                {era.label}
-              </button>
-            ))}
-          </div>
-        )}
+      <div className="px-3 sm:px-6 pb-3 pt-2 hairline-strong-t" style={{ background: STRIP_BG }}>
+        {/* Mobile-only top row: year + speed pills. */}
+        <div className="flex sm:hidden items-start justify-between gap-2 mb-1">
+          <YearReadout
+            year={timeline.currentYear}
+            minYear={timeline.minYear}
+            maxYear={timeline.maxYear}
+            isPlaying={timeline.isPlaying}
+            speedMode={timeline.speedMode}
+            size="s"
+            onCommit={onYearChange}
+          />
+          <SpeedPills
+            timeline={timeline}
+            onSpeedChange={onSpeedChange}
+            onSpeedModeChange={onSpeedModeChange}
+            dense
+          />
+        </div>
 
-        {/* Era labels (above the rail) — hidden on mobile because the labels
-            collide with each other at narrow widths. Mobile users still get
-            era context from the EraPanel popup when crossing era boundaries
-            during scrubbing, and the era-jump pill row remains togglable. */}
-        <div className="hidden sm:block relative h-3 mx-16 mb-1">
-          {eras.map((era) => (
-            <button
-              key={era.label}
-              onClick={() => setShowEraPresets((s) => !s)}
-              className="absolute eyebrow text-wars-faint hover:text-wars-muted transition-colors whitespace-nowrap"
+        <div className="flex items-end gap-3 sm:gap-4">
+          <div className="pb-[14px] sm:pb-[15px]">
+            <PlayButton timeline={timeline} onPlay={onPlay} showPlayPrompt={showPlayPrompt} />
+          </div>
+
+          {/* Track column: era row + track. `relative` so the hover chip
+              can hang above it without being clipped. */}
+          <div className="flex-1 relative min-w-0">
+            {/* Hover chip — sits above the era row */}
+            <div
+              ref={chipRef}
+              aria-hidden
+              className="absolute font-mono whitespace-nowrap pointer-events-none"
               style={{
-                left: `${era.position * 100}%`,
+                bottom: `calc(100% + 4px)`,
+                left: 0,
                 transform: 'translateX(-50%)',
-                fontSize: 9,
-                lineHeight: '12px',
-                background: 'transparent',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-              }}
-              title="Click to show era jump buttons"
-            >
-              {era.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile-only top row: year + speed pills. On desktop these live
-            inline in the main row to the right of the track. */}
-        <div className="flex sm:hidden items-center justify-between gap-2 mb-2">
-          <div className="font-display tabular-nums text-wars-text" style={{ fontSize: 22, lineHeight: 1, letterSpacing: '-0.018em', fontWeight: 400 }}>
-            {yearDisplay.num}
-            <span className="font-mono text-wars-muted ml-1.5" style={{ fontSize: 10, letterSpacing: '0.05em' }}>
-              {yearDisplay.suffix}
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            {SPEED_OPTIONS.map((option) => {
-              const active = isActiveSpeed(option);
-              return (
-                <button
-                  key={option.label}
-                  onClick={() => handleSpeedClick(option)}
-                  className="font-mono transition-colors"
-                  style={{
-                    fontSize: 10.5,
-                    letterSpacing: '0.04em',
-                    padding: '5px 9px',
-                    border: '1px solid',
-                    borderColor: active ? 'var(--amber)' : 'var(--rule)',
-                    color: active ? 'var(--amber)' : 'var(--ink-muted)',
-                    background: active ? 'oklch(0.78 0.14 78 / 0.10)' : 'transparent',
-                  }}
-                  aria-pressed={active}
-                  title={option.title}
-                >
-                  {option.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 sm:gap-4">
-          {/* Play / pause — wrapped in a relative container so the
-              post-tour "Press Play" tooltip can anchor to it. */}
-          <div className="relative flex-shrink-0">
-            <button
-              onClick={onPlay}
-              className="w-10 h-10 inline-flex items-center justify-center hover:opacity-90 transition-opacity"
-              style={{
+                opacity: 0,
+                transition: 'opacity var(--dur-fast)',
+                fontSize: 11,
+                lineHeight: '16px',
+                letterSpacing: '0.02em',
+                color: 'var(--ink-text)',
+                background: 'oklch(0.18 0.014 250 / 0.97)',
                 border: '1px solid var(--rule-strong)',
-                background: timeline.isPlaying ? 'transparent' : 'oklch(0.78 0.14 78 / 0.12)',
-                color: 'var(--amber)',
-                // Subtle amber ring when the tour just finished — pulls
-                // the eye to the affordance.
-                boxShadow: showPlayPrompt
-                  ? '0 0 0 2px oklch(0.78 0.14 78 / 0.35), 0 0 16px 4px oklch(0.78 0.14 78 / 0.20)'
-                  : undefined,
+                padding: '3px 8px',
+                boxShadow: 'var(--shadow-pop)',
+                zIndex: 40,
+                maxWidth: 'min(760px, 94vw)',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               }}
-              title={timeline.isPlaying ? 'Pause (Space)' : 'Play (Space)'}
-              aria-label={timeline.isPlaying ? 'Pause timeline playback' : 'Play timeline playback'}
-              aria-pressed={timeline.isPlaying}
             >
-              {timeline.isPlaying ? (
-                <svg width="14" height="14" viewBox="0 0 14 14">
-                  <rect x="2" y="2" width="3" height="10" fill="currentColor" />
-                  <rect x="9" y="2" width="3" height="10" fill="currentColor" />
-                </svg>
-              ) : (
-                <svg width="14" height="14" viewBox="0 0 14 14">
-                  <path d="M3 2 L12 7 L3 12 Z" fill="currentColor" />
-                </svg>
-              )}
-            </button>
+              <span ref={chipYearRef} style={{ color: 'var(--amber)' }} />
+              <span style={{ color: 'var(--ink-faint)' }}> · </span>
+              <span ref={chipRangeRef} />
+              <span style={{ color: 'var(--ink-faint)' }}> · </span>
+              <span ref={chipCountRef} />
+              <span style={{ color: 'var(--ink-faint)' }}> · </span>
+              <span ref={chipNamesRef} style={{ color: 'var(--ink-muted)' }} />
+            </div>
 
-            {/* Post-tour prompt — desktop only. Anchor the tooltip's LEFT
-                edge to the Play button (which sits at the very-left of the
-                timeline strip), so the tooltip extends rightward into open
-                space instead of being cut off by the viewport edge. The
-                chevron then points down at the button. */}
-            {showPlayPrompt && (
-              <div
-                className="hidden sm:flex absolute bottom-full mb-3 left-0 items-center pointer-events-none whitespace-nowrap"
-                role="status"
-                aria-live="polite"
-              >
+            {/* Era labels, laid out inside their segment */}
+            <div className="relative" style={{ height: ERA_H, marginBottom: 2 }} aria-hidden>
+              {eraLabels.map((s) => (
                 <div
-                  className="font-mono"
-                  style={{
-                    fontSize: 10,
-                    letterSpacing: '0.14em',
-                    textTransform: 'uppercase',
-                    color: 'var(--amber)',
-                    background: 'oklch(0.18 0.014 250 / 0.97)',
-                    border: '1px solid var(--amber)',
-                    padding: '6px 10px',
-                    boxShadow: 'var(--shadow-pop)',
-                  }}
+                  key={s.from}
+                  className="absolute flex items-center justify-center overflow-hidden"
+                  style={{ left: `${s.pos0 * 100}%`, width: `${(s.pos1 - s.pos0) * 100}%`, height: ERA_H }}
                 >
-                  Press Play to watch the world change
+                  {s.text && (
+                    <button
+                      type="button"
+                      tabIndex={-1}
+                      className="eyebrow timeline-era-btn text-wars-faint whitespace-nowrap"
+                      style={{ fontSize: 10.5, lineHeight: `${ERA_H}px` }}
+                      title={`${s.label}: ${formatYear(s.from)} – ${formatYear(s.to)}. Click to jump to ${formatYear(s.from)}.`}
+                      onClick={() => onYearChange(s.from)}
+                    >
+                      {s.text}
+                    </button>
+                  )}
                 </div>
-                {/* Down-pointing notch — sits over the Play button (which is
-                    20px from the left of the tooltip, i.e. 40px button center). */}
-                <div
-                  aria-hidden
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: 20,
-                    transform: 'translateY(-1px) rotate(45deg)',
-                    width: 8,
-                    height: 8,
-                    background: 'oklch(0.18 0.014 250 / 0.97)',
-                    borderRight: '1px solid var(--amber)',
-                    borderBottom: '1px solid var(--amber)',
-                  }}
-                />
-              </div>
-            )}
-          </div>
+              ))}
+            </div>
 
-          {/* Track */}
-          <div className="flex-1 relative">
+            {/* Track */}
             <div
               ref={trackRef}
-              className="relative cursor-pointer"
-              style={{ height: HIST_HEIGHT + 16 }}
-              onPointerDown={handleTrackPointer}
-              onPointerMove={handleTrackPointerMove}
+              className="relative cursor-pointer timeline-track"
+              style={{ height: TRACK_H }}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerUp}
+              onPointerLeave={handlePointerLeave}
               role="slider"
               aria-label="Timeline scrubber: select a year"
               aria-valuemin={timeline.minYear}
               aria-valuemax={timeline.maxYear}
               aria-valuenow={Math.round(timeline.currentYear)}
               aria-valuetext={formatYear(timeline.currentYear)}
+              aria-orientation="horizontal"
               tabIndex={0}
-              onKeyDown={(e) => {
-                // stopPropagation so the window-level ±10-year handler in
-                // app/page.tsx doesn't also fire (it used to: 1 + 10 = 11).
-                const step = e.shiftKey ? 50 : 1;
-                if (e.key === 'ArrowLeft') {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  onYearChange(Math.max(timeline.minYear, timeline.currentYear - step));
-                } else if (e.key === 'ArrowRight') {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  onYearChange(Math.min(timeline.maxYear, timeline.currentYear + step));
-                }
-              }}
+              onKeyDown={handleKeyDown}
             >
-              {/* Histogram (anchored to baseline) */}
-              <div
-                className="absolute left-0 right-0 flex items-end"
-                style={{ bottom: 8, height: HIST_HEIGHT }}
-              >
-                {histogram.map((b) => {
-                  const isPast = b.year + BUCKET_SIZE / 2 <= timeline.currentYear;
-                  return (
-                    <div
-                      key={b.year}
-                      style={{
-                        flex: 1,
-                        height: `${b.h}px`,
-                        marginRight: 1,
-                        background: isPast
-                          ? 'oklch(0.62 0.18 28 / 0.55)'
-                          : 'oklch(0.62 0.18 28 / 0.18)',
-                      }}
-                    />
-                  );
-                })}
-              </div>
+              {/* Axis-break hairlines through the histogram zone */}
+              {axis.axisBreaks().map((b) => (
+                <div
+                  key={`brk-${b.year}`}
+                  aria-hidden
+                  className="absolute"
+                  style={{
+                    left: `${b.pos * 100}%`,
+                    bottom: HIST_BOTTOM,
+                    width: 1,
+                    height: HIST_H,
+                    background: 'var(--rule-strong)',
+                    pointerEvents: 'none',
+                  }}
+                />
+              ))}
 
-              {/* Baseline rule */}
+              {/* Histogram — one bar per bucket, width follows the axis */}
+              {buckets.map((b) => {
+                const h = densityHeight(b.weight, maxWeight);
+                if (h === 0) return null;
+                const p0 = axis.yearToPos(b.startYear);
+                const p1 = axis.yearToPos(b.endYear);
+                const mid = (b.startYear + b.endYear) / 2;
+                const past = mid <= timeline.currentYear;
+                const barH = Math.max(1.5, h * HIST_H);
+                const capH = b.weightMajor > 0
+                  ? Math.max(1, barH * (b.weightMajor / b.weight))
+                  : 0;
+                return (
+                  <div
+                    key={b.startYear}
+                    className="absolute"
+                    style={{
+                      left: `${p0 * 100}%`,
+                      width: `max(1px, calc(${(p1 - p0) * 100}% - 1px))`,
+                      bottom: HIST_BOTTOM,
+                      height: barH,
+                      background: past ? VERMILION_PAST : VERMILION_FUTURE,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    {capH > 0 && (
+                      <div
+                        className="absolute left-0 right-0 top-0"
+                        style={{ height: capH, background: past ? VERMILION_CAP_PAST : VERMILION_CAP_FUTURE }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+
+              {/* Baseline */}
               <div
+                aria-hidden
                 className="absolute left-0 right-0"
-                style={{
-                  bottom: 7,
-                  height: 1,
-                  background: 'var(--rule-strong)',
-                }}
+                style={{ bottom: TICKS_H, height: 1, background: 'var(--rule-strong)', pointerEvents: 'none' }}
               />
 
-              {/* Epoch ticks (below baseline) */}
+              {/* Ticks + labels below the baseline; ⫽ at each break */}
               {ticks.map((t) => (
                 <div
                   key={t.year}
+                  aria-hidden
                   className="absolute"
-                  style={{
-                    left: `${t.position * 100}%`,
-                    bottom: 0,
-                    transform: 'translateX(-50%)',
-                  }}
+                  style={{ left: `${t.pos * 100}%`, bottom: 0, height: TICKS_H, pointerEvents: 'none' }}
                 >
                   <div
-                    className="mx-auto"
+                    className="absolute"
                     style={{
+                      left: 0,
+                      top: 0,
                       width: 1,
-                      height: 4,
-                      background: 'var(--rule-strong)',
-                      marginBottom: 1,
+                      height: t.major ? 5 : 3,
+                      background: t.major ? 'var(--rule-strong)' : 'var(--rule)',
                     }}
                   />
-                  <div
-                    className="font-mono text-wars-faint"
-                    style={{
-                      fontSize: 9,
-                      lineHeight: '11px',
-                      whiteSpace: 'nowrap',
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    {t.label}
-                  </div>
+                  {t.isBreak && (
+                    <span
+                      className="font-mono absolute"
+                      style={{
+                        left: -4,
+                        top: -7,
+                        fontSize: 10,
+                        lineHeight: '10px',
+                        color: 'var(--ink-faint)',
+                        background: STRIP_BG,
+                        padding: '0 1px',
+                      }}
+                    >
+                      ⫽
+                    </span>
+                  )}
+                  {t.label && (
+                    <span
+                      className="font-mono absolute whitespace-nowrap text-wars-faint"
+                      style={{
+                        top: 6,
+                        fontSize: 10,
+                        lineHeight: '10px',
+                        letterSpacing: '0.02em',
+                        ...(t.align === 'start'
+                          ? { left: 0 }
+                          : t.align === 'end'
+                            ? { right: 0 }
+                            : { left: 0, transform: 'translateX(-50%)' }),
+                      }}
+                    >
+                      {t.label}
+                    </span>
+                  )}
                 </div>
               ))}
 
-              {/* Playhead — bar + arrow + bloom */}
+              {/* Selected conflict / empire span — bracket + label,
+                  clipped to the track, never takes the pointer */}
+              {span && (
+                <div
+                  aria-hidden
+                  className="absolute left-0 right-0 overflow-hidden"
+                  style={{ top: 0, height: BRACKET_H, pointerEvents: 'none', zIndex: 3 }}
+                >
+                  <div
+                    className="absolute"
+                    style={{
+                      left: `${span.p0 * 100}%`,
+                      width: `max(2px, ${(span.p1 - span.p0) * 100}%)`,
+                      top: BRACKET_H - 5,
+                      height: 5,
+                      borderTop: `1px solid ${span.color}`,
+                      borderLeft: `1px solid ${span.color}`,
+                      borderRight: `1px solid ${span.color}`,
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                  <span
+                    className="font-mono absolute whitespace-nowrap"
+                    style={{
+                      ...(span.anchorEnd
+                        ? { right: `${(1 - span.p1) * 100}%` }
+                        : { left: `${span.p0 * 100}%` }),
+                      top: 0,
+                      fontSize: 10,
+                      lineHeight: '12px',
+                      letterSpacing: '0.03em',
+                      color: span.color,
+                      maxWidth: '100%',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}
+                  >
+                    {span.label}
+                  </span>
+                </div>
+              )}
+
+              {/* Hover hairline (ivory) */}
               <div
+                ref={hoverLineRef}
+                aria-hidden
                 className="absolute"
                 style={{
-                  left: playheadLeft,
-                  bottom: 6,
-                  height: HIST_HEIGHT + 4,
-                  transform: 'translateX(-50%)',
+                  left: 0,
+                  bottom: HIST_BOTTOM,
+                  width: 1,
+                  height: HIST_H,
+                  background: 'oklch(0.94 0.012 85 / 0.7)',
+                  opacity: 0,
                   pointerEvents: 'none',
+                  zIndex: 4,
                 }}
-              >
-                {/* Bloom */}
-                <div
-                  className="absolute"
-                  style={{
-                    left: -1.5,
-                    bottom: 0,
-                    width: 5,
-                    height: '100%',
-                    background:
-                      'linear-gradient(to top, oklch(0.78 0.14 78 / 0.45), oklch(0.78 0.14 78 / 0))',
-                    filter: 'blur(2px)',
-                  }}
-                />
-                {/* Bar */}
-                <div
-                  className="absolute"
-                  style={{
-                    left: 0,
-                    bottom: 0,
-                    width: 2,
-                    height: '100%',
-                    background: 'var(--amber)',
-                  }}
-                />
-                {/* Down-arrow on top */}
-                <svg
-                  width="6"
-                  height="6"
-                  viewBox="0 0 6 6"
-                  style={{
-                    position: 'absolute',
-                    left: -2,
-                    top: -6,
-                    color: 'var(--amber)',
-                  }}
-                >
-                  <path d="M0 0 L6 0 L3 6 Z" fill="currentColor" />
-                </svg>
-              </div>
+              />
+
+              <Playhead axis={axis} currentYear={timeline.currentYear} isPlaying={timeline.isPlaying} />
             </div>
           </div>
 
-          {/* Year display — desktop only (mobile renders this in the top row). */}
-          <div
-            className="hidden sm:block flex-shrink-0 text-right"
-            style={{ minWidth: 100 }}
-          >
-            <div
-              className="font-display tabular-nums text-wars-text"
-              style={{
-                fontSize: 28,
-                lineHeight: 1,
-                letterSpacing: '-0.018em',
-                fontWeight: 400,
-              }}
-            >
-              {yearDisplay.num}
-              <span
-                className="font-mono text-wars-muted ml-1.5"
-                style={{ fontSize: 11, letterSpacing: '0.05em' }}
-              >
-                {yearDisplay.suffix}
-              </span>
-            </div>
+          {/* Year readout — desktop only (mobile renders it in the top row). */}
+          <div className="hidden sm:block flex-shrink-0 pb-[6px]">
+            <YearReadout
+              year={timeline.currentYear}
+              minYear={timeline.minYear}
+              maxYear={timeline.maxYear}
+              isPlaying={timeline.isPlaying}
+              speedMode={timeline.speedMode}
+              size="l"
+              onCommit={onYearChange}
+            />
           </div>
 
-          {/* Speed control — desktop only (mobile renders this in the top row). */}
-          <div className="hidden sm:flex flex-shrink-0 items-center gap-1">
-            {SPEED_OPTIONS.map((option) => {
-              const active = isActiveSpeed(option);
-              return (
-                <button
-                  key={option.label}
-                  onClick={() => handleSpeedClick(option)}
-                  className="font-mono transition-colors"
-                  style={{
-                    fontSize: 10.5,
-                    letterSpacing: '0.04em',
-                    padding: '4px 8px',
-                    border: '1px solid',
-                    borderColor: active ? 'var(--amber)' : 'var(--rule)',
-                    color: active ? 'var(--amber)' : 'var(--ink-muted)',
-                    background: active
-                      ? 'oklch(0.78 0.14 78 / 0.10)'
-                      : 'transparent',
-                  }}
-                  aria-pressed={active}
-                  title={option.title}
-                >
-                  {option.label}
-                </button>
-              );
-            })}
+          {/* Speed control — desktop only. */}
+          <div className="hidden sm:flex flex-shrink-0 items-center pb-[22px]">
+            <SpeedPills
+              timeline={timeline}
+              onSpeedChange={onSpeedChange}
+              onSpeedModeChange={onSpeedModeChange}
+              dense={false}
+            />
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+export default memo(Timeline);

@@ -28,23 +28,23 @@ The MIT license above covers the application code. The bundled datasets are
 not all under MIT and carry their own licenses, summarized below. See
 /sources (or app/sources/page.tsx) for the live, user-facing version.
 
-  - public/conflicts.json — Editorial summaries draw from English Wikipedia
+  - data/conflicts.json — Editorial summaries draw from English Wikipedia
     article leads (CC BY-SA 4.0) and from secondary sources cited per record.
     Wikipedia attributions are preserved in each conflict's `wikipediaUrl`.
     Casualty figures and "importance" rankings are editorial; treat them
     accordingly.
 
-  - public/empires.json — Polygon geometry is a mix of:
+  - data/empires.json — Polygon geometry is a mix of:
       • aourednik / historical-basemaps (CC BY-SA 4.0)
         https://github.com/aourednik/historical-basemaps
       • Natural Earth 10m cultural vectors (public domain)
       • Hand-constructed polygons drawn from scholarly atlases.
 
-  - public/empire-wikipedia.json — Empire summaries fetched from English
+  - data/empire-wikipedia.json — Empire summaries fetched from English
     Wikipedia via the public REST API. Reused under CC BY-SA 4.0 with
     attribution preserved on every entry.
 
-  - public/cities.json — Curated; each entry's date range is editorial.
+  - data/cities.json — Curated; each entry's date range is editorial.
 
   - Map basemap — © Mapbox · © OpenStreetMap contributors. Subject to the
     Mapbox terms of service and the OpenStreetMap ODbL.

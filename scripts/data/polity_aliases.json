@@ -1,23 +1,38 @@
 {
  "USA": {
   "canonical": "United States",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@united-states"
+  ]
  },
  "United States of America": {
   "canonical": "United States",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@united-states"
+  ]
  },
  "United States Army": {
   "canonical": "United States",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@united-states"
+  ]
  },
  "U.S.": {
   "canonical": "United States",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@united-states"
+  ]
  },
  "US": {
   "canonical": "United States",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@united-states"
+  ]
  },
  "Byzantinum": {
   "canonical": "Byzantine Empire",
@@ -25,205 +40,325 @@
  },
  "Byzantium": {
   "canonical": "Byzantine Empire",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@byzantine"
+  ]
  },
  "Eastern Roman Empire": {
   "canonical": "Byzantine Empire",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@byzantine"
+  ]
  },
  "Great Britain": {
   "canonical": "United Kingdom",
   "apply": true,
   "era": "1707-",
-  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)",
+  "empires": [
+   "@united-kingdom"
+  ]
  },
  "Britain": {
   "canonical": "United Kingdom",
   "apply": true,
   "era": "1707-",
-  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)",
+  "empires": [
+   "@united-kingdom"
+  ]
  },
  "Kingdom of Great Britain": {
   "canonical": "United Kingdom",
   "apply": true,
   "era": "1707-",
-  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)",
+  "empires": [
+   "@united-kingdom"
+  ]
  },
  "British": {
   "canonical": "United Kingdom",
   "apply": true,
   "era": "1707-",
-  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)",
+  "empires": [
+   "@united-kingdom"
+  ]
  },
  "United Kingdom and Commonwealth": {
   "canonical": "United Kingdom",
   "apply": true,
   "era": "1707-",
-  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)"
+  "note": "pre-1707 rows are handled by belligerent_era_aliases (England/Scotland)",
+  "empires": [
+   "@united-kingdom"
+  ]
  },
  "USSR": {
   "canonical": "Soviet Union",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@soviet"
+  ]
  },
  "Soviet Russia": {
   "canonical": "Soviet Union",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "@soviet"
+  ]
  },
  "Sassanid Persia": {
   "canonical": "Sasanian Empire",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "sassanid-empire"
+  ]
  },
  "Sassanid Empire": {
   "canonical": "Sasanian Empire",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "sassanid-empire"
+  ]
  },
  "Sasanian Persia": {
   "canonical": "Sasanian Empire",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "sassanid-empire"
+  ]
  },
  "Sassanids": {
   "canonical": "Sasanian Empire",
-  "apply": true
+  "apply": true,
+  "empires": [
+   "sassanid-empire"
+  ]
  },
  "Ottomans": {
   "canonical": "Ottoman Empire",
   "apply": false,
-  "era": "1299-1922"
+  "era": "1299-1922",
+  "empires": [
+   "@ottoman"
+  ]
  },
  "Turks": {
   "canonical": "Ottoman Empire",
   "apply": false,
-  "era": "1299-1922"
+  "era": "1299-1922",
+  "empires": [
+   "@ottoman"
+  ]
  },
  "Ottoman Turks": {
   "canonical": "Ottoman Empire",
   "apply": false,
-  "era": "1299-1922"
+  "era": "1299-1922",
+  "empires": [
+   "@ottoman"
+  ]
  },
  "Habsburg Empire": {
   "canonical": "Habsburg Monarchy / Austria",
   "apply": false,
   "era": "1526-1867",
-  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria; r15: no Habsburg Monarchy 1526-1867 feature in empires.json; not joined (mapping to holy-roman-empire would be wrong)"
  },
  "Habsburg Monarchy": {
   "canonical": "Habsburg Monarchy / Austria",
   "apply": false,
   "era": "1526-1867",
-  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria",
+  "empires": [
+   "@austria"
+  ]
  },
  "Habsburgs": {
   "canonical": "Habsburg Monarchy / Austria",
   "apply": false,
   "era": "1526-1867",
-  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria",
+  "empires": [
+   "@austria"
+  ]
  },
  "Habsburg Austria": {
   "canonical": "Habsburg Monarchy / Austria",
   "apply": false,
   "era": "1526-1867",
-  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria",
+  "empires": [
+   "@austria"
+  ]
  },
  "Austrian Empire": {
   "canonical": "Habsburg Monarchy / Austria",
   "apply": false,
   "era": "1526-1867",
-  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria",
+  "empires": [
+   "@austria"
+  ]
  },
  "Austria": {
   "canonical": "Habsburg Monarchy / Austria",
   "apply": false,
   "era": "1526-1867",
-  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria"
+  "note": "Austria (1867-1918) → Austria-Hungary; after 1918 Austria",
+  "empires": [
+   "@austria"
+  ]
  },
  "Prussia": {
   "canonical": "Germany (by era)",
   "apply": false,
-  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-",
+  "empires": [
+   "@prussia"
+  ]
  },
  "German Empire": {
   "canonical": "Germany (by era)",
   "apply": false,
-  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-",
+  "empires": [
+   "german-empire"
+  ]
  },
  "Nazi Germany": {
   "canonical": "Germany (by era)",
   "apply": false,
-  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-",
+  "empires": [
+   "@third-reich"
+  ]
  },
  "Germans": {
   "canonical": "Germany (by era)",
   "apply": false,
-  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-",
+  "empires": [
+   "@germany"
+  ]
  },
  "Germany": {
   "canonical": "Germany (by era)",
   "apply": false,
-  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-"
+  "era": "HRE <1806; German Confederation 1815-66; German Empire 1871-1918; Weimar/Nazi Germany 1919-45; Germany 1949-",
+  "empires": [
+   "@germany"
+  ]
  },
  "Persia": {
   "canonical": "Iran (by dynasty)",
   "apply": false,
-  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-"
+  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-",
+  "empires": [
+   "@persia"
+  ]
  },
  "Persian Empire": {
   "canonical": "Iran (by dynasty)",
   "apply": false,
-  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-"
+  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-",
+  "empires": [
+   "@persia"
+  ]
  },
  "Iran": {
   "canonical": "Iran (by dynasty)",
   "apply": false,
-  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-"
+  "era": "Achaemenid <-330; Parthian -247-224; Sasanian 224-651; Safavid 1501-1736; Afsharid 1736-96; Zand 1751-94; Qajar 1789-1925; Pahlavi 1925-79; Iran 1979-",
+  "empires": [
+   "@persia"
+  ]
  },
  "Safavid Persia": {
   "canonical": "Safavid Iran",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "safavid-empire"
+  ]
  },
  "Safavid Empire": {
   "canonical": "Safavid Iran",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "safavid-empire"
+  ]
  },
  "Qajar Persia": {
   "canonical": "Qajar Iran",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "asia-qajar-dynasty"
+  ]
  },
  "Qajar Iran": {
   "canonical": "Qajar Iran",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "asia-qajar-dynasty"
+  ]
  },
  "Achaemenid Empire": {
   "canonical": "Achaemenid Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "achaemenid-persian-empire"
+  ]
  },
  "Achaemenid Persia": {
   "canonical": "Achaemenid Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "achaemenid-persian-empire"
+  ]
  },
  "Russian Empire": {
   "canonical": "Russia (by era)",
   "apply": false,
-  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-",
+  "empires": [
+   "russian-empire"
+  ]
  },
  "Russia": {
   "canonical": "Russia (by era)",
   "apply": false,
-  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-",
+  "empires": [
+   "@russia"
+  ]
  },
  "Muscovy": {
   "canonical": "Russia (by era)",
   "apply": false,
-  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-",
+  "empires": [
+   "grand-duchy-moscow"
+  ]
  },
  "Kievan Rus": {
   "canonical": "Russia (by era)",
   "apply": false,
-  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-"
+  "era": "Kievan Rus' <1240; Muscovy 1283-1547; Tsardom of Russia 1547-1721; Russian Empire 1721-1917; Soviet Union 1922-91; Russia 1991-",
+  "empires": [
+   "kyivan-rus"
+  ]
  },
  "China": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "@china"
+  ]
  },
  "PRC": {
   "canonical": "China (by dynasty)",
@@ -238,51 +373,81 @@
  "Qing Dynasty": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "qing-dynasty-1790"
+  ]
  },
  "Qing": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "qing-dynasty-1790"
+  ]
  },
  "Qing China": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "qing-dynasty-1790"
+  ]
  },
  "Ming": {
   "canonical": "Ming dynasty",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "ming-dynasty-1400"
+  ]
  },
  "Ming Dynasty": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "ming-dynasty-1400"
+  ]
  },
  "Ming China": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "ming-dynasty-1400"
+  ]
  },
  "Tang Dynasty": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "tang-dynasty"
+  ]
  },
  "Han Dynasty": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "han-dynasty-china"
+  ]
  },
  "Song Dynasty": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "@song"
+  ]
  },
  "Yuan Dynasty": {
   "canonical": "China (by dynasty)",
   "apply": false,
-  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-"
+  "era": "use dynasty name before 1912; Republic of China 1912-49; People's Republic of China 1949-",
+  "empires": [
+   "yuan-dynasty"
+  ]
  },
  "Chinese Nationalists": {
   "canonical": "China (by dynasty)",
@@ -297,184 +462,304 @@
  "Burma": {
   "canonical": "Burma/Myanmar (by era)",
   "apply": false,
-  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-",
+  "empires": [
+   "@burma"
+  ]
  },
  "Konbaung dynasty": {
   "canonical": "Burma/Myanmar (by era)",
   "apply": false,
-  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-",
+  "empires": [
+   "asia-konbaung-burma"
+  ]
  },
  "Konbaung Burma": {
   "canonical": "Burma/Myanmar (by era)",
   "apply": false,
-  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-",
+  "empires": [
+   "asia-konbaung-burma"
+  ]
  },
  "Toungoo": {
   "canonical": "Burma/Myanmar (by era)",
   "apply": false,
-  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-",
+  "empires": [
+   "toungoo-burma"
+  ]
  },
  "Myanmar": {
   "canonical": "Burma/Myanmar (by era)",
   "apply": false,
-  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-"
+  "era": "Pagan <1287; Toungoo 1510-1752; Konbaung 1752-1885; Burma 1948-89; Myanmar 1989-",
+  "empires": [
+   "@burma"
+  ]
  },
  "Netherlands": {
   "canonical": "Netherlands (by era)",
   "apply": false,
-  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-",
+  "empires": [
+   "@netherlands"
+  ]
  },
  "Dutch Republic": {
   "canonical": "Netherlands (by era)",
   "apply": false,
-  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-",
+  "empires": [
+   "@netherlands"
+  ]
  },
  "Dutch": {
   "canonical": "Netherlands (by era)",
   "apply": false,
-  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-",
+  "empires": [
+   "@netherlands"
+  ]
  },
  "United Provinces": {
   "canonical": "Netherlands (by era)",
   "apply": false,
-  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-",
+  "empires": [
+   "@netherlands"
+  ]
  },
  "Holland": {
   "canonical": "Netherlands (by era)",
   "apply": false,
-  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-",
+  "empires": [
+   "@netherlands"
+  ]
  },
  "Dutch East India Company": {
   "canonical": "Netherlands (by era)",
   "apply": false,
-  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-",
+  "empires": [
+   "@netherlands"
+  ]
  },
  "VOC": {
   "canonical": "Netherlands (by era)",
   "apply": false,
-  "era": "Dutch Republic 1581-1795; Netherlands 1815-"
+  "era": "Dutch Republic 1581-1795; Netherlands 1815-",
+  "empires": [
+   "@netherlands"
+  ]
  },
  "England": {
   "canonical": "England",
   "apply": false,
-  "era": "<1707"
+  "era": "<1707",
+  "empires": [
+   "@united-kingdom"
+  ]
  },
  "Kingdom of England": {
   "canonical": "England",
   "apply": false,
-  "era": "<1707"
+  "era": "<1707",
+  "empires": [
+   "kingdom-of-england"
+  ]
  },
  "British Empire": {
   "canonical": "United Kingdom (colonial)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@british-empire"
+  ]
  },
  "British East India Company": {
   "canonical": "United Kingdom (colonial)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@british-india"
+  ]
  },
  "British India": {
   "canonical": "United Kingdom (colonial)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@british-india"
+  ]
  },
  "British Raj": {
   "canonical": "United Kingdom (colonial)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@british-india"
+  ]
  },
  "Rome": {
   "canonical": "Rome (by era)",
   "apply": false,
-  "era": "Roman Republic <-27; Roman Empire -27-476"
+  "era": "Roman Republic <-27; Roman Empire -27-476",
+  "empires": [
+   "@rome"
+  ]
  },
  "Roman Republic": {
   "canonical": "Rome (by era)",
   "apply": false,
-  "era": "Roman Republic <-27; Roman Empire -27-476"
+  "era": "Roman Republic <-27; Roman Empire -27-476",
+  "empires": [
+   "@rome"
+  ]
  },
  "Roman Empire": {
   "canonical": "Rome (by era)",
   "apply": false,
-  "era": "Roman Republic <-27; Roman Empire -27-476"
+  "era": "Roman Republic <-27; Roman Empire -27-476",
+  "empires": [
+   "@rome"
+  ]
  },
  "Confederate States of America": {
   "canonical": "Confederate States of America",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "americas-confederate-states"
+  ]
  },
  "Confederacy": {
   "canonical": "Confederate States of America",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "americas-confederate-states"
+  ]
  },
  "Union (US Civil War)": {
   "canonical": "United States",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@united-states"
+  ]
  },
  "Union": {
   "canonical": "United States",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@united-states"
+  ]
  },
  "Marathas": {
   "canonical": "Maratha Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "asia-maratha-confederacy"
+  ]
  },
  "Maratha Empire": {
   "canonical": "Maratha Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "asia-maratha-confederacy"
+  ]
  },
  "Maratha Confederacy": {
   "canonical": "Maratha Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "asia-maratha-confederacy"
+  ]
  },
  "Egypt": {
   "canonical": "Egypt (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@egypt"
+  ]
  },
  "Mamluk Sultanate": {
   "canonical": "Egypt (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "mena-mamluk-sultanate"
+  ]
  },
  "Ptolemaic Egypt": {
   "canonical": "Egypt (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "ptolemaic-egypt"
+  ]
  },
  "Ptolmeic Egypt": {
   "canonical": "Egypt (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "ptolemaic-egypt"
+  ]
  },
  "Khedivate of Egypt": {
   "canonical": "Egypt (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "khedivate-of-egypt"
+  ]
  },
  "Spain": {
   "canonical": "Spain (by era)",
   "apply": false,
-  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898",
+  "empires": [
+   "@spain"
+  ]
  },
  "Spanish Empire": {
   "canonical": "Spain (by era)",
   "apply": false,
-  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898",
+  "empires": [
+   "@spain"
+  ]
  },
  "Kingdom of Spain": {
   "canonical": "Spain (by era)",
   "apply": false,
-  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898",
+  "empires": [
+   "@spain"
+  ]
  },
  "Castile": {
   "canonical": "Spain (by era)",
   "apply": false,
-  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898",
+  "empires": [
+   "kingdom-of-castile"
+  ]
  },
  "Aragon": {
   "canonical": "Spain (by era)",
   "apply": false,
-  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898"
+  "era": "Castile/Aragon <1516; Spanish Empire 1516-1898",
+  "empires": [
+   "kingdom-of-aragon"
+  ]
  },
  "France": {
   "canonical": "France (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@france"
+  ]
  },
  "Kingdom of France": {
   "canonical": "France (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@france"
+  ]
  },
  "First French Republic": {
   "canonical": "France (by era)",
@@ -494,118 +779,199 @@
  },
  "Japan": {
   "canonical": "Japan (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@japan"
+  ]
  },
  "Empire of Japan": {
   "canonical": "Japan (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@empire-of-japan"
+  ]
  },
  "Tokugawa shogunate": {
   "canonical": "Japan (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "tokugawa-shogunate"
+  ]
  },
  "Poland": {
   "canonical": "Poland (by era)",
   "apply": false,
-  "era": "Poland-Lithuania 1569-1795"
+  "era": "Poland-Lithuania 1569-1795",
+  "empires": [
+   "@poland"
+  ]
  },
  "Poland-Lithuania": {
   "canonical": "Poland (by era)",
   "apply": false,
-  "era": "Poland-Lithuania 1569-1795"
+  "era": "Poland-Lithuania 1569-1795",
+  "empires": [
+   "@poland"
+  ]
  },
  "Polish-Lithuanian Commonwealth": {
   "canonical": "Poland (by era)",
   "apply": false,
-  "era": "Poland-Lithuania 1569-1795"
+  "era": "Poland-Lithuania 1569-1795",
+  "empires": [
+   "@poland"
+  ]
  },
  "Sweden": {
   "canonical": "Sweden",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@sweden"
+  ]
  },
  "Swedish Empire": {
   "canonical": "Sweden",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "swedish-empire"
+  ]
  },
  "Denmark": {
   "canonical": "Denmark (by era)",
   "apply": false,
-  "era": "Denmark-Norway 1524-1814"
+  "era": "Denmark-Norway 1524-1814",
+  "empires": [
+   "kalmar-union"
+  ]
  },
  "Denmark-Norway": {
   "canonical": "Denmark (by era)",
   "apply": false,
-  "era": "Denmark-Norway 1524-1814"
+  "era": "Denmark-Norway 1524-1814",
+  "empires": [
+   "kalmar-union"
+  ]
  },
  "Portugal": {
   "canonical": "Portugal",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@portugal"
+  ]
  },
  "Portuguese Empire": {
   "canonical": "Portugal",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@portugal"
+  ]
  },
  "Kingdom of Portugal": {
   "canonical": "Portugal",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@portugal"
+  ]
  },
  "Venice": {
   "canonical": "Republic of Venice",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "europe-venetian-republic"
+  ]
  },
  "Republic of Venice": {
   "canonical": "Republic of Venice",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "europe-venetian-republic"
+  ]
  },
  "Carthage": {
   "canonical": "Carthage",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "carthaginian-empire"
+  ]
  },
  "Carthaginian Empire": {
   "canonical": "Carthage",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "carthaginian-empire"
+  ]
  },
  "Athens": {
   "canonical": "Athens",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "athens-delian-league"
+  ]
  },
  "Athenian Empire": {
   "canonical": "Athens",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "athens-delian-league"
+  ]
  },
  "Delian League": {
   "canonical": "Athens",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "athens-delian-league"
+  ]
  },
  "Sparta": {
   "canonical": "Sparta",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "sparta-peloponnesian-league"
+  ]
  },
  "Lacedaemon": {
   "canonical": "Sparta",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "sparta-peloponnesian-league"
+  ]
  },
  "Mexico": {
   "canonical": "Mexico",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@mexico"
+  ]
  },
  "Mexican Empire": {
   "canonical": "Mexico",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "americas-mexican-empire-iturbide"
+  ]
  },
  "Republic of Mexico": {
   "canonical": "Mexico",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@mexico"
+  ]
  },
  "Scotland": {
   "canonical": "Scotland",
   "apply": false,
-  "era": "<1707"
+  "era": "<1707",
+  "empires": [
+   "kingdom-of-scotland"
+  ]
  },
  "Kingdom of Scotland": {
   "canonical": "Scotland",
   "apply": false,
-  "era": "<1707"
+  "era": "<1707",
+  "empires": [
+   "kingdom-of-scotland"
+  ]
  },
  "Indian Rebels": {
   "canonical": "Indian rebels (1857)",
@@ -640,17 +1006,26 @@
  "Bolsheviks": {
   "canonical": "Soviet Russia (Bolsheviks)",
   "apply": false,
-  "era": "1917-1922"
+  "era": "1917-1922",
+  "empires": [
+   "@soviet"
+  ]
  },
  "Red Army": {
   "canonical": "Soviet Russia (Bolsheviks)",
   "apply": false,
-  "era": "1917-1922"
+  "era": "1917-1922",
+  "empires": [
+   "@soviet"
+  ]
  },
  "Soviets": {
   "canonical": "Soviet Russia (Bolsheviks)",
   "apply": false,
-  "era": "1917-1922"
+  "era": "1917-1922",
+  "empires": [
+   "@soviet"
+  ]
  },
  "Spanish Republicans": {
   "canonical": "Spanish Republic",
@@ -727,43 +1102,70 @@
  "Joseon Korea": {
   "canonical": "Joseon",
   "apply": false,
-  "era": "1392-1897"
+  "era": "1392-1897",
+  "empires": [
+   "joseon-dynasty"
+  ]
  },
  "Korea": {
   "canonical": "Joseon",
   "apply": false,
-  "era": "1392-1897"
+  "era": "1392-1897",
+  "empires": [
+   "@korea"
+  ]
  },
  "Joseon": {
   "canonical": "Joseon",
   "apply": false,
-  "era": "1392-1897"
+  "era": "1392-1897",
+  "empires": [
+   "joseon-dynasty"
+  ]
  },
  "Mongols": {
   "canonical": "Mongol Empire",
   "apply": false,
-  "era": "1206-1368"
+  "era": "1206-1368",
+  "empires": [
+   "@mongols"
+  ]
  },
  "Mongol Empire": {
   "canonical": "Mongol Empire",
   "apply": false,
-  "era": "1206-1368"
+  "era": "1206-1368",
+  "empires": [
+   "@mongols"
+  ]
  },
  "Arabs": {
   "canonical": "Caliphate (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@caliphate"
+  ]
  },
  "Rashidun Caliphate": {
   "canonical": "Caliphate (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "rashidun-caliphate"
+  ]
  },
  "Umayyad Caliphate": {
   "canonical": "Caliphate (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "umayyad-caliphate"
+  ]
  },
  "Abbasid Caliphate": {
   "canonical": "Caliphate (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "abbasid-caliphate"
+  ]
  },
  "Various": {
   "canonical": "(various)",
@@ -787,15 +1189,24 @@
  },
  "Hungary": {
   "canonical": "Hungary",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@hungary"
+  ]
  },
  "Kingdom of Hungary": {
   "canonical": "Hungary",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "@hungary"
+  ]
  },
  "Serbia": {
   "canonical": "Serbia (by era)",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "europe-serbian-empire"
+  ]
  },
  "Kingdom of Serbia": {
   "canonical": "Serbia (by era)",
@@ -804,12 +1215,18 @@
  "Austria-Hungary": {
   "canonical": "Austria-Hungary",
   "apply": false,
-  "era": "1867-1918"
+  "era": "1867-1918",
+  "empires": [
+   "austro-hungarian"
+  ]
  },
  "Austro-Hungarian Empire": {
   "canonical": "Austria-Hungary",
   "apply": false,
-  "era": "1867-1918"
+  "era": "1867-1918",
+  "empires": [
+   "austro-hungarian"
+  ]
  },
  "Italy": {
   "canonical": "Italy",
@@ -819,7 +1236,8 @@
  "Kingdom of Italy": {
   "canonical": "Italy",
   "apply": false,
-  "era": "1861-"
+  "era": "1861-",
+  "note": "r15: no Kingdom of Italy 1861-1946 feature; italian-colonial-africa is a colonial holding, not the state"
  },
  "Sardinia": {
   "canonical": "Kingdom of Sardinia",
@@ -835,11 +1253,15 @@
  },
  "Kingdom of Jerusalem": {
   "canonical": "Crusader states",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "kingdom-of-jerusalem"
+  ]
  },
  "Crusaders": {
   "canonical": "Crusader states",
-  "apply": false
+  "apply": false,
+  "note": "r15: multinational expeditions, no single polity; not joined"
  },
  "Crusader states": {
   "canonical": "Crusader states",
@@ -847,71 +1269,122 @@
  },
  "Aztec Empire": {
   "canonical": "Aztec Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "aztec-empire"
+  ]
  },
  "Aztecs": {
   "canonical": "Aztec Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "aztec-empire"
+  ]
  },
  "Mexica": {
   "canonical": "Aztec Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "aztec-empire"
+  ]
  },
  "Inca Empire": {
   "canonical": "Inca Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "americas-inca-tawantinsuyu"
+  ]
  },
  "Incas": {
   "canonical": "Inca Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "americas-inca-tawantinsuyu"
+  ]
  },
  "Inca": {
   "canonical": "Inca Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "americas-inca-tawantinsuyu"
+  ]
  },
  "Zulu": {
   "canonical": "Zulu Kingdom",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-zulu-kingdom"
+  ]
  },
  "Zulu Kingdom": {
   "canonical": "Zulu Kingdom",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-zulu-kingdom"
+  ]
  },
  "Zulus": {
   "canonical": "Zulu Kingdom",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-zulu-kingdom"
+  ]
  },
  "Ashanti": {
   "canonical": "Asante Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-asante-empire"
+  ]
  },
  "Asante": {
   "canonical": "Asante Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-asante-empire"
+  ]
  },
  "Ashanti Empire": {
   "canonical": "Asante Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-asante-empire"
+  ]
  },
  "Asante Empire": {
   "canonical": "Asante Empire",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-asante-empire"
+  ]
  },
  "Boers": {
   "canonical": "Boer republics",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-south-african-republic"
+  ]
  },
  "Boer Republics": {
   "canonical": "Boer republics",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-south-african-republic"
+  ]
  },
  "South African Republic": {
   "canonical": "Boer republics",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-south-african-republic"
+  ]
  },
  "Orange Free State": {
   "canonical": "Boer republics",
-  "apply": false
+  "apply": false,
+  "empires": [
+   "africa-orange-free-state"
+  ]
  },
  "North Vietnam": {
   "canonical": "North Vietnam / Viet Cong",
@@ -959,5 +1432,3464 @@
   "canonical": "(remove)",
   "apply": true,
   "note": "HCED outcome column leaked into countries; removed in r14"
+ },
+ "Romans": {
+  "canonical": "Romans",
+  "apply": false,
+  "empires": [
+   "@rome"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Western Roman Empire": {
+  "canonical": "Western Roman Empire",
+  "apply": false,
+  "empires": [
+   "western-roman-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Octavian": {
+  "canonical": "Octavian",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Pompey": {
+  "canonical": "Pompey",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Caesar": {
+  "canonical": "Caesar",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Julius Caesar": {
+  "canonical": "Julius Caesar",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mark Antony": {
+  "canonical": "Mark Antony",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sulla": {
+  "canonical": "Sulla",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Marius": {
+  "canonical": "Marius",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Caesarians": {
+  "canonical": "Caesarians",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Pompeians": {
+  "canonical": "Pompeians",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Optimates": {
+  "canonical": "Optimates",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Populares": {
+  "canonical": "Populares",
+  "apply": false,
+  "empires": [
+   "@roman-faction"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Byzantine Empire": {
+  "canonical": "Byzantine Empire",
+  "apply": false,
+  "empires": [
+   "@byzantine"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Byzantine Nicea": {
+  "canonical": "Byzantine Nicea",
+  "apply": false,
+  "empires": [
+   "empire-of-nicaea"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Empire of Nicaea": {
+  "canonical": "Empire of Nicaea",
+  "apply": false,
+  "empires": [
+   "empire-of-nicaea"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Latin Byzantium": {
+  "canonical": "Latin Byzantium",
+  "apply": false,
+  "empires": [
+   "latin-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Latin Empire": {
+  "canonical": "Latin Empire",
+  "apply": false,
+  "empires": [
+   "latin-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Peloponnesian League": {
+  "canonical": "Peloponnesian League",
+  "apply": false,
+  "empires": [
+   "sparta-peloponnesian-league"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Macedon": {
+  "canonical": "Macedon",
+  "apply": false,
+  "empires": [
+   "macedonian-alexander"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Macedonia": {
+  "canonical": "Macedonia",
+  "apply": false,
+  "empires": [
+   "macedonian-alexander"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Macedonian Empire": {
+  "canonical": "Macedonian Empire",
+  "apply": false,
+  "empires": [
+   "macedonian-alexander"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Carthaginians": {
+  "canonical": "Carthaginians",
+  "apply": false,
+  "empires": [
+   "carthaginian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Seleucid Empire": {
+  "canonical": "Seleucid Empire",
+  "apply": false,
+  "empires": [
+   "seleucid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Seleucids": {
+  "canonical": "Seleucids",
+  "apply": false,
+  "empires": [
+   "seleucid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Seleucid": {
+  "canonical": "Seleucid",
+  "apply": false,
+  "empires": [
+   "seleucid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ptolemies": {
+  "canonical": "Ptolemies",
+  "apply": false,
+  "empires": [
+   "ptolemaic-egypt"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ptolemaic Kingdom": {
+  "canonical": "Ptolemaic Kingdom",
+  "apply": false,
+  "empires": [
+   "ptolemaic-egypt"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Parthia": {
+  "canonical": "Parthia",
+  "apply": false,
+  "empires": [
+   "parthian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Parthian Empire": {
+  "canonical": "Parthian Empire",
+  "apply": false,
+  "empires": [
+   "parthian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Parthians": {
+  "canonical": "Parthians",
+  "apply": false,
+  "empires": [
+   "parthian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Persians": {
+  "canonical": "Persians",
+  "apply": false,
+  "empires": [
+   "@persia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sasanian Empire": {
+  "canonical": "Sasanian Empire",
+  "apply": false,
+  "empires": [
+   "sassanid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sasanians": {
+  "canonical": "Sasanians",
+  "apply": false,
+  "empires": [
+   "sassanid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Safavid Iran": {
+  "canonical": "Safavid Iran",
+  "apply": false,
+  "empires": [
+   "safavid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Safavids": {
+  "canonical": "Safavids",
+  "apply": false,
+  "empires": [
+   "safavid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Qajar dynasty": {
+  "canonical": "Qajar dynasty",
+  "apply": false,
+  "empires": [
+   "asia-qajar-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Afsharid Persia": {
+  "canonical": "Afsharid Persia",
+  "apply": false,
+  "empires": [
+   "asia-afsharid-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Afsharids": {
+  "canonical": "Afsharids",
+  "apply": false,
+  "empires": [
+   "asia-afsharid-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Zand dynasty": {
+  "canonical": "Zand dynasty",
+  "apply": false,
+  "empires": [
+   "asia-zand-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Hittites": {
+  "canonical": "Hittites",
+  "apply": false,
+  "empires": [
+   "hittite-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Hittite Empire": {
+  "canonical": "Hittite Empire",
+  "apply": false,
+  "empires": [
+   "hittite-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Assyria": {
+  "canonical": "Assyria",
+  "apply": false,
+  "empires": [
+   "@assyria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Assyrians": {
+  "canonical": "Assyrians",
+  "apply": false,
+  "empires": [
+   "@assyria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Neo-Assyrian Empire": {
+  "canonical": "Neo-Assyrian Empire",
+  "apply": false,
+  "empires": [
+   "@assyria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Assyrian Empire": {
+  "canonical": "Assyrian Empire",
+  "apply": false,
+  "empires": [
+   "@assyria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Babylon": {
+  "canonical": "Babylon",
+  "apply": false,
+  "empires": [
+   "@babylon"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Babylonia": {
+  "canonical": "Babylonia",
+  "apply": false,
+  "empires": [
+   "@babylon"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Babylonians": {
+  "canonical": "Babylonians",
+  "apply": false,
+  "empires": [
+   "@babylon"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Neo-Babylonian Empire": {
+  "canonical": "Neo-Babylonian Empire",
+  "apply": false,
+  "empires": [
+   "neo-babylonian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Chaldeans": {
+  "canonical": "Chaldeans",
+  "apply": false,
+  "empires": [
+   "neo-babylonian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Akkad": {
+  "canonical": "Akkad",
+  "apply": false,
+  "empires": [
+   "akkadian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Akkadian Empire": {
+  "canonical": "Akkadian Empire",
+  "apply": false,
+  "empires": [
+   "akkadian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sumer": {
+  "canonical": "Sumer",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sumerians": {
+  "canonical": "Sumerians",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ur": {
+  "canonical": "Ur",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ur III": {
+  "canonical": "Ur III",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lagash": {
+  "canonical": "Lagash",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Umma": {
+  "canonical": "Umma",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Uruk": {
+  "canonical": "Uruk",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kish": {
+  "canonical": "Kish",
+  "apply": false,
+  "empires": [
+   "sumer-ur-iii"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Phoenicia": {
+  "canonical": "Phoenicia",
+  "apply": false,
+  "empires": [
+   "phoenicia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Phoenicians": {
+  "canonical": "Phoenicians",
+  "apply": false,
+  "empires": [
+   "phoenicia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tyre": {
+  "canonical": "Tyre",
+  "apply": false,
+  "empires": [
+   "phoenicia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sidon": {
+  "canonical": "Sidon",
+  "apply": false,
+  "empires": [
+   "phoenicia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Israel": {
+  "canonical": "Kingdom of Israel",
+  "apply": false,
+  "empires": [
+   "kingdom-of-israel-judah"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Israel": {
+  "canonical": "Israel",
+  "apply": false,
+  "empires": [
+   {
+    "id": "kingdom-of-israel-judah",
+    "to": -586
+   }
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Judah": {
+  "canonical": "Judah",
+  "apply": false,
+  "empires": [
+   "kingdom-of-israel-judah"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Judah": {
+  "canonical": "Kingdom of Judah",
+  "apply": false,
+  "empires": [
+   "kingdom-of-israel-judah"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Israelites": {
+  "canonical": "Israelites",
+  "apply": false,
+  "empires": [
+   "kingdom-of-israel-judah"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mitanni": {
+  "canonical": "Mitanni",
+  "apply": false,
+  "empires": [
+   "mitanni-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kush": {
+  "canonical": "Kush",
+  "apply": false,
+  "empires": [
+   "africa-kush-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Kush": {
+  "canonical": "Kingdom of Kush",
+  "apply": false,
+  "empires": [
+   "africa-kush-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Nubia": {
+  "canonical": "Nubia",
+  "apply": false,
+  "empires": [
+   "africa-kush-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Aksum": {
+  "canonical": "Aksum",
+  "apply": false,
+  "empires": [
+   "kingdom-of-axum"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Axum": {
+  "canonical": "Axum",
+  "apply": false,
+  "empires": [
+   "kingdom-of-axum"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Aksum": {
+  "canonical": "Kingdom of Aksum",
+  "apply": false,
+  "empires": [
+   "kingdom-of-axum"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Nabataeans": {
+  "canonical": "Nabataeans",
+  "apply": false,
+  "empires": [
+   "asia-nabataean"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Nabataean Kingdom": {
+  "canonical": "Nabataean Kingdom",
+  "apply": false,
+  "empires": [
+   "asia-nabataean"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Egyptians": {
+  "canonical": "Egyptians",
+  "apply": false,
+  "empires": [
+   "@egypt"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ancient Egypt": {
+  "canonical": "Ancient Egypt",
+  "apply": false,
+  "empires": [
+   "@egypt"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Upper Egypt": {
+  "canonical": "Upper Egypt",
+  "apply": false,
+  "empires": [
+   "@egypt"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lower Egypt": {
+  "canonical": "Lower Egypt",
+  "apply": false,
+  "empires": [
+   "@egypt"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kushan Empire": {
+  "canonical": "Kushan Empire",
+  "apply": false,
+  "empires": [
+   "kushan-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kushans": {
+  "canonical": "Kushans",
+  "apply": false,
+  "empires": [
+   "kushan-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Maurya Empire": {
+  "canonical": "Maurya Empire",
+  "apply": false,
+  "empires": [
+   "asia-maurya"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mauryan Empire": {
+  "canonical": "Mauryan Empire",
+  "apply": false,
+  "empires": [
+   "asia-maurya"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mauryas": {
+  "canonical": "Mauryas",
+  "apply": false,
+  "empires": [
+   "asia-maurya"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Gupta Empire": {
+  "canonical": "Gupta Empire",
+  "apply": false,
+  "empires": [
+   "gupta-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Guptas": {
+  "canonical": "Guptas",
+  "apply": false,
+  "empires": [
+   "gupta-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Xiongnu": {
+  "canonical": "Xiongnu",
+  "apply": false,
+  "empires": [
+   "asia-xiongnu"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khazars": {
+  "canonical": "Khazars",
+  "apply": false,
+  "empires": [
+   "asia-khazar"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khazar Khaganate": {
+  "canonical": "Khazar Khaganate",
+  "apply": false,
+  "empires": [
+   "asia-khazar"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Pechenegs": {
+  "canonical": "Pechenegs",
+  "apply": false,
+  "empires": [
+   "asia-pechenegs"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Cumans": {
+  "canonical": "Cumans",
+  "apply": false,
+  "empires": [
+   "asia-cumans-kipchaks"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kipchaks": {
+  "canonical": "Kipchaks",
+  "apply": false,
+  "empires": [
+   "asia-cumans-kipchaks"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Göktürks": {
+  "canonical": "Göktürks",
+  "apply": false,
+  "empires": [
+   "@gokturk"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Gokturks": {
+  "canonical": "Gokturks",
+  "apply": false,
+  "empires": [
+   "@gokturk"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Turkic Khaganate": {
+  "canonical": "Turkic Khaganate",
+  "apply": false,
+  "empires": [
+   "@gokturk"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Uyghur Khaganate": {
+  "canonical": "Uyghur Khaganate",
+  "apply": false,
+  "empires": [
+   "asia-uyghur-khaganate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tibet": {
+  "canonical": "Tibet",
+  "apply": false,
+  "empires": [
+   "tibetan-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tibetan Empire": {
+  "canonical": "Tibetan Empire",
+  "apply": false,
+  "empires": [
+   "tibetan-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Muslim Caliphate": {
+  "canonical": "Muslim Caliphate",
+  "apply": false,
+  "empires": [
+   "@caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Muslims": {
+  "canonical": "Muslims",
+  "apply": false,
+  "empires": [
+   "@caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Muslim Ummah": {
+  "canonical": "Muslim Ummah",
+  "apply": false,
+  "empires": [
+   "@caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Arab Caliphate": {
+  "canonical": "Arab Caliphate",
+  "apply": false,
+  "empires": [
+   "@caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Umayyads": {
+  "canonical": "Umayyads",
+  "apply": false,
+  "empires": [
+   "umayyad-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Abbasids": {
+  "canonical": "Abbasids",
+  "apply": false,
+  "empires": [
+   "abbasid-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Caliphate of Cordoba": {
+  "canonical": "Caliphate of Cordoba",
+  "apply": false,
+  "empires": [
+   "umayyad-cordoba"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Umayyad Caliphate of Córdoba": {
+  "canonical": "Umayyad Caliphate of Córdoba",
+  "apply": false,
+  "empires": [
+   "umayyad-cordoba"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Al-Andalus": {
+  "canonical": "Al-Andalus",
+  "apply": false,
+  "empires": [
+   "umayyad-cordoba"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Moors": {
+  "canonical": "Moors",
+  "apply": false,
+  "empires": [
+   "umayyad-cordoba"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Fatimid Caliphate": {
+  "canonical": "Fatimid Caliphate",
+  "apply": false,
+  "empires": [
+   "fatimid-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Fatimids": {
+  "canonical": "Fatimids",
+  "apply": false,
+  "empires": [
+   "fatimid-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ayyubids": {
+  "canonical": "Ayyubids",
+  "apply": false,
+  "empires": [
+   "mena-ayyubid-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ayyubid Sultanate": {
+  "canonical": "Ayyubid Sultanate",
+  "apply": false,
+  "empires": [
+   "mena-ayyubid-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mamluks": {
+  "canonical": "Mamluks",
+  "apply": false,
+  "empires": [
+   "mena-mamluk-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mamlukes": {
+  "canonical": "Mamlukes",
+  "apply": false,
+  "empires": [
+   "mena-mamluk-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mamluk Egypt": {
+  "canonical": "Mamluk Egypt",
+  "apply": false,
+  "empires": [
+   "mena-mamluk-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Seljuks": {
+  "canonical": "Seljuks",
+  "apply": false,
+  "empires": [
+   "@seljuk"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Seljuk Turks": {
+  "canonical": "Seljuk Turks",
+  "apply": false,
+  "empires": [
+   "@seljuk"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Seljuk Empire": {
+  "canonical": "Seljuk Empire",
+  "apply": false,
+  "empires": [
+   "@seljuk"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Great Seljuk Empire": {
+  "canonical": "Great Seljuk Empire",
+  "apply": false,
+  "empires": [
+   "mena-great-seljuk"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sultanate of Rum": {
+  "canonical": "Sultanate of Rum",
+  "apply": false,
+  "empires": [
+   "mena-seljuk-rum"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Seljuk Sultanate of Rum": {
+  "canonical": "Seljuk Sultanate of Rum",
+  "apply": false,
+  "empires": [
+   "mena-seljuk-rum"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Rum": {
+  "canonical": "Rum",
+  "apply": false,
+  "empires": [
+   "mena-seljuk-rum"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ghazni": {
+  "canonical": "Ghazni",
+  "apply": false,
+  "empires": [
+   "asia-ghaznavid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ghaznavid Empire": {
+  "canonical": "Ghaznavid Empire",
+  "apply": false,
+  "empires": [
+   "asia-ghaznavid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ghaznavids": {
+  "canonical": "Ghaznavids",
+  "apply": false,
+  "empires": [
+   "asia-ghaznavid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ghurid dynasty": {
+  "canonical": "Ghurid dynasty",
+  "apply": false,
+  "empires": [
+   "asia-ghurid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ghurids": {
+  "canonical": "Ghurids",
+  "apply": false,
+  "empires": [
+   "asia-ghurid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ghurid Empire": {
+  "canonical": "Ghurid Empire",
+  "apply": false,
+  "empires": [
+   "asia-ghurid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Samanids": {
+  "canonical": "Samanids",
+  "apply": false,
+  "empires": [
+   "samanid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Samanid Empire": {
+  "canonical": "Samanid Empire",
+  "apply": false,
+  "empires": [
+   "samanid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khwarezmian Empire": {
+  "canonical": "Khwarezmian Empire",
+  "apply": false,
+  "empires": [
+   "asia-khwarezmian"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khwarazmian Empire": {
+  "canonical": "Khwarazmian Empire",
+  "apply": false,
+  "empires": [
+   "asia-khwarezmian"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khwarezm": {
+  "canonical": "Khwarezm",
+  "apply": false,
+  "empires": [
+   "asia-khwarezmian"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Almoravids": {
+  "canonical": "Almoravids",
+  "apply": false,
+  "empires": [
+   "almoravid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Almoravid Empire": {
+  "canonical": "Almoravid Empire",
+  "apply": false,
+  "empires": [
+   "almoravid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Almohads": {
+  "canonical": "Almohads",
+  "apply": false,
+  "empires": [
+   "almohad-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Almohad Caliphate": {
+  "canonical": "Almohad Caliphate",
+  "apply": false,
+  "empires": [
+   "almohad-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Delhi Sultanate": {
+  "canonical": "Delhi Sultanate",
+  "apply": false,
+  "empires": [
+   "delhi-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Timurid Empire": {
+  "canonical": "Timurid Empire",
+  "apply": false,
+  "empires": [
+   "timurid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Timurids": {
+  "canonical": "Timurids",
+  "apply": false,
+  "empires": [
+   "timurid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Timurids (Babur)": {
+  "canonical": "Timurids (Babur)",
+  "apply": false,
+  "empires": [
+   "timurid-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Durrani Empire": {
+  "canonical": "Durrani Empire",
+  "apply": false,
+  "empires": [
+   "durrani-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Afghanistan": {
+  "canonical": "Afghanistan",
+  "apply": false,
+  "empires": [
+   "durrani-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Crimean Khanate": {
+  "canonical": "Crimean Khanate",
+  "apply": false,
+  "empires": [
+   "crimean-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Crimean Tatars": {
+  "canonical": "Crimean Tatars",
+  "apply": false,
+  "empires": [
+   "crimean-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tatars": {
+  "canonical": "Tatars",
+  "apply": false,
+  "empires": [
+   "@tatars"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Golden Horde": {
+  "canonical": "Golden Horde",
+  "apply": false,
+  "empires": [
+   "asia-golden-horde"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ilkhanate": {
+  "canonical": "Ilkhanate",
+  "apply": false,
+  "empires": [
+   "asia-ilkhanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Chagatai Khanate": {
+  "canonical": "Chagatai Khanate",
+  "apply": false,
+  "empires": [
+   "asia-chagatai-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kazan": {
+  "canonical": "Kazan",
+  "apply": false,
+  "empires": [
+   "kazan-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kazan Khanate": {
+  "canonical": "Kazan Khanate",
+  "apply": false,
+  "empires": [
+   "kazan-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khanate of Kazan": {
+  "canonical": "Khanate of Kazan",
+  "apply": false,
+  "empires": [
+   "kazan-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khanate of Bukhara": {
+  "canonical": "Khanate of Bukhara",
+  "apply": false,
+  "empires": [
+   "asia-khanate-bukhara"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bukhara": {
+  "canonical": "Bukhara",
+  "apply": false,
+  "empires": [
+   "asia-khanate-bukhara"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khiva": {
+  "canonical": "Khiva",
+  "apply": false,
+  "empires": [
+   "asia-khanate-khiva"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kokand": {
+  "canonical": "Kokand",
+  "apply": false,
+  "empires": [
+   "asia-khanate-kokand"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Dzungar Khanate": {
+  "canonical": "Dzungar Khanate",
+  "apply": false,
+  "empires": [
+   "asia-dzungar-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Dzungars": {
+  "canonical": "Dzungars",
+  "apply": false,
+  "empires": [
+   "asia-dzungar-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Zunghar Khanate": {
+  "canonical": "Zunghar Khanate",
+  "apply": false,
+  "empires": [
+   "asia-dzungar-khanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Franks": {
+  "canonical": "Franks",
+  "apply": false,
+  "empires": [
+   "@franks"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Frankish Empire": {
+  "canonical": "Frankish Empire",
+  "apply": false,
+  "empires": [
+   "@franks"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Frankish Kingdom": {
+  "canonical": "Frankish Kingdom",
+  "apply": false,
+  "empires": [
+   "@franks"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Carolingian Empire": {
+  "canonical": "Carolingian Empire",
+  "apply": false,
+  "empires": [
+   "carolingian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Goths": {
+  "canonical": "Goths",
+  "apply": false,
+  "empires": [
+   "@goths"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Visigoths": {
+  "canonical": "Visigoths",
+  "apply": false,
+  "empires": [
+   "@visigoths"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Visigothic Kingdom": {
+  "canonical": "Visigothic Kingdom",
+  "apply": false,
+  "empires": [
+   "@visigoths"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ostrogoths": {
+  "canonical": "Ostrogoths",
+  "apply": false,
+  "empires": [
+   "ostrogothic-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ostrogothic Kingdom": {
+  "canonical": "Ostrogothic Kingdom",
+  "apply": false,
+  "empires": [
+   "ostrogothic-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Vandals": {
+  "canonical": "Vandals",
+  "apply": false,
+  "empires": [
+   "vandal-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Vandal Kingdom": {
+  "canonical": "Vandal Kingdom",
+  "apply": false,
+  "empires": [
+   "vandal-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lombards": {
+  "canonical": "Lombards",
+  "apply": false,
+  "empires": [
+   "lombard-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lombard Kingdom": {
+  "canonical": "Lombard Kingdom",
+  "apply": false,
+  "empires": [
+   "lombard-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Normans": {
+  "canonical": "Normans",
+  "apply": false,
+  "empires": [
+   "kingdom-of-sicily"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sicily": {
+  "canonical": "Sicily",
+  "apply": false,
+  "empires": [
+   "kingdom-of-sicily"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Sicily": {
+  "canonical": "Kingdom of Sicily",
+  "apply": false,
+  "empires": [
+   "kingdom-of-sicily"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Naples": {
+  "canonical": "Naples",
+  "apply": false,
+  "empires": [
+   "europe-naples"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Naples": {
+  "canonical": "Kingdom of Naples",
+  "apply": false,
+  "empires": [
+   "europe-naples"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Holy Roman Empire": {
+  "canonical": "Holy Roman Empire",
+  "apply": false,
+  "empires": [
+   "holy-roman-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "HRE": {
+  "canonical": "HRE",
+  "apply": false,
+  "empires": [
+   "holy-roman-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Papal States": {
+  "canonical": "Papal States",
+  "apply": false,
+  "empires": [
+   "papal-states"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Papacy": {
+  "canonical": "Papacy",
+  "apply": false,
+  "empires": [
+   "papal-states"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Venetian Republic": {
+  "canonical": "Venetian Republic",
+  "apply": false,
+  "empires": [
+   "europe-venetian-republic"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Genoa": {
+  "canonical": "Genoa",
+  "apply": false,
+  "empires": [
+   "europe-republic-of-genoa"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Republic of Genoa": {
+  "canonical": "Republic of Genoa",
+  "apply": false,
+  "empires": [
+   "europe-republic-of-genoa"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Florence": {
+  "canonical": "Florence",
+  "apply": false,
+  "empires": [
+   "europe-florence"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Republic of Florence": {
+  "canonical": "Republic of Florence",
+  "apply": false,
+  "empires": [
+   "europe-florence"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Milan": {
+  "canonical": "Milan",
+  "apply": false,
+  "empires": [
+   "europe-milan"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Duchy of Milan": {
+  "canonical": "Duchy of Milan",
+  "apply": false,
+  "empires": [
+   "europe-milan"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Burgundy": {
+  "canonical": "Burgundy",
+  "apply": false,
+  "empires": [
+   "kingdom-of-burgundy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Duchy of Burgundy": {
+  "canonical": "Duchy of Burgundy",
+  "apply": false,
+  "empires": [
+   "kingdom-of-burgundy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Switzerland": {
+  "canonical": "Switzerland",
+  "apply": false,
+  "empires": [
+   "swiss-confederation"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Swiss Confederation": {
+  "canonical": "Swiss Confederation",
+  "apply": false,
+  "empires": [
+   "swiss-confederation"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Swiss": {
+  "canonical": "Swiss",
+  "apply": false,
+  "empires": [
+   "swiss-confederation"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Navarre": {
+  "canonical": "Navarre",
+  "apply": false,
+  "empires": [
+   "kingdom-of-navarre"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Crown of Aragon": {
+  "canonical": "Crown of Aragon",
+  "apply": false,
+  "empires": [
+   "kingdom-of-aragon"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Castille": {
+  "canonical": "Castille",
+  "apply": false,
+  "empires": [
+   "kingdom-of-castile"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Crown of Castile": {
+  "canonical": "Crown of Castile",
+  "apply": false,
+  "empires": [
+   "kingdom-of-castile"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kievan Rus'": {
+  "canonical": "Kievan Rus'",
+  "apply": false,
+  "empires": [
+   "kyivan-rus"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kyivan Rus": {
+  "canonical": "Kyivan Rus",
+  "apply": false,
+  "empires": [
+   "kyivan-rus"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Rus": {
+  "canonical": "Rus",
+  "apply": false,
+  "empires": [
+   "kyivan-rus"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Novgorod": {
+  "canonical": "Novgorod",
+  "apply": false,
+  "empires": [
+   "novgorod-republic"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Novgorod Republic": {
+  "canonical": "Novgorod Republic",
+  "apply": false,
+  "empires": [
+   "novgorod-republic"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Moscow": {
+  "canonical": "Moscow",
+  "apply": false,
+  "empires": [
+   "grand-duchy-moscow"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Grand Duchy of Moscow": {
+  "canonical": "Grand Duchy of Moscow",
+  "apply": false,
+  "empires": [
+   "grand-duchy-moscow"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bulgaria": {
+  "canonical": "Bulgaria",
+  "apply": false,
+  "empires": [
+   "@bulgaria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bulgarian Empire": {
+  "canonical": "Bulgarian Empire",
+  "apply": false,
+  "empires": [
+   "@bulgaria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bulgars": {
+  "canonical": "Bulgars",
+  "apply": false,
+  "empires": [
+   "europe-bulgarian-first"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Serbian Empire": {
+  "canonical": "Serbian Empire",
+  "apply": false,
+  "empires": [
+   "europe-serbian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Polish–Lithuanian Commonwealth": {
+  "canonical": "Polish–Lithuanian Commonwealth",
+  "apply": false,
+  "empires": [
+   "@poland"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lithuania": {
+  "canonical": "Lithuania",
+  "apply": false,
+  "empires": [
+   "@poland"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Grand Duchy of Lithuania": {
+  "canonical": "Grand Duchy of Lithuania",
+  "apply": false,
+  "empires": [
+   "@poland"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Norway": {
+  "canonical": "Norway",
+  "apply": false,
+  "empires": [
+   "kalmar-union"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kalmar Union": {
+  "canonical": "Kalmar Union",
+  "apply": false,
+  "empires": [
+   "kalmar-union"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "United Kingdom": {
+  "canonical": "United Kingdom",
+  "apply": false,
+  "empires": [
+   "@united-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "East India Company": {
+  "canonical": "East India Company",
+  "apply": false,
+  "empires": [
+   "@british-india"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "British North America": {
+  "canonical": "British North America",
+  "apply": false,
+  "empires": [
+   "americas-british-north-america-canada"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Canada": {
+  "canonical": "Canada",
+  "apply": false,
+  "empires": [
+   "americas-british-north-america-canada"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "French": {
+  "canonical": "French",
+  "apply": false,
+  "empires": [
+   "@france"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Spanish": {
+  "canonical": "Spanish",
+  "apply": false,
+  "empires": [
+   "@spain"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Portuguese": {
+  "canonical": "Portuguese",
+  "apply": false,
+  "empires": [
+   "@portugal"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Dutch East Indies": {
+  "canonical": "Dutch East Indies",
+  "apply": false,
+  "empires": [
+   "dutch-east-indies"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Third Reich": {
+  "canonical": "Third Reich",
+  "apply": false,
+  "empires": [
+   "@third-reich"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Prussia": {
+  "canonical": "Kingdom of Prussia",
+  "apply": false,
+  "empires": [
+   "@prussia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Brandenburg-Prussia": {
+  "canonical": "Brandenburg-Prussia",
+  "apply": false,
+  "empires": [
+   "@prussia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tsardom of Russia": {
+  "canonical": "Tsardom of Russia",
+  "apply": false,
+  "empires": [
+   "russian-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Soviet Union": {
+  "canonical": "Soviet Union",
+  "apply": false,
+  "empires": [
+   "@soviet"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ottoman Empire": {
+  "canonical": "Ottoman Empire",
+  "apply": false,
+  "empires": [
+   "@ottoman"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Turkey": {
+  "canonical": "Turkey",
+  "apply": false,
+  "empires": [
+   "@ottoman"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mughal Empire": {
+  "canonical": "Mughal Empire",
+  "apply": false,
+  "empires": [
+   "@mughal"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mughals": {
+  "canonical": "Mughals",
+  "apply": false,
+  "empires": [
+   "@mughal"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sikh Empire": {
+  "canonical": "Sikh Empire",
+  "apply": false,
+  "empires": [
+   "asia-sikh-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sikhs": {
+  "canonical": "Sikhs",
+  "apply": false,
+  "empires": [
+   "asia-sikh-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Punjab": {
+  "canonical": "Punjab",
+  "apply": false,
+  "empires": [
+   "asia-sikh-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bijapur": {
+  "canonical": "Bijapur",
+  "apply": false,
+  "empires": [
+   "asia-deccan-sultanate-bijapur"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Golconda": {
+  "canonical": "Golconda",
+  "apply": false,
+  "empires": [
+   "asia-deccan-sultanate-golconda"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ahmadnagar": {
+  "canonical": "Ahmadnagar",
+  "apply": false,
+  "empires": [
+   "asia-deccan-sultanate-ahmadnagar"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bahmani Sultanate": {
+  "canonical": "Bahmani Sultanate",
+  "apply": false,
+  "empires": [
+   "asia-bahmani-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Vijayanagara": {
+  "canonical": "Vijayanagara",
+  "apply": false,
+  "empires": [
+   "vijayanagara-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Vijayanagara Empire": {
+  "canonical": "Vijayanagara Empire",
+  "apply": false,
+  "empires": [
+   "vijayanagara-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Chola Empire": {
+  "canonical": "Chola Empire",
+  "apply": false,
+  "empires": [
+   "asia-chola-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Cholas": {
+  "canonical": "Cholas",
+  "apply": false,
+  "empires": [
+   "asia-chola-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Chinese": {
+  "canonical": "Chinese",
+  "apply": false,
+  "empires": [
+   "@china"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Qin": {
+  "canonical": "Qin",
+  "apply": false,
+  "empires": [
+   "qin-dynasty"
+  ],
+  "note": "r15: pre-221 BCE Warring-States Qin has no feature (qin-dynasty starts -221); join only (display name unchanged)"
+ },
+ "Qin Dynasty": {
+  "canonical": "Qin Dynasty",
+  "apply": false,
+  "empires": [
+   "qin-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Han": {
+  "canonical": "Han",
+  "apply": false,
+  "empires": [
+   "han-dynasty-china"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Han China": {
+  "canonical": "Han China",
+  "apply": false,
+  "empires": [
+   "han-dynasty-china"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Cao Wei": {
+  "canonical": "Cao Wei",
+  "apply": false,
+  "empires": [
+   "@three-kingdoms"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Wei": {
+  "canonical": "Wei",
+  "apply": false,
+  "empires": [
+   "@three-kingdoms"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Shu Han": {
+  "canonical": "Shu Han",
+  "apply": false,
+  "empires": [
+   "@three-kingdoms"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Eastern Wu": {
+  "canonical": "Eastern Wu",
+  "apply": false,
+  "empires": [
+   "@three-kingdoms"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Wu": {
+  "canonical": "Wu",
+  "apply": false,
+  "empires": [
+   "@three-kingdoms"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Jin": {
+  "canonical": "Jin",
+  "apply": false,
+  "empires": [
+   "@jin"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Jin Dynasty": {
+  "canonical": "Jin Dynasty",
+  "apply": false,
+  "empires": [
+   "@jin"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Jurchen Jin": {
+  "canonical": "Jurchen Jin",
+  "apply": false,
+  "empires": [
+   "asia-jurchen-jin"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Jurchens": {
+  "canonical": "Jurchens",
+  "apply": false,
+  "empires": [
+   "asia-jurchen-jin"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sui": {
+  "canonical": "Sui",
+  "apply": false,
+  "empires": [
+   "sui-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sui Dynasty": {
+  "canonical": "Sui Dynasty",
+  "apply": false,
+  "empires": [
+   "sui-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tang": {
+  "canonical": "Tang",
+  "apply": false,
+  "empires": [
+   "tang-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tang China": {
+  "canonical": "Tang China",
+  "apply": false,
+  "empires": [
+   "tang-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Song": {
+  "canonical": "Song",
+  "apply": false,
+  "empires": [
+   "@song"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Northern Song": {
+  "canonical": "Northern Song",
+  "apply": false,
+  "empires": [
+   "song-dynasty-northern"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Southern Song": {
+  "canonical": "Southern Song",
+  "apply": false,
+  "empires": [
+   "song-dynasty-southern"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Liao": {
+  "canonical": "Liao",
+  "apply": false,
+  "empires": [
+   "asia-khitan-liao"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Liao Dynasty": {
+  "canonical": "Liao Dynasty",
+  "apply": false,
+  "empires": [
+   "asia-khitan-liao"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khitans": {
+  "canonical": "Khitans",
+  "apply": false,
+  "empires": [
+   "asia-khitan-liao"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Western Xia": {
+  "canonical": "Western Xia",
+  "apply": false,
+  "empires": [
+   "asia-tangut-western-xia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tanguts": {
+  "canonical": "Tanguts",
+  "apply": false,
+  "empires": [
+   "asia-tangut-western-xia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Yuan": {
+  "canonical": "Yuan",
+  "apply": false,
+  "empires": [
+   "yuan-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Manchus": {
+  "canonical": "Manchus",
+  "apply": false,
+  "empires": [
+   "qing-dynasty-1790"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Zhou": {
+  "canonical": "Zhou",
+  "apply": false,
+  "empires": [
+   "asia-zhou-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Zhou Dynasty": {
+  "canonical": "Zhou Dynasty",
+  "apply": false,
+  "empires": [
+   "asia-zhou-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Shang": {
+  "canonical": "Shang",
+  "apply": false,
+  "empires": [
+   "asia-shang-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Shang Dynasty": {
+  "canonical": "Shang Dynasty",
+  "apply": false,
+  "empires": [
+   "asia-shang-dynasty"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Japanese": {
+  "canonical": "Japanese",
+  "apply": false,
+  "empires": [
+   "@japan"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tokugawa Shogunate": {
+  "canonical": "Tokugawa Shogunate",
+  "apply": false,
+  "empires": [
+   "tokugawa-shogunate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ashikaga Shogunate": {
+  "canonical": "Ashikaga Shogunate",
+  "apply": false,
+  "empires": [
+   "asia-ashikaga-shogunate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Manchukuo": {
+  "canonical": "Manchukuo",
+  "apply": false,
+  "empires": [
+   "manchukuo"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Goryeo": {
+  "canonical": "Goryeo",
+  "apply": false,
+  "empires": [
+   "asia-goryeo"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Korean Empire": {
+  "canonical": "Korean Empire",
+  "apply": false,
+  "empires": [
+   "korean-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Silla": {
+  "canonical": "Silla",
+  "apply": false,
+  "empires": [
+   "asia-silla"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Baekje": {
+  "canonical": "Baekje",
+  "apply": false,
+  "empires": [
+   "asia-baekje-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Goguryeo": {
+  "canonical": "Goguryeo",
+  "apply": false,
+  "empires": [
+   "goguryeo-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Balhae": {
+  "canonical": "Balhae",
+  "apply": false,
+  "empires": [
+   "balhae"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Vietnam": {
+  "canonical": "Vietnam",
+  "apply": false,
+  "empires": [
+   "@vietnam"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Đại Việt": {
+  "canonical": "Đại Việt",
+  "apply": false,
+  "empires": [
+   "dai-viet-vietnam"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Dai Viet": {
+  "canonical": "Dai Viet",
+  "apply": false,
+  "empires": [
+   "dai-viet-vietnam"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Nguyễn Vietnam": {
+  "canonical": "Nguyễn Vietnam",
+  "apply": false,
+  "empires": [
+   "asia-nguyen-vietnam"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Nguyen Vietnam": {
+  "canonical": "Nguyen Vietnam",
+  "apply": false,
+  "empires": [
+   "asia-nguyen-vietnam"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Champa": {
+  "canonical": "Champa",
+  "apply": false,
+  "empires": [
+   "asia-champa"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khmer Empire": {
+  "canonical": "Khmer Empire",
+  "apply": false,
+  "empires": [
+   "khmer-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Khmer": {
+  "canonical": "Khmer",
+  "apply": false,
+  "empires": [
+   "khmer-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Toungoo dynasty": {
+  "canonical": "Toungoo dynasty",
+  "apply": false,
+  "empires": [
+   "toungoo-burma"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Toungoo Burma": {
+  "canonical": "Toungoo Burma",
+  "apply": false,
+  "empires": [
+   "toungoo-burma"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Pagan": {
+  "canonical": "Pagan",
+  "apply": false,
+  "empires": [
+   "asia-bagan-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bagan": {
+  "canonical": "Bagan",
+  "apply": false,
+  "empires": [
+   "asia-bagan-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Siam": {
+  "canonical": "Siam",
+  "apply": false,
+  "empires": [
+   "@siam"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Thailand": {
+  "canonical": "Thailand",
+  "apply": false,
+  "empires": [
+   "@siam"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ayutthaya": {
+  "canonical": "Ayutthaya",
+  "apply": false,
+  "empires": [
+   "ayutthaya-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ayutthaya Kingdom": {
+  "canonical": "Ayutthaya Kingdom",
+  "apply": false,
+  "empires": [
+   "ayutthaya-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lan Na": {
+  "canonical": "Lan Na",
+  "apply": false,
+  "empires": [
+   "asia-lan-na-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lan Xang": {
+  "canonical": "Lan Xang",
+  "apply": false,
+  "empires": [
+   "asia-lan-xang-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Laos": {
+  "canonical": "Laos",
+  "apply": false,
+  "empires": [
+   "asia-lan-xang-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Majapahit": {
+  "canonical": "Majapahit",
+  "apply": false,
+  "empires": [
+   "asia-majapahit"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Srivijaya": {
+  "canonical": "Srivijaya",
+  "apply": false,
+  "empires": [
+   "asia-srivijaya"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Malacca": {
+  "canonical": "Malacca",
+  "apply": false,
+  "empires": [
+   "asia-malacca-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Malacca Sultanate": {
+  "canonical": "Malacca Sultanate",
+  "apply": false,
+  "empires": [
+   "asia-malacca-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Aceh": {
+  "canonical": "Aceh",
+  "apply": false,
+  "empires": [
+   "asia-aceh-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Aceh Sultanate": {
+  "canonical": "Aceh Sultanate",
+  "apply": false,
+  "empires": [
+   "asia-aceh-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mataram": {
+  "canonical": "Mataram",
+  "apply": false,
+  "empires": [
+   "asia-mataram-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mataram Sultanate": {
+  "canonical": "Mataram Sultanate",
+  "apply": false,
+  "empires": [
+   "asia-mataram-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Brunei": {
+  "canonical": "Brunei",
+  "apply": false,
+  "empires": [
+   "asia-brunei-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sulu": {
+  "canonical": "Sulu",
+  "apply": false,
+  "empires": [
+   "asia-sultanate-sulu"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sultanate of Sulu": {
+  "canonical": "Sultanate of Sulu",
+  "apply": false,
+  "empires": [
+   "asia-sultanate-sulu"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Maguindanao": {
+  "canonical": "Maguindanao",
+  "apply": false,
+  "empires": [
+   "asia-sultanate-maguindanao"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ryukyu": {
+  "canonical": "Ryukyu",
+  "apply": false,
+  "empires": [
+   "asia-ryukyu-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ryukyu Kingdom": {
+  "canonical": "Ryukyu Kingdom",
+  "apply": false,
+  "empires": [
+   "asia-ryukyu-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "United States": {
+  "canonical": "United States",
+  "apply": false,
+  "empires": [
+   "@united-states"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Confederate States": {
+  "canonical": "Confederate States",
+  "apply": false,
+  "empires": [
+   "americas-confederate-states"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Texas": {
+  "canonical": "Texas",
+  "apply": false,
+  "empires": [
+   "americas-republic-of-texas"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Republic of Texas": {
+  "canonical": "Republic of Texas",
+  "apply": false,
+  "empires": [
+   "americas-republic-of-texas"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mexican Government": {
+  "canonical": "Mexican Government",
+  "apply": false,
+  "empires": [
+   "@mexico"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Republic of Yucatán": {
+  "canonical": "Republic of Yucatán",
+  "apply": false,
+  "empires": [
+   "americas-republic-of-yucatan"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Yucatán": {
+  "canonical": "Yucatán",
+  "apply": false,
+  "empires": [
+   "americas-republic-of-yucatan"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Brazil": {
+  "canonical": "Brazil",
+  "apply": false,
+  "empires": [
+   "americas-empire-of-brazil"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Empire of Brazil": {
+  "canonical": "Empire of Brazil",
+  "apply": false,
+  "empires": [
+   "americas-empire-of-brazil"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Gran Colombia": {
+  "canonical": "Gran Colombia",
+  "apply": false,
+  "empires": [
+   "americas-gran-colombia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Argentina": {
+  "canonical": "Argentina",
+  "apply": false,
+  "empires": [
+   "americas-argentine-confederation"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Argentine Confederation": {
+  "canonical": "Argentine Confederation",
+  "apply": false,
+  "empires": [
+   "americas-argentine-confederation"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Aztec": {
+  "canonical": "Aztec",
+  "apply": false,
+  "empires": [
+   "aztec-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tlaxcala": {
+  "canonical": "Tlaxcala",
+  "apply": false,
+  "empires": [
+   "americas-tlaxcala"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tlaxcalans": {
+  "canonical": "Tlaxcalans",
+  "apply": false,
+  "empires": [
+   "americas-tlaxcala"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Iroquois": {
+  "canonical": "Iroquois",
+  "apply": false,
+  "empires": [
+   "americas-iroquois-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Iroquois Confederacy": {
+  "canonical": "Iroquois Confederacy",
+  "apply": false,
+  "empires": [
+   "americas-iroquois-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Six Nations": {
+  "canonical": "Six Nations",
+  "apply": false,
+  "empires": [
+   "americas-iroquois-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Iroquois Indians": {
+  "canonical": "Iroquois Indians",
+  "apply": false,
+  "empires": [
+   "americas-iroquois-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Comanche": {
+  "canonical": "Comanche",
+  "apply": false,
+  "empires": [
+   "americas-comancheria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Comanches": {
+  "canonical": "Comanches",
+  "apply": false,
+  "empires": [
+   "americas-comancheria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Comanche Indians": {
+  "canonical": "Comanche Indians",
+  "apply": false,
+  "empires": [
+   "americas-comancheria"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sioux": {
+  "canonical": "Sioux",
+  "apply": false,
+  "empires": [
+   "americas-lakota-sioux"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sioux Indians": {
+  "canonical": "Sioux Indians",
+  "apply": false,
+  "empires": [
+   "americas-lakota-sioux"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lakota": {
+  "canonical": "Lakota",
+  "apply": false,
+  "empires": [
+   "americas-lakota-sioux"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lakota Sioux": {
+  "canonical": "Lakota Sioux",
+  "apply": false,
+  "empires": [
+   "americas-lakota-sioux"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Cheyenne": {
+  "canonical": "Cheyenne",
+  "apply": false,
+  "empires": [
+   "cheyenne"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Cheyenne Indians": {
+  "canonical": "Cheyenne Indians",
+  "apply": false,
+  "empires": [
+   "cheyenne"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Apache": {
+  "canonical": "Apache",
+  "apply": false,
+  "empires": [
+   "americas-apache-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Apache Indians": {
+  "canonical": "Apache Indians",
+  "apply": false,
+  "empires": [
+   "americas-apache-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Apaches": {
+  "canonical": "Apaches",
+  "apply": false,
+  "empires": [
+   "americas-apache-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Creek Indians": {
+  "canonical": "Creek Indians",
+  "apply": false,
+  "empires": [
+   "muscogee-creek-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Creek": {
+  "canonical": "Creek",
+  "apply": false,
+  "empires": [
+   "muscogee-creek-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Muscogee": {
+  "canonical": "Muscogee",
+  "apply": false,
+  "empires": [
+   "muscogee-creek-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Red Stick Creeks": {
+  "canonical": "Red Stick Creeks",
+  "apply": false,
+  "empires": [
+   "muscogee-creek-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Cherokee": {
+  "canonical": "Cherokee",
+  "apply": false,
+  "empires": [
+   "cherokee"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Cherokee Indians": {
+  "canonical": "Cherokee Indians",
+  "apply": false,
+  "empires": [
+   "cherokee"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Choctaw": {
+  "canonical": "Choctaw",
+  "apply": false,
+  "empires": [
+   "choctaw"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Chickasaw": {
+  "canonical": "Chickasaw",
+  "apply": false,
+  "empires": [
+   "chickasaw"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Powhatan": {
+  "canonical": "Powhatan",
+  "apply": false,
+  "empires": [
+   "americas-powhatan-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Powhatan Confederacy": {
+  "canonical": "Powhatan Confederacy",
+  "apply": false,
+  "empires": [
+   "americas-powhatan-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Wampanoag": {
+  "canonical": "Wampanoag",
+  "apply": false,
+  "empires": [
+   "wampanoag"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Navajo": {
+  "canonical": "Navajo",
+  "apply": false,
+  "empires": [
+   "navajo-dinetah"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Navajo Indians": {
+  "canonical": "Navajo Indians",
+  "apply": false,
+  "empires": [
+   "navajo-dinetah"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Shoshone": {
+  "canonical": "Shoshone",
+  "apply": false,
+  "empires": [
+   "shoshone"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Pawnee": {
+  "canonical": "Pawnee",
+  "apply": false,
+  "empires": [
+   "pawnee"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Blackfoot": {
+  "canonical": "Blackfoot",
+  "apply": false,
+  "empires": [
+   "blackfoot-confederacy"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Natchez": {
+  "canonical": "Natchez",
+  "apply": false,
+  "empires": [
+   "americas-natchez-chiefdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Natchez Indians": {
+  "canonical": "Natchez Indians",
+  "apply": false,
+  "empires": [
+   "americas-natchez-chiefdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mapuche": {
+  "canonical": "Mapuche",
+  "apply": false,
+  "empires": [
+   "americas-mapuche-araucania"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Araucanians": {
+  "canonical": "Araucanians",
+  "apply": false,
+  "empires": [
+   "americas-mapuche-araucania"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Taíno": {
+  "canonical": "Taíno",
+  "apply": false,
+  "empires": [
+   "americas-taino-chiefdoms"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Taino": {
+  "canonical": "Taino",
+  "apply": false,
+  "empires": [
+   "americas-taino-chiefdoms"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ethiopia": {
+  "canonical": "Ethiopia",
+  "apply": false,
+  "empires": [
+   "@ethiopia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ethiopian Empire": {
+  "canonical": "Ethiopian Empire",
+  "apply": false,
+  "empires": [
+   "@ethiopia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Abyssinia": {
+  "canonical": "Abyssinia",
+  "apply": false,
+  "empires": [
+   "@ethiopia"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Dahomey": {
+  "canonical": "Dahomey",
+  "apply": false,
+  "empires": [
+   "africa-dahomey-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Dahomey": {
+  "canonical": "Kingdom of Dahomey",
+  "apply": false,
+  "empires": [
+   "africa-dahomey-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sokoto Caliphate": {
+  "canonical": "Sokoto Caliphate",
+  "apply": false,
+  "empires": [
+   "africa-sokoto-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sokoto": {
+  "canonical": "Sokoto",
+  "apply": false,
+  "empires": [
+   "africa-sokoto-caliphate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Kongo": {
+  "canonical": "Kingdom of Kongo",
+  "apply": false,
+  "empires": [
+   "africa-kongo-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kongo": {
+  "canonical": "Kongo",
+  "apply": false,
+  "empires": [
+   "africa-kongo-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Songhai Empire": {
+  "canonical": "Songhai Empire",
+  "apply": false,
+  "empires": [
+   "africa-songhai-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Songhai": {
+  "canonical": "Songhai",
+  "apply": false,
+  "empires": [
+   "africa-songhai-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Songhay": {
+  "canonical": "Songhay",
+  "apply": false,
+  "empires": [
+   "africa-songhai-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mali Empire": {
+  "canonical": "Mali Empire",
+  "apply": false,
+  "empires": [
+   "africa-mali-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mali": {
+  "canonical": "Mali",
+  "apply": false,
+  "empires": [
+   "africa-mali-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ghana Empire": {
+  "canonical": "Ghana Empire",
+  "apply": false,
+  "empires": [
+   "africa-ghana-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kanem-Bornu": {
+  "canonical": "Kanem-Bornu",
+  "apply": false,
+  "empires": [
+   "@kanem"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bornu": {
+  "canonical": "Bornu",
+  "apply": false,
+  "empires": [
+   "africa-kanem-bornu-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kanem": {
+  "canonical": "Kanem",
+  "apply": false,
+  "empires": [
+   "@kanem"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Adal Sultanate": {
+  "canonical": "Adal Sultanate",
+  "apply": false,
+  "empires": [
+   "africa-adal-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Adal": {
+  "canonical": "Adal",
+  "apply": false,
+  "empires": [
+   "africa-adal-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Transvaal": {
+  "canonical": "Transvaal",
+  "apply": false,
+  "empires": [
+   "africa-south-african-republic"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Zanzibar": {
+  "canonical": "Zanzibar",
+  "apply": false,
+  "empires": [
+   "africa-zanzibar-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Sultanate of Zanzibar": {
+  "canonical": "Sultanate of Zanzibar",
+  "apply": false,
+  "empires": [
+   "africa-zanzibar-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Merina Kingdom": {
+  "canonical": "Merina Kingdom",
+  "apply": false,
+  "empires": [
+   "africa-imerina-madagascar"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Madagascar": {
+  "canonical": "Madagascar",
+  "apply": false,
+  "empires": [
+   "africa-imerina-madagascar"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Merina": {
+  "canonical": "Merina",
+  "apply": false,
+  "empires": [
+   "africa-imerina-madagascar"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Buganda": {
+  "canonical": "Buganda",
+  "apply": false,
+  "empires": [
+   "africa-buganda-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Bunyoro": {
+  "canonical": "Bunyoro",
+  "apply": false,
+  "empires": [
+   "africa-bunyoro-kitara"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Rwanda": {
+  "canonical": "Rwanda",
+  "apply": false,
+  "empires": [
+   "africa-rwanda-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Burundi": {
+  "canonical": "Burundi",
+  "apply": false,
+  "empires": [
+   "africa-burundi-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Benin": {
+  "canonical": "Benin",
+  "apply": false,
+  "empires": [
+   "africa-benin-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Benin": {
+  "canonical": "Kingdom of Benin",
+  "apply": false,
+  "empires": [
+   "africa-benin-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Oyo": {
+  "canonical": "Oyo",
+  "apply": false,
+  "empires": [
+   "africa-oyo-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Oyo Empire": {
+  "canonical": "Oyo Empire",
+  "apply": false,
+  "empires": [
+   "africa-oyo-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ndongo": {
+  "canonical": "Ndongo",
+  "apply": false,
+  "empires": [
+   "ndongo-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Lunda": {
+  "canonical": "Lunda",
+  "apply": false,
+  "empires": [
+   "africa-lunda-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Luba": {
+  "canonical": "Luba",
+  "apply": false,
+  "empires": [
+   "luba-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Mutapa": {
+  "canonical": "Mutapa",
+  "apply": false,
+  "empires": [
+   "africa-mutapa-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Rozvi": {
+  "canonical": "Rozvi",
+  "apply": false,
+  "empires": [
+   "africa-rozvi-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Great Zimbabwe": {
+  "canonical": "Great Zimbabwe",
+  "apply": false,
+  "empires": [
+   "kingdom-of-zimbabwe"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Wassoulou Empire": {
+  "canonical": "Wassoulou Empire",
+  "apply": false,
+  "empires": [
+   "africa-wassoulou-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Samori": {
+  "canonical": "Samori",
+  "apply": false,
+  "empires": [
+   "africa-wassoulou-empire"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Funj Sultanate": {
+  "canonical": "Funj Sultanate",
+  "apply": false,
+  "empires": [
+   "africa-funj-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ajuran Sultanate": {
+  "canonical": "Ajuran Sultanate",
+  "apply": false,
+  "empires": [
+   "africa-ajuran-sultanate"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Makuria": {
+  "canonical": "Makuria",
+  "apply": false,
+  "empires": [
+   "africa-makuria-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ndebele": {
+  "canonical": "Ndebele",
+  "apply": false,
+  "empires": [
+   "africa-ndebele-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Matabele": {
+  "canonical": "Matabele",
+  "apply": false,
+  "empires": [
+   "africa-ndebele-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Ndebele Kingdom": {
+  "canonical": "Ndebele Kingdom",
+  "apply": false,
+  "empires": [
+   "africa-ndebele-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Belgian Congo": {
+  "canonical": "Belgian Congo",
+  "apply": false,
+  "empires": [
+   "belgian-congo"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "German East Africa": {
+  "canonical": "German East Africa",
+  "apply": false,
+  "empires": [
+   "german-east-africa"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Hawaii": {
+  "canonical": "Hawaii",
+  "apply": false,
+  "empires": [
+   "pacific-hawaiian-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Hawaiian Kingdom": {
+  "canonical": "Hawaiian Kingdom",
+  "apply": false,
+  "empires": [
+   "pacific-hawaiian-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Kingdom of Hawaii": {
+  "canonical": "Kingdom of Hawaii",
+  "apply": false,
+  "empires": [
+   "pacific-hawaiian-kingdom"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Maori": {
+  "canonical": "Maori",
+  "apply": false,
+  "empires": [
+   "pacific-maori"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Māori": {
+  "canonical": "Māori",
+  "apply": false,
+  "empires": [
+   "pacific-maori"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tonga": {
+  "canonical": "Tonga",
+  "apply": false,
+  "empires": [
+   "pacific-tonga-tui"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Samoa": {
+  "canonical": "Samoa",
+  "apply": false,
+  "empires": [
+   "pacific-samoan"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "Tahiti": {
+  "canonical": "Tahiti",
+  "apply": false,
+  "empires": [
+   "pacific-tahitian"
+  ],
+  "note": "r15: join only (display name unchanged)"
+ },
+ "New Kingdom Egypt": {
+  "canonical": "New Kingdom Egypt",
+  "apply": false,
+  "empires": [
+   "@egypt"
+  ],
+  "note": "r15: join only (display name unchanged)"
  }
 }

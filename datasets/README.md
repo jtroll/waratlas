@@ -1,6 +1,6 @@
 # Source datasets — download guide
 
-Drop the files below into the matching subfolder, then tell Claude "datasets are in." Claude will parse → normalize to the conflict schema → geocode where needed → dedupe against the existing `public/conflicts.json` → run automated QA + a sampled human-grade review → merge.
+Drop the files below into the matching subfolder, then tell Claude "datasets are in." Claude will parse → normalize to the conflict schema → geocode where needed → dedupe against the existing `data/conflicts.json` → run automated QA + a sampled human-grade review → merge.
 
 **Licensing:** raw files in this folder are **gitignored** and never committed. We derive conflict records and cite the source; we do not republish the raw datasets. Any filename works — Claude auto-detects whatever is in each subfolder.
 

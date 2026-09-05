@@ -20,14 +20,40 @@ export interface Conflict {
   casualtyRange?: CasualtyRange;
   wikipediaUrl: string | null;
   importance: number; // 1-5
-  description: string;
+  /** Flat summary. Optional because the core data file ships without the
+   *  long-text fields; they arrive later from the conflicts-text file and
+   *  are merged in (see ConflictText). */
+  description?: string;
   /** Tiered description fields (set for top ~200 conflicts). */
   hook?: string;
   narrative?: string;
   significance?: string;
+  /** Canonical empire ids (from empires.json) for the belligerents, where a
+   *  matching polity feature exists. Populated by the r15 belligerent
+   *  canonicalisation; absent for records whose belligerents have no
+   *  polygon in the atlas. */
+  polityIds?: string[];
   /** Researcher-grade source attribution (top ~100 conflicts). */
-  sources?: { label: string; url?: string | null }[];
+  sources?: ConflictSource[];
 }
+
+export interface ConflictSource {
+  label: string;
+  url?: string | null;
+}
+
+/** The long-text fields split out of the core conflicts file. Loaded lazily
+ *  (after the map is ready, or on first sidebar/search need) and merged into
+ *  the Conflict records by id. */
+export interface ConflictText {
+  description?: string;
+  hook?: string;
+  narrative?: string;
+  significance?: string;
+  sources?: ConflictSource[];
+}
+
+export type ConflictTextMap = Record<string, ConflictText>;
 
 export interface TimelineState {
   currentYear: number;

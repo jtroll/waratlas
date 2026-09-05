@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Conflict } from '@/lib/types';
+import { DATA_URLS } from '@/lib/data-urls';
 import {
   formatYear,
   formatYearRange,
@@ -9,8 +10,16 @@ import {
   formatCompactRange,
   formatCasualties,
   importanceLabel,
+  compareWars,
+  empireBaseId,
+  empireSourceLabel,
+  bordersHeading,
+  bordersCaption,
+  isEmpireDashed,
 } from '@/lib/format';
 import { getEmpireDescription } from '@/lib/empire-descriptions';
+import { useFocusTrap } from '@/lib/focus-trap';
+import { SheetActions, DisclosureButton } from './Sidebar';
 
 /**
  * Wikipedia summary cache shape (matches public/empire-wikipedia.json
@@ -29,7 +38,7 @@ interface WikipediaEntry {
 let wikipediaCachePromise: Promise<Record<string, WikipediaEntry>> | null = null;
 function loadWikipediaCache(): Promise<Record<string, WikipediaEntry>> {
   if (wikipediaCachePromise) return wikipediaCachePromise;
-  wikipediaCachePromise = fetch('/empire-wikipedia.json')
+  wikipediaCachePromise = fetch(DATA_URLS.empireWikipedia)
     .then((r) => (r.ok ? r.json() : {}))
     .catch(() => ({} as Record<string, WikipediaEntry>));
   return wikipediaCachePromise;
@@ -53,19 +62,6 @@ export type EmpireSource =
   | 'approximate-cultural-extent'
   | 'cliopatria-seshat'
   | 'manual';
-
-const SOURCE_LABELS: Record<EmpireSource, string> = {
-  'historical-basemaps': 'aourednik / historical-basemaps',
-  'hand-crafted-from-atlases': 'hand-crafted from scholarly atlases',
-  'reconstructed-clipped-country': 'reconstructed from Natural Earth country boundaries',
-  'approximate-cultural-extent': 'approximate cultural extent (no primary GIS source)',
-  'cliopatria-seshat': 'Cliopatria / Seshat Global History Databank (CC BY 4.0)',
-  'manual': 'manual construction / verification',
-};
-
-function sourceLabel(source: string): string {
-  return (SOURCE_LABELS as Record<string, string>)[source] ?? source;
-}
 
 /**
  * Properties carried on every empire feature in public/empires.json.
@@ -108,8 +104,14 @@ export interface EmpireProperties {
 
 interface Props {
   empire: EmpireProperties;
-  /** All conflicts — used to surface the major wars active during this empire. */
+  /** All conflicts — joined on `polityIds` for "Wars of this empire", with a
+   *  date-overlap fallback while the join is unpopulated. */
   allConflicts: Conflict[];
+  /** Ids of this empire's other time-slices (british-empire-1815 → every
+   *  british-empire-*). `polityIds` stores the slice active at a conflict's
+   *  start year, so any sibling counts as this empire. When omitted, the
+   *  sidebar falls back to a prefix match on the id's base name. */
+  siblingIds?: string[];
   /** Click handler for navigating to a conflict. */
   onConflictClick: (c: Conflict) => void;
   onClose: () => void;
@@ -119,76 +121,28 @@ interface Props {
  * EMPIRE SIDEBAR — editorial detail panel for a polygon click.
  *
  * Mirrors the conflict Sidebar's hierarchy:
- *   Header        — confidence eyebrow + ID + close
- *   Title         — serif name; mono date range + duration
+ *   Header        — mono line: swatch · EMPIRE · dates · duration;
+ *                   serif title + action toolbar (Cite · Link · Wikipedia · Close)
  *   Hook          — italic display serif (curated for top empires)
  *   Narrative     — "What it was" prose
  *   Significance  — "Why it mattered" with amber eyebrow
  *   Borders       — confidence + source attribution + dashed/solid swatch
- *   Active wars   — top-importance conflicts overlapping the empire's lifetime
+ *   Wars          — belligerent join on polityIds (any time-slice of this
+ *                   polity), 12 shown then "Show all"; date-overlap
+ *                   fallback while the join is empty
  *   Footer        — bbox + ID, mono, dashed top rule
  *
  * Only one of EmpireSidebar / Sidebar can be open at once — handled in
  * app/page.tsx via mutually-exclusive selected state.
  * ─────────────────────────────────────────────────────────── */
 
-/** Heading shown above the source-attribution swatch. The dashed/solid state
- *  is already decided in the parent; this just gives it a name that reflects
- *  why the line is dashed — polygon fidelity vs. the polity itself being a
- *  cultural sphere or nomadic range. */
-function bordersHeading(isDashed: boolean, polityType?: string): string {
-  if (!isDashed) return 'Reconstructed borders';
-  switch (polityType) {
-    case 'tributary':     return 'Tributary network';
-    case 'confederation': return 'Confederation';
-    case 'culture':       return 'Cultural sphere';
-    case 'nomadic-range': return 'Nomadic range';
-    case 'chiefdom':      return 'Chiefdom';
-    default:              return 'Approximate borders';
-  }
-}
+const WARS_CAP = 12;
+const OVERLAP_CAP = 6;
 
-/** One-sentence explanation paired with the heading. When the polygon itself
- *  is well-traced (isAccurate=true) but rendered dashed because of polity
- *  type, the caption explains that distinction explicitly so the reader
- *  doesn't think we just didn't bother sourcing it. */
-function bordersCaption(
-  isDashed: boolean,
-  polityType?: string,
-  isAccurate?: boolean,
-): string {
-  if (!isDashed) {
-    return 'Solid borders are reconstructed from canonical historical-basemap data or hand-crafted from scholarly atlases.';
-  }
-  switch (polityType) {
-    case 'tributary':
-      return isAccurate
-        ? 'The center is well-attested, but the line is a tribute-relationship periphery rather than a surveyed frontier.'
-        : 'A paramount-chiefdom-style polity with tributary peripheries; exact extent is contested.';
-    case 'confederation':
-      return isAccurate
-        ? 'A confederation of independent groups sharing identity. The shape reflects member-territory union, not a unified state.'
-        : 'A confederation of independent groups; member territories shifted and overlapped, so the perimeter is approximate.';
-    case 'culture':
-      return isAccurate
-        ? 'An archaeological culture defined by material remains. The line is a probability cloud, not a frontier.'
-        : 'An archaeological culture; extent is defined by where its material remains have been found rather than by political control.';
-    case 'nomadic-range':
-      return isAccurate
-        ? 'A pastoralist or hunter-gatherer range. Seasonal use shifted across decades, so the line is the rough envelope of a moving territory.'
-        : 'A pastoralist or hunter-gatherer range whose extent shifted constantly with seasons and alliances.';
-    case 'chiefdom':
-      return isAccurate
-        ? 'A paramount chiefdom with tributary peripheries. The center is well-attested; the outer line marks the reach of tribute and kinship, not a surveyed frontier.'
-        : 'A paramount chiefdom with tributary peripheries; extent is inferred from settlement and tribute patterns and remains approximate.';
-    default:
-      return 'Dashed borders mark empires whose extent we can date but whose precise frontiers are contested or undocumented.';
-  }
-}
-
-export default function EmpireSidebar({
+function EmpireSidebar({
   empire,
   allConflicts,
+  siblingIds,
   onConflictClick,
   onClose,
 }: Props) {
@@ -213,8 +167,7 @@ export default function EmpireSidebar({
   // (accurate=true) AND were administratively-bordered states. Tributary,
   // confederation, culture, nomadic-range and chiefdom types render dashed
   // regardless.
-  const isStatePolity = e.polityType === 'state' || e.polityType === undefined;
-  const isDashed = e.borderStyle === 'dashed' || !isAccurate || !isStatePolity;
+  const isDashed = isEmpireDashed(e);
   const duration = formatDuration(e.startYear, e.endYear);
   // "Copied" confirmation after a successful clipboard write (~1.5 s).
   const [copied, setCopied] = useState(false);
@@ -223,32 +176,52 @@ export default function EmpireSidebar({
     const t = setTimeout(() => setCopied(false), 1500);
     return () => clearTimeout(t);
   }, [copied]);
+  const [showAllWars, setShowAllWars] = useState(false);
+  const bodyRef = useRef<HTMLDivElement | null>(null);
+  const asideRef = useRef<HTMLElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+  useEffect(() => {
+    if (bodyRef.current) bodyRef.current.scrollTop = 0;
+    setCopied(false);
+    setShowAllWars(false);
+  }, [e.id]);
+  // Non-modal: focus lands on Close on open and returns on close.
+  useFocusTrap(asideRef, true, { trap: false, initialFocus: closeRef });
 
-  // Permalink for citations — empires don't have a /e/[id] route yet, so this
-  // builds a year-anchored deep-link that scrolls the timeline to the empire's
-  // start year. It's a useful share target even without a per-empire page.
+  // Permalink for citations — the server-rendered /e/<id> page, which in
+  // turn links into the atlas at the empire's start year with the flyout
+  // open (`#year=…&empire=…`, parsed by app/page.tsx).
+  const permalinkPath = `/e/${encodeURIComponent(e.id)}`;
   const permalink =
-    typeof window !== 'undefined'
-      ? `${window.location.origin}/#year=${e.startYear}`
-      : `/#year=${e.startYear}`;
+    typeof window !== 'undefined' ? `${window.location.origin}${permalinkPath}` : permalinkPath;
 
-  // Conflicts whose lifetime overlaps the empire's. We restrict to importance ≥ 3
-  // so the list stays short and editorial-grade.
+  // Wars of this empire — the belligerent join. A conflict counts when its
+  // polityIds name this feature or any sibling time-slice of the same
+  // polity. Sibling ids come from the parent when it has the empire index;
+  // otherwise any id sharing the base name (id minus a trailing year).
+  const wars = useMemo(() => {
+    const family = new Set<string>([e.id, ...(siblingIds ?? [])]);
+    const base = siblingIds ? null : empireBaseId(e.id);
+    const matches = allConflicts.filter((c) =>
+      c.polityIds?.some((p) => family.has(p) || (base !== null && empireBaseId(p) === base)),
+    );
+    return matches.sort(compareWars);
+  }, [allConflicts, e.id, siblingIds]);
+  const visibleWars = showAllWars ? wars : wars.slice(0, WARS_CAP);
+
+  // Fallback while the join is empty (data not yet joined, or no record
+  // names this polity): importance ≥ 3 conflicts overlapping the empire's
+  // lifetime — a date heuristic, labelled as such.
   const overlappingConflicts = useMemo(() => {
+    if (wars.length > 0) return [];
     const empireEnd = e.endYear ?? new Date().getFullYear();
     const matches = allConflicts.filter((c) => {
       if (c.importance < 3) return false;
       const cEnd = c.endYear ?? c.startYear;
-      // Lifetime overlap test
       return c.startYear <= empireEnd && cEnd >= e.startYear;
     });
-    // Sort by importance (desc), then by start year (asc)
-    matches.sort((a, b) => {
-      if (b.importance !== a.importance) return b.importance - a.importance;
-      return a.startYear - b.startYear;
-    });
-    return matches.slice(0, 12);
-  }, [allConflicts, e.startYear, e.endYear]);
+    return matches.sort(compareWars).slice(0, OVERLAP_CAP);
+  }, [allConflicts, wars.length, e.startYear, e.endYear]);
 
   const handleCite = async () => {
     const citation = `${e.name} (${formatYearRange(e.startYear, e.endYear)}). War Atlas. ${permalink}`;
@@ -262,25 +235,20 @@ export default function EmpireSidebar({
 
   // Tone for the swatch — falls back to vermilion if the empire color is
   // missing or non-hex.
-  const swatchColor = e.color && /^#?[0-9a-f]{3,8}$/i.test(e.color) ? e.color : 'rgb(200, 85, 59)';
+  const swatchColor = e.color && /^#?[0-9a-f]{3,8}$/i.test(e.color) ? e.color : 'var(--vermilion)';
 
   return (
     <aside
-      className="sidebar-sheet fixed sm:absolute z-40 flex flex-col overflow-hidden
+      ref={asideRef}
+      className="sidebar-sheet surface-sheet border-0 border-t sm:border-t-0 sm:border-l
+                 fixed sm:absolute z-40 flex flex-col overflow-hidden
                  left-0 right-0 top-auto h-[72dvh] sm:h-auto
                  bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:bottom-0
                  sm:top-0 sm:right-0 sm:left-auto
                  w-full sm:max-w-[460px]"
-      style={{
-        background: 'oklch(0.18 0.014 250 / 0.97)',
-        backdropFilter: 'blur(22px)',
-        WebkitBackdropFilter: 'blur(22px)',
-        borderTop: '1px solid var(--rule-strong)',
-        color: 'var(--ink-text)',
-        boxShadow: 'var(--shadow-pop)',
-      }}
+      style={{ color: 'var(--ink-text)', boxShadow: 'var(--shadow-pop)' }}
       role="dialog"
-      aria-label={`Details for ${e.name}`}
+      aria-labelledby="empire-sidebar-title"
     >
       {/* Mobile drag handle */}
       <div className="sm:hidden flex justify-center pt-2 pb-1 flex-shrink-0" aria-hidden>
@@ -294,71 +262,62 @@ export default function EmpireSidebar({
         />
       </div>
 
-      {/* ─── Header ─────────────────────────────────────────── */}
-      <header className="px-6 pt-3 sm:pt-5 pb-4 hairline-b flex-shrink-0">
-        <div className="flex items-center gap-2.5 mb-3">
+      {/* ─── Header (sticky: outside the scroll container) ───── */}
+      <header className="px-5 sm:px-6 pt-2 sm:pt-4 pb-4 hairline-b flex-shrink-0">
+        <div
+          className="font-mono text-mono text-wars-text-2 flex items-center gap-2 flex-wrap"
+          style={{ letterSpacing: '0.04em' }}
+        >
           <span
-            className="inline-block w-2.5 h-2.5"
+            className="inline-block w-2.5 h-2.5 flex-shrink-0"
             style={{
               background: swatchColor,
               opacity: 0.8,
-              border: isDashed
-                ? '1px dashed currentColor'
-                : '1px solid currentColor',
+              border: isDashed ? '1px dashed currentColor' : '1px solid currentColor',
               color: swatchColor,
             }}
             aria-hidden
           />
-          <span className="eyebrow">Empire</span>
-          <span className="font-mono text-mono-xs text-wars-faint ml-auto">
-            {e.id}
-          </span>
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="ml-2 inline-flex items-center justify-center w-[22px] h-[22px] text-wars-muted hover:text-wars-text transition-colors"
-            style={{
-              background: 'transparent',
-              border: '1px solid var(--rule-strong)',
-            }}
-          >
-            <svg width="9" height="9" viewBox="0 0 9 9">
-              <path
-                d="M1 1 L8 8 M8 1 L1 8"
-                stroke="currentColor"
-                strokeWidth="1.2"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <h2
-          className="font-display text-display-l text-wars-text"
-          style={{
-            fontWeight: 400,
-            margin: 0,
-            textWrap: 'balance' as React.CSSProperties['textWrap'],
-          }}
-        >
-          {e.name}
-        </h2>
-
-        <div
-          className="font-mono mt-2.5 text-meta text-wars-text-2"
-          style={{ letterSpacing: '0.05em' }}
-        >
-          {formatYearRange(e.startYear, e.endYear)}
+          <span className="uppercase">{isDashed ? 'Empire · approximate' : 'Empire'}</span>
+          <span className="text-wars-faint" aria-hidden>·</span>
+          <span>{formatYearRange(e.startYear, e.endYear)}</span>
           {duration && (
             <>
-              <span className="text-wars-faint mx-2">·</span>
-              {duration}
+              <span className="text-wars-faint" aria-hidden>·</span>
+              <span>{duration}</span>
             </>
           )}
+          <span role="status" aria-live="polite" className="ml-auto text-wars-text">
+            {copied ? 'Copied' : ''}
+          </span>
+        </div>
+
+        <div className="flex items-start justify-between gap-3 mt-2">
+          <h2
+            id="empire-sidebar-title"
+            className="font-display text-display-l text-wars-text flex-1 min-w-0"
+            style={{
+              fontWeight: 400,
+              margin: 0,
+              paddingTop: 2,
+              textWrap: 'balance' as React.CSSProperties['textWrap'],
+            }}
+          >
+            {e.name}
+          </h2>
+          <SheetActions
+            onCite={handleCite}
+            permalink={permalink}
+            wikipediaUrl={wiki?.url ?? null}
+            onClose={onClose}
+            closeRef={closeRef}
+            closeLabel={`Close ${e.name}`}
+          />
         </div>
       </header>
 
       {/* ─── Body (scrollable) ──────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-6 pb-8">
+      <div ref={bodyRef} className="flex-1 overflow-y-auto px-5 sm:px-6 pb-8">
         {/* HOOK — italic display serif */}
         {desc?.hook && (
           <div className="py-5 hairline-b">
@@ -376,13 +335,13 @@ export default function EmpireSidebar({
 
         {/* NARRATIVE */}
         {desc?.narrative && (
-          <section className="py-5 hairline-b">
-            <div className="eyebrow mb-2.5">What it was</div>
+          <section className="py-5 hairline-b" aria-labelledby="es-narrative">
+            <h3 id="es-narrative" className="eyebrow mb-2.5 m-0">What it was</h3>
             <p
               className="font-display text-wars-text m-0"
               style={{
                 fontSize: 14.5,
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 fontWeight: 400,
                 textWrap: 'pretty' as React.CSSProperties['textWrap'],
               }}
@@ -394,18 +353,15 @@ export default function EmpireSidebar({
 
         {/* SIGNIFICANCE — amber eyebrow signals commentary */}
         {desc?.significance && (
-          <section className="py-5 hairline-b">
-            <div
-              className="eyebrow mb-2.5"
-              style={{ color: 'var(--amber)' }}
-            >
+          <section className="py-5 hairline-b" aria-labelledby="es-significance">
+            <h3 id="es-significance" className="eyebrow mb-2.5 m-0" style={{ color: 'var(--amber)' }}>
               Why it mattered
-            </div>
+            </h3>
             <p
-              className="font-display italic text-wars-text-2 m-0"
+              className="font-display text-wars-text-2 m-0"
               style={{
                 fontSize: 14,
-                lineHeight: 1.65,
+                lineHeight: 1.6,
                 fontWeight: 400,
                 textWrap: 'pretty' as React.CSSProperties['textWrap'],
               }}
@@ -419,10 +375,10 @@ export default function EmpireSidebar({
             or fills the body for empires without a curated description.
             CC-BY-SA license requires clear attribution + a link to the source. */}
         {wiki?.extract && (
-          <section className="py-5 hairline-b">
-            <div className="eyebrow mb-2.5">
+          <section className="py-5 hairline-b" aria-labelledby="es-wiki">
+            <h3 id="es-wiki" className="eyebrow mb-2.5 m-0">
               {desc ? 'From Wikipedia' : 'Overview'}
-            </div>
+            </h3>
             <p
               className="font-display text-wars-text m-0"
               style={{
@@ -436,14 +392,14 @@ export default function EmpireSidebar({
             </p>
             <p
               className="font-mono mt-2.5 text-wars-faint"
-              style={{ fontSize: 10, letterSpacing: '0.02em' }}
+              style={{ fontSize: 12, letterSpacing: '0.02em' }}
             >
               {wiki.url ? (
                 <a
                   href={wiki.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-wars-accent transition-colors"
+                  className="hover:text-wars-text transition-colors"
                   style={{
                     color: 'var(--indigo)',
                     textDecoration: 'none',
@@ -477,8 +433,8 @@ export default function EmpireSidebar({
         )}
 
         {/* BORDERS & ACCURACY */}
-        <section className="py-5 hairline-b">
-          <div className="eyebrow mb-2.5">Borders &amp; accuracy</div>
+        <section className="py-5 hairline-b" aria-labelledby="es-borders">
+          <h3 id="es-borders" className="eyebrow mb-2.5 m-0">Borders &amp; accuracy</h3>
           <div className="flex items-center gap-3 mb-2">
             <svg width="44" height="6" aria-hidden>
               <line
@@ -494,7 +450,7 @@ export default function EmpireSidebar({
             </svg>
             <span
               className="font-display text-wars-text"
-              style={{ fontSize: 14, fontWeight: 500 }}
+              style={{ fontSize: 14.5, fontWeight: 500 }}
             >
               {bordersHeading(isDashed, e.polityType)}
             </span>
@@ -510,25 +466,25 @@ export default function EmpireSidebar({
           {(e.source || e.sourceDetail || e.borderNote || e.borderYear || e.matchedRegion || e.handCraftedNote) && (
             <ul className="mt-3 space-y-1.5">
               {e.source && (
-                <li className="font-mono text-mono-xs text-wars-faint">
+                <li className="font-mono text-mono text-wars-faint">
                   <span className="text-wars-muted mr-1.5">SOURCE</span>
-                  {sourceLabel(e.source)}
+                  {empireSourceLabel(e.source)}
                 </li>
               )}
               {e.sourceDetail && (
-                <li className="font-mono text-mono-xs text-wars-faint break-words">
+                <li className="font-mono text-mono text-wars-faint break-words">
                   <span className="text-wars-muted mr-1.5">DETAIL</span>
                   {e.sourceDetail}
                 </li>
               )}
               {e.borderYear !== undefined && (
-                <li className="font-mono text-mono-xs text-wars-faint">
+                <li className="font-mono text-mono text-wars-faint">
                   <span className="text-wars-muted mr-1.5">SNAPSHOT</span>
                   {formatYear(e.borderYear)}
                 </li>
               )}
               {e.matchedRegion && (
-                <li className="font-mono text-mono-xs text-wars-faint">
+                <li className="font-mono text-mono text-wars-faint">
                   <span className="text-wars-muted mr-1.5">MATCHED</span>
                   {e.matchedRegion}
                 </li>
@@ -544,8 +500,9 @@ export default function EmpireSidebar({
               {e.borderNote && (
                 <li
                   className="font-display italic text-wars-text-2"
-                  style={{ fontSize: 12, lineHeight: 1.5 }}
+                  style={{ fontSize: 12.5, lineHeight: 1.5 }}
                 >
+                  <span className="font-mono not-italic text-mono text-wars-muted mr-1.5">NOTE</span>
                   {e.borderNote}
                 </li>
               )}
@@ -553,99 +510,55 @@ export default function EmpireSidebar({
           )}
         </section>
 
-        {/* ACTIVE DURING THIS PERIOD */}
-        {overlappingConflicts.length > 0 && (
-          <section className="py-5 hairline-b">
-            <div className="eyebrow mb-2.5">
-              Major wars during this period
+        {/* WARS OF THIS EMPIRE — belligerent join on polityIds */}
+        {wars.length > 0 && (
+          <section className="py-5 hairline-b" aria-labelledby="es-wars">
+            <div className="flex items-baseline justify-between gap-3 mb-2.5">
+              <h3 id="es-wars" className="eyebrow m-0">Wars of this empire</h3>
+              <span className="font-mono text-mono text-wars-faint">
+                {wars.length} as a belligerent
+              </span>
             </div>
             <div className="space-y-1.5">
+              {visibleWars.map((c) => (
+                <WarRow key={c.id} c={c} onClick={onConflictClick} />
+              ))}
+            </div>
+            {wars.length > WARS_CAP && (
+              <DisclosureButton
+                onClick={() => setShowAllWars((v) => !v)}
+                expanded={showAllWars}
+                className="mt-2"
+              >
+                {showAllWars ? 'Show fewer' : `Show all ${wars.length}`}
+              </DisclosureButton>
+            )}
+          </section>
+        )}
+
+        {/* ALSO DURING THIS PERIOD — date-overlap fallback, only while the
+            join above has nothing for this polity. */}
+        {wars.length === 0 && overlappingConflicts.length > 0 && (
+          <section className="py-5 hairline-b" aria-labelledby="es-period">
+            <h3 id="es-period" className="eyebrow mb-1.5 m-0">Also during this period</h3>
+            <p
+              className="font-display italic text-wars-muted m-0 mb-2.5"
+              style={{ fontSize: 12.5, lineHeight: 1.5 }}
+            >
+              No conflict record yet names this polity as a belligerent; these
+              overlap its dates only.
+            </p>
+            <div className="space-y-1.5">
               {overlappingConflicts.map((c) => (
-                <button
-                  key={c.id}
-                  onClick={() => onConflictClick(c)}
-                  className="block w-full text-left transition-colors hover:text-wars-accent"
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    padding: '4px 0',
-                    cursor: 'pointer',
-                    color: 'inherit',
-                  }}
-                >
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span
-                      className="font-display text-wars-text"
-                      style={{ fontSize: 13.5, lineHeight: 1.3, fontWeight: 400 }}
-                    >
-                      {c.name}
-                    </span>
-                    <span className="font-mono text-mono-xs text-wars-faint flex-shrink-0">
-                      {formatCompactRange(c.startYear, c.endYear)}
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mt-0.5">
-                    <span
-                      className="eyebrow"
-                      style={{ fontSize: 9, color: 'var(--ink-faint)' }}
-                    >
-                      {importanceLabel(c.importance)}
-                    </span>
-                    {c.casualties != null && (
-                      <span className="font-mono text-mono-xs text-wars-faint">
-                        · {formatCasualties(c.casualties)} dead
-                      </span>
-                    )}
-                  </div>
-                </button>
+                <WarRow key={c.id} c={c} onClick={onConflictClick} />
               ))}
             </div>
           </section>
         )}
 
-        {/* Editorial action row */}
-        <section className="py-5">
-          <div className="flex flex-wrap gap-2 items-center text-meta text-wars-muted">
-            <button
-              onClick={handleCite}
-              className="font-ui hover:text-wars-text transition-colors"
-              style={{
-                color: 'var(--indigo)',
-                background: 'transparent',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                borderBottom: '1px solid currentColor',
-                paddingBottom: 1,
-                fontSize: 11,
-              }}
-              aria-label="Copy citation to clipboard"
-            >
-              Cite this entry
-            </button>
-            <span role="status" aria-live="polite" className="font-mono text-mono-xs" style={{ color: 'var(--amber)' }}>
-              {copied ? 'Copied' : ''}
-            </span>
-            <span className="text-wars-faint">·</span>
-            <a
-              href={permalink}
-              className="font-ui hover:text-wars-text transition-colors"
-              style={{
-                color: 'var(--indigo)',
-                textDecoration: 'none',
-                borderBottom: '1px solid currentColor',
-                paddingBottom: 1,
-                fontSize: 11,
-              }}
-            >
-              Permalink
-            </a>
-          </div>
-        </section>
-
         {/* Footer */}
         <footer
-          className="font-mono text-mono-xs text-wars-faint flex justify-between mt-3 pt-3"
+          className="font-mono text-mono text-wars-faint flex justify-between gap-3 flex-wrap mt-5 pt-3"
           style={{ borderTop: '1px dashed var(--rule)' }}
         >
           <span>
@@ -659,3 +572,40 @@ export default function EmpireSidebar({
     </aside>
   );
 }
+
+/** One conflict line: serif name, compact span, importance · dead. */
+function WarRow({ c, onClick }: { c: Conflict; onClick: (c: Conflict) => void }) {
+  return (
+    <button
+      onClick={() => onClick(c)}
+      className="block w-full text-left transition-colors hover:text-wars-text"
+      style={{
+        background: 'transparent',
+        border: 'none',
+        padding: '4px 0',
+        cursor: 'pointer',
+        color: 'inherit',
+      }}
+    >
+      <div className="flex items-baseline justify-between gap-3">
+        <span
+          className="font-display text-wars-text"
+          style={{ fontSize: 13.5, lineHeight: 1.3, fontWeight: 400 }}
+        >
+          {c.name}
+        </span>
+        <span className="font-mono text-mono text-wars-faint flex-shrink-0">
+          {formatCompactRange(c.startYear, c.endYear)}
+        </span>
+      </div>
+      <div className="font-mono text-mono text-wars-faint mt-0.5 uppercase" style={{ letterSpacing: '0.04em' }}>
+        {importanceLabel(c.importance)}
+        {c.casualties != null && (
+          <span className="normal-case"> · {formatCasualties(c.casualties)} dead</span>
+        )}
+      </div>
+    </button>
+  );
+}
+
+export default memo(EmpireSidebar);

@@ -14,7 +14,7 @@ import type { Config } from 'tailwindcss'
  *   - Oxidized vermilion instead of fire-engine red
  *   - Single amber accent — current year, editorial highlights only
  *   - Hairlines via opacity, not new gray ramps
- *   - Radii ≤ 4px (atlases don't have rounded corners)
+ *   - Radii 0 or 2px only (atlases don't have rounded corners)
  */
 const config: Config = {
   content: [
@@ -35,15 +35,29 @@ const config: Config = {
         'wars-text':     'oklch(0.94 0.012 85)',  // primary
         'wars-text-2':   'oklch(0.78 0.012 85)',  // secondary — NEW
         'wars-muted':    'oklch(0.62 0.010 85)',  // tertiary / labels
-        'wars-faint':    'oklch(0.46 0.008 85)',  // meta / IDs — NEW
+        'wars-faint':    'oklch(0.60 0.008 85)',  // meta / IDs — 4.58:1 on ink-1; never under 11px
 
         // ─ Editorial accents (chroma 0.14, vary by hue) ─
         'wars-red':      'oklch(0.62 0.18 28)',   // oxidized vermilion
         'wars-red-dim':  'oklch(0.50 0.16 28)',   // darker vermilion pair
         'wars-accent':   'oklch(0.78 0.14 78)',   // amber — current year, single highlight
-        'wars-indigo':   'oklch(0.58 0.14 264)',  // researcher links / sources — NEW
+        'wars-indigo':   'oklch(0.68 0.12 264)',  // researcher links / sources — 6.2:1 on ink-1
         'wars-moss':     'oklch(0.62 0.10 145)',  // "active in this year" only — NEW
         'wars-uncertain':'oklch(0.66 0.06 78)',   // dashed-border accent — NEW
+
+        // ─ Surfaces (exactly three; alpha baked in, so no opacity modifiers) ─
+        //   Prefer the .surface-chrome / .surface-panel / .surface-sheet
+        //   classes in globals.css, which also set blur + hairline.
+        'surface-chrome': 'var(--surface-chrome)',
+        'surface-panel':  'var(--surface-panel)',
+        'surface-sheet':  'var(--surface-sheet)',
+        'scrim':          'var(--scrim)',
+        'tint-ivory':     'var(--tint-ivory)',
+        'tint-ivory-2':   'var(--tint-ivory-2)',
+      },
+      backdropBlur: {
+        chrome: '8px',
+        panel:  '18px',
       },
       fontFamily: {
         display: ['var(--font-display)', '"Source Serif 4"', '"Source Serif Pro"', 'Georgia', 'serif'],
@@ -61,8 +75,10 @@ const config: Config = {
         'body-s':       ['13px', { lineHeight: '20px', letterSpacing: '-0.005em' }],
         'ui':           ['12.5px', { lineHeight: '18px' }],
         'meta':         ['11px',  { lineHeight: '15px' }],
-        'eyebrow':      ['10.5px', { lineHeight: '14px', letterSpacing: '0.10em' }],
+        'eyebrow':      ['11px',  { lineHeight: '14px', letterSpacing: '0.08em' }],
         'mono':         ['11px',  { lineHeight: '15px', letterSpacing: '0.02em' }],
+        // mono-xs (10px) is below the 11px floor — kept only until the last
+        // callers migrate to `text-mono`; do not use in new code.
         'mono-xs':      ['10px',  { lineHeight: '13px', letterSpacing: '0.02em' }],
       },
       spacing: {
@@ -73,7 +89,9 @@ const config: Config = {
         'inset-xs': '4px',
       },
       borderRadius: {
-        card: '4px',
+        // Only 0 and 2px exist in the system (plus rounded-full for the
+        // Live dot). `rounded`, `rounded-md/lg/xl` must not be used.
+        card: '2px',
         chip: '2px',
       },
       boxShadow: {

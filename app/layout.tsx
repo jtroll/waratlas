@@ -2,9 +2,11 @@ import type { Metadata, Viewport } from 'next';
 import { Source_Serif_4, Inter_Tight, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import './globals.css';
 import stats from '@/lib/generated/stats.json';
 import { getSiteUrl } from '@/lib/site-url';
+import { DATA_URLS } from '@/lib/data-urls';
 
 /**
  * Editorial type families per redesign handoff.
@@ -15,10 +17,12 @@ import { getSiteUrl } from '@/lib/site-url';
  * Each one is exposed as a CSS variable so non-React surfaces (globals.css,
  * Mapbox text-font property) can reach the same families.
  */
+// Weights: 400/500 for display + body, 700 for <strong> inside the serif prose
+// on /sources and /changelog. 600 is not used anywhere in serif.
 const serif = Source_Serif_4({
   subsets: ['latin'],
   style: ['normal', 'italic'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '700'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -36,7 +40,7 @@ const mono = JetBrains_Mono({
 })
 
 // Headline statistics — derived from the data files by
-// scripts/generate-stats.mjs (runs in `prebuild` / `npm run stats`).
+// scripts/build-data.mjs (runs in `predev` / `prebuild` / `npm run data`).
 const STAT_CONFLICTS = stats.conflicts.toLocaleString('en-US');
 const STAT_EMPIRES = stats.empires.toLocaleString('en-US');
 
@@ -100,14 +104,19 @@ export default function RootLayout({
       className={`${serif.variable} ${sans.variable} ${mono.variable}`}
     >
       <head>
-        {/* Preconnect to Mapbox so the GL stylesheet + tile fetches start their
-            DNS / TLS handshake during HTML parse instead of after CSSOM build. */}
+        {/* Preconnect to Mapbox so the style + tile fetches start their DNS /
+            TLS handshake during HTML parse. (mapbox-gl.css is bundled from the
+            npm package, so the version always matches the JS.) */}
         <link rel="preconnect" href="https://api.mapbox.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://api.mapbox.com" />
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
-          rel="stylesheet"
-        />
+        {/* Start the two big first-paint datasets downloading before the JS
+            bundle has parsed. crossOrigin="anonymous" is required for
+            as="fetch" preloads: fetch() runs in CORS mode with same-origin
+            credentials, and without the attribute the preload's credentials
+            mode differs, the browser discards it, and each file downloads
+            twice (observed in Chromium). */}
+        <link rel="preload" as="fetch" href={DATA_URLS.conflictsCore} crossOrigin="anonymous" />
+        <link rel="preload" as="fetch" href={DATA_URLS.empires} crossOrigin="anonymous" />
         {/* Site-wide structured data: WebSite + Dataset. Tells Google
             this domain is a single search-targetable site, and that the
             underlying conflict + empire records are a publicly available

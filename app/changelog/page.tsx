@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Wordmark } from '@/components/LoadingScreen';
 
 export const metadata: Metadata = {
   title: 'Changelog · War Atlas',
@@ -26,40 +27,112 @@ export default function ChangelogPage() {
       <style>{`html, body { overflow: auto !important; height: auto !important; }`}</style>
       <main
         className="min-h-screen px-6 py-10 sm:py-14"
-        style={{ background: 'var(--ink-0, #06090f)', color: 'var(--ink-text, #ece3d3)' }}
+        style={{ background: 'var(--ink-0)', color: 'var(--ink-text)' }}
       >
       <article className="mx-auto" style={{ maxWidth: 720 }}>
         <header className="mb-10">
-          <Link
-            href="/"
-            className="font-mono inline-block mb-6"
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.12em',
-              color: 'var(--ink-muted, #9ca3af)',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderBottom: '1px solid currentColor',
-              paddingBottom: 2,
-            }}
+          {/* Masthead — the same wordmark as the TopBar, with the way back. */}
+          <div
+            className="flex items-baseline justify-between gap-4 mb-8 pb-3"
+            style={{ borderBottom: '1px solid var(--rule)' }}
           >
-            ← Back to the atlas
-          </Link>
+            <Link href="/" style={{ textDecoration: 'none' }} aria-label="War Atlas home">
+              <Wordmark size={22} />
+            </Link>
+            <Link
+              href="/"
+              className="font-mono"
+              style={{
+                fontSize: 12,
+                letterSpacing: '0.08em',
+                color: 'var(--ink-muted)',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                borderBottom: '1px solid currentColor',
+                paddingBottom: 2,
+              }}
+            >
+              ← Back to the atlas
+            </Link>
+          </div>
           <h1
             className="font-display"
             style={{ fontSize: 40, fontWeight: 400, lineHeight: 1.1, margin: 0, letterSpacing: '-0.01em' }}
           >
-            <span style={{ fontStyle: 'italic', color: 'var(--vermilion, #c8553b)' }}>Changelog</span>
+            <span style={{ fontStyle: 'italic', color: 'var(--vermilion)' }}>Changelog</span>
           </h1>
           <p
             className="font-display italic mt-3"
-            style={{ fontSize: 17, color: 'var(--ink-text-2, #d1d5db)', lineHeight: 1.5 }}
+            style={{ fontSize: 17, color: 'var(--ink-text-2)', lineHeight: 1.5 }}
           >
             Dataset revisions, border corrections, and methodology changes — newest first.
           </p>
         </header>
 
         {/* ───── Entries (newest first) ───── */}
+
+        <Entry date="4 Sep 2026" tag="r15 · new features">
+          <p>
+            The second half of the review work: performance, design and a
+            set of features that make the atlas easier to read, share and
+            cite. Geometry remains at full precision throughout.
+          </p>
+          <p>
+            <strong>Timeline.</strong> The scrubber now uses a piecewise axis
+            that gives the last two centuries, where half the conflicts fall,
+            a third of the track instead of a sliver. Density is drawn per
+            era-appropriate bucket on a square-root scale; hovering shows the
+            bucket&apos;s count and its most important conflicts; the selected
+            conflict or empire is bracketed on the track; the playhead can be
+            dragged; the year can be typed.
+          </p>
+          <p>
+            <strong>Search and navigation.</strong> Press <kbd>/</kbd> or
+            <kbd>Ctrl</kbd>+<kbd>K</kbd> to search every conflict, empire and
+            city across all years; choosing one seeks the timeline and flies
+            the map. Every selection that lands off-screen now pans to it.
+            Browser Back returns to the previous record. Links can carry the
+            camera (<code>lat</code>, <code>lon</code>, <code>zoom</code>), an
+            empire (<code>empire=</code>) or an exhibit (<code>exhibit=</code>).
+            Press <kbd>[</kbd> and <kbd>]</kbd> to step through the year&apos;s
+            conflicts by importance.
+          </p>
+          <p>
+            <strong>This year.</strong> A strip above the timeline lists the
+            conflicts beginning and ending in the current year, so playback
+            reads as a sequence of events rather than dots appearing. The
+            &quot;deaths this year&quot; tally now spreads each conflict&apos;s
+            headline toll evenly across its duration instead of counting the
+            whole war every year, and a cumulative tally runs alongside it.
+            Method and caveats are on the sources page.
+          </p>
+          <p>
+            <strong>Empires and belligerents.</strong> Two-thirds of conflicts
+            now name their belligerents as atlas polities, so an empire&apos;s
+            panel lists the wars it actually fought rather than every war that
+            overlapped its dates. Twenty-two polities were added at full
+            precision from historical-basemaps, including the Soviet Union,
+            Prussia, Sumer, the Visigothic, Ostrogothic, Vandal and Lombard
+            kingdoms, the Samanids, Balhae and the Kazan Khanate; Athens,
+            Sparta, Phoenicia and the Empire of Nicaea are hand-traced and
+            marked approximate. Every empire has a page at <code>/e/</code>.
+          </p>
+          <p>
+            <strong>Exhibits.</strong> The opening tour is now one of four
+            guided routes: The Mongol century, The scramble for Africa, and The
+            world wars join the welcome tour, each with eight stops that seek
+            the timeline, fly the camera and open the record in question.
+          </p>
+          <p>
+            <strong>Under the hood.</strong> Conflict records load in two
+            parts (core first, narrative text on demand); data files are
+            fingerprinted and cached immutably; the service worker is retired;
+            playback no longer re-renders the page sixty times a second; the
+            project has lint, tests and continuous integration; and the
+            interface has a consolidated type and colour system with contrast
+            fixes, focus management and 44-pixel touch targets.
+          </p>
+        </Entry>
 
         <Entry date="4 Sep 2026" tag="r14 · data repair">
           <p>
@@ -202,7 +275,7 @@ export default function ChangelogPage() {
           <ul>
             <li>
               The HCED battles are shown at <strong>importance 2</strong> —
-              visible by default but hidden once the map's importance filter is
+              visible by default but hidden once the map&apos;s importance filter is
               raised, so the curated high-level view stays uncluttered. They
               carry <code>casualties: null</code> where no reliable figure
               exists, never an invented number.
@@ -238,7 +311,7 @@ export default function ChangelogPage() {
               <em>Aztec Empire</em>, <em>Luba Empire</em>,{' '}
               <em>Merina Kingdom</em> (the one the reader caught), and{' '}
               <em>Kingdom of Benin</em>. For each pair, kept the
-              higher-vertex-count polygon, merged the other's metadata
+              higher-vertex-count polygon, merged the other&apos;s metadata
               in, and dropped the duplicate <code>empire-wikipedia.json</code>{' '}
               entry.
             </li>
@@ -252,10 +325,10 @@ export default function ChangelogPage() {
               entries even had{' '}
               <code>source: &ldquo;… (duplicate)&rdquo;</code>{' '}
               already noted in the metadata — explicit acknowledgement
-              of the bug that just hadn't been cleaned up. For each
+              of the bug that just hadn&apos;t been cleaned up. For each
               pair: kept the higher-vertex-count polygon, took the
               widest date span between the two, used the canonical
-              Wikipedia title for the name, merged the other's
+              Wikipedia title for the name, merged the other&apos;s
               metadata in.
             </li>
             <li>
@@ -377,7 +450,7 @@ export default function ChangelogPage() {
               and <code>loango-expansion</code> (all umbrellas without
               named events, or gradual displacements rather than
               discrete wars). The remaining 37 low-confidence entries
-              are kept; they're real but thinly-sourced.
+              are kept; they&apos;re real but thinly-sourced.
             </li>
             <li>
               <strong>Coordinate axis-swap audit, atlas-wide.</strong>{' '}
@@ -788,7 +861,7 @@ export default function ChangelogPage() {
               adds Denmark, Norway, the Netherlands, Belgium, Luxembourg,
               and France (April–June 1940), and Yugoslavia and Greece
               (April 1941). Vichy is included under the merged-occupied
-              convention. Operation Barbarossa hasn't pushed deep yet, so
+              convention. Operation Barbarossa hasn&apos;t pushed deep yet, so
               western USSR is not in this snapshot.
             </li>
             <li>
@@ -816,9 +889,9 @@ export default function ChangelogPage() {
             <li>
               <strong>Sudetenland (1938)</strong> clipped from Czechoslovakia
               using a 14-vertex hand-drawn border ring. The shape captures
-              the crescent that appears in standard atlases but isn't
+              the crescent that appears in standard atlases but isn&apos;t
               district-perfect — the real boundary followed the 1930
-              census's German-language lines.
+              census&apos;s German-language lines.
             </li>
             <li>
               <strong>German half of partitioned Poland (1939)</strong>
@@ -981,10 +1054,10 @@ export default function ChangelogPage() {
         <footer
           className="mt-14 pt-6 font-mono"
           style={{
-            borderTop: '1px solid var(--rule, rgba(255,255,255,0.1))',
+            borderTop: '1px solid var(--rule))',
             fontSize: 11,
             letterSpacing: '0.06em',
-            color: 'var(--ink-faint, #6b7280)',
+            color: 'var(--ink-faint)',
             display: 'flex',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
@@ -994,7 +1067,7 @@ export default function ChangelogPage() {
           <span>WARS-ATLAS · /CHANGELOG · A RESEARCH PREVIEW</span>
           <Link
             href="/sources"
-            style={{ color: 'var(--ink-faint, #6b7280)', textDecoration: 'none', borderBottom: '1px solid currentColor', paddingBottom: 1 }}
+            style={{ color: 'var(--ink-faint)', textDecoration: 'none', borderBottom: '1px solid currentColor', paddingBottom: 1 }}
           >
             Sources &amp; attribution →
           </Link>
@@ -1023,7 +1096,7 @@ function Entry({
             fontSize: 22,
             fontWeight: 500,
             margin: 0,
-            color: 'var(--ink-text, #ece3d3)',
+            color: 'var(--ink-text)',
             letterSpacing: '-0.005em',
           }}
         >
@@ -1033,10 +1106,10 @@ function Entry({
           <span
             className="font-mono"
             style={{
-              fontSize: 10,
-              letterSpacing: '0.12em',
+              fontSize: 11,
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              color: 'var(--vermilion, #c8553b)',
+              color: 'var(--vermilion)',
               borderBottom: '1px solid currentColor',
               paddingBottom: 1,
             }}
@@ -1047,7 +1120,7 @@ function Entry({
       </div>
       <div
         className="font-display changelog-prose"
-        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2, #d1d5db)' }}
+        style={{ fontSize: 15.5, lineHeight: 1.65, color: 'var(--ink-text-2)' }}
       >
         {children}
       </div>
@@ -1056,9 +1129,9 @@ function Entry({
         .changelog-prose p { margin: 0 0 12px; }
         .changelog-prose ul { margin: 0 0 12px; padding-left: 1.1em; }
         .changelog-prose ul li { margin-bottom: 8px; }
-        .changelog-prose a { color: var(--indigo, #6366f1); text-decoration: none; border-bottom: 1px solid currentColor; }
-        .changelog-prose a:hover { color: var(--ink-text, #ece3d3); }
-        .changelog-prose em { font-style: italic; color: var(--ink-text, #ece3d3); }
+        .changelog-prose a { color: var(--indigo); text-decoration: none; border-bottom: 1px solid currentColor; }
+        .changelog-prose a:hover { color: var(--ink-text); }
+        .changelog-prose em { font-style: italic; color: var(--ink-text); }
       `}</style>
     </section>
   );

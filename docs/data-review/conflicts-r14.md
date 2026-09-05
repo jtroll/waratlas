@@ -1,6 +1,6 @@
 # Conflicts dataset — review round 14 (data-defect pass)
 
-Scope: `public/conflicts.json` only. Applied by `scripts/conflicts_r14_fix.py` from the tables under `scripts/data/`; verified by `scripts/validate-conflicts.mjs`. Companion review list (judgment calls, NOT applied): `duplicate-clusters-r14.md`.
+Scope: `data/conflicts.json` only. Applied by `scripts/conflicts_r14_fix.py` from the tables under `scripts/data/`; verified by `scripts/validate-conflicts.mjs`. Companion review list (judgment calls, NOT applied): `duplicate-clusters-r14.md`.
 
 ## Headline numbers
 
