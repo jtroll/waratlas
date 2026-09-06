@@ -29,7 +29,6 @@ import ConflictListPanel from '@/components/ConflictListPanel';
 import LoadingScreen from '@/components/LoadingScreen';
 import ErrorBoundary, { DataLoadError } from '@/components/ErrorBoundary';
 import BorderLegend from '@/components/BorderLegend';
-import DisputedTerritoryNote from '@/components/DisputedTerritoryNote';
 import EraPanel from '@/components/EraPanel';
 import ExportMenu from '@/components/ExportMenu';
 import OpeningTour from '@/components/OpeningTour';
@@ -47,7 +46,6 @@ const MAX_YEAR = new Date().getFullYear();
 // Components we don't own but render with stable props — memoised here so
 // they skip the per-integer-year commits during playback.
 const MemoBorderLegend = memo(BorderLegend);
-const MemoDisputedTerritoryNote = memo(DisputedTerritoryNote);
 const MemoEraPanel = memo(EraPanel);
 const MemoMobileTabDock = memo(MobileTabDock);
 const MemoCityTimelineModal = memo(CityTimelineModal);
@@ -961,7 +959,7 @@ export default function Home() {
   // contents around components we don't own) contribute their children.
   // Re-measured when a panel opens/closes, on resize, and — via a
   // MutationObserver on <main> — whenever chrome mounts or unmounts on its
-  // own (EraPanel, DisputedTerritoryNote). Panels slide in over ~280 ms,
+  // own (EraPanel, BorderLegend). Panels slide in over ~280 ms,
   // so a second pass runs after the animation settles.
   const mainRef = useRef<HTMLElement>(null);
   const [avoidRects, setAvoidRects] = useState<DOMRect[]>([]);
@@ -1347,14 +1345,11 @@ export default function Home() {
             </div>
           )}
 
-          {/* Persistent legend explaining solid vs dashed borders */}
+          {/* Legend: solid vs dashed empire borders, plus the contested
+              modern-border note from 1900 (it used to be a second (i) chip
+              that duplicated the Mapbox attribution icon). */}
           <div ref={legendWrapRef} data-avoid="wrap" style={{ display: 'contents' }}>
-            <MemoBorderLegend />
-          </div>
-
-          {/* Disputed-territory note in modern era */}
-          <div data-avoid="wrap" style={{ display: 'contents' }}>
-            <MemoDisputedTerritoryNote year={renderYear} />
+            <MemoBorderLegend year={renderYear} />
           </div>
 
           {/* Era context panel — appears briefly when crossing era boundaries */}
