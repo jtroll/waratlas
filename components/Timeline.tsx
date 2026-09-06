@@ -636,7 +636,11 @@ function Timeline({
   return (
     // Mobile: sit ABOVE the MobileTabDock (~46px + safe-area). Desktop:
     // anchor to the very bottom.
-    <div className="absolute left-0 right-0 z-30 bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:bottom-0">
+    // pointer-events-none on the root: its top 48px is a transparent fade
+    // band that would otherwise swallow clicks meant for whatever sits in
+    // it (the border legend's disclosure, the this-year strip). The strip
+    // itself re-enables pointer events below.
+    <div className="absolute left-0 right-0 z-30 pointer-events-none bottom-[calc(46px+env(safe-area-inset-bottom,0px))] sm:bottom-0">
       {/* Top fade — keeps map visible behind the strip */}
       <div
         className="h-12 pointer-events-none"
@@ -645,7 +649,7 @@ function Timeline({
         }}
       />
 
-      <div className="px-3 sm:px-6 pb-3 pt-2 hairline-strong-t" style={{ background: STRIP_BG }}>
+      <div className="px-3 sm:px-6 pb-3 pt-2 hairline-strong-t pointer-events-auto" style={{ background: STRIP_BG }}>
         {/* Mobile-only top row: year + speed pills. */}
         <div className="flex sm:hidden items-start justify-between gap-2 mb-1">
           <YearReadout

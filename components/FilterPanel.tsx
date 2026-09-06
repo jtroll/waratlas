@@ -545,7 +545,7 @@ function FilterPanel({
             {/* Mobile-only: the legend and export have no other home on
                 phones (BorderLegend and ExportMenu are desktop-only). */}
             <div className="sm:hidden mt-3 pt-3" style={{ borderTop: '1px solid var(--rule)' }}>
-              <BorderLegend variant="inline" />
+              <BorderLegend variant="inline" year={currentYear} />
             </div>
             {exportConflicts && (
               <div className="sm:hidden mt-3 pt-3" style={{ borderTop: '1px solid var(--rule)' }}>
