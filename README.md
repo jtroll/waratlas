@@ -136,6 +136,17 @@ re-run `npm run data` and commit the result after editing anything in `data/`.
 CI (`.github/workflows/ci.yml`) runs validate → data → `tsc --noEmit` → lint →
 test → build on every push and pull request.
 
+## Mention monitor
+
+A scheduled Claude Code routine searches the web every hour for mentions of
+War Atlas (news, Hacker News, social posts, GitHub issues), picks out data
+critiques and bug reports, checks them against this repo, and proposes fixes
+as draft PRs or `mention-monitor` issues for the maintainer to approve. It
+never merges or posts anywhere on its own. Everything it has seen is logged in
+the open `mention-monitor-ledger` issue. The monitor's instructions live in
+[`monitor/PLAYBOOK.md`](monitor/PLAYBOOK.md); edit that file to change its
+behavior.
+
 ## Expanding the dataset
 
 To re-fetch Wikipedia empire summaries:
